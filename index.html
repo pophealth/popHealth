@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>popconnect</title>
+  <!-- Date: 2009-10-02 -->
+  <link rel="stylesheet" href="stylesheets/screen.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="stylesheets/print.css" type="text/css" media="print">
+  <!--[if lt IE 8]><link rel="stylesheet" href="stylesheets/ie.css" type="text/css" media="screen, projection"><![endif]-->
+
+  <script type="text/javascript" src="javascripts/jquery-1.3.2.min.js"></script>
+  <script type="text/javascript" src="javascripts/jquery-ui-1.7.2.custom.min.js"></script>
+
+  <script type="text/javascript" src="javascripts/pop_connect.js"></script>
+  <script type="text/javascript" src="javascripts/data_viewer.js"></script>
+
+  <style>
+  
+    html,body{
+      font-family:Helvetica, Arial, sans-serif;
+      font-size: .8em;
+      height: 100%;
+      width:  100%;
+      padding:0;
+      margin: 0;
+      border: 0;
+      background: #fff;
+    }
+  
+    #header{
+      height:         40px;
+      background:     url('images/gradient.png');
+      border-bottom:  1px solid #cccccc;
+    }
+    #header .logo{
+      margin: 0 10px;
+    }
+
+    #sidebar{
+      position:     absolute;
+      width:        200px;
+      border-right: 1px solid #cccccc;
+      padding:      10px;
+    }
+    #main{
+      position:     relative;
+      left:         221px;
+      padding:      10px;
+    }
+    #reports ul li{
+      padding: 10px 0;
+    }
+    #reports ul{
+      list-style-type:  none;
+      padding:          0;
+    }
+    
+    .data_viewer .section h3 {
+      color: #666;
+    }
+    
+  </style>
+</head>
+<body>
+  <div id='header'>
+    <img src='images/logo.png' class='logo' alt='popconnect'>
+  </div>
+
+  <div id='container'>
+    <div id='sidebar'>
+      <div id='info'>
+        <h1>0</h1>
+        <div>No Population</div>
+      </div>
+      <div id='reports'>
+        <ul>
+          <li>report</li>
+          <li>report</li>
+          <li>report</li>
+          <li>report</li>
+          <li>report</li>
+          <li>report</li>
+          <li>report</li>
+          <li>report</li>
+          <li>report</li>
+          <li>report</li>
+          <li>report</li>
+          <li>report</li>
+          <li>report</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id='main'>
+<!--
+
+      <div id='report'>
+        <div>Untitled Report</div>
+        <div>0<span>%</span></div>
+        <ul>
+          <li>
+            <div id='numerator'>0</div>
+            <div id='num_shelf'>Drag items here for the numerator</div>
+          </li>
+          <li>
+            <div id='denominator'>0</div>
+            <div id='den_shelf'>Drag items here for the denominator</div>
+          </li>
+        </ul>
+      </div>
+      <div id='metrics'>
+        <div id='section'>
+          <h3>Section Head</h3>
+          <div class='subsec'>
+            <table>
+              <tr>
+                <th class='labelHead'>Label Head</th>
+                <th>%</th>
+                <th>#</th>
+              </tr>
+              <tr>
+                <td class='label'>Label</td>
+                <td class='percent'>0</td>
+                <td class='number'>0</td>
+              </tr>
+            </table>
+
+          </div>
+        </div>
+      </div>
+
+-->
+    </div>
+
+  </div>
+
+  <div id='footer'></div>
+
+  <script>
+    $(document).ready(function() {
+      var dataViewer = new popConnect.DataViewer('#main', {
+          dataUrl: 'data/json_response.js'
+        });
+    });
+
+
+  </script>
+
+</body>
+</html>
