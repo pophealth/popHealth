@@ -199,6 +199,18 @@ popConnect.DataViewer = function(element, options) {
     } else {
       dataDefinition.denominatorFieldsDomNode.removeClass('disabled');
     }
+    
+    var highestPopulationCount = 0;
+    
+    $(dataDefinition.sort).each(function(i, currentSection) {
+      $(dataDefinition.types[currentSection].sort).each(function(i, subsection) {
+        $(dataDefinition.types[currentSection].types[subsection].sort).each(function(i, value) {
+          if(data[subsection][value][1] > highestNumber) {
+            highestPopulationCount = data[subsection][value][1];
+          }
+        });
+      });
+    });
         
     $(dataDefinition.sort).each(function(i, currentSection) {
       // dataDefinition.types[currentSection] is the section...
@@ -229,25 +241,51 @@ popConnect.DataViewer = function(element, options) {
   // Set the domNode references too!
   this.buildInitialDom = function() {
     $(element).addClass('data_viewer');
-    dataDefinition.masterPercentageDomNode = $('<div>').addClass('.master_percentage');
+    dataDefinition.masterPercentageDomNode = $('<div>').addClass('master_percentage');
     dataDefinition.numeratorValueDomNode = $('<span>');
     dataDefinition.denominatorValueDomNode = $('<span>');
     dataDefinition.numeratorFieldsDomNode = $('<div>');
     dataDefinition.denominatorFieldsDomNode = $('<div>');
-    $([dataDefinition.numeratorFieldsDomNode, dataDefinition.denominatorFieldsDomNode]).droppable({
-      drop: function(evt, ui) {
-        console.log(ui.draggable);
-      }
+    
+    $([dataDefinition.numeratorFieldsDomNode, dataDefinition.denominatorFieldsDomNode]).each(function() {
+      
+      var type = this;
+      
+      $(this).droppable({
+        drop: function(evt, ui) {
+          ui.helper.remove(); // Remove the helper clone
+          var sectionName = ui.draggable.parent().parent()[0].className.split(' ')[1]; // Sketchy...
+          var subsectionName = ui.draggable.parent()[0].className.split(' ')[1]; // Sketchy...
+          var value = ui.draggable.find('.label').text();
+          
+          var fields_objs = data.denominator_fields;
+          if(type == dataDefinition.numeratorFieldsDomNode) {
+            fields_objs = data.numerator_fields
+          }
+
+          if(fields_objs[subsectionName] && $.inArray(value, fields_objs[subsectionName]) !== -1) {
+          } else {
+            if(!fields_objs[subsectionName]) {
+              fields_objs[subsectionName] = []
+            }
+            fields_objs[subsectionName].push(value);
+            reload(); // This should disable the UI...
+          }
+        }
+        
+      });
+      
     });
+    
     dataDefinition.reportTitle = $('<h2>').addClass('reportTitle');
     var topFrame = $('<div>').addClass('top_frame');
     topFrame.append(dataDefinition.reportTitle);
     topFrame.append(dataDefinition.masterPercentageDomNode);
     var statsContainer = $('<div>');
-    statsContainer.append($('<div>').addClass('.numerator').append(
+    statsContainer.append($('<div>').addClass('numerator').append(
       dataDefinition.numeratorValueDomNode).append(
       dataDefinition.numeratorFieldsDomNode));
-    statsContainer.append($('<div>').addClass('.denominator').append(
+    statsContainer.append($('<div>').addClass('denominator').append(
       dataDefinition.denominatorValueDomNode).append(
       dataDefinition.denominatorFieldsDomNode));
       
@@ -255,11 +293,13 @@ popConnect.DataViewer = function(element, options) {
     
     var bottomFrame = $('<div>').addClass('bottom_frame');
     $(dataDefinition.sort).each(function(sectionIndex, sectionName) {
-      var sectionDiv = $('<div>').addClass('section');
+      var sectionDiv = $('<div>').addClass('section').addClass(sectionName);
+      dataDefinition.types[sectionName].domNode = sectionDiv;
       $(sectionDiv).append($('<h3>').text(dataDefinition.types[sectionName].label));
       
       $(dataDefinition.types[sectionName].sort).each(function(subsectionIndex, subsectionName) {
-        var subsectionDiv = $('<div>').addClass('subsection');
+        var subsectionDiv = $('<div>').addClass('subsection').addClass(subsectionName);
+        dataDefinition.types[sectionName].types[subsectionName].domNode = subsectionDiv;
         $(subsectionDiv).append($('<h4>').append(
           $('<span>').text(dataDefinition.types[sectionName].types[subsectionName].label).addClass('label')).append(
           $('<span>').text('%').addClass('percentage')).append(
@@ -273,7 +313,9 @@ popConnect.DataViewer = function(element, options) {
           value.append($('<div>').addClass('number'));
           value.append($('<div>').addClass('bar')); // Not sure if anything else goes here
           value.draggable({
-            revert: true
+            revert: true,
+            helper: 'clone',
+            opacity: 0.80
           });
           subsectionDiv.append(value);
         });
