@@ -222,8 +222,29 @@ popConnect.DataViewer = function(element, options) {
           var labelText = $(value).find('.label').text();
           if(data[currentType][labelText]) {
             var setAt = data[currentType][labelText][0];
-            var highWaterMark = data[currentType][labelText][1];
-
+            var highWaterMark = data[currentType][labelText][1];            
+            if(
+              (data.numerator_fields[currentType] && $.inArray(labelText, data.numerator_fields[currentType]) > -1) || 
+              (data.denominator_fields[currentType] && $.inArray(labelText, data.denominator_fields[currentType]) > -1)
+              ) {
+              // TODO: Add styling for 'checked' items
+              $(value).append($('<img>').attr('src', 'images/checked.png').attr('alt', 'Checked'));
+              // Remove draggable
+              $(value).unbind('*'); // This removes ALL events...could be trouble!
+            } else {
+              $(value).find('img').remove(); // Remove any 'checked' styling
+              $(value).draggable({
+                revert: true,
+                helper: 'clone',
+                opacity: 0.80,
+                start: function(evt, ui) {
+                  that.currentlyDraggedSection = currentSection;
+                  that.currentlyDraggedSubsection = currentType;
+                  that.currentlyDraggedValue = $(value).find('.label').text();
+                }
+              });
+            }
+            
             // TODO: Brian...some sort of UI magic
             var thisPercentage = Math.round(setAt / data.count * 100);
             $(value).find('.percentage').text(thisPercentage);
@@ -258,27 +279,19 @@ popConnect.DataViewer = function(element, options) {
       $(this).droppable({
         drop: function(evt, ui) {
           ui.helper.remove(); // Remove the helper clone
-          var sectionName = ui.draggable.parent().parent()[0].className.split(' ')[1]; // Sketchy...
-          var subsectionName = ui.draggable.parent()[0].className.split(' ')[1]; // Sketchy...
-          var value = ui.draggable.find('.label').text();
-
           var fields_objs = data.denominator_fields;
           if(type == dataDefinition.numeratorFieldsDomNode) {
             fields_objs = data.numerator_fields
           }
 
-          if(fields_objs[subsectionName] && $.inArray(value, fields_objs[subsectionName]) !== -1) {
-          } else {
-            if(!fields_objs[subsectionName]) {
-              fields_objs[subsectionName] = []
-            }
-            fields_objs[subsectionName].push(value);
-            reload(); // This should disable the UI...
+          if(!fields_objs[that.currentlyDraggedSubsection]) {
+            fields_objs[that.currentlyDraggedSubsection] = []
           }
-        }
+          fields_objs[that.currentlyDraggedSubsection].push(that.currentlyDraggedValue);
+          that.reload(); // This should disable the UI...
 
-      });
-
+        }        
+      });      
     });
 
     dataDefinition.reportTitle = $('<h2>').addClass('reportTitle');
@@ -316,11 +329,6 @@ popConnect.DataViewer = function(element, options) {
           value.append($('<div>').addClass('percentage'));
           value.append($('<div>').addClass('number'));
           value.append($('<div>').addClass('bar')); // Not sure if anything else goes here
-          value.draggable({
-            revert: true,
-            helper: 'clone',
-            opacity: 0.80
-          });
           subsectionDiv.append(value);
         });
 
