@@ -16,141 +16,11 @@
   <script type="text/javascript" src="javascripts/pop_connect.js"></script>
   <script type="text/javascript" src="javascripts/data_viewer.js"></script>
 
-  <style>
+  <!--
+     REMOVE AND BUILD WITH BLUEPRINT
+  -->
+  <link rel="stylesheet" href="stylesheets/custom.css" type="text/css" media="screen, projection">
 
-    html,body{
-      font-family:Helvetica, Arial, sans-serif;
-      font-size: .8em;
-      height: 100%;
-      width:  100%;
-      padding:0;
-      margin: 0;
-      border: 0;
-      background: #fff;
-    }
-
-    #header{
-      height:         40px;
-      background:     url('images/gradient.png');
-      border-bottom:  1px solid #cccccc;
-    }
-    #header .logo{
-      margin: 0 10px;
-    }
-
-    #sidebar{
-      position:     absolute;
-      width:        200px;
-      border-right: 1px solid #cccccc;
-      padding:      10px;
-    }
-    #main{
-      position:     relative;
-      left:         221px;
-      padding:      10px;
-    }
-    #reports ul li{
-      padding: 10px 0;
-    }
-    #reports ul{
-      list-style-type:  none;
-      padding:          0;
-    }
-
-    .data_viewer .section h3{
-      color: #666;
-    }
-
-    .data_viewer .section h4{
-      color: #999;
-    }
-
-    .data_viewer .subsection h4 {
-      margin-bottom: 0px;
-    }
-
-    .data_viewer .top_frame {
-      height:         200px;
-      width:          100%;
-      border-bottom:  1px solid #ccc;
-      margin-bottom:  10px;
-    }
-
-    .data_viewer .section {
-      width: 400px;
-      display: inline-block;
-      vertical-align: top;
-    }
-
-    .data_viewer .subsection {
-      margin-bottom:  10px;
-    }
-
-
-    .data_viewer h4 span, .data_viewer .value div{
-      display: inline-block;
-    }
-
-    .data_viewer .value div.label{
-      margin-left:    5px;
-    }
-
-/*
-    .data_viewer .label {
-      width: 200px;
-      text-align: left;
-    }
-*/
-
-    .data_viewer .label {
-
-      width:          150px;
-      text-align:     left;
-      margin-right:   10px;
-    }
-
-    .data_viewer .percentage, .data_viewer .number{
-      text-align:     right;
-      margin-right:   10px;
-    }
-
-    .data_viewer .percentage {
-      width: 25px;
-    }
-
-    .data_viewer .number {
-      width: 60px;
-    }
-
-    .data_viewer .disabled {
-      color: #AAA;
-    }
-
-
-    /*
-      BARS
-    */
-    .data_viewer .bar{
-      position: relative;
-      width:    100px;
-      height:   11px;
-    }
-
-    .data_viewer .bar span{
-      position: absolute;
-    }
-
-    .data_viewer .bar .selected{
-      height:     100%;
-      background: #231f20;
-      z-index:    1;
-    }
-    .data_viewer .bar .total{
-      height:     100%;
-      background: #ccc;
-    }
-
-  </style>
 </head>
 <body>
   <div id='header'>
@@ -235,9 +105,9 @@
       var dataViewer = new popConnect.DataViewer('#main', {
           dataUrl: 'data/json_response.js'
         });
-        
-        
-      
+
+
+
     });
 
 

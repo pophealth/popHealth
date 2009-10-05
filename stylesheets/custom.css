@@ -1,0 +1,181 @@
+html,body{
+  font-family:Helvetica, Arial, sans-serif;
+  font-size: .8em;
+  height: 100%;
+  width:  100%;
+  padding:0;
+  margin: 0;
+  border: 0;
+  background: #fff;
+}
+
+#header{
+  height:         40px;
+  background:     url('images/gradient.png');
+  border-bottom:  1px solid #cccccc;
+}
+#header .logo{
+  margin: 0 10px;
+}
+
+#sidebar{
+  position:     absolute;
+  width:        200px;
+  border-right: 1px solid #cccccc;
+  padding:      10px;
+}
+#main{
+  position:     relative;
+  left:         221px;
+  padding:      10px;
+}
+#reports ul li{
+  padding: 10px 0;
+}
+#reports ul{
+  list-style-type:  none;
+  padding:          0;
+}
+
+.data_viewer .section h3{
+  color: #666;
+}
+
+.data_viewer .section h4{
+  color: #999;
+}
+
+.data_viewer .subsection h4 {
+  margin-bottom: 0px;
+}
+
+/*
+  TOP FRAME
+*/
+.data_viewer .top_frame {
+  width:          100%;
+  border-bottom:  1px solid #ccc;
+  padding-bottom: 20px;
+  margin-bottom:  20px;
+}
+
+.data_viewer .top_frame .report_stats{
+  position: relative;
+  height:   100px;
+}
+
+
+.data_viewer .top_frame .master_percentage span{
+  font-size: 65%;
+}
+
+.top_frame .master_percentage{
+  width:    80px;
+}
+
+.top_frame .numerator, .top_frame .denominator{
+
+}
+
+.top_frame .numerator, .top_frame .numerator h2, .top_frame .numerator, .top_frame .numerator div, .top_frame .denominator h2, .top_frame .denominator div, .top_frame .master_percentage{
+  display: inline-block;
+}
+
+.top_frame h2{
+  margin-right: 100px;
+}
+.top_frame .numerator div, .top_frame .denominator div{
+  font-size: 1.5em;
+}
+
+.data_viewer .section {
+  width: 400px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.data_viewer .subsection {
+  margin-bottom:  20px;
+}
+
+
+.data_viewer h4 span, .data_viewer .value div{
+  display: inline-block;
+}
+
+.data_viewer .value div.label{
+  margin-left:    5px;
+}
+
+.data_viewer h4 .percentage{
+  margin-left: 5px;
+}
+
+.data_viewer .subsection .value{
+  border:         1px solid #fff;
+  margin-bottom:  3px;
+}
+
+.data_viewer .subsection .value:hover{
+  background:   #e6e6e6;
+  border:       1px solid #ccc;
+  margin-right: 20px;
+  cursor:       move;
+}
+
+
+/*
+.data_viewer .label {
+  width: 200px;
+  text-align: left;
+}
+*/
+
+.data_viewer .label {
+  width:          150px;
+  text-align:     left;
+  margin-right:   10px;
+}
+
+.data_viewer .percentage, .data_viewer .number{
+  text-align:     right;
+  margin-right:   10px;
+}
+
+.data_viewer .percentage {
+  width: 25px;
+}
+
+.data_viewer .number {
+  width: 60px;
+}
+
+.data_viewer .disabled {
+  color: #AAA;
+}
+
+
+
+/*
+  BARS
+*/
+.data_viewer .bar{
+  position: relative;
+  width:    100px;
+  height:   11px;
+  top:      2px;
+}
+
+.data_viewer .bar span{
+  position: absolute;
+}
+
+.data_viewer .bar .selected{
+  height:     100%;
+  background: #231f20;
+  z-index:    1;
+}
+.data_viewer .bar .total{
+  height:     100%;
+  background: #ccc;
+}

@@ -151,7 +151,7 @@ popConnect.DataViewer = function(element, options) {
     }
 
     if(percentage === 0) {
-      dataDefinition.masterPercentageDomNode.addClass('disabled').text('0%');
+      dataDefinition.masterPercentageDomNode.addClass('disabled').append('0').append( $('<span>').text('%') );
     } else {
       dataDefinition.masterPercentageDomNode.removeClass('disabled').text(percentage + '%');
     }
@@ -173,7 +173,7 @@ popConnect.DataViewer = function(element, options) {
     }
 
     if(!hasNumerator) {
-      dataDefinition.numeratorFieldsDomNode.text('Drag items here for the denominator').addClass('disabled');
+      dataDefinition.numeratorFieldsDomNode.text('Drag items here for the numerator').addClass('disabled');
     } else {
       dataDefinition.numeratorFieldsDomNode.removeClass('disabled');
     }
@@ -266,9 +266,9 @@ popConnect.DataViewer = function(element, options) {
   // Set the domNode references too!
   this.buildInitialDom = function() {
     $(element).addClass('data_viewer');
-    dataDefinition.masterPercentageDomNode = $('<div>').addClass('master_percentage');
-    dataDefinition.numeratorValueDomNode = $('<span>');
-    dataDefinition.denominatorValueDomNode = $('<span>');
+    dataDefinition.masterPercentageDomNode = $('<h1>').addClass('master_percentage');
+    dataDefinition.numeratorValueDomNode = $('<h2>');
+    dataDefinition.denominatorValueDomNode = $('<h2>');
     dataDefinition.numeratorFieldsDomNode = $('<div>');
     dataDefinition.denominatorFieldsDomNode = $('<div>');
 
@@ -297,8 +297,8 @@ popConnect.DataViewer = function(element, options) {
     dataDefinition.reportTitle = $('<h2>').addClass('reportTitle');
     var topFrame = $('<div>').addClass('top_frame');
     topFrame.append(dataDefinition.reportTitle);
-    topFrame.append(dataDefinition.masterPercentageDomNode);
-    var statsContainer = $('<div>');
+    var statsContainer = $('<div>').addClass('report_stats');
+    statsContainer.append(dataDefinition.masterPercentageDomNode);
     statsContainer.append($('<div>').addClass('numerator').append(
       dataDefinition.numeratorValueDomNode).append(
       dataDefinition.numeratorFieldsDomNode));
