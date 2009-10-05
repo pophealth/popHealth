@@ -17,7 +17,7 @@
   <script type="text/javascript" src="javascripts/data_viewer.js"></script>
 
   <style>
-  
+
     html,body{
       font-family:Helvetica, Arial, sans-serif;
       font-size: .8em;
@@ -28,7 +28,7 @@
       border: 0;
       background: #fff;
     }
-  
+
     #header{
       height:         40px;
       background:     url('images/gradient.png');
@@ -56,11 +56,100 @@
       list-style-type:  none;
       padding:          0;
     }
-    
-    .data_viewer .section h3 {
+
+    .data_viewer .section h3{
       color: #666;
     }
-    
+
+    .data_viewer .section h4{
+      color: #999;
+    }
+
+    .data_viewer .subsection h4 {
+      margin-bottom: 0px;
+    }
+
+    .data_viewer .top_frame {
+      height:         200px;
+      width:          100%;
+      border-bottom:  1px solid #ccc;
+      margin-bottom:  10px;
+    }
+
+    .data_viewer .section {
+      width: 400px;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .data_viewer .subsection {
+      margin-bottom:  10px;
+    }
+
+
+    .data_viewer h4 span, .data_viewer .value div{
+      display: inline-block;
+    }
+
+    .data_viewer .value div.label{
+      margin-left:    5px;
+    }
+
+/*
+    .data_viewer .label {
+      width: 200px;
+      text-align: left;
+    }
+*/
+
+    .data_viewer .label {
+
+      width:          150px;
+      text-align:     left;
+      margin-right:   10px;
+    }
+
+    .data_viewer .percentage, .data_viewer .number{
+      text-align:     right;
+      margin-right:   10px;
+    }
+
+    .data_viewer .percentage {
+      width: 25px;
+    }
+
+    .data_viewer .number {
+      width: 60px;
+    }
+
+    .data_viewer .disabled {
+      color: #AAA;
+    }
+
+
+    /*
+      BARS
+    */
+    .data_viewer .bar{
+      position: relative;
+      width:    100px;
+      height:   11px;
+    }
+
+    .data_viewer .bar span{
+      position: absolute;
+    }
+
+    .data_viewer .bar .selected{
+      height:     100%;
+      background: #231f20;
+      z-index:    1;
+    }
+    .data_viewer .bar .total{
+      height:     100%;
+      background: #ccc;
+    }
+
   </style>
 </head>
 <body>
@@ -74,6 +163,7 @@
         <h1>0</h1>
         <div>No Population</div>
       </div>
+
       <div id='reports'>
         <ul>
           <li>report</li>
@@ -93,7 +183,13 @@
       </div>
     </div>
 
+
     <div id='main'>
+      <div class='bar'>
+        <span class='total' style='width:100%'></span>
+        <span class='selected' style='width:50%'></span>
+      </div>
+
 <!--
 
       <div id='report'>
@@ -143,6 +239,9 @@
       var dataViewer = new popConnect.DataViewer('#main', {
           dataUrl: 'data/json_response.js'
         });
+        
+        
+      
     });
 
 
