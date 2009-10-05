@@ -52,7 +52,7 @@ popConnect.DataViewer = function(element, options) {
       'No': [0, 0]
     }
   };
-  
+
   var rootElement = $(element);             // Root DOM element for UI
   var dataUrl = options.dataUrl || '/data'; // Where to get data from...not restful, whatever
   var that = this;                          // Traditional javascript nonsense
@@ -62,7 +62,7 @@ popConnect.DataViewer = function(element, options) {
   var onError = options.error;              // Callback for when data doesn't load
   var disabledColor = options.disabledColor || '#999'; // What color is disabled text?
   var enabledColor = options.enabledColor || 'black';  // What color is enabled text?
-  
+
   // It's sort of arbitrary to split dataDefinition out this way, but I think
   // the individual unit to consider is each section.
   var dataDefinition = options.dataDefinition || {
@@ -102,40 +102,40 @@ popConnect.DataViewer = function(element, options) {
     },
     sort: ['demographics', 'risk_factors', 'disease_conditions', 'treatments']
   };
-  
+
   var irregularLabels = {
     diabetes: {'Yes': 'Diabetes', 'No': 'Without Diabetes'},
     hypertension: {'Yes': 'Hypertension', 'No': 'Without Hypertension'},
   }
-  
+
   // Public functions
-  
-  
-  
+
+
+
   // ........ are there any ??? ..........
-  
+
   // Priviledged functions
   // Can access both public and private variables and methods
-  
+
   // This probably shouldn't be used...but I'm adding it just in case
   this.getData = function() {
     return data;
   }
-  
+
   // Reload DOM elements from data
   this.refresh = function() {
     // Assumes the markup is already there and domNode properties have been set correctly
     // ie don't call this if the DOM element is missing! Call buildInitialDom...
-    
+
     if(data.title) {
       dataDefinition.reportTitle.text(data.title).removeClass('disabled');
     } else {
       dataDefinition.reportTitle.text('Click to name report').addClass('disabled');
     }
-    
+
     // Assume the dom nodes already exist and have been set
     var percentage = 0;   // Giant percentage number
-    
+
     // Let's run the calculations on the data...
     if(data.denominator > 0) {
       percentage = Math.round(data.numerator / data.denominator * 100); // Dividing by 0 apparently doesn't work!! Who knew!?
@@ -143,19 +143,19 @@ popConnect.DataViewer = function(element, options) {
     } else {
       dataDefinition.denominatorValueDomNode.addClass('disabled').text(data.denominator);
     }
-    
+
     if(data.numerator > 0) {
       dataDefinition.numeratorValueDomNode.removeClass('disabled').text(data.numerator);
     } else {
       dataDefinition.numeratorValueDomNode.addClass('disabled').text(data.numerator);
     }
-    
+
     if(percentage === 0) {
       dataDefinition.masterPercentageDomNode.addClass('disabled').text('0%');
     } else {
       dataDefinition.masterPercentageDomNode.removeClass('disabled').text(percentage + '%');
     }
-    
+
     dataDefinition.numeratorFieldsDomNode.empty();
     var hasNumerator = false; // There must be a better way to do that
     var key;
@@ -171,13 +171,13 @@ popConnect.DataViewer = function(element, options) {
         });
       }
     }
-    
+
     if(!hasNumerator) {
-      dataDefinition.numeratorFieldsDomNode.text('Drag items here for the denominator').addClass('disabled'); 
+      dataDefinition.numeratorFieldsDomNode.text('Drag items here for the denominator').addClass('disabled');
     } else {
       dataDefinition.numeratorFieldsDomNode.removeClass('disabled');
     }
-    
+
     dataDefinition.denominatorFieldsDomNode.empty();
     var hasDenominator = false; // There must be a better way to do that
     var key;
@@ -193,50 +193,54 @@ popConnect.DataViewer = function(element, options) {
         });
       }
     }
-    
+
     if(!hasDenominator) {
       dataDefinition.denominatorFieldsDomNode.text('Drag items here for the denominator').addClass('disabled');
     } else {
       dataDefinition.denominatorFieldsDomNode.removeClass('disabled');
     }
-    
+
     var highestPopulationCount = 0;
-    
+
     $(dataDefinition.sort).each(function(i, currentSection) {
       $(dataDefinition.types[currentSection].sort).each(function(i, subsection) {
         $(dataDefinition.types[currentSection].types[subsection].sort).each(function(i, value) {
-          if(data[subsection][value][1] > highestNumber) {
+          if(data[subsection][value][1] > highestPopulationCount) {
             highestPopulationCount = data[subsection][value][1];
           }
         });
       });
     });
-        
+
     $(dataDefinition.sort).each(function(i, currentSection) {
       // dataDefinition.types[currentSection] is the section...
       $(dataDefinition.types[currentSection].sort).each(function(j, currentType) {
         // currentTypeDefinition is the sub-section
         var currentTypeDefinition = dataDefinition.types[currentSection].types[currentType];
-        
+
         $(currentTypeDefinition.domNode).find('.value').each(function(index, value) {
           var labelText = $(value).find('.label').text();
           if(data[currentType][labelText]) {
             var setAt = data[currentType][labelText][0];
             var highWaterMark = data[currentType][labelText][1];
-            
+
             // TODO: Brian...some sort of UI magic
             var thisPercentage = Math.round(setAt / data.count * 100);
             $(value).find('.percentage').text(thisPercentage);
             $(value).find('.number').text(setAt);
+            $(value).find('.bar').append( $('<span>').addClass('total').css('width', Math.round(highWaterMark / highestPopulationCount *100 )+'%') );
+            $(value).find('.bar').append( $('<span>').addClass('selected').css('width', Math.round(setAt / highestPopulationCount *100 )+'%') );
+
           } else {
             // Something bad happened, a label didn't match up with the text...
-            console.error("Couldn't find data for: " + labelText); 
+            console.error("Couldn't find data for: " + labelText);
           }
         });
       });
     });
   };
-  
+
+
   // Build the initial DOM containers given the dataDefinition
   // Set the domNode references too!
   this.buildInitialDom = function() {
@@ -246,18 +250,18 @@ popConnect.DataViewer = function(element, options) {
     dataDefinition.denominatorValueDomNode = $('<span>');
     dataDefinition.numeratorFieldsDomNode = $('<div>');
     dataDefinition.denominatorFieldsDomNode = $('<div>');
-    
+
     $([dataDefinition.numeratorFieldsDomNode, dataDefinition.denominatorFieldsDomNode]).each(function() {
-      
+
       var type = this;
-      
+
       $(this).droppable({
         drop: function(evt, ui) {
           ui.helper.remove(); // Remove the helper clone
           var sectionName = ui.draggable.parent().parent()[0].className.split(' ')[1]; // Sketchy...
           var subsectionName = ui.draggable.parent()[0].className.split(' ')[1]; // Sketchy...
           var value = ui.draggable.find('.label').text();
-          
+
           var fields_objs = data.denominator_fields;
           if(type == dataDefinition.numeratorFieldsDomNode) {
             fields_objs = data.numerator_fields
@@ -272,11 +276,11 @@ popConnect.DataViewer = function(element, options) {
             reload(); // This should disable the UI...
           }
         }
-        
+
       });
-      
+
     });
-    
+
     dataDefinition.reportTitle = $('<h2>').addClass('reportTitle');
     var topFrame = $('<div>').addClass('top_frame');
     topFrame.append(dataDefinition.reportTitle);
@@ -288,15 +292,15 @@ popConnect.DataViewer = function(element, options) {
     statsContainer.append($('<div>').addClass('denominator').append(
       dataDefinition.denominatorValueDomNode).append(
       dataDefinition.denominatorFieldsDomNode));
-      
+
     topFrame.append(statsContainer);
-    
+
     var bottomFrame = $('<div>').addClass('bottom_frame');
     $(dataDefinition.sort).each(function(sectionIndex, sectionName) {
       var sectionDiv = $('<div>').addClass('section').addClass(sectionName);
       dataDefinition.types[sectionName].domNode = sectionDiv;
       $(sectionDiv).append($('<h3>').text(dataDefinition.types[sectionName].label));
-      
+
       $(dataDefinition.types[sectionName].sort).each(function(subsectionIndex, subsectionName) {
         var subsectionDiv = $('<div>').addClass('subsection').addClass(subsectionName);
         dataDefinition.types[sectionName].types[subsectionName].domNode = subsectionDiv;
@@ -305,7 +309,7 @@ popConnect.DataViewer = function(element, options) {
           $('<span>').text('%').addClass('percentage')).append(
           $('<span>').text('#').addClass('number')
         ));
-                
+
         $(dataDefinition.types[sectionName].types[subsectionName].sort).each(function(labelIndex, valueLabel) {
           var value = $('<div>').addClass('value');
           value.append($('<div>').addClass('label').text(valueLabel));
@@ -319,23 +323,23 @@ popConnect.DataViewer = function(element, options) {
           });
           subsectionDiv.append(value);
         });
-        
+
         dataDefinition.types[sectionName].types[subsectionName].domNode = subsectionDiv;
         sectionDiv.append(subsectionDiv);
       });
-      
+
       dataDefinition.types[sectionName].domNode = sectionDiv;
       bottomFrame.append(sectionDiv);
     });
-    
+
     $(element).append(topFrame);
     $(element).append(bottomFrame);
   };
-  
+
   // Reload data given selected fields
   this.reload = function() {
     busy();
-    
+
     $.ajax({
       method: 'GET',
       url: dataUrl,
@@ -358,16 +362,16 @@ popConnect.DataViewer = function(element, options) {
       }
     })
   };
-  
+
   // Private functions
   function _init() {
     that.buildInitialDom();
     that.reload();
   };
-  
+
   // jQuery and rails parameters don't really get along, so let's build the object manually to
   // give Rob a nice params hash to work with.
-  
+
   // The other option is to post it, which might be necessary if the query string becomes long...
   function buildRequestData() {
     var query_object = {
@@ -376,31 +380,31 @@ popConnect.DataViewer = function(element, options) {
     }
     return popConnect.railsSerializer.serialize(query_object);
   };
-  
+
   function showError(msg) {
     // TODO: Something...
     console.log(msg);
   }
-  
+
   // Call when you're doing some sort of work that will take awhile
   function busy() {
     busyness++;
-    
+
     if(busyness > 1) { // Only show the loading indicator if it's not already showing
       // TODO: Show some sort of loading indicator
       // Probably want to disable the interaction here too...
     }
   };
-  
+
   // Call when you're done doing work that will take awhile
   function notBusy() {
     busyness--;
-    
+
     if(busyness < 1) { // Only hide the loading indicator if all work is finished
       // TODO: Remove loading indicator (if present...although it always should be)
       // Enable interaction
     }
   };
-  
+
   _init();
 }
