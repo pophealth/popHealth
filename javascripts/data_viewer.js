@@ -10,7 +10,6 @@ popConnect.DataViewer = function(element, options) {
   var data = {                    // This is where the response to the JSON request will go
     count: 0,
     numerator: 0,
-    denominator: 0,
     numerator_fields: [],
     denominator_fields: [],       // These fields should match up letter-for-letter with the actual field names
     gender: {                     // All are human-readable (since they're strings it doesn't matter, and is easier to keep track of)
@@ -163,11 +162,21 @@ popConnect.DataViewer = function(element, options) {
       if(data.numerator_fields.hasOwnProperty(key)) {
         hasNumerator = true;
         $(data.numerator_fields[key]).each(function(i, value) {
+          var span = $('<span>');
           if(irregularLabels[key]) {
-            dataDefinition.numeratorFieldsDomNode.append($('<span>').text(irregularLabels[key][value]));
+            dataDefinition.numeratorFieldsDomNode.append(span.text(irregularLabels[key][value]));
           } else {
-            dataDefinition.numeratorFieldsDomNode.append($('<span>').text(value));
+            dataDefinition.numeratorFieldsDomNode.append(span.text(value));
           }
+          span.draggable({
+            revert: true,
+            helper: 'clone',
+            opacity: 0.80,
+            start: function() {
+              that.currentlyDraggedSubsection = key;
+              that.currentlyDraggedValue = value;
+            }
+          });
         });
       }
     }
@@ -185,11 +194,21 @@ popConnect.DataViewer = function(element, options) {
       if(data.denominator_fields.hasOwnProperty(key)) {
         hasDenominator = true;
         $(data.denominator_fields[key]).each(function(i, value) {
+          var span = $('<span>');
           if(irregularLabels[key]) {
-            dataDefinition.denominatorFieldsDomNode.append($('<span>').text(irregularLabels[key][value]));
+            dataDefinition.denominatorFieldsDomNode.append(span.text(irregularLabels[key][value]));
           } else {
-            dataDefinition.denominatorFieldsDomNode.append($('<span>').text(value));
+            dataDefinition.denominatorFieldsDomNode.append(span.text(value));
           }
+          span.draggable({
+            revert: true,
+            helper: 'clone',
+            opacity: 0.80,
+            start: function() {
+              that.currentlyDraggedSubsection = key;
+              that.currentlyDraggedValue = value;
+            }
+          });
         });
       }
     }
@@ -238,7 +257,6 @@ popConnect.DataViewer = function(element, options) {
                 helper: 'clone',
                 opacity: 0.80,
                 start: function(evt, ui) {
-                  that.currentlyDraggedSection = currentSection;
                   that.currentlyDraggedSubsection = currentType;
                   that.currentlyDraggedValue = $(value).find('.label').text();
                 }
@@ -280,14 +298,26 @@ popConnect.DataViewer = function(element, options) {
         drop: function(evt, ui) {
           ui.helper.remove(); // Remove the helper clone
           var fields_objs = data.denominator_fields;
+          var other_objs = data.numerator_fields;
           if(type == dataDefinition.numeratorFieldsDomNode) {
-            fields_objs = data.numerator_fields
+            fields_objs = data.numerator_fields;
+            other_objs = data.denominator_fields;
           }
 
+          // Add that field to the selected list
           if(!fields_objs[that.currentlyDraggedSubsection]) {
             fields_objs[that.currentlyDraggedSubsection] = []
           }
           fields_objs[that.currentlyDraggedSubsection].push(that.currentlyDraggedValue);
+          
+          // And, if it's there, remove it from the other list
+          if(other_objs[that.currentlyDraggedSubsection]) {
+            var inArr = $.inArray(that.currentlyDraggedValue, other_objs[that.currentlyDraggedSubsection]);
+            if(inArr > -1) {
+              other_objs[that.currentlyDraggedSubsection].splice(inArr, 1);
+            }
+          }
+          
           that.reload(); // This should disable the UI...
 
         }        
@@ -377,15 +407,13 @@ popConnect.DataViewer = function(element, options) {
     that.reload();
   };
 
-  // jQuery and rails parameters don't really get along, so let's build the object manually to
-  // give Rob a nice params hash to work with.
-
   // The other option is to post it, which might be necessary if the query string becomes long...
   function buildRequestData() {
     var query_object = {
       numerator: data.numerator_fields,
       denominator: data.denominator_fields
     }
+    
     return popConnect.railsSerializer.serialize(query_object);
   };
 
@@ -398,9 +426,8 @@ popConnect.DataViewer = function(element, options) {
   function busy() {
     busyness++;
 
-    if(busyness > 1) { // Only show the loading indicator if it's not already showing
-      // TODO: Show some sort of loading indicator
-      // Probably want to disable the interaction here too...
+    if(busyness > 0) { // Only show the loading indicator if it's not already showing
+      $.blockUI({ message: '<img src="images/ajax-loader.gif" alt="loading" /><h2>Just a moment...</h2>' });
     }
   };
 
@@ -409,8 +436,7 @@ popConnect.DataViewer = function(element, options) {
     busyness--;
 
     if(busyness < 1) { // Only hide the loading indicator if all work is finished
-      // TODO: Remove loading indicator (if present...although it always should be)
-      // Enable interaction
+      $.unblockUI();
     }
   };
 

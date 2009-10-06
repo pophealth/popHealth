@@ -5,6 +5,7 @@
 
 {
   "title": "Some sort of report",
+  "dataUrl": "/reports/4",
   "count": 10001,
   "numerator": 0,
   "denominator": 4100,

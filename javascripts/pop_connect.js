@@ -20,26 +20,21 @@ popConnect.railsSerializer = {
   },
   
   recursive_serialize : function(object, values, prefix) {
-    for (key in object) {
-      if (typeof object[key] == 'object') {
+    var value;
+    var prefixed_key;
+    var child_prefix = '';
+    for (var key in object) {
+      if (typeof object[key] == 'object' || typeof object[key] == 'array') {
         
         if (prefix.length > 0) {
-          prefix += '['+key+']';         
+          child_prefix = prefix + '['+key+']';         
         } else {
-          prefix += key;
+          child_prefix = key;
         }
         
-        values = this.recursive_serialize(object[key], values, prefix);
-        
-        prefixes = prefix.split('[');
-        
-        if (prefixes.length > 1) {
-          prefix = prefixes.slice(0,prefixes.length-1).join('[');
-        } else {
-          prefix = prefixes[0];
-        }
-        
-      } else {
+        values = this.recursive_serialize(object[key], values, child_prefix);
+                
+      } else if (typeof object[key] != 'function') {
         value = encodeURIComponent(object[key]);
         if (prefix.length > 0) {
           prefixed_key = prefix+'['+key+']'          
