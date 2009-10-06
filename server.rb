@@ -53,6 +53,7 @@ def build_response_from_params(params, resp = {})
     resp[:numerator_fields] = params[:numerator] || {}
     resp[:denominator_fields] = params[:denominator] || {}
   end
+  resp[:title] = params[:title] if params[:title]
   resp
 end
 

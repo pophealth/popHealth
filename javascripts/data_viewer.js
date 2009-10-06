@@ -132,8 +132,10 @@ popConnect.DataViewer = function(element, options) {
 
     if(data.title) {
       dataDefinition.reportTitle.text(data.title).removeClass('disabled');
+      dataDefinition.changedReportTitle.val(data.title);
     } else {
       dataDefinition.reportTitle.text('Click to name report').addClass('disabled');
+      dataDefinition.changedReportTitle.val('Type report name');
     }
 
     // Assume the dom nodes already exist and have been set
@@ -267,6 +269,7 @@ popConnect.DataViewer = function(element, options) {
               // I don't know why .unbind doesn't work, but it doesn't
             } else {
               $(value).removeClass('selected');
+              $(value).removeClass('nodrag');
               $(value).addClass('draggable-value');
               $(value).draggable({
                 revert: true,
@@ -309,9 +312,34 @@ popConnect.DataViewer = function(element, options) {
     dataDefinition.numeratorFieldsDomNode = $('<div>');
     dataDefinition.denominatorFieldsDomNode = $('<div>');
     
-    dataDefinition.reportTitle = $('<h2>').addClass('reportTitle');
+    dataDefinition.reportTitle = $('<h2>').addClass('reportTitle').click(function() {
+      dataDefinition.reportTitle.toggle();
+      dataDefinition.reportTitleEdit.toggle();
+      dataDefinition.changedReportTitle.focus();
+      dataDefinition.changedReportTitle.select();
+    });
+    
+    dataDefinition.reportTitleEdit = $('<span>');
+    
+    var cancel = $('<a>').attr('href', '#').text('Cancel').click(function() {
+      dataDefinition.reportTitle.toggle();
+      dataDefinition.reportTitleEdit.toggle();
+    });
+    
+    var ok = $('<a>').attr('href', '#').text('OK').click(function() {
+      busy();
+      dataDefinition.reportTitle.toggle();
+      dataDefinition.reportTitleEdit.toggle();
+      data.title = dataDefinition.changedReportTitle.val();
+      that.reload(buildTailoredData(), 'POST');
+    });
+    dataDefinition.changedReportTitle = $('<input>').attr('type', 'text').addClass('reportTitle');
+    
+    dataDefinition.reportTitleEdit.append(dataDefinition.changedReportTitle).append(ok).append(' | ').append(cancel).hide();
+    
     var topFrame = $('<div>').addClass('top_frame');
     topFrame.append(dataDefinition.reportTitle);
+    topFrame.append(dataDefinition.reportTitleEdit);
     var statsContainer = $('<div>').addClass('report_stats');
     var mathsContainer = $('<div>').addClass('maths');
     
@@ -481,6 +509,10 @@ popConnect.DataViewer = function(element, options) {
     var query_object = {
       numerator: data.numerator_fields,
       denominator: data.denominator_fields,
+    }
+    
+    if(data.title) {
+      query_object.title = data.title;
     }
     
     if(reportId) {
