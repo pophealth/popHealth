@@ -60,8 +60,7 @@ html,body{
 }
 
 .data_viewer .top_frame .report_stats{
-  position: relative;
-  height:   100px;
+
 }
 
 
@@ -70,22 +69,37 @@ html,body{
 }
 
 .top_frame .master_percentage{
-  width:    80px;
+  display: table-cell;
+  vertical-align: middle;
+  height: 70px;
 }
 
-.top_frame .numerator, .top_frame .denominator{
-
+.top_frame .master_percentage h1{
+  margin: 0 0 0 25px;
 }
 
-.top_frame .numerator, .top_frame .numerator h2, .top_frame .numerator, .top_frame .numerator div, .top_frame .denominator h2, .top_frame .denominator div, .top_frame .master_percentage{
+
+.top_frame .maths{
+  width: 40%;
+  float: left;
+}
+
+.top_frame .numerator h2, .top_frame .numerator div, .top_frame .denominator h2, .top_frame .denominator div{
   display: inline-block;
 }
 
-.top_frame h2{
-  margin-right: 100px;
+.top_frame .numerator h2, .top_frame .denominator h2{
+  margin-right: 25px;
+  width:        80px;
+  text-align:   right;
+  margin-bottom:0;
 }
 .top_frame .numerator div, .top_frame .denominator div{
   font-size: 1.5em;
+}
+
+.top_frame hr{
+  margin-bottom: 0;
 }
 
 .data_viewer .section {
