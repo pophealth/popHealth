@@ -35,11 +35,11 @@ popConnect.ReportNavigator = function(element, options) {
   this.refresh = function() {
     domReferences.reportsContainer.empty();
     
-    domReferences.populationCount.text(data.populationCount);
+    domReferences.populationCount.text( data.populationCount);
     domReferences.populationName.text(data.populationName);
     
     $(data.reports).each(function(i, report) {
-      var reportDom = $('<div>').addClass('report').append(
+      var reportDom = $('<li>').addClass('report').append(
         $('<span>').addClass('report-name').text(report.name)).append(
         $('<span>').addClass('report-percentage').text(report.percentage + '%')).click(function() {
           if(!reportDom.hasClass('selected')) {
@@ -89,7 +89,7 @@ popConnect.ReportNavigator = function(element, options) {
     
     var populationStatsContainer = $('<div>').attr('id', 'info');
     domReferences.populationCount = $('<h1>').text('0');
-    domReferences.populationName = $('<div>').text('No population');
+    domReferences.populationName = $('<span>').text('No population');
     populationStatsContainer.append(domReferences.populationCount).append(domReferences.populationName);
     
     domReferences.reportsContainer = $('<ul>').attr('id', 'reports');
