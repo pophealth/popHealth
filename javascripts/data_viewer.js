@@ -253,7 +253,8 @@ popConnect.DataViewer = function(element, options) {
               (data.denominator_fields[currentType] && $.inArray(labelText, data.denominator_fields[currentType]) > -1)
               ) {
               // TODO: Add styling for 'checked' items
-              $(value).append($('<img>').attr('src', 'images/checked.png').attr('alt', 'Checked'));
+              $(value).addClass('nodrag')
+              // $(value).append($('<img>').attr('src', 'images/checked.png').attr('alt', 'Checked'));
               // Remove draggable
               $(value).unbind('*'); // This removes ALL events...could be trouble!
             } else {
@@ -456,7 +457,7 @@ popConnect.DataViewer = function(element, options) {
     busyness++;
 
     if(busyness > 0) { // Only show the loading indicator if it's not already showing
-      $.blockUI({ message: '<img src="images/ajax-loader.gif" alt="loading" /><h2>Just a moment...</h2>' });
+      $('#main').block({ message: '<img src="images/ajax-loader.gif" alt="loading" /><h2>Just a moment...</h2>',overlayCSS: { backgroundColor: '#ccc' }, css: {padding: '25px'}  });
     }
   };
 
@@ -465,7 +466,7 @@ popConnect.DataViewer = function(element, options) {
     busyness--;
 
     if(busyness < 1) { // Only hide the loading indicator if all work is finished
-      $.unblockUI();
+      $('#main').unblock();
     }
   };
 
