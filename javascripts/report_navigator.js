@@ -36,7 +36,7 @@ popConnect.ReportNavigator = function(element, options) {
     domReferences.reportsContainer.empty();
     
     domReferences.populationCount.text( data.populationCount);
-    domReferences.populationName.text(data.populationName);
+    domReferences.populationName.text(data.populationName+' Population');
     
     $(data.reports).each(function(i, report) {
       var reportDom = $('<li>').addClass('report').append(

@@ -118,7 +118,7 @@ get '/reports' do
   else
     '{
       "populationCount": 10001,
-      "populationName": "Lahey (34234)",
+      "populationName": "Lahey (01805)",
       "reports": [
         {
           "name": "Aspirin Therapy",

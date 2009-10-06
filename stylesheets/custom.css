@@ -93,6 +93,10 @@ html,body{
   margin:   0;
 }
 
+#info span{
+  color: #888;
+}
+
 .data_viewer .section h3{
   color: #666;
 }
@@ -235,7 +239,14 @@ html,body{
   color: #AAA;
 }
 
+.ui-droppable{
+  padding:    3px 10px;
+  border:     1px solid #fff;
+}
+
 .dropshelf{
+  padding:      0;
+  margin:       3px 10px;
   background:   #e6e6e6;
   border:       1px dashed #ccc;
 }
