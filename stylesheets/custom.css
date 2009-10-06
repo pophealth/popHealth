@@ -235,6 +235,10 @@ html,body{
   color: #AAA;
 }
 
+.dropshelf{
+  background:   #e6e6e6;
+  border:       1px dashed #ccc;
+}
 
 
 /*
