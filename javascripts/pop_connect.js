@@ -23,26 +23,52 @@ popConnect.railsSerializer = {
     var value;
     var prefixed_key;
     var child_prefix = '';
-    for (var key in object) {
-      if (typeof object[key] == 'object' || typeof object[key] == 'array') {
+    
+    if($.isArray(object)) {
+      for (var key in object) {
+        if (typeof object[key] == 'object' || typeof object[key] == 'array') {
         
-        if (prefix.length > 0) {
-          child_prefix = prefix + '['+key+']';         
-        } else {
-          child_prefix = key;
-        }
+          if (prefix.length > 0) {
+            child_prefix = prefix + '[]';
+          } else {
+            child_prefix = key;
+          }
         
-        values = this.recursive_serialize(object[key], values, child_prefix);
+          values = this.recursive_serialize(object[key], values, child_prefix);
                 
-      } else if (typeof object[key] != 'function') {
-        value = encodeURIComponent(object[key]);
-        if (prefix.length > 0) {
-          prefixed_key = prefix+'['+key+']'          
-        } else {
-          prefixed_key = key
+        } else if (typeof object[key] != 'function') {
+          value = encodeURIComponent(object[key]);
+          if (prefix.length > 0) {
+            prefixed_key = prefix+'[]'
+          } else {
+            prefixed_key = key
+          }
+          prefixed_key = encodeURIComponent(prefixed_key);
+          if (value) values.push(prefixed_key + '=' + value);
         }
-        prefixed_key = encodeURIComponent(prefixed_key);
-        if (value) values.push(prefixed_key + '=' + value);
+      }
+    } else {    
+      for (var key in object) {
+        if (typeof object[key] == 'object' || typeof object[key] == 'array') {
+        
+          if (prefix.length > 0) {
+            child_prefix = prefix + '['+key+']';         
+          } else {
+            child_prefix = key;
+          }
+        
+          values = this.recursive_serialize(object[key], values, child_prefix);
+                
+        } else if (typeof object[key] != 'function') {
+          value = encodeURIComponent(object[key]);
+          if (prefix.length > 0) {
+            prefixed_key = prefix+'['+key+']'          
+          } else {
+            prefixed_key = key
+          }
+          prefixed_key = encodeURIComponent(prefixed_key);
+          if (value) values.push(prefixed_key + '=' + value);
+        }
       }
     }
     return values;

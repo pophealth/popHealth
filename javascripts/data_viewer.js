@@ -269,7 +269,6 @@ popConnect.DataViewer = function(element, options) {
                 }
               });
             }
-            
             var thisPercentage = setAt / data.count * 100;
             if(thisPercentage < .5) {
               $(value).find('.percentage').text('<1');
@@ -380,7 +379,7 @@ popConnect.DataViewer = function(element, options) {
             }
           }
           
-          that.reload(that.buildTailoredData, 'POST'); // This should disable the UI...
+          that.reload(buildTailoredData(), 'POST'); // This should disable the UI...
 
         }        
       });      
