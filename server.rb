@@ -26,7 +26,9 @@ REPORT_OPTS = {
   },
   3 => {
     :title => 'BP Control 2',
-    :percentage => 54
+    :percentage => 54,
+    :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75'], :diabetes => ['Yes'], :hypertension => ['Yes']},
+    :numerator_fields => {:blood_pressures => ['130/80']}
   },
   4 => {
     :title => 'BP Control 3',
@@ -158,8 +160,6 @@ get '/reports' do
 end
 
 post '/reports' do
-  puts "**************\n\n\n\n"
-  puts params.inspect
   resp = {}
   resp = REPORT_OPTS[params[:id]].merge(resp) if params[:id]
   build_response_from_params(params, resp)
