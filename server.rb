@@ -49,8 +49,10 @@ REPORT_OPTS = {
 }
 
 def build_response_from_params(params, resp = {})
-  resp[:numerator_fields] = params[:numerator] if params[:numerator]
-  resp[:denominator_fields] = params[:denominator] if params[:denominator]
+  if params[:numerator] || params[:denominator]
+    resp[:numerator_fields] = params[:numerator] || {}
+    resp[:denominator_fields] = params[:denominator] || {}
+  end
   resp
 end
 
@@ -162,7 +164,7 @@ end
 
 post '/reports' do
   resp = {}
-  resp = REPORT_OPTS[params[:id]].merge(resp) if params[:id]
+  resp = REPORT_OPTS[params[:id].to_i].merge(resp) if params[:id]
   build_response_from_params(params, resp)
   resp = DEFAULT_OPTS.merge(resp)
   add_random_numbers(resp)

@@ -121,6 +121,7 @@ popConnect.DataViewer = function(element, options) {
   
   this.selectReport = function(id) {
     busy();
+    reportId = id;
     that.reload({id: id}, 'GET');
   }
 
@@ -252,7 +253,7 @@ popConnect.DataViewer = function(element, options) {
           var labelText = $(value).find('.label').text();
           if(data[currentType][labelText]) {
             var setAt = data[currentType][labelText][0];
-            var highWaterMark = data[currentType][labelText][1];            
+            var highWaterMark = data[currentType][labelText][1];
             if(
               (data.numerator_fields[currentType] && $.inArray(labelText, data.numerator_fields[currentType]) > -1) || 
               (data.denominator_fields[currentType] && $.inArray(labelText, data.denominator_fields[currentType]) > -1)
@@ -260,7 +261,10 @@ popConnect.DataViewer = function(element, options) {
               $(value).addClass('nodrag')
               $(value).addClass('selected');
               $(value).removeClass('draggable-value');
-              $(value).unbind('*'); // This removes ALL events...could be trouble!
+              var old = $(value);
+              value = $(value).clone();
+              $(old).replaceWith(value);
+              // I don't know why .unbind doesn't work, but it doesn't
             } else {
               $(value).removeClass('selected');
               $(value).addClass('draggable-value');
@@ -361,6 +365,7 @@ popConnect.DataViewer = function(element, options) {
     
     $([dataDefinition.numeratorNode, dataDefinition.denominatorNode]).each(function(i, type) {
       $(this).droppable({
+        greedy: true,
         fit: 'pointer',
         drop: function(evt, ui) {
           ui.helper.remove(); // Remove the clone
@@ -430,6 +435,30 @@ popConnect.DataViewer = function(element, options) {
     busy();
     that.buildInitialDom();
     
+    $('body').droppable({
+       drop: function(evt, ui) {
+         var reload = false;
+         if(data.numerator_fields[that.currentlyDraggedSubsection]) {
+           var inArr = $.inArray(that.currentlyDraggedValue, data.numerator_fields[that.currentlyDraggedSubsection]);
+           if(inArr > -1) {
+             reload = true;
+             data.numerator_fields[that.currentlyDraggedSubsection].splice(inArr, 1);
+           }
+         }
+         if(data.denominator_fields[that.currentlyDraggedSubsection]) {
+           var inArr = $.inArray(that.currentlyDraggedValue, data.denominator_fields[that.currentlyDraggedSubsection]);
+           if(inArr > -1) {
+             reload = true;
+             data.denominator_fields[that.currentlyDraggedSubsection].splice(inArr, 1);
+           }
+         }
+         if(reload) {
+           busy();
+           that.reload(buildTailoredData(), 'POST'); // This should disable the UI...
+         }
+       }
+    });
+    
     if(options.reportId) {
       var requestData = {id: options.reportId}
       var method = "GET";
@@ -448,8 +477,8 @@ popConnect.DataViewer = function(element, options) {
       denominator: data.denominator_fields,
     }
     
-    if(data.id) {
-      query_object.id = data.id;
+    if(reportId) {
+      query_object.id = reportId;
     }
     
     return popConnect.railsSerializer.serialize(query_object);
