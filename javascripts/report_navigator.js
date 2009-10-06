@@ -45,7 +45,9 @@ popConnect.ReportNavigator = function(element, options) {
           if(!reportDom.hasClass('selected')) {
             domReferences.reportsContainer.children().removeClass('selected');
             reportDom.addClass('selected');
-            dataViewer.selectReport({reportId: report.dataUrl}); 
+            if(dataViewer) {
+              dataViewer.selectReport({reportId: report.dataUrl}); 
+            }
           }
       });
       domReferences.reportsContainer.append(reportDom);

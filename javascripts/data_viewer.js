@@ -293,54 +293,24 @@ popConnect.DataViewer = function(element, options) {
     dataDefinition.denominatorValueDomNode = $('<h2>');
     dataDefinition.numeratorFieldsDomNode = $('<div>');
     dataDefinition.denominatorFieldsDomNode = $('<div>');
-
-    $([dataDefinition.numeratorFieldsDomNode, dataDefinition.denominatorFieldsDomNode]).each(function() {
-
-      var type = this;
-
-      $(this).droppable({
-        drop: function(evt, ui) {
-          ui.helper.remove(); // Remove the helper clone
-          var fields_objs = data.denominator_fields;
-          var other_objs = data.numerator_fields;
-          if(type == dataDefinition.numeratorFieldsDomNode) {
-            fields_objs = data.numerator_fields;
-            other_objs = data.denominator_fields;
-          }
-
-          // Add that field to the selected list
-          if(!fields_objs[that.currentlyDraggedSubsection]) {
-            fields_objs[that.currentlyDraggedSubsection] = []
-          }
-          fields_objs[that.currentlyDraggedSubsection].push(that.currentlyDraggedValue);
-          
-          // And, if it's there, remove it from the other list
-          if(other_objs[that.currentlyDraggedSubsection]) {
-            var inArr = $.inArray(that.currentlyDraggedValue, other_objs[that.currentlyDraggedSubsection]);
-            if(inArr > -1) {
-              other_objs[that.currentlyDraggedSubsection].splice(inArr, 1);
-            }
-          }
-          
-          that.reload(that.buildTailoredData, 'POST'); // This should disable the UI...
-
-        }        
-      });      
-    });
-
+    
     dataDefinition.reportTitle = $('<h2>').addClass('reportTitle');
     var topFrame = $('<div>').addClass('top_frame');
     topFrame.append(dataDefinition.reportTitle);
     var statsContainer = $('<div>').addClass('report_stats');
     var mathsContainer = $('<div>').addClass('maths');
-      
-    mathsContainer.append($('<div>').addClass('numerator').append(
+    
+    dataDefinition.numeratorNode = $('<div>').addClass('numerator').append(
       dataDefinition.numeratorValueDomNode).append(
-      dataDefinition.numeratorFieldsDomNode));
-    mathsContainer.append($('<hr>'));
-    mathsContainer.append($('<div>').addClass('denominator').append(
+      dataDefinition.numeratorFieldsDomNode);
+      
+    dataDefinition.denominatorNode = $('<div>').addClass('denominator').append(
       dataDefinition.denominatorValueDomNode).append(
-      dataDefinition.denominatorFieldsDomNode));
+      dataDefinition.denominatorFieldsDomNode);
+      
+    mathsContainer.append(dataDefinition.numeratorNode);
+    mathsContainer.append($('<hr>'));
+    mathsContainer.append(dataDefinition.denominatorNode);
     statsContainer.append( mathsContainer );
       
     statsContainer.append( $('<div>').addClass('master_percentage').append(dataDefinition.masterPercentageDomNode) );
@@ -377,6 +347,38 @@ popConnect.DataViewer = function(element, options) {
       dataDefinition.types[sectionName].domNode = sectionDiv;
       bottomFrame.append(sectionDiv);
     });
+    
+    $([dataDefinition.numeratorNode, dataDefinition.denominatorNode]).each(function(i, type) {
+      $(this).droppable({
+        drop: function(evt, ui) {
+          ui.helper.remove(); // Remove the helper clone
+          var fields_objs = data.denominator_fields;
+          var other_objs = data.numerator_fields;
+          if(type == dataDefinition.numeratorNode) {
+            fields_objs = data.numerator_fields;
+            other_objs = data.denominator_fields;
+          }
+
+          // Add that field to the selected list
+          if(!fields_objs[that.currentlyDraggedSubsection]) {
+            fields_objs[that.currentlyDraggedSubsection] = []
+          }
+          fields_objs[that.currentlyDraggedSubsection].push(that.currentlyDraggedValue);
+          
+          // And, if it's there, remove it from the other list
+          if(other_objs[that.currentlyDraggedSubsection]) {
+            var inArr = $.inArray(that.currentlyDraggedValue, other_objs[that.currentlyDraggedSubsection]);
+            if(inArr > -1) {
+              other_objs[that.currentlyDraggedSubsection].splice(inArr, 1);
+            }
+          }
+          
+          that.reload(that.buildTailoredData, 'POST'); // This should disable the UI...
+
+        }        
+      });      
+    });
+    
 
     $(element).append(topFrame);
     $(element).append(bottomFrame);
