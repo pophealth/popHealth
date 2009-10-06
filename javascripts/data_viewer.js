@@ -139,7 +139,7 @@ popConnect.DataViewer = function(element, options) {
 
     // Let's run the calculations on the data...
     if(data.denominator > 0) {
-      percentage = Math.round(data.numerator / data.denominator * 100); // Dividing by 0 apparently doesn't work!! Who knew!?
+      percentage = data.numerator / data.denominator * 100; // Dividing by 0 apparently doesn't work!! Who knew!?
       dataDefinition.denominatorValueDomNode.removeClass('disabled').text(data.denominator);
     } else {
       dataDefinition.denominatorValueDomNode.addClass('disabled').text(data.denominator);
@@ -151,10 +151,12 @@ popConnect.DataViewer = function(element, options) {
       dataDefinition.numeratorValueDomNode.addClass('disabled').text(data.numerator);
     }
 
-    if(percentage === 0) {
+    if(percentage == 0) {
       dataDefinition.masterPercentageDomNode.addClass('disabled').text('0').append( $('<span>').text('%') );
+    } else if (percentage < .5) {
+      dataDefinition.masterPercentageDomNode.addClass('disabled').text('<1').append( $('<span>').text('%') );
     } else {
-      dataDefinition.masterPercentageDomNode.removeClass('disabled').text(percentage + '%');
+      dataDefinition.masterPercentageDomNode.removeClass('disabled').text(Math.round(percentage) + '%');
     }
 
     dataDefinition.numeratorFieldsDomNode.empty();
@@ -268,8 +270,13 @@ popConnect.DataViewer = function(element, options) {
               });
             }
             
-            var thisPercentage = Math.round(setAt / data.count * 100);
-            $(value).find('.percentage').text(thisPercentage);
+            var thisPercentage = setAt / data.count * 100;
+            if(thisPercentage < .5) {
+              $(value).find('.percentage').text('<1');
+            } else {
+              $(value).find('.percentage').text(Math.round(thisPercentage));
+            }
+            
             $(value).find('.number').text(setAt);
             $(value).find('.bar').append( $('<span>').addClass('total').css('width', Math.round(highWaterMark / highestPopulationCount *100 )+'%') );
             $(value).find('.bar').append( $('<span>').addClass('selected').css('width', Math.round(setAt / highestPopulationCount *100 )+'%') );
