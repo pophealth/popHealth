@@ -38,25 +38,36 @@ html,body{
   background:     url('../images/gradient.png');
   border-bottom:  1px solid #cccccc;
   cursor: pointer;
+  color:        #888;
+  font-size:    1.2em;
+  font-weight:  bold;
+
 }
 
 #sidebar ul li:hover{
   background:     url('../images/darkgradient.png');
+  border-bottom:  1px solid #888;
+  color:          #000;
 }
 
 
 #sidebar ul li span{
-  padding: 0 10px ;
+  padding: 0 10px;
 }
 
+
+/*
 #sidebar ul li span.report-name, #sidebar ul li span.report-percentage{
   font-size:    1.2em;
   font-weight:  bold;
-  color:        #888;
 }
+*/
 
 
-#sidebar ul li span.report-name{
+#sidebar ul li.selected{
+  background:     url('../images/darkgradient.png');
+  color:          #000;
+  border-bottom:  1px solid #888;
 }
 
 
@@ -79,11 +90,6 @@ html,body{
 #sidebar h1{
   margin:   0;
 }
-
-#sidebar span{
-  color: #ccc;
-}
-
 
 .data_viewer .section h3{
   color: #666;
