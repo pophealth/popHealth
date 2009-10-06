@@ -81,11 +81,11 @@
   <script>
     $(document).ready(function() {
       var dataViewer = new popConnect.DataViewer('#main', {
-          dataUrl: 'javascripts/test/data/json_response.js'
+          dataUrl: '/reports'
         });
 
         var reportNavigator = new popConnect.ReportNavigator('#sidebar', {
-          dataUrl: 'javascripts/test/data/reports_response.js',
+          dataUrl: '/reports',
           dataViewer: dataViewer
         });
     });
