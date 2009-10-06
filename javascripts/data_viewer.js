@@ -120,6 +120,7 @@ popConnect.DataViewer = function(element, options) {
   };
   
   this.selectReport = function(id) {
+    busy();
     that.reload({id: id}, 'GET');
   }
 
@@ -172,14 +173,16 @@ popConnect.DataViewer = function(element, options) {
           } else {
             dataDefinition.numeratorFieldsDomNode.append(span.text(value));
           }
+          var cds = key.toString();
+          var cdv = value.toString();
           span.addClass('draggable-value');
           span.draggable({
             revert: true,
             helper: 'clone',
             opacity: 0.80,
             start: function() {
-              that.currentlyDraggedSubsection = key;
-              that.currentlyDraggedValue = value;
+              that.currentlyDraggedSubsection = cds;
+              that.currentlyDraggedValue = cdv;
             }
           });
         });
@@ -205,14 +208,16 @@ popConnect.DataViewer = function(element, options) {
           } else {
             dataDefinition.denominatorFieldsDomNode.append(span.text(value));
           }
+          var cds = key.toString();
+          var cdv = value.toString();
           span.addClass('draggable-value');
           span.draggable({
             revert: true,
             helper: 'clone',
             opacity: 0.80,
             start: function() {
-              that.currentlyDraggedSubsection = key;
-              that.currentlyDraggedValue = value;
+              that.currentlyDraggedSubsection = cds;
+              that.currentlyDraggedValue = cdv;
             }
           });
         });
@@ -252,12 +257,12 @@ popConnect.DataViewer = function(element, options) {
               (data.numerator_fields[currentType] && $.inArray(labelText, data.numerator_fields[currentType]) > -1) || 
               (data.denominator_fields[currentType] && $.inArray(labelText, data.denominator_fields[currentType]) > -1)
               ) {
-              // TODO: Add styling for 'checked' items
-              $(value).append($('<img>').attr('src', 'images/checked.png').attr('alt', 'Checked'));
               // Remove draggable
+              $(value).addClass('selected');
+              $(value).removeClass('draggable-value');
               $(value).unbind('*'); // This removes ALL events...could be trouble!
             } else {
-              $(value).find('img').remove(); // Remove any 'checked' styling
+              $(value).removeClass('selected');
               $(value).addClass('draggable-value');
               $(value).draggable({
                 revert: true,
@@ -356,8 +361,9 @@ popConnect.DataViewer = function(element, options) {
     
     $([dataDefinition.numeratorNode, dataDefinition.denominatorNode]).each(function(i, type) {
       $(this).droppable({
+        fit: 'pointer',
         drop: function(evt, ui) {
-          ui.helper.remove(); // Remove the helper clone
+          ui.helper.remove(); // Remove the clone
           var fields_objs = data.denominator_fields;
           var other_objs = data.numerator_fields;
           if(type == dataDefinition.numeratorNode) {
@@ -366,21 +372,25 @@ popConnect.DataViewer = function(element, options) {
           }
 
           // Add that field to the selected list
-          if(!fields_objs[that.currentlyDraggedSubsection]) {
-            fields_objs[that.currentlyDraggedSubsection] = []
-          }
-          fields_objs[that.currentlyDraggedSubsection].push(that.currentlyDraggedValue);
-          
-          // And, if it's there, remove it from the other list
-          if(other_objs[that.currentlyDraggedSubsection]) {
-            var inArr = $.inArray(that.currentlyDraggedValue, other_objs[that.currentlyDraggedSubsection]);
-            if(inArr > -1) {
-              other_objs[that.currentlyDraggedSubsection].splice(inArr, 1);
+          if(fields_objs[that.currentlyDraggedSubsection] && $.inArray(that.currentlyDraggedValue, fields_objs[that.currentlyDraggedSubsection]) > -1) {
+            return;
+          } else {
+            if(!fields_objs[that.currentlyDraggedSubsection]) {
+              fields_objs[that.currentlyDraggedSubsection] = []
             }
-          }
-          
-          that.reload(buildTailoredData(), 'POST'); // This should disable the UI...
+            fields_objs[that.currentlyDraggedSubsection].push(that.currentlyDraggedValue);
 
+            busy();
+            // And, if it's there, remove it from the other list
+            if(other_objs[that.currentlyDraggedSubsection]) {
+              var inArr = $.inArray(that.currentlyDraggedValue, other_objs[that.currentlyDraggedSubsection]);
+              if(inArr > -1) {
+                other_objs[that.currentlyDraggedSubsection].splice(inArr, 1);
+              }
+            }
+          
+            that.reload(buildTailoredData(), 'POST'); // This should disable the UI...
+          }
         }        
       });      
     });
@@ -392,8 +402,6 @@ popConnect.DataViewer = function(element, options) {
 
   // Reload data given selected fields
   this.reload = function(requestData, requestMethod) {
-    busy();
-
     $.ajax({
       type: requestMethod,
       url: dataUrl,
@@ -419,6 +427,7 @@ popConnect.DataViewer = function(element, options) {
 
   // Private functions
   function _init(options) {
+    busy();
     that.buildInitialDom();
     
     if(options.reportId) {

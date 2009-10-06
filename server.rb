@@ -12,7 +12,7 @@ set :public, File.dirname(__FILE__)
 
 DEFAULT_OPTS = {
   :numerator_fields => {},
-  :denominator_fields => {:gender => ['Male']}
+  :denominator_fields => {}
 }
 
 REPORT_OPTS = {
@@ -55,9 +55,10 @@ def build_response_from_params(params, resp = {})
 end
 
 def add_random_numbers(resp = {})
+  resp[:numerator] = resp[:numerator_fields].length > 0 ? rand(1000) : 0
+  resp[:denominator] = resp[:denominator_fields].length > 0 ? rand(1000) : 0
   resp[:count] = 10001
-  resp[:numerator] = 0
-  resp[:denominator] = 4100
+  
   resp[:gender] = {
     'Male' => [4100, 4100],
     'Female' => [0, 5901]
