@@ -256,10 +256,9 @@ popConnect.DataViewer = function(element, options) {
           if(data[currentType][labelText]) {
             var setAt = data[currentType][labelText][0];
             var highWaterMark = data[currentType][labelText][1];
-            if(
-              (data.numerator_fields[currentType] && $.inArray(labelText, data.numerator_fields[currentType]) > -1) || 
-              (data.denominator_fields[currentType] && $.inArray(labelText, data.denominator_fields[currentType]) > -1)
-              ) {
+            var inNumerator = data.numerator_fields[currentType] && $.inArray(labelText, data.numerator_fields[currentType]) > -1;
+            var inDenominator = data.denominator_fields[currentType] && $.inArray(labelText, data.denominator_fields[currentType]) > -1;
+            if(inNumerator || inDenominator) {
               $(value).addClass('nodrag')
               $(value).addClass('selected');
               $(value).removeClass('draggable-value');
@@ -324,6 +323,11 @@ popConnect.DataViewer = function(element, options) {
     var cancel = $('<a>').attr('href', '#').text('Cancel').click(function() {
       dataDefinition.reportTitle.toggle();
       dataDefinition.reportTitleEdit.toggle();
+      if(data.title) {
+        dataDefinition.changedReportTitle.val(data.title)
+      } else {
+        dataDefinition.changedReportTitle.val('Type report name');
+      }
     });
     
     var ok = $('<a>').attr('href', '#').text('OK').click(function() {
