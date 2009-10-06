@@ -288,7 +288,7 @@ popConnect.DataViewer = function(element, options) {
             }
             
             $(value).find('.number').text(setAt);
-            $(value).find('.bar').append( $('<span>').addClass('total').css('width', Math.round(highWaterMark / highestPopulationCount *100 )+'%') );
+            $(value).find('.bar').empty().append( $('<span>').addClass('total').css('width', Math.round(highWaterMark / highestPopulationCount *100 )+'%') );
             $(value).find('.bar').append( $('<span>').addClass('selected').css('width', Math.round(setAt / highestPopulationCount *100 )+'%') );
 
           } else {
