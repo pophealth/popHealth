@@ -239,7 +239,7 @@ html,body{
   color: #AAA;
 }
 
-.ui-droppable{
+.numerator, .denominator{
   padding:    3px 10px;
   border:     1px solid #fff;
 }
