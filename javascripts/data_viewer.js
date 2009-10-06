@@ -367,6 +367,12 @@ popConnect.DataViewer = function(element, options) {
       $(this).droppable({
         greedy: true,
         fit: 'pointer',
+        activate: function(event,ui){
+          $(this).toggleClass('dropshelf');
+        },
+        deactivate: function(event,ui){
+          $(this).toggleClass('dropshelf');
+        },
         drop: function(evt, ui) {
           ui.helper.remove(); // Remove the clone
           var fields_objs = data.denominator_fields;
