@@ -288,7 +288,7 @@ popConnect.DataViewer = function(element, options) {
   // Set the domNode references too!
   this.buildInitialDom = function() {
     $(element).addClass('data_viewer');
-    dataDefinition.masterPercentageDomNode = $('<h1>').addClass('master_percentage');
+    dataDefinition.masterPercentageDomNode = $('<h1>');
     dataDefinition.numeratorValueDomNode = $('<h2>');
     dataDefinition.denominatorValueDomNode = $('<h2>');
     dataDefinition.numeratorFieldsDomNode = $('<div>');
@@ -332,14 +332,18 @@ popConnect.DataViewer = function(element, options) {
     var topFrame = $('<div>').addClass('top_frame');
     topFrame.append(dataDefinition.reportTitle);
     var statsContainer = $('<div>').addClass('report_stats');
-    statsContainer.append(dataDefinition.masterPercentageDomNode);
-    statsContainer.append($('<div>').addClass('numerator').append(
+    var mathsContainer = $('<div>').addClass('maths');
+      
+    mathsContainer.append($('<div>').addClass('numerator').append(
       dataDefinition.numeratorValueDomNode).append(
       dataDefinition.numeratorFieldsDomNode));
-    statsContainer.append($('<div>').addClass('denominator').append(
+    mathsContainer.append($('<hr>'));
+    mathsContainer.append($('<div>').addClass('denominator').append(
       dataDefinition.denominatorValueDomNode).append(
       dataDefinition.denominatorFieldsDomNode));
-
+    statsContainer.append( mathsContainer );
+      
+    statsContainer.append( $('<div>').addClass('master_percentage').append(dataDefinition.masterPercentageDomNode) );
     topFrame.append(statsContainer);
 
     var bottomFrame = $('<div>').addClass('bottom_frame');
