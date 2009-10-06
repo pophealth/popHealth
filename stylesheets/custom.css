@@ -11,7 +11,7 @@ html,body{
 
 #header{
   height:         40px;
-  background:     url('images/gradient.png');
+  background:     url('../images/gradient.png');
   border-bottom:  1px solid #cccccc;
 }
 #header .logo{
@@ -19,23 +19,71 @@ html,body{
 }
 
 #sidebar{
-  position:     absolute;
-  width:        200px;
-  border-right: 1px solid #cccccc;
-  padding:      10px;
+  position:           absolute;
+  width:              250px;
+  border-right:       1px solid #cccccc;
+  background-color:   #f2f2f2;
+  top:                41px;
+  bottom:             0px;
 }
 #main{
   position:     absolute;
-  left:         221px;
+  left:         251px;
   padding:      10px;
 }
-#reports ul li{
+
+
+#sidebar ul li{
   padding: 10px 0;
+  background:     url('../images/gradient.png');
+  border-bottom:  1px solid #cccccc;
+  cursor: pointer;
 }
-#reports ul{
+
+#sidebar ul li:hover{
+  background:     url('../images/darkgradient.png');
+}
+
+
+#sidebar ul li span{
+  padding: 0 10px ;
+}
+
+#sidebar ul li span.report-name, #sidebar ul li span.report-percentage{
+  font-size:    1.2em;
+  font-weight:  bold;
+  color:        #888;
+}
+
+
+#sidebar ul li span.report-name{
+}
+
+
+#sidebar ul li span.report-percentage{
+  float: right;
+}
+
+
+#sidebar ul{
   list-style-type:  none;
   padding:          0;
+  margin:           0;
 }
+
+#sidebar #info{
+  padding:        10px;
+  border-bottom:  1px solid #888;
+}
+
+#sidebar h1{
+  margin:   0;
+}
+
+#sidebar span{
+  color: #ccc;
+}
+
 
 .data_viewer .section h3{
   color: #666;
