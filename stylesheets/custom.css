@@ -30,6 +30,8 @@ html,body{
   position:     absolute;
   left:         251px;
   padding:      10px;
+  top:          41px;
+  bottom:       0px;
 }
 
 
@@ -38,25 +40,36 @@ html,body{
   background:     url('../images/gradient.png');
   border-bottom:  1px solid #cccccc;
   cursor: pointer;
+  color:        #888;
+  font-size:    1.2em;
+  font-weight:  bold;
+
 }
 
 #sidebar ul li:hover{
   background:     url('../images/darkgradient.png');
+  border-bottom:  1px solid #888;
+  color:          #000;
 }
 
 
 #sidebar ul li span{
-  padding: 0 10px ;
+  padding: 0 10px;
 }
 
+
+/*
 #sidebar ul li span.report-name, #sidebar ul li span.report-percentage{
   font-size:    1.2em;
   font-weight:  bold;
-  color:        #888;
 }
+*/
 
 
-#sidebar ul li span.report-name{
+#sidebar ul li.selected{
+  background:     url('../images/darkgradient.png');
+  color:          #000;
+  border-bottom:  1px solid #888;
 }
 
 
@@ -79,11 +92,6 @@ html,body{
 #sidebar h1{
   margin:   0;
 }
-
-#sidebar span{
-  color: #ccc;
-}
-
 
 .data_viewer .section h3{
   color: #666;
@@ -149,69 +157,81 @@ html,body{
   margin-bottom: 0;
 }
 
-.data_viewer .section {
+.top_frame .draggable-value{
+  border: solid 1px #fff;
+  padding: 4px 10px 4px 0;
+}
+
+.top_frame .draggable-value:hover{
+  background:   #e6e6e6;
+  border:       1px dashed #ccc;
+  cursor: move;
+}
+
+
+
+.bottom_frame .section {
   width:          400px;
   display:        inline-block;
   vertical-align: top;
 }
 
-.data_viewer .subsection {
+.bottom_frame .subsection {
   margin-bottom:  20px;
 }
 
 
-.data_viewer h4 span, .data_viewer .value div{
+.bottom_frame h4 span, .bottom_frame .value div{
   display: inline-block;
 }
 
-.data_viewer .value div.label{
+.bottom_frame .value div.label{
   margin-left:    5px;
 }
 
-.data_viewer h4 .percentage{
+.bottom_frame h4 .percentage{
   margin-left: 5px;
 }
 
-.data_viewer .subsection .value{
-  border:         1px solid #fff;
-  margin-bottom:  3px;
+.bottom_frame .subsection .value{
+  border:   1px solid #fff;
+  padding:  3px 0;
 }
 
-.data_viewer .subsection .draggable-value:hover{
+.bottom_frame .subsection .draggable-value:hover{
   background:   #e6e6e6;
   border:       1px solid #ccc;
   margin-right: 20px;
   cursor:       move;
 }
 
-
-/*
-.data_viewer .label {
-  width: 200px;
-  text-align: left;
+.bottom_frame .subsection .nodrag{
+  border: dashed 1px #ccc !important;
+  margin-right: 20px;
 }
-*/
 
-.data_viewer .label {
+
+.bottom_frame .label {
   width:          150px;
   text-align:     left;
   margin-right:   10px;
 }
 
-.data_viewer .percentage, .data_viewer .number{
+
+.bottom_frame .percentage, .bottom_frame .number{
   text-align:     right;
   margin-right:   10px;
 }
 
-.data_viewer .percentage {
+.bottom_frame .percentage {
   width: 25px;
 }
 
-.data_viewer .number {
+.bottom_frame .number {
   width: 60px;
 }
 
-.data_viewer .disabled {
+.disabled {
   color: #AAA;
 }
 
