@@ -4,8 +4,8 @@
 // the UI and recalculate the percentages.
 
 {
-  "title": "Some sort of report",
-  "dataUrl": "/reports/4",
+  "title": "Aspirin Therapy",
+  "id": 4,
   "count": 10001,
   "numerator": 0,
   "denominator": 4100,

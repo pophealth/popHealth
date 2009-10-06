@@ -59,8 +59,6 @@ popConnect.DataViewer = function(element, options) {
   var reportId = options.reportId;          // Report ID, in case we need to send it in the data
   var onComplete = options.complete;        // Callback for when data is loaded
   var onError = options.error;              // Callback for when data doesn't load
-  var disabledColor = options.disabledColor || '#999'; // What color is disabled text?
-  var enabledColor = options.enabledColor || 'black';  // What color is enabled text?
 
   // It's sort of arbitrary to split dataDefinition out this way, but I think
   // the individual unit to consider is each section.
@@ -119,6 +117,10 @@ popConnect.DataViewer = function(element, options) {
   // This probably shouldn't be used...but I'm adding it just in case
   this.getData = function() {
     return data;
+  };
+  
+  this.selectReport = function(id) {
+    that.reload({id: id}, 'GET');
   }
 
   // Reload DOM elements from data
@@ -150,7 +152,7 @@ popConnect.DataViewer = function(element, options) {
     }
 
     if(percentage === 0) {
-      dataDefinition.masterPercentageDomNode.addClass('disabled').append('0').append( $('<span>').text('%') );
+      dataDefinition.masterPercentageDomNode.addClass('disabled').text('0').append( $('<span>').text('%') );
     } else {
       dataDefinition.masterPercentageDomNode.removeClass('disabled').text(percentage + '%');
     }
@@ -168,6 +170,7 @@ popConnect.DataViewer = function(element, options) {
           } else {
             dataDefinition.numeratorFieldsDomNode.append(span.text(value));
           }
+          span.addClass('draggable-value');
           span.draggable({
             revert: true,
             helper: 'clone',
@@ -200,6 +203,7 @@ popConnect.DataViewer = function(element, options) {
           } else {
             dataDefinition.denominatorFieldsDomNode.append(span.text(value));
           }
+          span.addClass('draggable-value');
           span.draggable({
             revert: true,
             helper: 'clone',
@@ -252,6 +256,7 @@ popConnect.DataViewer = function(element, options) {
               $(value).unbind('*'); // This removes ALL events...could be trouble!
             } else {
               $(value).find('img').remove(); // Remove any 'checked' styling
+              $(value).addClass('draggable-value');
               $(value).draggable({
                 revert: true,
                 helper: 'clone',
@@ -263,7 +268,6 @@ popConnect.DataViewer = function(element, options) {
               });
             }
             
-            // TODO: Brian...some sort of UI magic
             var thisPercentage = Math.round(setAt / data.count * 100);
             $(value).find('.percentage').text(thisPercentage);
             $(value).find('.number').text(setAt);
@@ -318,7 +322,7 @@ popConnect.DataViewer = function(element, options) {
             }
           }
           
-          that.reload(); // This should disable the UI...
+          that.reload(that.buildTailoredData, 'POST'); // This should disable the UI...
 
         }        
       });      
@@ -375,14 +379,14 @@ popConnect.DataViewer = function(element, options) {
   };
 
   // Reload data given selected fields
-  this.reload = function() {
+  this.reload = function(requestData, requestMethod) {
     busy();
 
     $.ajax({
-      method: 'GET',
+      type: requestMethod,
       url: dataUrl,
       dataType: 'json',
-      data: buildRequestData(),
+      data: requestData,
       success: function(responseData) {
         data = responseData;
         that.refresh();
@@ -398,20 +402,33 @@ popConnect.DataViewer = function(element, options) {
           onError();
         }
       }
-    })
+    });
   };
 
   // Private functions
-  function _init() {
+  function _init(options) {
     that.buildInitialDom();
-    that.reload();
+    
+    if(options.reportId) {
+      var requestData = {id: options.reportId}
+      var method = "GET";
+    } else {
+      var requestData = buildTailoredData();
+      var method = "POST";
+    }
+    
+    that.reload(requestData, method);
   };
 
   // The other option is to post it, which might be necessary if the query string becomes long...
-  function buildRequestData() {
+  function buildTailoredData() {
     var query_object = {
       numerator: data.numerator_fields,
-      denominator: data.denominator_fields
+      denominator: data.denominator_fields,
+    }
+    
+    if(data.id) {
+      query_object.id = data.id;
     }
     
     return popConnect.railsSerializer.serialize(query_object);
@@ -440,5 +457,5 @@ popConnect.DataViewer = function(element, options) {
     }
   };
 
-  _init();
+  _init(options);
 }

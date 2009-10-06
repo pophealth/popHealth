@@ -16,7 +16,8 @@
 
   <script type="text/javascript" src="javascripts/pop_connect.js"></script>
   <script type="text/javascript" src="javascripts/data_viewer.js"></script>
-
+  <script type="text/javascript" src="javascripts/report_navigator.js"></script>
+  
   <!--
      REMOVE AND BUILD WITH BLUEPRINT
   -->
@@ -30,31 +31,8 @@
 
   <div id='container'>
     <div id='sidebar'>
-      <div id='info'>
-        <h1>0</h1>
-        <div>No Population</div>
-      </div>
-
-      <div id='reports'>
-        <ul>
-          <li>report</li>
-          <li>report</li>
-          <li>report</li>
-          <li>report</li>
-          <li>report</li>
-          <li>report</li>
-          <li>report</li>
-          <li>report</li>
-          <li>report</li>
-          <li>report</li>
-          <li>report</li>
-          <li>report</li>
-          <li>report</li>
-        </ul>
-      </div>
     </div>
-
-
+    
     <div id='main'>
 
 <!--
@@ -104,14 +82,14 @@
   <script>
     $(document).ready(function() {
       var dataViewer = new popConnect.DataViewer('#main', {
-          dataUrl: 'data/json_response.js'
+          dataUrl: 'javascripts/test/data/json_response.js'
         });
 
-
-
+        var reportNavigator = new popConnect.ReportNavigator('#sidebar', {
+          dataUrl: 'javascripts/test/data/reports_response.js',
+          dataViewer: dataViewer
+        });
     });
-
-
   </script>
 
 </body>
