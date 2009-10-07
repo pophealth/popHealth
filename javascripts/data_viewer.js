@@ -145,7 +145,7 @@ popConnect.DataViewer = function(element, options) {
           }
           var cds = key.toString();
           var cdv = value.toString();
-          span.addClass('draggable-value');
+          span.addClass('draggable-value').corners('15px');
           span.draggable({
             revert: true,
             helper: 'clone',
@@ -180,7 +180,7 @@ popConnect.DataViewer = function(element, options) {
           }
           var cds = key.toString();
           var cdv = value.toString();
-          span.addClass('draggable-value');
+          span.addClass('draggable-value').corners('15px');
           span.draggable({
             revert: true,
             helper: 'clone',
@@ -236,7 +236,7 @@ popConnect.DataViewer = function(element, options) {
             } else {
               $(value).removeClass('selected');
               $(value).removeClass('nodrag');
-              $(value).addClass('draggable-value');
+              $(value).addClass('draggable-value').corners('15px');
               $(value).draggable({
                 revert: true,
                 helper: 'clone',
@@ -368,9 +368,11 @@ popConnect.DataViewer = function(element, options) {
         fit: 'pointer',
         activate: function(event,ui){
           $(this).toggleClass('dropshelf');
+          $(this).animate({padding: '4px 145px 4px 10px'}, 700);
         },
         deactivate: function(event,ui){
           $(this).toggleClass('dropshelf');
+          $(this).animate({padding: '3px 10px'}, 400);
         },
         drop: function(evt, ui) {
           ui.helper.remove(); // Remove the clone
