@@ -102,7 +102,7 @@ popConnect.DataViewer = function(element, options) {
       dataDefinition.reportTitle.text(data.title).removeClass('disabled');
       dataDefinition.changedReportTitle.val(data.title);
     } else {
-      dataDefinition.reportTitle.text('Click to name report').addClass('disabled');
+      dataDefinition.reportTitle.text('click to name report').addClass('disabled');
       dataDefinition.changedReportTitle.val('Type report name');
     }
 
@@ -290,7 +290,7 @@ popConnect.DataViewer = function(element, options) {
       dataDefinition.changedReportTitle.select();
     });
     
-    dataDefinition.reportTitleEdit = $('<span>');
+    dataDefinition.reportTitleEdit = $('<span>').addClass('name-edit');
     
     var cancel = $('<a>').attr('href', '#').text('Cancel').click(function() {
       dataDefinition.reportTitle.toggle();
@@ -302,7 +302,7 @@ popConnect.DataViewer = function(element, options) {
       }
     });
     
-    var ok = $('<a>').attr('href', '#').text('OK').click(function() {
+    var ok = $('<a>').attr('href', '#').text('Save').click(function() {
       busy();
       dataDefinition.reportTitle.toggle();
       dataDefinition.reportTitleEdit.toggle();
@@ -311,7 +311,7 @@ popConnect.DataViewer = function(element, options) {
     });
     dataDefinition.changedReportTitle = $('<input>').attr('type', 'text').addClass('reportTitle');
     
-    dataDefinition.reportTitleEdit.append(dataDefinition.changedReportTitle).append(ok).append(' | ').append(cancel).hide();
+    dataDefinition.reportTitleEdit.append(dataDefinition.changedReportTitle).append(ok).append(cancel).hide();
     
     var topFrame = $('<div>').addClass('top_frame');
     topFrame.append(dataDefinition.reportTitle);
@@ -378,7 +378,7 @@ popConnect.DataViewer = function(element, options) {
         deactivate: function(event,ui){
           $(this).toggleClass('dropshelf');
           $(this).removeClass('over');
-          $(this).animate({padding: '3px 10px'}, 400);
+          $(this).animate({padding: '3px 10px 3px 10px'}, 400);
         },
         over: function(event,ui){
           $(this).toggleClass('over');
