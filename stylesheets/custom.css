@@ -48,13 +48,22 @@ html,body{
 #sidebar ul li:hover, #sidebar div.new-report:hover {
   background:     url('../images/darkgradient.png');
   border-bottom:  1px solid #888;
-  color:          #000;
+  color:          #000 !important;
 }
 
 
 #sidebar ul li span, #sidebar div.new-report span {
   padding: 0 10px;
 }
+
+.new-report{
+  color: #ccc !important;
+}
+
+
+
+
+
 
 
 /*
@@ -202,7 +211,7 @@ html,body{
 }
 
 .bottom_frame .subsection .draggable-value:hover{
-  background:   #e6e6e6;
+  background:   #f1f1f1;
   border:       1px solid #ccc;
   margin-right: 20px;
   cursor:       move;
@@ -238,17 +247,22 @@ html,body{
   color: #AAA;
 }
 
-.numerator, .denominator{
+div.numerator, div.denominator{
   padding:    3px 10px;
   border:     1px solid #fff;
 }
 
-.dropshelf{
-  padding:      0;
-  margin:       3px 10px;
-  background:   #e6e6e6;
-  border:       1px dashed #ccc;
+
+div.numerator.dropshelf{
+  background-color: #eaf4d8;
+  border:           0.5px solid #95c83d;
 }
+
+div.denominator.dropshelf{
+  background-color: #ecfbfc;
+  border:           0.5px solid #44B3c0;
+}
+
 
 
 /*
