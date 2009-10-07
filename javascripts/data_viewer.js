@@ -371,7 +371,7 @@ popConnect.DataViewer = function(element, options) {
     $([dataDefinition.numeratorNode, dataDefinition.denominatorNode]).each(function(i, type) {
       $(this).droppable({
         greedy: true,
-        tolerance: 'touch',
+        tolerance: 'pointer',
         activate: function(event,ui){
           $(this).toggleClass('dropshelf');
           $(this).animate({padding: '3px 145px 3px 10px'}, 700);
@@ -382,6 +382,9 @@ popConnect.DataViewer = function(element, options) {
           $(this).animate({padding: '3px 10px'}, 400);
         },
         over: function(event,ui){
+          $(this).toggleClass('over');
+        },
+        out: function(event, ui) {
           $(this).toggleClass('over');
         },
         drop: function(evt, ui) {
