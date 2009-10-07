@@ -145,6 +145,7 @@ popConnect.DataViewer = function(element, options) {
           }
           var cds = key.toString();
           var cdv = value.toString();
+          console.log('corners');
           span.addClass('draggable-value').corners('15px');
           span.draggable({
             revert: true,
@@ -232,9 +233,7 @@ popConnect.DataViewer = function(element, options) {
               $(value).addClass('in-numerator').removeClass('in-denominator');
             }
             if(inNumerator || inDenominator) {
-              $(value).addClass('nodrag')
-              $(value).addClass('selected');
-              $(value).removeClass('draggable-value');
+              $(value).addClass('nodrag').corners('15px').addClass('selected').removeClass('draggable-value');
               var old = $(value);
               value = $(value).clone();
               $(old).replaceWith(value);
@@ -242,7 +241,7 @@ popConnect.DataViewer = function(element, options) {
             } else {
               $(value).removeClass('selected').removeClass('in-denominator').removeClass('in-numerator');
               $(value).removeClass('nodrag');
-              $(value).addClass('draggable-value').corners('15px');
+              $(value).addClass('draggable-value');
               $(value).draggable({
                 revert: true,
                 helper: 'clone',
