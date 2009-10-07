@@ -166,7 +166,7 @@ html,body{
 }
 
 .top_frame hr{
-  margin-bottom: 0;
+  margin: 5px 0;
 }
 
 .top_frame .draggable-value{
@@ -321,4 +321,21 @@ div.denominator .draggable-value{
 .data_viewer .bar .total{
   height:     100%;
   background: #ccc;
+}
+
+
+/*
+  NAME EDIT
+*/
+
+a{
+  color: #44B3c0;
+}
+
+span.name-edit{
+  margin-bottom: 20px;
+}
+
+span.name-edit a, span.name-edit input{
+  margin-right: 10px;
 }
