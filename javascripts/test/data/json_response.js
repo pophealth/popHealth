@@ -1,17 +1,26 @@
 {
   "title": "BP Control 2",
-  "count": 10001,
   "numerator": 54,
   "denominator": 100,
+  "id": 3,
   "numerator_fields": {
       "blood_pressures": ["130/80"]
   },
+/* This is what the response/request will look like after Friday when I screw with everything */
+/*  "denominator_fields": [
+    "or": {
+      'and': {"gender": ['Male'], "age": ["18-34"]},
+      'and': {"gender": ['Female'], "age": ["35-49"]}
+    }
+  ],*/
   "denominator_fields": {
       "gender": ["Male", "Female"],
       "age": ["18-34", "35-49", "50-64", "65-75"],
       "diabetes": ["Yes"],
       "hypertension": ["Yes"]
   },
+  
+  
   "smoking": {
       "Smoker": [892, 900],
       "Non-smoker": [762, 3500],
@@ -46,7 +55,6 @@
   "therapies": {
       "Smoking Cessation": [1099, 1100]
   },
-  "id": 3,
   "hypertension": {
       "No": [3546, 9300],
       "Yes": [680, 700]
