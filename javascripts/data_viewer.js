@@ -225,6 +225,12 @@ popConnect.DataViewer = function(element, options) {
             var highWaterMark = data[currentType][labelText][1];
             var inNumerator = data.numerator_fields[currentType] && $.inArray(labelText, data.numerator_fields[currentType]) > -1;
             var inDenominator = data.denominator_fields[currentType] && $.inArray(labelText, data.denominator_fields[currentType]) > -1;
+            if(inDenominator) {
+              $(value).removeClass('in-numerator').addClass('in-denominator');
+            } 
+            if(inNumerator) {
+              $(value).addClass('in-numerator').removeClass('in-denominator');
+            }
             if(inNumerator || inDenominator) {
               $(value).addClass('nodrag')
               $(value).addClass('selected');
@@ -234,7 +240,7 @@ popConnect.DataViewer = function(element, options) {
               $(old).replaceWith(value);
               // I don't know why .unbind doesn't work, but it doesn't
             } else {
-              $(value).removeClass('selected');
+              $(value).removeClass('selected').removeClass('in-denominator').removeClass('in-numerator');
               $(value).removeClass('nodrag');
               $(value).addClass('draggable-value');
               $(value).draggable({
