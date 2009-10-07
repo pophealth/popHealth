@@ -9,6 +9,17 @@ html,body{
   background: #fff;
 }
 
+a{
+  color: #44B3c0;
+  text-decoration:none;
+}
+
+a:hover{
+  color: #44B3c0;
+  text-decoration:underline;
+}
+
+
 #header{
   height:         40px;
   background:     url('../images/gradient.png');
@@ -17,6 +28,23 @@ html,body{
 #header .logo{
   margin: 0 10px;
 }
+
+div#header ul{
+  list-style: none;
+  margin:     0;
+  float:      right;
+}
+
+div#header ul li{
+  margin:   10px;
+  padding:  5px;
+  display:  inline-block;
+}
+
+div#header ul li a{
+  
+}
+
 
 #sidebar{
   position:           absolute;
@@ -328,10 +356,6 @@ div.denominator .draggable-value{
 /*
   NAME EDIT
 */
-
-a{
-  color: #44B3c0;
-}
 
 span.name-edit{
   margin-bottom: 20px;
