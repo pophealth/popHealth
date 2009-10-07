@@ -371,7 +371,7 @@ popConnect.DataViewer = function(element, options) {
     $([dataDefinition.numeratorNode, dataDefinition.denominatorNode]).each(function(i, type) {
       $(this).droppable({
         greedy: true,
-        fit: 'pointer',
+        tolerance: 'touch',
         activate: function(event,ui){
           $(this).toggleClass('dropshelf');
           $(this).animate({padding: '4px 145px 4px 10px'}, 700);
