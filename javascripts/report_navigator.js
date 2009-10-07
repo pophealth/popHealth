@@ -15,8 +15,7 @@ popConnect.ReportNavigator = function(element, options) {
   var reportId = options.reportId;          // Report ID, in case we need to send it in the data
   var onComplete = options.complete;        // Callback for when data is loaded
   var onError = options.error;              // Callback for when data doesn't load
-  var dataViewer = options.dataViewer;
-  
+  var dataViewer = options.dataViewer;  
   var domReferences = {};
 
   // Public functions
@@ -39,18 +38,8 @@ popConnect.ReportNavigator = function(element, options) {
     domReferences.populationName.text(data.populationName+' Population');
     
     $(data.reports).each(function(i, report) {
-      var reportDom = $('<li>').addClass('report').append(
-        $('<span>').addClass('report-name').text(report.name)).append(
-        $('<span>').addClass('report-percentage').text(report.percentage + '%')).click(function() {
-          if(!reportDom.hasClass('selected')) {
-            domReferences.reportsContainer.children().removeClass('selected');
-            reportDom.addClass('selected');
-            if(dataViewer) {
-              dataViewer.selectReport(report.id);
-            }
-          }
-      });
-      domReferences.reportsContainer.append(reportDom);
+      report.domNode = buildReportDom(report);
+      domReferences.reportsContainer.append(report.domNode);
     });
   };
 
@@ -94,13 +83,64 @@ popConnect.ReportNavigator = function(element, options) {
     
     domReferences.reportsContainer = $('<ul>').attr('id', 'reports');
     
-    domReferences.navContent.append(populationStatsContainer).append(domReferences.reportsContainer);
+    domReferences.newReport = $('<div>').text('New report').click(function() {
+      domReferences.reportsContainer.children().removeClass('selected');
+      if(dataViewer) {
+        dataViewer.newReport();
+      }
+    });
+    
+    domReferences.navContent.append(populationStatsContainer).append(domReferences.reportsContainer).append(domReferences.newReport);
     
     rootElement.append(domReferences.navContent).append(domReferences.busyIndicator);
   };
+  
+  this.updateReport = function(reportData) {
+    domReferences.reportsContainer.children().removeClass('selected');
+    if(reportData.id) {
+      var found = false;
+      $(data.reports).each(function(i, report) {
+        if(report.id == reportData.id) {
+          report.title = reportData.title;
+          report.denominator = reportData.denominator;
+          report.numerator = reportData.numerator;
+          
+          report.domNode.find('.report-name').text(report.title);
+          var percentage = 0;
+          if(reportData.denominator > 0) {
+            percentage = reportData.numerator / reportData.denominator * 100;
+          }
+          if(percentage < 0.5 && percentage > 0) {
+            report.domNode.find('.report-percentage').text('<1%');
+          } else {
+            report.domNode.find('.report-percentage').text(Math.round(percentage) + '%');
+          }
+          found = true;
+          report.domNode.addClass('selected');
+        }
+      });
+      if(!found) {
+        report = {
+          title: reportData.title,
+          id: reportData.id
+        }
+        var percentage = 0;
+        if(reportData.denominator > 0) {
+          percentage = reportData.numerator / reportData.denominator * 100;
+        }
+        report.domNode = buildReportDom(report);
+        report.domNode.addClass('selected');
+        domReferences.reportsContainer.append(report.domNode);
+        data.reports.push(report);
+      }
+    } 
+  }
 
   // Private functions
   function _init() {
+    if(options.dataViewer) {
+      options.dataViewer.onComplete = that.updateReport;      
+    }
     that.buildInitialDom();
     that.reload();
   };
@@ -134,6 +174,32 @@ popConnect.ReportNavigator = function(element, options) {
       domReferences.busyIndicator.hide();
     }
   };
+  
+  function buildReportDom(report) {
+    var percentage = 0;
+    if(report.denominator > 0) {
+      percentage = report.numerator / report.denominator * 100;
+    }
+    
+    if(percentage < 0.5 && percentage > 0) {
+      var text = '<1%';
+    } else {
+      var text = Math.round(percentage) + '%';
+    }
+    
+    var reportDom = $('<li>').addClass('report').append(
+      $('<span>').addClass('report-name').text(report.title)).append(
+      $('<span>').addClass('report-percentage').text(text)).click(function() {
+        if(!report.domNode.hasClass('selected')) {
+          domReferences.reportsContainer.children().removeClass('selected');
+          report.domNode.addClass('selected');
+          if(dataViewer) {
+            dataViewer.selectReport(report.id);
+          }
+        }
+    });
+    return reportDom;
+  }
 
-  _init();
+  _init(options);
 }

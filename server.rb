@@ -4,6 +4,7 @@
 
 require 'rubygems'
 require 'sinatra'
+require 'active_support'
 require 'json'
 
 set :static, true
@@ -12,54 +13,71 @@ set :public, File.dirname(__FILE__)
 
 DEFAULT_OPTS = {
   :numerator_fields => {},
-  :denominator_fields => {}
+  :denominator_fields => {},
+  :numerator => 0,
+  :denominator => 0
 }
 
-REPORT_OPTS = {
+@@reports = {
   1 => {
     :title => 'Aspirin Therapy',
-    :percentage => 76
+    :numerator => 76,
+    :denominator => 100,
+    :numerator_fields => {},
+    :denominator_fields => {},
+    :id => 1
   },
   2 => {
     :title => 'BP Control 1',
-    :percentage => 61
+    :numerator => 61,
+    :denominator => 100,
+    :numerator_fields => {},
+    :denominator_fields => {},
+    :id => 2
   },
   3 => {
     :title => 'BP Control 2',
-    :percentage => 54,
+    :numerator => 54,
     :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75'], :diabetes => ['Yes'], :hypertension => ['Yes']},
-    :numerator_fields => {:blood_pressures => ['130/80']}
+    :numerator_fields => {:blood_pressures => ['130/80']},
+    :denominator => 100,
+    :id => 3
   },
   4 => {
     :title => 'BP Control 3',
-    :percentage => 31
+    :numerator => 31,
+    :denominator => 100,
+    :numerator_fields => {},
+    :denominator_fields => {},
+    :id => 4
   },
   5 => {
     :title => 'Cholesterol Control 1',
-    :percentage => 66
+    :numerator => 66,
+    :denominator => 100,
+    :numerator_fields => {},
+    :denominator_fields => {},
+    :id => 5
   },
   6 => {
     :title => 'Cholesterol Control 2',
-    :percentage => 75
+    :numerator => 75,
+    :denominator => 100,
+    :numerator_fields => {},
+    :denominator_fields => {},
+    :id => 6
   },
   7 => {
     :title => 'Smoking Cessation',
-    :percentage => 39
+    :numerator => 39,
+    :denominator => 100,
+    :numerator_fields => {},
+    :denominator_fields => {},
+    :id => 7
   }
 }
 
-def build_response_from_params(params, resp = {})
-  if params[:numerator] || params[:denominator]
-    resp[:numerator_fields] = params[:numerator] || {}
-    resp[:denominator_fields] = params[:denominator] || {}
-  end
-  resp[:title] = params[:title] if params[:title]
-  resp
-end
-
 def add_random_numbers(resp = {})
-  resp[:numerator] = resp[:numerator_fields].length > 0 ? rand(1000) : 0
-  resp[:denominator] = resp[:denominator_fields].length > 0 ? rand(1000) : 0
   resp[:count] = 10001
   
   resp[:gender] = {
@@ -105,8 +123,7 @@ end
 
 def handle_report_get(params)
   resp = {}
-  resp = REPORT_OPTS[params[:id].to_i].merge(resp)
-  resp = DEFAULT_OPTS.merge(resp)
+  resp = @@reports[params[:id].to_i]
   add_random_numbers(resp)
   resp.to_json
 end
@@ -119,54 +136,38 @@ get '/reports' do
   if params[:id]
     handle_report_get(params)
   else
-    '{
-      "populationCount": 10001,
-      "populationName": "Lahey (01805)",
-      "reports": [
-        {
-          "name": "Aspirin Therapy",
-          "percentage": 76,
-          "id": 1
-        },
-        {
-          "name": "BP Control 1",
-          "percentage": 61,
-          "id": 2
-        },
-        {
-          "name": "BP Control 2",
-          "percentage": 54,
-          "id": 3
-        },
-        {
-          "name": "BP Control 3",
-          "percentage": 31,
-          "id": 4
-        },
-        {
-          "name": "Cholesterol Control 1",
-          "percentage": 66,
-          "id": 5
-        },
-        {
-          "name": "Cholesterol Control 2",
-          "percentage": 75,
-          "id": 6
-        },
-        {
-          "name": "Smoking Cessation",
-          "percentage": 39,
-          "id": 7
-        },
-      ]
-    }'
+    resp = {
+      "populationCount" => 10001,
+      "populationName" => "Lahey (34234)",
+      "reports" => []
+    }
+    @@reports.values.each {|report|
+      resp['reports'] << report
+    }
+    resp.to_json
   end
 end
 
 post '/reports' do
   resp = {}
-  resp = REPORT_OPTS[params[:id].to_i].merge(resp) if params[:id]
-  build_response_from_params(params, resp)
+  
+  if params[:id].blank? && (!params[:numerator].blank? || !params[:denominator].blank? || !params[:title].blank?)
+    params[:id] = @@reports.length + 1
+    @@reports[params[:id]] = {}
+    @@reports[params[:id]][:title] = "Untitled Report"
+    @@reports[params[:id]][:id] = params[:id]
+  end
+  
+  if params[:id]
+    params[:id] = params[:id].to_i
+    @@reports[params[:id]][:numerator_fields] = params[:numerator] || {}
+    @@reports[params[:id]][:denominator_fields] = params[:denominator] || {}
+    @@reports[params[:id]][:title] = params[:title] if params[:title]
+    @@reports[params[:id]][:denominator] = @@reports[params[:id]][:numerator_fields].length > 0 ? rand(1000) : 0
+    @@reports[params[:id]][:numerator] = @@reports[params[:id]][:numerator_fields].length > 0 ? rand(1000) : 0
+  end
+  
+  resp = params[:id].present? ? @@reports[params[:id]] : DEFAULT_OPTS
   resp = DEFAULT_OPTS.merge(resp)
   add_random_numbers(resp)
   resp.to_json

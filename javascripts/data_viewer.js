@@ -8,57 +8,17 @@ if(popConnect === undefined) {
 popConnect.DataViewer = function(element, options) {
   // Private member variables
   var data = {                    // This is where the response to the JSON request will go
-    count: 0,
-    numerator: 0,
+    id: options.reportId,
     numerator_fields: [],
-    denominator_fields: [],       // These fields should match up letter-for-letter with the actual field names
-    gender: {                     // All are human-readable (since they're strings it doesn't matter, and is easier to keep track of)
-      'Male': [0, 0],             // Each item should be a two element array...[currently selected, high-water mark]
-      'Female': [0, 0]            // Since only males are selected, 0 females are currently selected (out of 5901)
-    },
-    age: {
-      '18-34': [0, 0],
-      '35-49': [0, 0],
-      '50-64': [0, 0],
-      '65-75': [0, 0],
-      '76+': [0, 0]
-    },
-    medications: {
-      'Aspirin': [0, 0]
-    },
-    therapies: {
-      'Smoking Cessation': [0, 0]
-    },
-    blood_pressures: {
-      '110/75': [0, 0],
-      '120/80': [0, 0],
-      '130/80': [0, 0],
-      '140/90': [0, 0],
-      '160/100': [0, 0],
-      '180/110+': [0, 0]
-    },
-    smoking: {
-      'Non-smoker': [0, 0],
-      'Ex-smoker': [0, 0],
-      'Smoker': [0, 0]
-    },
-    diabetes: {
-      'Yes': [0, 0],
-      'No': [0, 0]
-    },
-    hypertension: {
-      'Yes': [0, 0],
-      'No': [0, 0]
-    }
+    denominator_fields: []       // These fields should match up letter-for-letter with the actual field names
   };
 
   var rootElement = $(element);             // Root DOM element for UI
   var dataUrl = options.dataUrl || '/data'; // Where to get data from...not restful, whatever
   var that = this;                          // Traditional javascript nonsense
   var busyness = 0;                         // Current number of jobs. Controls when loading indicator is shown. Don't change directly, use busy/notBusy
-  var reportId = options.reportId;          // Report ID, in case we need to send it in the data
-  var onComplete = options.complete;        // Callback for when data is loaded
-  var onError = options.error;              // Callback for when data doesn't load
+  this.onComplete = options.complete;        // Callback for when data is loaded
+  this.onError = options.error;              // Callback for when data doesn't load
 
   // It's sort of arbitrary to split dataDefinition out this way, but I think
   // the individual unit to consider is each section.
@@ -121,8 +81,16 @@ popConnect.DataViewer = function(element, options) {
   
   this.selectReport = function(id) {
     busy();
-    reportId = id;
     that.reload({id: id}, 'GET');
+  }
+  
+  this.newReport = function() {
+    busy();
+    data = {
+      numerator_fields: [],
+      denominator_fields: []       // These fields should match up letter-for-letter with the actual field names
+    };
+    that.reload(buildTailoredData(), 'POST')
   }
 
   // Reload DOM elements from data
@@ -154,10 +122,9 @@ popConnect.DataViewer = function(element, options) {
     } else {
       dataDefinition.numeratorValueDomNode.addClass('disabled').text(data.numerator);
     }
-
     if(percentage == 0) {
       dataDefinition.masterPercentageDomNode.addClass('disabled').text('0').append( $('<span>').text('%') );
-    } else if (percentage < .5) {
+    } else if (percentage < 0.5) {
       dataDefinition.masterPercentageDomNode.addClass('disabled').text('<1').append( $('<span>').text('%') );
     } else {
       dataDefinition.masterPercentageDomNode.removeClass('disabled').text(Math.round(percentage) + '%');
@@ -454,15 +421,15 @@ popConnect.DataViewer = function(element, options) {
         data = responseData;
         that.refresh();
         notBusy();
-        if(onComplete) {
-          onComplete();
+        if(that.onComplete) {
+          that.onComplete(responseData);
         }
       },
       error: function(xhr, resp, msg) {
         showError(resp || msg); // resp is nil if the thing completely fails
         notBusy();
-        if(onError) {
-          onError();
+        if(that.onError) {
+          that.onError(xhr, resp, msg);
         }
       }
     });
@@ -497,8 +464,8 @@ popConnect.DataViewer = function(element, options) {
        }
     });
     
-    if(options.reportId) {
-      var requestData = {id: options.reportId}
+    if(data.id) {
+      var requestData = {id: data.id}
       var method = "GET";
     } else {
       var requestData = buildTailoredData();
@@ -519,8 +486,8 @@ popConnect.DataViewer = function(element, options) {
       query_object.title = data.title;
     }
     
-    if(reportId) {
-      query_object.id = reportId;
+    if(data.id) {
+      query_object.id = data.id;
     }
     
     return popConnect.railsSerializer.serialize(query_object);
