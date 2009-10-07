@@ -2,21 +2,21 @@
                     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script type="text/javascript" src="../jquery-1.3.2.min.js"></script>
   <link rel="stylesheet" href="qunit.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="../data_viewer.css" type="text/css" media="screen" />
-  <script type="text/javascript" src="../jquery/jquery-1.3.2.js"></script>
-  <script type="text/javascript" src="../jquery/jquery-ui-1.7.2.custom.min.js"></script>
+  <link rel="stylesheet" href="../stylesheets/screen.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="../stylesheets/print.css" type="text/css" media="print">
+  <link rel="stylesheet" href="../stylesheets/custom.css" type="text/css" media="screen" />
+  
+  <script type="text/javascript" src="../jquery-ui-1.7.2.custom.min.js"></script>
+  <script type="text/javascript" src="../jquery-blockui.js"></script>
   <script type="text/javascript" src="qunit.js"></script>
   <script type="text/javascript" src="../pop_connect.js"></script>
   <script type="text/javascript" src="../data_viewer.js"></script>
-  <script type="text/javascript" src="data_viewer_test.js"></script>
-  
-  <!-- Add additional test files here...may want to split it if it gets unwieldy -->
-  
+  <script type="text/javascript" src="data_viewer_test.js"></script>  
 </head>
 <body>
- <h1 id="qunit-header">QUnit Tests for PopConnect</h1>
+ <h1 id="qunit-header">QUnit Tests for PopConnect DataViewer</h1>
  <h2 id="qunit-banner"></h2>
  <h2 id="qunit-userAgent"></h2>
  <ol id="qunit-tests"></ol>
@@ -27,6 +27,12 @@
  <div>
    <div id="data_viewer"></div>
  </div>
+ 
+ <script>
+ var dataViewer = new popConnect.DataViewer('#data_viewer', {
+   dataUrl: 'data/json_response.js'
+ });
+ </script>
 
 </body>
 </html>
