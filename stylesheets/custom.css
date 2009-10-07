@@ -183,7 +183,8 @@ html,body{
 
 
 .bottom_frame .section {
-  width:          400px;
+  width:          395px;
+  margin:         0 25px 25px 0;
   display:        inline-block;
   vertical-align: top;
 }
