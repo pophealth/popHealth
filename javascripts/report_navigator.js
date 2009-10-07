@@ -131,16 +131,18 @@ popConnect.ReportNavigator = function(element, options) {
         report.domNode = buildReportDom(report);
         report.domNode.addClass('selected');
         domReferences.reportsContainer.append(report.domNode);
-        data.reports.push(report);
+        if(data.reports)
+          data.reports.push(report);
       }
     } 
   }
 
   // Private functions
-  function _init() {
+  function _init(options) {
     if(options.dataViewer) {
       options.dataViewer.onComplete = that.updateReport;      
     }
+    
     that.buildInitialDom();
     that.reload();
   };
@@ -192,12 +194,15 @@ popConnect.ReportNavigator = function(element, options) {
       $('<span>').addClass('report-percentage').text(text)).click(function() {
         if(!report.domNode.hasClass('selected')) {
           domReferences.reportsContainer.children().removeClass('selected');
+          reportId = report.id;
           report.domNode.addClass('selected');
           if(dataViewer) {
             dataViewer.selectReport(report.id);
           }
         }
     });
+    if(reportId == report.id)
+      reportDom.addClass('selected');
     return reportDom;
   }
 
