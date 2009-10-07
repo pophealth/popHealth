@@ -145,7 +145,6 @@ popConnect.DataViewer = function(element, options) {
           }
           var cds = key.toString();
           var cdv = value.toString();
-          console.log('corners');
           span.addClass('draggable-value').corners('15px');
           span.draggable({
             revert: true,

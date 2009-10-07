@@ -131,7 +131,8 @@ popConnect.ReportNavigator = function(element, options) {
         report.domNode = buildReportDom(report);
         report.domNode.addClass('selected');
         domReferences.reportsContainer.append(report.domNode);
-        data.reports.push(report);
+        if(data.reports)
+          data.reports.push(report);
       }
     } 
   }
