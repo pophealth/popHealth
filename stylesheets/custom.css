@@ -35,7 +35,7 @@ html,body{
 }
 
 
-#sidebar ul li{
+#sidebar ul li, #sidebar div.new-report {
   padding: 10px 0;
   background:     url('../images/gradient.png');
   border-bottom:  1px solid #cccccc;
@@ -43,17 +43,16 @@ html,body{
   color:        #888;
   font-size:    1.2em;
   font-weight:  bold;
-
 }
 
-#sidebar ul li:hover{
+#sidebar ul li:hover, #sidebar div.new-report:hover {
   background:     url('../images/darkgradient.png');
   border-bottom:  1px solid #888;
   color:          #000;
 }
 
 
-#sidebar ul li span{
+#sidebar ul li span, #sidebar div.new-report span {
   padding: 0 10px;
 }
 

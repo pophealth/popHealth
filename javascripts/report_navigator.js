@@ -83,7 +83,7 @@ popConnect.ReportNavigator = function(element, options) {
     
     domReferences.reportsContainer = $('<ul>').attr('id', 'reports');
     
-    domReferences.newReport = $('<div>').text('New report').click(function() {
+    domReferences.newReport = $('<div>').append($('<span>').text('Create new report')).addClass('new-report').click(function() {
       domReferences.reportsContainer.children().removeClass('selected');
       if(dataViewer) {
         dataViewer.newReport();

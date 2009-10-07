@@ -23,16 +23,16 @@ DEFAULT_OPTS = {
     :title => 'Aspirin Therapy',
     :numerator => 76,
     :denominator => 100,
-    :numerator_fields => {},
-    :denominator_fields => {},
+    :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75'], :diabetes => ['Yes'], :hypertension => ['Yes']},
+    :numerator_fields => {:blood_pressures => ['130/80']},
     :id => 1
   },
   2 => {
     :title => 'BP Control 1',
     :numerator => 61,
     :denominator => 100,
-    :numerator_fields => {},
-    :denominator_fields => {},
+    :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75'], :diabetes => ['Yes'], :hypertension => ['Yes']},
+    :numerator_fields => {:blood_pressures => ['130/80']},
     :id => 2
   },
   3 => {
@@ -47,32 +47,32 @@ DEFAULT_OPTS = {
     :title => 'BP Control 3',
     :numerator => 31,
     :denominator => 100,
-    :numerator_fields => {},
-    :denominator_fields => {},
+    :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75'], :diabetes => ['Yes'], :hypertension => ['Yes']},
+    :numerator_fields => {:blood_pressures => ['130/80']},
     :id => 4
   },
   5 => {
     :title => 'Cholesterol Control 1',
     :numerator => 66,
     :denominator => 100,
-    :numerator_fields => {},
-    :denominator_fields => {},
+    :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75'], :diabetes => ['Yes'], :hypertension => ['Yes']},
+    :numerator_fields => {:blood_pressures => ['130/80']},
     :id => 5
   },
   6 => {
     :title => 'Cholesterol Control 2',
     :numerator => 75,
     :denominator => 100,
-    :numerator_fields => {},
-    :denominator_fields => {},
+    :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75'], :diabetes => ['Yes'], :hypertension => ['Yes']},
+    :numerator_fields => {:blood_pressures => ['130/80']},
     :id => 6
   },
   7 => {
     :title => 'Smoking Cessation',
     :numerator => 39,
     :denominator => 100,
-    :numerator_fields => {},
-    :denominator_fields => {},
+    :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75'], :diabetes => ['Yes'], :hypertension => ['Yes']},
+    :numerator_fields => {:blood_pressures => ['130/80']},
     :id => 7
   }
 }
@@ -154,7 +154,7 @@ post '/reports' do
   if params[:id].blank? && (!params[:numerator].blank? || !params[:denominator].blank? || !params[:title].blank?)
     params[:id] = @@reports.length + 1
     @@reports[params[:id]] = {}
-    @@reports[params[:id]][:title] = "Untitled Report"
+    @@reports[params[:id]][:title] = "Untitled Report " + (@@reports.values.select {|r| r[:title] =~ /Untitled Report /}.length + 1).to_s
     @@reports[params[:id]][:id] = params[:id]
   end
   
@@ -163,7 +163,7 @@ post '/reports' do
     @@reports[params[:id]][:numerator_fields] = params[:numerator] || {}
     @@reports[params[:id]][:denominator_fields] = params[:denominator] || {}
     @@reports[params[:id]][:title] = params[:title] if params[:title]
-    @@reports[params[:id]][:denominator] = @@reports[params[:id]][:numerator_fields].length > 0 ? rand(1000) : 0
+    @@reports[params[:id]][:denominator] = @@reports[params[:id]][:denominator_fields].length > 0 ? rand(1000) : 0
     @@reports[params[:id]][:numerator] = @@reports[params[:id]][:numerator_fields].length > 0 ? rand(1000) : 0
   end
   
