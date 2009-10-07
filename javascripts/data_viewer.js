@@ -371,7 +371,7 @@ popConnect.DataViewer = function(element, options) {
     $([dataDefinition.numeratorNode, dataDefinition.denominatorNode]).each(function(i, type) {
       $(this).droppable({
         greedy: true,
-        fit: 'pointer',
+        tolerance: 'pointer',
         activate: function(event,ui){
           $(this).toggleClass('dropshelf');
           $(this).animate({padding: '3px 145px 3px 10px'}, 700);
@@ -382,6 +382,9 @@ popConnect.DataViewer = function(element, options) {
           $(this).animate({padding: '3px 10px 3px 10px'}, 400);
         },
         over: function(event,ui){
+          $(this).toggleClass('over');
+        },
+        out: function(event, ui) {
           $(this).toggleClass('over');
         },
         drop: function(evt, ui) {
@@ -515,7 +518,7 @@ popConnect.DataViewer = function(element, options) {
     busyness++;
 
     if(busyness > 0) { // Only show the loading indicator if it's not already showing
-      $('#main').block({ message: '<img src="images/ajax-loader.gif" alt="loading" /><h2>Just a moment...</h2>',overlayCSS: { backgroundColor: '#ccc' }, css: {padding: '25px'}  });
+      rootElement.block({ message: '<img src="images/ajax-loader.gif" alt="loading" /><h2>Just a moment...</h2>',overlayCSS: { backgroundColor: '#ccc' }, css: {padding: '25px'}  });
     }
   };
 
@@ -524,7 +527,7 @@ popConnect.DataViewer = function(element, options) {
     busyness--;
 
     if(busyness < 1) { // Only hide the loading indicator if all work is finished
-      $('#main').unblock();
+      $(rootElement).unblock();
     }
   };
 

@@ -43,7 +43,8 @@
   <script>
     $(document).ready(function() {
       var dataViewer = new popConnect.DataViewer('#main', {
-          dataUrl: '/reports'
+          dataUrl: '/reports',
+          reportId: 1
         });
 
         var reportNavigator = new popConnect.ReportNavigator('#sidebar', {

@@ -25,6 +25,6 @@ params = {
     :diabetes => ['Yes', 'No'], # This can't be boolean because it could be neither, one, or both
     :hypertension => ['Yes', 'No'] # Same
   },
-  :report_name => "Aspirin Therapy",
-  :report_id => 12 # Maybe?? Do you guys persist these reports? If so they need an ID
+  :title => "Aspirin Therapy",
+  :id => 12 # Maybe?? Do you guys persist these reports? If so they need an ID
 }
