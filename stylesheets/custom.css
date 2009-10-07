@@ -217,10 +217,12 @@ html,body{
   cursor:       move;
 }
 
+/*
 .bottom_frame .subsection .nodrag{
   border: dashed 1px #ccc !important;
   margin-right: 20px;
 }
+*/
 
 
 .bottom_frame .label {
@@ -261,6 +263,38 @@ div.numerator.dropshelf{
 div.denominator.dropshelf{
   background-color: #ecfbfc;
   border:           0.5px solid #44B3c0;
+}
+
+div.numerator.dropshelf.over{
+  background-color: #d5e9b1;
+}
+
+div.denominator.dropshelf.over{
+  background-color: #b4e1e6;
+}
+
+
+div.in-numerator{
+  background-color: #eaf4d8;
+  border:           1px solid #95c83d  !important;
+}
+
+div.in-denominator{
+  background-color: #ecfbfc;
+  border:           1px solid #44B3c0 !important;
+}
+
+div.numerator .draggable-value, div.denominator .draggable-value{
+  padding: 5px 9px;
+}
+
+div.numerator .draggable-value{
+  background-color: #eaf4d8;
+  border:           1px solid #95c83d  !important;
+}
+div.denominator .draggable-value{
+  background-color: #ecfbfc;
+  border:           1px solid #44B3c0 !important;
 }
 
 

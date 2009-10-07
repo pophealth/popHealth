@@ -374,11 +374,15 @@ popConnect.DataViewer = function(element, options) {
         tolerance: 'touch',
         activate: function(event,ui){
           $(this).toggleClass('dropshelf');
-          $(this).animate({padding: '4px 145px 4px 10px'}, 700);
+          $(this).animate({padding: '3px 145px 3px 10px'}, 700);
         },
         deactivate: function(event,ui){
           $(this).toggleClass('dropshelf');
+          $(this).removeClass('over');
           $(this).animate({padding: '3px 10px'}, 400);
+        },
+        over: function(event,ui){
+          $(this).toggleClass('over');
         },
         drop: function(evt, ui) {
           ui.helper.remove(); // Remove the clone
