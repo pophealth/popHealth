@@ -65,6 +65,8 @@ popConnect.DataViewer = function(element, options) {
   var irregularLabels = {
     diabetes: {'Yes': 'Diabetes', 'No': 'Without Diabetes'},
     hypertension: {'Yes': 'Hypertension', 'No': 'Without Hypertension'},
+    blood_pressures: {'90-119/60-79': 'BP 90-119/60-79', '90-119/60-79': 'BP 90-119/60-79', '120-139/80-89': 'BP 120-139/80-89', '140-159/90-99':'BP 140-159/90-99', '>160/>100':'BP >160/>100'},
+    cholesterol: {'<100': 'Chol <100', '100-129':'Chol 100-129', '130-159':'Chol 130-159', '160-189':'Chol 160-189', '>190':'Chol >190'}
   }
 
   // Public functions
@@ -129,18 +131,18 @@ popConnect.DataViewer = function(element, options) {
     // Let's run the calculations on the data...
     if(data.denominator > 0) {
       percentage = data.numerator / data.denominator * 100; // Dividing by 0 apparently doesn't work!! Who knew!?
-      dataDefinition.denominatorValueDomNode.removeClass('disabled').text( addCommas(data.denominator) );
-      // var dc = new popConnect.Counter(startdenom, data.denominator, dataDefinition.denominatorValueDomNode)
-      // this.counters.push(dc.interval);
+      dataDefinition.denominatorValueDomNode.removeClass('disabled')//.text( addCommas(data.denominator) );
+      var dc = new popConnect.Counter(startdenom, data.denominator, dataDefinition.denominatorValueDomNode)
+      this.counters.push(dc.interval);
 
     } else {
       dataDefinition.denominatorValueDomNode.addClass('disabled').text(data.denominator);
     }
 
     if(data.numerator > 0) {
-      dataDefinition.numeratorValueDomNode.removeClass('disabled').text( addCommas(data.numerator) );
-      // var nc = new popConnect.Counter(startnumer, data.numerator, dataDefinition.numeratorValueDomNode)
-      // this.counters.push(nc.interval);
+      dataDefinition.numeratorValueDomNode.removeClass('disabled')//.text( addCommas(data.numerator) );
+      var nc = new popConnect.Counter(startnumer, data.numerator, dataDefinition.numeratorValueDomNode)
+      this.counters.push(nc.interval);
 
     } else {
       dataDefinition.numeratorValueDomNode.addClass('disabled').text(data.numerator);
