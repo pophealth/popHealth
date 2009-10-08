@@ -93,16 +93,24 @@ function addCommas(nStr){
 
 
 popConnect.Counter = function(start, end, target, append){
+  // if appending to the resulting text
   if(!append){append=''}
+
   this.decr = false;
   if(start>end){
     this.decr = true;
   }
-  this.num      = start;
+  
+  if(typeof start=='string'){
+    // clean value from appendages and commas
+    start = start.replace(/%|,/, '');
+  }
+  
+  this.num      = start
   this.end      = end;
   this.target   = target;
   var self      = this;
-
+  console.log(start,end)
   this.interval = setInterval(function(){ self.run(); }, 1);
 
   this.run = function(){

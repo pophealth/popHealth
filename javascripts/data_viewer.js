@@ -63,10 +63,11 @@ popConnect.DataViewer = function(element, options) {
   };
 
   var irregularLabels = {
-    diabetes: {'Yes': 'Diabetes', 'No': 'Without Diabetes'},
-    hypertension: {'Yes': 'Hypertension', 'No': 'Without Hypertension'},
-    blood_pressures: {'90-119/60-79': 'BP 90-119/60-79', '90-119/60-79': 'BP 90-119/60-79', '120-139/80-89': 'BP 120-139/80-89', '140-159/90-99':'BP 140-159/90-99', '>160/>100':'BP >160/>100'},
-    cholesterol: {'<100': 'Chol <100', '100-129':'Chol 100-129', '130-159':'Chol 130-159', '160-189':'Chol 160-189', '>190':'Chol >190'}
+    diabetes:         {'Yes': 'Diabetes', 'No': 'without Diabetes'},
+    hypertension:     {'Yes': 'Hypertension', 'No': 'without Hypertension'},
+    blood_pressures:  {'90-119/60-79': 'BP 90-119/60-79', '90-119/60-79': 'BP 90-119/60-79', '120-139/80-89': 'BP 120-139/80-89', '140-159/90-99':'BP 140-159/90-99', '>160/>100':'BP >160/>100'},
+    cholesterol:      {'<100': 'Chol <100', '100-129':'Chol 100-129', '130-159':'Chol 130-159', '160-189':'Chol 160-189', '>190':'Chol >190'},
+    age:              {'18-34':'ages 18-34', '35-49':'ages 35-49', '50-64':'ages 50-64', '65-75':'ages 65-75', '76+':'ages 76+'}
   }
 
   // Public functions
@@ -119,7 +120,7 @@ popConnect.DataViewer = function(element, options) {
     var startdenom = 0;
     var startnumer = 0;
     if(dataDefinition.masterPercentageDomNode.text()){
-      startpercent = dataDefinition.masterPercentageDomNode.text().replace('%', '')
+      startpercent = dataDefinition.masterPercentageDomNode.text()
     }
     if(dataDefinition.denominatorValueDomNode.text()){
       startdenom = dataDefinition.denominatorValueDomNode.text()
