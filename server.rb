@@ -25,7 +25,7 @@ DEFAULT_OPTS = {
     :numerator => 76,
     :denominator => 100,
     :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75'], :diabetes => ['Yes'], :hypertension => ['Yes']},
-    :numerator_fields => {:blood_pressures => ['130/80']},
+    :numerator_fields => {:blood_pressures => ['90-119/60-79']},
     :id => 1
   },
   2 => {
@@ -33,14 +33,14 @@ DEFAULT_OPTS = {
     :numerator => 61,
     :denominator => 100,
     :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75'], :diabetes => ['Yes'], :hypertension => ['Yes']},
-    :numerator_fields => {:blood_pressures => ['130/80']},
+    :numerator_fields => {:blood_pressures => ['90-119/60-79']},
     :id => 2
   },
   3 => {
     :title => 'BP Control 2',
     :numerator => 54,
     :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75'], :diabetes => ['Yes'], :hypertension => ['Yes']},
-    :numerator_fields => {:blood_pressures => ['130/80']},
+    :numerator_fields => {:blood_pressures => ['90-119/60-79']},
     :denominator => 100,
     :id => 3
   },
@@ -49,7 +49,7 @@ DEFAULT_OPTS = {
     :numerator => 31,
     :denominator => 100,
     :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75'], :diabetes => ['Yes'], :hypertension => ['Yes']},
-    :numerator_fields => {:blood_pressures => ['130/80']},
+    :numerator_fields => {:blood_pressures => ['90-119/60-79']},
     :id => 4
   },
   5 => {
@@ -57,7 +57,7 @@ DEFAULT_OPTS = {
     :numerator => 66,
     :denominator => 100,
     :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75'], :diabetes => ['Yes'], :hypertension => ['Yes']},
-    :numerator_fields => {:blood_pressures => ['130/80']},
+    :numerator_fields => {:blood_pressures => ['90-119/60-79']},
     :id => 5
   },
   6 => {
@@ -65,7 +65,7 @@ DEFAULT_OPTS = {
     :numerator => 75,
     :denominator => 100,
     :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75'], :diabetes => ['Yes'], :hypertension => ['Yes']},
-    :numerator_fields => {:blood_pressures => ['130/80']},
+    :numerator_fields => {:blood_pressures => ['90-119/60-79']},
     :id => 6
   },
   7 => {
@@ -73,7 +73,7 @@ DEFAULT_OPTS = {
     :numerator => 39,
     :denominator => 100,
     :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75'], :diabetes => ['Yes'], :hypertension => ['Yes']},
-    :numerator_fields => {:blood_pressures => ['130/80']},
+    :numerator_fields => {:blood_pressures => ['90-119/60-79']},
     :id => 7
   }
 }
@@ -99,12 +99,17 @@ def add_random_numbers(resp = {})
     "Smoking Cessation" => [rand(1100), 1100]
   }
   resp[:blood_pressures] =  {
-    "110/75" => [rand(800), 800],
-    "120/80" => [rand(2200), 2200],
-    "130/80" => [rand(2000), 2000],
-    "140/90" => [rand(800), 800],
-    "160/100" => [rand(500), 500],
-    "180/110+" => [rand(100), 100]
+    '90-119/60-79'  => [rand(800), 800],
+    '120-139/80-89' => [rand(2200), 2200],
+    '140-159/90-99' => [rand(2000), 2000],
+    '>160/>100' => [rand(500), 500]
+  }
+  resp[:cholesterol] =  {
+    "<100" => [rand(800), 800],
+    "100-129" => [rand(2200), 2200],
+    "130-159" => [rand(2000), 2000],
+    "160-189" => [rand(800), 800],
+    ">190" => [rand(500), 500]
   }
   resp[:smoking] = {
     "Non-smoker" => [rand(3500), 3500],

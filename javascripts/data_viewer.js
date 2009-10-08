@@ -44,10 +44,11 @@ popConnect.DataViewer = function(element, options) {
       risk_factors: {
         label: 'Risk Factors',
         types: {
-          blood_pressures: {label: 'Blood Pressure', sort: ['110/75', '120/80', '130/80', '140/90', '160/100', '180/110+']},
+          blood_pressures: {label: 'Blood Pressure', sort: ['90-119/60-79', '120-139/80-89', '140-159/90-99', '>160/>100']},
+          cholesterol: {label: 'Cholesterol', sort: ['<100', '100-129', '130-159', '160-189', '>190']},
           smoking: {label: 'Smoking', sort: ['Non-smoker', 'Ex-smoker', 'Smoker']}
         },
-        sort: ['blood_pressures', 'smoking']
+        sort: ['blood_pressures', 'cholesterol', 'smoking']
       },
       disease_conditions: {
         label: 'Disease & Conditions',
@@ -67,8 +68,6 @@ popConnect.DataViewer = function(element, options) {
   }
 
   // Public functions
-
-
 
   // ........ are there any ??? ..........
 
@@ -380,7 +379,7 @@ popConnect.DataViewer = function(element, options) {
         ));
 
         $(dataDefinition.types[sectionName].types[subsectionName].sort).each(function(labelIndex, valueLabel) {
-          var value = $('<div>').addClass('value');
+          var value = $('<div>').addClass('value').corners('15px');
           value.append($('<div>').addClass('label').text(valueLabel));
           value.append($('<div>').addClass('percentage'));
           value.append($('<div>').addClass('number'));
