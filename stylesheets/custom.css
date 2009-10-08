@@ -49,6 +49,7 @@ div#header ul li a{
 #sidebar{
   position:           absolute;
   width:              250px;
+  height:             100%;
   border-right:       1px solid #cccccc;
   background-color:   #f2f2f2;
   top:                41px;
@@ -242,7 +243,6 @@ div#header ul li a{
 .bottom_frame .subsection .draggable-value:hover{
   background:   #f1f1f1;
   border:       1px solid #ccc;
-  margin-right: 20px;
   cursor:       move;
 }
 
