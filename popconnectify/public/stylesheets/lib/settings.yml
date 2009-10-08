@@ -1,0 +1,11 @@
+# refer to http://www.yaml.org/spec/1.1/ for clarification on YAML collections
+popconnect:
+  path: /Users/bstaats/Projects/popconnect/src/stylesheets
+  namespace: pc
+  custom_css:
+    screen.css:
+      - custom.css
+  custom_layout:
+    column_count: 12
+    column_width: 70
+    gutter_width: 10
