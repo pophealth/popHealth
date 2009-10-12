@@ -1,7 +1,7 @@
 # To run the server:
 # > gem install sinatra json
 # > ruby server.rb -p 3000
-# > go to http://localhost:3000/index.html
+# > go to http://localhost:3000/testUI.html
 
 require 'rubygems'
 require 'sinatra'
