@@ -19,7 +19,7 @@ popConnect.DataViewer = function(element, options) {
   var busyness = 0;                         // Current number of jobs. Controls when loading indicator is shown. Don't change directly, use busy/notBusy
   this.onComplete = options.complete;        // Callback for when data is loaded
   this.onError = options.error;              // Callback for when data doesn't load
-  this.counters = []
+  this.counters = [];
 
   // It's sort of arbitrary to split dataDefinition out this way, but I think
   // the individual unit to consider is each section.
@@ -68,7 +68,7 @@ popConnect.DataViewer = function(element, options) {
     blood_pressures:  {'90-119/60-79': 'BP 90-119/60-79', '90-119/60-79': 'BP 90-119/60-79', '120-139/80-89': 'BP 120-139/80-89', '140-159/90-99':'BP 140-159/90-99', '>160/>100':'BP >160/>100'},
     cholesterol:      {'<100': 'Chol <100', '100-129':'Chol 100-129', '130-159':'Chol 130-159', '160-189':'Chol 160-189', '>190':'Chol >190'},
     age:              {'18-34':'ages 18-34', '35-49':'ages 35-49', '50-64':'ages 50-64', '65-75':'ages 65-75', '76+':'ages 76+'}
-  }
+  };
 
   // Public functions
 
@@ -515,8 +515,8 @@ popConnect.DataViewer = function(element, options) {
     } else {
       var requestData = buildTailoredData();
       var method = "POST";
-      if(popconnect.session && popconnect.session.authToken) {
-        requestData.authenticity_token = popconnect.session.authToken;
+      if(popConnect.session && popConnect.session.authToken) {
+        requestData.authenticity_token = popConnect.session.authToken;
       }
     }
 
