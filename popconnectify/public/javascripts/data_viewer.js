@@ -515,6 +515,9 @@ popConnect.DataViewer = function(element, options) {
     } else {
       var requestData = buildTailoredData();
       var method = "POST";
+      if(popconnect.session && popconnect.session.authToken) {
+        requestData.authenticity_token = popconnect.session.authToken;
+      }
     }
 
     that.reload(requestData, method);
