@@ -4,7 +4,7 @@
   "denominator": 100,
   "id": 3,
   "numerator_fields": {
-      "blood_pressures": ["130/80"]
+      "blood_pressures": ["120/80"]
   },
 /* This is what the response/request will look like after Friday when I screw with everything */
 /*  "denominator_fields": [
@@ -19,20 +19,16 @@
       "diabetes": ["Yes"],
       "hypertension": ["Yes"]
   },
-  
-  
   "smoking": {
-      "Smoker": [892, 900],
-      "Non-smoker": [762, 3500],
-      "Ex-smoker": [20, 2000]
+      "Current Smoker": [892, 900],
+      "Non-Smoker": [762, 3500],
   },
   "blood_pressures": {
       "160/100": [119, 500],
       "180/110+": [96, 100],
       "120/80": [675, 2200],
-      "130/80": [1060, 2000],
       "140/90": [250, 800],
-      "110/75": [790, 800]
+      "110/70": [790, 800]
   },
   "gender": {
       "Male": [1157, 4100],

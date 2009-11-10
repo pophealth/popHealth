@@ -4,14 +4,16 @@
 # Fields with nothing selected won't be sent...no point in crowding the request. You can always do a merge
 # on the server.
 
+Non-Smoker
+
 params = {
   :denominator => {
     :gender => ['Male', 'Female'],
     :ages => ['18-34', '35-49', '50-64', '65-75', '76+'], # If these ranges change we may want to rethink this
     :medications => ['Aspirin', '...'],
     :therapies => ['Smoking Cessation', '...'],
-    :blood_pressures => ['110/75', '120/80', '...'],
-    :smoking => ['Non-smoker', 'Ex-smoker', 'Smoker'],
+    :blood_pressures => ['110/70', '120/80', '...'],
+    :smoking => ['Current Smoker', 'Non-Smoker'],
     :diabetes => ['Yes', 'No'], # This can't be boolean because it could be neither, one, or both
     :hypertension => ['Yes', 'No'] # Same
   },
@@ -20,8 +22,8 @@ params = {
     :ages => ['18-34', '35-49', '50-64', '65-75', '76+'], # If these ranges change we may want to rethink this
     :medications => ['Aspirin', '...'],
     :therapies => ['Smoking Cessation', '...'],
-    :blood_pressures => ['110/75', '120/80'],
-    :smoking => ['Non-smoker', 'Ex-smoker', 'Smoker'],
+    :blood_pressures => ['110/70', '120/80'],
+    :smoking => ['Current Smoker', 'Non-Smoker'],
     :diabetes => ['Yes', 'No'], # This can't be boolean because it could be neither, one, or both
     :hypertension => ['Yes', 'No'] # Same
   },

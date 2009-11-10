@@ -19,7 +19,6 @@ popConnect.DataViewer = function(element, options) {
   var busyness = 0;                         // Current number of jobs. Controls when loading indicator is shown. Don't change directly, use busy/notBusy
   this.onComplete = options.complete;        // Callback for when data is loaded
   this.onError = options.error;              // Callback for when data doesn't load
-  this.counters = [];
 
   // It's sort of arbitrary to split dataDefinition out this way, but I think
   // the individual unit to consider is each section.
@@ -44,17 +43,18 @@ popConnect.DataViewer = function(element, options) {
       risk_factors: {
         label: 'Risk Factors',
         types: {
-          blood_pressures: {label: 'Blood Pressure', sort: ['90-119/60-79', '120-139/80-89', '140-159/90-99', '>160/>100']},
-          cholesterol: {label: 'Cholesterol', sort: ['<100', '100-129', '130-159', '160-189', '>190']},
-          smoking: {label: 'Smoking', sort: ['Non-smoker', 'Ex-smoker', 'Smoker']}
+          blood_pressures: {label: 'Blood Pressure', sort: ['110/70', '120/80', '140/90', '160/100', '180/110+']},
+          smoking: {label: 'Smoking', sort: ['Current Smoker', 'Non-Smoker']}
         },
-        sort: ['blood_pressures', 'cholesterol', 'smoking']
+        sort: ['blood_pressures', 'smoking']
       },
       disease_conditions: {
         label: 'Disease & Conditions',
         types: {
           diabetes: {label: 'Diabetes', sort: ['Yes', 'No']},
-          hypertension: {label: 'Hypertension', sort: ['Yes', 'No']}
+          hypertension: {label: 'Hypertension', sort: ['Yes', 'No']},
+          ischemic_vascular_disease: {label: 'Ischemic Vascular Disease', sort:['Yes', 'No']},
+          lipoid_disorder: {label: 'Lipoid Disorder', sort:['Yes', 'No']}
         },
         sort: ['diabetes', 'hypertension']
       }
@@ -63,14 +63,13 @@ popConnect.DataViewer = function(element, options) {
   };
 
   var irregularLabels = {
-    diabetes:         {'Yes': 'Diabetes', 'No': 'without Diabetes'},
-    hypertension:     {'Yes': 'Hypertension', 'No': 'without Hypertension'},
-    blood_pressures:  {'90-119/60-79': 'BP 90-119/60-79', '90-119/60-79': 'BP 90-119/60-79', '120-139/80-89': 'BP 120-139/80-89', '140-159/90-99':'BP 140-159/90-99', '>160/>100':'BP >160/>100'},
-    cholesterol:      {'<100': 'Chol <100', '100-129':'Chol 100-129', '130-159':'Chol 130-159', '160-189':'Chol 160-189', '>190':'Chol >190'},
-    age:              {'18-34':'ages 18-34', '35-49':'ages 35-49', '50-64':'ages 50-64', '65-75':'ages 65-75', '76+':'ages 76+'}
-  };
+    diabetes: {'Yes': 'Diabetes', 'No': 'Without Diabetes'},
+    hypertension: {'Yes': 'Hypertension', 'No': 'Without Hypertension'},
+  }
 
   // Public functions
+
+
 
   // ........ are there any ??? ..........
 
@@ -81,12 +80,12 @@ popConnect.DataViewer = function(element, options) {
   this.getData = function() {
     return data;
   };
-
+  
   this.selectReport = function(id) {
     busy();
     that.reload({id: id}, 'GET');
   }
-
+  
   this.newReport = function() {
     busy();
     data = {
@@ -101,11 +100,6 @@ popConnect.DataViewer = function(element, options) {
     // Assumes the markup is already there and domNode properties have been set correctly
     // ie don't call this if the DOM element is missing! Call buildInitialDom...
 
-    // clear any previous counters a counting (happens when users are trigger happy)
-    while(this.counters.length>0){
-      clearInterval(this.counters.pop());
-    }
-
     if(data.title) {
       dataDefinition.reportTitle.text(data.title).removeClass('disabled');
       dataDefinition.changedReportTitle.val(data.title);
@@ -116,35 +110,17 @@ popConnect.DataViewer = function(element, options) {
 
     // Assume the dom nodes already exist and have been set
     var percentage = 0;   // Giant percentage number
-    var startpercent = 0;
-    var startdenom = 0;
-    var startnumer = 0;
-    if(dataDefinition.masterPercentageDomNode.text()){
-      startpercent = dataDefinition.masterPercentageDomNode.text()
-    }
-    if(dataDefinition.denominatorValueDomNode.text()){
-      startdenom = dataDefinition.denominatorValueDomNode.text()
-    }
-    if(dataDefinition.numeratorValueDomNode.text()){
-      startnumer = dataDefinition.numeratorValueDomNode.text()
-    }
 
     // Let's run the calculations on the data...
     if(data.denominator > 0) {
       percentage = data.numerator / data.denominator * 100; // Dividing by 0 apparently doesn't work!! Who knew!?
-      dataDefinition.denominatorValueDomNode.removeClass('disabled')//.text( addCommas(data.denominator) );
-      var dc = new popConnect.Counter(startdenom, data.denominator, dataDefinition.denominatorValueDomNode)
-      this.counters.push(dc.interval);
-
+      dataDefinition.denominatorValueDomNode.removeClass('disabled').text(data.denominator);
     } else {
       dataDefinition.denominatorValueDomNode.addClass('disabled').text(data.denominator);
     }
 
     if(data.numerator > 0) {
-      dataDefinition.numeratorValueDomNode.removeClass('disabled')//.text( addCommas(data.numerator) );
-      var nc = new popConnect.Counter(startnumer, data.numerator, dataDefinition.numeratorValueDomNode)
-      this.counters.push(nc.interval);
-
+      dataDefinition.numeratorValueDomNode.removeClass('disabled').text(data.numerator);
     } else {
       dataDefinition.numeratorValueDomNode.addClass('disabled').text(data.numerator);
     }
@@ -153,14 +129,8 @@ popConnect.DataViewer = function(element, options) {
     } else if (percentage < 0.5) {
       dataDefinition.masterPercentageDomNode.addClass('disabled').text('<1').append( $('<span>').text('%') );
     } else {
-      //dataDefinition.masterPercentageDomNode.removeClass('disabled').text(Math.round(percentage) + '%');
-      dataDefinition.masterPercentageDomNode.removeClass('disabled');
-      var pc = new popConnect.Counter(startpercent, Math.round(percentage), dataDefinition.masterPercentageDomNode, '%')
-      this.counters.push(pc.interval);
-//      countNums(startpercent, Math.round(percentage), dataDefinition.masterPercentageDomNode)
+      dataDefinition.masterPercentageDomNode.removeClass('disabled').text(Math.round(percentage) + '%');
     }
-
-
 
     dataDefinition.numeratorFieldsDomNode.empty();
     var hasNumerator = false; // There must be a better way to do that
@@ -259,7 +229,7 @@ popConnect.DataViewer = function(element, options) {
             var inDenominator = data.denominator_fields[currentType] && $.inArray(labelText, data.denominator_fields[currentType]) > -1;
             if(inDenominator) {
               $(value).removeClass('in-numerator').addClass('in-denominator');
-            }
+            } 
             if(inNumerator) {
               $(value).addClass('in-numerator').removeClass('in-denominator');
             }
@@ -289,8 +259,8 @@ popConnect.DataViewer = function(element, options) {
             } else {
               $(value).find('.percentage').text(Math.round(thisPercentage));
             }
-
-            $(value).find('.number').text( addCommas(setAt) );
+            
+            $(value).find('.number').text(setAt);
             $(value).find('.bar').empty().append( $('<span>').addClass('total').css('width', Math.round(highWaterMark / highestPopulationCount *100 )+'%') );
             $(value).find('.bar').append( $('<span>').addClass('selected').css('width', Math.round(setAt / highestPopulationCount *100 )+'%') );
 
@@ -313,16 +283,16 @@ popConnect.DataViewer = function(element, options) {
     dataDefinition.denominatorValueDomNode = $('<h2>');
     dataDefinition.numeratorFieldsDomNode = $('<div>');
     dataDefinition.denominatorFieldsDomNode = $('<div>');
-
+    
     dataDefinition.reportTitle = $('<h2>').addClass('reportTitle').click(function() {
       dataDefinition.reportTitle.toggle();
       dataDefinition.reportTitleEdit.toggle();
       dataDefinition.changedReportTitle.focus();
       dataDefinition.changedReportTitle.select();
     });
-
+    
     dataDefinition.reportTitleEdit = $('<span>').addClass('name-edit');
-
+    
     var cancel = $('<a>').attr('href', '#').text('Cancel').click(function() {
       dataDefinition.reportTitle.toggle();
       dataDefinition.reportTitleEdit.toggle();
@@ -332,7 +302,7 @@ popConnect.DataViewer = function(element, options) {
         dataDefinition.changedReportTitle.val('Type report name');
       }
     });
-
+    
     var ok = $('<a>').attr('href', '#').text('Save').click(function() {
       busy();
       dataDefinition.reportTitle.toggle();
@@ -341,28 +311,28 @@ popConnect.DataViewer = function(element, options) {
       that.reload(buildTailoredData(), 'POST');
     });
     dataDefinition.changedReportTitle = $('<input>').attr('type', 'text').addClass('reportTitle');
-
+    
     dataDefinition.reportTitleEdit.append(dataDefinition.changedReportTitle).append(ok).append(cancel).hide();
-
+    
     var topFrame = $('<div>').addClass('top_frame');
     topFrame.append(dataDefinition.reportTitle);
     topFrame.append(dataDefinition.reportTitleEdit);
     var statsContainer = $('<div>').addClass('report_stats');
     var mathsContainer = $('<div>').addClass('maths');
-
+    
     dataDefinition.numeratorNode = $('<div>').addClass('numerator').append(
       dataDefinition.numeratorValueDomNode).append(
       dataDefinition.numeratorFieldsDomNode);
-
+      
     dataDefinition.denominatorNode = $('<div>').addClass('denominator').append(
       dataDefinition.denominatorValueDomNode).append(
       dataDefinition.denominatorFieldsDomNode);
-
+      
     mathsContainer.append(dataDefinition.numeratorNode);
     mathsContainer.append($('<hr>'));
     mathsContainer.append(dataDefinition.denominatorNode);
     statsContainer.append( mathsContainer );
-
+      
     statsContainer.append( $('<div>').addClass('master_percentage').append(dataDefinition.masterPercentageDomNode) );
     topFrame.append(statsContainer);
 
@@ -382,7 +352,7 @@ popConnect.DataViewer = function(element, options) {
         ));
 
         $(dataDefinition.types[sectionName].types[subsectionName].sort).each(function(labelIndex, valueLabel) {
-          var value = $('<div>').addClass('value').corners('15px');
+          var value = $('<div>').addClass('value');
           value.append($('<div>').addClass('label').text(valueLabel));
           value.append($('<div>').addClass('percentage'));
           value.append($('<div>').addClass('number'));
@@ -397,7 +367,7 @@ popConnect.DataViewer = function(element, options) {
       dataDefinition.types[sectionName].domNode = sectionDiv;
       bottomFrame.append(sectionDiv);
     });
-
+    
     $([dataDefinition.numeratorNode, dataDefinition.denominatorNode]).each(function(i, type) {
       $(this).droppable({
         greedy: true,
@@ -443,13 +413,13 @@ popConnect.DataViewer = function(element, options) {
                 other_objs[that.currentlyDraggedSubsection].splice(inArr, 1);
               }
             }
-
+          
             that.reload(buildTailoredData(), 'POST'); // This should disable the UI...
           }
-        }
-      });
+        }        
+      });      
     });
-
+    
 
     $(element).append(topFrame);
     $(element).append(bottomFrame);
@@ -484,7 +454,7 @@ popConnect.DataViewer = function(element, options) {
   function _init(options) {
     busy();
     that.buildInitialDom();
-
+    
     $('body').droppable({
        drop: function(evt, ui) {
          var reload = false;
@@ -508,7 +478,7 @@ popConnect.DataViewer = function(element, options) {
          }
        }
     });
-
+    
     if(data.id) {
       var requestData = {id: data.id}
       var method = "GET";
@@ -519,7 +489,7 @@ popConnect.DataViewer = function(element, options) {
         requestData.authenticity_token = popConnect.session.authToken;
       }
     }
-
+    
     that.reload(requestData, method);
   };
 
@@ -529,15 +499,15 @@ popConnect.DataViewer = function(element, options) {
       numerator: data.numerator_fields,
       denominator: data.denominator_fields,
     }
-
+    
     if(data.title) {
       query_object.title = data.title;
     }
-
+    
     if(data.id) {
       query_object.id = data.id;
     }
-
+    
     return popConnect.railsSerializer.serialize(query_object);
   };
 
