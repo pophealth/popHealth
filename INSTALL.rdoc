@@ -1,0 +1,158 @@
+Laika is a Ruby on Rails application that targets JRuby/Glassfish for deployment.
+
+= Dependencies
+
+* JRuby >= 1.3.1
+* Sun Java >= 1.5 (1.6 required for the Glassfish gem)
+* MySQL >= 5.0 (for UMLS)
+* PostgreSQL >= 8.1 (for XDS)
+
+(Laika itself supports either Postgres or MySQL database storage.)
+
+See http://laika.wiki.sourceforge.net/LaikaXDSPIXPDQAlpha for information
+about getting an Amazon EC2 system prepared to run Laika.
+
+= End-to-end Install Instructions
+Once you get a copy of the Laika code from gitHub, these are step-by-step instructions to get Laika installed on your local machine.
+
+== Git Submodules (Workaround for JRuby bug)
+
+Rails 2.3.2 can cause Laika to trigger a JRuby bug which results in a
+Java stacktrace. The following commit fixed this:
+
+http://github.com/rails/rails/commit/35c5727acea882f4cef2a8a2d12d87a8fda045c8
+
+Since this commit isn't in a released version of Rails, we have submodule
+pointing to the official Rails 2-3-stable branch.
+
+Navigate to the root of your Laika project and run:
+
+ $ git submodule init
+ $ git submodule update
+
+Associated SF ticket: https://sourceforge.net/tracker/index.php?func=detail&aid=2785138&group_id=205665&atid=994554
+
+== Install JRuby and Required Gems
+
+Ensure that you have JRuby version 1.3.1 installed locally (available here: http://dist.codehaus.org/jruby/1.3.1/) and add <jruby-install>/bin to your PATH environment variable.
+
+You will need to install Rails for JRuby, as well as the Factory Girl and Shoulda gems:
+
+ $ jruby -S gem sources -a http://gems.github.com
+ $ jruby -S gem install rails
+ $ jruby -S gem install thoughtbot-factory_girl 
+ $ jruby -S gem install thoughtbot-shoulda 
+
+Install the rest of the gem dependencies; from the root of your Laika project:
+
+ $ jruby -S rake gems:install
+
+== Build and Install the Laika XDS gem
+Get a copy of the xds-facade code from http://github.com/CCHIT/xds-facade/
+Navigate to the xds-facade directory, build the XDS gem and install it:
+
+ $ cd xds-facade
+ $ jruby -S rake gem
+ $ cd pkg
+ $ jruby -S gem install xds-facade-0.1.0.gem
+
+_Above instructions soon to be replaced by_: 
+ $ jruby -S gem install CCHIT-xds-facade -s http://gems.github.com
+
+== XDS HOST
+The default XDS setup on Laika points to localhost. You can change the initial XDS endpoints by editing the settings.yml in spec/fixtures. If you do not have your own XDS set up, you can use the public registry provided by NIST (more information at http://129.6.24.109:9080/index.html); simply change localhost to the following IP address: http://129.6.24.109:9080.
+
+== Database
+Install the database adapters:
+
+  $ jruby -S gem install activerecord-jdbcmysql-adapter
+  $ jruby -S gem install activerecord-jdbcpostgresql-adapter
+
+Make sure your local database server is running and create a new user *laika* with password *laika* and a new database/schema called *laika*. Find the database.yml.template file in laika/config under your local Laika project and edit it to include your database settings, for example:
+
+  development:
+   adapter: jdbcpostgresql
+   database: laika
+   host: localhost
+   port: 5432
+   <<: *login
+
+Save the file as database.yml (i.e., without .template extension). Run the database migrations and load the seed data:
+
+  $ jruby -S rake db:migrate
+  $ jruby -S rake db:seed
+
+== Environment
+Laika uses Saxon (http://saxon.sourceforge.net/) to handle XML Schema validation and XSLT. For this to function properly, the Saxon jars must be set in a CLASSPATH environment variable. 
+
+Navigate to the root of your Laika project and run:
+
+ $ source bin/laika_env.sh
+
+As an alternative, you may create CLASSPATH environment variable as part of the user's profile.
+
+== GlassFish
+Install the Glassfish server using the Glassfish gem:
+
+  $ jruby -S gem install glassfish
+
+GlassFish will use default options for the server if you do not have a glassfish.yml file in your config directory. Laika provides a glassfish.yml.template file that you may edit. Note that GlassFish cannot run as a daemon process on Windows.
+
+Deploying Laika on the GlassFish server is very simple. Run the following command from the root of your Laika project:
+
+  $ jruby -S glassfish
+
+Point your browser to http://localhost:3000/. 
+
+= Installing/using multiple version of Java in Ubuntu
+
+ $ # install both Java 1.5 and Java 1.6
+ $ sudo aptitude install sun-java5-jdk openjdk-6-jdk
+ 
+ $ # use Java 1.5
+ $ sudo update-java-alternatives -s java-1.5.0-sun
+ $ java -version
+ java version "1.5.0_16"
+ Java(TM) 2 Runtime Environment, Standard Edition (build 1.5.0_16-b02)
+ Java HotSpot(TM) Server VM (build 1.5.0_16-b02, mixed mode)
+
+ $ # use Java 1.6
+ $ sudo update-java-alternatives -s java-6-openjdk
+ $ java -version
+ java version "1.6.0_0"
+ IcedTea6 1.3.1 (6b12-0ubuntu6) Runtime Environment (build 1.6.0_0-b12)
+ OpenJDK Server VM (build 1.6.0_0-b12, mixed mode)
+
+= Deploying to Amazon EC2
+
+*NOTE* this is currently not supported. Instead load an AMI provided by CCHIT.
+
+Here is a quick run-through of how deployment works so far. The first
+step is to get a recent AMI of a base system. These instructions assume
+you're deploying to an instance of Amazon EC2 public AMI 95fc1afc
+
+The deployment scripts install laika into /var/www/laika/DATESTAMP and
+maintain a link to the latest deployed version as /var/www/laika/current.
+
+From a checked-out copy of the latest CCHIT/master on your local
+machine:
+
+ $ # add your Amazon-supplied SSH key to the ssh-agent
+ $ ssh-add ~/ec2-keys/mykey.pem
+
+ $ # customize your deployment config:
+ $ cp config/deploy_local.rb.example config/deploy_local.rb
+ $ vi config/deploy_local.rb
+
+ $ # customize your app config:
+ $ cp config/database.yml.template config/database.yml
+ $ vi config/database.yml
+ 
+ $ bootstrap the deployment setup server
+ $ cap deploy:setup
+ $ cap deploy:update       # bootstrap the code so we can ...
+ $ cap laika:install_gems  # ... automatically install gem dependencies
+
+ $ # once the setup is done, this should be the only command needed to deploy
+ $ cap deploy:migrations
+

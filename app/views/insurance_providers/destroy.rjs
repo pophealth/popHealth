@@ -1,0 +1,1 @@
+page.remove "insurance_provider#{params[:id]}"

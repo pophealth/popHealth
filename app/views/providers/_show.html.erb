@@ -1,0 +1,77 @@
+<div id="provider<%= provider.id %>">
+<table>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Start Service</td>
+    <td>
+      <% if provider.start_service %>
+        <%=h provider.start_service %>
+      <% end %>
+    </td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">End Service</td>
+    <td>
+      <% if provider.end_service %>
+        <%=h provider.end_service %>
+      <% end %>
+    </td>
+  </tr>
+  <%= render :partial => '/person_names/show', :locals => {:person_name => provider.person_name}%>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Provider Role</td>
+    <td>
+      <% if provider.provider_role %>
+        <%=h provider.provider_role.name %>
+      <% end %>
+    </td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Role Description</td>
+    <td>
+      <%=h provider.provider_role_free_text %>
+    </td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Provider Type</td>
+    <td>
+      <% if provider.provider_type %>
+        <%=h provider.provider_type.name %>
+      <% end %>
+    </td>
+  </tr>
+  <%= render :partial => '/addresses/show', :locals => {:address => provider.address}%>
+  <%= render :partial => '/telecoms/show', :locals => {:telecom => provider.telecom}%>
+
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Organization</td>
+    <td>
+        <%=h provider.organization %>
+    </td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Patient Identifier</td>
+    <td>
+       <%=h provider.patient_identifier %>
+    </td>
+  </tr>
+  <% if @patient.editable_by? current_user -%>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td></td>
+    <td>
+    <span>
+      <%= link_to_remote 'Edit', :update => "provider#{provider.id}",
+                                 :url => edit_patient_provider_path(patient, provider),
+                                 :method => 'get' %>
+    </span>
+    
+    <span>
+      <%= link_to_remote 'Remove', :update => "provider#{provider.id}",
+                                 :url => patient_provider_path(patient, provider),
+                                 :confirm => 'Are you sure you wish to remove this healthcare provider?',
+                                 :method => 'delete' %>
+    </span>    
+    </td>
+  </tr>
+  <% end -%>
+</table>
+</div>

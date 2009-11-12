@@ -1,0 +1,14 @@
+joe_smiths_insurance_provider_subscriber:
+  subscriber_id: 1234567890-ABC-XXX
+  date_of_birth: 1967-03-23
+  insurance_provider: joe_smiths_insurance_provider
+
+emily_jones_insurance_provider_subscriber:
+  subscriber_id: 1234567890-ABC-YYY
+  date_of_birth: 1932-04-16
+  insurance_provider: emily_jones_insurance_provider
+
+jennifer_thompsons_insurance_provider_subscriber:
+  subscriber_id: 1234567890-ABC-ZZZ
+  date_of_birth: 1958-05-26
+  insurance_provider: jennifer_thompsons_insurance_provider

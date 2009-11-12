@@ -1,0 +1,24 @@
+<table>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td colspan="2" class="lighttext">Guarantor Information</td>
+  </tr>
+  <%= render :partial => '/person_names/show', :locals => {:person_name => insurance_provider_guarantor.person_name}%>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Guarantor Effective Date</td>
+    <td><% if insurance_provider_guarantor.effective_date %><%=h insurance_provider_guarantor.effective_date %><% end %></td>
+  </tr>
+  <%= render :partial => '/addresses/show', :locals => {:address => insurance_provider_guarantor.address}%>
+  <%= render :partial => '/telecoms/show', :locals => {:telecom => insurance_provider_guarantor.telecom}%>
+  <% if @patient.editable_by? current_user -%>
+    <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+      <td></td>
+      <td>
+      <span>
+        <%= link_to_remote('Edit', :update => "insurance_provider_guarantor#{insurance_provider_guarantor.id}",
+                                   :url => edit_patient_insurance_provider_guarantor_path(patient, insurance_provider_guarantor),
+                                   :method => 'get') unless insurance_provider_guarantor.new_record? %>
+      </span>
+      </td>
+    </tr>
+  <% end -%>
+</table>

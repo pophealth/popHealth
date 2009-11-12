@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<addressBook>
+  <person  gender="male">
+    <name> <family>Wallace</family> <given>Bob</given> </name>
+    <email>bwallace@megacorp.com</email>
+    <link manager="C.TUTTLE"/>
+  </person>
+  <person id="C.TUTTLE" gender="female">
+    <name> <family>Tuttle</family> <given>Claire</given> </name>
+    <email>ctuttle@megacorp.com</email>
+    <link subordinates="B.WALLACE"/>
+  </person>
+</addressBook>

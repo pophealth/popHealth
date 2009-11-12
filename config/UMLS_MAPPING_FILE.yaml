@@ -1,0 +1,8673 @@
+1.3.6.1.4.1.2114.108.1.9.120:
+    codesystem: CTEP
+
+1.3.6.1.4.1.2114.108.1.9.121:
+    codesystem: CADSR
+
+1.3.6.1.4.1.2114.108.1.9.122:
+    codesystem: JAX
+
+1.3.6.1.4.1.2114.108.1.9.123:
+    codesystem: KEGG
+
+1.3.6.1.4.1.2114.108.1.9.124:
+    codesystem: NCI-GLOSS
+
+1.3.6.1.4.1.2114.108.1.9.125:
+    codesystem: CDC
+
+1.3.6.1.4.1.2114.108.1.9.126:
+    codesystem: CTCAE
+
+1.3.6.1.4.1.2114.108.1.9.127:
+    codesystem: MDBCAC
+
+1.3.6.1.4.1.2114.108.1.9.128:
+    codesystem: BioC
+
+1.3.6.1.4.1.2114.108.1.9.129:
+    codesystem: DTP
+
+1.3.6.1.4.1.2114.108.1.9.130:
+    codesystem: NCI-CTCAE
+
+1.3.6.1.4.1.2114.108.1.9.131:
+    codesystem: ELC
+
+1.3.6.1.4.1.2114.108.1.9.132:
+    codesystem: PMA
+
+1.3.6.1.4.1.2114.108.1.9.133:
+    codesystem: CBO
+
+1.3.6.1.4.1.2114.108.1.9.134:
+    codesystem: DCP
+
+1.3.6.1.4.1.2114.108.1.9.135:
+    codesystem: FDA
+
+1.3.6.1.4.1.2114.108.1.9.136:
+    codesystem: HL7V2.5
+
+1.3.6.1.4.1.2114.108.1.9.137:
+    codesystem: HL7V3.0
+
+1.3.6.1.4.1.2114.108.1.9.138:
+    codesystem: MTHHL7V3.0V2.5
+
+1.3.6.1.4.1.2114.108.1.9.139:
+    codesystem: MTHHL7V3.0V3.0
+
+1.3.6.1.4.1.2114.108.1.9.140:
+    codesystem: PNDS
+
+1.3.6.1.4.1.2114.108.1.9.141:
+    codesystem: USPMG
+
+1.3.6.1.4.1.2114.108.1.9.142:
+    codesystem: MTHMSHSPA
+
+2.16.84.1.113883.6.51:
+    codesystem: SNMI
+
+2.16.84.1.113883.6.56:
+    codesystem: SRC
+
+2.16.840.1.113883:
+    codesystem: HL7V3.0
+
+2.16.840.1.113883.3.26.1.1:
+    codesystem: NCI
+
+2.16.840.1.113883.3.26.1.2:
+    codesystem: NCI MetaThesaurus
+
+2.16.840.1.113883.6.1:
+    codesystem: LNC
+
+2.16.840.1.113883.6.110:
+    codesystem: AIR
+
+2.16.840.1.113883.6.111:
+    codesystem: ALT
+
+2.16.840.1.113883.6.112:
+    codesystem: AOD
+
+2.16.840.1.113883.6.113:
+    codesystem: BI
+
+2.16.840.1.113883.6.114:
+    codesystem: CCPSS
+
+2.16.840.1.113883.6.115:
+    codesystem: CCS
+
+2.16.840.1.113883.6.116:
+    codesystem: CDT
+
+2.16.840.1.113883.6.117:
+    codesystem: COSTAR
+
+2.16.840.1.113883.6.118:
+    codesystem: CPM
+
+2.16.840.1.113883.6.12:
+    codesystem: CPT
+
+2.16.840.1.113883.6.12.1:
+    codesystem: CPTSP
+
+2.16.840.1.113883.6.120:
+    codesystem: CSP
+
+2.16.840.1.113883.6.122:
+    codesystem: DDB
+
+2.16.840.1.113883.6.125:
+    codesystem: DSM3R
+
+2.16.840.1.113883.6.126:
+    codesystem: DSM4
+
+2.16.840.1.113883.6.127:
+    codesystem: DXP
+
+2.16.840.1.113883.6.128:
+    codesystem: GO
+
+2.16.840.1.113883.6.129:
+    codesystem: HCDT
+
+2.16.840.1.113883.6.130:
+    codesystem: HCPT
+
+2.16.840.1.113883.6.132:
+    codesystem: HLREL
+
+2.16.840.1.113883.6.133:
+    codesystem: HUGO
+
+2.16.840.1.113883.6.135:
+    codesystem: ICD10AM
+
+2.16.840.1.113883.6.135.1:
+    codesystem: ICD10AMAE
+
+2.16.840.1.113883.6.138:
+    codesystem: ICPC
+
+2.16.840.1.113883.6.138.1:
+    codesystem: ICPCBAQ
+
+2.16.840.1.113883.6.138.10:
+    codesystem: ICPCNOR
+
+2.16.840.1.113883.6.138.11:
+    codesystem: ICPCPOR
+
+2.16.840.1.113883.6.138.12:
+    codesystem: ICPCSPA
+
+2.16.840.1.113883.6.138.13:
+    codesystem: ICPCSWE
+
+2.16.840.1.113883.6.138.2:
+    codesystem: ICPCDAN
+
+2.16.840.1.113883.6.138.3:
+    codesystem: ICPCDUT
+
+2.16.840.1.113883.6.138.4:
+    codesystem: ICPCFIN
+
+2.16.840.1.113883.6.138.5:
+    codesystem: ICPCFRE
+
+2.16.840.1.113883.6.138.6:
+    codesystem: ICPCGER
+
+2.16.840.1.113883.6.138.7:
+    codesystem: ICPCHEB
+
+2.16.840.1.113883.6.138.8:
+    codesystem: ICPCHUN
+
+2.16.840.1.113883.6.138.9:
+    codesystem: ICPCITA
+
+2.16.840.1.113883.6.139:
+    codesystem: ICPC2EENG
+
+2.16.840.1.113883.6.139.1:
+    codesystem: ICPC2EDUT
+
+2.16.840.1.113883.6.139.2:
+    codesystem: MTHICPC2EAE
+
+2.16.840.1.113883.6.14:
+    codesystem: HCPCS
+
+2.16.840.1.113883.6.140.1:
+    codesystem: ICPCPAE
+
+2.16.840.1.113883.6.140.2:
+    codesystem: ICPC2P
+
+2.16.840.1.113883.6.142:
+    codesystem: ICPC2ICD10ENG
+
+2.16.840.1.113883.6.142.1:
+    codesystem: ICPC2ICD10DUT
+
+2.16.840.1.113883.6.142.2:
+    codesystem: MTHICPC2ICD107B
+
+2.16.840.1.113883.6.142.3:
+    codesystem: MTHICPC2ICD10AE
+
+2.16.840.1.113883.6.15:
+    codesystem: NIC
+
+2.16.840.1.113883.6.158:
+    codesystem: JABL
+
+2.16.840.1.113883.6.159:
+    codesystem: LCH
+
+2.16.840.1.113883.6.16:
+    codesystem: NOC
+
+2.16.840.1.113883.6.160:
+    codesystem: MBD
+
+2.16.840.1.113883.6.161:
+    codesystem: MCM
+
+2.16.840.1.113883.6.162:
+    codesystem: MDDB
+
+2.16.840.1.113883.6.163:
+    codesystem: MDR
+
+2.16.840.1.113883.6.163.1:
+    codesystem: MDRAE
+
+2.16.840.1.113883.6.163.2:
+    codesystem: MDRDUT
+
+2.16.840.1.113883.6.163.3:
+    codesystem: MDRFRE
+
+2.16.840.1.113883.6.163.4:
+    codesystem: MDRGER
+
+2.16.840.1.113883.6.163.5:
+    codesystem: MDRPOR
+
+2.16.840.1.113883.6.163.6:
+    codesystem: MDRSPA
+
+2.16.840.1.113883.6.164:
+    codesystem: MDREX
+
+2.16.840.1.113883.6.164.1:
+    codesystem: MDREA
+
+2.16.840.1.113883.6.165:
+    codesystem: MTHMDRSPA
+
+2.16.840.1.113883.6.17:
+    codesystem: HHC
+
+2.16.840.1.113883.6.172:
+    codesystem: MED
+
+2.16.840.1.113883.6.173:
+    codesystem: MEDLINEPLUS
+
+2.16.840.1.113883.6.174:
+    codesystem: MIM
+
+2.16.840.1.113883.6.175:
+    codesystem: MMSL
+
+2.16.840.1.113883.6.176:
+    codesystem: MMX
+
+2.16.840.1.113883.6.177:
+    codesystem: MSH
+
+2.16.840.1.113883.6.177.1:
+    codesystem: MSHCZE
+
+2.16.840.1.113883.6.177.10:
+    codesystem: MSHSPA
+
+2.16.840.1.113883.6.177.11:
+    codesystem: MSHSWE
+
+2.16.840.1.113883.6.177.2:
+    codesystem: MSHDUT
+
+2.16.840.1.113883.6.177.3:
+    codesystem: MSHFIN
+
+2.16.840.1.113883.6.177.4:
+    codesystem: MSHFRE
+
+2.16.840.1.113883.6.177.5:
+    codesystem: MSHGER
+
+2.16.840.1.113883.6.177.6:
+    codesystem: MSHITA
+
+2.16.840.1.113883.6.177.7:
+    codesystem: MSHJPN
+
+2.16.840.1.113883.6.177.8:
+    codesystem: MSHPOR
+
+2.16.840.1.113883.6.177.9:
+    codesystem: MSHRUS
+
+2.16.840.1.113883.6.189:
+    codesystem: MTH
+
+2.16.840.1.113883.6.190:
+    codesystem: MTHCH
+
+2.16.840.1.113883.6.191:
+    codesystem: MTHFDA
+
+2.16.840.1.113883.6.192:
+    codesystem: MTHHH
+
+2.16.840.1.113883.6.193:
+    codesystem: MTHICD9
+
+2.16.840.1.113883.6.198:
+    codesystem: MTHMST
+
+2.16.840.1.113883.6.198.1:
+    codesystem: MTHMSTFRE
+
+2.16.840.1.113883.6.198.2:
+    codesystem: MTHMSTITA
+
+2.16.840.1.113883.6.2:
+    codesystem: ICD9CM
+
+2.16.840.1.113883.6.201:
+    codesystem: MTHPDQ
+
+2.16.840.1.113883.6.202:
+    codesystem: MTHSCT
+
+2.16.840.1.113883.6.202.1:
+    codesystem: MTHSCTSPA
+
+2.16.840.1.113883.6.204:
+    codesystem: NAN
+
+2.16.840.1.113883.6.205:
+    codesystem: NCBI
+
+2.16.840.1.113883.6.206:
+    codesystem: NCI
+
+2.16.840.1.113883.6.207:
+    codesystem: NCISEER
+
+2.16.840.1.113883.6.208:
+    codesystem: NDDF
+
+2.16.840.1.113883.6.209:
+    codesystem: NDFRT
+
+2.16.840.1.113883.6.210:
+    codesystem: NEU
+
+2.16.840.1.113883.6.211:
+    codesystem: NLM-MED
+
+2.16.840.1.113883.6.212:
+    codesystem: PCDS
+
+2.16.840.1.113883.6.213:
+    codesystem: PDQ
+
+2.16.840.1.113883.6.214:
+    codesystem: PPAC
+
+2.16.840.1.113883.6.215:
+    codesystem: PSY
+
+2.16.840.1.113883.6.216:
+    codesystem: QMR
+
+2.16.840.1.113883.6.217:
+    codesystem: RAM
+
+2.16.840.1.113883.6.220:
+    codesystem: RCDSY
+
+2.16.840.1.113883.6.220.1:
+    codesystem: RCDSA
+
+2.16.840.1.113883.6.220.2:
+    codesystem: RCDAE
+
+2.16.840.1.113883.6.224:
+    codesystem: SPN
+
+2.16.840.1.113883.6.226:
+    codesystem: ULT
+
+2.16.840.1.113883.6.227:
+    codesystem: UMD
+
+2.16.840.1.113883.6.227.1:
+    codesystem: DMDUMD
+
+2.16.840.1.113883.6.228:
+    codesystem: UWDA
+
+2.16.840.1.113883.6.229:
+    codesystem: VANDF
+
+2.16.840.1.113883.6.230:
+    codesystem: WHO
+
+2.16.840.1.113883.6.230.1:
+    codesystem: WHOFRE
+
+2.16.840.1.113883.6.230.2:
+    codesystem: WHOGER
+
+2.16.840.1.113883.6.230.3:
+    codesystem: WHOPOR
+
+2.16.840.1.113883.6.230.4:
+    codesystem: WHOSPA
+
+2.16.840.1.113883.6.3:
+    codesystem: ICD10
+
+2.16.840.1.113883.6.3.1:
+    codesystem: ICD10AE
+
+2.16.840.1.113883.6.3.2:
+    codesystem: ICD10DUT
+
+2.16.840.1.113883.6.3.3:
+    codesystem: DMDICD10
+
+2.16.840.1.113883.6.43:
+    codesystem: ICDO
+
+2.16.840.1.113883.6.5:
+    codesystem: SNM
+
+2.16.840.1.113883.6.6:
+    codesystem: RCD
+
+2.16.840.1.113883.6.62:
+    codesystem: CST
+
+2.16.840.1.113883.6.88:
+    codesystem: RXNORM
+
+2.16.840.1.113883.6.96:
+    codesystem: SNOMEDCT
+
+2.16.840.1.113883.6.96.1:
+    codesystem: SCTSPA
+
+2.16.840.1.113883.6.98:
+    codesystem: OMS
+
+
+2.16.840.1.113883.5:
+    codesystem: HL7V3.0
+    umlscode: HL7V3.0
+
+2.16.840.1.113883.5.1:
+    codesystem: HL7V3.0
+    umlscode: AdministrativeGender
+
+
+2.16.840.1.113883.5.10:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipCheckpoint
+
+
+2.16.840.1.113883.5.100:
+    codesystem: HL7V3.0
+    umlscode: ProcessingID
+
+
+2.16.840.1.113883.5.1001:
+    codesystem: HL7V3.0
+    umlscode: ActMood
+
+
+2.16.840.1.113883.5.1002:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipType
+
+
+2.16.840.1.113883.5.1003:
+    codesystem: HL7V3.0
+    umlscode: Service actor type
+
+
+2.16.840.1.113883.5.1004:
+    codesystem: HL7V3.0
+    umlscode: Service target type
+
+
+2.16.840.1.113883.5.1007:
+    codesystem: HL7V3.0
+    umlscode: DataType
+
+
+2.16.840.1.113883.5.1008:
+    codesystem: HL7V3.0
+    umlscode: NullFlavor
+
+
+2.16.840.1.113883.5.1009:
+    codesystem: HL7V3.0
+    umlscode: CompressionALgorithm
+
+
+2.16.840.1.113883.5.101:
+    codesystem: HL7V3.0
+    umlscode: ProcessingMode
+
+
+2.16.840.1.113883.5.1010:
+    codesystem: HL7V3.0
+    umlscode: IntegrityCheckAlgorithm
+
+
+2.16.840.1.113883.5.1011:
+    codesystem: HL7V3.0
+    umlscode: TelecommunicationAddressUse
+
+
+2.16.840.1.113883.5.1012:
+    codesystem: HL7V3.0
+    umlscode: PostalAddressUse
+
+
+2.16.840.1.113883.5.1013:
+    codesystem: HL7V3.0
+    umlscode: Postal Address part type
+
+
+2.16.840.1.113883.5.1014:
+    codesystem: HL7V3.0
+    umlscode: Person Name part type
+
+
+2.16.840.1.113883.5.1015:
+    codesystem: HL7V3.0
+    umlscode: Person Name part type
+
+
+2.16.840.1.113883.5.1016:
+    codesystem: HL7V3.0
+    umlscode: OrganizationNameType
+
+
+2.16.840.1.113883.5.1017:
+    codesystem: HL7V3.0
+    umlscode: CalendarType
+
+
+2.16.840.1.113883.5.1018:
+    codesystem: HL7V3.0
+    umlscode: Calendar cycle one letter code
+
+
+2.16.840.1.113883.5.1019:
+    codesystem: HL7V3.0
+    umlscode: Calendar cycle two letter code
+
+
+2.16.840.1.113883.5.102:
+    codesystem: HL7V3.0
+    umlscode: QueryPriority
+
+
+2.16.840.1.113883.5.1020:
+    codesystem: HL7V3.0
+    umlscode: ProbabilityDistributionType
+
+
+2.16.840.1.113883.5.1021:
+    codesystem: HL7V3.0
+    umlscode: PeriodicIntervalOfTimeAbbreviation
+
+
+2.16.840.1.113883.5.1022:
+    codesystem: HL7V3.0
+    umlscode: GTSAbbreviation
+
+
+2.16.840.1.113883.5.1023:
+    codesystem: HL7V3.0
+    umlscode: Event code
+
+
+2.16.840.1.113883.5.103:
+    codesystem: HL7V3.0
+    umlscode: QueryStatusCode
+
+
+2.16.840.1.113883.5.104:
+    codesystem: HL7V3.0
+    umlscode: Race
+
+
+2.16.840.1.113883.5.105:
+    codesystem: HL7V3.0
+    umlscode: RelationalOperator
+
+
+2.16.840.1.113883.5.1050:
+    codesystem: HL7V3.0
+    umlscode: AcknowledgementCondition
+
+
+2.16.840.1.113883.5.1051:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceElementModifier
+
+
+2.16.840.1.113883.5.1052:
+    codesystem: HL7V3.0
+    umlscode: ActSite
+
+
+2.16.840.1.113883.5.1053:
+    codesystem: HL7V3.0
+    umlscode: ActUncertainty
+
+
+2.16.840.1.113883.5.1054:
+    codesystem: HL7V3.0
+    umlscode: AmericanIndianAlaskaNativeLanguages
+
+
+2.16.840.1.113883.5.1055:
+    codesystem: HL7V3.0
+    umlscode: Calendar
+
+
+2.16.840.1.113883.5.1056:
+    codesystem: HL7V3.0
+    umlscode: CommunicationFunctionType
+
+
+2.16.840.1.113883.5.1057:
+    codesystem: HL7V3.0
+    umlscode: ContextControl
+
+
+2.16.840.1.113883.5.1058:
+    codesystem: HL7V3.0
+    umlscode: Currency
+
+
+2.16.840.1.113883.5.1059:
+    codesystem: HL7V3.0
+    umlscode: EmployeeJobClass
+
+
+2.16.840.1.113883.5.106:
+    codesystem: HL7V3.0
+    umlscode: RelationshipConjunction
+
+
+2.16.840.1.113883.5.1060:
+    codesystem: HL7V3.0
+    umlscode: EntityCode
+
+
+2.16.840.1.113883.5.1061:
+    codesystem: HL7V3.0
+    umlscode: EntityStatus
+
+
+2.16.840.1.113883.5.1062:
+    codesystem: HL7V3.0
+    umlscode: ManagedParticipationStatus
+
+
+2.16.840.1.113883.5.1063:
+    codesystem: HL7V3.0
+    umlscode: ObservationValue
+
+
+2.16.840.1.113883.5.1064:
+    codesystem: HL7V3.0
+    umlscode: ParticipationMode
+
+
+2.16.840.1.113883.5.1065:
+    codesystem: HL7V3.0
+    umlscode: ProcedureMethod
+
+
+2.16.840.1.113883.5.1066:
+    codesystem: HL7V3.0
+    umlscode: QueryQuantityUnit
+
+
+2.16.840.1.113883.5.1067:
+    codesystem: HL7V3.0
+    umlscode: QueryResponse
+
+
+2.16.840.1.113883.5.1068:
+    codesystem: HL7V3.0
+    umlscode: RoleStatus
+
+
+2.16.840.1.113883.5.1069:
+    codesystem: HL7V3.0
+    umlscode: SetOperator
+
+
+2.16.840.1.113883.5.107:
+    codesystem: HL7V3.0
+    umlscode: RoleLinkType
+
+
+2.16.840.1.113883.5.1070:
+    codesystem: HL7V3.0
+    umlscode: SubstanceAdminSubstitution
+
+
+2.16.840.1.113883.5.1071:
+    codesystem: HL7V3.0
+    umlscode: SubstitutionCondition
+
+
+2.16.840.1.113883.5.1072:
+    codesystem: HL7V3.0
+    umlscode: UnitOfMeasurePrefix
+
+
+2.16.840.1.113883.5.1073:
+    codesystem: HL7V3.0
+    umlscode: UnitOfMeasurePrefixCaseSensitive
+
+
+2.16.840.1.113883.5.1074:
+    codesystem: HL7V3.0
+    umlscode: CodingRationale
+
+
+2.16.840.1.113883.5.1075:
+    codesystem: HL7V3.0
+    umlscode: PatientImportance
+
+
+2.16.840.1.113883.5.1076:
+    codesystem: HL7V3.0
+    umlscode: ReligiousAffiliation
+
+
+2.16.840.1.113883.5.1077:
+    codesystem: HL7V3.0
+    umlscode: EducationLevel
+
+
+2.16.840.1.113883.5.1078:
+    codesystem: HL7V3.0
+    umlscode: QueryEventStatus
+
+
+2.16.840.1.113883.5.1079:
+    codesystem: HL7V3.0
+    umlscode: HL7V3.0
+
+2.16.840.1.113883.5.108:
+    codesystem: HL7V3.0
+    umlscode: ResponseLevel
+
+
+2.16.840.1.113883.5.1080:
+    codesystem: HL7V3.0
+    umlscode: Dentition
+
+
+2.16.840.1.113883.5.1081:
+    codesystem: HL7V3.0
+    umlscode: CIHIAdj
+
+
+2.16.840.1.113883.5.1082:
+    codesystem: HL7V3.0
+    umlscode: AcknowledgementDetailType
+
+
+2.16.840.1.113883.5.1083:
+    codesystem: HL7V3.0
+    umlscode: MessageWaitingPriority
+
+
+2.16.840.1.113883.5.1084:
+    codesystem: HL7V3.0
+    umlscode: EncounterAcuity
+
+
+2.16.840.1.113883.5.1085:
+    codesystem: HL7V3.0
+    umlscode: CodeSystemType
+
+
+2.16.840.1.113883.5.1086:
+    codesystem: HL7V3.0
+    umlscode: ConceptStatus
+
+
+2.16.840.1.113883.5.1087:
+    codesystem: HL7V3.0
+    umlscode: ConceptProperty
+
+
+2.16.840.1.113883.5.1088:
+    codesystem: HL7V3.0
+    umlscode: ConceptCodeRelationship
+
+
+2.16.840.1.113883.5.1089:
+    codesystem: HL7V3.0
+    umlscode: Dentition
+
+
+2.16.840.1.113883.5.109:
+    codesystem: HL7V3.0
+    umlscode: ResponseModality
+
+
+2.16.840.1.113883.5.1090:
+    codesystem: HL7V3.0
+    umlscode: CalendarCycleOneLetter
+
+
+2.16.840.1.113883.5.1091:
+    codesystem: HL7V3.0
+    umlscode: Version identifiers
+
+
+2.16.840.1.113883.5.1092:
+    codesystem: HL7V3.0
+    umlscode: HL7V3.0ITSVersionCode
+
+
+2.16.840.1.113883.5.1093:
+    codesystem: HL7V3.0
+    umlscode: TranslationQuality
+
+
+2.16.840.1.113883.5.1094:
+    codesystem: HL7V3.0
+    umlscode: MatchAlgorithm
+
+
+2.16.840.1.113883.5.1095:
+    codesystem: HL7V3.0
+    umlscode: PolicyHolderRole
+
+
+2.16.840.1.113883.5.1096:
+    codesystem: HL7V3.0
+    umlscode: QueryParameterValue
+
+
+2.16.840.1.113883.5.1097:
+    codesystem: HL7V3.0
+    umlscode: HL7V3.0StandardVersionCode
+
+
+2.16.840.1.113883.5.1098:
+    codesystem: HL7V3.0
+    umlscode: StyleType
+
+
+2.16.840.1.113883.5.1099:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipSubset
+
+
+2.16.840.1.113883.5.11:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipConjunction
+
+
+2.16.840.1.113883.5.110:
+    codesystem: HL7V3.0
+    umlscode: RoleClass
+
+
+2.16.840.1.113883.5.1100:
+    codesystem: HL7V3.0
+    umlscode: AcknowledgementDetailCode
+
+
+2.16.840.1.113883.5.1101:
+    codesystem: HL7V3.0
+    umlscode: HL7V3.0Domains
+
+
+2.16.840.1.113883.5.1102:
+    codesystem: HL7V3.0
+    umlscode: Online Product Identification Number Index of Nova Scotia
+
+
+2.16.840.1.113883.5.1103:
+    codesystem: HL7V3.0
+    umlscode: Active Ingredient Code
+
+
+2.16.840.1.113883.5.1104:
+    codesystem: HL7V3.0
+    umlscode: Active Ingredient Group Code
+
+
+2.16.840.1.113883.5.1106:
+    codesystem: HL7V3.0
+    umlscode: Active Ingredient Group Number
+
+
+2.16.840.1.113883.5.1108:
+    codesystem: HL7V3.0
+    umlscode: Encode-FM
+
+
+2.16.840.1.113883.5.1109:
+    codesystem: HL7V3.0
+    umlscode: ActTherapyDurationWorkingListCode
+
+
+2.16.840.1.113883.5.111:
+    codesystem: HL7V3.0
+    umlscode: RoleCode
+
+
+2.16.840.1.113883.5.1110:
+    codesystem: HL7V3.0
+    umlscode: ContentProcessingMode
+
+
+2.16.840.1.113883.5.1111:
+    codesystem: HL7V3.0
+    umlscode: TransmissionRelationshipType
+
+
+2.16.840.1.113883.5.1112:
+    codesystem: HL7V3.0
+    umlscode: QueryRequestLimit
+
+
+2.16.840.1.113883.5.1113:
+    codesystem: HL7V3.0
+    umlscode: ExposureMode
+
+
+2.16.840.1.113883.5.1114:
+    codesystem: HL7V3.0
+    umlscode: ActExposureLevelCode
+
+
+2.16.840.1.113883.5.112:
+    codesystem: HL7V3.0
+    umlscode: RouteOfAdministration
+
+
+2.16.840.1.113883.5.113:
+    codesystem: HL7V3.0
+    umlscode: Sequencing
+
+
+2.16.840.1.113883.5.114:
+    codesystem: HL7V3.0
+    umlscode: Service
+
+
+2.16.840.1.113883.5.115:
+    codesystem: HL7V3.0
+    umlscode: ParticipationActor
+
+
+2.16.840.1.113883.5.116:
+    codesystem: HL7V3.0
+    umlscode: ServiceActorFunction
+
+
+2.16.840.1.113883.5.117:
+    codesystem: HL7V3.0
+    umlscode: ServiceActorSignature
+
+
+2.16.840.1.113883.5.118:
+    codesystem: HL7V3.0
+    umlscode: ServiceConfidentiality
+
+
+2.16.840.1.113883.5.119:
+    codesystem: HL7V3.0
+    umlscode: ServiceInterpretation
+
+
+2.16.840.1.113883.5.12:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipJoin
+
+
+2.16.840.1.113883.5.120:
+    codesystem: HL7V3.0
+    umlscode: ServiceListType
+
+
+2.16.840.1.113883.5.121:
+    codesystem: HL7V3.0
+    umlscode: ServiceMood
+
+
+2.16.840.1.113883.5.122:
+    codesystem: HL7V3.0
+    umlscode: ServicePriority
+
+
+2.16.840.1.113883.5.123:
+    codesystem: HL7V3.0
+    umlscode: ServiceRelationshipType
+
+
+2.16.840.1.113883.5.124:
+    codesystem: HL7V3.0
+    umlscode: ServiceRelationshipCheckPoint
+
+
+2.16.840.1.113883.5.125:
+    codesystem: HL7V3.0
+    umlscode: ServiceRelationshipConjunction
+
+
+2.16.840.1.113883.5.126:
+    codesystem: HL7V3.0
+    umlscode: ServiceRelationshipJoin
+
+
+2.16.840.1.113883.5.127:
+    codesystem: HL7V3.0
+    umlscode: ServiceRelationshipSplit
+
+
+2.16.840.1.113883.5.128:
+    codesystem: HL7V3.0
+    umlscode: ServiceTargetType
+
+
+2.16.840.1.113883.5.129:
+    codesystem: HL7V3.0
+    umlscode: SpecimenType
+
+
+2.16.840.1.113883.5.13:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipSplit
+
+
+2.16.840.1.113883.5.130:
+    codesystem: HL7V3.0
+    umlscode: SupplyService
+
+
+2.16.840.1.113883.5.131:
+    codesystem: HL7V3.0
+    umlscode: TableCellHorizontalAlign
+
+
+2.16.840.1.113883.5.132:
+    codesystem: HL7V3.0
+    umlscode: TableCellScope
+
+
+2.16.840.1.113883.5.133:
+    codesystem: HL7V3.0
+    umlscode: TableCellVerticalAlign
+
+
+2.16.840.1.113883.5.134:
+    codesystem: HL7V3.0
+    umlscode: TableFrame
+
+
+2.16.840.1.113883.5.135:
+    codesystem: HL7V3.0
+    umlscode: TableRowGroupType
+
+
+2.16.840.1.113883.5.136:
+    codesystem: HL7V3.0
+    umlscode: TableRules
+
+
+2.16.840.1.113883.5.137:
+    codesystem: HL7V3.0
+    umlscode: TargetAwareness
+
+
+2.16.840.1.113883.5.139:
+    codesystem: HL7V3.0
+    umlscode: TimingEvent
+
+
+2.16.840.1.113883.5.14:
+    codesystem: HL7V3.0
+    umlscode: ActStatus
+
+
+2.16.840.1.113883.5.140:
+    codesystem: HL7V3.0
+    umlscode: TribalEntityUS
+
+
+2.16.840.1.113883.5.141:
+    codesystem: HL7V3.0
+    umlscode: UnitsOfMeasure
+
+
+2.16.840.1.113883.5.142:
+    codesystem: HL7V3.0
+    umlscode: UnitsOfMeasureCaseSensitive
+
+
+2.16.840.1.113883.5.143:
+    codesystem: HL7V3.0
+    umlscode: URLScheme
+
+
+2.16.840.1.113883.5.144:
+    codesystem: HL7V3.0
+    umlscode: VaccineManufacturer
+
+
+2.16.840.1.113883.5.145:
+    codesystem: HL7V3.0
+    umlscode: VaccineType
+
+
+2.16.840.1.113883.5.146:
+    codesystem: HL7V3.0
+    umlscode: ValueSetOperator
+
+
+2.16.840.1.113883.5.147:
+    codesystem: HL7V3.0
+    umlscode: VocabularyDomainQualifier
+
+
+2.16.840.1.113883.5.15:
+    codesystem: HL7V3.0
+    umlscode: ActType
+
+
+2.16.840.1.113883.5.16:
+    codesystem: HL7V3.0
+    umlscode: AddressPartType
+
+
+2.16.840.1.113883.5.17:
+    codesystem: HL7V3.0
+    umlscode: AddressUse
+
+
+2.16.840.1.113883.5.18:
+    codesystem: HL7V3.0
+    umlscode: AcknowledgementType
+
+
+2.16.840.1.113883.5.2:
+    codesystem: HL7V3.0
+    umlscode: MaritalStatus
+
+
+2.16.840.1.113883.5.21:
+    codesystem: HL7V3.0
+    umlscode: Charset
+
+
+2.16.840.1.113883.5.22:
+    codesystem: HL7V3.0
+    umlscode: CodeSystem
+
+
+2.16.840.1.113883.5.24:
+    codesystem: HL7V3.0
+    umlscode: ConceptGenerality
+
+
+2.16.840.1.113883.5.25:
+    codesystem: HL7V3.0
+    umlscode: Confidentiality
+
+
+2.16.840.1.113883.5.26:
+    codesystem: HL7V3.0
+    umlscode: ContainerCap
+
+
+2.16.840.1.113883.5.27:
+    codesystem: HL7V3.0
+    umlscode: ContainerSeparator
+
+
+2.16.840.1.113883.5.28:
+    codesystem: HL7V3.0
+    umlscode: Country
+
+
+2.16.840.1.113883.5.3:
+    codesystem: HL7V3.0
+    umlscode: Act
+
+
+2.16.840.1.113883.5.30:
+    codesystem: HL7V3.0
+    umlscode: EntityDeterminer
+
+
+2.16.840.1.113883.5.31:
+    codesystem: HL7V3.0
+    umlscode: DeviceAlertLevel
+
+
+2.16.840.1.113883.5.32:
+    codesystem: HL7V3.0
+    umlscode: DietService
+
+
+2.16.840.1.113883.5.33:
+    codesystem: HL7V3.0
+    umlscode: DocumentCompletion
+
+
+2.16.840.1.113883.5.34:
+    codesystem: HL7V3.0
+    umlscode: DocumentStorage
+
+
+2.16.840.1.113883.5.35:
+    codesystem: HL7V3.0
+    umlscode: EditStatus
+
+
+2.16.840.1.113883.5.36:
+    codesystem: HL7V3.0
+    umlscode: EncounterAccident
+
+
+2.16.840.1.113883.5.37:
+    codesystem: HL7V3.0
+    umlscode: EncounterAdmissionSource
+
+
+2.16.840.1.113883.5.38:
+    codesystem: HL7V3.0
+    umlscode: EncounterAdmissionPriority
+
+
+2.16.840.1.113883.5.39:
+    codesystem: HL7V3.0
+    umlscode: EncounterReferralSource
+
+
+2.16.840.1.113883.5.4:
+    codesystem: HL7V3.0
+    umlscode: ActCode
+
+
+2.16.840.1.113883.5.40:
+    codesystem: HL7V3.0
+    umlscode: EncounterSpecialCourtesy
+
+
+2.16.840.1.113883.5.41:
+    codesystem: HL7V3.0
+    umlscode: EntityClass
+
+
+2.16.840.1.113883.5.42:
+    codesystem: HL7V3.0
+    umlscode: EntityHandling
+
+
+2.16.840.1.113883.5.43:
+    codesystem: HL7V3.0
+    umlscode: EntityNamePartQualifier
+
+
+2.16.840.1.113883.5.44:
+    codesystem: HL7V3.0
+    umlscode: EntityNamePartType
+
+
+2.16.840.1.113883.5.45:
+    codesystem: HL7V3.0
+    umlscode: EntityNameUse
+
+
+2.16.840.1.113883.5.46:
+    codesystem: HL7V3.0
+    umlscode: EntityRisk
+
+
+2.16.840.1.113883.5.47:
+    codesystem: HL7V3.0
+    umlscode: EntityRoleRelationshipType
+
+
+2.16.840.1.113883.5.48:
+    codesystem: HL7V3.0
+    umlscode: EntityType
+
+
+2.16.840.1.113883.5.49:
+    codesystem: HL7V3.0
+    umlscode: EquipmentAlertLevel
+
+
+2.16.840.1.113883.5.5:
+    codesystem: HL7V3.0
+    umlscode: ActInterpretation
+
+
+2.16.840.1.113883.5.50:
+    codesystem: HL7V3.0
+    umlscode: Ethnicity
+
+
+2.16.840.1.113883.5.51:
+    codesystem: HL7V3.0
+    umlscode: GenderStatus
+
+
+2.16.840.1.113883.5.53:
+    codesystem: HL7V3.0
+    umlscode: HealthcareProviderTaxonomyHIPAA
+
+
+2.16.840.1.113883.5.54:
+    codesystem: HL7V3.0
+    umlscode: HL7V3.0CommitteeIDInRIM
+
+
+2.16.840.1.113883.5.55:
+    codesystem: HL7V3.0
+    umlscode: HL7V3.0ConformanceInclusion
+
+
+2.16.840.1.113883.5.56:
+    codesystem: HL7V3.0
+    umlscode: HL7V3.0DefinedRoseProperty
+
+
+2.16.840.1.113883.5.57:
+    codesystem: HL7V3.0
+    umlscode: HL7V3.0UpdateMode
+
+
+2.16.840.1.113883.5.58:
+    codesystem: HL7V3.0
+    umlscode: HtmlLinkType
+
+
+2.16.840.1.113883.5.6:
+    codesystem: HL7V3.0
+    umlscode: ActClass
+
+
+2.16.840.1.113883.5.60:
+    codesystem: HL7V3.0
+    umlscode: LanguageAbilityMode
+
+
+2.16.840.1.113883.5.61:
+    codesystem: HL7V3.0
+    umlscode: LanguageAbilityProficiency
+
+
+2.16.840.1.113883.5.62:
+    codesystem: HL7V3.0
+    umlscode: ListType
+
+
+2.16.840.1.113883.5.63:
+    codesystem: HL7V3.0
+    umlscode: LivingArrangement
+
+
+2.16.840.1.113883.5.64:
+    codesystem: HL7V3.0
+    umlscode: LivingSubjectProductionClass
+
+
+2.16.840.1.113883.5.65:
+    codesystem: HL7V3.0
+    umlscode: LocalMarkupIgnore
+
+
+2.16.840.1.113883.5.66:
+    codesystem: HL7V3.0
+    umlscode: LocalRemoteControlState
+
+
+2.16.840.1.113883.5.67:
+    codesystem: HL7V3.0
+    umlscode: MapRelationship
+
+
+2.16.840.1.113883.5.69:
+    codesystem: HL7V3.0
+    umlscode: MaterialDanger
+
+
+2.16.840.1.113883.5.7:
+    codesystem: HL7V3.0
+    umlscode: ActPriority
+
+
+2.16.840.1.113883.5.70:
+    codesystem: HL7V3.0
+    umlscode: MaterialHandling
+
+
+2.16.840.1.113883.5.71:
+    codesystem: HL7V3.0
+    umlscode: MaterialRelationship
+
+
+2.16.840.1.113883.5.72:
+    codesystem: HL7V3.0
+    umlscode: MaterialResponsibility
+
+
+2.16.840.1.113883.5.73:
+    codesystem: HL7V3.0
+    umlscode: MaterialType
+
+
+2.16.840.1.113883.5.74:
+    codesystem: HL7V3.0
+    umlscode: MDFAttributeType
+
+
+2.16.840.1.113883.5.75:
+    codesystem: HL7V3.0
+    umlscode: MdfHmdMetSourceType
+
+
+2.16.840.1.113883.5.76:
+    codesystem: HL7V3.0
+    umlscode: MdfHmdRowType
+
+
+2.16.840.1.113883.5.77:
+    codesystem: HL7V3.0
+    umlscode: MdfRmimRowType
+
+
+2.16.840.1.113883.5.78:
+    codesystem: HL7V3.0
+    umlscode: MDFSubjectAreaPrefix
+
+
+2.16.840.1.113883.5.79:
+    codesystem: HL7V3.0
+    umlscode: MediaType
+
+
+2.16.840.1.113883.5.8:
+    codesystem: HL7V3.0
+    umlscode: ActReason
+
+
+2.16.840.1.113883.5.80:
+    codesystem: HL7V3.0
+    umlscode: MessageCondition
+
+
+2.16.840.1.113883.5.81:
+    codesystem: HL7V3.0
+    umlscode: ModifyIndicator
+
+
+2.16.840.1.113883.5.83:
+    codesystem: HL7V3.0
+    umlscode: ObservationInterpretation
+
+
+2.16.840.1.113883.5.84:
+    codesystem: HL7V3.0
+    umlscode: ObservationMethod
+
+
+2.16.840.1.113883.5.85:
+    codesystem: HL7V3.0
+    umlscode: OrderableDrugForm
+
+
+2.16.840.1.113883.5.87:
+    codesystem: HL7V3.0
+    umlscode: ParameterizedDataType
+
+
+2.16.840.1.113883.5.88:
+    codesystem: HL7V3.0
+    umlscode: ParticipationFunction
+
+
+2.16.840.1.113883.5.89:
+    codesystem: HL7V3.0
+    umlscode: ParticipationSignature
+
+
+2.16.840.1.113883.5.9:
+    codesystem: HL7V3.0
+    umlscode: CalendarCycle
+
+
+2.16.840.1.113883.5.90:
+    codesystem: HL7V3.0
+    umlscode: ParticipationType
+
+
+2.16.840.1.113883.5.91:
+    codesystem: HL7V3.0
+    umlscode: PaymentTerms
+
+
+2.16.840.1.113883.5.93:
+    codesystem: HL7V3.0
+    umlscode: PersonDisabilityType
+
+
+2.16.840.1.113883.5.96:
+    codesystem: HL7V3.0
+    umlscode: PersonNamePurpose
+
+
+2.16.840.1.113883.5.98:
+    codesystem: HL7V3.0
+    umlscode: PracticeSetting
+
+
+2.16.840.1.113883.11:
+    codesystem: HL7V3.0
+    umlscode: Value Sets
+
+
+2.16.840.1.113883.11.1:
+    codesystem: HL7V3.0
+    umlscode: AdministrativeGender
+
+
+2.16.840.1.113883.11.10010:
+    codesystem: HL7V3.0
+    umlscode: HL7V3.0ConformanceInclusion
+
+
+2.16.840.1.113883.11.10012:
+    codesystem: HL7V3.0
+    umlscode: InclusionNotMandatory
+
+
+2.16.840.1.113883.11.10015:
+    codesystem: HL7V3.0
+    umlscode: InclusionNotRequired
+
+
+2.16.840.1.113883.11.10018:
+    codesystem: HL7V3.0
+    umlscode: HL7V3.0UpdateMode
+
+
+2.16.840.1.113883.11.10024:
+    codesystem: HL7V3.0
+    umlscode: SetUpdateMode
+
+
+2.16.840.1.113883.11.10029:
+    codesystem: HL7V3.0
+    umlscode: MDFSubjectAreaPrefix
+
+
+2.16.840.1.113883.11.10034:
+    codesystem: HL7V3.0
+    umlscode: HL7V3.0CommitteeIDInRIM
+
+
+2.16.840.1.113883.11.10045:
+    codesystem: HL7V3.0
+    umlscode: MDFAttributeType
+
+
+2.16.840.1.113883.11.10063:
+    codesystem: HL7V3.0
+    umlscode: MdfRmimRowType
+
+
+2.16.840.1.113883.11.10069:
+    codesystem: HL7V3.0
+    umlscode: MdfHmdRowType
+
+
+2.16.840.1.113883.11.10076:
+    codesystem: HL7V3.0
+    umlscode: MdfHmdMetSourceType
+
+
+2.16.840.1.113883.11.10083:
+    codesystem: HL7V3.0
+    umlscode: HL7V3.0DefinedRoseProperty
+
+
+2.16.840.1.113883.11.10186:
+    codesystem: HL7V3.0
+    umlscode: MobilityImpaired
+
+
+2.16.840.1.113883.11.10189:
+    codesystem: HL7V3.0
+    umlscode: Institution
+
+
+2.16.840.1.113883.11.10196:
+    codesystem: HL7V3.0
+    umlscode: ActMood
+
+
+2.16.840.1.113883.11.10197:
+    codesystem: HL7V3.0
+    umlscode:  ActMoodCompletionTrack
+
+
+2.16.840.1.113883.11.10199:
+    codesystem: HL7V3.0
+    umlscode: ActMoodIntent
+
+
+2.16.840.1.113883.11.10202:
+    codesystem: HL7V3.0
+    umlscode: ActMoodPredicate
+
+
+2.16.840.1.113883.11.10206:
+    codesystem: HL7V3.0
+    umlscode: ObservationInterpretationNormality
+
+
+2.16.840.1.113883.11.10208:
+    codesystem: HL7V3.0
+    umlscode: ObservationInterpretationNormalityAbnormal
+
+
+2.16.840.1.113883.11.10209:
+    codesystem: HL7V3.0
+    umlscode: ObservationInterpretationNormalityLow
+
+
+2.16.840.1.113883.11.10210:
+    codesystem: HL7V3.0
+    umlscode: ObservationInterpretationNormalityHigh
+
+
+2.16.840.1.113883.11.10211:
+    codesystem: HL7V3.0
+    umlscode: ObservationInterpretationNormalityAlert
+
+
+2.16.840.1.113883.11.10214:
+    codesystem: HL7V3.0
+    umlscode: ObservationInterpretationChange
+
+
+2.16.840.1.113883.11.10219:
+    codesystem: HL7V3.0
+    umlscode: ObservationInterpretationSusceptibility
+
+
+2.16.840.1.113883.11.10225:
+    codesystem: HL7V3.0
+    umlscode: ObservationInterpretationExceptions
+
+
+2.16.840.1.113883.11.10228:
+    codesystem: HL7V3.0
+    umlscode: Confidentiality
+
+
+2.16.840.1.113883.11.10229:
+    codesystem: HL7V3.0
+    umlscode: ConfidentialityByAccessKind
+
+
+2.16.840.1.113883.11.10236:
+    codesystem: HL7V3.0
+    umlscode: ConfidentialityModifiers
+
+
+2.16.840.1.113883.11.10240:
+    codesystem: HL7V3.0
+    umlscode: ConfidentialityByInfoType
+
+
+2.16.840.1.113883.11.10247:
+    codesystem: HL7V3.0
+    umlscode: ParticipationAncillary
+
+
+2.16.840.1.113883.11.10248:
+    codesystem: HL7V3.0
+    umlscode: ParticipationPhysicalPerformer
+
+
+2.16.840.1.113883.11.10251:
+    codesystem: HL7V3.0
+    umlscode: ParticipationInformationGenerator
+
+
+2.16.840.1.113883.11.10259:
+    codesystem: HL7V3.0
+    umlscode: ParticipationVerifier
+
+
+2.16.840.1.113883.11.10263:
+    codesystem: HL7V3.0
+    umlscode: ParticipationInformationRecipient
+
+
+2.16.840.1.113883.11.10267:
+    codesystem: HL7V3.0
+    umlscode: ParticipationFunction
+
+
+2.16.840.1.113883.11.10282:
+    codesystem: HL7V3.0
+    umlscode: ParticipationSignature
+
+
+2.16.840.1.113883.11.10286:
+    codesystem: HL7V3.0
+    umlscode: ParticipationTargetDirect
+
+
+2.16.840.1.113883.11.10298:
+    codesystem: HL7V3.0
+    umlscode: ParticipationTargetDevice
+
+
+2.16.840.1.113883.11.103:
+    codesystem: HL7V3.0
+    umlscode: ProcessingID
+
+
+2.16.840.1.113883.11.10302:
+    codesystem: HL7V3.0
+    umlscode: ParticipationTargetLocation
+
+
+2.16.840.1.113883.11.10310:
+    codesystem: HL7V3.0
+    umlscode: TargetAwareness
+
+
+2.16.840.1.113883.11.10317:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipType
+
+
+2.16.840.1.113883.11.10318:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipHasComponent
+
+
+2.16.840.1.113883.11.10324:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipOutcome
+
+
+2.16.840.1.113883.11.10329:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipPertains
+
+
+2.16.840.1.113883.11.10330:
+    codesystem: HL7V3.0
+    umlscode: ActClassHasSupport
+
+
+2.16.840.1.113883.11.10337:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipSequel
+
+
+2.16.840.1.113883.11.10338:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipReplacement
+
+
+2.16.840.1.113883.11.10342:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipFulfills
+
+
+2.16.840.1.113883.11.10349:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipCheckpoint
+
+
+2.16.840.1.113883.11.10355:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipSplit
+
+
+2.16.840.1.113883.11.10360:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipJoin
+
+
+2.16.840.1.113883.11.10365:
+    codesystem: HL7V3.0
+    umlscode: RelationshipConjunction
+
+
+2.16.840.1.113883.11.10376:
+    codesystem: HL7V3.0
+    umlscode: ActDietCode
+
+
+2.16.840.1.113883.11.10405:
+    codesystem: HL7V3.0
+    umlscode: EntityRisk
+
+
+2.16.840.1.113883.11.10407:
+    codesystem: HL7V3.0
+    umlscode: MaterialDangerInfectious
+
+
+2.16.840.1.113883.11.10412:
+    codesystem: HL7V3.0
+    umlscode: MaterialDangerInflammable
+
+
+2.16.840.1.113883.11.10416:
+    codesystem: HL7V3.0
+    umlscode: RoleClassRelationshipFormal
+
+
+2.16.840.1.113883.11.10418:
+    codesystem: HL7V3.0
+    umlscode: RoleClassDistributedMaterial
+
+
+2.16.840.1.113883.11.10428:
+    codesystem: HL7V3.0
+    umlscode: RoleClassOntological
+
+
+2.16.840.1.113883.11.10429:
+    codesystem: HL7V3.0
+    umlscode: RoleClassPartitive
+
+
+2.16.840.1.113883.11.10430:
+    codesystem: HL7V3.0
+    umlscode: RoleClassIngredientEntity
+
+
+2.16.840.1.113883.11.10441:
+    codesystem: HL7V3.0
+    umlscode: RoleClassIsSpeciesEntity
+
+
+2.16.840.1.113883.11.10444:
+    codesystem: HL7V3.0
+    umlscode: MaterialType
+
+
+2.16.840.1.113883.11.10584:
+    codesystem: HL7V3.0
+    umlscode: DocumentStorageActive
+
+
+2.16.840.1.113883.11.10588:
+    codesystem: HL7V3.0
+    umlscode: DedicatedClinicalLocationRoleType
+
+
+2.16.840.1.113883.11.10589:
+    codesystem: HL7V3.0
+    umlscode: OutpatientFacilityPracticeSetting
+
+
+2.16.840.1.113883.11.10590:
+    codesystem: HL7V3.0
+    umlscode: CardClinPracticeSetting
+
+
+2.16.840.1.113883.11.10593:
+    codesystem: HL7V3.0
+    umlscode: RheumClinPracticeSetting
+
+
+2.16.840.1.113883.11.10596:
+    codesystem: HL7V3.0
+    umlscode: HospitalUnitPracticeSetting
+
+
+2.16.840.1.113883.11.10598:
+    codesystem: HL7V3.0
+    umlscode: ERPracticeSetting
+
+
+2.16.840.1.113883.11.10599:
+    codesystem: HL7V3.0
+    umlscode: ICUPracticeSetting
+
+
+2.16.840.1.113883.11.10602:
+    codesystem: HL7V3.0
+    umlscode: HospitalPracticeSetting
+
+
+2.16.840.1.113883.11.10603:
+    codesystem: HL7V3.0
+    umlscode: GeneralAcuteCareHospital
+
+
+2.16.840.1.113883.11.10604:
+    codesystem: HL7V3.0
+    umlscode: RehabilitationHospital
+
+
+2.16.840.1.113883.11.10605:
+    codesystem: HL7V3.0
+    umlscode: NursingOrCustodialCarePracticeSetting
+
+
+2.16.840.1.113883.11.10607:
+    codesystem: HL7V3.0
+    umlscode: ResidentialTreatmentPracticeSetting
+
+
+2.16.840.1.113883.11.10609:
+    codesystem: HL7V3.0
+    umlscode: NullFlavor
+
+
+2.16.840.1.113883.11.10610:
+    codesystem: HL7V3.0
+    umlscode: NoInformation
+
+
+2.16.840.1.113883.11.10612:
+    codesystem: HL7V3.0
+    umlscode: Unknown
+
+
+2.16.840.1.113883.11.10614:
+    codesystem: HL7V3.0
+    umlscode: AskedButUnknown
+
+
+2.16.840.1.113883.11.10616:
+    codesystem: HL7V3.0
+    umlscode: Other
+
+
+2.16.840.1.113883.11.10620:
+    codesystem: HL7V3.0
+    umlscode: CompressionAlgorithm
+
+
+2.16.840.1.113883.11.10628:
+    codesystem: HL7V3.0
+    umlscode: HomeAddressUse
+
+
+2.16.840.1.113883.11.10637:
+    codesystem: HL7V3.0
+    umlscode: PostalAddressUse
+
+
+2.16.840.1.113883.11.10642:
+    codesystem: HL7V3.0
+    umlscode: AddressPartType
+
+
+2.16.840.1.113883.11.10648:
+    codesystem: HL7V3.0
+    umlscode: StreetName
+
+
+2.16.840.1.113883.11.10649:
+    codesystem: HL7V3.0
+    umlscode: BuildingNumber
+
+
+2.16.840.1.113883.11.10651:
+    codesystem: HL7V3.0
+    umlscode: AdditionalLocator
+
+
+2.16.840.1.113883.11.10653:
+    codesystem: HL7V3.0
+    umlscode: x_PersonNamePartType
+
+
+2.16.840.1.113883.11.10659:
+    codesystem: HL7V3.0
+    umlscode: PersonNamePartQualifier
+
+
+2.16.840.1.113883.11.10660:
+    codesystem: HL7V3.0
+    umlscode: PersonNamePartChangeQualifier
+
+
+2.16.840.1.113883.11.10666:
+    codesystem: HL7V3.0
+    umlscode: PersonNamePartAffixTypes
+
+
+2.16.840.1.113883.11.10671:
+    codesystem: HL7V3.0
+    umlscode: PersonNamePartMiscQualifier
+
+
+2.16.840.1.113883.11.10682:
+    codesystem: HL7V3.0
+    umlscode: CalendarType
+
+
+2.16.840.1.113883.11.10684:
+    codesystem: HL7V3.0
+    umlscode: CalendarCycle
+
+
+2.16.840.1.113883.11.10685:
+    codesystem: HL7V3.0
+    umlscode: CalendarCycleTwoLetter
+
+
+2.16.840.1.113883.11.10701:
+    codesystem: HL7V3.0
+    umlscode: CalendarCycleOneLetter
+
+
+2.16.840.1.113883.11.10706:
+    codesystem: HL7V3.0
+    umlscode: TimingEvent
+
+
+2.16.840.1.113883.11.10720:
+    codesystem: HL7V3.0
+    umlscode: GTSAbbreviation
+
+
+2.16.840.1.113883.11.10725:
+    codesystem: HL7V3.0
+    umlscode: GTSAbbreviationHolidays
+
+
+2.16.840.1.113883.11.10726:
+    codesystem: HL7V3.0
+    umlscode: GTSAbbreviationHolidaysChristianRoman
+
+
+2.16.840.1.113883.11.10733:
+    codesystem: HL7V3.0
+    umlscode: GTSAbbreviationHolidaysUSNational
+
+
+2.16.840.1.113883.11.10747:
+    codesystem: HL7V3.0
+    umlscode: ProbabilityDistributionType
+
+
+2.16.840.1.113883.11.10758:
+    codesystem: HL7V3.0
+    umlscode: GregorianCalendarCycle
+
+
+2.16.840.1.113883.11.10759:
+    codesystem: HL7V3.0
+    umlscode: ParameterizedDataType
+
+
+2.16.840.1.113883.11.10760:
+    codesystem: HL7V3.0
+    umlscode: ParameterizedDataTypeType
+
+
+2.16.840.1.113883.11.10761:
+    codesystem: HL7V3.0
+    umlscode: ParameterizedDataTypeSet
+
+
+2.16.840.1.113883.11.10762:
+    codesystem: HL7V3.0
+    umlscode: ParameterizedDataTypeSequence
+
+
+2.16.840.1.113883.11.10763:
+    codesystem: HL7V3.0
+    umlscode: ParameterizedDataTypeBag
+
+
+2.16.840.1.113883.11.10764:
+    codesystem: HL7V3.0
+    umlscode: ParameterizedDataTypeInterval
+
+
+2.16.840.1.113883.11.10765:
+    codesystem: HL7V3.0
+    umlscode: ParameterizedDataTypePeriodicInterval
+
+
+2.16.840.1.113883.11.10766:
+    codesystem: HL7V3.0
+    umlscode: ParameterizedDataTypeEventRelatedInterval
+
+
+2.16.840.1.113883.11.10767:
+    codesystem: HL7V3.0
+    umlscode: ParameterizedDataTypeAnnotated
+
+
+2.16.840.1.113883.11.10768:
+    codesystem: HL7V3.0
+    umlscode: ParameterizedDataTypeHistorical
+
+
+2.16.840.1.113883.11.10769:
+    codesystem: HL7V3.0
+    umlscode: ParameterizedDataTypeUncertainValueNarrative
+
+
+2.16.840.1.113883.11.10770:
+    codesystem: HL7V3.0
+    umlscode: ParameterizedDataTypeUncertainValueProbabilistic
+
+
+2.16.840.1.113883.11.10771:
+    codesystem: HL7V3.0
+    umlscode: ParameterizedDataTypeNonParametricProbabilityDistribution
+
+
+2.16.840.1.113883.11.10772:
+    codesystem: HL7V3.0
+    umlscode: ParameterizedDataTypeParametricProbabilityDistribution
+
+
+2.16.840.1.113883.11.10774:
+    codesystem: HL7V3.0
+    umlscode: DataType
+
+
+2.16.840.1.113883.11.10775:
+    codesystem: HL7V3.0
+    umlscode: DataTypeDataValue
+
+
+2.16.840.1.113883.11.10776:
+    codesystem: HL7V3.0
+    umlscode: DataTypeBoolean
+
+
+2.16.840.1.113883.11.10777:
+    codesystem: HL7V3.0
+    umlscode: DataTypeBinaryData
+
+
+2.16.840.1.113883.11.10778:
+    codesystem: HL7V3.0
+    umlscode: DataTypeEncodedData
+
+
+2.16.840.1.113883.11.10779:
+    codesystem: HL7V3.0
+    umlscode: DataTypeCharacterString
+
+
+2.16.840.1.113883.11.10780:
+    codesystem: HL7V3.0
+    umlscode: DataTypeConceptDescriptor
+
+
+2.16.840.1.113883.11.10781:
+    codesystem: HL7V3.0
+    umlscode: DataTypeConceptRole
+
+
+2.16.840.1.113883.11.10782:
+    codesystem: HL7V3.0
+    umlscode: DataTypeCodedSimpleValue
+
+
+2.16.840.1.113883.11.10783:
+    codesystem: HL7V3.0
+    umlscode: DataTypeCodedValue
+
+
+2.16.840.1.113883.11.10784:
+    codesystem: HL7V3.0
+    umlscode: DataTypeCodedWithEquivalents
+
+
+2.16.840.1.113883.11.10785:
+    codesystem: HL7V3.0
+    umlscode: DataTypeInstanceIdentifier
+
+
+2.16.840.1.113883.11.10786:
+    codesystem: HL7V3.0
+    umlscode: DataTypeObjectIdentifier
+
+
+2.16.840.1.113883.11.10787:
+    codesystem: HL7V3.0
+    umlscode: DataTypeTelecommunicationAddress
+
+
+2.16.840.1.113883.11.10788:
+    codesystem: HL7V3.0
+    umlscode: DataTypeUniversalResourceLocator
+
+
+2.16.840.1.113883.11.10789:
+    codesystem: HL7V3.0
+    umlscode: DataTypePersonNameType
+
+
+2.16.840.1.113883.11.10790:
+    codesystem: HL7V3.0
+    umlscode: DataTypePersonNamePart
+
+
+2.16.840.1.113883.11.10791:
+    codesystem: HL7V3.0
+    umlscode: DataTypePostalAndResidentialAddress
+
+
+2.16.840.1.113883.11.10792:
+    codesystem: HL7V3.0
+    umlscode: DataTypeAddressPart
+
+
+2.16.840.1.113883.11.10793:
+    codesystem: HL7V3.0
+    umlscode: DataTypeOrganizationName
+
+
+2.16.840.1.113883.11.10794:
+    codesystem: HL7V3.0
+    umlscode: DataTypeQuantity
+
+
+2.16.840.1.113883.11.10795:
+    codesystem: HL7V3.0
+    umlscode: DataTypeIntegerNumber
+
+
+2.16.840.1.113883.11.10796:
+    codesystem: HL7V3.0
+    umlscode: DataTypeRealNumber
+
+
+2.16.840.1.113883.11.10797:
+    codesystem: HL7V3.0
+    umlscode: DataTypePhysicalQuantity
+
+
+2.16.840.1.113883.11.10798:
+    codesystem: HL7V3.0
+    umlscode: DataTypeMonetaryAmount
+
+
+2.16.840.1.113883.11.10799:
+    codesystem: HL7V3.0
+    umlscode: DataTypePointInTime
+
+
+2.16.840.1.113883.11.10800:
+    codesystem: HL7V3.0
+    umlscode: DataTypeRatio
+
+
+2.16.840.1.113883.11.10801:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSet
+
+
+2.16.840.1.113883.11.10802:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSetOfConceptDescriptors
+
+
+2.16.840.1.113883.11.10803:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSetOfCodedSimpleValue
+
+
+2.16.840.1.113883.11.10804:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSetOfCodedValue
+
+
+2.16.840.1.113883.11.10805:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSetOfCodedWithEquivalents
+
+
+2.16.840.1.113883.11.10807:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSetOfPointsInTime
+
+
+2.16.840.1.113883.11.10808:
+    codesystem: HL7V3.0
+    umlscode: DataTypeGeneralTimingSpecification
+
+
+2.16.840.1.113883.11.10809:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSetOfCharacterStrings
+
+
+2.16.840.1.113883.11.10810:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSetOfSequencesOfCharacterStrings
+
+
+2.16.840.1.113883.11.10811:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSetOfAddresses
+
+
+2.16.840.1.113883.11.10812:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSetOfHistoricalAddresses
+
+
+2.16.840.1.113883.11.10813:
+    codesystem: HL7V3.0
+    umlscode: DataTypeHistoryOfAddress
+
+
+2.16.840.1.113883.11.10814:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSetOfUncertainValueProbabilistic
+
+
+2.16.840.1.113883.11.10815:
+    codesystem: HL7V3.0
+    umlscode: DataTypeNonParametricProbabilityDistribution
+
+
+2.16.840.1.113883.11.10816:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSetOfUncertainProbabilisticConceptDescriptor
+
+
+2.16.840.1.113883.11.10818:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSetOfPhysicalQuantities
+
+
+2.16.840.1.113883.11.10819:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSetOfUncertainProbabilisticIntervalOfPhysicalQuantities
+
+
+2.16.840.1.113883.11.10821:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSequence
+
+
+2.16.840.1.113883.11.10822:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSequenceOfBooleans
+
+
+2.16.840.1.113883.11.10823:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSequenceOfSequencesOfDataValues
+
+
+2.16.840.1.113883.11.10824:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSequenceOfSequenceOfBooleans
+
+
+2.16.840.1.113883.11.10825:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSequenceOfBinaryData
+
+
+2.16.840.1.113883.11.10826:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSequenceOfEncodedData
+
+
+2.16.840.1.113883.11.10827:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSequenceOfCharacterStrings
+
+
+2.16.840.1.113883.11.10828:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSequenceOfPersonNameParts
+
+
+2.16.840.1.113883.11.10829:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSequenceOfPostalAddressParts
+
+
+2.16.840.1.113883.11.10831:
+    codesystem: HL7V3.0
+    umlscode: DataTypeBag
+
+
+2.16.840.1.113883.11.10832:
+    codesystem: HL7V3.0
+    umlscode: DataTypeBagOfConceptDescriptors
+
+
+2.16.840.1.113883.11.10833:
+    codesystem: HL7V3.0
+    umlscode: DataTypeBagOfPhysicalQuantities
+
+
+2.16.840.1.113883.11.10834:
+    codesystem: HL7V3.0
+    umlscode: DataTypeInterval
+
+
+2.16.840.1.113883.11.10835:
+    codesystem: HL7V3.0
+    umlscode: DataTypeIntervalOfIntegerNumbers
+
+
+2.16.840.1.113883.11.10837:
+    codesystem: HL7V3.0
+    umlscode: DataTypeIntervalOfRealNumbers
+
+
+2.16.840.1.113883.11.10839:
+    codesystem: HL7V3.0
+    umlscode: DataTypeIntervalOfPhysicalQuantities
+
+
+2.16.840.1.113883.11.10841:
+    codesystem: HL7V3.0
+    umlscode: DataTypeIntervalOfPointsInTime
+
+
+2.16.840.1.113883.11.10843:
+    codesystem: HL7V3.0
+    umlscode: DataTypePeriodicIntervalOfTime
+
+
+2.16.840.1.113883.11.10844:
+    codesystem: HL7V3.0
+    umlscode: DataTypeEventRelatedInterval
+
+
+2.16.840.1.113883.11.10845:
+    codesystem: HL7V3.0
+    umlscode: DataTypeAnnotated
+
+
+2.16.840.1.113883.11.10846:
+    codesystem: HL7V3.0
+    umlscode: DataTypeAnnotatedConceptDescriptor
+
+
+2.16.840.1.113883.11.10848:
+    codesystem: HL7V3.0
+    umlscode: DataTypeAnnotatedPhysicalQuantity
+
+
+2.16.840.1.113883.11.10850:
+    codesystem: HL7V3.0
+    umlscode: DataTypeHistorical
+
+
+2.16.840.1.113883.11.10851:
+    codesystem: HL7V3.0
+    umlscode: DataTypeHistoricalAddress
+
+
+2.16.840.1.113883.11.10853:
+    codesystem: HL7V3.0
+    umlscode: DataTypeUncertainValueNarrative
+
+
+2.16.840.1.113883.11.10854:
+    codesystem: HL7V3.0
+    umlscode: DataTypeUncertainNarrativeConceptDescriptor
+
+
+2.16.840.1.113883.11.10856:
+    codesystem: HL7V3.0
+    umlscode: DataTypeUncertainValueProbabilistic
+
+
+2.16.840.1.113883.11.10857:
+    codesystem: HL7V3.0
+    umlscode: DataTypeUncertainProbabilisticConceptDescriptor
+
+
+2.16.840.1.113883.11.10859:
+    codesystem: HL7V3.0
+    umlscode: DataTypeUncertainProbabilisticIntervalOfPhysicalQuantities
+
+
+2.16.840.1.113883.11.10862:
+    codesystem: HL7V3.0
+    umlscode: DataTypeNonParametricProbabilityDistributionOfConceptDescriptor
+
+
+2.16.840.1.113883.11.10863:
+    codesystem: HL7V3.0
+    umlscode: DataTypeNonParametricProbabilityDistributionOfIntervalOfPhysicalQuantities
+
+
+2.16.840.1.113883.11.10864:
+    codesystem: HL7V3.0
+    umlscode: DataTypeParametricProbabilityDistribution
+
+
+2.16.840.1.113883.11.10865:
+    codesystem: HL7V3.0
+    umlscode: DataTypeParametricProbabilityDistributionOfRealNumbers
+
+
+2.16.840.1.113883.11.10866:
+    codesystem: HL7V3.0
+    umlscode: DataTypeParametricProbabilityDistributionOfPhysicalQuantities
+
+
+2.16.840.1.113883.11.10867:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSetOfIntegerNumbers
+
+
+2.16.840.1.113883.11.10868:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSetOfRealNumbers
+
+
+2.16.840.1.113883.11.10869:
+    codesystem: HL7V3.0
+    umlscode: DataTypeSetOfIntervalsOfPhysicalQuantitiy
+
+
+2.16.840.1.113883.11.10870:
+    codesystem: HL7V3.0
+    umlscode: DocumentType
+
+
+2.16.840.1.113883.11.10871:
+    codesystem: HL7V3.0
+    umlscode: DocumentSectionType
+
+
+2.16.840.1.113883.11.10878:
+    codesystem: HL7V3.0
+    umlscode: EntityDeterminer
+
+
+2.16.840.1.113883.11.10879:
+    codesystem: HL7V3.0
+    umlscode: EntityDeterminerDetermined
+
+
+2.16.840.1.113883.11.10882:
+    codesystem: HL7V3.0
+    umlscode: EntityClass
+
+
+2.16.840.1.113883.11.10883:
+    codesystem: HL7V3.0
+    umlscode: EntityClassMaterial
+
+
+2.16.840.1.113883.11.10884:
+    codesystem: HL7V3.0
+    umlscode: EntityClassLivingSubject
+
+
+2.16.840.1.113883.11.10889:
+    codesystem: HL7V3.0
+    umlscode: EntityClassOrganization
+
+
+2.16.840.1.113883.11.10892:
+    codesystem: HL7V3.0
+    umlscode: EntityClassPlace
+
+
+2.16.840.1.113883.11.10893:
+    codesystem: HL7V3.0
+    umlscode: LocalRemoteControlState
+
+
+2.16.840.1.113883.11.10896:
+    codesystem: HL7V3.0
+    umlscode: EquipmentAlertLevel
+
+
+2.16.840.1.113883.11.10901:
+    codesystem: HL7V3.0
+    umlscode: ParticipationType
+
+
+2.16.840.1.113883.11.10902:
+    codesystem: HL7V3.0
+    umlscode: DiagTherPracticeSetting
+
+
+2.16.840.1.113883.11.10903:
+    codesystem: HL7V3.0
+    umlscode: CVDiagTherPracticeSetting
+
+
+2.16.840.1.113883.11.10906:
+    codesystem: HL7V3.0
+    umlscode: GIDiagTherPracticeSetting
+
+
+2.16.840.1.113883.11.10908:
+    codesystem: HL7V3.0
+    umlscode: RadDiagTherPracticeSetting
+
+
+2.16.840.1.113883.11.10916:
+    codesystem: HL7V3.0
+    umlscode: PedsICUPracticeSetting
+
+
+2.16.840.1.113883.11.10920:
+    codesystem: HL7V3.0
+    umlscode: PedsPracticeSetting
+
+
+2.16.840.1.113883.11.10931:
+    codesystem: HL7V3.0
+    umlscode: EndocrinologyClinic
+
+
+2.16.840.1.113883.11.10934:
+    codesystem: HL7V3.0
+    umlscode: GIClinicPracticeSetting
+
+
+2.16.840.1.113883.11.10936:
+    codesystem: HL7V3.0
+    umlscode: HemClinPracticeSetting
+
+
+2.16.840.1.113883.11.10939:
+    codesystem: HL7V3.0
+    umlscode: IDClinPracticeSetting
+
+
+2.16.840.1.113883.11.10943:
+    codesystem: HL7V3.0
+    umlscode: NephClinPracticeSetting
+
+
+2.16.840.1.113883.11.10947:
+    codesystem: HL7V3.0
+    umlscode: MedOncClinPracticeSetting
+
+
+2.16.840.1.113883.11.10949:
+    codesystem: HL7V3.0
+    umlscode: OrthoClinPracticeSetting
+
+
+2.16.840.1.113883.11.10953:
+    codesystem: HL7V3.0
+    umlscode: PedsClinPracticeSetting
+
+
+2.16.840.1.113883.11.10968:
+    codesystem: HL7V3.0
+    umlscode: SurgClinPracticeSetting
+
+
+2.16.840.1.113883.11.10975:
+    codesystem: HL7V3.0
+    umlscode: LocalMarkupIgnore
+
+
+2.16.840.1.113883.11.10981:
+    codesystem: HL7V3.0
+    umlscode: TableCellHorizontalAlign
+
+
+2.16.840.1.113883.11.10987:
+    codesystem: HL7V3.0
+    umlscode: TableCellVerticalAlign
+
+
+2.16.840.1.113883.11.10992:
+    codesystem: HL7V3.0
+    umlscode: TableFrame
+
+
+2.16.840.1.113883.11.11002:
+    codesystem: HL7V3.0
+    umlscode: TableRules
+
+
+2.16.840.1.113883.11.11012:
+    codesystem: HL7V3.0
+    umlscode: TableCellScope
+
+
+2.16.840.1.113883.11.11017:
+    codesystem: HL7V3.0
+    umlscode: HtmlLinkType
+
+
+2.16.840.1.113883.11.11033:
+    codesystem: HL7V3.0
+    umlscode: ConceptGenerality
+
+
+2.16.840.1.113883.11.11037:
+    codesystem: HL7V3.0
+    umlscode: ValueSetOperator
+
+
+2.16.840.1.113883.11.11040:
+    codesystem: HL7V3.0
+    umlscode: EditStatus
+
+
+2.16.840.1.113883.11.11042:
+    codesystem: HL7V3.0
+    umlscode: ActiveEditStatus
+
+
+2.16.840.1.113883.11.11043:
+    codesystem: HL7V3.0
+    umlscode: RejectedEditStatus
+
+
+2.16.840.1.113883.11.11044:
+    codesystem: HL7V3.0
+    umlscode: InactiveEditStatus
+
+
+2.16.840.1.113883.11.11045:
+    codesystem: HL7V3.0
+    umlscode: ObsoleteEditStatus
+
+
+2.16.840.1.113883.11.11046:
+    codesystem: HL7V3.0
+    umlscode: VocabularyDomainQualifier
+
+
+2.16.840.1.113883.11.11047:
+    codesystem: HL7V3.0
+    umlscode: Extensibility
+
+
+2.16.840.1.113883.11.11050:
+    codesystem: HL7V3.0
+    umlscode: RealmOfUse
+
+
+2.16.840.1.113883.11.11052:
+    codesystem: HL7V3.0
+    umlscode: MapRelationship
+
+
+2.16.840.1.113883.11.11523:
+    codesystem: HL7V3.0
+    umlscode: GenderStatus
+
+
+2.16.840.1.113883.11.11526:
+    codesystem: HL7V3.0
+    umlscode: HumanLanguage
+
+
+2.16.840.1.113883.11.11527:
+    codesystem: HL7V3.0
+    umlscode: ActClass
+
+
+2.16.840.1.113883.11.11529:
+    codesystem: HL7V3.0
+    umlscode: ActClassObservation
+
+
+2.16.840.1.113883.11.11530:
+    codesystem: HL7V3.0
+    umlscode: ActClassPublicHealthCase
+
+
+2.16.840.1.113883.11.11534:
+    codesystem: HL7V3.0
+    umlscode: ActClassControlAct
+
+
+2.16.840.1.113883.11.11535:
+    codesystem: HL7V3.0
+    umlscode: ActClassSupply
+
+
+2.16.840.1.113883.11.11555:
+    codesystem: HL7V3.0
+    umlscode: RoleClass
+
+
+2.16.840.1.113883.11.11567:
+    codesystem: HL7V3.0
+    umlscode: Sibling
+
+
+2.16.840.1.113883.11.11569:
+    codesystem: HL7V3.0
+    umlscode: RoleClassEmployee
+
+
+2.16.840.1.113883.11.11580:
+    codesystem: HL7V3.0
+    umlscode: RoleClassManufacturedProduct
+
+
+2.16.840.1.113883.11.11591:
+    codesystem: HL7V3.0
+    umlscode: RoleClassSpecimen
+
+
+2.16.840.1.113883.11.11595:
+    codesystem: HL7V3.0
+    umlscode: RoleClassAssignedEntity
+
+
+2.16.840.1.113883.11.11603:
+    codesystem: HL7V3.0
+    umlscode: RoleLinkType
+
+
+2.16.840.1.113883.11.11610:
+    codesystem: HL7V3.0
+    umlscode: x_ActRelationshipDocument
+
+
+2.16.840.1.113883.11.11621:
+    codesystem: HL7V3.0
+    umlscode: EntityClassNonPersonLivingSubject
+
+
+2.16.840.1.113883.11.11622:
+    codesystem: HL7V3.0
+    umlscode: EntityClassContainer
+
+
+2.16.840.1.113883.11.11623:
+    codesystem: HL7V3.0
+    umlscode: EntityClassDevice
+
+
+2.16.840.1.113883.11.11631:
+    codesystem: HL7V3.0
+    umlscode: TribalEntityUS
+
+
+2.16.840.1.113883.11.11969:
+    codesystem: HL7V3.0
+    umlscode: NativeEntityAlaska
+
+
+2.16.840.1.113883.11.12.19436:
+    codesystem: HL7V3.0
+    umlscode: comsats
+
+
+2.16.840.1.113883.11.12199:
+    codesystem: HL7V3.0
+    umlscode: LanguageAbilityProficiency
+
+
+2.16.840.1.113883.11.12205:
+    codesystem: HL7V3.0
+    umlscode: RoleClassContact
+
+
+2.16.840.1.113883.11.12206:
+    codesystem: HL7V3.0
+    umlscode: RoleCode
+
+
+2.16.840.1.113883.11.12212:
+    codesystem: HL7V3.0
+    umlscode: MaritalStatus
+
+
+2.16.840.1.113883.11.12231:
+    codesystem: HL7V3.0
+    umlscode: EncounterAccident
+
+
+2.16.840.1.113883.11.12234:
+    codesystem: HL7V3.0
+    umlscode: EncounterAdmissionSource
+
+
+2.16.840.1.113883.11.12242:
+    codesystem: HL7V3.0
+    umlscode: EncounterSpecialCourtesy
+
+
+2.16.840.1.113883.11.12249:
+    codesystem: HL7V3.0
+    umlscode: LanguageAbilityMode
+
+
+2.16.840.1.113883.11.12548:
+    codesystem: HL7V3.0
+    umlscode: NativeEntityContiguous
+
+
+2.16.840.1.113883.11.12549:
+    codesystem: HL7V3.0
+    umlscode: UnitsOfMeasureCaseInsensitive
+
+
+2.16.840.1.113883.11.12550:
+    codesystem: HL7V3.0
+    umlscode: UnitOfMeasureAtomBaseUnitInsens
+
+
+2.16.840.1.113883.11.12558:
+    codesystem: HL7V3.0
+    umlscode: UnitOfMeasureAtomInsens
+
+
+2.16.840.1.113883.11.126:
+    codesystem: HL7V3.0
+    umlscode: QueryQuantityUnit
+
+
+2.16.840.1.113883.11.12814:
+    codesystem: HL7V3.0
+    umlscode: UnitOfMeasurePrefixInsens
+
+
+2.16.840.1.113883.11.12839:
+    codesystem: HL7V3.0
+    umlscode: UnitsOfMeasureCaseSensitive
+
+
+2.16.840.1.113883.11.12840:
+    codesystem: HL7V3.0
+    umlscode: UnitOfMeasureAtomBaseUnitSens
+
+
+2.16.840.1.113883.11.12848:
+    codesystem: HL7V3.0
+    umlscode: UnitOfMeasureAtomSens
+
+
+2.16.840.1.113883.11.13104:
+    codesystem: HL7V3.0
+    umlscode: UnitOfMeasurePrefixSens
+
+
+2.16.840.1.113883.11.13129:
+    codesystem: HL7V3.0
+    umlscode: HealthcareProviderTaxonomyHIPAA
+
+
+2.16.840.1.113883.11.13130:
+    codesystem: HL7V3.0
+    umlscode: IndividualHealthcareProviderHIPAA
+
+
+2.16.840.1.113883.11.13131:
+    codesystem: HL7V3.0
+    umlscode: BehavioralHealthAndOrSocialServiceProviderHIPAA
+
+
+2.16.840.1.113883.11.13132:
+    codesystem: HL7V3.0
+    umlscode: BehavioralHealthAndOrSocialServiceCounselorHIPAA
+
+
+2.16.840.1.113883.11.13134:
+    codesystem: HL7V3.0
+    umlscode: NursingServiceRelatedProviderTechnicianHIPAA
+
+
+2.16.840.1.113883.11.13136:
+    codesystem: HL7V3.0
+    umlscode: OtherServiceProviderHIPAA
+
+
+2.16.840.1.113883.11.13139:
+    codesystem: HL7V3.0
+    umlscode: OtherServiceProviderContractorHIPAA
+
+
+2.16.840.1.113883.11.13147:
+    codesystem: HL7V3.0
+    umlscode: NeuropsychologistHIPAA
+
+
+2.16.840.1.113883.11.13149:
+    codesystem: HL7V3.0
+    umlscode: PsychoanalystHIPAA
+
+
+2.16.840.1.113883.11.13152:
+    codesystem: HL7V3.0
+    umlscode: PsychologistHIPAA
+
+
+2.16.840.1.113883.11.13171:
+    codesystem: HL7V3.0
+    umlscode: SocialWorkerHIPAA
+
+
+2.16.840.1.113883.11.13174:
+    codesystem: HL7V3.0
+    umlscode: AbstractChiropractersHIPAA
+
+
+2.16.840.1.113883.11.13175:
+    codesystem: HL7V3.0
+    umlscode: ChiropractersHIPAA
+
+
+2.16.840.1.113883.11.13188:
+    codesystem: HL7V3.0
+    umlscode: DentistHIPAA
+
+
+2.16.840.1.113883.11.13195:
+    codesystem: HL7V3.0
+    umlscode: Prosthodontics
+
+
+2.16.840.1.113883.11.13197:
+    codesystem: HL7V3.0
+    umlscode: DietaryAndOrNutritionalServiceProviderHIPAA
+
+
+2.16.840.1.113883.11.13198:
+    codesystem: HL7V3.0
+    umlscode: DietaryManagerHIPAA
+
+
+2.16.840.1.113883.11.13201:
+    codesystem: HL7V3.0
+    umlscode: RegisteredDieticianHIPAA
+
+
+2.16.840.1.113883.11.13205:
+    codesystem: HL7V3.0
+    umlscode: NutritionistHIPAA
+
+
+2.16.840.1.113883.11.13207:
+    codesystem: HL7V3.0
+    umlscode: EmergencyMedicalServiceProviderHIPAA
+
+
+2.16.840.1.113883.11.13211:
+    codesystem: HL7V3.0
+    umlscode: EyeAndVisionServiceProviderHIPAA
+
+
+2.16.840.1.113883.11.13212:
+    codesystem: HL7V3.0
+    umlscode: OptometristHIPAA
+
+
+2.16.840.1.113883.11.13219:
+    codesystem: HL7V3.0
+    umlscode: EyeAndVisionServiceProviderTechnicianAndOrTechnologistHIPAA
+
+
+2.16.840.1.113883.11.13229:
+    codesystem: HL7V3.0
+    umlscode: NursingServiceProviderHIPAA
+
+
+2.16.840.1.113883.11.13232:
+    codesystem: HL7V3.0
+    umlscode: RegisteredNurseHIPAA
+
+
+2.16.840.1.113883.11.13289:
+    codesystem: HL7V3.0
+    umlscode: NursingServiceRelatedProviderHIPAA
+
+
+2.16.840.1.113883.11.13347:
+    codesystem: HL7V3.0
+    umlscode: OtherServiceProviderSpecialistHIPAA
+
+
+2.16.840.1.113883.11.13352:
+    codesystem: HL7V3.0
+    umlscode: VeterinarianHIPAA
+
+
+2.16.840.1.113883.11.13354:
+    codesystem: HL7V3.0
+    umlscode: PharmacyServiceProviderHIPAA
+
+
+2.16.840.1.113883.11.13355:
+    codesystem: HL7V3.0
+    umlscode: PharmacistHIPAA
+
+
+2.16.840.1.113883.11.13361:
+    codesystem: HL7V3.0
+    umlscode: PharmacyServiceProviderTechnicianHIPAA
+
+
+2.16.840.1.113883.11.13363:
+    codesystem: HL7V3.0
+    umlscode: PhysicianAssistantsAndOrAdvancedPracticeNursingProviderHIPAA
+
+
+2.16.840.1.113883.11.13364:
+    codesystem: HL7V3.0
+    umlscode: ClinicalNurseSpecialistHIPAA
+
+
+2.16.840.1.113883.11.13402:
+    codesystem: HL7V3.0
+    umlscode: NursePractitionerHIPAA
+
+
+2.16.840.1.113883.11.13422:
+    codesystem: HL7V3.0
+    umlscode: PhysicianAssistantHIPAA
+
+
+2.16.840.1.113883.11.13425:
+    codesystem: HL7V3.0
+    umlscode: PhysicianHIPAA
+
+
+2.16.840.1.113883.11.13426:
+    codesystem: HL7V3.0
+    umlscode: PhysicianAndOrOsteopathHIPAA
+
+
+2.16.840.1.113883.11.13578:
+    codesystem: HL7V3.0
+    umlscode: OtherPhysicianProviderHIPAA
+
+
+2.16.840.1.113883.11.13579:
+    codesystem: HL7V3.0
+    umlscode: OtherPhysicianOsteopathHIPAA
+
+
+2.16.840.1.113883.11.13582:
+    codesystem: HL7V3.0
+    umlscode: PodiatricMedicineAndOrSurgeryServiceProviderHIPAA
+
+
+2.16.840.1.113883.11.13584:
+    codesystem: HL7V3.0
+    umlscode: PodiatristHIPAA
+
+
+2.16.840.1.113883.11.13592:
+    codesystem: HL7V3.0
+    umlscode: RespiratoryAndOrRehabilitativeAndOrRestorativeProviderHIPAA
+
+
+2.16.840.1.113883.11.13598:
+    codesystem: HL7V3.0
+    umlscode: OccupationalTherapistHIPAA
+
+
+2.16.840.1.113883.11.13609:
+    codesystem: HL7V3.0
+    umlscode: PhysicalTherapistHIPAA
+
+
+2.16.840.1.113883.11.13625:
+    codesystem: HL7V3.0
+    umlscode: RehabilitationCounselorHIPAA
+
+
+2.16.840.1.113883.11.13629:
+    codesystem: HL7V3.0
+    umlscode: RespiratoryTherapistHIPAA
+
+
+2.16.840.1.113883.11.13631:
+    codesystem: HL7V3.0
+    umlscode: RespiratoryAndOrRehabilitativeAndOrRestorativeSpecialistOrTechnologistHIPAA
+
+
+2.16.840.1.113883.11.13634:
+    codesystem: HL7V3.0
+    umlscode: SpeechAndOrLanguageAndOrHearingServiceProviderHIPAA
+
+
+2.16.840.1.113883.11.13635:
+    codesystem: HL7V3.0
+    umlscode: AudiologistHIPAA
+
+
+2.16.840.1.113883.11.13637:
+    codesystem: HL7V3.0
+    umlscode: Audiologist
+
+
+2.16.840.1.113883.11.13640:
+    codesystem: HL7V3.0
+    umlscode: SpeechAndOrLanguageAndOrHearingServiceSpecialistOrTechnologistHIPAA
+
+
+2.16.840.1.113883.11.13644:
+    codesystem: HL7V3.0
+    umlscode: OtherTechnologistAndOrTechnicianHIPAA
+
+
+2.16.840.1.113883.11.13645:
+    codesystem: HL7V3.0
+    umlscode: RadiologicTechnologistHIPAA
+
+
+2.16.840.1.113883.11.13660:
+    codesystem: HL7V3.0
+    umlscode: CardiologySpecialistOrTechnologistHIPAA
+
+
+2.16.840.1.113883.11.13669:
+    codesystem: HL7V3.0
+    umlscode: HealthInformationSpecialistOrTechnologistHIPAA
+
+
+2.16.840.1.113883.11.13673:
+    codesystem: HL7V3.0
+    umlscode: OtherTechnologistOrTechnicianHIPAA
+
+
+2.16.840.1.113883.11.13688:
+    codesystem: HL7V3.0
+    umlscode: PathologySpecialistOrTechnologistHIPAA
+
+
+2.16.840.1.113883.11.13700:
+    codesystem: HL7V3.0
+    umlscode: CardiologyTechnicianHIPAA
+
+
+2.16.840.1.113883.11.13703:
+    codesystem: HL7V3.0
+    umlscode: HealthInformationTechnicianHIPAA
+
+
+2.16.840.1.113883.11.13705:
+    codesystem: HL7V3.0
+    umlscode: OtherTechnologistOrTechnicianProviderHIPAA
+
+
+2.16.840.1.113883.11.13711:
+    codesystem: HL7V3.0
+    umlscode: PathologyTechnicianHIPAA
+
+
+2.16.840.1.113883.11.13715:
+    codesystem: HL7V3.0
+    umlscode: OrganizationalHealthcareProviderHIPAA
+
+
+2.16.840.1.113883.11.13716:
+    codesystem: HL7V3.0
+    umlscode: AbstractHealthcareProviderAgencyHIPAA
+
+
+2.16.840.1.113883.11.13717:
+    codesystem: HL7V3.0
+    umlscode: HealthcareProviderAgencyHIPAA
+
+
+2.16.840.1.113883.11.13725:
+    codesystem: HL7V3.0
+    umlscode: AmbulatoryHealthCareFacilityHIPAA
+
+
+2.16.840.1.113883.11.13726:
+    codesystem: HL7V3.0
+    umlscode: AmbulatoryClinicOrCenterHIPAA
+
+
+2.16.840.1.113883.11.13792:
+    codesystem: HL7V3.0
+    umlscode: ChronicCareFacility
+
+
+2.16.840.1.113883.11.13799:
+    codesystem: HL7V3.0
+    umlscode: MilitaryHospital
+
+
+2.16.840.1.113883.11.13808:
+    codesystem: HL7V3.0
+    umlscode: LaboratoryHIPAA
+
+
+2.16.840.1.113883.11.13812:
+    codesystem: HL7V3.0
+    umlscode: ManagedCareOrganizationHIPAA
+
+
+2.16.840.1.113883.11.13833:
+    codesystem: HL7V3.0
+    umlscode: SupplierHIPAA
+
+
+2.16.840.1.113883.11.13835:
+    codesystem: HL7V3.0
+    umlscode: DurableMedicalEquipmentAndOrMedicalSupplySupplierHIPAA
+
+
+2.16.840.1.113883.11.13849:
+    codesystem: HL7V3.0
+    umlscode: TransportationServiceHIPAA
+
+
+2.16.840.1.113883.11.13850:
+    codesystem: HL7V3.0
+    umlscode: AmbulanceHIPAA
+
+
+2.16.840.1.113883.11.13856:
+    codesystem: HL7V3.0
+    umlscode: ActClassRoot
+
+
+2.16.840.1.113883.11.13922:
+    codesystem: HL7V3.0
+    umlscode: EntityClassRoot
+
+
+2.16.840.1.113883.11.13934:
+    codesystem: HL7V3.0
+    umlscode: EntityClassManufacturedMaterial
+
+
+2.16.840.1.113883.11.13940:
+    codesystem: HL7V3.0
+    umlscode: RoleClassRoot
+
+
+2.16.840.1.113883.11.13948:
+    codesystem: HL7V3.0
+    umlscode: ActClassClinicalDocument
+
+
+2.16.840.1.113883.11.13953:
+    codesystem: HL7V3.0
+    umlscode: ActCode
+
+
+2.16.840.1.113883.11.13954:
+    codesystem: HL7V3.0
+    umlscode: HL7V3.0DefinedActCodes
+
+
+2.16.840.1.113883.11.13955:
+    codesystem: HL7V3.0
+    umlscode: ActEncounterCode
+
+
+2.16.840.1.113883.11.13957:
+    codesystem: HL7V3.0
+    umlscode: ActSpecObsCode
+
+
+2.16.840.1.113883.11.13988:
+    codesystem: HL7V3.0
+    umlscode: EntityHandling
+
+
+2.16.840.1.113883.11.14002:
+    codesystem: HL7V3.0
+    umlscode: ActClassContract
+
+
+2.16.840.1.113883.11.14003:
+    codesystem: HL7V3.0
+    umlscode: ActClassFinancialContract
+
+
+2.16.840.1.113883.11.14006:
+    codesystem: HL7V3.0
+    umlscode: RoleClassAgent
+
+
+2.16.840.1.113883.11.14008:
+    codesystem: HL7V3.0
+    umlscode: x_RoleClassCoverage
+
+
+2.16.840.1.113883.11.14013:
+    codesystem: HL7V3.0
+    umlscode: x_RoleClassCoverageInvoice
+
+
+2.16.840.1.113883.11.14040:
+    codesystem: HL7V3.0
+    umlscode: ActSpecimenTreatmentCode
+
+
+2.16.840.1.113883.11.14049:
+    codesystem: HL7V3.0
+    umlscode: ContainerCap
+
+
+2.16.840.1.113883.11.14054:
+    codesystem: HL7V3.0
+    umlscode: ContainerSeparator
+
+
+2.16.840.1.113883.11.14058:
+    codesystem: HL7V3.0
+    umlscode: ActContainerRegistrationCode
+
+
+2.16.840.1.113883.11.14066:
+    codesystem: HL7V3.0
+    umlscode: DeviceAlertLevel
+
+
+2.16.840.1.113883.11.14079:
+    codesystem: HL7V3.0
+    umlscode: ObservationMethod
+
+
+2.16.840.1.113883.11.14352:
+    codesystem: HL7V3.0
+    umlscode: ActSpecObsDilutionCode
+
+
+2.16.840.1.113883.11.14369:
+    codesystem: HL7V3.0
+    umlscode: ActSpecObsVolumeCode
+
+
+2.16.840.1.113883.11.14382:
+    codesystem: HL7V3.0
+    umlscode: ActSpecObsInterferenceCode
+
+
+2.16.840.1.113883.11.14411:
+    codesystem: HL7V3.0
+    umlscode: OrderableDrugForm
+
+
+2.16.840.1.113883.11.14412:
+    codesystem: HL7V3.0
+    umlscode: DispensableDrugForm
+
+
+2.16.840.1.113883.11.14413:
+    codesystem: HL7V3.0
+    umlscode: Liquid
+
+
+2.16.840.1.113883.11.14414:
+    codesystem: HL7V3.0
+    umlscode: LiquidCleanser
+
+
+2.16.840.1.113883.11.14417:
+    codesystem: HL7V3.0
+    umlscode: OilDrugForm
+
+
+2.16.840.1.113883.11.14419:
+    codesystem: HL7V3.0
+    umlscode: SolutionDrugForm
+
+
+2.16.840.1.113883.11.14420:
+    codesystem: HL7V3.0
+    umlscode: DropsDrugForm
+
+
+2.16.840.1.113883.11.14427:
+    codesystem: HL7V3.0
+    umlscode: IrrigationSolution
+
+
+2.16.840.1.113883.11.14431:
+    codesystem: HL7V3.0
+    umlscode: OralSolution
+
+
+2.16.840.1.113883.11.14437:
+    codesystem: HL7V3.0
+    umlscode: TopicalSolution
+
+
+2.16.840.1.113883.11.14441:
+    codesystem: HL7V3.0
+    umlscode: LiquidSolidSuspension
+
+
+2.16.840.1.113883.11.14442:
+    codesystem: HL7V3.0
+    umlscode: GelDrugForm
+
+
+2.16.840.1.113883.11.14449:
+    codesystem: HL7V3.0
+    umlscode: VaginalGel
+
+
+2.16.840.1.113883.11.14451:
+    codesystem: HL7V3.0
+    umlscode: PasteDrugForm
+
+
+2.16.840.1.113883.11.14454:
+    codesystem: HL7V3.0
+    umlscode: SuspensionDrugForm
+
+
+2.16.840.1.113883.11.14457:
+    codesystem: HL7V3.0
+    umlscode: OralSuspension
+
+
+2.16.840.1.113883.11.14458:
+    codesystem: HL7V3.0
+    umlscode: ExtendedReleaseSuspension
+
+
+2.16.840.1.113883.11.14463:
+    codesystem: HL7V3.0
+    umlscode: LiquidLiquidEmulsion
+
+
+2.16.840.1.113883.11.14464:
+    codesystem: HL7V3.0
+    umlscode: LotionDrugForm
+
+
+2.16.840.1.113883.11.14466:
+    codesystem: HL7V3.0
+    umlscode: CreamDrugForm
+
+
+2.16.840.1.113883.11.14473:
+    codesystem: HL7V3.0
+    umlscode: VaginalCream
+
+
+2.16.840.1.113883.11.14475:
+    codesystem: HL7V3.0
+    umlscode: OintmentDrugForm
+
+
+2.16.840.1.113883.11.14482:
+    codesystem: HL7V3.0
+    umlscode: VaginalOintment
+
+
+2.16.840.1.113883.11.14484:
+    codesystem: HL7V3.0
+    umlscode: SolidDrugForm
+
+
+2.16.840.1.113883.11.14485:
+    codesystem: HL7V3.0
+    umlscode: BarDrugForm
+
+
+2.16.840.1.113883.11.14486:
+    codesystem: HL7V3.0
+    umlscode: BarSoapDrugForm
+
+
+2.16.840.1.113883.11.14497:
+    codesystem: HL7V3.0
+    umlscode: PadDrugForm
+
+
+2.16.840.1.113883.11.14499:
+    codesystem: HL7V3.0
+    umlscode: PatchDrugForm
+
+
+2.16.840.1.113883.11.14500:
+    codesystem: HL7V3.0
+    umlscode: TransdermalPatch
+
+
+2.16.840.1.113883.11.14506:
+    codesystem: HL7V3.0
+    umlscode: PillDrugForm
+
+
+2.16.840.1.113883.11.14507:
+    codesystem: HL7V3.0
+    umlscode: CapsuleDrugForm
+
+
+2.16.840.1.113883.11.14508:
+    codesystem: HL7V3.0
+    umlscode: OralCapsule
+
+
+2.16.840.1.113883.11.14509:
+    codesystem: HL7V3.0
+    umlscode: EntericCoatedCapsule
+
+
+2.16.840.1.113883.11.14511:
+    codesystem: HL7V3.0
+    umlscode: ExtendedReleaseCapsule
+
+
+2.16.840.1.113883.11.14515:
+    codesystem: HL7V3.0
+    umlscode: TabletDrugForm
+
+
+2.16.840.1.113883.11.14516:
+    codesystem: HL7V3.0
+    umlscode: OralTablet
+
+
+2.16.840.1.113883.11.14518:
+    codesystem: HL7V3.0
+    umlscode: BuccalTablet
+
+
+2.16.840.1.113883.11.14524:
+    codesystem: HL7V3.0
+    umlscode: EntericCoatedTablet
+
+
+2.16.840.1.113883.11.14526:
+    codesystem: HL7V3.0
+    umlscode: ExtendedReleaseTablet
+
+
+2.16.840.1.113883.11.14534:
+    codesystem: HL7V3.0
+    umlscode: PowderDrugForm
+
+
+2.16.840.1.113883.11.14535:
+    codesystem: HL7V3.0
+    umlscode: TopicalPowder
+
+
+2.16.840.1.113883.11.14538:
+    codesystem: HL7V3.0
+    umlscode: SuppositoryDrugForm
+
+
+2.16.840.1.113883.11.14542:
+    codesystem: HL7V3.0
+    umlscode: SwabDrugForm
+
+
+2.16.840.1.113883.11.14545:
+    codesystem: HL7V3.0
+    umlscode: GasLiquidMixture
+
+
+2.16.840.1.113883.11.14546:
+    codesystem: HL7V3.0
+    umlscode: FoamDrugForm
+
+
+2.16.840.1.113883.11.14549:
+    codesystem: HL7V3.0
+    umlscode: VaginalFoam
+
+
+2.16.840.1.113883.11.14551:
+    codesystem: HL7V3.0
+    umlscode: AerosolDrugForm
+
+
+2.16.840.1.113883.11.14559:
+    codesystem: HL7V3.0
+    umlscode: GasSolidSpray
+
+
+2.16.840.1.113883.11.14560:
+    codesystem: HL7V3.0
+    umlscode: InhalantDrugForm
+
+
+2.16.840.1.113883.11.14568:
+    codesystem: HL7V3.0
+    umlscode: GasDrugForm
+
+
+2.16.840.1.113883.11.14570:
+    codesystem: HL7V3.0
+    umlscode: AdministrableDrugForm
+
+
+2.16.840.1.113883.11.14581:
+    codesystem: HL7V3.0
+    umlscode: RouteOfAdministration
+
+
+2.16.840.1.113883.11.14582:
+    codesystem: HL7V3.0
+    umlscode: Chew
+
+
+2.16.840.1.113883.11.14584:
+    codesystem: HL7V3.0
+    umlscode: Diffusion
+
+
+2.16.840.1.113883.11.14586:
+    codesystem: HL7V3.0
+    umlscode: Dissolve
+
+
+2.16.840.1.113883.11.14589:
+    codesystem: HL7V3.0
+    umlscode: Douche
+
+
+2.16.840.1.113883.11.14591:
+    codesystem: HL7V3.0
+    umlscode: Enema
+
+
+2.16.840.1.113883.11.14594:
+    codesystem: HL7V3.0
+    umlscode: Flush
+
+
+2.16.840.1.113883.11.14598:
+    codesystem: HL7V3.0
+    umlscode: Implantation
+
+
+2.16.840.1.113883.11.14602:
+    codesystem: HL7V3.0
+    umlscode: Infusion
+
+
+2.16.840.1.113883.11.14609:
+    codesystem: HL7V3.0
+    umlscode: IntravenousInfusion
+
+
+2.16.840.1.113883.11.14615:
+    codesystem: HL7V3.0
+    umlscode: Inhalation
+
+
+2.16.840.1.113883.11.14617:
+    codesystem: HL7V3.0
+    umlscode: NasalInhalation
+
+
+2.16.840.1.113883.11.14619:
+    codesystem: HL7V3.0
+    umlscode: NebulizationInhalation
+
+
+2.16.840.1.113883.11.14622:
+    codesystem: HL7V3.0
+    umlscode: OralInhalation
+
+
+2.16.840.1.113883.11.14628:
+    codesystem: HL7V3.0
+    umlscode: Injection
+
+
+2.16.840.1.113883.11.14639:
+    codesystem: HL7V3.0
+    umlscode: IntraarterialInjection
+
+
+2.16.840.1.113883.11.14644:
+    codesystem: HL7V3.0
+    umlscode: IntracardiacInjection
+
+
+2.16.840.1.113883.11.14650:
+    codesystem: HL7V3.0
+    umlscode: IntracoronaryInjection
+
+
+2.16.840.1.113883.11.14657:
+    codesystem: HL7V3.0
+    umlscode: IntramuscularInjection
+
+
+2.16.840.1.113883.11.14670:
+    codesystem: HL7V3.0
+    umlscode: IntravenousInjection
+
+
+2.16.840.1.113883.11.14687:
+    codesystem: HL7V3.0
+    umlscode: Insertion
+
+
+2.16.840.1.113883.11.14696:
+    codesystem: HL7V3.0
+    umlscode: Instillation
+
+
+2.16.840.1.113883.11.14715:
+    codesystem: HL7V3.0
+    umlscode: RectalInstillation
+
+
+2.16.840.1.113883.11.14721:
+    codesystem: HL7V3.0
+    umlscode: Irrigation
+
+
+2.16.840.1.113883.11.14725:
+    codesystem: HL7V3.0
+    umlscode: UrinaryBladderIrrigation
+
+
+2.16.840.1.113883.11.14728:
+    codesystem: HL7V3.0
+    umlscode: Nebulization
+
+
+2.16.840.1.113883.11.14730:
+    codesystem: HL7V3.0
+    umlscode: Rinse
+
+
+2.16.840.1.113883.11.14736:
+    codesystem: HL7V3.0
+    umlscode: Swish
+
+
+2.16.840.1.113883.11.14739:
+    codesystem: HL7V3.0
+    umlscode: TopicalApplication
+
+
+2.16.840.1.113883.11.14761:
+    codesystem: HL7V3.0
+    umlscode: ResponseLevel
+
+
+2.16.840.1.113883.11.14804:
+    codesystem: HL7V3.0
+    umlscode: ActFinancialTransactionCode
+
+
+2.16.840.1.113883.11.14809:
+    codesystem: HL7V3.0
+    umlscode: ActAccountCode
+
+
+2.16.840.1.113883.11.14811:
+    codesystem: HL7V3.0
+    umlscode: CreditCard
+
+
+2.16.840.1.113883.11.14822:
+    codesystem: HL7V3.0
+    umlscode: StreetAddressLine
+
+
+2.16.840.1.113883.11.14824:
+    codesystem: HL7V3.0
+    umlscode: MediaType
+
+
+2.16.840.1.113883.11.14825:
+    codesystem: HL7V3.0
+    umlscode: TextMediaType
+
+
+2.16.840.1.113883.11.14832:
+    codesystem: HL7V3.0
+    umlscode: ApplicationMediaType
+
+
+2.16.840.1.113883.11.14835:
+    codesystem: HL7V3.0
+    umlscode: AudioMediaType
+
+
+2.16.840.1.113883.11.14839:
+    codesystem: HL7V3.0
+    umlscode: ImageMediaType
+
+
+2.16.840.1.113883.11.14845:
+    codesystem: HL7V3.0
+    umlscode: VideoMediaType
+
+
+2.16.840.1.113883.11.14848:
+    codesystem: HL7V3.0
+    umlscode: ModelMediaType
+
+
+2.16.840.1.113883.11.14850:
+    codesystem: HL7V3.0
+    umlscode: MultipartMediaType
+
+
+2.16.840.1.113883.11.14853:
+    codesystem: HL7V3.0
+    umlscode: Charset
+
+
+2.16.840.1.113883.11.14866:
+    codesystem: HL7V3.0
+    umlscode: URLScheme
+
+
+2.16.840.1.113883.11.14878:
+    codesystem: HL7V3.0
+    umlscode: ActReason
+
+
+2.16.840.1.113883.11.14879:
+    codesystem: HL7V3.0
+    umlscode: SchedulingActReason
+
+
+2.16.840.1.113883.11.14900:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipAccounting
+
+
+2.16.840.1.113883.11.14908:
+    codesystem: HL7V3.0
+    umlscode: PaymentTerms
+
+
+2.16.840.1.113883.11.14914:
+    codesystem: HL7V3.0
+    umlscode: Race
+
+
+2.16.840.1.113883.11.14915:
+    codesystem: HL7V3.0
+    umlscode: RaceNativeAmerican
+
+
+2.16.840.1.113883.11.14916:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndian
+
+
+2.16.840.1.113883.11.14919:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianApache
+
+
+2.16.840.1.113883.11.14929:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianArapaho
+
+
+2.16.840.1.113883.11.14935:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianAssiniboineSioux
+
+
+2.16.840.1.113883.11.14941:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianCaddo
+
+
+2.16.840.1.113883.11.14943:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianCahuilla
+
+
+2.16.840.1.113883.11.14951:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianCalifornia
+
+
+2.16.840.1.113883.11.14965:
+    codesystem: HL7V3.0
+    umlscode: RaceCanadianLatinIndian
+
+
+2.16.840.1.113883.11.14972:
+    codesystem: HL7V3.0
+    umlscode: Catawba
+
+
+2.16.840.1.113883.11.14975:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianChemakuan
+
+
+2.16.840.1.113883.11.14979:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianCherokee
+
+
+2.16.840.1.113883.11.14991:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianCheyenne
+
+
+2.16.840.1.113883.11.14995:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianChickahominy
+
+
+2.16.840.1.113883.11.14999:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianChinook
+
+
+2.16.840.1.113883.11.15007:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianChippewa
+
+
+2.16.840.1.113883.11.15033:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianChippewaCree
+
+
+2.16.840.1.113883.11.15036:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianChoctaw
+
+
+2.16.840.1.113883.11.15042:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianChumash
+
+
+2.16.840.1.113883.11.15049:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianComanche
+
+
+2.16.840.1.113883.11.15055:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianCoushatta
+
+
+2.16.840.1.113883.11.15059:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianCreek
+
+
+2.16.840.1.113883.11.15074:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianCupeno
+
+
+2.16.840.1.113883.11.15076:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianDelaware
+
+
+2.16.840.1.113883.11.15083:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianDiegueno
+
+
+2.16.840.1.113883.11.15093:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianEasternTribes
+
+
+2.16.840.1.113883.11.15116:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianGrosVentres
+
+
+2.16.840.1.113883.11.15120:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianHoopa
+
+
+2.16.840.1.113883.11.15126:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianIowa
+
+
+2.16.840.1.113883.11.15129:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianIroquois
+
+
+2.16.840.1.113883.11.15144:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianKickapoo
+
+
+2.16.840.1.113883.11.15147:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianKiowa
+
+
+2.16.840.1.113883.11.15149:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianKlallam
+
+
+2.16.840.1.113883.11.15157:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianLongIsland
+
+
+2.16.840.1.113883.11.15162:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianLuiseno
+
+
+2.16.840.1.113883.11.15172:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianMaidu
+
+
+2.16.840.1.113883.11.15180:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianMiami
+
+
+2.16.840.1.113883.11.15185:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianMicmac
+
+
+2.16.840.1.113883.11.15194:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianNavajo
+
+
+2.16.840.1.113883.11.15200:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianNorthwestTribes
+
+
+2.16.840.1.113883.11.15215:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianOttawa
+
+
+2.16.840.1.113883.11.15219:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianPaiute
+
+
+2.16.840.1.113883.11.15242:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianPassamaquoddy
+
+
+2.16.840.1.113883.11.15245:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianPawnee
+
+
+2.16.840.1.113883.11.15248:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianPeoria
+
+
+2.16.840.1.113883.11.15250:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianPequot
+
+
+2.16.840.1.113883.11.15252:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianPima
+
+
+2.16.840.1.113883.11.15257:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianPomo
+
+
+2.16.840.1.113883.11.15266:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianPonca
+
+
+2.16.840.1.113883.11.15269:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianPotawatomi
+
+
+2.16.840.1.113883.11.15278:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianPueblo
+
+
+2.16.840.1.113883.11.15306:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianPugetSoundSalish
+
+
+2.16.840.1.113883.11.15333:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianSacFox
+
+
+2.16.840.1.113883.11.15342:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianSeminole
+
+
+2.16.840.1.113883.11.15348:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianSerrano
+
+
+2.16.840.1.113883.11.15351:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianShawnee
+
+
+2.16.840.1.113883.11.15356:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianShoshone
+
+
+2.16.840.1.113883.11.15371:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianShoshonePaiute
+
+
+2.16.840.1.113883.11.15376:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianSioux
+
+
+2.16.840.1.113883.11.15414:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianTohonoOOdham
+
+
+2.16.840.1.113883.11.15423:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianUmpqua
+
+
+2.16.840.1.113883.11.15425:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianUte
+
+
+2.16.840.1.113883.11.15431:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianWampanoag
+
+
+2.16.840.1.113883.11.15436:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianWashoe
+
+
+2.16.840.1.113883.11.15442:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianWinnebago
+
+
+2.16.840.1.113883.11.15447:
+    codesystem: HL7V3.0
+    umlscode: Wiyot
+
+
+2.16.840.1.113883.11.15451:
+    codesystem: HL7V3.0
+    umlscode: Yaqui
+
+
+2.16.840.1.113883.11.15455:
+    codesystem: HL7V3.0
+    umlscode: Yokuts
+
+
+2.16.840.1.113883.11.15460:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianYuman
+
+
+2.16.840.1.113883.11.15468:
+    codesystem: HL7V3.0
+    umlscode: RaceAmericanIndianYurok
+
+
+2.16.840.1.113883.11.15470:
+    codesystem: HL7V3.0
+    umlscode: RaceAlaskanNative
+
+
+2.16.840.1.113883.11.15471:
+    codesystem: HL7V3.0
+    umlscode: RaceAlaskanIndian
+
+
+2.16.840.1.113883.11.15472:
+    codesystem: HL7V3.0
+    umlscode: RaceAlaskanIndianAthabascan
+
+
+2.16.840.1.113883.11.155:
+    codesystem: HL7V3.0
+    umlscode: AcknowledgementCondition
+
+
+2.16.840.1.113883.11.15543:
+    codesystem: HL7V3.0
+    umlscode: RaceSoutheastAlaskanIndian
+
+
+2.16.840.1.113883.11.15544:
+    codesystem: HL7V3.0
+    umlscode: RaceSoutheastAlaskanIndianTlingit
+
+
+2.16.840.1.113883.11.15567:
+    codesystem: HL7V3.0
+    umlscode: RaceSoutheastAlaskanIndianTsimshian
+
+
+2.16.840.1.113883.11.15569:
+    codesystem: HL7V3.0
+    umlscode: RaceAlaskanNativeEskimo
+
+
+2.16.840.1.113883.11.15571:
+    codesystem: HL7V3.0
+    umlscode: RaceAlaskanNativeInupiatEskimo
+
+
+2.16.840.1.113883.11.15617:
+    codesystem: HL7V3.0
+    umlscode: RaceAlaskanNativeSiberianEskimo
+
+
+2.16.840.1.113883.11.15621:
+    codesystem: HL7V3.0
+    umlscode: RaceAlaskanNativeYupikEskimo
+
+
+2.16.840.1.113883.11.15690:
+    codesystem: HL7V3.0
+    umlscode: RaceAlaskanNativeAleut
+
+
+2.16.840.1.113883.11.15691:
+    codesystem: HL7V3.0
+    umlscode: RaceAlaskanNativeAleutAlutiiq
+
+
+2.16.840.1.113883.11.15705:
+    codesystem: HL7V3.0
+    umlscode: RaceAlaskanNativeAleutChugach
+
+
+2.16.840.1.113883.11.15711:
+    codesystem: HL7V3.0
+    umlscode: RaceAlaskanNativeAleutKoniag
+
+
+2.16.840.1.113883.11.15722:
+    codesystem: HL7V3.0
+    umlscode: RaceAlaskanNativeAleutUnangan
+
+
+2.16.840.1.113883.11.15743:
+    codesystem: HL7V3.0
+    umlscode: RaceAsian
+
+
+2.16.840.1.113883.11.15768:
+    codesystem: HL7V3.0
+    umlscode: RaceBlackOrAfricanAmerican
+
+
+2.16.840.1.113883.11.15771:
+    codesystem: HL7V3.0
+    umlscode: RaceAfricanAmericanAfrican
+
+
+2.16.840.1.113883.11.15787:
+    codesystem: HL7V3.0
+    umlscode: RaceHawaiianOrPacificIsland
+
+
+2.16.840.1.113883.11.15788:
+    codesystem: HL7V3.0
+    umlscode: RacePacificIslandPolynesian
+
+
+2.16.840.1.113883.11.15794:
+    codesystem: HL7V3.0
+    umlscode: RacePacificIslandMicronesian
+
+
+2.16.840.1.113883.11.15808:
+    codesystem: HL7V3.0
+    umlscode: RacePacificIslandMelanesian
+
+
+2.16.840.1.113883.11.15814:
+    codesystem: HL7V3.0
+    umlscode: RaceWhite
+
+
+2.16.840.1.113883.11.15815:
+    codesystem: HL7V3.0
+    umlscode: RaceWhiteEuropean
+
+
+2.16.840.1.113883.11.15824:
+    codesystem: HL7V3.0
+    umlscode: RaceWhiteMiddleEast
+
+
+2.16.840.1.113883.11.15834:
+    codesystem: HL7V3.0
+    umlscode: RaceWhiteArab
+
+
+2.16.840.1.113883.11.15836:
+    codesystem: HL7V3.0
+    umlscode: Ethnicity
+
+
+2.16.840.1.113883.11.15837:
+    codesystem: HL7V3.0
+    umlscode: EthnicityHispanic
+
+
+2.16.840.1.113883.11.15838:
+    codesystem: HL7V3.0
+    umlscode: EthnicityHispanicSpaniard
+
+
+2.16.840.1.113883.11.15848:
+    codesystem: HL7V3.0
+    umlscode: EthnicityHispanicMexican
+
+
+2.16.840.1.113883.11.15854:
+    codesystem: HL7V3.0
+    umlscode: EthnicityHispanicCentralAmerican
+
+
+2.16.840.1.113883.11.15863:
+    codesystem: HL7V3.0
+    umlscode: EthnicityHispanicSouthAmerican
+
+
+2.16.840.1.113883.11.15880:
+    codesystem: HL7V3.0
+    umlscode: EntityNamePartType
+
+
+2.16.840.1.113883.11.15881:
+    codesystem: HL7V3.0
+    umlscode: x_OrganizationNamePartType
+
+
+2.16.840.1.113883.11.15888:
+    codesystem: HL7V3.0
+    umlscode: EntityNamePartQualifier
+
+
+2.16.840.1.113883.11.15889:
+    codesystem: HL7V3.0
+    umlscode: OrganizationNamePartQualifier
+
+
+2.16.840.1.113883.11.15913:
+    codesystem: HL7V3.0
+    umlscode: EntityNameUse
+
+
+2.16.840.1.113883.11.15914:
+    codesystem: HL7V3.0
+    umlscode: OrganizationNameUse
+
+
+2.16.840.1.113883.11.15920:
+    codesystem: HL7V3.0
+    umlscode: ContactRoleType
+
+
+2.16.840.1.113883.11.15925:
+    codesystem: HL7V3.0
+    umlscode: MemberRoleType
+
+
+2.16.840.1.113883.11.15929:
+    codesystem: HL7V3.0
+    umlscode: MaritalStatusUB92
+    codesystem: HL7V3.0
+    umlscode: 
+
+2.16.840.1.113883.11.15930:
+    codesystem: HL7V3.0
+    umlscode: EmploymentStatusUB92
+    codesystem: HL7V3.0
+    umlscode: 
+
+2.16.840.1.113883.11.15931:
+    codesystem: HL7V3.0
+    umlscode: DiagnosisICD9CM
+
+
+2.16.840.1.113883.11.15933:
+    codesystem: HL7V3.0
+    umlscode: ActStatus
+
+
+2.16.840.1.113883.11.15936:
+    codesystem: HL7V3.0
+    umlscode: ActStatusNormal
+
+
+2.16.840.1.113883.11.15983:
+    codesystem: HL7V3.0
+    umlscode: TransferActReason
+
+
+2.16.840.1.113883.11.15992:
+    codesystem: HL7V3.0
+    umlscode: ManagedParticipationStatus
+
+
+2.16.840.1.113883.11.15993:
+    codesystem: HL7V3.0
+    umlscode: ManagedParticipationStatusNormal
+
+
+2.16.840.1.113883.11.15999:
+    codesystem: HL7V3.0
+    umlscode: RoleStatus
+
+
+2.16.840.1.113883.11.16000:
+    codesystem: HL7V3.0
+    umlscode: RoleStatusNormal
+
+
+2.16.840.1.113883.11.16005:
+    codesystem: HL7V3.0
+    umlscode: EntityStatus
+
+
+2.16.840.1.113883.11.16006:
+    codesystem: HL7V3.0
+    umlscode: EntityStatusNormal
+
+
+2.16.840.1.113883.11.16031:
+    codesystem: HL7V3.0
+    umlscode: CommunicationFunctionType
+
+
+2.16.840.1.113883.11.16036:
+    codesystem: HL7V3.0
+    umlscode: EmployeeJobClass
+
+
+2.16.840.1.113883.11.16039:
+    codesystem: HL7V3.0
+    umlscode: IndustryClassificationSystem
+
+
+2.16.840.1.113883.11.16040:
+    codesystem: HL7V3.0
+    umlscode: EntityCode
+
+
+2.16.840.1.113883.11.16041:
+    codesystem: HL7V3.0
+    umlscode: MaterialEntityClassType
+
+
+2.16.840.1.113883.11.16042:
+    codesystem: HL7V3.0
+    umlscode: MaterialEntityAdditive
+
+
+2.16.840.1.113883.11.16100:
+    codesystem: HL7V3.0
+    umlscode: PlaceEntityType
+
+
+2.16.840.1.113883.11.16117:
+    codesystem: HL7V3.0
+    umlscode: ROIOverlayShape
+
+
+2.16.840.1.113883.11.16124:
+    codesystem: HL7V3.0
+    umlscode: ActDetectedIssueCode
+
+
+2.16.840.1.113883.11.16130:
+    codesystem: HL7V3.0
+    umlscode: ActEncounterAccommodationCode
+
+
+2.16.840.1.113883.11.16143:
+    codesystem: HL7V3.0
+    umlscode: ContainerEntityType
+
+
+2.16.840.1.113883.11.16144:
+    codesystem: HL7V3.0
+    umlscode: PackageEntityType
+
+
+2.16.840.1.113883.11.16145:
+    codesystem: HL7V3.0
+    umlscode: KitEntityType
+
+
+2.16.840.1.113883.11.16147:
+    codesystem: HL7V3.0
+    umlscode: NonRigidContainerEntityType
+
+
+2.16.840.1.113883.11.16152:
+    codesystem: HL7V3.0
+    umlscode: RigidContainerEntityType
+
+
+2.16.840.1.113883.11.16153:
+    codesystem: HL7V3.0
+    umlscode: MultiUseContainerEntityType
+
+
+2.16.840.1.113883.11.16155:
+    codesystem: HL7V3.0
+    umlscode: BottleEntityType
+
+
+2.16.840.1.113883.11.16159:
+    codesystem: HL7V3.0
+    umlscode: PlasticBottleEntityType
+
+
+2.16.840.1.113883.11.16170:
+    codesystem: HL7V3.0
+    umlscode: CompliancePackageEntityType
+
+
+2.16.840.1.113883.11.16171:
+    codesystem: HL7V3.0
+    umlscode: BlisterPackEntityType
+
+
+2.16.840.1.113883.11.16176:
+    codesystem: HL7V3.0
+    umlscode: IndividualPackageEntityType
+
+
+2.16.840.1.113883.11.16184:
+    codesystem: HL7V3.0
+    umlscode: MedicationCap
+
+
+2.16.840.1.113883.11.16188:
+    codesystem: HL7V3.0
+    umlscode: MedicalDevice
+
+
+2.16.840.1.113883.11.16189:
+    codesystem: HL7V3.0
+    umlscode: AdministrationMedicalDevice
+
+
+2.16.840.1.113883.11.16191:
+    codesystem: HL7V3.0
+    umlscode: InjectionMedicalDevice
+
+
+2.16.840.1.113883.11.16196:
+    codesystem: HL7V3.0
+    umlscode: InhalerMedicalDevice
+
+
+2.16.840.1.113883.11.16200:
+    codesystem: HL7V3.0
+    umlscode: AccessMedicalDevice
+
+
+2.16.840.1.113883.11.16201:
+    codesystem: HL7V3.0
+    umlscode: LineAccessMedicalDevice
+
+
+2.16.840.1.113883.11.16205:
+    codesystem: HL7V3.0
+    umlscode: ClinicalDrug
+
+
+2.16.840.1.113883.11.16206:
+    codesystem: HL7V3.0
+    umlscode: ManufacturedDrug
+
+
+2.16.840.1.113883.11.16208:
+    codesystem: HL7V3.0
+    umlscode: ActPharmacySupplyType
+
+
+2.16.840.1.113883.11.16209:
+    codesystem: HL7V3.0
+    umlscode: FirstFillPharmacySupplyType
+
+
+2.16.840.1.113883.11.16215:
+    codesystem: HL7V3.0
+    umlscode: RefillPharmacySupplyType
+
+
+2.16.840.1.113883.11.16220:
+    codesystem: HL7V3.0
+    umlscode: EmergencyPharmacySupplyType
+
+
+2.16.840.1.113883.11.16226:
+    codesystem: HL7V3.0
+    umlscode: ObservationType
+
+
+2.16.840.1.113883.11.16228:
+    codesystem: HL7V3.0
+    umlscode: ObservationDiagnosisTypes
+
+
+2.16.840.1.113883.11.16231:
+    codesystem: HL7V3.0
+    umlscode: ActMonitoringProtocolCode
+
+
+2.16.840.1.113883.11.16232:
+    codesystem: HL7V3.0
+    umlscode: ControlledSubstanceMonitoringProtocol
+
+
+2.16.840.1.113883.11.16346:
+    codesystem: HL7V3.0
+    umlscode: Parent
+
+
+2.16.840.1.113883.11.16349:
+    codesystem: HL7V3.0
+    umlscode: Grandparent
+
+
+2.16.840.1.113883.11.16360:
+    codesystem: HL7V3.0
+    umlscode: Child
+
+
+2.16.840.1.113883.11.16368:
+    codesystem: HL7V3.0
+    umlscode: LivingSubjectProductionClass
+
+
+2.16.840.1.113883.11.16460:
+    codesystem: HL7V3.0
+    umlscode: DentalServiceProviderHIPAA
+
+
+2.16.840.1.113883.11.16466:
+    codesystem: HL7V3.0
+    umlscode: RaceAlaskanNativeAleutBristolBay
+
+
+2.16.840.1.113883.11.16478:
+    codesystem: HL7V3.0
+    umlscode: ContextControl
+
+
+2.16.840.1.113883.11.16492:
+    codesystem: HL7V3.0
+    umlscode: LogicalObservationIdentifierNamesAndCodes
+
+
+2.16.840.1.113883.11.16493:
+    codesystem: HL7V3.0
+    umlscode: ExternallyDefinedActCodes
+
+
+2.16.840.1.113883.11.16501:
+    codesystem: HL7V3.0
+    umlscode: ClinicalOrganizationRoleType
+
+
+2.16.840.1.113883.11.16508:
+    codesystem: HL7V3.0
+    umlscode: ActIncidentCode
+
+
+2.16.840.1.113883.11.16515:
+    codesystem: HL7V3.0
+    umlscode: SpecimenRoleType
+
+
+2.16.840.1.113883.11.16521:
+    codesystem: HL7V3.0
+    umlscode: QualitySpecimenRoleType
+
+
+2.16.840.1.113883.11.16530:
+    codesystem: HL7V3.0
+    umlscode: DrugEntity
+
+
+2.16.840.1.113883.11.16535:
+    codesystem: HL7V3.0
+    umlscode: ActProcedureCode
+
+
+2.16.840.1.113883.11.16537:
+    codesystem: HL7V3.0
+    umlscode: ActSite
+
+
+2.16.840.1.113883.11.16538:
+    codesystem: HL7V3.0
+    umlscode: HumanActSite
+
+
+2.16.840.1.113883.11.16539:
+    codesystem: HL7V3.0
+    umlscode: AnimalActSite
+
+
+2.16.840.1.113883.11.16541:
+    codesystem: HL7V3.0
+    umlscode: ProcedureMethod
+
+
+2.16.840.1.113883.11.16543:
+    codesystem: HL7V3.0
+    umlscode: ParticipationMode
+
+
+2.16.840.1.113883.11.16544:
+    codesystem: HL7V3.0
+    umlscode: ParticipationModeVerbal
+
+
+2.16.840.1.113883.11.16549:
+    codesystem: HL7V3.0
+    umlscode: ParticipationModeWritten
+
+
+2.16.840.1.113883.11.16554:
+    codesystem: HL7V3.0
+    umlscode: ParticipationModeElectronicData
+
+
+2.16.840.1.113883.11.16614:
+    codesystem: HL7V3.0
+    umlscode: ObservationValue
+
+
+2.16.840.1.113883.11.16615:
+    codesystem: HL7V3.0
+    umlscode: DiagnosisValue
+
+
+2.16.840.1.113883.11.16621:
+    codesystem: HL7V3.0
+    umlscode: ActSubstanceAdminSubstitutionCode
+
+
+2.16.840.1.113883.11.16623:
+    codesystem: HL7V3.0
+    umlscode: SubstanceAdminGenericSubstitution
+
+
+2.16.840.1.113883.11.16643:
+    codesystem: HL7V3.0
+    umlscode: SeverityObservation
+
+
+2.16.840.1.113883.11.16656:
+    codesystem: HL7V3.0
+    umlscode: ActSuppliedItemDetectedIssueCode
+
+
+2.16.840.1.113883.11.16657:
+    codesystem: HL7V3.0
+    umlscode: AdministrationDetectedIssueCode
+
+
+2.16.840.1.113883.11.16658:
+    codesystem: HL7V3.0
+    umlscode: AppropriatenessDetectedIssueCode
+
+
+2.16.840.1.113883.11.16659:
+    codesystem: HL7V3.0
+    umlscode: InteractionDetectedIssueCode
+
+
+2.16.840.1.113883.11.16664:
+    codesystem: HL7V3.0
+    umlscode: ObservationDetectedIssueCode
+
+
+2.16.840.1.113883.11.16665:
+    codesystem: HL7V3.0
+    umlscode: ConditionDetectedIssueCode
+
+
+2.16.840.1.113883.11.16669:
+    codesystem: HL7V3.0
+    umlscode: AgeDetectedIssueCode
+
+
+2.16.840.1.113883.11.16672:
+    codesystem: HL7V3.0
+    umlscode: ReactionDetectedIssueCode
+
+
+2.16.840.1.113883.11.16676:
+    codesystem: HL7V3.0
+    umlscode: RelatedReactionDetectedIssueCode
+
+
+2.16.840.1.113883.11.16680:
+    codesystem: HL7V3.0
+    umlscode: DosageProblemDetectedIssueCode
+
+
+2.16.840.1.113883.11.16681:
+    codesystem: HL7V3.0
+    umlscode: DoseHighDetectedIssueCode
+
+
+2.16.840.1.113883.11.16682:
+    codesystem: HL7V3.0
+    umlscode: DoseLowDetectedIssueCode
+
+
+2.16.840.1.113883.11.16683:
+    codesystem: HL7V3.0
+    umlscode: DoseIntervalDetectedIssueCode
+
+
+2.16.840.1.113883.11.16684:
+    codesystem: HL7V3.0
+    umlscode: DoseDurationDetectedIssueCode
+
+
+2.16.840.1.113883.11.16685:
+    codesystem: HL7V3.0
+    umlscode: DoseDurationLowDetectedIssueCode
+
+
+2.16.840.1.113883.11.16686:
+    codesystem: HL7V3.0
+    umlscode: DoseDurationHighDetectedIssueCode
+
+
+2.16.840.1.113883.11.16687:
+    codesystem: HL7V3.0
+    umlscode: ComplianceDetectedIssueCode
+
+
+2.16.840.1.113883.11.16691:
+    codesystem: HL7V3.0
+    umlscode: SupplyDetectedIssueCode
+
+
+2.16.840.1.113883.11.16695:
+    codesystem: HL7V3.0
+    umlscode: ActDetectedIssueManagementCode
+
+
+2.16.840.1.113883.11.16696:
+    codesystem: HL7V3.0
+    umlscode: TherapyAppropriateManagementCode
+
+
+2.16.840.1.113883.11.16700:
+    codesystem: HL7V3.0
+    umlscode: ConsultedPrescriberManagementCode
+
+
+2.16.840.1.113883.11.16703:
+    codesystem: HL7V3.0
+    umlscode: OtherActionTakenManagementCode
+
+
+2.16.840.1.113883.11.16709:
+    codesystem: HL7V3.0
+    umlscode: SupplyAppropriateManagementCode
+
+
+2.16.840.1.113883.11.16730:
+    codesystem: HL7V3.0
+    umlscode: x_ActMoodOrdPrmsEvn
+
+
+2.16.840.1.113883.11.16735:
+    codesystem: HL7V3.0
+    umlscode: x_ActMoodOrdPrms
+
+
+2.16.840.1.113883.11.16742:
+    codesystem: HL7V3.0
+    umlscode: x_ActMoodIntentEvent
+
+
+2.16.840.1.113883.11.16764:
+    codesystem: HL7V3.0
+    umlscode: x_EncounterPerformerParticipation
+
+
+2.16.840.1.113883.11.16772:
+    codesystem: HL7V3.0
+    umlscode: x_InformationRecipientRole
+
+
+2.16.840.1.113883.11.16773:
+    codesystem: HL7V3.0
+    umlscode: LicensedEntityRole
+
+
+2.16.840.1.113883.11.16815:
+    codesystem: HL7V3.0
+    umlscode: RoleClassLocatedEntity
+
+
+2.16.840.1.113883.11.16847:
+    codesystem: HL7V3.0
+    umlscode: ActInpatientEncounterCode
+
+
+2.16.840.1.113883.11.16857:
+    codesystem: HL7V3.0
+    umlscode: ActControlVariable
+
+
+2.16.840.1.113883.11.16866:
+    codesystem: HL7V3.0
+    umlscode: ActPriority
+
+
+2.16.840.1.113883.11.16871:
+    codesystem: HL7V3.0
+    umlscode: ActPriorityCallback
+
+
+2.16.840.1.113883.11.16899:
+    codesystem: HL7V3.0
+    umlscode: ActUncertainty
+
+
+2.16.840.1.113883.11.16916:
+    codesystem: HL7V3.0
+    umlscode: x_DocumentStatus
+
+
+2.16.840.1.113883.11.16926:
+    codesystem: HL7V3.0
+    umlscode: x_BasicConfidentialityKind
+
+
+2.16.840.1.113883.11.16927:
+    codesystem: HL7V3.0
+    umlscode: RoleClassServiceDeliveryLocation
+
+
+2.16.840.1.113883.11.16930:
+    codesystem: HL7V3.0
+    umlscode: x_RoleClassCredentialedEntity
+
+
+2.16.840.1.113883.11.16931:
+    codesystem: HL7V3.0
+    umlscode: RouteByMethod
+
+
+2.16.840.1.113883.11.16935:
+    codesystem: HL7V3.0
+    umlscode: InfiltrationRoute
+
+
+2.16.840.1.113883.11.16990:
+    codesystem: HL7V3.0
+    umlscode: IontophoresisRoute
+
+
+2.16.840.1.113883.11.16995:
+    codesystem: HL7V3.0
+    umlscode: LavageRoute
+
+
+2.16.840.1.113883.11.16997:
+    codesystem: HL7V3.0
+    umlscode: MucosalAbsorptionRoute
+
+
+2.16.840.1.113883.11.17003:
+    codesystem: HL7V3.0
+    umlscode: SuppositoryRoute
+
+
+2.16.840.1.113883.11.17006:
+    codesystem: HL7V3.0
+    umlscode: TopicalAbsorptionRoute
+
+
+2.16.840.1.113883.11.17019:
+    codesystem: HL7V3.0
+    umlscode: ElectroOsmosisRoute
+
+
+2.16.840.1.113883.11.17021:
+    codesystem: HL7V3.0
+    umlscode: RouteBySite
+
+
+2.16.840.1.113883.11.17022:
+    codesystem: HL7V3.0
+    umlscode: AmnioticFluidSacRoute
+
+
+2.16.840.1.113883.11.17024:
+    codesystem: HL7V3.0
+    umlscode: BiliaryRoute
+
+
+2.16.840.1.113883.11.17027:
+    codesystem: HL7V3.0
+    umlscode: BodySurfaceRoute
+
+
+2.16.840.1.113883.11.17034:
+    codesystem: HL7V3.0
+    umlscode: BuccalMucosaRoute
+
+
+2.16.840.1.113883.11.17036:
+    codesystem: HL7V3.0
+    umlscode: CecostomyRoute
+
+
+2.16.840.1.113883.11.17038:
+    codesystem: HL7V3.0
+    umlscode: CervicalRoute
+
+
+2.16.840.1.113883.11.17042:
+    codesystem: HL7V3.0
+    umlscode: DentalRoute
+
+
+2.16.840.1.113883.11.17045:
+    codesystem: HL7V3.0
+    umlscode: EndocervicalRoute
+
+
+2.16.840.1.113883.11.17048:
+    codesystem: HL7V3.0
+    umlscode: EnteralRoute
+
+
+2.16.840.1.113883.11.17051:
+    codesystem: HL7V3.0
+    umlscode: EpiduralRoute
+
+
+2.16.840.1.113883.11.17056:
+    codesystem: HL7V3.0
+    umlscode: ExtracorporealCirculationRoute
+
+
+2.16.840.1.113883.11.17059:
+    codesystem: HL7V3.0
+    umlscode: ExtraAmnioticRoute
+
+
+2.16.840.1.113883.11.17061:
+    codesystem: HL7V3.0
+    umlscode: GastricRoute
+
+
+2.16.840.1.113883.11.17066:
+    codesystem: HL7V3.0
+    umlscode: GenitourinaryRoute
+
+
+2.16.840.1.113883.11.17068:
+    codesystem: HL7V3.0
+    umlscode: GingivalRoute
+
+
+2.16.840.1.113883.11.17071:
+    codesystem: HL7V3.0
+    umlscode: HairRoute
+
+
+2.16.840.1.113883.11.17074:
+    codesystem: HL7V3.0
+    umlscode: InterameningealRoute
+
+
+2.16.840.1.113883.11.17076:
+    codesystem: HL7V3.0
+    umlscode: InterstitialRoute
+
+
+2.16.840.1.113883.11.17078:
+    codesystem: HL7V3.0
+    umlscode: IntraabdominalRoute
+
+
+2.16.840.1.113883.11.17080:
+    codesystem: HL7V3.0
+    umlscode: IntraarterialRoute
+
+
+2.16.840.1.113883.11.17085:
+    codesystem: HL7V3.0
+    umlscode: IntraarticularRoute
+
+
+2.16.840.1.113883.11.17087:
+    codesystem: HL7V3.0
+    umlscode: IntrabronchialRoute
+
+
+2.16.840.1.113883.11.17089:
+    codesystem: HL7V3.0
+    umlscode: IntrabursalRoute
+
+
+2.16.840.1.113883.11.17091:
+    codesystem: HL7V3.0
+    umlscode: IntracardiacRoute
+
+
+2.16.840.1.113883.11.17097:
+    codesystem: HL7V3.0
+    umlscode: IntracartilaginousRoute
+
+
+2.16.840.1.113883.11.17099:
+    codesystem: HL7V3.0
+    umlscode: IntracaudalRoute
+
+
+2.16.840.1.113883.11.171:
+    codesystem: HL7V3.0
+    umlscode: Country
+
+
+2.16.840.1.113883.11.17101:
+    codesystem: HL7V3.0
+    umlscode: IntracavernosalRoute
+
+
+2.16.840.1.113883.11.17103:
+    codesystem: HL7V3.0
+    umlscode: IntracavitaryRoute
+
+
+2.16.840.1.113883.11.17105:
+    codesystem: HL7V3.0
+    umlscode: IntracerebralRoute
+
+
+2.16.840.1.113883.11.17107:
+    codesystem: HL7V3.0
+    umlscode: IntracervicalRoute
+
+
+2.16.840.1.113883.11.17109:
+    codesystem: HL7V3.0
+    umlscode: IntracisternalRoute
+
+
+2.16.840.1.113883.11.17111:
+    codesystem: HL7V3.0
+    umlscode: IntracornealRoute
+
+
+2.16.840.1.113883.11.17113:
+    codesystem: HL7V3.0
+    umlscode: IntracoronalRoute
+
+
+2.16.840.1.113883.11.17115:
+    codesystem: HL7V3.0
+    umlscode: IntracoronaryRoute
+
+
+2.16.840.1.113883.11.17119:
+    codesystem: HL7V3.0
+    umlscode: IntracorpusCavernosumRoute
+
+
+2.16.840.1.113883.11.17121:
+    codesystem: HL7V3.0
+    umlscode: IntratendinousRoute
+
+
+2.16.840.1.113883.11.17123:
+    codesystem: HL7V3.0
+    umlscode: IntradermalRoute
+
+
+2.16.840.1.113883.11.17126:
+    codesystem: HL7V3.0
+    umlscode: IntradiscalRoute
+
+
+2.16.840.1.113883.11.17128:
+    codesystem: HL7V3.0
+    umlscode: IntraductalRoute
+
+
+2.16.840.1.113883.11.17130:
+    codesystem: HL7V3.0
+    umlscode: IntraduodenalRoute
+
+
+2.16.840.1.113883.11.17133:
+    codesystem: HL7V3.0
+    umlscode: IntraduralRoute
+
+
+2.16.840.1.113883.11.17135:
+    codesystem: HL7V3.0
+    umlscode: IntraepidermalRoute
+
+
+2.16.840.1.113883.11.17137:
+    codesystem: HL7V3.0
+    umlscode: IntraepithelialRoute
+
+
+2.16.840.1.113883.11.17139:
+    codesystem: HL7V3.0
+    umlscode: IntraesophagealRoute
+
+
+2.16.840.1.113883.11.17142:
+    codesystem: HL7V3.0
+    umlscode: IntragastricRoute
+
+
+2.16.840.1.113883.11.17146:
+    codesystem: HL7V3.0
+    umlscode: IntrailealRoute
+
+
+2.16.840.1.113883.11.17149:
+    codesystem: HL7V3.0
+    umlscode: IntralesionalRoute
+
+
+2.16.840.1.113883.11.17153:
+    codesystem: HL7V3.0
+    umlscode: IntraluminalRoute
+
+
+2.16.840.1.113883.11.17156:
+    codesystem: HL7V3.0
+    umlscode: IntralymphaticRoute
+
+
+2.16.840.1.113883.11.17158:
+    codesystem: HL7V3.0
+    umlscode: IntramedullaryRoute
+
+
+2.16.840.1.113883.11.17160:
+    codesystem: HL7V3.0
+    umlscode: IntramuscularRoute
+
+
+2.16.840.1.113883.11.17164:
+    codesystem: HL7V3.0
+    umlscode: IntraocularRoute
+
+
+2.16.840.1.113883.11.17170:
+    codesystem: HL7V3.0
+    umlscode: IntraosseousRoute
+
+
+2.16.840.1.113883.11.17173:
+    codesystem: HL7V3.0
+    umlscode: IntraovarianRoute
+
+
+2.16.840.1.113883.11.17175:
+    codesystem: HL7V3.0
+    umlscode: IntrapericardialRoute
+
+
+2.16.840.1.113883.11.17177:
+    codesystem: HL7V3.0
+    umlscode: IntraperitonealRoute
+
+
+2.16.840.1.113883.11.17182:
+    codesystem: HL7V3.0
+    umlscode: IntrapleuralRoute
+
+
+2.16.840.1.113883.11.17185:
+    codesystem: HL7V3.0
+    umlscode: IntraprostaticRoute
+
+
+2.16.840.1.113883.11.17187:
+    codesystem: HL7V3.0
+    umlscode: IntrapulmonaryRoute
+
+
+2.16.840.1.113883.11.17190:
+    codesystem: HL7V3.0
+    umlscode: IntrasinalRoute
+
+
+2.16.840.1.113883.11.17192:
+    codesystem: HL7V3.0
+    umlscode: IntraspinalRoute
+
+
+2.16.840.1.113883.11.17194:
+    codesystem: HL7V3.0
+    umlscode: IntrasternalRoute
+
+
+2.16.840.1.113883.11.17196:
+    codesystem: HL7V3.0
+    umlscode: IntrasynovialRoute
+
+
+2.16.840.1.113883.11.17198:
+    codesystem: HL7V3.0
+    umlscode: IntratesticularRoute
+
+
+2.16.840.1.113883.11.17200:
+    codesystem: HL7V3.0
+    umlscode: IntrathecalRoute
+
+
+2.16.840.1.113883.11.17203:
+    codesystem: HL7V3.0
+    umlscode: IntrathoracicRoute
+
+
+2.16.840.1.113883.11.17205:
+    codesystem: HL7V3.0
+    umlscode: IntratrachealRoute
+
+
+2.16.840.1.113883.11.17208:
+    codesystem: HL7V3.0
+    umlscode: IntratubularRoute
+
+
+2.16.840.1.113883.11.17210:
+    codesystem: HL7V3.0
+    umlscode: IntratumorRoute
+
+
+2.16.840.1.113883.11.17212:
+    codesystem: HL7V3.0
+    umlscode: IntratympanicRoute
+
+
+2.16.840.1.113883.11.17214:
+    codesystem: HL7V3.0
+    umlscode: IntrauterineRoute
+
+
+2.16.840.1.113883.11.17219:
+    codesystem: HL7V3.0
+    umlscode: IntravascularRoute
+
+
+2.16.840.1.113883.11.17224:
+    codesystem: HL7V3.0
+    umlscode: IntravenousRoute
+
+
+2.16.840.1.113883.11.17235:
+    codesystem: HL7V3.0
+    umlscode: IntraventricularRoute
+
+
+2.16.840.1.113883.11.17237:
+    codesystem: HL7V3.0
+    umlscode: IntravesicleRoute
+
+
+2.16.840.1.113883.11.17239:
+    codesystem: HL7V3.0
+    umlscode: IntravitrealRoute
+
+
+2.16.840.1.113883.11.17241:
+    codesystem: HL7V3.0
+    umlscode: JejunumRoute
+
+
+2.16.840.1.113883.11.17245:
+    codesystem: HL7V3.0
+    umlscode: LacrimalPunctaRoute
+
+
+2.16.840.1.113883.11.17247:
+    codesystem: HL7V3.0
+    umlscode: LaryngealRoute
+
+
+2.16.840.1.113883.11.17250:
+    codesystem: HL7V3.0
+    umlscode: LingualRoute
+
+
+2.16.840.1.113883.11.17252:
+    codesystem: HL7V3.0
+    umlscode: MucousMembraneRoute
+
+
+2.16.840.1.113883.11.17254:
+    codesystem: HL7V3.0
+    umlscode: NailRoute
+
+
+2.16.840.1.113883.11.17256:
+    codesystem: HL7V3.0
+    umlscode: NasalRoute
+
+
+2.16.840.1.113883.11.17264:
+    codesystem: HL7V3.0
+    umlscode: OphthalmicRoute
+
+
+2.16.840.1.113883.11.17266:
+    codesystem: HL7V3.0
+    umlscode: OralRoute
+
+
+2.16.840.1.113883.11.17276:
+    codesystem: HL7V3.0
+    umlscode: OromucosalRoute
+
+
+2.16.840.1.113883.11.17282:
+    codesystem: HL7V3.0
+    umlscode: OropharyngealRoute
+
+
+2.16.840.1.113883.11.17284:
+    codesystem: HL7V3.0
+    umlscode: OticRoute
+
+
+2.16.840.1.113883.11.17286:
+    codesystem: HL7V3.0
+    umlscode: ParanasalSinusesRoute
+
+
+2.16.840.1.113883.11.17289:
+    codesystem: HL7V3.0
+    umlscode: ParenteralRoute
+
+
+2.16.840.1.113883.11.17291:
+    codesystem: HL7V3.0
+    umlscode: PerianalRoute
+
+
+2.16.840.1.113883.11.17293:
+    codesystem: HL7V3.0
+    umlscode: PeriarticularRoute
+
+
+2.16.840.1.113883.11.17295:
+    codesystem: HL7V3.0
+    umlscode: PeriodontalRoute
+
+
+2.16.840.1.113883.11.17298:
+    codesystem: HL7V3.0
+    umlscode: PeriduralRoute
+
+
+2.16.840.1.113883.11.17300:
+    codesystem: HL7V3.0
+    umlscode: PerinealRoute
+
+
+2.16.840.1.113883.11.17302:
+    codesystem: HL7V3.0
+    umlscode: PerineuralRoute
+
+
+2.16.840.1.113883.11.17304:
+    codesystem: HL7V3.0
+    umlscode: PulmonaryRoute
+
+
+2.16.840.1.113883.11.17311:
+    codesystem: HL7V3.0
+    umlscode: RectalRoute
+
+
+2.16.840.1.113883.11.17319:
+    codesystem: HL7V3.0
+    umlscode: RespiratoryTractRoute
+
+
+2.16.840.1.113883.11.17321:
+    codesystem: HL7V3.0
+    umlscode: RetrobulbarRoute
+
+
+2.16.840.1.113883.11.17323:
+    codesystem: HL7V3.0
+    umlscode: ScalpRoute
+
+
+2.16.840.1.113883.11.17325:
+    codesystem: HL7V3.0
+    umlscode: SinusUnspecifiedRoute
+
+
+2.16.840.1.113883.11.17328:
+    codesystem: HL7V3.0
+    umlscode: SkinRoute
+
+
+2.16.840.1.113883.11.17331:
+    codesystem: HL7V3.0
+    umlscode: SoftTissueRoute
+
+
+2.16.840.1.113883.11.17334:
+    codesystem: HL7V3.0
+    umlscode: SubarachnoidRoute
+
+
+2.16.840.1.113883.11.17336:
+    codesystem: HL7V3.0
+    umlscode: SubconjunctivalRoute
+
+
+2.16.840.1.113883.11.17339:
+    codesystem: HL7V3.0
+    umlscode: SubcutaneousRoute
+
+
+2.16.840.1.113883.11.17345:
+    codesystem: HL7V3.0
+    umlscode: SublesionalRoute
+
+
+2.16.840.1.113883.11.17347:
+    codesystem: HL7V3.0
+    umlscode: SublingualRoute
+
+
+2.16.840.1.113883.11.17349:
+    codesystem: HL7V3.0
+    umlscode: SubmucosalRoute
+
+
+2.16.840.1.113883.11.17352:
+    codesystem: HL7V3.0
+    umlscode: TracheostomyRoute
+
+
+2.16.840.1.113883.11.17356:
+    codesystem: HL7V3.0
+    umlscode: Transdermal
+
+
+2.16.840.1.113883.11.17357:
+    codesystem: HL7V3.0
+    umlscode: TransmucosalRoute
+
+
+2.16.840.1.113883.11.17359:
+    codesystem: HL7V3.0
+    umlscode: TransplacentalRoute
+
+
+2.16.840.1.113883.11.17361:
+    codesystem: HL7V3.0
+    umlscode: TranstrachealRoute
+
+
+2.16.840.1.113883.11.17363:
+    codesystem: HL7V3.0
+    umlscode: TranstympanicRoute
+
+
+2.16.840.1.113883.11.17366:
+    codesystem: HL7V3.0
+    umlscode: UreteralRoute
+
+
+2.16.840.1.113883.11.17368:
+    codesystem: HL7V3.0
+    umlscode: UrethralRoute
+
+
+2.16.840.1.113883.11.17373:
+    codesystem: HL7V3.0
+    umlscode: UrinaryBladderRoute
+
+
+2.16.840.1.113883.11.17378:
+    codesystem: HL7V3.0
+    umlscode: UrinaryTractRoute
+
+
+2.16.840.1.113883.11.17380:
+    codesystem: HL7V3.0
+    umlscode: VaginalRoute
+
+
+2.16.840.1.113883.11.17384:
+    codesystem: HL7V3.0
+    umlscode: VitreousHumourRoute
+
+
+2.16.840.1.113883.11.17385:
+    codesystem: HL7V3.0
+    umlscode: IntegrityCheckAlgorithm
+
+
+2.16.840.1.113883.11.17388:
+    codesystem: HL7V3.0
+    umlscode: Currency
+
+
+2.16.840.1.113883.11.17416:
+    codesystem: HL7V3.0
+    umlscode: SetOperator
+
+
+2.16.840.1.113883.11.17422:
+    codesystem: HL7V3.0
+    umlscode: Calendar
+
+
+2.16.840.1.113883.11.17425:
+    codesystem: HL7V3.0
+    umlscode: ActAccommodationReason
+
+
+2.16.840.1.113883.11.17449:
+    codesystem: HL7V3.0
+    umlscode: ActMedicalServiceCode
+
+
+2.16.840.1.113883.11.17472:
+    codesystem: HL7V3.0
+    umlscode: ActAdjudicationResultActionCode
+
+
+2.16.840.1.113883.11.17478:
+    codesystem: HL7V3.0
+    umlscode: ActBillingArrangementCode
+
+
+2.16.840.1.113883.11.17487:
+    codesystem: HL7V3.0
+    umlscode: ActCoverageConfirmationCode
+
+
+2.16.840.1.113883.11.17488:
+    codesystem: HL7V3.0
+    umlscode: ActCoverageEligibilityConfirmationCode
+
+
+2.16.840.1.113883.11.17491:
+    codesystem: HL7V3.0
+    umlscode: ActCoverageAuthorizationConfirmationCode
+
+
+2.16.840.1.113883.11.17496:
+    codesystem: HL7V3.0
+    umlscode: ActCoverageLimitCode
+
+
+2.16.840.1.113883.11.17522:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceElementSummaryCode
+
+
+2.16.840.1.113883.11.17523:
+    codesystem: HL7V3.0
+    umlscode: InvoiceElementSubmitted
+
+
+2.16.840.1.113883.11.17530:
+    codesystem: HL7V3.0
+    umlscode: InvoiceElementAdjudicated
+
+
+2.16.840.1.113883.11.17563:
+    codesystem: HL7V3.0
+    umlscode: InvoiceElementPaid
+
+
+2.16.840.1.113883.11.17590:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceOverrideCode
+
+
+2.16.840.1.113883.11.17610:
+    codesystem: HL7V3.0
+    umlscode: ActPaymentCode
+
+
+2.16.840.1.113883.11.17616:
+    codesystem: HL7V3.0
+    umlscode: ActAdjudicationCode
+
+
+2.16.840.1.113883.11.17622:
+    codesystem: HL7V3.0
+    umlscode: AdministrativeContactRoleType
+
+
+2.16.840.1.113883.11.17660:
+    codesystem: HL7V3.0
+    umlscode: ServiceDeliveryLocationRoleType
+
+
+2.16.840.1.113883.11.17704:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceElementModifier
+
+
+2.16.840.1.113883.11.17719:
+    codesystem: HL7V3.0
+    umlscode: SubstitutionCondition
+
+
+2.16.840.1.113883.11.17720:
+    codesystem: HL7V3.0
+    umlscode: Conditional
+
+
+2.16.840.1.113883.11.17794:
+    codesystem: HL7V3.0
+    umlscode: WeightAlert
+
+
+2.16.840.1.113883.11.17795:
+    codesystem: HL7V3.0
+    umlscode: HeightSurfaceAreaAlert
+
+
+2.16.840.1.113883.11.17807:
+    codesystem: HL7V3.0
+    umlscode: TherapeuticProductDetectedIssueCode
+
+
+2.16.840.1.113883.11.17814:
+    codesystem: HL7V3.0
+    umlscode: ClinicalActionDetectedIssueCode
+
+
+2.16.840.1.113883.11.17815:
+    codesystem: HL7V3.0
+    umlscode: DrugActionDetectedIssueCode
+
+
+2.16.840.1.113883.11.17816:
+    codesystem: HL7V3.0
+    umlscode: TimingDetectedIssueCode
+
+
+2.16.840.1.113883.11.17860:
+    codesystem: HL7V3.0
+    umlscode: NameRepresentationUse
+
+
+2.16.840.1.113883.11.17887:
+    codesystem: HL7V3.0
+    umlscode: DeliveryAddressLine
+
+
+2.16.840.1.113883.11.17893:
+    codesystem: HL7V3.0
+    umlscode: ActClassROI
+
+
+2.16.840.1.113883.11.17896:
+    codesystem: HL7V3.0
+    umlscode: ActBoundedROICode
+
+
+2.16.840.1.113883.11.17930:
+    codesystem: HL7V3.0
+    umlscode: NaturalChild
+
+
+2.16.840.1.113883.11.17958:
+    codesystem: HL7V3.0
+    umlscode: ActProductAcquisitionCode
+
+
+2.16.840.1.113883.11.17959:
+    codesystem: HL7V3.0
+    umlscode: Transfer
+
+
+2.16.840.1.113883.11.17961:
+    codesystem: HL7V3.0
+    umlscode: Loan
+
+
+2.16.840.1.113883.11.17963:
+    codesystem: HL7V3.0
+    umlscode: x_ActFinancialProductAcquisitionCode
+
+
+2.16.840.1.113883.11.17968:
+    codesystem: HL7V3.0
+    umlscode: ActAdjudicationGroupCode
+
+
+2.16.840.1.113883.11.18105:
+    codesystem: HL7V3.0
+    umlscode: x_PayeeRelationshipRoleType
+
+
+2.16.840.1.113883.11.18120:
+    codesystem: HL7V3.0
+    umlscode: PartialCompletionScale
+
+
+2.16.840.1.113883.11.18130:
+    codesystem: HL7V3.0
+    umlscode: AmericanIndianAlaskaNativeLanguages
+
+
+2.16.840.1.113883.11.18131:
+    codesystem: HL7V3.0
+    umlscode: Algic
+
+
+2.16.840.1.113883.11.18132:
+    codesystem: HL7V3.0
+    umlscode: Algonquian
+
+
+2.16.840.1.113883.11.18135:
+    codesystem: HL7V3.0
+    umlscode: CreeMontagnais
+
+
+2.16.840.1.113883.11.18136:
+    codesystem: HL7V3.0
+    umlscode: Cree
+
+
+2.16.840.1.113883.11.18142:
+    codesystem: HL7V3.0
+    umlscode: Arapahoan
+
+
+2.16.840.1.113883.11.18143:
+    codesystem: HL7V3.0
+    umlscode: ArapahoGrosVentre
+
+
+2.16.840.1.113883.11.18156:
+    codesystem: HL7V3.0
+    umlscode: Ojibwayan
+
+
+2.16.840.1.113883.11.18164:
+    codesystem: HL7V3.0
+    umlscode: SaukFoxKickapoo
+
+
+2.16.840.1.113883.11.18171:
+    codesystem: HL7V3.0
+    umlscode: EasternAlgonquin
+
+
+2.16.840.1.113883.11.18174:
+    codesystem: HL7V3.0
+    umlscode: Abenakian
+
+
+2.16.840.1.113883.11.18184:
+    codesystem: HL7V3.0
+    umlscode: Delawaran
+
+
+2.16.840.1.113883.11.18189:
+    codesystem: HL7V3.0
+    umlscode: Ritwan
+
+
+2.16.840.1.113883.11.18191:
+    codesystem: HL7V3.0
+    umlscode: EskimoAleut
+
+
+2.16.840.1.113883.11.18192:
+    codesystem: HL7V3.0
+    umlscode: Eskimoan
+
+
+2.16.840.1.113883.11.18193:
+    codesystem: HL7V3.0
+    umlscode: SirenikskiYupik
+
+
+2.16.840.1.113883.11.18210:
+    codesystem: HL7V3.0
+    umlscode: InuitInupiaq
+
+
+2.16.840.1.113883.11.18221:
+    codesystem: HL7V3.0
+    umlscode: Aleut
+
+
+2.16.840.1.113883.11.18223:
+    codesystem: HL7V3.0
+    umlscode: Caddoan
+
+
+2.16.840.1.113883.11.18224:
+    codesystem: HL7V3.0
+    umlscode: NorthernCaddoan
+
+
+2.16.840.1.113883.11.18233:
+    codesystem: HL7V3.0
+    umlscode: SouthernCaddoan
+
+
+2.16.840.1.113883.11.18238:
+    codesystem: HL7V3.0
+    umlscode: Chimakuan
+
+
+2.16.840.1.113883.11.18241:
+    codesystem: HL7V3.0
+    umlscode: Hokan
+
+
+2.16.840.1.113883.11.18244:
+    codesystem: HL7V3.0
+    umlscode: Shasta
+
+
+2.16.840.1.113883.11.18248:
+    codesystem: HL7V3.0
+    umlscode: Palaihnihan
+
+
+2.16.840.1.113883.11.18253:
+    codesystem: HL7V3.0
+    umlscode: Pomoan
+
+
+2.16.840.1.113883.11.18274:
+    codesystem: HL7V3.0
+    umlscode: CochimiYuman
+
+
+2.16.840.1.113883.11.18275:
+    codesystem: HL7V3.0
+    umlscode: Yuman
+
+
+2.16.840.1.113883.11.18276:
+    codesystem: HL7V3.0
+    umlscode: Pai
+
+
+2.16.840.1.113883.11.18282:
+    codesystem: HL7V3.0
+    umlscode: River
+
+
+2.16.840.1.113883.11.18291:
+    codesystem: HL7V3.0
+    umlscode: DeltaCalifornia
+
+
+2.16.840.1.113883.11.18292:
+    codesystem: HL7V3.0
+    umlscode: Diegueno
+
+
+2.16.840.1.113883.11.18306:
+    codesystem: HL7V3.0
+    umlscode: Iroquoian
+
+
+2.16.840.1.113883.11.18307:
+    codesystem: HL7V3.0
+    umlscode: NorthernIroquoian
+
+
+2.16.840.1.113883.11.18319:
+    codesystem: HL7V3.0
+    umlscode: Keresan
+
+
+2.16.840.1.113883.11.18327:
+    codesystem: HL7V3.0
+    umlscode: KiowaTanoan
+
+
+2.16.840.1.113883.11.18331:
+    codesystem: HL7V3.0
+    umlscode: Tiwa
+
+
+2.16.840.1.113883.11.18338:
+    codesystem: HL7V3.0
+    umlscode: Muskogean
+
+
+2.16.840.1.113883.11.18339:
+    codesystem: HL7V3.0
+    umlscode: WesternMuskogean
+
+
+2.16.840.1.113883.11.18342:
+    codesystem: HL7V3.0
+    umlscode: CentralMuskogean
+
+
+2.16.840.1.113883.11.18352:
+    codesystem: HL7V3.0
+    umlscode: Nadene
+
+
+2.16.840.1.113883.11.18356:
+    codesystem: HL7V3.0
+    umlscode: AthapaskanEyak
+
+
+2.16.840.1.113883.11.18358:
+    codesystem: HL7V3.0
+    umlscode: Athapaskan
+
+
+2.16.840.1.113883.11.18359:
+    codesystem: HL7V3.0
+    umlscode: SouthernAlaska
+
+
+2.16.840.1.113883.11.18365:
+    codesystem: HL7V3.0
+    umlscode: CentralAlaskaYukon
+
+
+2.16.840.1.113883.11.18366:
+    codesystem: HL7V3.0
+    umlscode: KoyukonIngalik
+
+
+2.16.840.1.113883.11.18371:
+    codesystem: HL7V3.0
+    umlscode: TananaTutchone
+
+
+2.16.840.1.113883.11.18374:
+    codesystem: HL7V3.0
+    umlscode: Tanana
+
+
+2.16.840.1.113883.11.18379:
+    codesystem: HL7V3.0
+    umlscode: KutchinHan
+
+
+2.16.840.1.113883.11.18386:
+    codesystem: HL7V3.0
+    umlscode: PacificCoastAthapaskan
+
+
+2.16.840.1.113883.11.18387:
+    codesystem: HL7V3.0
+    umlscode: OregonAthapaskan
+
+
+2.16.840.1.113883.11.18391:
+    codesystem: HL7V3.0
+    umlscode: CaliforniaAthapaskan
+
+
+2.16.840.1.113883.11.18399:
+    codesystem: HL7V3.0
+    umlscode: Apachean
+
+
+2.16.840.1.113883.11.18400:
+    codesystem: HL7V3.0
+    umlscode: WesternApachean
+
+
+2.16.840.1.113883.11.18407:
+    codesystem: HL7V3.0
+    umlscode: EasternApachean
+
+
+2.16.840.1.113883.11.18413:
+    codesystem: HL7V3.0
+    umlscode: Penutian
+
+
+2.16.840.1.113883.11.18414:
+    codesystem: HL7V3.0
+    umlscode: Chinookan
+
+
+2.16.840.1.113883.11.18415:
+    codesystem: HL7V3.0
+    umlscode: UpperChinook
+
+
+2.16.840.1.113883.11.18421:
+    codesystem: HL7V3.0
+    umlscode: Coosan
+
+
+2.16.840.1.113883.11.18424:
+    codesystem: HL7V3.0
+    umlscode: Takelman
+
+
+2.16.840.1.113883.11.18425:
+    codesystem: HL7V3.0
+    umlscode: Kalapuyan
+
+
+2.16.840.1.113883.11.18431:
+    codesystem: HL7V3.0
+    umlscode: Wintuan
+
+
+2.16.840.1.113883.11.18435:
+    codesystem: HL7V3.0
+    umlscode: Maiduan
+
+
+2.16.840.1.113883.11.18458:
+    codesystem: HL7V3.0
+    umlscode: Utian
+
+
+2.16.840.1.113883.11.18459:
+    codesystem: HL7V3.0
+    umlscode: Miwokan
+
+
+2.16.840.1.113883.11.18460:
+    codesystem: HL7V3.0
+    umlscode: WesternMiwok
+
+
+2.16.840.1.113883.11.18463:
+    codesystem: HL7V3.0
+    umlscode: EasternMiwok
+
+
+2.16.840.1.113883.11.18479:
+    codesystem: HL7V3.0
+    umlscode: Yokutsan
+
+
+2.16.840.1.113883.11.18498:
+    codesystem: HL7V3.0
+    umlscode: PlateauPenutian
+
+
+2.16.840.1.113883.11.18500:
+    codesystem: HL7V3.0
+    umlscode: Sahaptian
+
+
+2.16.840.1.113883.11.18511:
+    codesystem: HL7V3.0
+    umlscode: Tsimshianic
+
+
+2.16.840.1.113883.11.18518:
+    codesystem: HL7V3.0
+    umlscode: Pidgin
+
+
+2.16.840.1.113883.11.18523:
+    codesystem: HL7V3.0
+    umlscode: Salishan
+
+
+2.16.840.1.113883.11.18524:
+    codesystem: HL7V3.0
+    umlscode: CentralSalish
+
+
+2.16.840.1.113883.11.18533:
+    codesystem: HL7V3.0
+    umlscode: Tsamosan
+
+
+2.16.840.1.113883.11.18540:
+    codesystem: HL7V3.0
+    umlscode: InteriorSalish
+
+
+2.16.840.1.113883.11.18552:
+    codesystem: HL7V3.0
+    umlscode: SiouanCatawba
+
+
+2.16.840.1.113883.11.18553:
+    codesystem: HL7V3.0
+    umlscode: Siouan
+
+
+2.16.840.1.113883.11.18554:
+    codesystem: HL7V3.0
+    umlscode: MissouriRiver
+
+
+2.16.840.1.113883.11.18562:
+    codesystem: HL7V3.0
+    umlscode: MississippiValley
+
+
+2.16.840.1.113883.11.18563:
+    codesystem: HL7V3.0
+    umlscode: Dakotan
+
+
+2.16.840.1.113883.11.18580:
+    codesystem: HL7V3.0
+    umlscode: Dhegiha
+
+
+2.16.840.1.113883.11.18593:
+    codesystem: HL7V3.0
+    umlscode: ChiwereWinnebago
+
+
+2.16.840.1.113883.11.18605:
+    codesystem: HL7V3.0
+    umlscode: UtoAztecan
+
+
+2.16.840.1.113883.11.18606:
+    codesystem: HL7V3.0
+    umlscode: Numic
+
+
+2.16.840.1.113883.11.18607:
+    codesystem: HL7V3.0
+    umlscode: WesternNumic
+
+
+2.16.840.1.113883.11.18611:
+    codesystem: HL7V3.0
+    umlscode: CentralNumic
+
+
+2.16.840.1.113883.11.18617:
+    codesystem: HL7V3.0
+    umlscode: SouthernNumic
+
+
+2.16.840.1.113883.11.18621:
+    codesystem: HL7V3.0
+    umlscode: Takic
+
+
+2.16.840.1.113883.11.18622:
+    codesystem: HL7V3.0
+    umlscode: SerranoGabrielino
+
+
+2.16.840.1.113883.11.18624:
+    codesystem: HL7V3.0
+    umlscode: Cupan
+
+
+2.16.840.1.113883.11.18629:
+    codesystem: HL7V3.0
+    umlscode: Tepiman
+
+
+2.16.840.1.113883.11.18636:
+    codesystem: HL7V3.0
+    umlscode: Taracahitan
+
+
+2.16.840.1.113883.11.18637:
+    codesystem: HL7V3.0
+    umlscode: Cahitan
+
+
+2.16.840.1.113883.11.18640:
+    codesystem: HL7V3.0
+    umlscode: Wakashan
+
+
+2.16.840.1.113883.11.18641:
+    codesystem: HL7V3.0
+    umlscode: Nootkan
+
+
+2.16.840.1.113883.11.18646:
+    codesystem: HL7V3.0
+    umlscode: Yukian
+
+
+2.16.840.1.113883.11.18660:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipExcerpt
+
+
+2.16.840.1.113883.11.18875:
+    codesystem: HL7V3.0
+    umlscode: ActClassObservationSeries
+
+
+2.16.840.1.113883.11.18877:
+    codesystem: HL7V3.0
+    umlscode: CoverageRoleType
+
+
+2.16.840.1.113883.11.18899:
+    codesystem: HL7V3.0
+    umlscode: QueryStatusCode
+
+
+2.16.840.1.113883.11.18934:
+    codesystem: HL7V3.0
+    umlscode: ContextControlAdditive
+
+
+2.16.840.1.113883.11.18935:
+    codesystem: HL7V3.0
+    umlscode: ContextControlOverriding
+
+
+2.16.840.1.113883.11.18936:
+    codesystem: HL7V3.0
+    umlscode: ContextControlPropagating
+
+
+2.16.840.1.113883.11.18937:
+    codesystem: HL7V3.0
+    umlscode: ContextControlNonPropagating
+
+
+2.16.840.1.113883.11.18938:
+    codesystem: HL7V3.0
+    umlscode: ActClassDocument
+
+
+2.16.840.1.113883.11.18943:
+    codesystem: HL7V3.0
+    umlscode: x_ActMoodDocumentObservation
+
+
+2.16.840.1.113883.11.18965:
+    codesystem: HL7V3.0
+    umlscode: x_ActMoodEvnOrdPrmsPrp
+
+
+2.16.840.1.113883.11.18977:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipConditional
+
+
+2.16.840.1.113883.11.190:
+    codesystem: HL7V3.0
+    umlscode: AddressUse
+
+
+2.16.840.1.113883.11.19000:
+    codesystem: HL7V3.0
+    umlscode: x_ActRelationshipExternalReference
+
+
+2.16.840.1.113883.11.19005:
+    codesystem: HL7V3.0
+    umlscode: x_ActRelationshipPatientTransport
+
+
+2.16.840.1.113883.11.19032:
+    codesystem: HL7V3.0
+    umlscode: ParticipationIndirectTarget
+
+
+2.16.840.1.113883.11.19080:
+    codesystem: HL7V3.0
+    umlscode: x_ParticipationAuthorPerformer
+
+
+2.16.840.1.113883.11.19083:
+    codesystem: HL7V3.0
+    umlscode: x_ParticipationVrfRespSprfWit
+
+
+2.16.840.1.113883.11.19089:
+    codesystem: HL7V3.0
+    umlscode: RoleClassInactiveIngredient
+
+
+2.16.840.1.113883.11.19105:
+    codesystem: HL7V3.0
+    umlscode: RoleClassPassive
+
+
+2.16.840.1.113883.11.19175:
+    codesystem: HL7V3.0
+    umlscode: EducationLevel
+
+
+2.16.840.1.113883.11.19185:
+    codesystem: HL7V3.0
+    umlscode: ReligiousAffiliation
+
+
+2.16.840.1.113883.11.19250:
+    codesystem: HL7V3.0
+    umlscode: CodingRationale
+
+
+2.16.840.1.113883.11.19254:
+    codesystem: HL7V3.0
+    umlscode: DEADrugSchedule
+
+
+2.16.840.1.113883.11.19255:
+    codesystem: HL7V3.0
+    umlscode: FDALabelData
+
+
+2.16.840.1.113883.11.19263:
+    codesystem: HL7V3.0
+    umlscode: NDCRelatedDrugEntityType
+
+
+2.16.840.1.113883.11.19265:
+    codesystem: HL7V3.0
+    umlscode: PatientImportance
+
+
+2.16.840.1.113883.11.19298:
+    codesystem: HL7V3.0
+    umlscode: OrganizationIndustryClassNAICS
+
+
+2.16.840.1.113883.11.19313:
+    codesystem: HL7V3.0
+    umlscode: RoleClassAssociative
+
+
+2.16.840.1.113883.11.19316:
+    codesystem: HL7V3.0
+    umlscode: RoleClassMutualRelationship
+
+
+2.16.840.1.113883.11.19321:
+    codesystem: HL7V3.0
+    umlscode: ObservationSeriesType
+
+
+2.16.840.1.113883.11.19322:
+    codesystem: HL7V3.0
+    umlscode: ECGObservationSeriesType
+
+
+2.16.840.1.113883.11.19325:
+    codesystem: HL7V3.0
+    umlscode: ObservationSequenceType
+
+
+2.16.840.1.113883.11.19328:
+    codesystem: HL7V3.0
+    umlscode: ECGObservationSequenceType
+
+
+2.16.840.1.113883.11.19329:
+    codesystem: HL7V3.0
+    umlscode: AnnotationType
+
+
+2.16.840.1.113883.11.19330:
+    codesystem: HL7V3.0
+    umlscode: ECGAnnotationType
+
+
+2.16.840.1.113883.11.19331:
+    codesystem: HL7V3.0
+    umlscode: ECGControlVariable
+
+
+2.16.840.1.113883.11.19332:
+    codesystem: HL7V3.0
+    umlscode: AnnotationValue
+
+
+2.16.840.1.113883.11.19333:
+    codesystem: HL7V3.0
+    umlscode: ECGAnnotationValue
+
+
+2.16.840.1.113883.11.19334:
+    codesystem: HL7V3.0
+    umlscode: ECGLeadTypeMDC
+
+
+2.16.840.1.113883.11.19335:
+    codesystem: HL7V3.0
+    umlscode: ECGAnnotationTypeMDC
+
+
+2.16.840.1.113883.11.19336:
+    codesystem: HL7V3.0
+    umlscode: ECGControlVariableMDC
+
+
+2.16.840.1.113883.11.19337:
+    codesystem: HL7V3.0
+    umlscode: ECGBeatTypeMDC
+
+
+2.16.840.1.113883.11.19338:
+    codesystem: HL7V3.0
+    umlscode: ECGWaveComponentTypeMDC
+
+
+2.16.840.1.113883.11.19339:
+    codesystem: HL7V3.0
+    umlscode: ECGRhythmTypeMDC
+
+
+2.16.840.1.113883.11.19340:
+    codesystem: HL7V3.0
+    umlscode: ECGNoiseTypeMDC
+
+
+2.16.840.1.113883.11.19341:
+    codesystem: HL7V3.0
+    umlscode: ECGContourObservationTypeMDC
+
+
+2.16.840.1.113883.11.19342:
+    codesystem: HL7V3.0
+    umlscode: PermanentDentition
+
+
+2.16.840.1.113883.11.19343:
+    codesystem: HL7V3.0
+    umlscode: SupernumeraryTooth
+
+
+2.16.840.1.113883.11.19344:
+    codesystem: HL7V3.0
+    umlscode: PrimaryDentition
+
+
+2.16.840.1.113883.11.19345:
+    codesystem: HL7V3.0
+    umlscode: ArtificialDentition
+
+
+2.16.840.1.113883.11.19346:
+    codesystem: HL7V3.0
+    umlscode: Dentition
+
+
+2.16.840.1.113883.11.19347:
+    codesystem: HL7V3.0
+    umlscode: AdjudicatedWithAdjustments
+
+
+2.16.840.1.113883.11.19348:
+    codesystem: HL7V3.0
+    umlscode: ActInjuryCodeCSA
+
+
+2.16.840.1.113883.11.19349:
+    codesystem: HL7V3.0
+    umlscode: ActProcedureCodeCCI
+
+
+2.16.840.1.113883.11.19350:
+    codesystem: HL7V3.0
+    umlscode: ActInsurancePolicyCode
+
+
+2.16.840.1.113883.11.19352:
+    codesystem: HL7V3.0
+    umlscode: x_AccommodationRequestorRole
+
+
+2.16.840.1.113883.11.19355:
+    codesystem: HL7V3.0
+    umlscode: ActIneligibilityReason
+
+
+2.16.840.1.113883.11.19357:
+    codesystem: HL7V3.0
+    umlscode: ProductEntityType
+
+
+2.16.840.1.113883.11.19358:
+    codesystem: HL7V3.0
+    umlscode: AcknowledgementDetailType
+
+
+2.16.840.1.113883.11.19359:
+    codesystem: HL7V3.0
+    umlscode: CodeSystemType
+
+
+2.16.840.1.113883.11.19360:
+    codesystem: HL7V3.0
+    umlscode: ConceptStatus
+
+
+2.16.840.1.113883.11.19361:
+    codesystem: HL7V3.0
+    umlscode: ConceptPropertyId
+
+
+2.16.840.1.113883.11.19362:
+    codesystem: HL7V3.0
+    umlscode: ValueSetPropertyId
+
+
+2.16.840.1.113883.11.19363:
+    codesystem: HL7V3.0
+    umlscode: ConceptCodeRelationship
+
+
+2.16.840.1.113883.11.19364:
+    codesystem: HL7V3.0
+    umlscode: ActListCode
+
+
+2.16.840.1.113883.11.19366:
+    codesystem: HL7V3.0
+    umlscode: x_InformationRecipient
+
+
+2.16.840.1.113883.11.19367:
+    codesystem: HL7V3.0
+    umlscode: x_DocumentEntrySubject
+
+
+2.16.840.1.113883.11.19368:
+    codesystem: HL7V3.0
+    umlscode: x_DocumentSubject
+
+
+2.16.840.1.113883.11.19369:
+    codesystem: HL7V3.0
+    umlscode: ActMedicationList
+
+
+2.16.840.1.113883.11.19370:
+    codesystem: HL7V3.0
+    umlscode: ActObservationList
+
+
+2.16.840.1.113883.11.19371:
+    codesystem: HL7V3.0
+    umlscode: x_ActMoodDefEvnRqoPrmsPrp
+
+
+2.16.840.1.113883.11.19372:
+    codesystem: HL7V3.0
+    umlscode: x_ActMoodRqoPrpAptArq
+
+
+2.16.840.1.113883.11.19373:
+    codesystem: HL7V3.0
+    umlscode: HL7V3.0StandardVersionCode
+
+
+2.16.840.1.113883.11.19375:
+    codesystem: HL7V3.0
+    umlscode: x_ActMoodDefEvn
+
+
+2.16.840.1.113883.11.19376:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipReason
+
+
+2.16.840.1.113883.11.19377:
+    codesystem: HL7V3.0
+    umlscode: SubstanceAdminSubstitutionReason
+
+
+2.16.840.1.113883.11.19378:
+    codesystem: HL7V3.0
+    umlscode: DecisionObservationMethod
+
+
+2.16.840.1.113883.11.19379:
+    codesystem: HL7V3.0
+    umlscode: AlgorithmicDecisionObservationMethod
+
+
+2.16.840.1.113883.11.19380:
+    codesystem: HL7V3.0
+    umlscode: x_AdverseEventCausalityAssessmentMethods
+
+
+2.16.840.1.113883.11.19381:
+    codesystem: HL7V3.0
+    umlscode: x_AdverseEventReporterQualificationRoleCode
+
+
+2.16.840.1.113883.11.19382:
+    codesystem: HL7V3.0
+    umlscode: x_RoleClassAccommodationRequestor
+
+
+2.16.840.1.113883.11.19383:
+    codesystem: HL7V3.0
+    umlscode: ActAdjudicationInformationCode
+
+
+2.16.840.1.113883.11.19385:
+    codesystem: HL7V3.0
+    umlscode: ActAdjudicationReason
+
+
+2.16.840.1.113883.11.19388:
+    codesystem: HL7V3.0
+    umlscode: ActBillableClinicalServiceReason
+
+
+2.16.840.1.113883.11.19390:
+    codesystem: HL7V3.0
+    umlscode: InjuryObservationValue
+
+
+2.16.840.1.113883.11.19394:
+    codesystem: HL7V3.0
+    umlscode: HealthCareCommonProcedureCodingSystem
+
+
+2.16.840.1.113883.11.19395:
+    codesystem: HL7V3.0
+    umlscode: x_RoleClassPayeePolicyRelationship
+
+
+2.16.840.1.113883.11.19397:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceElementCode
+
+
+2.16.840.1.113883.11.19398:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceGroupCode
+
+
+2.16.840.1.113883.11.19399:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceRootGroupCode
+
+
+2.16.840.1.113883.11.19400:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceInterGroupCode
+
+
+2.16.840.1.113883.11.19401:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceDetailCode
+
+
+2.16.840.1.113883.11.19402:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceDetailDrugProductCode
+
+
+2.16.840.1.113883.11.19404:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceDetailClinicalProductCode
+
+
+2.16.840.1.113883.11.19405:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceDetailClinicalServiceCode
+
+
+2.16.840.1.113883.11.19406:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceDetailPreferredAccommodationCode
+
+
+2.16.840.1.113883.11.19407:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceDetailGenericCode
+
+
+2.16.840.1.113883.11.19408:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceDetailGenericProviderCode
+
+
+2.16.840.1.113883.11.19409:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceDetailTaxCode
+
+
+2.16.840.1.113883.11.19410:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceDetailGenericModifierCode
+
+
+2.16.840.1.113883.11.19411:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceDetailGenericAdjudicatorCode
+
+
+2.16.840.1.113883.11.19412:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceAdjudicationPaymentCode
+
+
+2.16.840.1.113883.11.19413:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceAdjudicationPaymentSummaryCode
+
+
+2.16.840.1.113883.11.19414:
+    codesystem: HL7V3.0
+    umlscode: ActInvoiceAdjudicationPaymentGroupCode
+
+
+2.16.840.1.113883.11.19415:
+    codesystem: HL7V3.0
+    umlscode: x_ActInvoiceDetailPharmacyCode
+
+
+2.16.840.1.113883.11.19416:
+    codesystem: HL7V3.0
+    umlscode: x_ActInvoiceDetailPreferredAccommodationCode
+
+
+2.16.840.1.113883.11.19417:
+    codesystem: HL7V3.0
+    umlscode: ResearchSubjectRoleBasis
+
+
+2.16.840.1.113883.11.19427:
+    codesystem: HL7V3.0
+    umlscode: HL7V3.0TriggerEventCode
+
+
+2.16.840.1.113883.11.19428:
+    codesystem: HL7V3.0
+    umlscode: ActFinancialDetectedIssueCode
+
+
+2.16.840.1.113883.11.19429:
+    codesystem: HL7V3.0
+    umlscode: ActAdministrativeDetectedIssueCode
+
+
+2.16.840.1.113883.11.19430:
+    codesystem: HL7V3.0
+    umlscode: ActFinancialDetectedIssueManagementCode
+
+
+2.16.840.1.113883.11.19431:
+    codesystem: HL7V3.0
+    umlscode: ActAdministrativeDetectedIssueManagementCode
+
+
+2.16.840.1.113883.11.19432:
+    codesystem: HL7V3.0
+    umlscode: CanadianActInvoiceDetailClinicalProductCode
+
+
+2.16.840.1.113883.11.19433:
+    codesystem: HL7V3.0
+    umlscode: CanadianActProcedureCode
+
+
+2.16.840.1.113883.11.19434:
+    codesystem: HL7V3.0
+    umlscode: CanadianActInvoiceDetailClinicalServiceCode 
+
+
+2.16.840.1.113883.11.19435:
+    codesystem: HL7V3.0
+    umlscode: CanadianProductEntityType
+
+
+2.16.840.1.113883.11.19436:
+    codesystem: HL7V3.0
+    umlscode: CanadianDiagnosisCode
+
+
+2.16.840.1.113883.11.19437:
+    codesystem: HL7V3.0
+    umlscode: CanadianWorkInjuryOrDiseaseCode
+
+
+2.16.840.1.113883.11.19438:
+    codesystem: HL7V3.0
+    umlscode: InjuryActSite
+
+
+2.16.840.1.113883.11.19439:
+    codesystem: HL7V3.0
+    umlscode: CanadianActInjurySite
+
+
+2.16.840.1.113883.11.19440:
+    codesystem: HL7V3.0
+    umlscode: ActBillableTreatmentPlanCode
+
+
+2.16.840.1.113883.11.19441:
+    codesystem: HL7V3.0
+    umlscode: ActClassExtract
+
+
+2.16.840.1.113883.11.19442:
+    codesystem: HL7V3.0
+    umlscode: ActClassComposition
+
+
+2.16.840.1.113883.11.19443:
+    codesystem: HL7V3.0
+    umlscode: ActClassOrganizer
+
+
+2.16.840.1.113883.11.19444:
+    codesystem: HL7V3.0
+    umlscode: ActClassEntry
+
+
+2.16.840.1.113883.11.19445:
+    codesystem: HL7V3.0
+    umlscode: ActClassContainer
+
+
+2.16.840.1.113883.11.19446:
+    codesystem: HL7V3.0
+    umlscode: x_ActRelationshipEntry
+
+
+2.16.840.1.113883.11.19447:
+    codesystem: HL7V3.0
+    umlscode: x_ActRelationshipEntryRelationship
+
+
+2.16.840.1.113883.11.19449:
+    codesystem: HL7V3.0
+    umlscode: HL7V3.0ITSVersionCode
+
+
+2.16.840.1.113883.11.19450:
+    codesystem: HL7V3.0
+    umlscode: DedicatedServiceDeliveryLocationRoleType
+
+
+2.16.840.1.113883.11.19451:
+    codesystem: HL7V3.0
+    umlscode: IncidentalServiceDeliveryLocationRoleType
+
+
+2.16.840.1.113883.11.19452:
+    codesystem: HL7V3.0
+    umlscode: DedicatedNonClinicalLocationRoleType
+
+
+2.16.840.1.113883.11.19453:
+    codesystem: HL7V3.0
+    umlscode: USEncounterDischargeDisposition
+
+
+2.16.840.1.113883.11.19454:
+    codesystem: HL7V3.0
+    umlscode: USEncounterReferralSource
+
+
+2.16.840.1.113883.11.19455:
+    codesystem: HL7V3.0
+    umlscode: State
+
+
+2.16.840.1.113883.11.19456:
+    codesystem: HL7V3.0
+    umlscode: x_ActEncounterReason
+
+
+2.16.840.1.113883.11.19457:
+    codesystem: HL7V3.0
+    umlscode: x_EncounterAdmissionUrgency
+
+
+2.16.840.1.113883.11.19458:
+    codesystem: HL7V3.0
+    umlscode: x_DocumentActMood
+
+
+2.16.840.1.113883.11.19459:
+    codesystem: HL7V3.0
+    umlscode: x_DocumentEncounterMood
+
+
+2.16.840.1.113883.11.19460:
+    codesystem: HL7V3.0
+    umlscode: x_DocumentProcedureMood
+
+
+2.16.840.1.113883.11.19461:
+    codesystem: HL7V3.0
+    umlscode: x_DocumentSubstanceMood
+
+
+2.16.840.1.113883.11.19462:
+    codesystem: HL7V3.0
+    umlscode: x_EntityClassDocumentReceiving
+
+
+2.16.840.1.113883.11.19463:
+    codesystem: HL7V3.0
+    umlscode: x_EntityClassPersonOrOrgReceiving
+
+
+2.16.840.1.113883.11.19464:
+    codesystem: HL7V3.0
+    umlscode: SpecimenEntityType
+
+
+2.16.840.1.113883.11.19465:
+    codesystem: HL7V3.0
+    umlscode: NUCCProviderCodes
+
+
+2.16.840.1.113883.11.19466:
+    codesystem: HL7V3.0
+    umlscode: NursingServiceProvidersProviderCodes
+
+
+2.16.840.1.113883.11.19467:
+    codesystem: HL7V3.0
+    umlscode: RegisteredNurseProviderCodes
+
+
+2.16.840.1.113883.11.19468:
+    codesystem: HL7V3.0
+    umlscode: RespiratoryRehabilitativeandRestorativeServiceProvidersProviderCodes
+
+
+2.16.840.1.113883.11.19469:
+    codesystem: HL7V3.0
+    umlscode: OccupationalTherapistProviderCodes
+
+
+2.16.840.1.113883.11.19470:
+    codesystem: HL7V3.0
+    umlscode: PhysicalTherapistProviderCodes
+
+
+2.16.840.1.113883.11.19471:
+    codesystem: HL7V3.0
+    umlscode: RehabilitationCounselorProviderCodes
+
+
+2.16.840.1.113883.11.19472:
+    codesystem: HL7V3.0
+    umlscode: RespiratoryTherapistCertifiedProviderCodes
+
+
+2.16.840.1.113883.11.19473:
+    codesystem: HL7V3.0
+    umlscode: RespiratoryTherapistRegisteredProviderCodes
+
+
+2.16.840.1.113883.11.19474:
+    codesystem: HL7V3.0
+    umlscode: SpecialistTechnologistProviderCodes
+
+
+2.16.840.1.113883.11.19475:
+    codesystem: HL7V3.0
+    umlscode: NursingServiceRelatedProvidersProviderCodes
+
+
+2.16.840.1.113883.11.19476:
+    codesystem: HL7V3.0
+    umlscode: TechnicianProviderCodes
+
+
+2.16.840.1.113883.11.19477:
+    codesystem: HL7V3.0
+    umlscode: PharmacyServiceProvidersProviderCodes
+
+
+2.16.840.1.113883.11.19478:
+    codesystem: HL7V3.0
+    umlscode: PharmacistProviderCodes
+
+
+2.16.840.1.113883.11.19479:
+    codesystem: HL7V3.0
+    umlscode: TechnologistTechnicianandOtherTechnicalServiceProvidersProviderCodes
+
+
+2.16.840.1.113883.11.19480:
+    codesystem: HL7V3.0
+    umlscode: SpecialistTechnologistPathologyProviderCodes
+
+
+2.16.840.1.113883.11.19481:
+    codesystem: HL7V3.0
+    umlscode: TechnicianHealthInformationProviderCodes
+
+
+2.16.840.1.113883.11.19482:
+    codesystem: HL7V3.0
+    umlscode: TechnicianOtherProviderCodes
+
+
+2.16.840.1.113883.11.19483:
+    codesystem: HL7V3.0
+    umlscode: TechnicianPathologyProviderCodes
+
+
+2.16.840.1.113883.11.19484:
+    codesystem: HL7V3.0
+    umlscode: RadiologicTechnologistProviderCodes
+
+
+2.16.840.1.113883.11.19485:
+    codesystem: HL7V3.0
+    umlscode: SpecialistTechnologistCardiovascularProviderCodes
+
+
+2.16.840.1.113883.11.19486:
+    codesystem: HL7V3.0
+    umlscode: SpecialistTechnologistHealthInformationProviderCodes
+
+
+2.16.840.1.113883.11.19487:
+    codesystem: HL7V3.0
+    umlscode: SpecialistTechnologistOtherProviderCodes
+
+
+2.16.840.1.113883.11.19488:
+    codesystem: HL7V3.0
+    umlscode: BehavioralHealthandSocialServiceProvidersProviderCodes
+
+
+2.16.840.1.113883.11.19489:
+    codesystem: HL7V3.0
+    umlscode: SocialWorkerProviderCodes
+
+
+2.16.840.1.113883.11.19490:
+    codesystem: HL7V3.0
+    umlscode: CounselorProviderCodes
+
+
+2.16.840.1.113883.11.19491:
+    codesystem: HL7V3.0
+    umlscode: NeuropsychologistProviderCodes
+
+
+2.16.840.1.113883.11.19492:
+    codesystem: HL7V3.0
+    umlscode: PsychologistProviderCodes
+
+
+2.16.840.1.113883.11.19493:
+    codesystem: HL7V3.0
+    umlscode: PhysicianAssistantsandAdvancedPracticeNursingProvidersProviderCodes
+
+
+2.16.840.1.113883.11.19494:
+    codesystem: HL7V3.0
+    umlscode: ClinicalNurseSpecialistProviderCodes
+
+
+2.16.840.1.113883.11.19495:
+    codesystem: HL7V3.0
+    umlscode: NursePractitionerProviderCodes
+
+
+2.16.840.1.113883.11.19496:
+    codesystem: HL7V3.0
+    umlscode: PhysicianAssistantProviderCodes
+
+
+2.16.840.1.113883.11.19497:
+    codesystem: HL7V3.0
+    umlscode: AmbulatoryHealthCareFacilitiesProviderCodes
+
+
+2.16.840.1.113883.11.19498:
+    codesystem: HL7V3.0
+    umlscode: Clinic/CenterProviderCodes
+
+
+2.16.840.1.113883.11.19499:
+    codesystem: HL7V3.0
+    umlscode: DietaryandNutritionalServiceProvidersProviderCodes
+
+
+2.16.840.1.113883.11.19500:
+    codesystem: HL7V3.0
+    umlscode: DietitianRegisteredProviderCodes
+
+
+2.16.840.1.113883.11.19501:
+    codesystem: HL7V3.0
+    umlscode: NutritionistProviderCodes
+
+
+2.16.840.1.113883.11.19502:
+    codesystem: HL7V3.0
+    umlscode: HospitalUnitsProviderCodes
+
+
+2.16.840.1.113883.11.19503:
+    codesystem: HL7V3.0
+    umlscode: RespiteCareFacilityProviderCodes
+
+
+2.16.840.1.113883.11.19504:
+    codesystem: HL7V3.0
+    umlscode: SuppliersProviderCodes
+
+
+2.16.840.1.113883.11.19505:
+    codesystem: HL7V3.0
+    umlscode: DurableMedicalEquipmentandMedicalSuppliesProviderCodes
+
+
+2.16.840.1.113883.11.19506:
+    codesystem: HL7V3.0
+    umlscode: HospitalsProviderCodes
+
+
+2.16.840.1.113883.11.19507:
+    codesystem: HL7V3.0
+    umlscode: ChronicDiseaseHospitalProviderCodes
+
+
+2.16.840.1.113883.11.19508:
+    codesystem: HL7V3.0
+    umlscode: GeneralAcuteCareHospitalProviderCodes
+
+
+2.16.840.1.113883.11.19509:
+    codesystem: HL7V3.0
+    umlscode: MilitaryHospitalProviderCodes
+
+
+2.16.840.1.113883.11.19510:
+    codesystem: HL7V3.0
+    umlscode: RehabilitationHospitalProviderCodes
+
+
+2.16.840.1.113883.11.19511:
+    codesystem: HL7V3.0
+    umlscode: LaboratoriesProviderCodes
+
+
+2.16.840.1.113883.11.19512:
+    codesystem: HL7V3.0
+    umlscode: ResidentialTreatmentFacilitiesProviderCodes
+
+
+2.16.840.1.113883.11.19513:
+    codesystem: HL7V3.0
+    umlscode: AllopathicandOsteopathicPhysiciansProviderCodes
+
+
+2.16.840.1.113883.11.19514:
+    codesystem: HL7V3.0
+    umlscode: AllergyandImmunologyProviderCodes
+
+
+2.16.840.1.113883.11.19515:
+    codesystem: HL7V3.0
+    umlscode: AnesthesiologyProviderCodes
+
+
+2.16.840.1.113883.11.19516:
+    codesystem: HL7V3.0
+    umlscode: DermatologyProviderCodes
+
+
+2.16.840.1.113883.11.19517:
+    codesystem: HL7V3.0
+    umlscode: EmergencyMedicineProviderCodes
+
+
+2.16.840.1.113883.11.19518:
+    codesystem: HL7V3.0
+    umlscode: FamilyPracticeProviderCodes
+
+
+2.16.840.1.113883.11.19519:
+    codesystem: HL7V3.0
+    umlscode: InternalMedicineProviderCodes
+
+
+2.16.840.1.113883.11.19520:
+    codesystem: HL7V3.0
+    umlscode: MedicalGeneticsProviderCodes
+
+
+2.16.840.1.113883.11.19521:
+    codesystem: HL7V3.0
+    umlscode: NuclearMedicineProviderCodes
+
+
+2.16.840.1.113883.11.19522:
+    codesystem: HL7V3.0
+    umlscode: ObstetricsGynecologyProviderCodes
+
+
+2.16.840.1.113883.11.19523:
+    codesystem: HL7V3.0
+    umlscode: OrthopaedicSurgeryProviderCodes
+
+
+2.16.840.1.113883.11.19524:
+    codesystem: HL7V3.0
+    umlscode: OtolaryngologyProviderCodes
+
+
+2.16.840.1.113883.11.19525:
+    codesystem: HL7V3.0
+    umlscode: PainMedicineProviderCodes
+
+
+2.16.840.1.113883.11.19526:
+    codesystem: HL7V3.0
+    umlscode: PathologyProviderCodes
+
+
+2.16.840.1.113883.11.19527:
+    codesystem: HL7V3.0
+    umlscode: PediatricsProviderCodes
+
+
+2.16.840.1.113883.11.19528:
+    codesystem: HL7V3.0
+    umlscode: PhysicalMedicineandRehabilitationProviderCodes
+
+
+2.16.840.1.113883.11.19529:
+    codesystem: HL7V3.0
+    umlscode: PlasticSurgeryProviderCodes
+
+
+2.16.840.1.113883.11.19530:
+    codesystem: HL7V3.0
+    umlscode: PreventiveMedicineProviderCodes
+
+
+2.16.840.1.113883.11.19531:
+    codesystem: HL7V3.0
+    umlscode: PsychiatryandNeurologyProviderCodes
+
+
+2.16.840.1.113883.11.19532:
+    codesystem: HL7V3.0
+    umlscode: RadiologyProviderCodes
+
+
+2.16.840.1.113883.11.19533:
+    codesystem: HL7V3.0
+    umlscode: SurgeryProviderCodes
+
+
+2.16.840.1.113883.11.19534:
+    codesystem: HL7V3.0
+    umlscode: DentalProvidersProviderCodes
+
+
+2.16.840.1.113883.11.19535:
+    codesystem: HL7V3.0
+    umlscode: DentistProviderCodes
+
+
+2.16.840.1.113883.11.19536:
+    codesystem: HL7V3.0
+    umlscode: ManagedCareOrganizationsProviderCodes
+
+
+2.16.840.1.113883.11.19537:
+    codesystem: HL7V3.0
+    umlscode: PodiatricMedicineandSurgeryProvidersProviderCodes
+
+
+2.16.840.1.113883.11.19538:
+    codesystem: HL7V3.0
+    umlscode: PodiatristProviderCodes
+
+
+2.16.840.1.113883.11.19539:
+    codesystem: HL7V3.0
+    umlscode: EmergencyMedicalServiceProvidersProviderCodes
+
+
+2.16.840.1.113883.11.19540:
+    codesystem: HL7V3.0
+    umlscode: NursingandCustodialCareFacilitiesProviderCodes
+
+
+2.16.840.1.113883.11.19541:
+    codesystem: HL7V3.0
+    umlscode: OtherServiceProvidersProviderCodes
+
+
+2.16.840.1.113883.11.19542:
+    codesystem: HL7V3.0
+    umlscode: ContractorProviderCodes
+
+
+2.16.840.1.113883.11.19543:
+    codesystem: HL7V3.0
+    umlscode: SpecialistProviderCodes
+
+
+2.16.840.1.113883.11.19544:
+    codesystem: HL7V3.0
+    umlscode: VeterinarianProviderCodes
+
+
+2.16.840.1.113883.11.19545:
+    codesystem: HL7V3.0
+    umlscode: TransportationServicesProviderCodes
+
+
+2.16.840.1.113883.11.19546:
+    codesystem: HL7V3.0
+    umlscode: AmbulanceProviderCodes
+
+
+2.16.840.1.113883.11.19547:
+    codesystem: HL7V3.0
+    umlscode: AgenciesProviderCodes
+
+
+2.16.840.1.113883.11.19548:
+    codesystem: HL7V3.0
+    umlscode: SpeechLanguageandHearingProvidersProviderCodes
+
+
+2.16.840.1.113883.11.19549:
+    codesystem: HL7V3.0
+    umlscode: AudiologistProviderCodes
+
+
+2.16.840.1.113883.11.19550:
+    codesystem: HL7V3.0
+    umlscode: Specialist/TechnologistProviderCodes
+
+
+2.16.840.1.113883.11.19551:
+    codesystem: HL7V3.0
+    umlscode: EyeandVisionServiceProvidersProviderCodes
+
+
+2.16.840.1.113883.11.19552:
+    codesystem: HL7V3.0
+    umlscode: OptometristProviderCodes
+
+
+2.16.840.1.113883.11.19553:
+    codesystem: HL7V3.0
+    umlscode: TechnicianTechnologistProviderCodes
+
+
+2.16.840.1.113883.11.19554:
+    codesystem: HL7V3.0
+    umlscode: ChiropracticProvidersProviderCodes
+
+
+2.16.840.1.113883.11.19555:
+    codesystem: HL7V3.0
+    umlscode: ChiropractorProviderCodes
+
+
+2.16.840.1.113883.11.19556:
+    codesystem: HL7V3.0
+    umlscode: GroupProviderCodes
+
+
+2.16.840.1.113883.11.19557:
+    codesystem: HL7V3.0
+    umlscode: AssistedLivingFacilityProviderCodes
+
+
+2.16.840.1.113883.11.19558:
+    codesystem: HL7V3.0
+    umlscode: CustodialCareFacilityProviderCodes
+
+
+2.16.840.1.113883.11.19559:
+    codesystem: HL7V3.0
+    umlscode: SkilledNursingFacilityProviderCodes
+
+
+2.16.840.1.113883.11.19560:
+    codesystem: HL7V3.0
+    umlscode: SubstanceAbuseDisorderRehabilitationFacilityProviderCodes
+
+
+2.16.840.1.113883.11.19561:
+    codesystem: HL7V3.0
+    umlscode: RespiteCareProviderCodes
+
+
+2.16.840.1.113883.11.19562:
+    codesystem: HL7V3.0
+    umlscode: x_ActRelationshipPertinentInfo
+
+
+2.16.840.1.113883.11.19563:
+    codesystem: HL7V3.0
+    umlscode: PersonalRelationshipRoleType
+
+
+2.16.840.1.113883.11.19564:
+    codesystem: HL7V3.0
+    umlscode: AdoptedChild
+
+
+2.16.840.1.113883.11.19565:
+    codesystem: HL7V3.0
+    umlscode: FosterChild
+
+
+2.16.840.1.113883.11.19566:
+    codesystem: HL7V3.0
+    umlscode: ChildInLaw
+
+
+2.16.840.1.113883.11.19567:
+    codesystem: HL7V3.0
+    umlscode: StepChild
+
+
+2.16.840.1.113883.11.19568:
+    codesystem: HL7V3.0
+    umlscode: NaturalParent
+
+
+2.16.840.1.113883.11.19569:
+    codesystem: HL7V3.0
+    umlscode: ParentInLaw
+
+
+2.16.840.1.113883.11.19570:
+    codesystem: HL7V3.0
+    umlscode: StepParent
+
+
+2.16.840.1.113883.11.19571:
+    codesystem: HL7V3.0
+    umlscode: GreatGrandparent
+
+
+2.16.840.1.113883.11.19572:
+    codesystem: HL7V3.0
+    umlscode: Spouse
+
+
+2.16.840.1.113883.11.19573:
+    codesystem: HL7V3.0
+    umlscode: GrandChild
+
+
+2.16.840.1.113883.11.19574:
+    codesystem: HL7V3.0
+    umlscode: NieceNephew
+
+
+2.16.840.1.113883.11.19575:
+    codesystem: HL7V3.0
+    umlscode: NaturalSibling
+
+
+2.16.840.1.113883.11.19576:
+    codesystem: HL7V3.0
+    umlscode: HalfSibling
+
+
+2.16.840.1.113883.11.19577:
+    codesystem: HL7V3.0
+    umlscode: StepSibling
+
+
+2.16.840.1.113883.11.19578:
+    codesystem: HL7V3.0
+    umlscode: SiblingInLaw
+
+
+2.16.840.1.113883.11.19579:
+    codesystem: HL7V3.0
+    umlscode: FamilyMember
+
+
+2.16.840.1.113883.11.19580:
+    codesystem: HL7V3.0
+    umlscode: ActClassCondition
+
+
+2.16.840.1.113883.11.19581:
+    codesystem: HL7V3.0
+    umlscode: MessageWaitingPriority
+
+
+2.16.840.1.113883.11.19584:
+    codesystem: HL7V3.0
+    umlscode: ParticipationTargetSubject
+
+
+2.16.840.1.113883.11.19585:
+    codesystem: HL7V3.0
+    umlscode: MobileUnit
+
+
+2.16.840.1.113883.11.19586:
+    codesystem: HL7V3.0
+    umlscode: ActOrderCode
+
+
+2.16.840.1.113883.11.19587:
+    codesystem: HL7V3.0
+    umlscode: ActClassTemporallyPertains
+
+
+2.16.840.1.113883.11.19588:
+    codesystem: HL7V3.0
+    umlscode: x_ParticipationEntVrf
+
+
+2.16.840.1.113883.11.19589:
+    codesystem: HL7V3.0
+    umlscode: x_ParticipationPrfEntVrf
+
+
+2.16.840.1.113883.11.19598:
+    codesystem: HL7V3.0
+    umlscode: x_ActClassDocumentEntryOrganizer
+
+
+2.16.840.1.113883.11.19599:
+    codesystem: HL7V3.0
+    umlscode: x_ActClassDocumentEntryAct
+
+
+2.16.840.1.113883.11.19600:
+    codesystem: HL7V3.0
+    umlscode: x_EncounterParticipant
+
+
+2.16.840.1.113883.11.19601:
+    codesystem: HL7V3.0
+    umlscode: x_ServiceEventPerformer
+
+
+2.16.840.1.113883.11.19602:
+    codesystem: HL7V3.0
+    umlscode: StyleType
+
+
+2.16.840.1.113883.11.19603:
+    codesystem: HL7V3.0
+    umlscode: FontStyle 
+
+
+2.16.840.1.113883.11.19604:
+    codesystem: HL7V3.0
+    umlscode: TableRuleStyle
+
+
+2.16.840.1.113883.11.19605:
+    codesystem: HL7V3.0
+    umlscode: ListStyle
+
+
+2.16.840.1.113883.11.19606:
+    codesystem: HL7V3.0
+    umlscode: OrderedListStyle
+
+
+2.16.840.1.113883.11.19607:
+    codesystem: HL7V3.0
+    umlscode: UnorderedListStyle
+
+
+2.16.840.1.113883.11.19608:
+    codesystem: HL7V3.0
+    umlscode: OrganizationEntityType
+
+
+2.16.840.1.113883.11.19609:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipPosting
+
+
+2.16.840.1.113883.11.19610:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipCostTracking
+
+
+2.16.840.1.113883.11.19611:
+    codesystem: HL7V3.0
+    umlscode: EntityNameSearchUse
+
+
+2.16.840.1.113883.11.19612:
+    codesystem: HL7V3.0
+    umlscode: SignificantOtherRoleType
+
+
+2.16.840.1.113883.11.19613:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipSubset
+
+
+2.16.840.1.113883.11.19614:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipPastSubset
+
+
+2.16.840.1.113883.11.19615:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipExpectedSubset
+
+
+2.16.840.1.113883.11.19616:
+    codesystem: HL7V3.0
+    umlscode: PrescriptionObservationType
+
+
+2.16.840.1.113883.11.19617:
+    codesystem: HL7V3.0
+    umlscode: ActRelationshipObjective
+
+
+2.16.840.1.113883.11.19618:
+    codesystem: HL7V3.0
+    umlscode: PackagedDrugProductEntity
+
+
+2.16.840.1.113883.11.19619:
+    codesystem: HL7V3.0
+    umlscode: AuthorizationIssueManagementCode
+
+
+2.16.840.1.113883.11.19620:
+    codesystem: HL7V3.0
+    umlscode: ActAdministrativeAuthorizationDetectedIssueCode
+
+
+2.16.840.1.113883.11.19621:
+    codesystem: HL7V3.0
+    umlscode: ActAdministrativeRuleDetectedIssueCode
+
+
+2.16.840.1.113883.11.19622:
+    codesystem: HL7V3.0
+    umlscode: IndividualCaseSafetyReportType
+
+
+2.16.840.1.113883.11.19623:
+    codesystem: HL7V3.0
+    umlscode: DeviceGenericType
+
+
+2.16.840.1.113883.11.19624:
+    codesystem: HL7V3.0
+    umlscode: IndividualCaseSafetyReportSenderType
+
+
+2.16.840.1.113883.11.19625:
+    codesystem: HL7V3.0
+    umlscode: IndividualCaseSafetyReportValueDomains
+
+
+2.16.840.1.113883.11.19626:
+    codesystem: HL7V3.0
+    umlscode: CaseSeriousnessCriteria
+
+
+2.16.840.1.113883.11.19627:
+    codesystem: HL7V3.0
+    umlscode: SubjectReaction
+
+
+2.16.840.1.113883.11.19628:
+    codesystem: HL7V3.0
+    umlscode: ProductCharacterization
+
+
+2.16.840.1.113883.11.19629:
+    codesystem: HL7V3.0
+    umlscode: PertinentReactionRelatedness
+
+
+2.16.840.1.113883.11.19630:
+    codesystem: HL7V3.0
+    umlscode: SubjectReactionOutcome
+
+
+2.16.840.1.113883.11.19631:
+    codesystem: HL7V3.0
+    umlscode: SubjectReactionEmphasis
+
+
+2.16.840.1.113883.11.19632:
+    codesystem: HL7V3.0
+    umlscode: DeviceManufacturerEvaluationResult
+
+
+2.16.840.1.113883.11.19633:
+    codesystem: HL7V3.0
+    umlscode: DeviceManufacturerEvaluationInterpretation
+
+
+2.16.840.1.113883.11.19634:
+    codesystem: HL7V3.0
+    umlscode: DeviceManufacturerEvaluationMethod
+
+
+2.16.840.1.113883.11.19635:
+    codesystem: HL7V3.0
+    umlscode: ReactionActionTaken
+
+
+2.16.840.1.113883.11.19636:
+    codesystem: HL7V3.0
+    umlscode: ReasonForNotEvaluatingDevice
+
+
+2.16.840.1.113883.11.19637:
+    codesystem: HL7V3.0
+    umlscode: DeviceOperatorType
+
+
+2.16.840.1.113883.11.19638:
+    codesystem: HL7V3.0
+    umlscode: AcknowledgementDetailCode
+
+
+2.16.840.1.113883.11.19639:
+    codesystem: HL7V3.0
+    umlscode: AcknowledgementDetailSyntaxErrorCode
+
+
+2.16.840.1.113883.11.19640:
+    codesystem: HL7V3.0
+    umlscode: AcknowledgementDetailNotSupportedCode
+
+
+2.16.840.1.113883.11.19641:
+    codesystem: HL7V3.0
+    umlscode: WorkPlaceAddressUse
+
+
+2.16.840.1.113883.11.19642:
+    codesystem: HL7V3.0
+    umlscode: ActDisciplinaryActionCode
+
+
+2.16.840.1.113883.11.19643:
+    codesystem: HL7V3.0
+    umlscode: RelatedLinkType
+
+
+2.16.840.1.113883.11.19644:
+    codesystem: HL7V3.0
+    umlscode: x_ClinicalStatementObservationMood
+
+
+2.16.840.1.113883.11.19645:
+    codesystem: HL7V3.0
+    umlscode: x_ClinicalStatementSubstanceMood 
+
+
+2.16.840.1.113883.11.19646:
+    codesystem: HL7V3.0
+    umlscode: x_ClinicalStatementSupplyMood 
+
+
+2.16.840.1.113883.11.19647:
+    codesystem: HL7V3.0
+    umlscode: x_ClinicalStatementProcedureMood
+
+
+2.16.840.1.113883.11.19648:
+    codesystem: HL7V3.0
+    umlscode: x_ClinicalStatementEncounterMood
+
+
+2.16.840.1.113883.11.19649:
+    codesystem: HL7V3.0
+    umlscode: x_ClinicalStatementActMood
+
+
+2.16.840.1.113883.11.19650:
+    codesystem: HL7V3.0
+    umlscode: ResponseMode
+
+
+2.16.840.1.113883.11.19652:
+    codesystem: HL7V3.0
+    umlscode: ResourceGroupEntityType
+
+
+2.16.840.1.113883.11.19656:
+    codesystem: HL7V3.0
+    umlscode: x_LabProcessCodes
+
+
+2.16.840.1.113883.11.19657:
+    codesystem: HL7V3.0
+    umlscode: x_LabProcessClassCodes
+
+
+2.16.840.1.113883.11.19658:
+    codesystem: HL7V3.0
+    umlscode: ActObservationVerificationCode
+
+
+2.16.840.1.113883.11.19659:
+    codesystem: HL7V3.0
+    umlscode: ActInfoPersistCode
+
+
+2.16.840.1.113883.11.19660:
+    codesystem: HL7V3.0
+    umlscode: ActSpecimenLabelCode
+
+
+2.16.840.1.113883.11.19661:
+    codesystem: HL7V3.0
+    umlscode: ActSpecimenManifestCode
+
+
+2.16.840.1.113883.11.19662:
+    codesystem: HL7V3.0
+    umlscode: ActSpecimenAccessionCode
+
+
+2.16.840.1.113883.11.19663:
+    codesystem: HL7V3.0
+    umlscode: ActSpecimenTransportCode
+
+
+2.16.840.1.113883.11.19664:
+    codesystem: HL7V3.0
+    umlscode: ActClassStorage
+
+
+2.16.840.1.113883.11.19665:
+    codesystem: HL7V3.0
+    umlscode: ActClassProcedure
+
+
+2.16.840.1.113883.11.19666:
+    codesystem: HL7V3.0
+    umlscode: ActClassSpecimenCollection
+
+
+2.16.840.1.113883.11.19667:
+    codesystem: HL7V3.0
+    umlscode: x_AdministeredSubstance
+
+
+2.16.840.1.113883.11.19668:
+    codesystem: HL7V3.0
+    umlscode: x_Medicine
+
+
+2.16.840.1.113883.11.19669:
+    codesystem: HL7V3.0
+    umlscode: ActInjuryCode
+
+
+2.16.840.1.113883.11.19670:
+    codesystem: HL7V3.0
+    umlscode: x_DeterminerInstanceKind
+
+
+2.16.840.1.113883.11.19671:
+    codesystem: HL7V3.0
+    umlscode: StudentRoleType
+
+
+2.16.840.1.113883.11.19672:
+    codesystem: HL7V3.0
+    umlscode: ActClaimAttachmentCode
+
+
+2.16.840.1.113883.11.19673:
+    codesystem: HL7V3.0
+    umlscode: ActInvoicePaymentCode
+
+
+2.16.840.1.113883.11.19674:
+    codesystem: HL7V3.0
+    umlscode: ActConditionList
+
+
+2.16.840.1.113883.11.19675:
+    codesystem: HL7V3.0
+    umlscode: CountryEntityType
+
+
+2.16.840.1.113883.11.19676:
+    codesystem: HL7V3.0
+    umlscode: ParticipationInformationTranscriber
+
+
+2.16.840.1.113883.11.19677:
+    codesystem: HL7V3.0
+    umlscode: RoleClassInvestigationSubject
+
+
+2.16.840.1.113883.11.19678:
+    codesystem: HL7V3.0
+    umlscode: AdmistrativeLocationRoleType
+
+
+2.16.840.1.113883.11.19679:
+    codesystem: HL7V3.0
+    umlscode: AssignedRoleType
+
+
+2.16.840.1.113883.11.19680:
+    codesystem: HL7V3.0
+    umlscode: CommissioningPartyRoleType
+
+
+2.16.840.1.113883.11.19681:
+    codesystem: HL7V3.0
+    umlscode: EmployeeRoleType
+
+
+2.16.840.1.113883.11.19682:
+    codesystem: HL7V3.0
+    umlscode: HealthcareProviderRoleType
+
+
+2.16.840.1.113883.11.19683:
+    codesystem: HL7V3.0
+    umlscode: LicensedRoleType
+
+
+2.16.840.1.113883.11.19684:
+    codesystem: HL7V3.0
+    umlscode: OrganizationPartRoleType
+
+
+2.16.840.1.113883.11.19685:
+    codesystem: HL7V3.0
+    umlscode: QualifiedRoleType
+
+
+2.16.840.1.113883.11.19686:
+    codesystem: HL7V3.0
+    umlscode: _0272
+
+2.16.840.1.113883.11.19687:
+    codesystem: HL7V3.0
+    umlscode: _0275a
+
+
+2.16.840.1.113883.11.19688:
+    codesystem: HL7V3.0
+    umlscode: _0280
+
+2.16.840.1.113883.11.19689:
+    codesystem: HL7V3.0
+    umlscode: ActMoodProposal
+
+
+2.16.840.1.113883.11.19690:
+    codesystem: HL7V3.0
+    umlscode: PART
+
+
+2.16.840.1.113883.11.19691:
+    codesystem: HL7V3.0
+    umlscode: x_LabSpecimenCollectionProviders
+
+
+2.16.840.1.113883.11.19692:
+    codesystem: HL7V3.0
+    umlscode: x_ActMoodPermPermrq
+
+
+2.16.840.1.113883.11.19693:
+    codesystem: HL7V3.0
+    umlscode: AffiliationRoleType
+
+
+2.16.840.1.113883.11.19694:
+    codesystem: HL7V3.0
+    umlscode: EmployeeOccupationCode
+
+
+2.16.840.1.113883.11.19695:
+    codesystem: HL7V3.0
+    umlscode: ControlActReason
+
+
+2.16.840.1.113883.11.19696:
+    codesystem: HL7V3.0
+    umlscode: ControlActReasonConditionNullify
+
+
+2.16.840.1.113883.11.19697:
+    codesystem: HL7V3.0
+    umlscode: EligibilityActReasonCode
+
+
+2.16.840.1.113883.11.19698:
+    codesystem: HL7V3.0
+    umlscode: ObservationAllergyTestType
+
+
+2.16.840.1.113883.11.19699:
+    codesystem: HL7V3.0
+    umlscode: AllergyTestValue
+
+
+2.16.840.1.113883.11.19700:
+    codesystem: HL7V3.0
+    umlscode: IntoleranceValue
+
+
+2.16.840.1.113883.11.19701:
+    codesystem: HL7V3.0
+    umlscode: ExposureAgentEntityType
+
+
+2.16.840.1.113883.11.19702:
+    codesystem: HL7V3.0
+    umlscode: NonDrugAgentEntity
+
+
+2.16.840.1.113883.11.19703:
+    codesystem: HL7V3.0
+    umlscode: ObservationIntoleranceType
+
+
+2.16.840.1.113883.11.19704:
+    codesystem: HL7V3.0
+    umlscode: ObservationAllergyType
+
+
+2.16.840.1.113883.11.19705:
+    codesystem: HL7V3.0
+    umlscode: ObservationDrugAllergyType
+
+
+2.16.840.1.113883.11.19706:
+    codesystem: HL7V3.0
+    umlscode: ObservationFoodAllergyType
+
+
+2.16.840.1.113883.11.19707:
+    codesystem: HL7V3.0
+    umlscode: ObservationEnvironmentalAllergyType
+
+
+2.16.840.1.113883.11.19708:
+    codesystem: HL7V3.0
+    umlscode: ObservationNonAllergyIntoleranceType
+
+
+2.16.840.1.113883.11.19709:
+    codesystem: HL7V3.0
+    umlscode: Drug Non-AllergyIntolerance
+
+
+2.16.840.1.113883.11.19710:
+    codesystem: HL7V3.0
+    umlscode: ObservationFoodNonAllergyIntoleranceType
+
+
+2.16.840.1.113883.11.19711:
+    codesystem: HL7V3.0
+    umlscode: ObservationEnvironmentalNonAllergyIntoleranceType
+
+
+2.16.840.1.113883.11.19712:
+    codesystem: HL7V3.0
+    umlscode: ObservationDrugIntoleranceType
+
+
+2.16.840.1.113883.11.19713:
+    codesystem: HL7V3.0
+    umlscode: ObservationFoodIntoleranceType
+
+
+2.16.840.1.113883.11.19714:
+    codesystem: HL7V3.0
+    umlscode: ObservationEnvironmentalIntoleranceType
+
+
+2.16.840.1.113883.11.19715:
+    codesystem: HL7V3.0
+    umlscode: ActCognitiveProfessionalServiceCode
+
+
+2.16.840.1.113883.11.19716:
+    codesystem: HL7V3.0
+    umlscode: VerificationMethod
+
+
+2.16.840.1.113883.11.19717:
+    codesystem: HL7V3.0
+    umlscode: ActSubstanceAdministrationCode
+
+
+2.16.840.1.113883.11.19718:
+    codesystem: HL7V3.0
+    umlscode: ActSubstanceAdministrationImmunizationCode
+
+
+2.16.840.1.113883.11.19719:
+    codesystem: HL7V3.0
+    umlscode: ActTherapyDurationWorkingListCode
+
+
+2.16.840.1.113883.11.19720:
+    codesystem: HL7V3.0
+    umlscode: SimpleMeasurableClinicalObservationType
+
+
+2.16.840.1.113883.11.19721:
+    codesystem: HL7V3.0
+    umlscode: ObservationIssueTriggerCodedObservationType
+
+
+2.16.840.1.113883.11.19722:
+    codesystem: HL7V3.0
+    umlscode: ObservationIssueTriggerMeasuredObservationType
+
+
+2.16.840.1.113883.11.19723:
+    codesystem: HL7V3.0
+    umlscode: PatientCharacteristicObservationType
+
+
+2.16.840.1.113883.11.19724:
+    codesystem: HL7V3.0
+    umlscode: IssueTriggerObservationValue
+
+
+2.16.840.1.113883.11.19725:
+    codesystem: HL7V3.0
+    umlscode: ActNoImmunizationReason
+
+
+2.16.840.1.113883.11.19726:
+    codesystem: HL7V3.0
+    umlscode: ActSupplyFulfillmentRefusalReason
+
+
+2.16.840.1.113883.11.19727:
+    codesystem: HL7V3.0
+    umlscode: SubstanceAdminSubstitutionNotAllowedReason
+
+
+2.16.840.1.113883.11.19728:
+    codesystem: HL7V3.0
+    umlscode: MedicationGeneralizationRoleType
+
+
+2.16.840.1.113883.11.19729:
+    codesystem: HL7V3.0
+    umlscode: ActiveIngredientDrugEntityType
+
+
+2.16.840.1.113883.11.19730:
+    codesystem: HL7V3.0
+    umlscode: VaccineEntityType
+
+
+2.16.840.1.113883.11.19731:
+    codesystem: HL7V3.0
+    umlscode: ActMedicationDocumentCode
+
+
+2.16.840.1.113883.11.19732:
+    codesystem: HL7V3.0
+    umlscode: HumanSubstanceAdministrationSite
+
+
+2.16.840.1.113883.11.19733:
+    codesystem: HL7V3.0
+    umlscode: ActPrivilegeCategorization
+
+
+2.16.840.1.113883.11.19734:
+    codesystem: HL7V3.0
+    umlscode: ObservationIndicationType
+
+
+2.16.840.1.113883.11.19735:
+    codesystem: HL7V3.0
+    umlscode: IndicationValue
+
+
+2.16.840.1.113883.11.19736:
+    codesystem: HL7V3.0
+    umlscode: SymptomValue
+
+
+2.16.840.1.113883.11.19737:
+    codesystem: HL7V3.0
+    umlscode: OtherIndicationValue
+
+
+2.16.840.1.113883.11.19738:
+    codesystem: HL7V3.0
+    umlscode: ActTransportationModeCode
+
+
+2.16.840.1.113883.11.19739:
+    codesystem: HL7V3.0
+    umlscode: ActPatientTransportationModeCode
+
+
+2.16.840.1.113883.11.19740:
+    codesystem: HL7V3.0
+    umlscode: Ambulance
+
+
+2.16.840.1.113883.11.19741:
+    codesystem: HL7V3.0
+    umlscode: CoverageEligibilityReason
+
+
+2.16.840.1.113883.11.19742:
+    codesystem: HL7V3.0
+    umlscode: x_VeryBasicConfidentialityKind
+
+
+2.16.840.1.113883.11.19743:
+    codesystem: HL7V3.0
+    umlscode: x_PhysicalVerbalParticipationMode
+
+
+2.16.840.1.113883.11.19744:
+    codesystem: HL7V3.0
+    umlscode: x_SubstitutionConditionNoneOrUnconditional
+
+
+2.16.840.1.113883.11.19745:
+    codesystem: HL7V3.0
+    umlscode: x_PhoneOrEmailURLScheme
+
+
+2.16.840.1.113883.11.19746:
+    codesystem: HL7V3.0
+    umlscode: x_PhoneURLScheme
+
+
+2.16.840.1.113883.11.19747:
+    codesystem: HL7V3.0
+    umlscode: ReferralReasonCode
+
+
+2.16.840.1.113883.11.19748:
+    codesystem: HL7V3.0
+    umlscode: NonPerformanceReasonCode
+
+
+2.16.840.1.113883.11.19749:
+    codesystem: HL7V3.0
+    umlscode: x_MedicationOrImmunization
+
+
+2.16.840.1.113883.11.19750:
+    codesystem: HL7V3.0
+    umlscode: QueryParameterValue
+
+
+2.16.840.1.113883.11.200:
+    codesystem: HL7V3.0
+    umlscode: PersonNameUse
+
+
+2.16.840.1.113883.11.201:
+    codesystem: HL7V3.0
+    umlscode: TelecommunicationAddressUse
+
+
+2.16.840.1.113883.11.204:
+    codesystem: HL7V3.0
+    umlscode: OrganizationNameType
+
+
+2.16.840.1.113883.11.207:
+    codesystem: HL7V3.0
+    umlscode: ProcessingMode
+
+
+2.16.840.1.113883.11.208:
+    codesystem: HL7V3.0
+    umlscode: QueryResponse
+
+
+2.16.840.1.113883.11.209:
+    codesystem: HL7V3.0
+    umlscode: RelationalOperator
+
+
+2.16.840.1.113883.11.220:
+    codesystem: HL7V3.0
+    umlscode: LivingArrangement
+
+
+2.16.840.1.113883.11.227:
+    codesystem: HL7V3.0
+    umlscode: VaccineManufacturer
+
+
+2.16.840.1.113883.11.228:
+    codesystem: HL7V3.0
+    umlscode: VaccineType
+
+
+2.16.840.1.113883.11.271:
+    codesystem: HL7V3.0
+    umlscode: DocumentCompletion
+
+
+2.16.840.1.113883.11.275:
+    codesystem: HL7V3.0
+    umlscode: DocumentStorage
+
+
+2.16.840.1.113883.11.295:
+    codesystem: HL7V3.0
+    umlscode: PersonDisabilityType
+
+
+2.16.840.1.113883.11.357:
+    codesystem: HL7V3.0
+    umlscode: MessageCondition
+
+
+2.16.840.1.113883.11.390:
+    codesystem: HL7V3.0
+    umlscode: Sequencing
+
+
+2.16.840.1.113883.11.394:
+    codesystem: HL7V3.0
+    umlscode: ResponseModality
+
+
+2.16.840.1.113883.11.395:
+    codesystem: HL7V3.0
+    umlscode: ModifyIndicator
+
+
+2.16.840.1.113883.11.396:
+    codesystem: HL7V3.0
+    umlscode: CodeSystem
+
+
+2.16.840.1.113883.11.78:
+    codesystem: HL7V3.0
+    umlscode: ObservationInterpretation
+
+
+2.16.840.1.113883.11.8:
+    codesystem: HL7V3.0
+    umlscode: AcknowledgementType
+
+

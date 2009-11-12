@@ -1,0 +1,495 @@
+adenovirus_4: 
+  code: 54
+  name: Adenovirus Type 4
+
+adenovirus_7:
+  code: 55
+  name: Adenovirus Type 7
+
+adenovirus_nos:
+  code: 82
+  name: Adenovirus NOS1
+
+anthrax:
+  code: 24
+  name: Anthrax
+
+bacillus_calmette_guerin:
+  code: 19
+  name: Bacillus Calmette Guerin
+
+botulinum_antitoxin:
+  code: 27
+  name: Botulinum Antitoxin
+
+cholera:
+  code: 26
+  name: Cholera
+
+cmvig:
+  code: 29
+  name: Cytomegalovirus Immune Globulin
+
+dengue_fever:
+  code: 56
+  name: Dengue Fever
+
+diphtheria_antitoxin:
+  code: 12
+  name: Diphtheria Antitoxin
+
+DTaP_pediatric:
+  code: 28
+  name: Diphtheria and Tetanus Toxoids (pediatric)
+
+DTaP_acellular_pertussis:
+  code: 20
+  name: Diphtheria and Tetanus Toxoids (acellular pertussis)
+  
+DTaP_acellular_pertussis_vaccine:
+  code: 106
+  name: Diphtheria Tetanus Toxoids and Acellular Pertussis
+  
+dtap_acellular_pertussis_vaccine_nos:
+  code: 107
+  name: Diphtheria Tetanus Toxoids and Acellular Pertussis (NOS)
+  
+dtap_hepatitis_b:
+  code: 110
+  name: DTaP Hepatitis B and Poliovirus Vaccine
+
+dtap-haemophilus_influenzae_b:
+  code: 50 
+  name: DTaP Haemophilus Influenzae Type B
+  
+dtap_acellular_pertussis_vaccine_hib_ipv:
+  code: 120
+  name: Diphtheria Tetanus Toxoids
+  
+dtap_pertussis_vaccine:
+  code: 01
+  name: Diphtheria Tetanus Toxoids and Pertussis Vaccine
+	
+DTP_Haemophilus_influenzae_type_b_conjugate_vaccine:
+  code: 22
+  name: DTP Haemophilus Influenzae Type B Conjugate Vaccine
+
+DTP_Haemophilus_influenzae_type_b_conjugate_and_hepatitis_b_vaccine:
+  code: 102
+  name: DTP Haemophilus Influenzae Type B Conjugate and Hepatitis B Vaccine
+	
+hantavirus_vaccine:
+  code: 57
+  name: Hantavirus Vaccine
+	
+hepatitis_A_vaccine_adult_dosage:
+  code: 52
+  name: Hepatitis A Vaccine Adult Dosage
+	
+hepatitis_A_vaccine_pediatric_adolescent_dosage_2_dose_schedule:
+  code: 83
+  name: Hepatitis A Vaccine Pediatric Adolescent Dosage 2 Dose Schedule
+	
+hepatitis_A_vaccine_pediatric_adolescent_dosage_3_dose_schedule:
+  code: 84
+  name: Hepatitis A Vaccine Pediatric Adolescent Dosage 3 Dose Schedule
+	
+hepatitis_A_vaccine_pediatric_dosage_NOS:
+  code: 31
+  name: Hepatitis A Vaccine Pediatric Dosage NOS
+	
+hepatitis_A_vaccine_NOS:
+  code: 85
+  name: Hepatitis A Vaccine NOS
+	
+hepatitis_A_and_hepatitis_B_vaccine:
+  code: 104
+  name: Hepatitis A and Hepatitis B Vaccine
+	
+hepatitis_B_immune_globulin:
+  code: 30
+  name: Hepatitis B Immune Globulin
+	
+hepatitis_B_vaccine_pediatric_adolescent:
+  code: 08
+  name: Hepatitis B Vaccine Pediatric or Pediatric Adolescent Dosage
+	
+hepatitis_B_vaccine_adolescent_high_risk_infant:
+  code: 42
+  name: Hepatitis B Vaccine Adolescent High Risk Infant Dosage
+	
+hepatitis_B_vaccine_adult:
+  code: 43
+  name: Hepatitis B Vaccine, Adult Dosage
+	
+hepatitis_B_vaccine_dialysis:
+  code: 44
+  name: Hepatitis B Vaccine Dialysis Patient Dosage
+	
+hepatitis_B_vaccine_NOS:
+  code: 45
+  name: Hepatitis B Vaccine NOS
+	
+hepatitis_C_vaccine:
+  code: 58
+  name: Hepatitis C Vaccine
+	
+hepatitis_E_vaccine:
+  code: 59
+  name: Hepatitis E Vaccine
+	
+herpes_2_vaccine:
+  code: 60
+  name: Herpes Simplex Virus Type 2 Vaccine
+	
+Haemophilus_influenzae_type_b_vaccine_PRP-D:
+  code: 46
+  name: Haemophilus Influenzae Type B Vaccine PRP_D Conjugate
+	
+Haemophilus_influenzae_type_b_vaccine_HbOC:
+  code: 47
+  name: Haemophilus Influenzae Type B Vaccine HbOC Conjugate
+	
+Haemophilus_influenzae_type_b_vaccine_PRP_T:
+  code: 48
+  name: Haemophilus Influenzae Type B Vaccine PRP_T Conjugate
+
+Haemophilus_influenzae_type_b_vaccine_PRP_OMP:
+  code: 49
+  name: Haemophilus Influenzae Type B Vaccine PRP OMP Conjugate
+	
+Haemophilus_influenzae_type_b_vaccine_NOS:
+  code: 17
+  name: Haemophilus Influenzae Type B Vaccine conjugate NOS
+
+Haemophilus_influenzae_type_b_conjugate_and_Hepatitis_B_vaccine:
+  code: 51
+  name: Haemophilus Influenzae Type B Conjugate and Hepatitis B vaccine
+	
+human_immunodeficiency_virus_vaccine:
+  code: 61
+  name: Human Immunodeficiency Virus Vaccine
+	
+human_papilloma_virus_vaccine_bivalent:
+  code: 118
+  name: Human Papilloma Virus Vaccine Bivalent
+	
+human_papilloma_virus_vaccine_quadrivalent:
+  code: 62
+  name: Human Papilloma Virus Vaccine Quadrivalent
+	
+immune_globulin_intramuscular:
+  code: 86
+  name: Immune Globulin Intramuscular
+	
+immune_globulin_intravenous:
+  code: 87
+  name: Immune Globulin Intravenous
+	
+immune_globulin_NOS:
+  code: 14
+  name: Immune Globulin, NOS
+	
+influenza_virus_vaccine_live_attenuated_intranasal:
+  code: 111
+  name: Influenza Virus Vaccine Live Attenuated for Intranasal Use
+	
+influenza_virus_vaccine_split_virus_incl_purified_surface_antigen:
+  code: 15
+  name: Influenza Virus Vaccine Split Virus
+
+influenza_virus_vaccine_whole_virus:
+  code: 16
+  name: Influenza Virus Vaccine Whole Virus
+
+influenza_virus_vaccine_NOS:
+  code: 88
+  name: Influenza Virus Vaccine NOS
+
+influenza_virus_vaccine_H5N1:
+  code: 123
+  name: Influenza Virus Vaccine H5N1 A Vietnam 1203 2004 
+  
+poliovirus_vaccine_inactivated:
+  code: 10
+  name: Poliovirus Vaccine Inactivated
+	
+poliovirus_vaccine_live_oral:
+  code: 02
+  name: Poliovirus Vaccine Live, Oral
+	
+poliovirus_vaccine_NOS:
+  code: 89
+  name: Poliovirus Vaccine NOS
+	
+Japanese_encephalitis_vaccine:
+  code: 39
+  name: Japanese Encephalitis Vaccine
+	
+Junin_virus_vaccine:
+  code: 63
+  name: Junin Virus Vaccine
+	
+leishmaniasis_vaccine:
+  code: 64
+  name: Leishmaniasis Vaccine
+	
+leprosy_vaccine:
+  code: 65
+  name: Leprosy Vaccine
+	
+Lyme_disease_vaccine:
+  code: 66
+  name: Lyme Disease Vaccine
+	
+measles_mumps_and_rubella_virus_vaccine:
+  code: 03
+  name: Measles Mumps and Rubella Virus Vaccine
+	
+measles_and_rubella_virus_vaccine:
+  code: 04
+  name: Measles and Rubella Virus Vaccine
+	
+measles_mumps_rubella_and_varicella_virus_vaccine:
+  code: 94
+  name: Measles Mumps Rubella and Varicella Virus Vaccine
+	
+malaria_vaccine:
+  code: 67
+  name: Malaria Vaccine
+	
+measles_virus_vaccine:
+  code: 05
+  name: Measles Virus Vaccine
+	
+melanoma_vaccine:
+  code: 68
+  name: Melanoma Vaccine
+	
+meningococcal_polysaccharide_vaccine_MPSV4:
+  code: 32
+  name: Meningococcal Polysaccharide Vaccine (MPSV4)
+	
+meningococcal_C_conjugate_vaccine:
+  code: 103
+  name: Meningococcal C Conjugate Vaccine
+	
+meningococcal_polysaccharide_groups_A_C_Y_and_W:
+  code: 114
+  name: Meningococcal Polysaccharide (groups A C Y and W_135)
+	
+meningococcal_vaccine_NOS:
+  code: 108
+  name: Meningococcal Vaccine NOS
+	
+mumps_virus_vaccine:
+  code: 07
+  name: Mumps Virus Vaccine
+	
+parainfluenza-3_virus_vaccine:
+  code: 69
+  name: Parainfluenza 3 Virus Vaccine
+	
+pertussis_vaccine:
+  code: 11
+  name: Pertussis Vaccine
+	
+plague_vaccine:
+  code: 23
+  name: Plague Vaccine
+	
+pneumococcal_polysaccharide_vaccine:
+  code: 33
+  name: Pneumococcal Polysaccharide Vaccine
+	
+pneumococcal_conjugate_vaccine_polyvalent:
+  code: 100
+  name: Pneumococcal Conjugate Vaccine, polyvalent
+	
+pneumococcal_vaccine_NOS:
+  code: 109
+  name: Pneumococcal Vaccine, NOS
+	
+Q_fever_vaccine:
+  code: 70
+  name: Q Fever Vaccine
+
+rabies_vaccine_for_intramuscular_injection:
+  code: 18
+  name: Rabies Vaccine for Intramuscular Injection
+	
+rabies vaccine_for_intradermal_injection:
+  code: 40
+  name: Rabies Vaccine, for Intradermal Injection
+	
+rabies_vaccine_NOS:
+  code: 90
+  name: Rabies Vaccine, NOS
+	
+rheumatic_fever_vaccine:
+  code: 72
+  name: Rheumatic Fever Vaccine
+	
+rift_valley_fever_vaccine:
+  code: 73
+  name: Rift Valley Fever Vaccine
+	
+rabies_immune_globulin:
+  code: 34
+  name: Rabies Immune Globulin
+	
+rotavirus_live_monovalent_vaccine:
+  code: 119
+  name: Rotavirus Live Monovalent Vaccine
+	
+rotavirus_vaccine_NOS:
+  code: 122
+  name: Rotavirus Vaccine NOS
+	
+rotavirus_pentavalent_vaccine:
+  code: 116
+  name: Rotavirus, Live, Pentavalent Vaccine
+	
+rotavirus_tetravalent_vaccine:
+  code: 74
+  name: Rotavirus Live Tetravalent Vaccine
+	
+respiratory_syncytial_virus_immune_globulin_intravenous:
+  code: 71
+  name: Respiratory Syncytial Virus Immune Globulin Intravenous
+	
+respiratory_syncytial_virus_monoclonal_antibody_palivizumab_intramuscular:
+  code: 93
+  name: Respiratory Syncytial Virus Monoclonal Antibody (palivizumab) Intramuscular
+	
+rubella_virus_vaccine:
+  code: 06
+  name: Rubella Virus Vaccine
+	
+rubella_and_mumps_virus_vaccine:
+  code: 38
+  name: Rubella and Mumps Virus Vaccine
+	
+Staphylococcus_bacteriophage_lysate:
+  code: 76
+  name: Staphylococcus bacteriophage lysate
+	
+tetanus_and_diphtheria_toxoids_adsorbed_preservative_adult:
+  code: 113
+  name: Tetanus and Diphtheria Toxoids Adsorbed Preservative Free For Adult Use 
+	
+tetanus_and_diphtheria_toxoids_adsorbed_adult:
+  code: 09
+  name: Tetanus and Diphtheria Toxoids, Adsorbed for Adult Use
+	
+tetanus_toxoid_reduced_diphtheria_toxoid_and_acellular_pertussis_vaccine_adsorbed:
+  code: 115
+  name: Tetanus Toxoid Reduced Diphtheria Toxoid and Acellular Pertussis Vaccine Adsorbed
+	
+tetanus_toxoid_adsorbed:
+  code: 35
+  name: Tetanus Toxoid Adsorbed
+	
+tetanus_toxoid_NOS:
+  code: 112
+  name: Tetanus Toxoid NOS
+	
+tick_borne_encephalitis_vaccine:
+  code: 77
+  name: Tick Borne Encephalitis Vaccine
+		
+tetanus_immune_globulin:
+  code: 13
+  name: Tetanus Immune Globulin
+	
+tuberculin_skin_test_old_tuberculin_multipuncture_device:
+  code: 95
+  name: Tuberculin Skin Test Old Tuberculin Multipuncture Device
+
+tuberculin_skin_test_purified_protein_derivative_solution_intradermal:
+  code: 96
+  name: Tuberculin Skin Test Purified Protein Derivative Solution Intradermal
+	
+tuberculin_skin_test_purified_protein_derivative_multipuncture_device:
+  code: 97
+  name: Tuberculin Skin Test Purified Protein Derivative Multipuncture Device
+
+tuberculin_skin_test_NOS:
+  code: 98
+  name: Tuberculin Skin Test NOS
+	
+tularemia_vaccine:
+  code: 78
+  name: Tularemia Vaccine
+	
+typhoid_vaccine_NOS:
+  code: 91
+  name: Typhoid Vaccine NOS
+		
+typhoid_vaccine_live_oral:
+  code: 25
+  name: Typhoid Vaccine Live Oral
+	
+typhoid_vaccine_parenteral_acetone-killed_dried:
+  code: 41
+  name: Typhoid Vaccine Parenteral Other Than Acetone Killed Dried
+	
+typhoid_vaccine_parenteral_acetone-killed_dried_US_military:
+  code: 53
+  name: Typhoid Vaccine Parenteral Acetone Killed Dried (U.S. Military)
+	
+typhoid_Vi_capsular_polysaccharide_vaccine:
+  code: 101
+  name: Typhoid Vi Capsular Polysaccharide Vaccine
+	
+vaccinia_smallpox_vaccine:
+  code: 75
+  name: Vaccinia (Smallpox) Vaccine
+	
+vaccinia_smallpox_vaccine_diluted:
+  code: 105
+  name: Vaccinia (Smallpox) Vaccine Diluted
+	
+vaccinia_immune_globulin:
+  code: 79
+  name: Vaccinia Immune Globulin
+
+varicella_virus_vaccine:
+  code: 21
+  name: Varicella Virus Vaccine
+	
+venezuelan_equine_encephalitis_inactivated:
+  code: 81
+  name: Venezuelan Equine Encephalitis Inactivated
+	
+venezuelan_equine_encephalitis_live_attenuated:
+  code: 80
+  name: Venezuelan Equine Encephalitis Live Attenuated
+	
+venezuelan_equine_encephalitis_vaccine_NOS:
+  code: 92
+  name: Venezuelan Equine Encephalitis Vaccine NOS
+	
+varicella_zoster_immune_globulin:
+  code: 36
+  name: Varicella Zoster Immune Globulin
+	
+varicella_zoster_immune_globulin_Investigational:
+  code: 117
+  name: Varicella Zoster Immune Globulin (Investigational New Drug)
+	
+yellow_fever_vaccine:
+  code: 37
+  name: Yellow Fever Vaccine
+	
+zoster_vaccine_live:
+  code: 121
+  name: Zoster Vaccine Live
+	
+no_vaccine_administered:
+  code: 998
+  name: No Vaccine Administered
+	
+unknown_vaccine_or_immune_globulin:
+  code: 999
+  name: Unknown Vaccine or Immune Globulin 

@@ -1,0 +1,28 @@
+  <% parent.fields_for :address do |address_form| -%>
+  <tr class="lightzebra">
+    <td class="lighttext">Street Address <%= requirements_for(address, :street_address_line_one) %></td>
+    <td><%= address_form.text_field :street_address_line_one %></td>
+  </tr>
+  <tr class="darkzebra">
+    <td class="darkzebra"><%= requirements_for(address, :street_address_line_two) %></td>
+    <td><%= address_form.text_field :street_address_line_two %></td>
+  </tr>
+  <tr class="lightzebra">
+    <td class="lighttext">City <%= requirements_for(address, :city) %></td>
+    <td><%= address_form.text_field :city %></td>
+  </tr>
+  <tr class="darkzebra">
+    <td class="lighttext">State <%= requirements_for(address, :state) %></td>
+    <td><%= address_form.select :state, IsoState.select_options, :include_blank => true %></td>
+  </tr>
+  <tr class="lightzebra">
+    <td class="lighttext">Postal Code <%= requirements_for(address, :postal_code) %></td>
+    <td><%= address_form.text_field :postal_code %></td>
+  </tr>
+  <tr class="darkzebra">
+    <td class="lighttext">Country <%= requirements_for(address, :iso_country_id) %></td>
+    <td>
+      <%= address_form.select :iso_country_id, IsoCountry.select_options, :include_blank => true %>       
+    </td>
+  </tr>
+  <% end -%>

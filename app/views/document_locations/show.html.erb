@@ -1,0 +1,23 @@
+<p>
+  <b>Name:</b>
+  <%=h @document_location.name %>
+</p>
+
+<p>
+  <b>Xpath expression:</b>
+  <%=h @document_location.xpath_expression %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @document_location.description %>
+</p>
+
+<p>
+  <b>Doc type:</b>
+  <%=h @document_location.doc_type %>
+</p>
+
+
+<%= link_to 'Edit', edit_document_location_path(@document_location) %> |
+<%= link_to 'Back', document_locations_path %>

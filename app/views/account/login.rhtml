@@ -1,0 +1,44 @@
+<% form_tag({}, {:name => "laika_login_form"}) do -%>
+<div id="login">
+    <div id="cap-top"></div>
+    <div id="cap-body">
+        <div id="branding">
+            <%= image_tag "popconnect_welcome.png", :id => 'imgLogo', :alt => 'popConnect welcomes you!' %>
+            <br/><br/>
+        </div>
+        <div id="panelLogin">
+            <div style="padding-bottom:18px">
+                <label>Email Address</label>
+                <input type="text" name="email" id="email"/>
+            </div>
+            <div style="padding-bottom:18px">
+                <label>Password</label>
+                <input type="password" name="password" id="password"/>
+            </div>
+            <input type="hidden" name="eventHandler" value="" onkeypress="return submitKeyPress(event);"/>
+            <br />
+            <div style="height: 20px; margin-left:295px;width:auto;">
+                <a class="whitebutton" href="#"><span>Cancel</span></a>
+                <a class="bluebutton"  href="javascript:submitLaikaLoginform();"><span>Login</span></a>
+            </div>
+            <div class="doggyhelp" style="height: 185px">
+              <div style="float: left; position: relative; width: 288px; height: 178px;">
+                <div style="width:160px; position:absolute; top:30px; left:20px; line-height:1.2em; font-size:11px;">
+                  <%= link_to 'Create New Account', {:action => 'signup'}, {:class => "loginlink"} %>
+                </div>
+                <div style="position:absolute; top:50px; left:20px; font-size:11px;">
+                  <%= link_to 'Forgot Your Password?', {:action => 'forgot_password'}, {:class => "loginlink"} %>
+                </div>
+              </div>
+              <div style="position: absolute; bottom: 0px; right: 0px; text-align:right;font-size:11px;">
+                popConnect v0.1<br>
+                <a class="loginlink" href="http://www.hhs.gov/fedhealtharch/">Federal Health Architecture</a> | 
+                <a class="loginlink" href="http://www.mitre.org" target="_blank">MITRE</a> | 
+                <a class="loginlink" href="http://www.connectopensource.org/display/Gateway/CONNECT+Community+Portal" target="_blank">Connect Open Source</a>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div id="cap-bottom"></div>
+</div><!-- END #login -->
+<% end -%>

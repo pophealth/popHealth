@@ -1,0 +1,55 @@
+adopted_child:
+  code: ADOPT
+  name: Adopted Child
+
+full_time_student:
+  code: FSTUD
+  name: Full-Time Student
+
+grandchild:
+  code: GCHILD
+  name: Grandchild
+
+grandparent:
+  code: GPARNT
+  name: Grandparent
+
+handicapped_dependent:
+  code: HANDIC
+  name: Handicapped Dependent
+
+injured_plaintiff:
+  code: INJ
+  name: Injured Plaintiff
+
+natural_child:
+  code: NAT
+  name: Natural Child
+
+niece_nephew:
+  code: NIENE
+  name: Niece or Nephew    
+
+parent:
+  code: PARNT
+  name: Parent
+
+part_time_student:
+  code: PSTUD
+  name: Part-Time Student
+
+self:
+  code: SELF
+  name: Self
+
+sponsored_dependent:
+  code: SPON
+  name: Sponsored Dependent
+
+spouse:
+  code: SPSE
+  name: Spouse
+
+step_child:
+  code: STEP
+  name: Step Child

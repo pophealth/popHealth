@@ -1,0 +1,42 @@
+<table>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Start Event</td>
+    <td>
+      <%=h condition.start_event %>
+    </td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">End Event</td>
+    <td>
+      <%=h condition.end_event %>
+    </td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Problem Type</td>
+    <td>
+      <% if condition.problem_type %><%=h condition.problem_type.name %><% end %>
+    </td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Free Text Condition Name</td>
+    <td><%=h condition.free_text_name %></td>
+  </tr>
+  <% if @patient.editable_by? current_user -%>
+    <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+      <td></td>
+      <td>
+      <span>
+        <%= link_to_remote 'Edit', :update => "condition#{condition.id}",
+                                   :url => edit_patient_condition_path(patient, condition),
+                                   :method => 'get' %>
+      </span>
+      <span>
+        <%= link_to_remote 'Remove', :update => "condition#{condition.id}",
+                                   :url => patient_condition_path(patient, condition),
+                                   :confirm=>"Are you sure you wish to remove this condition?",
+                                   :method => 'delete' %>
+      </span>    
+      </td>
+    </tr>
+  <% end -%>
+</table>

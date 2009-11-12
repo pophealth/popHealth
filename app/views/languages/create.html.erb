@@ -1,0 +1,11 @@
+<%= render :partial => '/languages/show', :locals => {:language  => @language, :patient => @patient} %>
+
+<script type="text/javascript">
+//<![CDATA[
+var newLanguageDiv = $('languageNew');
+if (newLanguageDiv != null)
+{
+    newLanguageDiv.id = 'language<%= @language.id %>';
+}
+//]]>
+</script>

@@ -1,0 +1,51 @@
+<ClinicalDocument xmlns="urn:hl7-org:v3"
+   xmlns:sdtc="urn:hl7-org:sdtc">
+   <!-- These examples assume the default namespace is 'urn:hl7-org:v3' -->
+   <documentationOf>
+      <serviceEvent classCode="PCPR">
+         <effectiveTime>
+            <low value="19650120" />
+            <high value="20070209" />
+         </effectiveTime>
+         <performer typeCode="PRF">
+            <templateId root='2.16.840.1.113883.3.88.11.32.4' />
+            <functionCode code='CP' displayName='Consulting Provider'
+               codeSystem='2.16.840.1.113883.12.443'
+               codeSystemName='Provider Role' />
+            <originalText>Consulting Provider</originalText>
+            <time>
+               <low value='' />
+               <high value="" />
+            </time>
+            <assignedEntity>
+               <id root='78A150ED-B890-49dc-B716-5EC0027B3982'
+                  extension="ProviderID" />
+               <code code='370000000X'
+                  displayName='Nursing Service Related Providers'
+                  codeSystem='2.16.840.1.113883.6.101'
+                  codeSystemName='ProviderCodes' />
+               <addr>
+                  <streetAddressLine>1234 Elm Street</streetAddressLine>
+                  <city>Anytown</city>
+                  <state>NY</state>
+                  <postalCode>12345</postalCode>
+                  <country>US</country>
+               </addr>
+               <telecom use="WP" value="tel:+1-555-555-1212"/>
+               <assignedPerson>
+                  <name>
+                     <prefix>RN.</prefix>
+                     <given>Mary</given>
+                     <family>Smith</family>
+                  </name>
+               </assignedPerson>
+               <sdtc:patient>
+                  <sdtc:id root='78A150ED-B890-49dc-B716-5EC0027B3985'
+                     extension='MedicalRecordNumber' />
+               </sdtc:patient>
+            </assignedEntity>
+         </performer>
+      </serviceEvent>
+   </documentationOf>
+
+</ClinicalDocument>

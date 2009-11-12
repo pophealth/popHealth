@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>XDS Query Checklist</title>
+  </head>
+  <body>
+    <h1>XDS Query Checklist</h1>
+    <strong><%= @test_plan.patient.name %></strong>
+    <br/>
+    <strong>Created On:</strong> <%= @test_plan.created_at %>
+    <hr/>
+    <table>
+      <tr>
+        <td><strong>Author</strong></td>
+        <td><strong>Person</strong></td>
+        <td><%= @metadata.author.try :person %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><strong>Institution</strong></td>
+        <td><%= @metadata.author.try :institution %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><strong>Role</strong></td>
+        <td><%= @metadata.author.try :role %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><strong>Specialty</strong></td>
+        <td><%= @metadata.author.try :specialty %></td>
+      </tr>
+      <%= xds_metadata_single_attribute(@metadata, :availability_status) %>
+      <%= xds_metadata_coded_attribute(@metadata, :class_code) %>
+      <%= xds_metadata_coded_attribute(@metadata, :confidentiality_code) %>
+      <%= xds_metadata_single_attribute(@metadata, :creation_time) %>
+      <%= xds_metadata_coded_attribute(@metadata, :format_code) %>
+      <%= xds_metadata_coded_attribute(@metadata, :healthcare_facility_type_code) %>
+      <%= xds_metadata_single_attribute(@metadata, :language_code) %>
+      <%= xds_metadata_single_attribute(@metadata, :mime_type) %>
+      <%= xds_metadata_single_attribute(@metadata, :patient_id) %>
+      <%= xds_metadata_coded_attribute(@metadata, :practice_setting_code) %>
+      <%= xds_metadata_single_attribute(@metadata, :service_start_time) %>
+      <%= xds_metadata_single_attribute(@metadata, :service_stop_time) %>
+      <%= xds_metadata_single_attribute(@metadata, :size) %>
+      <%= xds_metadata_single_attribute(@metadata, :source_patient_id) %>
+      <tr>
+        <td><strong>Source patient info</strong></td>
+        <td><strong>Identifier</strong></td>
+        <td><%= @metadata.source_patient_info.try :source_patient_identifier %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><strong>Name</strong></td>
+        <td><%= @metadata.source_patient_info.try :name %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><strong>Gender</strong></td>
+        <td><%= @metadata.source_patient_info.try :gender %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><strong>Date of birth</strong></td>
+        <td><%= @metadata.source_patient_info.try :date_of_birth %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><strong>Address</strong></td>
+        <td><%= @metadata.source_patient_info.try :address %></td>
+      </tr>
+      <%= xds_metadata_coded_attribute(@metadata, :type_code) %>
+      <%= xds_metadata_single_attribute(@metadata, :repository_unique_id) %>
+      <%= xds_metadata_single_attribute(@metadata, :unique_id) %>
+      <%= xds_metadata_single_attribute(@metadata, :uri) %>
+    </table>
+  </body>
+</html>

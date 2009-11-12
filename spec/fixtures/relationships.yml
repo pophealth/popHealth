@@ -1,0 +1,183 @@
+adopted_daughter:
+  code: DAUADOPT
+  name: Adopted Daughter
+
+step_mother:
+  code: STPMTH
+  name: Stepmother
+
+adopted_son:
+  code: SONADOPT
+  name: Adopted Son
+
+father:
+  code: FTH
+  name: Father
+
+daughter_in_law:
+  code: DAUINLAW
+  name: Daughter In-Law
+
+mother:
+  code: MTH
+  name: Mother
+
+son_in_law:
+  code: SONINLAW
+  name: Son In-Law
+
+half_brother:
+  code: HBRO
+  name: Half-Brother
+
+foster_daughter:
+  code: DAUFOST
+  name: Foster Daughter
+
+half_sister:
+  code: HSIS
+  name: Half-Sister
+
+foster_son:
+  code: SONFOST
+  name: Foster Son
+
+brother:
+  code: NBRO
+  name: Natural Brother
+
+daughter:
+  code: DAU
+  name: Natural Daughter
+
+sister:
+  code: NSIS
+  name: Natural Sister
+
+son:
+  code: SON
+  name: Natural Son
+
+brother_in_law:
+  code: BROINLAW
+  name: Brother-In-Law
+
+stepdaughter:
+  code: STPDAU
+  name: Stepdaughter
+
+sister_in_law:
+  code: SISLINLAW
+  name: Sister-In-Law
+
+stepson:
+  code: STPSON
+  name: Stepson
+
+stepbrother:
+  code: STPBRO
+  name: Stepbrother
+
+granddaughter:
+  code: GRNDDAU
+  name: Granddaughter
+
+stepsister:
+  code: STPSIS
+  name: Stepsister
+
+grandson:
+  code: GRNDSON
+  name: Grandson
+
+brother:
+  code: BRO
+  name: Brother
+
+grandfather:
+  code: GRFTH
+  name: Grandfather
+
+sister:
+  code: SIS
+  name: Sister
+
+grandmother:
+  code: GRMTH
+  name: Grandmother
+
+husband:
+  code: HUSB
+  name: Husband
+
+great_grand_father:
+  code: GGRFTH
+  name: Great Grandfather
+
+wife:
+  code: WIFE
+  name: Wife
+
+great_grand_mother:
+  code: GGRMTH
+  name: Great Grandmother
+
+aunt:
+  code: AUNT
+  name: Aunt
+
+nephew:
+  code: NEPHEW
+  name: Nephew
+
+cousin:
+  code: COUSN
+  name: Cousin
+
+niece:
+  code: NIECE
+  name: Niece
+
+domestic_partner:
+  code: DOMPART
+  name: Domestic Partner
+
+father:
+  code: NFTH 
+  name: Natural Father
+
+roomate:
+  code: ROOM
+  name: Roomate
+
+natural_mother:
+  code: NMTH
+  name: Natural Mother
+
+significant_other:
+  code: SIGOTHR
+  name: Significant Other
+
+father_in_law:
+  code: FTHINLAW
+  name: Father-In-Law
+
+uncle:
+  code: UNCLE 
+  name: Uncle
+
+mother_in_law:
+  code: MTHINLOAW
+  name: Mother-In-Law
+
+friend:
+  code: FRND
+  name: Unrelated Friend
+
+stepfather:
+  code: STPFTH
+  name: Stepfather
+
+neighbor:
+  code: NBOR
+  name: Neighbor

@@ -1,0 +1,23 @@
+<h3>Listing message logs</h3>
+
+<% if @notice %>
+  <div class="notice"><%= @notice %></div>
+<% end %>
+
+<% if @atna_audits -%>
+  <%= will_paginate @atna_audits %>
+  <table  id="dashboard">
+  <% @atna_audits.each do |message_log| %>
+    <tr><th>Created_at</th><td><%=h message_log.timestamp_entry %></td></tr>
+    <tr><th>Message</th><td colspan="3"><%=h message_log.message.sub("\r", "\n") %></td></tr>
+        </table>
+  <table  id="dashboard">
+    <% @element_name.each_with_index do |element_name, idx| %>
+      <% if idx % 2 == 0 %><th><% else %><tr><th><% end %>
+      <%=h element_name %></th><td><%=h @values[idx] %>
+      <% if idx % 2 == 0 %></td></tr><% else %></td><% end %>
+    <% end %>
+  <% end %>
+  </table>
+  <%= will_paginate @atna_audits %>
+<% end -%>

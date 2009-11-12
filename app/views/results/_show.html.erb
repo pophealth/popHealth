@@ -1,0 +1,61 @@
+<table>
+<tr class="<%= cycle("darkzebra", "lightzebra")%>">
+  <td class="lighttext">Result ID</td>
+  <td><%=h result.result_id %></td>
+</tr>
+<tr class="<%= cycle("darkzebra", "lightzebra")%>">
+  <td class="lighttext">Date</td>
+  <td><%=h result.result_date %></td>
+</tr>
+<tr class="<%= cycle("darkzebra", "lightzebra")%>">
+  <td class="lighttext">Code System Name</td>
+  <td><% if result.code_system %><%=h result.code_system.name %><% end %></td>
+</tr>
+<tr class="<%= cycle("darkzebra", "lightzebra")%>">
+  <td class="lighttext">Result Code</td>
+  <td><%=h result.result_code %></td>
+</tr>
+<tr class="<%= cycle("darkzebra", "lightzebra")%>">
+  <td class="lighttext">Result Code Display Name</td>
+  <td><%=h result.result_code_display_name %></td>
+</tr>
+<tr class="<%= cycle("darkzebra", "lightzebra")%>">
+  <td class="lighttext">Status Code</td>
+  <td><%=h result.status_code %></td>
+</tr>
+<tr class="<%= cycle("darkzebra", "lightzebra")%>">
+  <td class="lighttext">Value</td>
+  <td><%=h result.value_scalar %> <%=h result.value_unit %></td>
+</tr>
+<tr class="<%= cycle("darkzebra", "lightzebra")%>">
+  <td class="lighttext">Organizer ID</td>
+  <td><%=h result.organizer_id %></td>
+</tr>
+<tr class="<%= cycle("darkzebra", "lightzebra")%>">
+  <td class="lighttext">Organizer Status</td>
+  <td><% if result.act_status_code %><%=h result.act_status_code.name %><% end %></td>
+</tr>
+<tr class="<%= cycle("darkzebra", "lightzebra")%>">
+  <td class="lighttext">Organizer Code</td>
+  <td><% if result.result_type_code %><%=h result.result_type_code.name %><% end %></td>
+</tr>
+  <% if @patient.editable_by? current_user -%>
+<tr class="<%= cycle("darkzebra", "lightzebra")%>">
+  <td></td>
+  <td>
+  <span>
+    <%= link_to_remote 'Edit', :update => "#{result.class.name.tableize}#{result.id}",
+      :url => {:controller => result.class.name.tableize, :action => 'edit', :patient_id => patient, :id => result },
+          :method => 'get' %>
+  </span> 
+    
+  <span>
+    <%= link_to_remote 'Remove', :update => "#{result.class.name.tableize}#{result.id}",
+          :url => {:controller =>  result.class.name.tableize, :action => 'destroy', :patient_id => patient, :id => result },
+          :confirm => "Are you sure you wish to remove this #{result.class.name.underscore.humanize.downcase}?",
+          :method => 'delete' %>
+  </span> 
+  </td>
+</tr>
+<% end -%>
+</table>

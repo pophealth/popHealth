@@ -1,0 +1,287 @@
+joe_smiths_address:
+  street_address_line_one: 1600 Rockville Pike
+  city: Rockville
+  state: MD
+  postal_code: 20847 
+  iso_country: usa
+  addressable: joe_smith (RegistrationInformation)
+
+joe_smiths_moms_address:
+  street_address_line_one: 1600 Rockville Pike
+  city: Rockville
+  state: MD
+  postal_code: 20847 
+  iso_country: usa
+  addressable: joe_smiths_mom (Support)
+
+joe_smiths_vendor_moms_address:
+  street_address_line_one: 1600 Rockville Pike
+  city: Rockville
+  state: MD
+  postal_code: 20847 
+  iso_country: usa
+  addressable: joe_smiths_vendor_mom (Support)
+  
+emily_jones_address:
+  street_address_line_one: 2501 Merrvale Road
+  city: Rockville
+  state: MD
+  postal_code: 20847
+  iso_country: usa
+  addressable: emily_jones (RegistrationInformation)
+
+emily_jones_moms_address:
+  addressable: emily_jones_mom (Support)
+
+will_haynes_address:
+  street_address_line_one: 16167 King Street
+  city: Alexandria
+  state: VA
+  postal_code: 22301
+  iso_country: usa
+  addressable: will_haynes (RegistrationInformation)
+
+will_haynes_dads_address:
+  addressable: will_haynes_dad (Support)
+
+jennifer_thompsons_address:
+  street_address_line_one: 2300 Commonwealth Avenue
+  city: Brighton
+  state: MA
+  postal_code: '02135'
+  iso_country: usa
+  addressable: jennifer_thompson (RegistrationInformation)
+
+jennifer_thompsons_husbands_address:
+  street_address_line_one: 2300 Commonwealth Avenue
+  city: Brighton
+  state: MA
+  postal_code: '02135'
+  iso_country: usa
+  addressable: jennifer_thompson_husband (Support)
+
+theodore_smiths_address:
+  street_address_line_one: 2300 Commonwealth Avenue
+  city: Brighton
+  state: MA
+  postal_code: '02135'
+  iso_country: usa
+  addressable: theodore_smith (RegistrationInformation)
+
+david_carters_address:
+  street_address_line_one: 1234 Willow Way
+  city: Silver Spring
+  state: MD
+  postal_code: 20902
+  iso_country: usa
+  addressable: david_carter (RegistrationInformation)
+
+dr_dem_bones_address:
+  street_address_line_one: 456 Anytime Lane
+  city: Annapolis
+  state: MD
+  postal_code: 21405
+  iso_country: usa
+  addressable: dr_dem_bones (Provider)
+
+dr_ava_heart_address:
+  street_address_line_one: 344 Artery Drive,
+  city: Piney Point
+  state: MD
+  postal_code: 20674
+  iso_country: usa
+  addressable: dr_ava_heart (Provider)
+
+dr_ivana_facey_address:
+  street_address_line_one: 912 Skincare Way
+  city: Hollywood
+  state: MD
+  postal_code: 20636
+  iso_country: usa
+  addressable: dr_ivana_facey (Provider)
+
+rn_mary_smith_address:
+  street_address_line_one: 1234 Elm Street
+  city: Anytown
+  state: NY
+  postal_code: 12345
+  iso_country: usa
+  addressable: rn_mary_smith (Provider)
+
+bo_jangles_address:
+  street_address_line_one: 5674 East Street
+  city: Hull
+  state: MA
+  postal_code: '02045'
+  iso_country: usa
+  addressable: joe_smith_advance_directive (AdvanceDirective)
+
+george_washington_address:
+  street_address_line_one: 1600 Pennsylvania Avenue NW
+  city: Washington
+  state: DC
+  postal_code: 20500
+  iso_country: usa
+  addressable: emily_jones_advance_directive (AdvanceDirective)
+
+john_kennedy_address:
+  street_address_line_one: 1600 Pennsylvania Avenue NW
+  city: Washington
+  state: DC
+  postal_code: 20500
+  iso_country: usa
+  addressable: will_haynes_advance_directive (AdvanceDirective)
+
+franklin_roosevelt_address:
+  street_address_line_one: 1600 Pennsylvania Avenue NW
+  city: Washington
+  state: DC
+  postal_code: 20500
+  iso_country: usa
+  addressable: jennifer_thompson_advance_directive (AdvanceDirective)
+
+dwight_eisenhower_address:
+  street_address_line_one: 1600 Pennsylvania Avenue NW
+  city: Washington
+  state: DC
+  postal_code: 20500
+  iso_country: usa
+  addressable: theodore_smith_advance_directive (AdvanceDirective)
+
+william_taft_address:
+  street_address_line_one: 1600 Pennsylvania Avenue NW
+  city: Washington
+  state: DC
+  postal_code: 20500
+  iso_country: usa
+  addressable: david_carter_advance_directive (AdvanceDirective)
+
+joe_smith_comment_address:
+  addressable: joe_smith_comment (Comment)
+
+emily_jones_comment_address:
+  addressable: emily_jones_comment (Comment)
+
+will_haynes_comment_address:
+  addressable: will_haynes_comment (Comment)
+
+jennifer_thompson_comment_address:
+  addressable: jennifer_thompson_comment (Comment)
+
+theodore_smith_comment_address:
+  addressable: theodore_smith_comment (Comment)
+
+david_carter_comment_address:
+  addressable: david_carter_comment (Comment)
+
+joe_smiths_insurance_provider_patient_address:
+  street_address_line_one: 1601 Rockville Pike
+  city: Rockville
+  state: MD
+  postal_code: 20847 
+  iso_country: usa
+  addressable: joe_smiths_insurance_provider_patient (InsuranceProviderPatient)
+
+joe_smiths_insurance_provider_subscriber_address:
+  street_address_line_one: 1602 Rockville Pike
+  city: Rockville
+  state: MD
+  postal_code: 20847 
+  iso_country: usa
+  addressable: joe_smiths_insurance_provider_subscriber (InsuranceProviderSubscriber)
+
+joe_smiths_insurance_provider_guarantor_address:
+  street_address_line_one: 1603 Rockville Pike
+  city: Rockville
+  state: MD
+  postal_code: 20847 
+  iso_country: usa
+  addressable: joe_smiths_insurance_provider_guarantor (InsuranceProviderGuarantor)
+
+emily_jones_insurance_provider_patient_address:
+  street_address_line_one: 1601 Rockville Pike
+  city: Rockville
+  state: MD
+  postal_code: 20847 
+  iso_country: usa
+  addressable: emily_jones_insurance_provider_patient (InsuranceProviderPatient)
+
+emily_jones_insurance_provider_subscriber_address:
+  street_address_line_one: 1603 Rockville Pike
+  city: Rockville
+  state: MD
+  postal_code: 20847 
+  iso_country: usa
+  addressable: emily_jones_insurance_provider_subscriber (InsuranceProviderSubscriber)
+
+emily_jones_insurance_provider_guarantor_address:
+  street_address_line_one: 1603 Rockville Pike
+  city: Rockville
+  state: MD
+  postal_code: 20847 
+  iso_country: usa
+  addressable: emily_jones_insurance_provider_guarantor (InsuranceProviderGuarantor)
+
+jennifer_thompsons_insurance_provider_patient_address:
+  street_address_line_one: 1603 Rockville Pike
+  city: Rockville
+  state: MD
+  postal_code: 20847 
+  iso_country: usa
+  addressable: jennifer_thompsons_insurance_provider_patient (InsuranceProviderPatient)
+
+jennifer_thompsons_insurance_provider_subscriber_address:
+  street_address_line_one: 1603 Rockville Pike
+  city: Rockville
+  state: MD
+  postal_code: 20847 
+  iso_country: usa
+  addressable: jennifer_thompsons_insurance_provider_subscriber (InsuranceProviderSubscriber)
+
+jennifer_thompsons_insurance_provider_guarantor_address:
+  street_address_line_one: 1603 Rockville Pike
+  city: Rockville
+  state: MD
+  postal_code: 20847 
+  iso_country: usa
+  addressable: jennifer_thompsons_insurance_provider_guarantor (InsuranceProviderGuarantor)
+  
+joe_smiths_encounter_provider_address:
+  street_address_line_one: 5674 East Street
+  city: Hull
+  state: MA
+  postal_code: '02045'
+  iso_country: usa
+  addressable: joe_smith_encounter (Encounter)
+
+emily_jones_encounter_provider_address:
+  street_address_line_one: 5674 East Street
+  city: Hull
+  state: MA
+  postal_code: '02045'
+  iso_country: usa
+  addressable: emily_jones_encounter (Encounter)
+
+will_haynes_encounter_provider_address:
+  street_address_line_one: 5674 East Street
+  city: Hull
+  state: MA
+  postal_code: '02045'
+  iso_country: usa
+  addressable: will_haynes_encounter (Encounter)
+
+jennifer_thompson_encounter_provider_address:
+  street_address_line_one: 5674 East Street
+  city: Hull
+  state: MA
+  postal_code: '02045'
+  iso_country: usa
+  addressable: jennifer_thompson_encounter (Encounter)
+
+theodore_smith_encounter_provider_address:
+  street_address_line_one: 5674 East Street
+  city: Hull
+  state: MA
+  postal_code: '02045'
+  iso_country: usa
+  addressable: theodore_smith_encounter (Encounter)

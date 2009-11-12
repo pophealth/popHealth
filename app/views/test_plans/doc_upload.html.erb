@@ -1,0 +1,22 @@
+<% form_for(:clinical_document, 
+            :url => {
+              :controller => 'test_plans',
+              :action => 'doc_validate',
+              :id => @test_plan.id },
+            :html => {
+              :multipart => true,
+              :onSubmit => %[
+                if ($("upload_#{@test_plan.id}").value.blank())
+                  { alert("You must specify a file to upload."); return false }
+                else return true
+              ] }) do |f| -%>
+  <label>Document Type &nbsp;&nbsp;&nbsp;&nbsp;
+	<%= f.select :doc_type, ['C32 v2.1', 'NHIN C32'] %>
+  </label>
+  <br/>
+  <label>Clinical Document
+    <%= f.file_field  :uploaded_data, :id => "upload_#{@test_plan.id}" %>
+  </label>
+  <br/>
+  <%= submit_tag 'Attach' %>
+<% end -%>

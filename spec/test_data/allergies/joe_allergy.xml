@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClinicalDocument
+   xmlns="urn:hl7-org:v3" xmlns:sdct="urn:hl7-org:sdct"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <component>
+     <structuredBody>
+                <component>
+                   <!--Allergies and Alerts -->
+                   <section>
+                      <templateId root="2.16.840.1.113883.10.20.1.2"
+                         assigningAuthorityName="HL7 SDTC CCD" />
+                      <code code="10160-0" displayName="Alerts"
+                         codeSystem="2.16.840.1.113883.6.1"
+                         codeSystemName="LOINC" />
+                      <title>Allergies and Alert Problems</title>
+                      <text>
+                        Penicillin Allergy on February 21, 2006 
+                        <content ID='severity-1'>Moderate</content> <content ID='reaction-1'>Hives</content>
+                      </text>
+                      <entry>
+                         <act classCode="ACT" moodCode="EVN">
+                            <!--CCD Problem act - Required-->
+                            <templateId root="2.16.840.1.113883.10.20.1.27"
+                               assigningAuthorityName="HL7 SDTC CCD" />
+                            <id />
+                            <code nullFlavor="NA" />
+                            <entryRelationship typeCode="SUBJ">
+                               <!--CCD Alert observation - Required-->
+                               <observation classCode="OBS" moodCode="EVN">
+                                  <templateId
+                                     root="2.16.840.1.113883.10.20.1.18"
+                                     assigningAuthorityName="HL7 SDTC CCD" />
+                                  <code code="420134006"
+                                     displayName="propensity to adverse reactions"
+                                     codeSystemName="SNOMED CT"
+                                     codeSystem="2.16.840.1.113883.6.96">
+                                     <originalText>
+                                        See HITSP/C32 Table 2.2.1.7.1-2 for
+                                        more specific codes, e.g. 416098002 for
+                                        drug allergy.
+                                     </originalText>
+                                  </code>
+                                  <statusCode code="completed" />
+                                  <effectiveTime>
+                                    <low value="20060221"/>
+                                  </effectiveTime>
+                                  <participant typeCode="CSM">
+                                     <participantRole classCode="MANU">
+                                        <playingEntity classCode="MMAT">
+                                           <code code="70618"
+                                              displayName="Penicillin"
+                                              codeSystem="2.16.840.1.113883.6.88"
+                                              codeSystemName="RxNorm">
+                                              <originalText>
+                                                 This code element is required
+                                                 by CCD rules. By C32 rules, if
+                                                 the code element is present it
+                                                 shall have populated code and
+                                                 codeSystem attributes from
+                                                 UNII, RxNorm, or NDF=RT. This
+                                                 C32 requirement is under
+                                                 review (12/12/07) and may
+                                                 change.
+                                              </originalText>
+                                           </code>
+                                           <name>Penicillin</name>
+                                        </playingEntity>
+                                     </participantRole>
+                                  </participant>
+                                  <entryRelationship typeCode='MFST'
+                                     inversionInd='true'>
+                                     <templateId
+                                        root='2.16.840.1.113883.10.20.1.54' />
+                                     <text>
+                                        <reference value='#reaction-1' />
+                                     </text>
+                                     <value xsi:type='CD' code='247472004'
+                                        displayName='Weal'
+                                        codeSystem='2.16.840.1.113883.6.96'
+                                        codeSystemName='SNOMED CT' />
+                                  </entryRelationship>
+                                  <entryRelationship typeCode='SUBJ'
+                                     inversionInd='true'>
+                                     <observation classCode='OBS'
+                                        moodCode='EVN'>
+                                        <templateId
+                                           root='2.16.840.1.113883.10.20.1.55' />
+                                        <code code='SEV' displayName='Severity'
+                                           codeSystem='2.16.840.1.113883.5.4'
+                                           codeSystemName='ActCode' />
+                                        <text><reference value='#severity-1'/></text>
+                                        <statusCode code='completed' />
+                                        <value xsi:type='CD' code='6736007'
+                                           displayName='Moderate'
+                                           codeSystem='2.16.840.1.113883.6.96'
+                                           codeSystemName='SNOMED CT' />
+                                     </observation>
+
+                                  </entryRelationship>
+                               </observation>
+                            </entryRelationship>
+                         </act>
+                      </entry>
+                   </section>
+                </component>
+             </structuredBody>
+          </component>
+       </ClinicalDocument>
+       

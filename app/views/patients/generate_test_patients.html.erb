@@ -1,0 +1,10 @@
+<% @page_header = 'Generate Test Records' %>
+
+
+<div class="column span-8 box">
+  <% form_tag(:action => :create_random_records) do  %>
+	<%= label_tag 'Number of records'%><%= text_field_tag(:number, params[:number])%>
+    <%= submit_tag(value='Generate to database') %>
+  <% end %>
+</div>
+

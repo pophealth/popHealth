@@ -1,0 +1,19 @@
+current_and_verified:
+  name: Current and Verified
+  code: 425392003
+
+supported_by_healthcare_will:
+  name: Supported By Healthcare Will
+  code: 425394002
+
+supported_by_durable_power_of_attorney:
+  name: Supported By Durable Power of Attorney
+  code: 425393008
+
+verified_with_family_only:
+  name: Verified With Family Only
+  code: 425396000
+
+verified_by_medical_record_only:
+  name: Verified By Medical Record Only
+  code: 310305009

@@ -1,0 +1,23 @@
+expressed_signed:
+  code: ESGN
+  name: Expressed Signed
+
+expressed_spoken:
+  code: ESP
+  name: Expressed Spoken
+
+expressed_written:
+  code: EWR
+  name: Expressed Written
+
+received_signed:
+  code: RSGN
+  name: Received Signed
+
+received_spoken:
+  code: RSP
+  name: Received Spoken
+
+received_written:
+  code: RWR
+  name: Received Written

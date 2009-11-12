@@ -1,0 +1,15 @@
+# Make a copy of this file in deploy_local.rb and set the values according to
+# your deployment environment.
+
+#
+# Your Amazon EC2 instance public DNS:
+#
+
+set :server_name, 'ec2-XXX-XXX-XXX-XXX.compute-Y.amazonaws.com'
+
+#
+# Git repository and branch, uncomment and modify to override the defaults:
+#
+
+#set :repository,  'git://github.com/CCHIT/laika.git'
+#set :branch,      'master'

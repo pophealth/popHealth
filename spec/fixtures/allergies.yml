@@ -1,0 +1,66 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+joes_allergy:
+  start_event: 2006-02-21
+  free_text_product: Penicillin
+  product_code: 70618
+  adverse_event_type: propensity_to_adverse_reactions
+  severity_term: moderate
+  allergy_type_code: allergy
+  allergy_status_code: active
+  patient: joe_smith
+
+emilys_allergy:
+  start_event: 2006-02-21
+  end_event: 2028-03-26
+  free_text_product: Penicillin
+  product_code: 70618
+  adverse_event_type: drug_allergy
+  severity_term: moderate_to_severe
+  allergy_type_code: allergy
+  allergy_status_code: prior_history
+  patient: emily_jones
+
+teds_first_allergy:
+  start_event: 2005-02-21
+  end_event: 2008-02-21
+  free_text_product: Aspirin
+  product_code: 1191
+  adverse_event_type: propensity_to_adverse_reactions_to_drug
+  severity_term: severe
+  allergy_type_code: allergy
+  allergy_status_code: active
+  patient: theodore_smith
+
+teds_second_allergy:
+  start_event: 2005-02-21
+  end_event: 2008-02-21
+  free_text_product: Codeine
+  product_code: 2670
+  adverse_event_type: allergy_to_substance
+  severity_term: fatal
+  allergy_type_code: allergy
+  allergy_status_code: prior_history
+  patient: theodore_smith
+
+wills_allergy:
+  start_event: 2005-02-21
+  end_event: 2048-12-21
+  free_text_product: Aspirin
+  product_code: 1191
+  adverse_event_type: drug_intolerance
+  severity_term: mild
+  allergy_type_code: adverse_reaction
+  allergy_status_code: no_longer_active
+  patient: will_haynes
+
+davids_allergy:
+  start_event: 1974-06-30
+  end_event: 2021-12-21
+  free_text_product: Codeine
+  product_code: 2670
+  adverse_event_type: drug_allergy
+  severity_term: mild_to_moderate
+  allergy_type_code: adverse_reaction
+  allergy_status_code: active
+  patient: david_carter

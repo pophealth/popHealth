@@ -1,0 +1,44 @@
+annulled:
+  name: Annulled
+  code: A
+  description: Marriage contract has been declared null and to not have existed
+
+divorced:
+  name: Divorced
+  code: D
+  description: Marriage contract has been declared dissolved and inactive
+
+interlocutory:
+  name: Interlocutory
+  code: I
+  description: Subject to an Interlocutory Decree.
+
+separated:
+  name: Separated
+  code: L
+  description: Legally Separated
+
+married:
+  name: Married
+  code: M
+  description: A current marriage contract is active
+
+polygamous:
+  name: Polygamous
+  code: P
+  description: More than 1 current spouse
+
+never_married:
+  name: Never Married
+  code: S
+  description: No marriage contract has ever been entered
+
+domestic_partner:
+  name: Domestic Partner
+  code: T
+  description: Person declares that a domestic partner relationship exists.
+
+widowed:
+  name: Widowed
+  code: W
+  description: The spouse has died

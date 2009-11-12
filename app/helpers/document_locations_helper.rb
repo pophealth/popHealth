@@ -1,0 +1,2 @@
+module DocumentLocationsHelper
+end

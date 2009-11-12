@@ -1,0 +1,28 @@
+<table>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Patient Identifer</td>
+    <td><%=h patient_identifier.patient_identifier %></td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Affinity Domain</td>
+    <td><%=h patient_identifier.affinity_domain %></td>
+  </tr>
+  <% if @patient.editable_by? current_user -%>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td></td>
+    <td>
+    <span>
+    <%= link_to_remote 'Edit', :update => "patient_identifier#{patient_identifier.id}",
+                               :url => edit_patient_patient_identifier_path(patient, patient_identifier),
+                               :method => 'get' %>
+    </span>
+    <span>
+    <%= link_to_remote 'Remove', :update => "patient_identifier#{patient_identifier.id}",
+                               :url => patient_patient_identifier_path(patient, patient_identifier),
+                               :confirm=>"Are you sure you wish to remove this patient identifer?",
+                               :method => 'delete' %>
+    </span>
+    </td>
+  </tr>
+  <% end -%>
+</table>

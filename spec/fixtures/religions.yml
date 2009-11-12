@@ -1,0 +1,239 @@
+adventist:
+  name: Adventist
+  code: 1001
+
+african_religions:
+  name: African Religions
+  code: 1002
+
+afro-caribbean_religions:
+  name: Afro-Caribbean Religions
+  code: 1003
+
+agnosticism:
+  name: Agnosticism
+  code: 1004
+
+anglican:
+  name: Anglican
+  code: 1005
+
+animism:
+  name: Animism
+  code: 1006
+
+atheism:
+  name: Atheism
+  code: 1007
+
+babibaha_faiths:
+  name: Babi & Baha'I faiths
+  code: 1008
+
+baptist:
+  name: Baptist
+  code: 1009
+
+bon:
+  name: Bon
+  code: 1010
+
+cao_dai:
+  name: Cao Dai
+  code: 1011
+
+celticism:
+  name: Celticism
+  code: 1012
+
+christian:
+  name: Christian
+  code: 1013
+
+confucianism:
+  name: Confucianism
+  code: 1014
+
+cyberculture_religions:
+  name: Cyberculture Religions
+  code: 1015
+
+divination:
+  name: Divination
+  code: 1016
+
+fourth_way:
+  name: Fourth Way
+  code: 1017
+
+free_daism:
+  name: Free Daism
+  code: 1018
+
+gnosis:
+  name: Gnosis
+  code: 1019
+
+hinduism:
+  name: Hinduism
+  code: 1020
+
+humanism:
+  name: Humanism
+  code: 1021
+
+independent:
+  name: Independent
+  code: 1022
+
+islam:
+  name: Islam
+  code: 1023
+
+jainism:
+  name: Jainism
+  code: 1024
+
+jehovahs_witnesses:
+  name: Jehovah's Witnesses
+  code: 1025
+
+judaism:
+  name: Judaism
+  code: 1026
+
+latter_day_saints:
+  name: Latter Day Saints
+  code: 1027
+
+lutheran:
+  name: Lutheran
+  code: 1028
+
+mahayana:
+  name: Mahayana
+  code: 1029
+
+meditation:
+  name: Meditation
+  code: 1030
+
+messianic_judaism:
+  name: Messianic Judaism
+  code: 1031
+
+mitraism:
+  name: Mitraism
+  code: 1032
+
+new_age:
+  name: New Age
+  code: 1033
+
+non-roman_catholic:
+  name: non-Roman Catholic
+  code: 1034
+
+occult:
+  name: Occult
+  code: 1035
+
+orthodox:
+  name: Orthodox
+  code: 1036
+
+paganism:
+  name: Paganism
+  code: 1037
+
+pentecostal:
+  name: Pentecostal
+  code: 1038
+
+process:
+  name: The Process
+  code: 1039
+
+reformed_presbyterian:
+  name: Reformed Presbyterian
+  code: 1040
+
+roman_catholic_church:
+  name: Roman Catholic Church
+  code: 1041
+
+satanism:
+  name: satanism
+  code: 1042
+
+scientology:
+  name: scientology
+  code: 1043
+
+shamanism:
+  name: shamanism
+  code: 1044
+
+shiite:
+  name: Shiite (Islam)
+  code: 1045
+
+shinto:
+  name: Shinto
+  code: 1046
+
+sikism:
+  name: Sikism
+  code: 1047
+
+spiritualism:
+  name: Spiritualism
+  code: 1048
+
+sunni:
+  name: Sunni (Islam)
+  code: 1049
+
+taoism:
+  name: Taoism
+  code: 1050
+
+theravada:
+  name: Theravada
+  code: 1051
+
+unitarian_universalism:
+  name: Unitarian-Universalism
+  code: 1052
+
+universal_life_church:
+  name: Universal Life Church
+  code: 1053
+
+vajrayana:
+  name: Vajrayana (Tibetan)
+  code: 1054
+
+veda:
+  name: Veda
+  code: 1055
+
+voodoo:
+  name: Voodoo
+  code: 1056
+
+wicca:
+  name: Wicca
+  code: 1057
+
+yaohushua:
+  name: Yaohushua
+  code: 1058
+
+zen_buddhism:
+  name: Zen Buddhism
+  code: 1059
+
+zoroastrianism:
+  name: Zoroastrianism
+  code: 1060

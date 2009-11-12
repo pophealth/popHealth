@@ -1,0 +1,50 @@
+joe_smith_vendor_test:
+  name: Joe Smith Test
+  test_plan: all_scripts_test_plan
+  user: rob_mccready
+  pregnant: false
+  created_at: 2007-04-21
+  updated_at: 2007-04-24
+  
+joe_smith:
+  name: Joe Smith
+  user: rob_mccready
+  pregnant: false
+  created_at: 2007-04-21
+  updated_at: 2007-04-24
+
+emily_jones:
+  name: Emily Jones
+  user: rob_mccready
+  pregnant: true
+  created_at: 2007-03-26
+  updated_at: 2008-06-24
+
+will_haynes:
+  name: Will Haynes
+  user: rob_mccready
+  pregnant: false
+  created_at: 2004-03-26
+  updated_at: 2005-06-24
+
+jennifer_thompson:
+  name: Jennifer Thompson
+  user: rob_mccready
+  no_known_allergies: true
+  pregnant: true
+  created_at: 2004-03-26
+  updated_at: 2005-06-24
+
+theodore_smith:
+  name: Theodore Smith
+  user: rob_mccready
+  pregnant: false
+  created_at: 2008-01-08
+  updated_at: 2008-02-11
+
+david_carter:
+  name: David Carter
+  user: rob_mccready
+  pregnant: false
+  created_at: 2008-01-14
+  updated_at: 2008-01-31

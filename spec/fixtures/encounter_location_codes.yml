@@ -1,0 +1,403 @@
+diagnostics_or_therapeutics_unit:
+  name: Diagnostics Or Therapeutics Unit
+  code: DX
+
+cardiovascular_diagnostics_or_therapeutics_unit:
+  name: Cardiovascular Diagnostics or Therapeutics Unit 
+  code: CVDX
+
+cardiac_catheterization_lab:
+  name: Cardiac Catheterization Lab 
+  code: CATH
+
+echocardiography_lab:
+  name: Echocardiography Lab
+  code: ECHO
+
+gastroenterology_diagnostics_or_therapeutics_lab:
+  name: Gastroenterology Diagnostics or Therapeutics Lab
+  code: GIDX
+
+ambulatory_health_care_facilities:
+  name: Ambulatory Health Care Facilities
+  code: ENDOS
+
+ambulatory_health_care_facilities_radiology:
+  name: Ambulatory Health Care Facilities, Radiology
+  code: RADDX
+
+hospital:
+  name: Hospital
+  code: HOSP
+
+chronic_care_facility:
+  name: Chronic Care Facility
+  code: CHR
+
+general_acute_care_hospital:
+  name: General Acute Care Hospital
+  code: GACH
+
+military_hospital:
+  name: Military Hospital
+  code: MHSP
+
+rehabilitation_hospital:
+  name: Rehabilitation Hospital
+  code: RH
+
+psychatric_care_facility:
+  name: Psychatric Care Facility
+  code: PSYCHF
+
+hospital_unit:
+  name: Hospital Unit
+  code: HU
+
+emergency_room:
+  name: Emergency Room
+  code: ER
+
+emergency_trauma_unit:
+  name: Emergency Trauma Unit
+  code: ETU
+
+intensive_care_unit:
+  name: Intensive Care Unit
+  code: ICU
+
+pediatric_intensive_care_unit:
+  name: Pediatric Intensive Care Unit
+  code: PEDICU
+
+pediatric_neonatal_intensive_care_unit:
+  name: Pediatric Neonatal Intensive Care Unit
+  code: PEDNICU
+
+pediatric_unit:
+  name: Pediatric Unit
+  code: PEDU
+
+pediatric_intensive_care_unit:
+  name: Pediatric Intensive Care Unit
+  code: PEDICU
+
+pediatric_neonatal_intensive_care_unit:
+  name: Pediatric Neonatal Intensive Care Unit
+  code: PEDNICU
+
+bone_marrow_transplant_unit:
+  name: Bone Marrow Transplant Unit
+  code: BMTU
+
+coronary_care_unit:
+  name: Coronary Care Unit
+  code: CCU
+
+chest_unit:
+  name: Chest Unit
+  code: CHEST
+
+epilepsy_unit:
+  name: Epilepsy Unit
+  code: EPIL
+
+hemodialysis_unit:
+  name: Hemodialysis Unit
+  code: HD
+
+neurology_critical_care_and_stroke_unit:
+  name: Neurology Critical Care and Stroke Unit
+  code: NCCS
+
+neurosurgery_unit:
+  name: Neurosurgery Unit
+  code: NS
+
+hospital_units_psychiatric_unit:
+  name: Hospital Units, Psychiatric Unit 
+  code: PHU
+
+hospital_units_rehabilitation_unit:
+  name: Hospital Units, Rehabilitation Unit 
+  code: RHU
+
+sleep_disorders_unit:
+  name: Sleep Disorders Unit
+  code: SLEEP
+
+nursing_or_custodial_care_facility:
+  name: Nursing or Custodial Care Facility
+  code: NCCF
+
+nursing_and_custodial_care_facilities_skilled_nursing_facility:
+  name: Nursing and Custodial Care Facilities, Skilled Nursing Facility
+  code: SNF
+
+outpatient_facility:
+  name: Outpatient Facility
+  code: OF
+
+ambulatory_health_care_facilities:
+  name: Ambulatory Health Care Facilities
+  code: CARD
+
+endocrinology_clinic:
+  name: Endocrinology Clinic
+  code: ENDO
+
+pediatric_endocrinology_clinic:
+  name: Pediatric Endocrinology Clinic
+  code: PEDE
+
+gastroenterology_clinic:
+  name: Gastroenterology Clinic
+  code: GI
+
+pediatric_gastroenterology_clinic:
+  name: Pediatric Gastroenterology Clinic
+  code: PEDGI
+
+hematology_clinic:
+  name: Hematology Clinic
+  code: HEM
+
+pediatric_hematology_clinic:
+  name: Pediatric Hematology Clinic
+  code: PEDHEM
+
+infectious_disease_clinic:
+  name: Infectious Disease Clinic
+  code: INFD
+
+pediatric_infectious_disease_clinic:
+  name: Pediatric Infectious Disease Clinic
+  code: PEDID
+
+medical_oncology_clinic:
+  name: Medical Oncology Clinic
+  code: ONCL
+
+pediatric_oncology_clinic:
+  name: Pediatric Oncology Clinic
+  code: PEDHO
+
+nephrology_clinic:
+  name: Nephrology Clinic
+  code: NEPH
+
+pediatric_nephrology_clinic:
+  name: Pediatric Nephrology Clinic
+  code: PEDNEPH
+
+orthopedics_clinic:
+  name: Orthopedics clinic
+  code: ORTHO
+
+handicapped dependent:
+  name: Handicapped Dependent
+  code: HANDIC
+
+pediatrics_clinic:
+  name: Pediatrics Clinic
+  code: PEDC
+
+pediatric_cardiology_clinic:
+  name: Pediatric Cardiology Clinic
+  code: PEDCARD
+
+pediatric_endocrinology_clinic:
+  name: Pediatric Endocrinology Clinic
+  code: PEDE
+
+pediatric_gastroenterology_clinic:
+  name: Pediatric Gastroenterology Clinic
+  code: PEDGI
+
+pediatric_hematology_clinic:
+  name: Pediatric Hematology Clinic
+  code: PEDHEM
+
+pediatric_oncology_clinic:
+  name: Pediatric Oncology Clinic 
+  code: PEDHO
+
+pediatric_infectious_disease_clinic:
+  name: Pediatric Infectious Disease Clinic
+  code: PEDID
+
+pediatric_nephrology_clinic:
+  name: Pediatric Nephrology Clinic
+  code: PEDNEPH
+
+pediatric_rheumatology_clinic:
+  name: Pediatric Rheumatology Clinic
+  code: PEDRHEUM
+
+rheumatology_clinic:
+  name: Rheumatology Clinic
+  code: RHEUM
+
+pediatric_rheumatology_clinic:
+  name: Pediatric Rheumatology Clinic
+  code: PEDRHEUM
+
+surgery_clinic:
+  name: Surgery Clinic
+  code: SU
+
+plastic_surgery_clinic:
+  name: Plastic Surgery Clinic
+  code: PLS
+
+urology_clinic:
+  name: Urology Clinic
+  code: URO
+
+allergy_clinic:
+  name: Allergy Clinic
+  code: ALL
+
+amputee_clinic:
+  name: Amputee Clinic
+  code: AMPUT
+
+bone_marrow_transplant_clinic:
+  name: Bone Marrow Transplant Clinic
+  code: BMTC
+
+breast_clinic:
+  name: Breast Clinic
+  code: BREAST
+
+Child_and_adolescent_neurology_clinic:
+  name: Child and Adolescent Neurology Clinic
+  code: CANC
+
+child_and_adolescent_psychiatry_clinic:
+  name: Child and Adolescent Psychiatry Clinic
+  code: CAPC
+
+coagulation_clinic:
+  name: Coagulation Clinic
+  code: COAG
+
+colon_and_rectal_surgery_clinic:
+  name: Colon and Rectal Surgery Clinic
+  code: CRS
+
+dermatology_clinic:
+  name: Dermatology Clinic
+  code: DERM
+
+otorhinolaryngology_clinic:
+  name: Otorhinolaryngology Clinic
+  code: ENT
+
+family_medicine_clinic:
+  name: Family Medicine Clinic
+  code: FMC
+
+general_internal_medicine_clinic:
+  name: General Internal Medicine Clinic
+  code: GIM
+
+gynecology_clinic:
+  name: Gynecology Clinic
+  code: GYN
+
+hypertension_clinic:
+  name: Hypertension Clinic
+  code: HTN
+
+impairment_evaluation_center:
+  name: Impairment Evaluation Center
+  code: IEC
+
+infertility_clinic:
+  name: Infertility Clinic
+  code: INV
+
+lympedema_clinic:
+  name: Lympedema Clinic
+  code: LYMPH
+
+medical_genetics_clinic:
+  name: Medical Genetics Clinic
+  code: MGEN
+
+neurology_clinic:
+  name: Neurology Clinic
+  code: NEUR
+
+obstetrics_clinic:
+  name: Obstetrics Clinic
+  code: OB
+
+ambulatory_health_care_facilities:
+  name: Ambulatory Health Care Facilities 
+  code: OMS
+
+opthalmology_clinic:
+  name: Opthalmology Clinic
+  code: OPH
+
+ambulatory_health_care_facilities_pain:
+  name: Ambulatory Health Care Facilities, Pain
+  code: PAINCL
+
+ambulatory_health_care_facilities_primary_care:
+  name: Ambulatory Health Care Facilities, Primary Care
+  code: PC
+
+ambulatory_health_care_facilities_podiatric:
+  name: Ambulatory Health Care Facilities, Podiatric
+  code: POD
+
+preventive_medicine_clinic:
+  name: Preventive Medicine Clinic
+  code: PREV
+
+proctology_clinic:
+  name: Proctology Clinic
+  code: PROCTO
+
+prosthodontics_clinic:
+  name: Prosthodontics Clinic
+  code: PROS
+
+psychology_clinic:
+  name: Psychology Clinic
+  code: PSI
+
+psychiatry_clinic:
+  name: Psychiatry Clinic
+  code: PSY
+
+sports_medicine_clinic:
+  name: Transplant Clinic 
+  code: SPMED
+
+transplant_clinic:
+  name: Transplant Clinic
+  code: TR
+
+travel_and_geographic_medicine_clinic:
+  name: Travel and Geographic Medicine Clinic
+  code: TRAVEL
+
+wound_clinic:
+  name: Wound Clinic
+  code: WND
+
+residential_treatment_facility:
+  name: Residential Treatment Facility
+  code: RTF
+
+pain_rehabilitation_center:
+  name: Pain Rehabilitation Center
+  code: PRC
+
+residential_treatment_facilities:
+  name: Residential Treatment Facilities
+  code: SURF

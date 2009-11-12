@@ -1,0 +1,478 @@
+# Logfile created on Wed Nov 11 14:06:27 -0500 2009DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/laika/app/controllers/application_controller.rb:17)
+
+
+Processing PopconnectController#index (for 127.0.0.1 at 2009-11-11 17:01:52) [GET]
+  Parameters: {"controller"=>"popconnect", "action"=>"index"}
+Redirected to http://127.0.0.1:3000/account/login
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 111ms (DB: 2) | 302 Found [http://127.0.0.1/popconnect/]
+DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/laika/app/controllers/application_controller.rb:17)
+
+
+Processing AccountController#login (for 127.0.0.1 at 2009-11-11 17:01:53) [GET]
+  Parameters: {"controller"=>"account", "action"=>"login"}
+Rendering template within layouts/account
+Rendering account/login
+Completed in 49ms (View: 38, DB: 4) | 200 OK [http://127.0.0.1/account/login]
+DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/laika/app/controllers/application_controller.rb:17)
+
+
+Processing AccountController#login (for 127.0.0.1 at 2009-11-11 17:01:58) [POST]
+  Parameters: {"authenticity_token"=>"oO3ofwHZ66N/58N0D7xMMZ10cSCHDJjS9jafAtd+Jco=", "email"=>"rmccready@mitre.org", "password"=>"[FILTERED]", "eventHandler"=>"", "controller"=>"account", "action"=>"login"}
+  [4;36;1mUser Load (1.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."email" = 'rmccready@mitre.org') LIMIT 1[0m
+Redirected to http://127.0.0.1:3000/popconnect
+Completed in 55ms (DB: 4) | 302 Found [http://127.0.0.1/account/login]
+
+
+Processing PopconnectController#index (for 127.0.0.1 at 2009-11-11 17:01:58) [GET]
+  Parameters: {"controller"=>"popconnect", "action"=>"index"}
+  [4;35;1mUser Load (1.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1458360766) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering popconnect/index
+Completed in 82ms (View: 44, DB: 3) | 200 OK [http://127.0.0.1/popconnect]
+DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/laika/app/controllers/application_controller.rb:17)
+
+
+Processing ReportsController#index (for 127.0.0.1 at 2009-11-11 17:01:59) [GET]
+  Parameters: {"id"=>"1", "controller"=>"reports", "action"=>"index"}
+  [4;36;1mUser Load (1.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1458360766) LIMIT 1[0m
+  [4;35;1mPatient Count (11.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+  [4;36;1mGender Load (1.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;35;1mGender Load (1.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;36;1mSocialHistoryType Load (1.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;35;1mPatient Count (9.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;35;1mPatient Count (17.0ms)[0m   [0mselect count(distinct patients.id) from patients, registration_information, conditions diabetes where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*35) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*76)) )and diabetes.patient_id = patients.id and diabetes.free_text_name = 'Diabetes mellitus disorder' [0m
+  [4;36;1mPatient Count (10.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;36;1mPatient Count (14.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and registration_information.gender_id = 1435361449[0m
+  [4;35;1mPatient Count (13.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and registration_information.gender_id = 1249151596[0m
+  [4;36;1mPatient Count (26.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*18) and now()::DATE - registration_information.date_of_birth::DATE < (365*35)[0m
+  [4;35;1mPatient Count (24.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*34) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)[0m
+  [4;36;1mPatient Count (21.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)[0m
+  [4;35;1mPatient Count (19.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)[0m
+  [4;36;1mPatient Count (17.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*76)[0m
+  [4;35;1mPatient Count (13.0ms)[0m   [0mselect count(*) from patients, medications where medications.patient_id = patients.id and medications.product_code = 'R16CO5Y76E'[0m
+  [4;36;1mPatient Count (7.0ms)[0m   [0;1mselect count(*) from patients, social_history where social_history.patient_id = patients.id and social_history.social_history_type_id = 1819138991[0m
+  [4;35;1mPatient Count (29.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int <= 100[0m
+  [4;36;1mPatient Count (28.0ms)[0m   [0;1mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 100 and ldl_cholesterol.value_scalar::varchar::text::int <= 120[0m
+  [4;35;1mPatient Count (31.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 130 and ldl_cholesterol.value_scalar::varchar::text::int <= 160[0m
+  [4;36;1mPatient Count (22.0ms)[0m   [0;1mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 160 and ldl_cholesterol.value_scalar::varchar::text::int <= 180[0m
+  [4;35;1mPatient Count (22.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 180[0m
+  [4;36;1mPatient Count (22.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 70 and diastolic.value_scalar::varchar::text::int <= 79[0m
+  [4;35;1mPatient Count (25.0ms)[0m   [0mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 75 and diastolic.value_scalar::varchar::text::int <= 84[0m
+  [4;36;1mPatient Count (31.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 85 and diastolic.value_scalar::varchar::text::int <= 94[0m
+  [4;35;1mPatient Count (28.0ms)[0m   [0mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 95 and diastolic.value_scalar::varchar::text::int <= 104[0m
+  [4;36;1mPatient Count (23.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 105 and diastolic.value_scalar::varchar::text::int <= 114[0m
+  [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Diabetes mellitus disorder'[0m
+  [4;36;1mPatient Count (6.0ms)[0m   [0;1mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Diabetes mellitus disorder'[0m
+  [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Essential hypertension disorder'[0m
+  [4;36;1mPatient Count (6.0ms)[0m   [0;1mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Ischemia disorder'[0m
+  [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Hyperlipoproteinemia disorder'[0m
+Completed in 683ms (View: 6, DB: 499) | 200 OK [http://127.0.0.1/reports?id=1]
+
+
+Processing ReportsController#index (for 127.0.0.1 at 2009-11-11 17:02:00) [GET]
+  Parameters: {"controller"=>"reports", "action"=>"index"}
+  [4;36;1mUser Load (1.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1458360766) LIMIT 1[0m
+  [4;35;1mPatient Count (4.0ms)[0m   [0mselect count(*) from patients[0m
+Completed in 117ms (View: 4, DB: 7) | 200 OK [http://127.0.0.1/reports]
+
+
+Processing ReportsController#create (for 127.0.0.1 at 2009-11-11 17:02:15) [POST]
+  Parameters: {"numerator"=>{"medications"=>["Aspirin"], "smoking"=>["Current Smoker"]}, "denominator"=>{"age"=>["35-49", "50-64", "65-75", "76+"], "diabetes"=>["Yes"]}, "title"=>"Aspirin Therapy", "id"=>"1", "authenticity_token"=>"oO3ofwHZ66N/58N0D7xMMZ10cSCHDJjS9jafAtd+Jco=", "controller"=>"reports", "action"=>"create"}
+  [4;36;1mUser Load (3.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1458360766) LIMIT 1[0m
+  [4;35;1mPatient Count (12.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+  [4;36;1mGender Load (1.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;35;1mGender Load (1.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;36;1mSocialHistoryType Load (1.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;35;1mPatient Count (10.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;35;1mPatient Count (17.0ms)[0m   [0mselect count(distinct patients.id) from patients, registration_information, conditions diabetes where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*35) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*76)) )and diabetes.patient_id = patients.id and diabetes.free_text_name = 'Diabetes mellitus disorder' [0m
+  [4;36;1mPatient Count (10.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;36;1mPatient Count (10.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;36;1mPatient Count (19.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, registration_information, conditions diabetes, conditions smoking, medications aspirin where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*35) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*76)) )and diabetes.patient_id = patients.id and diabetes.free_text_name = 'Diabetes mellitus disorder' and smoking.patient_id = patients.id and smoking.free_text_name = 'Smoker finding' and aspirin.patient_id = patients.id and aspirin.product_code = 'R16CO5Y76E' [0m
+  [4;35;1mPatient Count (10.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;35;1mPatient Count (15.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and registration_information.gender_id = 1435361449[0m
+  [4;36;1mPatient Count (14.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and registration_information.gender_id = 1249151596[0m
+  [4;35;1mPatient Count (27.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*18) and now()::DATE - registration_information.date_of_birth::DATE < (365*35)[0m
+  [4;36;1mPatient Count (24.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*34) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)[0m
+  [4;35;1mPatient Count (21.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)[0m
+  [4;36;1mPatient Count (18.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)[0m
+  [4;35;1mPatient Count (17.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*76)[0m
+  [4;36;1mPatient Count (12.0ms)[0m   [0;1mselect count(*) from patients, medications where medications.patient_id = patients.id and medications.product_code = 'R16CO5Y76E'[0m
+  [4;35;1mPatient Count (7.0ms)[0m   [0mselect count(*) from patients, social_history where social_history.patient_id = patients.id and social_history.social_history_type_id = 1819138991[0m
+  [4;36;1mPatient Count (29.0ms)[0m   [0;1mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int <= 100[0m
+  [4;35;1mPatient Count (28.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 100 and ldl_cholesterol.value_scalar::varchar::text::int <= 120[0m
+  [4;36;1mPatient Count (30.0ms)[0m   [0;1mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 130 and ldl_cholesterol.value_scalar::varchar::text::int <= 160[0m
+  [4;35;1mPatient Count (22.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 160 and ldl_cholesterol.value_scalar::varchar::text::int <= 180[0m
+  [4;36;1mPatient Count (23.0ms)[0m   [0;1mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 180[0m
+  [4;35;1mPatient Count (22.0ms)[0m   [0mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 70 and diastolic.value_scalar::varchar::text::int <= 79[0m
+  [4;36;1mPatient Count (25.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 75 and diastolic.value_scalar::varchar::text::int <= 84[0m
+  [4;35;1mPatient Count (31.0ms)[0m   [0mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 85 and diastolic.value_scalar::varchar::text::int <= 94[0m
+  [4;36;1mPatient Count (29.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 95 and diastolic.value_scalar::varchar::text::int <= 104[0m
+  [4;35;1mPatient Count (23.0ms)[0m   [0mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 105 and diastolic.value_scalar::varchar::text::int <= 114[0m
+  [4;36;1mPatient Count (7.0ms)[0m   [0;1mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Diabetes mellitus disorder'[0m
+  [4;35;1mPatient Count (7.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Diabetes mellitus disorder'[0m
+  [4;36;1mPatient Count (6.0ms)[0m   [0;1mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Essential hypertension disorder'[0m
+  [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Ischemia disorder'[0m
+  [4;36;1mPatient Count (6.0ms)[0m   [0;1mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Hyperlipoproteinemia disorder'[0m
+Completed in 710ms (View: 8, DB: 545) | 200 OK [http://127.0.0.1/reports]
+
+
+Processing ReportsController#create (for 127.0.0.1 at 2009-11-11 17:02:20) [POST]
+  Parameters: {"numerator"=>{"medications"=>["Aspirin"], "smoking"=>["Current Smoker"], "ischemic_vascular_disease"=>["Yes"]}, "denominator"=>{"age"=>["35-49", "50-64", "65-75", "76+"], "diabetes"=>["Yes"]}, "title"=>"Aspirin Therapy", "id"=>"1", "authenticity_token"=>"oO3ofwHZ66N/58N0D7xMMZ10cSCHDJjS9jafAtd+Jco=", "controller"=>"reports", "action"=>"create"}
+  [4;35;1mUser Load (2.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1458360766) LIMIT 1[0m
+  [4;36;1mPatient Count (11.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+  [4;35;1mGender Load (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;36;1mGender Load (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;35;1mSocialHistoryType Load (1.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;36;1mPatient Count (10.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;36;1mPatient Count (18.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, registration_information, conditions diabetes where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*35) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*76)) )and diabetes.patient_id = patients.id and diabetes.free_text_name = 'Diabetes mellitus disorder' [0m
+  [4;35;1mPatient Count (10.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;35;1mPatient Count (10.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;35;1mPatient Count (25.0ms)[0m   [0mselect count(distinct patients.id) from patients, registration_information, conditions diabetes, conditions ischemic_vascular_disease, conditions smoking, medications aspirin where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*35) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*76)) )and diabetes.patient_id = patients.id and diabetes.free_text_name = 'Diabetes mellitus disorder' and ischemic_vascular_disease.patient_id = patients.id and ischemic_vascular_disease.free_text_name = 'Ischemia disorder' and smoking.patient_id = patients.id and smoking.free_text_name = 'Smoker finding' and aspirin.patient_id = patients.id and aspirin.product_code = 'R16CO5Y76E' [0m
+  [4;36;1mPatient Count (10.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;36;1mPatient Count (14.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and registration_information.gender_id = 1435361449[0m
+  [4;35;1mPatient Count (13.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and registration_information.gender_id = 1249151596[0m
+  [4;36;1mPatient Count (26.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*18) and now()::DATE - registration_information.date_of_birth::DATE < (365*35)[0m
+  [4;35;1mPatient Count (24.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*34) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)[0m
+  [4;36;1mPatient Count (20.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)[0m
+  [4;35;1mPatient Count (18.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)[0m
+  [4;36;1mPatient Count (17.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*76)[0m
+  [4;35;1mPatient Count (13.0ms)[0m   [0mselect count(*) from patients, medications where medications.patient_id = patients.id and medications.product_code = 'R16CO5Y76E'[0m
+  [4;36;1mPatient Count (7.0ms)[0m   [0;1mselect count(*) from patients, social_history where social_history.patient_id = patients.id and social_history.social_history_type_id = 1819138991[0m
+  [4;35;1mPatient Count (29.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int <= 100[0m
+  [4;36;1mPatient Count (28.0ms)[0m   [0;1mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 100 and ldl_cholesterol.value_scalar::varchar::text::int <= 120[0m
+  [4;35;1mPatient Count (30.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 130 and ldl_cholesterol.value_scalar::varchar::text::int <= 160[0m
+  [4;36;1mPatient Count (22.0ms)[0m   [0;1mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 160 and ldl_cholesterol.value_scalar::varchar::text::int <= 180[0m
+  [4;35;1mPatient Count (23.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 180[0m
+  [4;36;1mPatient Count (22.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 70 and diastolic.value_scalar::varchar::text::int <= 79[0m
+  [4;35;1mPatient Count (26.0ms)[0m   [0mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 75 and diastolic.value_scalar::varchar::text::int <= 84[0m
+  [4;36;1mPatient Count (31.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 85 and diastolic.value_scalar::varchar::text::int <= 94[0m
+  [4;35;1mPatient Count (29.0ms)[0m   [0mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 95 and diastolic.value_scalar::varchar::text::int <= 104[0m
+  [4;36;1mPatient Count (23.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 105 and diastolic.value_scalar::varchar::text::int <= 114[0m
+  [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Diabetes mellitus disorder'[0m
+  [4;36;1mPatient Count (6.0ms)[0m   [0;1mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Diabetes mellitus disorder'[0m
+  [4;35;1mPatient Count (7.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Essential hypertension disorder'[0m
+  [4;36;1mPatient Count (6.0ms)[0m   [0;1mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Ischemia disorder'[0m
+  [4;35;1mPatient Count (7.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Hyperlipoproteinemia disorder'[0m
+Completed in 742ms (View: 3, DB: 547) | 200 OK [http://127.0.0.1/reports]
+
+
+Processing ReportsController#create (for 127.0.0.1 at 2009-11-11 17:02:25) [POST]
+  Parameters: {"numerator"=>{"medications"=>["Aspirin"], "smoking"=>["Current Smoker"], "ischemic_vascular_disease"=>["Yes"]}, "denominator"=>{"age"=>["35-49", "50-64", "65-75", "76+"], "diabetes"=>["Yes"], "ldl_cholesterol"=>["100"]}, "title"=>"Aspirin Therapy", "id"=>"1", "authenticity_token"=>"oO3ofwHZ66N/58N0D7xMMZ10cSCHDJjS9jafAtd+Jco=", "controller"=>"reports", "action"=>"create"}
+  [4;36;1mUser Load (1.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1458360766) LIMIT 1[0m
+  [4;35;1mPatient Count (12.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+  [4;36;1mGender Load (1.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;35;1mGender Load (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;36;1mSocialHistoryType Load (1.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;35;1mPatient Count (10.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;35;1mPatient Count (37.0ms)[0m   [0mselect count(distinct patients.id) from patients, registration_information, conditions diabetes, abstract_results ldl_cholesterol where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*35) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*76)) )and diabetes.patient_id = patients.id and diabetes.free_text_name = 'Diabetes mellitus disorder' and ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ((ldl_cholesterol.value_scalar::varchar::text::int <= 100) )[0m
+  [4;36;1mPatient Count (10.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;36;1mPatient Count (11.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;36;1mPatient Count (68.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, registration_information, conditions diabetes, conditions ischemic_vascular_disease, conditions smoking, medications aspirin, abstract_results ldl_cholesterol where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*35) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*76)) )and diabetes.patient_id = patients.id and diabetes.free_text_name = 'Diabetes mellitus disorder' and ischemic_vascular_disease.patient_id = patients.id and ischemic_vascular_disease.free_text_name = 'Ischemia disorder' and smoking.patient_id = patients.id and smoking.free_text_name = 'Smoker finding' and aspirin.patient_id = patients.id and aspirin.product_code = 'R16CO5Y76E' and ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ((ldl_cholesterol.value_scalar::varchar::text::int <= 100) )[0m
+  [4;35;1mPatient Count (10.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;35;1mPatient Count (14.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and registration_information.gender_id = 1435361449[0m
+  [4;36;1mPatient Count (13.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and registration_information.gender_id = 1249151596[0m
+  [4;35;1mPatient Count (26.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*18) and now()::DATE - registration_information.date_of_birth::DATE < (365*35)[0m
+  [4;36;1mPatient Count (24.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*34) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)[0m
+  [4;35;1mPatient Count (21.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)[0m
+  [4;36;1mPatient Count (18.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)[0m
+  [4;35;1mPatient Count (17.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*76)[0m
+  [4;36;1mPatient Count (12.0ms)[0m   [0;1mselect count(*) from patients, medications where medications.patient_id = patients.id and medications.product_code = 'R16CO5Y76E'[0m
+  [4;35;1mPatient Count (7.0ms)[0m   [0mselect count(*) from patients, social_history where social_history.patient_id = patients.id and social_history.social_history_type_id = 1819138991[0m
+  [4;36;1mPatient Count (25.0ms)[0m   [0;1mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int <= 100[0m
+  [4;35;1mPatient Count (29.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 100 and ldl_cholesterol.value_scalar::varchar::text::int <= 120[0m
+  [4;36;1mPatient Count (32.0ms)[0m   [0;1mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 130 and ldl_cholesterol.value_scalar::varchar::text::int <= 160[0m
+  [4;35;1mPatient Count (24.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 160 and ldl_cholesterol.value_scalar::varchar::text::int <= 180[0m
+  [4;36;1mPatient Count (23.0ms)[0m   [0;1mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 180[0m
+  [4;35;1mPatient Count (23.0ms)[0m   [0mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 70 and diastolic.value_scalar::varchar::text::int <= 79[0m
+  [4;36;1mPatient Count (25.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 75 and diastolic.value_scalar::varchar::text::int <= 84[0m
+  [4;35;1mPatient Count (31.0ms)[0m   [0mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 85 and diastolic.value_scalar::varchar::text::int <= 94[0m
+  [4;36;1mPatient Count (28.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 95 and diastolic.value_scalar::varchar::text::int <= 104[0m
+  [4;35;1mPatient Count (23.0ms)[0m   [0mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 105 and diastolic.value_scalar::varchar::text::int <= 114[0m
+  [4;36;1mPatient Count (7.0ms)[0m   [0;1mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Diabetes mellitus disorder'[0m
+  [4;35;1mPatient Count (7.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Diabetes mellitus disorder'[0m
+  [4;36;1mPatient Count (6.0ms)[0m   [0;1mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Essential hypertension disorder'[0m
+  [4;35;1mPatient Count (7.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Ischemia disorder'[0m
+  [4;36;1mPatient Count (6.0ms)[0m   [0;1mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Hyperlipoproteinemia disorder'[0m
+Completed in 746ms (View: 3, DB: 612) | 200 OK [http://127.0.0.1/reports]
+
+
+Processing ReportsController#create (for 127.0.0.1 at 2009-11-11 17:02:30) [POST]
+  Parameters: {"numerator"=>{"medications"=>["Aspirin"], "smoking"=>["Current Smoker"], "ischemic_vascular_disease"=>["Yes"], "hypertension"=>["Yes"]}, "denominator"=>{"age"=>["35-49", "50-64", "65-75", "76+"], "diabetes"=>["Yes"], "ldl_cholesterol"=>["100"]}, "title"=>"Aspirin Therapy", "id"=>"1", "authenticity_token"=>"oO3ofwHZ66N/58N0D7xMMZ10cSCHDJjS9jafAtd+Jco=", "controller"=>"reports", "action"=>"create"}
+  [4;35;1mUser Load (1.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1458360766) LIMIT 1[0m
+  [4;36;1mPatient Count (12.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+  [4;35;1mGender Load (1.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;36;1mGender Load (1.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;35;1mSocialHistoryType Load (1.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;36;1mPatient Count (10.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;36;1mPatient Count (36.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, registration_information, conditions diabetes, abstract_results ldl_cholesterol where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*35) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*76)) )and diabetes.patient_id = patients.id and diabetes.free_text_name = 'Diabetes mellitus disorder' and ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ((ldl_cholesterol.value_scalar::varchar::text::int <= 100) )[0m
+  [4;35;1mPatient Count (10.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;35;1mPatient Count (10.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;35;1mPatient Count (182.0ms)[0m   [0mselect count(distinct patients.id) from patients, registration_information, conditions diabetes, conditions hypertension, conditions ischemic_vascular_disease, conditions smoking, medications aspirin, abstract_results ldl_cholesterol where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*35) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*76)) )and diabetes.patient_id = patients.id and diabetes.free_text_name = 'Diabetes mellitus disorder' and hypertension.patient_id = patients.id and hypertension.free_text_name = 'Essential hypertension disorder' and ischemic_vascular_disease.patient_id = patients.id and ischemic_vascular_disease.free_text_name = 'Ischemia disorder' and smoking.patient_id = patients.id and smoking.free_text_name = 'Smoker finding' and aspirin.patient_id = patients.id and aspirin.product_code = 'R16CO5Y76E' and ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ((ldl_cholesterol.value_scalar::varchar::text::int <= 100) )[0m
+  [4;36;1mPatient Count (11.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;36;1mPatient Count (13.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and registration_information.gender_id = 1435361449[0m
+  [4;35;1mPatient Count (13.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and registration_information.gender_id = 1249151596[0m
+  [4;36;1mPatient Count (26.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*18) and now()::DATE - registration_information.date_of_birth::DATE < (365*35)[0m
+  [4;35;1mPatient Count (24.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*34) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)[0m
+  [4;36;1mPatient Count (21.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)[0m
+  [4;35;1mPatient Count (18.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)[0m
+  [4;36;1mPatient Count (16.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*76)[0m
+  [4;35;1mPatient Count (12.0ms)[0m   [0mselect count(*) from patients, medications where medications.patient_id = patients.id and medications.product_code = 'R16CO5Y76E'[0m
+  [4;36;1mPatient Count (7.0ms)[0m   [0;1mselect count(*) from patients, social_history where social_history.patient_id = patients.id and social_history.social_history_type_id = 1819138991[0m
+  [4;35;1mPatient Count (25.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int <= 100[0m
+  [4;36;1mPatient Count (29.0ms)[0m   [0;1mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 100 and ldl_cholesterol.value_scalar::varchar::text::int <= 120[0m
+  [4;35;1mPatient Count (32.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 130 and ldl_cholesterol.value_scalar::varchar::text::int <= 160[0m
+  [4;36;1mPatient Count (23.0ms)[0m   [0;1mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 160 and ldl_cholesterol.value_scalar::varchar::text::int <= 180[0m
+  [4;35;1mPatient Count (23.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 180[0m
+  [4;36;1mPatient Count (23.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 70 and diastolic.value_scalar::varchar::text::int <= 79[0m
+  [4;35;1mPatient Count (26.0ms)[0m   [0mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 75 and diastolic.value_scalar::varchar::text::int <= 84[0m
+  [4;36;1mPatient Count (32.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 85 and diastolic.value_scalar::varchar::text::int <= 94[0m
+  [4;35;1mPatient Count (29.0ms)[0m   [0mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 95 and diastolic.value_scalar::varchar::text::int <= 104[0m
+  [4;36;1mPatient Count (24.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 105 and diastolic.value_scalar::varchar::text::int <= 114[0m
+  [4;35;1mPatient Count (7.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Diabetes mellitus disorder'[0m
+  [4;36;1mPatient Count (7.0ms)[0m   [0;1mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Diabetes mellitus disorder'[0m
+  [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Essential hypertension disorder'[0m
+  [4;36;1mPatient Count (7.0ms)[0m   [0;1mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Ischemia disorder'[0m
+  [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Hyperlipoproteinemia disorder'[0m
+Completed in 863ms (View: 3, DB: 727) | 200 OK [http://127.0.0.1/reports]
+
+
+Processing ReportsController#create (for 127.0.0.1 at 2009-11-11 17:02:36) [POST]
+  Parameters: {"numerator"=>{"medications"=>["Aspirin"], "smoking"=>["Current Smoker"], "ischemic_vascular_disease"=>["Yes"], "hypertension"=>["Yes"], "lipoid_disorder"=>["Yes"]}, "denominator"=>{"age"=>["35-49", "50-64", "65-75", "76+"], "diabetes"=>["Yes"], "ldl_cholesterol"=>["100"]}, "title"=>"Aspirin Therapy", "id"=>"1", "authenticity_token"=>"oO3ofwHZ66N/58N0D7xMMZ10cSCHDJjS9jafAtd+Jco=", "controller"=>"reports", "action"=>"create"}
+  [4;36;1mUser Load (1.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1458360766) LIMIT 1[0m
+  [4;35;1mPatient Count (12.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+  [4;36;1mGender Load (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;35;1mGender Load (1.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;36;1mSocialHistoryType Load (1.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;35;1mPatient Count (10.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;35;1mPatient Count (35.0ms)[0m   [0mselect count(distinct patients.id) from patients, registration_information, conditions diabetes, abstract_results ldl_cholesterol where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*35) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*76)) )and diabetes.patient_id = patients.id and diabetes.free_text_name = 'Diabetes mellitus disorder' and ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ((ldl_cholesterol.value_scalar::varchar::text::int <= 100) )[0m
+  [4;36;1mPatient Count (10.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;36;1mPatient Count (9.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;36;1mPatient Count (606.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, registration_information, conditions diabetes, conditions hypertension, conditions ischemic_vascular_disease, conditions lipoid_disorder, conditions smoking, medications aspirin, abstract_results ldl_cholesterol where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*35) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*76)) )and diabetes.patient_id = patients.id and diabetes.free_text_name = 'Diabetes mellitus disorder' and hypertension.patient_id = patients.id and hypertension.free_text_name = 'Essential hypertension disorder' and ischemic_vascular_disease.patient_id = patients.id and ischemic_vascular_disease.free_text_name = 'Ischemia disorder' and lipoid_disorder.patient_id = patients.id and lipoid_disorder.free_text_name = 'Hyperlipoproteinemia disorder' and smoking.patient_id = patients.id and smoking.free_text_name = 'Smoker finding' and aspirin.patient_id = patients.id and aspirin.product_code = 'R16CO5Y76E' and ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ((ldl_cholesterol.value_scalar::varchar::text::int <= 100) )[0m
+  [4;35;1mPatient Count (13.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;35;1mPatient Count (14.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and registration_information.gender_id = 1435361449[0m
+  [4;36;1mPatient Count (13.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and registration_information.gender_id = 1249151596[0m
+  [4;35;1mPatient Count (27.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*18) and now()::DATE - registration_information.date_of_birth::DATE < (365*35)[0m
+  [4;36;1mPatient Count (24.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*34) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)[0m
+  [4;35;1mPatient Count (21.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)[0m
+  [4;36;1mPatient Count (18.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)[0m
+  [4;35;1mPatient Count (17.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*76)[0m
+  [4;36;1mPatient Count (12.0ms)[0m   [0;1mselect count(*) from patients, medications where medications.patient_id = patients.id and medications.product_code = 'R16CO5Y76E'[0m
+  [4;35;1mPatient Count (7.0ms)[0m   [0mselect count(*) from patients, social_history where social_history.patient_id = patients.id and social_history.social_history_type_id = 1819138991[0m
+  [4;36;1mPatient Count (29.0ms)[0m   [0;1mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int <= 100[0m
+  [4;35;1mPatient Count (28.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 100 and ldl_cholesterol.value_scalar::varchar::text::int <= 120[0m
+  [4;36;1mPatient Count (30.0ms)[0m   [0;1mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 130 and ldl_cholesterol.value_scalar::varchar::text::int <= 160[0m
+  [4;35;1mPatient Count (22.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 160 and ldl_cholesterol.value_scalar::varchar::text::int <= 180[0m
+  [4;36;1mPatient Count (22.0ms)[0m   [0;1mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 180[0m
+  [4;35;1mPatient Count (21.0ms)[0m   [0mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 70 and diastolic.value_scalar::varchar::text::int <= 79[0m
+  [4;36;1mPatient Count (25.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 75 and diastolic.value_scalar::varchar::text::int <= 84[0m
+  [4;35;1mPatient Count (30.0ms)[0m   [0mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 85 and diastolic.value_scalar::varchar::text::int <= 94[0m
+  [4;36;1mPatient Count (28.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 95 and diastolic.value_scalar::varchar::text::int <= 104[0m
+  [4;35;1mPatient Count (22.0ms)[0m   [0mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 105 and diastolic.value_scalar::varchar::text::int <= 114[0m
+  [4;36;1mPatient Count (6.0ms)[0m   [0;1mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Diabetes mellitus disorder'[0m
+  [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Diabetes mellitus disorder'[0m
+  [4;36;1mPatient Count (6.0ms)[0m   [0;1mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Essential hypertension disorder'[0m
+  [4;35;1mPatient Count (7.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Ischemia disorder'[0m
+  [4;36;1mPatient Count (6.0ms)[0m   [0;1mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Hyperlipoproteinemia disorder'[0m
+Completed in 1262ms (View: 10, DB: 1141) | 200 OK [http://127.0.0.1/reports]
+
+
+Processing ReportsController#create (for 127.0.0.1 at 2009-11-11 17:02:43) [POST]
+  Parameters: {"numerator"=>{"medications"=>["Aspirin"], "smoking"=>["Current Smoker"], "ischemic_vascular_disease"=>["Yes"], "hypertension"=>["Yes"], "lipoid_disorder"=>["Yes"], "blood_pressures"=>["110/70"]}, "denominator"=>{"age"=>["35-49", "50-64", "65-75", "76+"], "diabetes"=>["Yes"], "ldl_cholesterol"=>["100"]}, "title"=>"Aspirin Therapy", "id"=>"1", "authenticity_token"=>"oO3ofwHZ66N/58N0D7xMMZ10cSCHDJjS9jafAtd+Jco=", "controller"=>"reports", "action"=>"create"}
+  [4;35;1mUser Load (2.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1458360766) LIMIT 1[0m
+  [4;36;1mPatient Count (12.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+  [4;35;1mGender Load (1.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;36;1mGender Load (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;35;1mSocialHistoryType Load (1.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;36;1mPatient Count (11.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;36;1mPatient Count (35.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, registration_information, conditions diabetes, abstract_results ldl_cholesterol where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*35) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*76)) )and diabetes.patient_id = patients.id and diabetes.free_text_name = 'Diabetes mellitus disorder' and ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ((ldl_cholesterol.value_scalar::varchar::text::int <= 100) )[0m
+  [4;35;1mPatient Count (10.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;35;1mPatient Count (10.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;35;1mPatient Count (2021.0ms)[0m   [0mselect count(distinct patients.id) from patients, registration_information, conditions diabetes, conditions hypertension, conditions ischemic_vascular_disease, conditions lipoid_disorder, conditions smoking, medications aspirin, abstract_results ldl_cholesterol, abstract_results diastolic where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*35) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*76)) )and diabetes.patient_id = patients.id and diabetes.free_text_name = 'Diabetes mellitus disorder' and hypertension.patient_id = patients.id and hypertension.free_text_name = 'Essential hypertension disorder' and ischemic_vascular_disease.patient_id = patients.id and ischemic_vascular_disease.free_text_name = 'Ischemia disorder' and lipoid_disorder.patient_id = patients.id and lipoid_disorder.free_text_name = 'Hyperlipoproteinemia disorder' and smoking.patient_id = patients.id and smoking.free_text_name = 'Smoker finding' and aspirin.patient_id = patients.id and aspirin.product_code = 'R16CO5Y76E' and diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and ((diastolic.value_scalar::varchar::text::int <= 74) )and ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ((ldl_cholesterol.value_scalar::varchar::text::int <= 100) )[0m
+  [4;36;1mPatient Count (17.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;36;1mPatient Count (13.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and registration_information.gender_id = 1435361449[0m
+  [4;35;1mPatient Count (13.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and registration_information.gender_id = 1249151596[0m
+  [4;36;1mPatient Count (26.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*18) and now()::DATE - registration_information.date_of_birth::DATE < (365*35)[0m
+  [4;35;1mPatient Count (23.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*34) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)[0m
+  [4;36;1mPatient Count (20.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)[0m
+  [4;35;1mPatient Count (18.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)[0m
+  [4;36;1mPatient Count (17.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*76)[0m
+  [4;35;1mPatient Count (12.0ms)[0m   [0mselect count(*) from patients, medications where medications.patient_id = patients.id and medications.product_code = 'R16CO5Y76E'[0m
+  [4;36;1mPatient Count (7.0ms)[0m   [0;1mselect count(*) from patients, social_history where social_history.patient_id = patients.id and social_history.social_history_type_id = 1819138991[0m
+  [4;35;1mPatient Count (25.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int <= 100[0m
+  [4;36;1mPatient Count (27.0ms)[0m   [0;1mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 100 and ldl_cholesterol.value_scalar::varchar::text::int <= 120[0m
+  [4;35;1mPatient Count (31.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 130 and ldl_cholesterol.value_scalar::varchar::text::int <= 160[0m
+  [4;36;1mPatient Count (22.0ms)[0m   [0;1mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 160 and ldl_cholesterol.value_scalar::varchar::text::int <= 180[0m
+  [4;35;1mPatient Count (22.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 180[0m
+  [4;36;1mPatient Count (21.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 70 and diastolic.value_scalar::varchar::text::int <= 79[0m
+  [4;35;1mPatient Count (25.0ms)[0m   [0mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 75 and diastolic.value_scalar::varchar::text::int <= 84[0m
+  [4;36;1mPatient Count (30.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 85 and diastolic.value_scalar::varchar::text::int <= 94[0m
+  [4;35;1mPatient Count (27.0ms)[0m   [0mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 95 and diastolic.value_scalar::varchar::text::int <= 104[0m
+  [4;36;1mPatient Count (22.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 105 and diastolic.value_scalar::varchar::text::int <= 114[0m
+  [4;35;1mPatient Count (7.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Diabetes mellitus disorder'[0m
+  [4;36;1mPatient Count (7.0ms)[0m   [0;1mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Diabetes mellitus disorder'[0m
+  [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Essential hypertension disorder'[0m
+  [4;36;1mPatient Count (6.0ms)[0m   [0;1mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Ischemia disorder'[0m
+  [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Hyperlipoproteinemia disorder'[0m
+Completed in 2674ms (View: 3, DB: 2556) | 200 OK [http://127.0.0.1/reports]
+DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/laika/app/controllers/application_controller.rb:17)
+
+
+Processing PopconnectController#index (for 127.0.0.1 at 2009-11-12 10:10:55) [GET]
+  Parameters: {"controller"=>"popconnect", "action"=>"index"}
+Redirected to http://127.0.0.1:3000/account/login
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 162ms (DB: 19) | 302 Found [http://127.0.0.1/popconnect/]
+DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/laika/app/controllers/application_controller.rb:17)
+
+
+Processing AccountController#login (for 127.0.0.1 at 2009-11-12 10:10:56) [GET]
+  Parameters: {"controller"=>"account", "action"=>"login"}
+Rendering template within layouts/account
+Rendering account/login
+Completed in 83ms (View: 73, DB: 4) | 200 OK [http://127.0.0.1/account/login]
+DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/laika/app/controllers/application_controller.rb:17)
+
+
+Processing AccountController#login (for 127.0.0.1 at 2009-11-12 10:11:02) [POST]
+  Parameters: {"authenticity_token"=>"jPKd7BJ4QUkpYgq9wwORUfRZT+w4WDDjC5UWTb5C2jE=", "email"=>"rmccready@mitre.org", "password"=>"[FILTERED]", "eventHandler"=>"", "controller"=>"account", "action"=>"login"}
+  [4;36;1mUser Load (32.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."email" = 'rmccready@mitre.org') LIMIT 1[0m
+Redirected to http://127.0.0.1:3000/popconnect
+Completed in 101ms (DB: 34) | 302 Found [http://127.0.0.1/account/login]
+
+
+Processing PopconnectController#index (for 127.0.0.1 at 2009-11-12 10:11:02) [GET]
+  Parameters: {"controller"=>"popconnect", "action"=>"index"}
+  [4;35;1mUser Load (10.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1458360766) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering popconnect/index
+Completed in 152ms (View: 97, DB: 13) | 200 OK [http://127.0.0.1/popconnect]
+DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/laika/app/controllers/application_controller.rb:17)
+
+
+Processing ReportsController#index (for 127.0.0.1 at 2009-11-12 10:11:03) [GET]
+  Parameters: {"id"=>"1", "controller"=>"reports", "action"=>"index"}
+  [4;36;1mUser Load (2.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1458360766) LIMIT 1[0m
+  [4;35;1mPatient Count (44.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+  [4;36;1mGender Load (1.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;35;1mGender Load (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;36;1mSocialHistoryType Load (1.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;35;1mPatient Count (10.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;35;1mPatient Count (81.0ms)[0m   [0mselect count(distinct patients.id) from patients, registration_information, conditions diabetes where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*35) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*76)) )and diabetes.patient_id = patients.id and diabetes.free_text_name = 'Diabetes mellitus disorder' [0m
+  [4;36;1mPatient Count (10.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+  [4;36;1mPatient Count (25.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and registration_information.gender_id = 1435361449[0m
+  [4;35;1mPatient Count (14.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and registration_information.gender_id = 1249151596[0m
+  [4;36;1mPatient Count (27.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*18) and now()::DATE - registration_information.date_of_birth::DATE < (365*35)[0m
+  [4;35;1mPatient Count (24.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*34) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)[0m
+  [4;36;1mPatient Count (21.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*65)[0m
+  [4;35;1mPatient Count (19.0ms)[0m   [0mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*65) and now()::DATE - registration_information.date_of_birth::DATE < (365*76)[0m
+  [4;36;1mPatient Count (17.0ms)[0m   [0;1mselect count(*) from patients, registration_information where registration_information.patient_id = patients.id and now()::DATE - registration_information.date_of_birth::DATE >= (365*76)[0m
+  [4;35;1mPatient Count (71.0ms)[0m   [0mselect count(*) from patients, medications where medications.patient_id = patients.id and medications.product_code = 'R16CO5Y76E'[0m
+  [4;36;1mPatient Count (16.0ms)[0m   [0;1mselect count(*) from patients, social_history where social_history.patient_id = patients.id and social_history.social_history_type_id = 1819138991[0m
+  [4;35;1mPatient Count (80.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int <= 100[0m
+  [4;36;1mPatient Count (39.0ms)[0m   [0;1mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 100 and ldl_cholesterol.value_scalar::varchar::text::int <= 120[0m
+  [4;35;1mPatient Count (31.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 130 and ldl_cholesterol.value_scalar::varchar::text::int <= 160[0m
+  [4;36;1mPatient Count (23.0ms)[0m   [0;1mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 160 and ldl_cholesterol.value_scalar::varchar::text::int <= 180[0m
+  [4;35;1mPatient Count (22.0ms)[0m   [0mselect count(*) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ldl_cholesterol.value_scalar::varchar::text::int > 180[0m
+  [4;36;1mPatient Count (22.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 70 and diastolic.value_scalar::varchar::text::int <= 79[0m
+  [4;35;1mPatient Count (25.0ms)[0m   [0mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 75 and diastolic.value_scalar::varchar::text::int <= 84[0m
+  [4;36;1mPatient Count (30.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 85 and diastolic.value_scalar::varchar::text::int <= 94[0m
+  [4;35;1mPatient Count (27.0ms)[0m   [0mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 95 and diastolic.value_scalar::varchar::text::int <= 104[0m
+  [4;36;1mPatient Count (22.0ms)[0m   [0;1mselect count(*) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and diastolic.value_scalar::varchar::text::int >= 105 and diastolic.value_scalar::varchar::text::int <= 114[0m
+  [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Diabetes mellitus disorder'[0m
+  [4;36;1mPatient Count (6.0ms)[0m   [0;1mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Diabetes mellitus disorder'[0m
+  [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Essential hypertension disorder'[0m
+  [4;36;1mPatient Count (7.0ms)[0m   [0;1mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Ischemia disorder'[0m
+  [4;35;1mPatient Count (7.0ms)[0m   [0mselect count(*) from patients, conditions where conditions.patient_id = patients.id and conditions.free_text_name = 'Hyperlipoproteinemia disorder'[0m
+Completed in 928ms (View: 7, DB: 739) | 200 OK [http://127.0.0.1/reports?id=1]
+
+
+Processing ReportsController#index (for 127.0.0.1 at 2009-11-12 10:11:04) [GET]
+  Parameters: {"controller"=>"reports", "action"=>"index"}
+  [4;36;1mUser Load (2.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1458360766) LIMIT 1[0m
+  [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(*) from patients[0m
+Completed in 122ms (View: 4, DB: 9) | 200 OK [http://127.0.0.1/reports]

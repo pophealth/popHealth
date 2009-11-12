@@ -1,0 +1,93 @@
+* Filter password parameter values out of the activity logs, SF #2854713.
+* C32 G&F plans now record whether UMLS was used during validation.
+* Do not expose users to one another, SF #2831708.
+* All lookup columns in the database schema are now indexed.
+* Inspections are now managed from the library and dashboard, SF #2831706.
+* Developer users removed from the fixture data, SF #2831714.
+* Patient templates are now read-only, SF #2831709.
+* Users are now isolated from one another, SF #2831708.
+* Refactored test types into ActiveRecord models and controller mixins, SF #2832938.
+* Removed XDS tab, all assignment is now done from the Library, SF #2831703.
+* Fixed: Layout issues on signup page, SF #2849556.
+
+=== 2009-08-03 Laika v1.3.8
+
+* New dependency: ModelFactory 0.9.1.
+* Removed dependency: andand gem.
+* Updated CCD schematron rules.
+* Run-time configuration of XDS URLs and repository unique ID.
+* Refactored test flow into callback-based test types, SF #2799737.
+* Moved effectiveTime into the observation on Conditions. SF #2803600.
+* XDS P&R: select document for comparison, SF #2794897.
+* XDS P&R: fixed comparison of metadata, SF #2808044.
+* Add a nav link to the top of patient editing page, SF #2725509.
+* More consistent date formatting, SF #2802059.
+* Header link back to root, SF #2801934.
+* Fixed: Provide complete ID in P&R utility, SF #2788085.
+* Fixed: Use full patient identifier on XDS assignment, SF #2800804.
+* Fixed: Signup: Fix incorrect min pass length, SF #2802093.
+* Fixed: News: html escape body, SF #2801915.
+* Fixed autocreate, SF #2801908.
+* Fixed: Signup: Error display formatting, SF #2802091.
+
+=== 2009-05-28 Laika v1.3.7
+
+* Use patient record to populate metadata for XDS P&R assignment (#2782276)
+* Use patient record to populate metadata for XDS P&R utility (#2782235)
+* Show results page after XDS P&R assignmnet (#2782350)
+* Laika now works with a Java 6 software stack (#2769072)
+* Minor refactor of dashboard so the information fits (#2765847)
+* XDS manager now sorts data like the patient library (#2760001)
+* Removed modal dialog box on XDS forms (#2759609)
+* Corrected P & R text box length (#2725712)
+* Clarify editing of patient records (#2725507)
+* Move Patient Identifiers section to top of patient record (#2725589)
+* ATNA log browser (#2684069)
+* Refine deletion of inspections (#2725497)
+* Dialog title change - P & R (#2725480)
+* Fixed: Create random template is broken (#2759995)
+* Fixed: PatientData#to_c32 hard-codes EST timezone (#2766273)
+* Fixed: Delete confirmation is missing for some patient sections. (#2777615)
+* Fixed: PatientData/PersonLike: timestamps not updated on save (#2759996)
+* Fixed: Patient Data/Insurance provider subsections timestamp bug (#2759991)
+* Fixed: Insurance Provider section: glitch when adding consecutively (#2750962)
+* Fixed: Link to Person Information section doesn't highlight (#2750879)
+* Fixed: Healthcare providers section glitches on delete (#2750652)
+* Fixed: Patient Data: Sidebar link to Medical Equipment missing. (#2745722)
+* Fixed: Laika scripts have #!ruby instead of #!jruby (#2745500)
+* Fixed: patient has "no allergies" set to false prematurely (#2744862)
+* Fixed: Caret in sort spec url causing errors. (#2741968)
+* Fixed: jruby -S rake gems:install fails (#2739110)
+* Fixed: Failed C32 Generate & Format shows as “PASS” (#2725631)
+* Fixed: Last modified date not changing (#2725501)
+* Fixed: HL7 msg link missing on checklist for PIX/PDQ Query (#2684053)
+* Fixed: C32 XML has no header and is not pretty-printed (#2582508)
+* Fixed: submitted XML is not displayed in results of Generate/Format (#2573557)
+* Fixed: crash viewing Dashboard on demo with pre-update test plans (#2573538)
+* Fixed: P & R dialogs cause error in IE7 (#2725485)
+* Fixed: Can't tab between fields (#2725477)
+* Fixed: funky screen displays (style sheet problem?) (#2680661)
+* Fixed: XDS Provide/Register utility not usable (#2684036)
+* Fixed: XDS Document Checklist for Query/Retrieve broken (#2684009)
+* Fixed: XDS Provide and Register test cases crashes (#2683985)
+* Fixed: Must use intrinsic XDS Registry/Repository (#2683955)
+* Fixed: XDS assign & p-n-r - incorrect title (#2679737)
+
+=== 2009-01-27 Laika v1.3.6
+
+* Add an administrator role (#1928263)
+* Non-admin users can only assign to themselves (#2153978)
+* Dashboard Last Tested now includes the time (#2093828)
+* Add news functionality (#2118111)
+* Rename labels for insurance provider subsections (#2119806)
+* Add support for editing existing vendor inspections (#1928269)
+* Highlight required sections to create valid C32 (#2015562)
+* Allow a direct XML download for Display and File tests (#2183158)
+* Block creation of patient templates with null names (#1996532)
+* Require clinical document when executing Generate and Format tests (#2187517)
+* Added working sort controls to Dashboard and Library (#2265100)
+* Retain previous selections when assigning templates. (#2265085)
+* State and country dropdowns permit blanks (#2119651)
+* Fixed and re-enabled Export Report from the Dashboard (#2053633)
+* All built-in template validate without warnings or errors (#2540887)
+

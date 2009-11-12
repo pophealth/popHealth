@@ -1,0 +1,44 @@
+propensity_to_adverse_reactions:
+  name: Propensity to Adverse Reactions
+  code: 420134006
+  description: Used to record an adverse reaction
+
+propensity_to_adverse_reactions_to_substance:
+  name: Propensity to Adverse Reactions to Substance
+  code: 418038007
+  description: Used to record an adverse reaction to an environmental agent
+
+propensity_to_adverse_reactions_to_drug:
+  name: Propensity to Adverse Reactions to Drug
+  code: 419511003
+  description: Used to record an adverse reaction to a drug
+
+propensity_to_adverse_reactions_to_food:
+  name: Propensity to Adverse Reactions to Food
+  code: 418471000
+  description: Used to record an adverse reaction to a food
+
+allergy_to_substance:
+  name: Allergy to Substance
+  code: 419199007
+  description: Used to record an allergy to an environmental agent
+
+drug_allergy:
+  name: Drug Allergy
+  code: 416098002
+  description: Used to record an allergy to a drug
+
+food_allergy:
+  name: Food Allergy
+  code: 414285001
+  description: Used to record an allergy to a food
+
+drug_intolerance:
+  name: Drug Intolerance
+  code: 59037007
+  description: Used to record intolerance to a drug
+
+food_intolerance:
+  name: Food Intolerance
+  code: 235719002
+  description: Used to record intolerance to a food

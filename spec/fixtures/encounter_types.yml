@@ -1,0 +1,87 @@
+inpatient_acute:
+  name: Inpatient Acute 
+  code: ACUTE
+
+inpatient_non-acute:
+  name: Inpatient Non-acute
+  code: NONAC
+
+alternative_level_of_care:
+  name: Alternative Level of Care
+  code: ALC
+
+cardiology:
+  name: Cardiology
+  code: CARD
+
+chronic:
+  name: Chronic
+  code: CHR
+
+dental:
+  name: Dental
+  code: DNTL
+
+drug_rehab:
+  name: Drug Rehab
+  code: DRGRHB
+
+general:
+  name: General
+  code: GENRL
+
+medical:
+  name: Medical
+  code: MED
+
+obstetrics:
+  name: Obstetrics
+  code: OBS
+
+oncology:
+  name: Oncology
+  code: ONC
+
+palliative:
+  name: Palliative
+  code: PALL
+
+pediatrics:
+  name: Pediatrics
+  code: PED
+
+pharmaceutical:
+  name: Pharmaceutical
+  code: PHAR
+
+physical_rehab:
+  name: Physical Rehab
+  code: PHYRHB
+
+psychiatric:
+  name: Pyschiatric
+  code: PSYCH
+
+surgical:
+  name: Surgical
+  code: SURG
+
+ambulatory:
+  name: Ambulatory
+  code: AMB
+
+emergency:
+  name: Emergency
+  code: EMER
+
+field:
+  name: Field
+  code: FLD
+
+home_health:
+  name: Home Health
+  code: HH
+
+virtual:
+  name: Virtual
+  code: VR

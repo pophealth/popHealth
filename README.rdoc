@@ -1,0 +1,50 @@
+= Laika
+
+This is Laika, an open source electronic health record (EHR) testing framework.
+
+Laika is an web based testing suite for systems that interact with HITSP C32
+documents. Laika can generate a C32 document based on information specified
+through a web interface. C32 documents can also be uploaded to Laika to ensure
+their adherence to HITSP and HL7 standards (via XML Schema and Schematron).
+Laika can also examine the content of uploaded documents to verify the
+correctness and completeness of the clinical data being transmitted.
+
+The target platform is JRuby on Rails, running under Glassfish.
+
+== Running the Test Suite
+
+Make sure your CLASSPATH variable is set:
+
+ $ source bin/laika_env.sh
+
+To run the spec suite:
+
+ $ jruby -S rake spec
+
+To run the selenium test suite (the app server must be running in test mode at port 4000):
+
+ $ jruby -S rake selenium:test
+
+== Generating Documentation
+
+You can generate the complete documentation for the Laika source using the
+YARD documentation tool. You don't need to use JRuby to do this:
+
+ $ sudo gem install yard
+ $ yardoc
+ $ open doc/index.html
+
+== Additional Dependencies
+
+For complete validation functionality the UMLS database (including SNOMED)
+is required, see http://www.nlm.nih.gov/research/umls/
+
+== Resources
+
+The source repository is hosted on GitHub:
+http://github.com/CCHIT/laika/tree/master
+
+The project page is hosted on SourceForge:
+http://laika.sourceforge.net/
+
+

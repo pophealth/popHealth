@@ -1,0 +1,4 @@
+<root xmlns="urn:hl7-org:v3">
+  <telecom value="tel:+1-617-555-1212"/>
+  <telecom value="tel:+1-617-555-1234"/>
+</root>

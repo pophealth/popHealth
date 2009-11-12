@@ -1,0 +1,38 @@
+<div id="medical_equipment<%= medical_equipment.id %>">
+<table>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Name</td>
+    <td><%=h medical_equipment.name %></td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Code</td>
+    <td><%= h medical_equipment.code %></td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Supply ID</td>
+    <td><%= h medical_equipment.supply_id %></td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Date Supplied</td>
+    <td><%= h medical_equipment.date_supplied %></td>
+  </tr>
+  <% if @patient.editable_by? current_user -%>
+    <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+      <td></td>
+      <td>
+      <span>
+      <%= link_to_remote 'Edit', :update => "medical_equipment#{medical_equipment.id}",
+                                 :url => edit_patient_medical_equipment_path(patient, medical_equipment),
+                                 :method => 'get' %>
+      </span>
+      <span>
+       <%= link_to_remote 'Remove', :update => "medical_equipment#{medical_equipment.id}",
+                                 :url => patient_medical_equipment_path(patient, medical_equipment),
+                                 :confirm=>"Are you sure you wish to remove this medical device?",
+                                 :method => 'delete' %>
+      </span>                           
+      </td>
+    </tr>
+  <% end -%>
+</table>
+</div>

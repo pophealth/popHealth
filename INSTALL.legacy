@@ -1,0 +1,68 @@
+NOTE: These are the install instructions for the legacy MRI deployment of Laika.
+
+New users and developers should refer to INSTALL for the most up-to-date
+information about installing cutting-edge versions of Laika.
+
+Laika Rails Web Application
+===========================
+
+This document covers the Rails portion of Laika. This is the part of the application which is responsible for the web user interface, content inspection of C32 documents and generation of C32 documents. A separate java web application is called for XML Schema and Schematron Validation.
+
+
+
+Requirements
+============
+
+Laika has been tested in the following software environment:
+* Ruby on Rails 2.2.2
+* MySQL 5.0.22
+* Ruby 1.8.6
+
+Laika has been tested on Ubuntu 7.04, Mac OS X 10.5, RedHat Enterprise Linux 5.1 and Windows XP.
+
+Variations:
+The software will perform under Ruby 1.8.4 and 1.8.5. Be aware that REXML appears to be much more forgiving with XML namespaces in earlier versions of Ruby. It is suggested running on 1.8.6.
+
+Laika has been run using SQLite 3 for a database. The project doesn't contain any database specific code, which means in theory, it should run on any DB that is supported by Rails. YMMV.
+
+
+
+Installation
+============
+
+1) Copy the webapp folder to the place you want it on your local machine (ex. /var/www/rails_apps/laika). This directory will be referred to now as LAIKA_WEBAPP_ROOT
+
+2) Create the LAIKA_WEBAPP_ROOT/config/database.yml. This file is the standard Rails configuration for databases. The simplest approach is to copy database.yml.example and adjust it to fit your needs. If you've installed a MySQL database on the same machine, with a user, password and database of laika, your database.yml file will look like this:
+
+development:
+  adapter: mysql
+  database: laika
+  host: 127.0.0.1
+  username: laika
+  password: laika
+  encoding: utf8
+
+3) Create the database structure. From LAIKA_WEBAPP_ROOT run:
+
+  $> rake db:migrate
+
+4) Load the default data. From LAIKA_WEBAPP_ROOT run:
+
+  $> rake db:fixtures:load_from_dir env="development" FIXTURE_DIR="spec/fixtures"
+
+5) Start the server. From LAIKA_WEBAPP_ROOT run:
+
+  $> script/server
+
+6) Open a web browser to http://127.0.0.1:3000
+
+
+
+MISC
+====
+
+Laika does not use Test::Unit to for testing. Instead, RSpec (http://rspec.info/) is used for testing. Tests can be run be executing:
+
+  $> rake spec
+
+Laika does not require any installed ruby gems besides those needed by Rails. Laika manages the gems it needs using the Gems on Rails plugin (http://gemsonrails.rubyforge.org/).

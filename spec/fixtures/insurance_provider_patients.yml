@@ -1,0 +1,20 @@
+joe_smiths_insurance_provider_patient:
+  member_id: 1234567890-ABC-ZZZ
+  start_coverage_date: 1989-02-25
+  end_coverage_date: 2016-03-26
+  date_of_birth: 1967-03-23
+  insurance_provider: joe_smiths_insurance_provider
+
+emily_jones_insurance_provider_patient:
+  member_id: 1234567890-ABC-XXX
+  start_coverage_date: 1995-01-23
+  end_coverage_date: 2017-03-26
+  date_of_birth: 1937-03-23
+  insurance_provider: emily_jones_insurance_provider
+
+jennifer_thompsons_insurance_provider_patient:
+  member_id: 1234567890-ABC-YYY
+  start_coverage_date: 1997-03-28
+  end_coverage_date: 2015-03-26
+  date_of_birth: 1957-04-18
+  insurance_provider: jennifer_thompsons_insurance_provider

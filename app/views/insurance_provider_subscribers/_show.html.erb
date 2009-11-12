@@ -1,0 +1,28 @@
+<table>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td colspan="2" class="lighttext">Subscriber Information</td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Subscriber ID</td>
+    <td><% if insurance_provider_subscriber.subscriber_id %><%=h insurance_provider_subscriber.subscriber_id %><% end %></td>
+  </tr>
+  <%= render :partial => '/person_names/show', :locals => {:person_name => insurance_provider_subscriber.person_name}%>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Subscriber Birth Date</td>
+    <td><% if insurance_provider_subscriber.date_of_birth %><%=h insurance_provider_subscriber.date_of_birth %><% end %></td>
+  </tr>
+  <%= render :partial => '/addresses/show', :locals => {:address => insurance_provider_subscriber.address}%>
+  <%= render :partial => '/telecoms/show', :locals => {:telecom => insurance_provider_subscriber.telecom}%>
+  <% if @patient.editable_by? current_user -%>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td></td>
+    <td>
+    <span>
+      <%= link_to_remote('Edit', :update => "insurance_provider_subscriber#{insurance_provider_subscriber.id}",
+                                 :url => edit_patient_insurance_provider_subscriber_path(patient, insurance_provider_subscriber),
+                                 :method => 'get') unless insurance_provider_subscriber.new_record? %>
+    </span> 
+    </td>
+  </tr>
+<% end -%>
+</table>

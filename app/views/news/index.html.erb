@@ -1,0 +1,13 @@
+<div class="news">
+<h3>News
+  <% if current_user.administrator? %>
+    <span><%= link_to 'Add a New Post', :action => 'new' %></span>
+  <% end %>
+</h3>
+
+<% if @messages.empty? %>
+  There is currently no news.
+<% end %>
+
+<%= @messages.collect { |m| render :partial => 'news/message', :object => m } %>
+</div>

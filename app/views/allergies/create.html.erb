@@ -1,0 +1,11 @@
+<%= render :partial => '/allergies/show', :locals => {:allergy  => @allergy, :patient => @patient} %>
+
+<script type="text/javascript">
+//<![CDATA[
+var newAllergyDiv = $('allergyNew');
+if (newAllergyDiv != null)
+{
+    newAllergyDiv.id = 'allergy<%= @allergy.id %>';
+}
+//]]>
+</script>

@@ -1,0 +1,29 @@
+<%= error_messages_for :user %>
+
+<div class="user-box">
+  <h3><%= current_user == @user ? 'Your' : "#{@user.display_name}'s" %> Settings</h3>
+  <% form_for(:user, :url => user_path(@user), :html => { :method => :put }) do |form| %>
+    <div><label for="user_first_name">First Name</label></div>
+    <div><%= form.text_field :first_name %></div>
+    <div><label for="user_last_name">Last Name</label></div>
+    <div><%= form.text_field :last_name %></div>
+    <div><label for="user_email">Email</label></div>
+    <div><%= form.text_field :email %></div>
+    <div><label for="user_company">Company</label></div>
+    <div><%= form.text_field :company %></div>
+    <div><label for="user_company_url">Company URL</label></div>
+    <div><%= form.text_field :company_url %></div>
+    <div><%= submit_tag "Update settings" %></div>
+  <% end %>
+</div>
+
+<div class="user-box">
+  <h3>Update Your Password</h3>
+  <% form_for(:user, :url => user_path(@user), :html => { :method => :put }) do |form| %>
+    <div><label for="user_password">Password</label></div>
+    <div><%= form.password_field :password %></div>
+    <div><label for="user_confirm_password">Confirm Password</label></div>
+    <div><%= form.password_field :password_confirmation %></div>
+    <div><%= submit_tag "Update password" %></div>
+  <% end %>
+</div>

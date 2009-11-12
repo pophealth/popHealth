@@ -1,0 +1,27 @@
+<ClinicalDocument xmlns="urn:hl7-org:v3"
+   xmlns:sdct="urn:hl7-org:sdct">
+   <participant typeCode="IND">
+    <time>
+      <low value="19750827"/>
+      <high value="20301209"/>
+    </time>
+    <associatedEntity classCode="AGNT">
+      <code code="HUSB" displayName="Husband" codeSystemName="HL7 RoleCode" codeSystem="2.16.840.1.113883.5.111"/>
+      <telecom use="MC" value="tel:+1-617-555-2121"/>
+      <addr>
+        <streetAddressLine>2300 Commonwealth Avenue</streetAddressLine>
+        <city>Brighton</city>
+        <state>MA</state>
+        <postalCode>02135</postalCode>
+        <country>US</country>
+      </addr>
+      <associatedPerson>
+        <name>
+          <prefix>Mr.</prefix>
+          <given>Nathan</given>
+          <family>Thompson</family>
+        </name>
+      </associatedPerson>
+    </associatedEntity>
+  </participant>
+</ClinicalDocument>

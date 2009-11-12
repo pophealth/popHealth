@@ -1,0 +1,81 @@
+<% form_for @vendor do |vendor_form| -%>
+  <div id="vendor_name">
+    <h3>Laika Inspection ID: <%=h @vendor %></h3>
+    <div class="vendor-info">Created <%= time_ago_in_words @vendor.created_at %> ago.</div>
+    <ul class="vendor-actions">
+      <li><%= link_to_function 'rename', "$('vendor_name').hide();$('vendor_edit').show();",
+        :title => "Rename #{h @vendor}"%></li>
+      <li><%= link_to 'delete', vendor_url(@vendor), :method => 'DELETE', :title => "Delete #{h @vendor}",
+        :confirm => "Inspection #{@vendor} has #{pluralize @vendor.count_test_plans, 'test case'} assigned, are you sure you want to delete it?" %></li>
+    </ul>
+  </div>
+  <span id="vendor_edit" style="display:none">
+    <%= vendor_form.text_field :public_id, :size => 10 %>
+    <%= vendor_form.submit 'Rename' %>
+  </span>
+<% end -%>
+
+<table id="dashboard">
+  <tr>
+    <th>Status</th>
+    <th class="<%= sort_order_class('kinds.name') %>"><%= link_to_sort 'kinds.name', 'Test Type' %></th>
+    <th class="<%= sort_order_class('clinical_documents.doc_type') %>"><%= link_to_sort 'clinical_documents.doc_type', 'Document Type' %></th>
+    <th class="<%= sort_order_class('patient.name') %>"><%= link_to_sort 'patient.name', 'Patient' %></th>
+    <th>Errors</th>
+    <th>Warnings</th>
+    <th class="<%= sort_order_class('updated_at') %>"><%= link_to_sort 'updated_at', 'When Tested' %></th>
+    <th colspan="2">Actions</th>
+  </tr>
+  <% @vendor.test_plans.each do |test_plan| -%>
+    <tr class="test_plan <%= test_plan.state %>" id="test_plan_<%= test_plan.id %>">
+      <td class="test_state">
+        <%= render :partial => 'mark_state', :locals => { :plan => test_plan } %>
+      </td>
+      <td><%= test_plan.class.test_name %></td>
+	  <td><%= test_plan.clinical_document.try :doc_type %></td>
+      <td class="edit">
+        <%= link_to_if test_plan.pending?, h(test_plan.patient.name),
+          patient_url(test_plan.patient) %>
+      </td>
+      <td>
+        <%= pluralize test_plan.count_errors, 'error' %>
+      </td>
+      <td>
+        <%= pluralize test_plan.count_warnings, 'warning' %>
+      </td>
+      <td><%= plan_when_tested test_plan %></td>
+      <td class="actions">
+        <ul>
+          <%= action_list_items test_plan, :update => "execution_div_#{test_plan.id}" %>
+        </ul>
+      </td>
+      <td class="delete">
+        <%= link_to content_tag('span','delete'), test_plan_path(test_plan), :method => 'delete',
+            :title => 'delete this test plan',
+            :confirm => 'Are you sure you want to delete this test plan?' %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="8" align="right">
+        <div id="execution_div_<%=test_plan.id%>"></div>
+      </td>
+    </tr>
+  <% end %> <!-- test_plan loop -->
+</table> <!-- .dashboard -->
+
+<% if @vendor.test_plans.count == 0 %>
+  <div id="not-assigned">
+    You have not assigned any tests to <%=h @vendor %>.
+  </div>
+<% end %>
+
+<% unless @other_vendors.empty? -%>
+  <ul class="other-vendors">
+    <% @other_vendors.each do |vendor| -%>
+      <li>
+        <%= link_to vendor, vendor_test_plans_path(vendor) %>
+        <span><%= pluralize vendor.count_test_plans, 'test plan' %></span>
+      </li>
+    <% end -%>
+  </ul>
+<% end -%>

@@ -1,0 +1,1 @@
+require 'laika/extensions/string'

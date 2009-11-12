@@ -1,0 +1,39 @@
+smoking:
+  name: Tobacco use and exposure
+  code: 229819007
+  description: Smoking
+
+exercise:
+  name: Exercise
+  code: 256235009
+  description: Exercise
+
+alcohol:
+  name: Alcohol intake
+  code: 160573003
+  description: ETOH (Alcohol) Use
+
+diet:
+  name: Nutritional observable
+  code: 364393001
+  description: Diet
+
+employment:
+  name: Employment detail
+  code: 364703007
+  description: Employment
+
+toxic_exposure:
+  name: Toxic exposure status
+  code: 425400000
+  description: Toxic Exposure
+
+drug_use:
+  name: Details of drug misuse behavior
+  code: 363908000
+  description: Drug Use
+
+other_social_history:
+  name: Health-related behavior
+  code: 228272008
+  description: Other Social History

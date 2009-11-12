@@ -1,0 +1,29 @@
+mild:
+  name: Mild
+  code: 255604002
+  scale: 0
+
+mild_to_moderate:
+  name: Mild to Moderate
+  code: 371923003
+  scale: 10
+
+moderate:
+  name: Moderate
+  code: 6736007
+  scale: 20
+
+moderate_to_severe:
+  name: Moderate to Severe
+  code: 371924009
+  scale: 30
+
+severe:
+  name: Severe
+  code: 24484000
+  scale: 40
+
+fatal:
+  name: Fatal
+  code: 399166001
+  scale: 50

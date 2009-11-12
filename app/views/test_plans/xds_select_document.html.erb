@@ -1,0 +1,24 @@
+<h2>XDS Provide and Register: Select Document for Comparison</h2>
+<table>
+  <tr>
+    <th>Author Name</th>
+    <th>Format</th>
+    <th>Document Id</th>
+    <th>Creation Time</th>
+    <th></th>
+  </tr>
+  <% @metadata.each do |md| %>
+    <tr>
+      <td><%= md.author.person %></td>
+      <td><%= md.format_code.display_name %></td>
+      <td><%= md.unique_id %></td>
+      <td><%= md.creation_time %></td>
+      <td>
+        <% form_tag(test_action_path(@test_plan, 'xds_compare'), :method => 'post') do %>
+          <%= hidden_field_tag :test_type_data, md.to_yaml %>
+          <%= submit_tag 'Compare' %>
+        <% end %>
+      </td>
+    </tr>
+  <% end -%>
+</table>

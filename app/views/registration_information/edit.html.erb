@@ -1,0 +1,49 @@
+<!-- Start Personal Information Module -->
+<% patient_form_for(@registration_information, :url => patient_registration_information_path(@patient),
+                   :update => 'personInformationContainer' ) do |f| %>
+<h5>Person Information (Required)</h5>
+<table>
+  <tr class="darkzebra">
+    <td class="lighttext">Document Timestamp <%= requirements_for(@registration_information, :document_timestamp) %></td>
+    <td><%= f.calendar_date_select :document_timestamp %></td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Person Identifier <%= requirements_for(@registration_information, :affinity_domain_id) %></td>
+    <td><%= f.collection_select :affinity_domain_id, @patient.patient_identifiers, 'id', 'identifier_and_domain' %></td>
+  </tr>
+  <%= f.person_name_fields %>
+  <tr class="spacer"><td></td><td></td></tr>
+  <tr class="lightzebra">
+    <td class="lighttext">Gender <%= requirements_for(@registration_information, :gender_id) %></td>
+    <td><%= f.select :gender_id, Gender.select_options %></td>
+  </tr>
+  <tr class="darkzebra">
+    <td class="lighttext">Date of Birth <%= requirements_for(@registration_information, :date_of_birth) %></td>
+    <td><%= f.calendar_date_select :date_of_birth %></td>
+  </tr>
+  <tr class="lightzebra">
+    <td class="lighttext">Marital Status <%= requirements_for(@registration_information, :marital_status_id) %></td>
+    <td><%= f.select :marital_status_id, MaritalStatus.select_options, {:include_blank => true} %></td>
+  </tr>
+  <tr class="lightzebra">
+    <td class="lighttext">Religion <%= requirements_for(@registration_information, :religion_id) %> </td>
+    <td><%= f.select :religion_id, Religion.select_options, {:include_blank => true} %></td>
+  </tr>
+  <tr class="darkzebra">
+    <td class="lighttext">Race <%= requirements_for(@registration_information, :race_id) %></td>
+    <td><%= f.select :race_id, Race.select_options, {:include_blank => true} %></td>
+  </tr>
+  <tr class="lightzebra">
+    <td class="lighttext">Ethnicity <%= requirements_for(@registration_information, :ethnicity_id) %></td>
+    <td><%= f.select :ethnicity_id, Ethnicity.select_options, {:include_blank => true} %></td>
+  </tr>
+  <tr class="spacer"><td></td><td></td></tr>
+  <%= f.address_fields %>
+  <%= f.telecom_fields %>
+  <tr class="lightzebra">
+    <td></td>
+    <td><%= f.submit "Save" %></td>
+  </tr>
+</table>
+<!-- End Personal Information Module -->
+<% end %>

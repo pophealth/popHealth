@@ -1,0 +1,99 @@
+<codes>
+<code code='34133-9' displayName='Summarization of episode note' codeSystem='2.16.840.1.113883.6.1' codeSystemName='LOINC'/>
+<administrativeGenderCode code='M' displayName='Male' codeSystemName='HL7 AdministrativeGenderCodes' codeSystem='2.16.840.1.113883.5.1'>
+               <originalText>
+                  AdministrativeGender codes are: M (Male), F (Female)
+                  or UN (Undifferentiated).
+               </originalText>
+            </administrativeGenderCode>
+<maritalStatusCode code='S' displayName='Never Married' codeSystemName='MaritalStatusCode' codeSystem='2.16.840.1.113883.5.2'/>
+<religiousAffiliationCode code='1013' displayName='Christian' codeSystemName='Religious Affiliation' codeSystem='2.16.840.1.113883.5.1076'/>
+<raceCode code='2108-9' displayName='European' codeSystemName='CDC Race and Ethnicity' codeSystem='2.16.840.1.113883.6.238'/>
+<ethnicGroupCode code='2137-8' displayName='Spaniard' codeSystemName='CDC Race and Ethnicity' codeSystem='2.16.840.1.113883.6.238'/>
+<modeCode code='RWR' displayName='Recieve Written' codeSystem='2.16.840.1.113883.5.60' codeSystemName='LanguageAbilityMode'/>
+<code code='MTH' displayName='Mother' codeSystemName='HL7 RoleCode' codeSystem='2.16.840.1.113883.5.111'>
+            <originalText>
+               http://www.hl7.org/v3ballot/html/infrastructure/vocabulary/RoleCode.htm
+            </originalText>
+         </code>
+<code code='10160-0' codeSystem='2.16.840.1.113883.6.1'/>
+<routeCode code='IPINHL' codeSystem='2.16.840.1.113883.5.112' codeSystemName='RouteOfAdministration' displayName='Inhalation, oral'/>
+<administrationUnitCode code='415215001' codeSystem='2.16.840.1.113883.6.96' displayName='Puff'/>
+<code code='307782' codeSystem='2.16.840.1.113883.6.88' displayName='Albuterol 0.09 MG/ACTUAT inhalant solution'>
+                                 <originalText>
+                                    Albuterol inhalant
+                                 </originalText>
+                              </code>
+<code code='33999-4' displayName='Status' codeSystem='2.16.840.1.113883.6.1' codeSystemName='LOINC'/>
+<value type='CE' code='55561003' displayName='Active' codeSystem='2.16.840.1.113883.6.96' codeSystemName='SNOMED CT'/>
+
+
+
+<code code='ASSERTION' codeSystem='2.16.840.1.113883.5.4'/>
+
+
+
+
+<value type='CE' code='56018004' codeSystem='2.16.840.1.113883.6.96' displayName='Wheezing'/>
+<routeCode code='C38288' displayName='Oral' codeSystem='2.16.840.1.113883.3.26.1.1' codeSystemName='FDA RouteOfAdministration'/>
+<code code='309362' codeSystem='2.16.840.1.113883.6.88' displayName='Clopidogrel 75 MG oral tablet'>
+                                 <originalText>
+                                    Clopidogrel
+                                 </originalText>
+                              </code>
+<code code='33999-4' displayName='Status' codeSystem='2.16.840.1.113883.6.1' codeSystemName='LOINC'/>
+<value type='CE' code='55561003' displayName='Active' codeSystem='2.16.840.1.113883.6.96' codeSystemName='SNOMED CT'/>
+<routeCode code='C38288' displayName='Oral' codeSystem='2.16.840.1.113883.3.26.1.1' codeSystemName='FDA RouteOfAdministration'/>
+<code code='430618' codeSystem='2.16.840.1.113883.6.88' displayName='Metoprolol 25 MG oral tablet'>
+                                 <originalText>Metoprolol</originalText>
+                              </code>
+<code code='73639000' codeSystem='2.16.840.1.113883.6.96' displayName='Prescription Drug'/>
+<routeCode code='C38288' displayName='Oral' codeSystem='2.16.840.1.113883.3.26.1.1' codeSystemName='FDA RouteOfAdministration'/>
+<code code='312615' codeSystem='2.16.840.1.113883.6.88' displayName='Prednisone 20 MG oral tablet'>
+                                 <originalText>Prednisone</originalText>
+                              </code>
+<code code='33999-4' displayName='Status' codeSystem='2.16.840.1.113883.6.1' codeSystemName='LOINC'/>
+<value type='CE' code='55561003' displayName='Active' codeSystem='2.16.840.1.113883.6.96' codeSystemName='SNOMED CT'/>
+<code code='329505003' codeSystem='2.16.840.1.113883.6.96' displayName='Over the counter product'/>
+<routeCode code='C38288' displayName='Oral' codeSystem='2.16.840.1.113883.3.26.1.1' codeSystemName='FDA RouteOfAdministration'/>
+<code code='197454' codeSystem='2.16.840.1.113883.6.88' displayName='Cephalexin 500 MG oral tablet'>
+                                 <originalText>Cephalexin</originalText>
+                              </code>
+<code code='33999-4' displayName='Status' codeSystem='2.16.840.1.113883.6.1' codeSystemName='LOINC'/>
+<value type='CE' code='55561003' displayName='Active' codeSystem='2.16.840.1.113883.6.96' codeSystemName='SNOMED CT'/>
+<code code='73639000' codeSystem='2.16.840.1.113883.6.96' displayName='Prescription Drug'/>
+
+
+
+<code code='ASSERTION' codeSystem='2.16.840.1.113883.5.4'/>
+
+
+
+
+
+<value type='CE' code='32398004' codeSystem='2.16.840.1.113883.6.96' displayName='Bronchitis'/>
+<code code='10160-0' displayName='Alerts' codeSystem='2.16.840.1.113883.6.1' codeSystemName='LOINC'/>
+<code code='420134006' displayName='propensity to adverse reactions' codeSystemName='SNOMED CT' codeSystem='2.16.840.1.113883.6.96'>
+                              <originalText>
+                                 See HITSP/C32 Table 2.2.1.7.1-2 for
+                                 more specific codes, e.g. 416098002 for
+                                 drug allergy.
+                              </originalText>
+                           </code>
+<code code='70618' displayName='Penicillin' codeSystem='2.16.840.1.113883.6.88' codeSystemName='RxNorm'>
+                                       <originalText>
+                                          This code element is required
+                                          by CCD rules. By C32 rules, if
+                                          the code element is present it
+                                          shall have populated code and
+                                          codeSystem attributes from
+                                          UNII, RxNorm, or NDF=RT. This
+                                          C32 requirement is under
+                                          review (12/12/07) and may
+                                          change.
+                                       </originalText>
+                                    </code>
+<value type='CD' code='247472004' displayName='Weal' codeSystem='2.16.840.1.113883.6.96' codeSystemName='SNOMED CT'/>
+<code code='SEV' displayName='Severity' codeSystem='2.16.840.1.113883.5.4' codeSystemName='ActCode'/>
+<value type='CD' code='6736007' displayName='Moderate' codeSystem='2.16.840.1.113883.6.96' codeSystemName='SNOMED CT'/>
+</codes>

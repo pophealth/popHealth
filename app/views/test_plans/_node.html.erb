@@ -1,0 +1,50 @@
+
+<% error_id = (doc.attributes['error_id']) 
+%><div <%=  error_id ? "id='error_#{error_id}' " : '' %> class="indent "><%
+case doc.node_type
+  when :element
+%><div <%=  error_id ? "class='error'" : '' %> ><span class="markup">&lt;</span><span class="start-tag "><%= doc.name %></span><%
+ doc.attributes.to_a.each do |attribute| 
+  if attribute.name != 'error_id' 
+ %><span class="attribute-name <%= @error_attributes.index(attribute) ? 'attribute_error' : '' %>"> <%= attribute.name %></span><span class="markup">=</span><span class="attribute-value">"<%=attribute.value %>"</span><%  end 
+ end
+ when :document
+ %><div><span class="markup">&lt;?</span><span class="start-tag">xml</span>
+ <span class="attribute-name"> version</span><span class="markup">=</span><span class="attribute-value">""</span>
+ <span class="attribute-name"> encoding</span><span class="markup">=</span><span class="attribute-value">""</span>
+ <span class="markup">?&gt;</span>
+ </div><%
+ end
+ if doc.children.length > 0 
+ 
+    if doc.node_type == :element
+     %><span class="markup">&gt;</span></div><% 
+     end
+ doc.children.each do |child| %>
+
+<%
+       case child.node_type
+         when :attribute
+           #should not happen but just in case
+         when :text
+          %><div class="text"><%= child.value %></div><%
+         when :element
+          %><%= render :partial=>"node", :locals=>{:doc=>child} %><%
+         when :cdata
+           %><%=  render :partial=>"cdata", :locals=>{:cdata=>child}%><%
+         when :comment
+          %><div class="comment indent">&lt;!--<%= child.to_s %>--&gt;</div><%
+         when :instruction
+           %><div class="indent pi">&lt;?<%= child.target %>  <%= child.content %>?&gt;</div><%
+       end
+     end
+     if doc.node_type == :element
+        %><span class="markup">&lt;/</span><span class="end-tag"><%= doc.name %></span><span class="markup">&gt;</span><% 
+     end
+     
+else 
+ if doc.node_type == :element
+    %><span class="markup">/&gt;</span></div><%
+     end
+ end %>
+</div>

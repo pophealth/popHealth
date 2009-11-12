@@ -1,0 +1,37 @@
+<% patient_form_for([@patient, @insurance_provider_patient],
+                   :update => "insurance_provider_patient#{@insurance_provider_patient.id}") do |f| -%>
+<table>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td colspan="2" class="lighttext">Patient <%= requirements_for @insurance_provider_patient, :member_id %></td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Member ID</td>
+    <td>
+      <input id="insurance_provider_patient_member_id"
+             name="insurance_provider_patient[member_id]"
+             size="30"
+             type="text"
+             <% if @insurance_provider_patient.member_id %>value="<%= @insurance_provider_patient.member_id %>"<% end %> />
+    </td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Start Coverage Date <%= requirements_for @insurance_provider_patient, :start_coverage_date %></td>
+    <td><%= f.calendar_date_select :start_coverage_date %></td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">End Coverage Date <%= requirements_for @insurance_provider_patient, :end_coverage_date %></td>
+    <td><%= f.calendar_date_select :end_coverage_date %></td>
+  </tr>
+  <%= f.person_name_fields %>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Patient Birth Date <%= requirements_for @insurance_provider_patient, :date_of_birth %></td>
+    <td><%= f.calendar_date_select :date_of_birth %></td>
+  </tr>
+  <%= f.address_fields %>
+  <%= f.telecom_fields %>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td></td>
+    <td><%= f.submit "Save" %></td>
+  </tr>
+<table>
+<% end %>

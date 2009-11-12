@@ -1,0 +1,40 @@
+joes_condition:
+  start_event: 2006-02-21
+  free_text_name: Abdominal mass finding
+  problem_type: finding
+  patient: joe_smith
+
+emilys_condition:
+  start_event: 2006-02-21
+  end_event: 2028-03-26
+  free_text_name: Allergy to penicillin disorder
+  problem_type: symptom
+  patient: emily_jones
+
+teds_condition:
+  start_event: 2005-02-21
+  end_event: 2008-02-21
+  free_text_name: Acute retinal necrosis disorder
+  problem_type: problem
+  patient: theodore_smith
+
+wills_condition:
+  start_event: 2005-02-21
+  end_event: 2048-12-21
+  free_text_name: Acute low back pain finding
+  problem_type: complaint
+  patient: will_haynes
+
+jennifers_condition:
+  start_event: 2005-02-21
+  end_event: 2038-12-21
+  free_text_name: Pulmonary arteritis disorder
+  problem_type: condition
+  patient: jennifer_thompson
+
+davids_condition:
+  start_event: 1974-06-30
+  end_event: 2021-12-21
+  free_text_name: Chronic mixed headache syndrome disorder
+  problem_type: functional_limitation
+  patient: david_carter

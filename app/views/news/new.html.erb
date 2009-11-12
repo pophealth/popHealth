@@ -1,0 +1,5 @@
+<h3>New Post</h3>
+<%= error_messages_for :message %>
+<% form_for :message, :url => { :controller => 'news' } do |f| %>
+  <%= render :partial => 'news/message_form', :object => f %>
+<% end %>

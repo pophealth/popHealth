@@ -1,0 +1,11 @@
+active:
+  name: Active
+  code: 55561003
+  
+prior_history:
+  name: Prior History
+  code: 392521001
+
+no_longer_active:
+  name: No Longer Active
+  code: 73425007

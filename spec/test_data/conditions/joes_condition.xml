@@ -1,0 +1,321 @@
+<ClinicalDocument xmlns:sdct="urn:hl7-org:sdct" xsi:schemaLocation="urn:hl7-org:v3 http://xreg2.nist.gov:8080/hitspValidation/schema/cdar2c32/infrastructure/cda/C32_CDA.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3">
+  <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
+  <templateId assigningAuthorityName="CDA/R2" root="2.16.840.1.113883.3.27.1776"/>
+  <templateId assigningAuthorityName="CCD" root="2.16.840.1.113883.10.20.1"/>
+  <templateId assigningAuthorityName="HITSP/C32" root="2.16.840.1.113883.3.88.11.32.1"/>
+  <id extension="Laika C32 Test" assigningAuthorityName="Laika: An Open Source EHR Testing Framework projectlaika.org" root="2.16.840.1.113883.3.72"/>
+  <code code="34133-9" displayName="Summarization of patient data" codeSystemName="LOINC" codeSystem="2.16.840.1.113883.6.1"/>
+  <title>Joe Smith</title>
+  <effectiveTime value="20080319163643-0500"/>
+  <confidentialityCode/>
+  <languageCode code="en-US"/>
+  <recordTarget>
+    <patientRole>
+      <id extension="24602" assigningAuthorityName="Some Clinical Organization Name" root="SomeClinicalOrganizationOID"/>
+      <addr>
+        <streetAddressLine>1600 Rockville Pike</streetAddressLine>
+        <city>Rockville</city>
+        <state>MD</state>
+        <postalCode>20847</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom value="tel:+1-312-555-1234" use="HP"/>
+      <patient>
+        <name>
+          <prefix>Mr.</prefix>
+          <given qualifier="CL">Joe</given>
+          <family qualifier="BR">Smith</family>
+        </name>
+        <administrativeGenderCode code="M" displayName="Male" codeSystemName="HL7 AdministrativeGenderCodes" codeSystem="2.16.840.1.113883.5.1">
+          <originalText>AdministrativeGender codes are: M (Male), F (Female) or UN (Undifferentiated).</originalText>
+        </administrativeGenderCode>
+        <birthTime value="19670323"/>
+        <maritalStatusCode code="S" displayName="Never Married" codeSystemName="MaritalStatusCode" codeSystem="2.16.840.1.113883.5.2"/>
+        <religiousAffiliationCode code="1013" displayName="Christian" codeSystemName="Religious Affiliation" codeSystem="2.16.840.1.113883.5.1076"/>
+        <raceCode code="2108-9" displayName="European" codeSystemName="CDC Race and Ethnicity" codeSystem="2.16.840.1.113883.6.238"/>
+        <ethnicGroupCode code="2137-8" displayName="Spaniard" codeSystemName="CDC Race and Ethnicity" codeSystem="2.16.840.1.113883.6.238"/>
+        <languageCommunication>
+          <templateId root="2.16.840.1.113883.3.88.11.32.2"/>
+          <languageCode code="en-US"/>
+          <modeCode code="RWR" displayName="Received Written" codeSystemName="LanguageAbilityMode" codeSystem="2.16.840.1.113883.5.60"/>
+          <preferenceInd value="true"/>
+        </languageCommunication>
+      </patient>
+    </patientRole>
+  </recordTarget>
+  <author>
+    <time value="20080121"/>
+    <assignedAuthor>
+      <id root="ABC-1234567-GG"/>
+      <assignedPerson>
+        <name>
+          <prefix>Mr.</prefix>
+          <given qualifier="CL">Paul</given>
+          <family qualifier="BR">Hewson</family>
+        </name>
+      </assignedPerson>
+      <representedOrganization>
+        <id root="2.16.840.1.113883.19.5"/>
+        <name>CCHIT Testing Labs</name>
+      </representedOrganization>
+    </assignedAuthor>
+  </author>
+  <custodian>
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <id/>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <participant typeCode="IND">
+    <templateId root="2.16.840.1.113883.3.88.11.32.3"/>
+    <time>
+      <low value="19670323"/>
+    </time>
+    <associatedEntity classCode="NOK">
+      <code code="MTH" displayName="Mother" codeSystemName="RoleCode" codeSystem="2.16.840.1.113883.5.111"/>
+      <addr>
+        <streetAddressLine>1600 Rockville Pike</streetAddressLine>
+        <city>Rockville</city>
+        <state>MD</state>
+        <postalCode>20847</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom value="tel:+1-202-555-1212" use="MC"/>
+      <associatedPerson>
+        <name>
+          <prefix>Ms.</prefix>
+          <given qualifier="CL">Sue</given>
+          <family qualifier="BR">Smith</family>
+        </name>
+      </associatedPerson>
+    </associatedEntity>
+  </participant>
+  <documentationOf>
+    <serviceEvent classCode="PCPR">
+      <effectiveTime>
+        <low value="19770323"/>
+        <high value="19870323"/>
+      </effectiveTime>
+      <performer typeCode="PRF">
+        <templateId assigningAuthorityName="HITSP/C32" root="2.16.840.1.113883.3.88.11.32.4"/>
+        <functionCode code="PP" displayName="Primary Care Provider" codeSystemName="Provider Role" codeSystem="2.16.840.1.113883.12.443">
+          <originalText>A Primary Care Provider</originalText>
+        </functionCode>
+        <time>
+          <low value="19770323"/>
+          <high value="19870323"/>
+        </time>
+        <assignedEntity>
+          <id/>
+          <representedOrganization>
+            <id assigningAuthorityName="Dem Bones Practice" root="2.16.840.1.113883.3.72.5"/>
+            <name>Dem Bones Practice</name>
+          </representedOrganization>
+          <patient xmlns="urn:hl7-org:sdtc">
+            <id extension="MedicalRecordNumber" root="78A150ED-B890-49dc-B716-5EC0027B3982" xmlns="urn:hl7-org:sdtc"/>
+          </patient>
+        </assignedEntity>
+      </performer>
+    </serviceEvent>
+  </documentationOf>
+  <component>
+    <structuredBody>
+      <component>
+        <section>
+          <templateId assigningAuthorityName="CCD" root="2.16.840.1.113883.10.20.1.11"/>
+          <code code="11450-4" displayName="Problems" codeSystemName="LOINC" codeSystem="2.16.840.1.113883.6.1"/>
+          <title>Conditions or Problems</title>
+          <text>
+            <content ID="problem-1021520352">Abdominal mass finding</content>
+          </text>
+          <entry>
+            <act classCode="ACT" moodCode="EVN">
+              <templateId assigningAuthorityName="CCD" root="2.16.840.1.113883.10.20.1.27"/>
+              <templateId assigningAuthorityName="HITSP/C32" root="2.16.840.1.113883.3.88.11.32.7"/>
+              <id/>
+              <code nullFlavor="NA"/>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId assigningAuthorityName="CCD" root="2.16.840.1.113883.10.20.1.28"/>
+                  <code code="404684003" displayName="Finding" codeSystemName="SNOMED CT" codeSystem="2.16.840.1.113883.6.96"/>
+                  <text>
+                    <reference value="#problem-1021520352"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                    <low value="20060221"/>
+                    <high nullFlavor="UNK"/>
+                  </effectiveTime>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId assigningAuthorityName="CCD" root="2.16.840.1.113883.10.20.1.2"/>
+          <code code="48765-2" codeSystem="2.16.840.1.113883.6.1"/>
+          <title>Allergies, Adverse Reactions, Alerts</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Substance</th>
+                  <th>Event Type</th>
+                  <th>Severity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Penicillin</td>
+                  <td>Propensity to Adverse Reactions</td>
+                  <td>
+                    <content ID="severity-823358748">Moderate</content>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.27"/>
+              <templateId root="2.16.840.1.113883.3.88.11.32.6"/>
+              <id root="2C748172-7CC2-4902-8AF0-23A105C4401B"/>
+              <code nullFlavor="NA"/>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.1.18"/>
+                  <code code="420134006" displayName="Propensity to Adverse Reactions" codeSystemName="SNOMED CT" codeSystem="2.16.840.1.113883.6.96"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                    <low value="20060221"/>
+                    <high nullFlavor="UNK"/>
+                  </effectiveTime>
+                  <participant typeCode="CSM">
+                    <participantRole classCode="MANU">
+                      <playingEntity classCode="MMAT">
+                        <code code="70618" displayName="Penicillin" codeSystemName="RxNorm" codeSystem="2.16.840.1.113883.6.88"/>
+                        <name>Penicillin</name>
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                </observation>
+              </entryRelationship>
+              <entryRelationship inversionInd="true" typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.1.55"/>
+                  <code code="SEV" displayName="Severity" codeSystemName="ActCode" codeSystem="2.16.840.1.113883.5.4"/>
+                  <text>
+                    <reference value="#severity-823358748"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <value code="6736007" displayName="Moderate" xsi:type="CD" codeSystemName="SNOMED CT" codeSystem="2.16.840.1.113883.6.96"/>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId assigningAuthorityName="CCD" root="2.16.840.1.113883.10.20.1.9"/>
+          <code code="48768-6" codeSystemName="LOINC" codeSystem="2.16.840.1.113883.6.1"/>
+          <title>Insurance Providers</title>
+          <text>
+            <paragraph>Blue Cross Blue Shield</paragraph>
+          </text>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId assigningAuthorityName="CCD" root="2.16.840.1.113883.10.20.1.8"/>
+          <code code="10160-0" displayName="History of medication use" codeSystemName="LOINC" codeSystem="2.16.840.1.113883.6.1"/>
+          <title>Medications</title>
+          <text>
+            <content ID="medication-809983183">Albuterol inhalant</content>
+          </text>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId assigningAuthorityName="CCD" root="2.16.840.1.113883.10.20.1.24"/>
+              <templateId assigningAuthorityName="HITSP/C32" root="2.16.840.1.113883.3.88.11.32.8"/>
+              <id/>
+              <consumable>
+                <manufacturedProduct classCode="MANU">
+                  <templateId assigningAuthorityName="CCD" root="2.16.840.1.113883.10.20.1.53"/>
+                  <templateId assigningAuthorityName="HITSP/C32" root="2.16.840.1.113883.3.88.11.32.9"/>
+                  <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                    <code code="307782" displayName="Albuterol inhalant" codeSystemName="RxNorm" codeSystem="2.16.840.1.113883.6.88">
+                      <originalText>ACTUAT inhalant</originalText>
+                    </code>
+                    <name>ACTUAT inhalant</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.3.88.1.11.32.10"/>
+                  <code code="73639000" displayName="Prescription Drug" codeSystemName="SNOMED CT" codeSystem="2.16.840.1.113883.6.96"/>
+                  <statusCode code="completed"/>
+                </observation>
+              </entryRelationship>
+              <entryRelationship typeCode="REFR">
+                <supply classCode="SPLY" moodCode="INT">
+                  <templateId root="2.16.840.1.113883.3.88.1.11.32.11"/>
+                  <effectiveTime value="20070927"/>
+                </supply>
+              </entryRelationship>
+            </substanceAdministration>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.1.1"/>
+          <code code="42348-3" codeSystemName="LOINC" codeSystem="2.16.840.1.113883.6.1"/>
+          <title>Advance Directive</title>
+          <text>
+            <content ID="advance-directive-989570580">Do not resuscitate</content>
+          </text>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId assigningAuthorityName="CCD" root="2.16.840.1.113883.10.20.1.17"/>
+              <templateId assigningAuthorityName="HITSP/C32" root="2.16.840.1.113883.3.88.11.32.13"/>
+              <id/>
+              <code code="304251008" displayName="Resuscitation" codeSystemName="SNOMED CT" codeSystem="2.16.840.1.113883.6.96">
+                <originalText>
+                  <reference value="advance-directive-989570580"/>
+                </originalText>
+              </code>
+              <statusCode code="completed"/>
+              <effectiveTime>
+                <low value="19740121"/>
+                <high nullFlavor="UNK"/>
+              </effectiveTime>
+              <participant typeCode="CST">
+                <participantRole classCode="AGNT">
+                  <addr>
+                    <streetAddressLine>5674 East Street</streetAddressLine>
+                    <city>Hull</city>
+                    <state>MA</state>
+                    <postalCode>02045</postalCode>
+                    <country>US</country>
+                  </addr>
+                  <telecom value="tel:+1-240-555-1212" use="HP"/>
+                  <playingEntity>
+                    <name>
+                      <prefix>Mr.</prefix>
+                      <given qualifier="CL">Bo</given>
+                      <family qualifier="BR">Jangles</family>
+                    </name>
+                  </playingEntity>
+                </participantRole>
+              </participant>
+            </observation>
+          </entry>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>

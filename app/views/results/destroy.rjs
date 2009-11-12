@@ -1,0 +1,1 @@
+page.remove "#{controller.controller_name}#{params[:id]}"

@@ -1,0 +1,11 @@
+<% form_for(:patient_identifier, :url => test_action_url(@test_plan, 'pix_feed_compare'), :method => 'post') do |f| %>
+  <%= f.error_messages %>
+  <%= f.label :local_patient_identifier %>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <%= f.text_field :patient_identifier %>
+  <br/>
+  <%= f.label :local_assigning_authority %>
+  <%= f.text_field :affinity_domain %>
+  <br/>
+  <%= f.submit "Verify" %>
+<% end %>

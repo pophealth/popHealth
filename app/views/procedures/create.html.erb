@@ -1,0 +1,11 @@
+<%= render :partial => '/procedures/show', :locals => {:procedure => @procedure, :patient => @patient} %>
+
+<script type="text/javascript">
+//<![CDATA[
+var newProcedureDiv = $('procedureNew');
+if (newProcedureDiv != null)
+{
+    newProcedureDiv.id = 'procedure<%= @procedure.id %>';
+}
+//]]>
+</script>

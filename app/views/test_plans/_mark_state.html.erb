@@ -1,0 +1,12 @@
+<% if plan.pending? && plan.manual_inspection? -%>
+  <%= link_to plan.state, "javascript:toggle_div('plan_state_#{plan.id}')", :class => 'pending' %>
+  <ul id="plan_state_<%=plan.id%>" style="display:none">
+    <li><%= link_to 'passed', mark_test_plan_url(plan,:state => :pass),
+      :method => :post, :class => 'passed' %></li>
+    <li><%= link_to 'failed', mark_test_plan_url(plan,:state => :fail),
+      :method => :post, :class => 'failed' %></li>
+  </ul>
+<% else -%>
+  <a class="<%= plan.state %>"><%= plan.state %></a>
+<% end -%>
+

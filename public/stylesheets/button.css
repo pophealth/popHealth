@@ -1,0 +1,65 @@
+.clear { /* generic container (i.e. div) for floating buttons */
+    overflow: hidden;
+    width: 100%;
+}
+
+a.bluebutton, a.whitebutton {
+    background: transparent url('../images/blue_right.png') no-repeat scroll top right;
+    color: #787878;
+    display: block;
+    float: left;
+    font-weight:bold;
+	font-size:10px;
+    height: 33px;
+    margin-right: 6px;
+    padding-right: 16px; /* sliding doors padding */
+    text-decoration: none;
+	text-transform:uppercase;
+	letter-spacing:1px;
+	position:relative;
+	top:-18px;
+}
+
+a.whitebutton {
+    background: transparent url('../images/white_right.png') no-repeat scroll top right;
+}
+
+a.bluebutton span, a.whitebutton span {
+    background: transparent url('../images/blue_left.png') no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 8px 10px 8px 28px;
+}
+
+a.whitebutton span {
+    background: transparent url('../images/white_left.png') no-repeat;
+}
+
+.bluebutton:active, .whitebutton.active {
+    outline: none; /* hide dotted outline in Firefox */
+}
+
+.doggyhelp {
+	padding-bottom:0;
+}
+
+.doggyhelp img {
+	margin:0;
+}
+
+.doggyhelp a {
+	text-decoration:none;
+}
+
+.register .desc b {
+	color:#40affe;
+}
+
+ul.register {
+	margin:0;
+}
+
+ul.register li {
+	list-style-type:none;
+	font-size:9px;
+}

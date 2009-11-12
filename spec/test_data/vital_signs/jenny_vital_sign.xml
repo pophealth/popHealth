@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:sdct="urn:hl7-org:sdct" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <component>
+    <structuredBody>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.1.16"/>
+          <!-- Results section template -->
+          <code code="30954-2" codeSystem="2.16.840.1.113883.6.1"/>
+          <title>Vital Signs</title>
+          <text/>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.3.88.11.32.15"/>
+              <!-- Result observation template -->
+              <id root="33d07056-bd27-4c90-891d-eb716d3170c4"/>
+              <code code="3141-9" codeSystem="2.16.840.1.113883.6.1" displayName="Body Weight (Measured)" codeSystemName="LOINC"/>
+              <statusCode code="N"/>
+              <effectiveTime value="20071117"/>
+              <value xsi:type="PQ" value="155" unit="lbs"/>
+              <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83"/>
+            </observation>
+          </entry>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>

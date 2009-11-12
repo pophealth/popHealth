@@ -1,0 +1,184 @@
+= Laika Design and Architecture
+
+The classes covered in this document are grouped into three sections.
+Application-specific code is the scaffolding and business logic that holds
+Laika together. Test and test type code manages EHR testing state and related
+data. Patient code is responsible for reading, updating, processing and
+generating C32 from patient data.
+
+== Application-specific Code
+
+=== Models
+
+{ErrorMailer}:: error notification email handler
+{Setting}:: run-time application configuration setting
+{SystemMessage}:: news post
+{User}:: application user
+{UserNotifier}:: password reset notification
+{UserObserver}:: user callbacks (sends notification)
+
+=== Controllers
+
+The Dashboard tab is implemented by {TestPlansController#index} and the
+Library tab is implemented by {PatientsController#index}.
+
+{AccountController}:: login, logout and registration
+{ApplicationController}:: application-wide controller functionality
+{NewsController}:: display and post news items
+{SettingsController}:: manage run-time configuration
+{UsersController}:: list and update users
+{VendorsController}:: add and update vendors
+
+==== Controller Support
+
+* {SortOrder}
+
+== Tests and Test Types
+
+Remember that we're talking about the EHR testing performed by Laika, *not*
+the automated test suite used to check for regressions in Laika itself. The
+test types are all sub-classes of {TestPlan}. The list of test plan types is
+enumerated in config/initializers/load_test_plan_types.rb.
+
+=== Test Types
+
+The state of an individual test plan is represented by a sub-class of {TestPlan}:
+
+* {C32DisplayAndFilePlan}
+* {C32GenerateAndFormatPlan}
+* {PdqQueryPlan}
+* {PixFeedPlan}
+* {PixQueryPlan}
+* {XdsProvideAndRegisterPlan}
+* {XdsQueryAndRetrievePlan}
+
+=== Models
+
+{MessageLog}:: references an external table, used for ???
+{AtnaAudit}:: references an external table, used for viewing ATNA logs
+{ClinicalDocument}:: C32 document attachment
+{ContentError}:: C32 validation error
+{Vendor}:: categorize tests by an arbitrary string
+
+=== Controllers
+
+{TestPlansController}:: test plan operations, includes several test-specific actions
+{XdsPatientsController}:: XDS utility operations
+
+== Patients
+
+A {Patient} instance represents a single patient's medical history. Most of the
+models in Laika are part of this structure and represent different sections or
+subsections of patient data. Patient and its subordinate types are based on
+the C32 document standard: http://wiki.hitsp.org/docs/C32/C32-1.html
+
+=== Patient Data Models
+
+The following models are used to construct a complete patient record. Each
+one represents a section or subsection of patient data.
+
+{Address}:: patient address
+{AdvanceDirective}:: advance directive data
+{Allergy}:: patient allergy information
+{Comment}:: section comment (not currently used)
+{Condition}:: patient condition information
+{Encounter}:: doctor visit
+{Immunization}:: patient immunization
+{InformationSource}:: patient info source
+{InsuranceProvider}:: patient insurance provider
+{InsuranceProviderGuarantor}:: ... and guarantor info
+{InsuranceProviderPatient}:: ... and patient info
+{InsuranceProviderSubscriber}:: ... and subscriber info
+{Language}:: spoken or written language
+{MedicalEquipment}:: medical device, e.g. pacemaker
+{Medication}:: prescribed medication
+{PatientIdentifier}:: patient affinity domain identifiers
+{PersonName}:: full name
+{Procedure}:: medical procedure
+{Provider}:: doctor or hospital
+{RegistrationInformation}:: general patient and contact info
+{Result}:: medical test results (child of {AbstractResult})
+{Support}:: supporting contacts
+{Telecom}:: phone contacts
+{VitalSign}:: patient vitals (child of {AbstractResult})
+
+==== Patient Support
+
+* {Commentable}
+* {HasC32ComponentExtension}
+* {InsuranceProviderChild}
+* {PatientChild}
+* {PersonLike}
+
+=== Lookup Data Models
+
+These models represent lookup data needed for the UI and validation.
+
+* {ActStatusCode}
+* {AdvanceDirectiveStatusCode}
+* {AdvanceDirectiveType}
+* {AllergyStatusCode}
+* {AllergyTypeCode}
+* {CodeSystem}
+* {ContactType}
+* {CoverageRoleType}
+* {EncounterLocationCode}
+* {EncounterType}
+* {Ethnicity}
+* {Gender}
+* {InsuranceType}
+* {IsoCountry}
+* {IsoLanguage}
+* {IsoState}
+* {LanguageAbilityMode}
+* {LoincLabCode}
+* {MaritalStatus}
+* {MedicationType}
+* {NoImmunizationReason}
+* {ProblemType}
+* {ProviderRole}
+* {ProviderType}
+* {Race}
+* {Relationship}
+* {Religion}
+* {ResultTypeCode}
+* {RoleClassRelationshipFormalType}
+* {SeverityTerm}
+* {SnowmedProblem}
+* {Vaccine}
+* {ZipCode}
+
+==== Lookup Support
+
+* {HasSelectOptionsExtension}
+
+=== Controllers
+
+Most of the controllers involved in updating patient data are descendants of
+either {PatientChildController} or {PatientChildrenController} depending on
+whether the patient has one or many of the given resource, respectively.
+{PatientsController} controls high-level patient operations and the Library
+view.
+
+* {AdvanceDirectivesController}
+* {AllergiesController}
+* {ConditionsController}
+* {EncountersController}
+* {ImmunizationsController}
+* {InformationSourcesController}
+* {InsuranceProviderGuarantorsController}
+* {InsuranceProviderPatientsController}
+* {InsuranceProviderSubscribersController}
+* {InsuranceProvidersController}
+* {LanguagesController}
+* {MedicalEquipmentsController}
+* {MedicationsController}
+* {PatientIdentifiersController}
+* {PregnanciesController}
+* {ProceduresController}
+* {ProvidersController}
+* {RegistrationInformationController}
+* {ResultsController}
+* {SupportsController}
+* {VitalSignsController}
+

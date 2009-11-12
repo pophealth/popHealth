@@ -1,0 +1,11 @@
+consulting_provider:
+  name: Consulting Provider
+  code: CP
+
+primary_care_provider:
+  name: Primary Care Provider
+  code: PP
+
+referring_provider:
+  name: Referring Provider
+  code: RP

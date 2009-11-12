@@ -1,0 +1,2 @@
+class RegistrationInformationController < PatientChildController
+end

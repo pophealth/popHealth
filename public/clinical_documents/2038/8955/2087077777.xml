@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClinicalDocument xsi:schemaLocation="urn:hl7-org:v3 http://xreg2.nist.gov:8080/hitspValidation/schema/cdar2c32/infrastructure/cda/C32_CDA.xsd" xmlns="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+  <templateId root="2.16.840.1.113883.3.27.1776" assigningAuthorityName="CDA/R2"/>
+  <templateId root="2.16.840.1.113883.10.20.1" assigningAuthorityName="CCD"/>
+  <templateId root="2.16.840.1.113883.3.88.11.32.1" assigningAuthorityName="HITSP/C32"/>
+  <id root="2.16.840.1.113883.3.72" extension="Laika C32 Test" assigningAuthorityName="Laika: An Open Source EHR Testing Framework projectlaika.org"/>
+  <code code="34133-9" displayName="Summarization of patient data" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+  <title>Dessie Feeney</title>
+  <effectiveTime value="20030807200000-0400"/>
+  <confidentialityCode/>
+  <languageCode code="en-US"/>
+  <recordTarget>
+    <patientRole>
+      <id extension="1234567890"/>
+      <addr>
+        <streetAddressLine>3187 Micah Ferry</streetAddressLine>
+        <city>Hawesville</city>
+        <state>KY</state>
+        <postalCode>42348</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom use="HP" value="tel:+1-053-792-3697"/>
+      <telecom use="WP" value="tel:+1-130-509-8675"/>
+      <telecom use="MC" value="tel:+1-557-881-1918"/>
+      <patient>
+        <name>
+          <given qualifier="CL">Dessie</given>
+          <family qualifier="BR">Feeney</family>
+        </name>
+        <administrativeGenderCode code="F" displayName="Female" codeSystemName="HL7 AdministrativeGenderCodes" codeSystem="2.16.840.1.113883.5.1">
+          <originalText>AdministrativeGender codes are: M (Male), F (Female) or UN (Undifferentiated).</originalText>
+        </administrativeGenderCode>
+        <birthTime value="19310801"/>
+        <maritalStatusCode code="W" displayName="Widowed" codeSystemName="MaritalStatusCode" codeSystem="2.16.840.1.113883.5.2"/>
+        <religiousAffiliationCode code="1043" displayName="scientology" codeSystemName="Religious Affiliation" codeSystem="2.16.840.1.113883.5.1076"/>
+        <raceCode code="1227-8" displayName="Manzanita" codeSystemName="CDC Race and Ethnicity" codeSystem="2.16.840.1.113883.6.238"/>
+        <ethnicGroupCode code="2155-0" displayName="Central American" codeSystemName="CDC Race and Ethnicity" codeSystem="2.16.840.1.113883.6.238"/>
+        <languageCommunication>
+          <templateId root="2.16.840.1.113883.3.88.11.32.2"/>
+          <languageCode code="af-TG"/>
+          <modeCode code="ESP" displayName="Expressed Spoken" codeSystem="2.16.840.1.113883.5.60" codeSystemName="LanguageAbilityMode"/>
+          <preferenceInd value="false"/>
+        </languageCommunication>
+      </patient>
+    </patientRole>
+  </recordTarget>
+  <author>
+    <time value="20000820"/>
+    <assignedAuthor>
+      <id root="ABC-1234567-ZZ"/>
+      <assignedPerson>
+        <name>
+          <given qualifier="CL">Mohamed</given>
+          <family qualifier="BR">Schultz</family>
+        </name>
+      </assignedPerson>
+      <representedOrganization>
+        <id root="2.16.840.1.113883.19.5"/>
+        <name></name>
+      </representedOrganization>
+    </assignedAuthor>
+  </author>
+  <custodian>
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <id/>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <participant typeCode="IND">
+    <templateId root="2.16.840.1.113883.3.88.11.32.3"/>
+    <time>
+      <low value="19340628"/>
+      <high value="19610120"/>
+    </time>
+    <associatedEntity classCode="ECON">
+      <code code="GRMTH" displayName="Grandmother" codeSystem="2.16.840.1.113883.5.111" codeSystemName="RoleCode"/>
+      <addr>
+        <streetAddressLine>36009 Ella Cliff</streetAddressLine>
+        <city>Smoot</city>
+        <state>WY</state>
+        <postalCode>83126</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom use="HP" value="tel:+1-317-346-1559"/>
+      <telecom use="WP" value="tel:+1-584-131-0783"/>
+      <telecom use="MC" value="tel:+1-589-550-3854"/>
+      <associatedPerson>
+        <name>
+          <given qualifier="CL">Hazel</given>
+          <family qualifier="BR">Crooks</family>
+        </name>
+      </associatedPerson>
+    </associatedEntity>
+  </participant>
+  <documentationOf>
+    <serviceEvent classCode="PCPR">
+      <effectiveTime>
+        <low value="0"/>
+        <high value="2010"/>
+      </effectiveTime>
+      <performer typeCode="PRF">
+        <templateId root="2.16.840.1.113883.3.88.11.32.4" assigningAuthorityName="HITSP/C32"/>
+        <functionCode code="CP" displayName="Consulting Provider" codeSystem="2.16.840.1.113883.12.443" codeSystemName="Provider Role">
+        </functionCode>
+        <time>
+          <low value="19360115"/>
+          <high value="19490821"/>
+        </time>
+        <assignedEntity>
+          <id/>
+          <code code="320000000X" displayName="Residential Treatment Facilities" codeSystem="2.16.840.1.113883.6.101" codeSystemName="ProviderCodes"/>
+          <addr>
+            <streetAddressLine>963 Kailyn Run</streetAddressLine>
+            <city>Hawesville</city>
+            <state>KY</state>
+            <postalCode>42348</postalCode>
+            <country>US</country>
+          </addr>
+          <telecom use="HP" value="tel:+1-511-453-9413"/>
+          <telecom use="WP" value="tel:+1-839-884-8335"/>
+          <telecom use="MC" value="tel:+1-659-013-3771"/>
+          <assignedPerson>
+            <name>
+              <given qualifier="CL">Camille</given>
+              <family qualifier="BR">Jast</family>
+            </name>
+          </assignedPerson>
+        </assignedEntity>
+      </performer>
+    </serviceEvent>
+  </documentationOf>
+  <component>
+    <structuredBody>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.1.11" assigningAuthorityName="CCD"/>
+          <code code="11450-4" displayName="Problems" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>Conditions or Problems</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Problem Name</th>
+                  <th>Problem Type</th>
+                  <th>Problem Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <content ID="problem-1931822287">Malignant melanoma of skin of eyebrow disorder</content>
+                  </td>
+                  <td>Problem</td>
+                  <td>19310121</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.27" assigningAuthorityName="CCD"/>
+              <templateId root="2.16.840.1.113883.3.88.11.32.7" assigningAuthorityName="HITSP/C32"/>
+              <id/>
+              <code nullFlavor="NA"/>
+              <effectiveTime>
+                <low value="19310121"/>
+                <high nullFlavor="UNK"/>
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.1.28" assigningAuthorityName="CCD"/>
+                  <code code="55607006" displayName="Problem" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                  <text>
+                    <reference value="#problem-1931822287"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <value xsi:type="CD" code="93223008" displayName="Malignant melanoma of skin of eyebrow disorder" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.1.2" assigningAuthorityName="CCD"/>
+          <code code="48765-2" codeSystem="2.16.840.1.113883.6.1"/>
+          <title>Allergies, Adverse Reactions, Alerts</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Substance</th>
+                  <th>Event Type</th>
+                  <th>Severity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Codeine</td>
+                  <td>Drug Intolerance</td>
+                  <td>
+                    <content ID="severity-2090336098">Mild to Moderate</content>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.27"/>
+              <templateId root="2.16.840.1.113883.3.88.11.32.6"/>
+              <id root="2C748172-7CC2-4902-8AF0-23A105C4401B"/>
+              <code nullFlavor="NA"/>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.1.18"/>
+                  <code code="59037007" displayName="Drug Intolerance" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                    <low value="19320709"/>
+                    <high nullFlavor="UNK"/>
+                  </effectiveTime>
+                  <participant typeCode="CSM">
+                    <participantRole classCode="MANU">
+                      <playingEntity classCode="MMAT">
+                        <code code="2670" displayName="Codeine" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm"/>
+                        <name>Codeine</name>
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                  <entryRelationship typeCode="REFR">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.1.39"/>
+                      <code code="33999-4" displayName="Status" codeSystem="2.16.840.1.113883.6.1" codeSystemName="AlertStatusCode"/>
+                      <statusCode code="completed"/>
+                      <value xsi:type="CE" code="73425007" displayName="No Longer Active" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.1.9" assigningAuthorityName="CCD"/>
+          <code code="48768-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>Insurance Providers</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Insurance Provider Name</th>
+                  <th>Insurance Provider Type</th>
+                  <th>Insurance Provider Group Number</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Humana</td>
+                  <td>Humana</td>
+                  <td>3752765316</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <act classCode="ACT" moodCode="DEF">
+              <templateId root="2.16.840.1.113883.10.20.1.20" assigningAuthorityName="CCD"/>
+              <id root="3752765316" extension="GroupOrContract#"/>
+              <code code="48768-6" displayName="Payment Sources" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+              <statusCode code="completed"/>
+              <entryRelationship typeCode="COMP">
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.1.26"/>
+                  <templateId root="2.16.840.1.113883.3.88.11.32.5"/>
+                  <id root="3752765316" extension="GroupOrContract#"/>
+                  <code code="OT" displayName="Other" codeSystem="2.16.840.1.113883.6.255.1336" codeSystemName="X12N-1336"/>
+                  <statusCode code="completed"/>
+                  <performer typeCode="PRF">
+                    <assignedEntity classCode="ASSIGNED">
+                      <id root="2.16.840.1.113883.3.88.3.1"/>
+                      <representedOrganization classCode="ORG">
+                        <id root="2.16.840.1.113883.19.5"/>
+                        <name>Humana</name>
+                      </representedOrganization>
+                    </assignedEntity>
+                  </performer>
+                  <participant typeCode="HLD">
+                    <participantRole classCode="IND">
+                      <id root="f5a6d500-26d1-012c-f574-002170e5b62b" extension="LMC1270Q56966"/>
+                      <addr>
+                        <streetAddressLine>366 Katheryn Place</streetAddressLine>
+                        <city>Broughton</city>
+                        <state>IL</state>
+                        <postalCode>62817</postalCode>
+                        <country>US</country>
+                      </addr>
+                      <telecom use="HP" value="tel:+1-148-560-5325"/>
+                      <telecom use="WP" value="tel:+1-863-078-6948"/>
+                      <telecom use="MC" value="tel:+1-884-035-4416"/>
+                      <playingEntity>
+                        <name>
+                          <given qualifier="CL">Kaela</given>
+                          <family qualifier="BR">Barton</family>
+                        </name>
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                </act>
+              </entryRelationship>
+            </act>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.1.8" assigningAuthorityName="CCD"/>
+          <code code="10160-0" displayName="History of medication use" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>Medications</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Product Display Name</th>
+                  <th>Free Text Brand Name</th>
+                  <th>Ordered Value</th>
+                  <th>Ordered Unit</th>
+                  <th>Expiration Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <content ID="medication-1961742198">Cephalexin</content>
+                  </td>
+                  <td>Keflex</td>
+                  <td/>
+                  <td/>
+                  <td>20080116</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.24" assigningAuthorityName="CCD"/>
+              <templateId root="2.16.840.1.113883.3.88.11.32.8" assigningAuthorityName="HITSP/C32"/>
+              <id/>
+              <consumable>
+                <manufacturedProduct classCode="MANU">
+                  <templateId root="2.16.840.1.113883.10.20.1.53" assigningAuthorityName="CCD"/>
+                  <templateId root="2.16.840.1.113883.3.88.11.32.9" assigningAuthorityName="HITSP/C32"/>
+                  <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                    <code code="197454" displayName="Cephalexin" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm">
+                      <originalText>Cephalexin</originalText>
+                    </code>
+                    <name>Keflex</name>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.3.88.11.32.10"/>
+                  <code code="73639000" displayName="Prescription Drug" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                  <statusCode code="completed"/>
+                </observation>
+              </entryRelationship>
+              <entryRelationship typeCode="REFR">
+                <supply classCode="SPLY" moodCode="INT">
+                  <templateId root="2.16.840.1.113883.3.88.1.11.32.11"/>
+                  <effectiveTime value="20080116"/>
+                </supply>
+              </entryRelationship>
+            </substanceAdministration>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.1.1"/>
+          <code code="42348-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>Advance Directive</title>
+          <text>
+            <content ID="advance-directive-2138148767">Do not give Life Support</content>
+          </text>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.17" assigningAuthorityName="CCD"/>
+              <templateId root="2.16.840.1.113883.3.88.11.32.13" assigningAuthorityName="HITSP/C32"/>
+              <id/>
+              <code code="78823007" displayName="Life Support" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+                <originalText>
+                  <reference value="advance-directive-2138148767"/>
+                </originalText>
+              </code>
+              <statusCode code="completed"/>
+              <effectiveTime>
+                <low value="19470823"/>
+                <high nullFlavor="UNK"/>
+              </effectiveTime>
+              <participant typeCode="CST">
+                <participantRole classCode="AGNT">
+                  <addr>
+                    <streetAddressLine>1073 Aufderhar Greens</streetAddressLine>
+                    <city>Broughton</city>
+                    <state>IL</state>
+                    <postalCode>62817</postalCode>
+                    <country>US</country>
+                  </addr>
+                  <telecom use="HP" value="tel:+1-541-576-4458"/>
+                  <telecom use="WP" value="tel:+1-035-239-4270"/>
+                  <telecom use="MC" value="tel:+1-953-061-2604"/>
+                  <playingEntity>
+                    <name>
+                      <given qualifier="CL">Dena</given>
+                      <family qualifier="BR">Hartmann</family>
+                    </name>
+                  </playingEntity>
+                </participantRole>
+              </participant>
+              <entryRelationship typeCode="REFR">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.1.37"/>
+                  <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" displayName="Status"/>
+                  <statusCode code="completed"/>
+                  <value xsi:type="CE" code="425394002" codeSystem="2.16.840.1.113883.6.96" displayName="Supported By Healthcare Will"/>
+                </observation>
+              </entryRelationship>
+            </observation>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.1.16" assigningAuthorityName="CCD"/>
+          <code code="8716-3" displayName="Vital signs" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>Vital signs</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Vital Sign ID</th>
+                  <th>Vital Sign Date</th>
+                  <th>Vital Sign Display Name</th>
+                  <th>Vital Sign Value</th>
+                  <th>Vital Sign Unit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <content ID="vital_sign-26d18901-bd6-4c90-891d-eb716d2901c4">26d18901-bd6-4c90-891d-eb716d2901c4</content>
+                  </td>
+                  <td>13.Apr.2002</td>
+                  <td>Cholesterol</td>
+                  <td>108</td>
+                  <td>mg/dL</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.31" assigningAuthorityName="CCD"/>
+              <templateId root="2.16.840.1.113883.3.88.11.32.15" assigningAuthorityName="HITSP/C32"/>
+              <id root="26d18901-bd6-4c90-891d-eb716d2901c4"/>
+              <code code="2093-3" displayName="Cholesterol" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+              <statusCode code="N"/>
+              <effectiveTime value="20020413"/>
+              <value xsi:type="PQ" value="108" unit="mg/dL"/>
+            </observation>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.1.14" assigningAuthorityName="CCD"/>
+          <code code="30954-2" displayName="Relevant diagnostic tests" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>Results</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Result ID</th>
+                  <th>Result Date</th>
+                  <th>Result Display Name</th>
+                  <th>Result Value</th>
+                  <th>Result Unit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <content ID="result-68d26110-bd63-4c90-891d-eb716d1538c4">68d26110-bd63-4c90-891d-eb716d1538c4</content>
+                  </td>
+                  <td>12.Apr.2006</td>
+                  <td>Cholesterol</td>
+                  <td>164</td>
+                  <td>mg/dL</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.31" assigningAuthorityName="CCD"/>
+              <templateId root="2.16.840.1.113883.3.88.11.32.16" assigningAuthorityName="HITSP/C32"/>
+              <id root="68d26110-bd63-4c90-891d-eb716d1538c4"/>
+              <code code="2093-3" displayName="Cholesterol" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+              <statusCode code="N"/>
+              <effectiveTime value="20060412"/>
+              <value xsi:type="PQ" value="164" unit="mg/dL"/>
+            </observation>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.1.6" assigningAuthorityName="CCD"/>
+          <code code="11369-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>Immunizations</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Vaccine</th>
+                  <th>Administration Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Tetanus Toxoid NOS</td>
+                  <td>05.Sep.1985</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry typeCode="DRIV">
+            <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
+              <templateId root="2.16.840.1.113883.10.20.1.24" assigningAuthorityName="CCD"/>
+              <templateId root="2.16.840.1.113883.3.88.11.32.14" assigningAuthorityName="HITSP/C32"/>
+              <id root="41755f58-d7c0-4aab-9f7c-a3a5d8df4581"/>
+              <statusCode code="completed"/>
+              <effectiveTime xsi:type="IVL_TS">
+                <center value="19850905"/>
+              </effectiveTime>
+              <consumable>
+                <manufacturedProduct>
+                  <templateId root="2.16.840.1.113883.10.20.1.53"/>
+                  <manufacturedMaterial>
+                    <code code="112" codeSystem="2.16.840.1.113883.6.59" displayName="Tetanus Toxoid NOS">
+                      <originalText>Tetanus Toxoid NOS</originalText>
+                    </code>
+                    <lotNumberText>mm345-417-DFF</lotNumberText>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.1.3" assigningAuthorityName="CCD"/>
+          <code code="46240-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>Encounters</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Encounter</th>
+                  <th>Encounter Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Heart Valve Replacement</td>
+                  <td>14.Jul.1951</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.21" assigningAuthorityName="CCD"/>
+              <templateId root="2.16.840.1.113883.3.88.11.32.17" assigningAuthorityName="HITSP/C32"/>
+              <id root="f6685280-26d1-012c-f574-002170e5b62b"/>
+              <effectiveTime>
+                <low value="19510714"/>
+              </effectiveTime>
+              <participant typeCode="PRF">
+                <participantRole classCode="PROV">
+                  <addr>
+                    <streetAddressLine>4725 Mertz Shoal</streetAddressLine>
+                    <city>Smoot</city>
+                    <state>WY</state>
+                    <postalCode>83126</postalCode>
+                    <country>US</country>
+                  </addr>
+                  <telecom use="HP" value="tel:+1-017-301-8129"/>
+                  <telecom use="WP" value="tel:+1-969-993-6830"/>
+                  <telecom use="MC" value="tel:+1-696-982-2505"/>
+                  <playingEntity>
+                    <name>
+                      <prefix>Dr.</prefix>
+                      <given qualifier="CL">Zora</given>
+                      <family qualifier="BR">Rosenbaum</family>
+                    </name>
+                  </playingEntity>
+                </participantRole>
+              </participant>
+              <participant typeCode="LOC">
+                <templateId root="2.16.840.1.113883.10.20.1.45"/>
+                <participantRole classCode="SDLOC">
+                  <id root="2.16.840.1.113883.19.5"/>
+                  <code code="PEDID" displayName="Pediatric Infectious Disease Clinic" codeSystem="2.16.840.1.113883.1.11.17660"/>
+                  <playingEntity classCode="PLC">
+                    <name>Sagacious Hospital</name>
+                  </playingEntity>
+                </participantRole>
+              </participant>
+            </encounter>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.1.12" assigningAuthorityName="CCD"/>
+          <code code="47519-4" displayName="Procedures" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>Procedures</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Procedure Name</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <content ID="Proc-2129169681">Total hip replacement, left</content>
+                  </td>
+                  <td>1987</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry typeCode="DRIV">
+            <procedure classCode="PROC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.29"/>
+              <id root="e401f340-7be2-11db-9fe1-0800200c9a66"/>
+              <code code="52734007" codeSystem="2.16.840.1.113883.6.96">
+                <originalText>
+                  <reference value="Proc-2129169681"/>
+                </originalText>
+              </code>
+              <statusCode code="completed"/>
+              <effectiveTime value="1987"/>
+            </procedure>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.1.7" assigningAuthorityName="CCD"/>
+          <code code="46264-8" displayName="Medical Equipment" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>Medical Equipment</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Supply/Device</th>
+                  <th>Date Supplied</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Automatic implantable cardioverter defibrillator</td>
+                  <td>19.Mar.1990</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry typeCode="DRIV">
+            <supply classCode="SPLY" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.34"/>
+              <id root="03ca01b0-7be1-11db-8fe1-0822200c9a33"/>
+              <statusCode code="completed"/>
+              <effectiveTime xsi:type="IVL_TS">
+                <center value="19900319"/>
+              </effectiveTime>
+              <participant typeCode="DEV">
+                <participantRole classCode="MANU">
+                  <templateId root="2.16.840.1.113883.10.20.1.52"/>
+                  <playingDevice>
+                    <code code="72506001" codeSystem="2.16.840.1.113883.6.96" displayName="Automatic implantable cardioverter defibrillator"/>
+                  </playingDevice>
+                </participantRole>
+              </participant>
+            </supply>
+          </entry>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>

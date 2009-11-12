@@ -1,0 +1,40 @@
+<!-- Start Advance Directive Module -->
+<% patient_form_for(@advance_directive, :url => patient_advance_directive_path(@patient),
+                   :update => 'advanceDirectiveContainer') do |f| %>
+<h5>Advance Directive</h5>
+<table>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Advance Directive Type <%= requirements_for @advance_directive, :advance_directive_type_id %></td>
+    <td>
+      <%= f.select :advance_directive_type_id, AdvanceDirectiveType.select_options, {:include_blank => true} %>
+    </td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Free Text Description <%= requirements_for @advance_directive, :free_text %></td>
+    <td>
+      <%= f.text_field :free_text %>
+    </td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Start Effective Time <%= requirements_for @advance_directive, :start_effective_time %></td>
+    <td><%= f.calendar_date_select :start_effective_time %></td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">End Effective Time <%= requirements_for @advance_directive, :end_effective_time %></td>
+    <td><%= f.calendar_date_select :end_effective_time %></td>
+  </tr>
+  <%= f.person_name_fields %>
+  <%= f.address_fields %>
+  <%= f.telecom_fields %>
+  <tr>  
+    <td class="lighttext">Advance Directive Status Code <%= requirements_for @advance_directive, :advance_directive_status_code_id %></td>
+    <td>
+      <%= f.select :advance_directive_status_code_id, AdvanceDirectiveStatusCode.select_options %>
+    </td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td></td>
+    <td><%= f.submit "Save" %></td>
+  </tr>
+</table>
+<% end %>

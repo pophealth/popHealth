@@ -1,0 +1,10 @@
+<div id="templateInformationContainer">
+  <h3><%=h @patient.name %></h3>
+  <% if @patient.editable_by? current_user -%>
+  <br/>
+    <%= link_to_remote 'Edit', 
+          :update => 'templateInformationContainer',
+          :url => edit_template_info_patient_url(@patient),
+          :method => 'get' %>
+  <% end -%>
+</div> 

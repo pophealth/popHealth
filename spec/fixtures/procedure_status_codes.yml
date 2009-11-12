@@ -1,0 +1,19 @@
+cancelled:
+    code: cancelled
+    description: Cancelled
+
+held:
+    code: held
+    description: On Hold
+
+active:
+    code: active
+    description: In Progress
+
+aborted:
+    code: aborted
+    description: Not Completed
+
+completed:
+    code: completed
+    description: Completed

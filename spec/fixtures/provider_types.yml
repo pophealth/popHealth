@@ -1,0 +1,91 @@
+behavioral_health_and_social_service:
+  name: Behavioral Health and Social Service Providers
+  code: 100000000X
+
+chiropractic_providers:
+  name: Chiropractic Providers
+  code: 110000000X
+
+dental_providers:
+  name: Dental Providers
+  code: 120000000X
+
+dietary_and_nutritional_service_providers:
+  name: Dietary and Nutritional Service Providers
+  code: 130000000X
+
+emergency_medical_service_providers:
+  name: Emergency Medical Service Providers
+  code: 140000000X
+
+eye_and_vision_service_providers:
+  name: Eye and Vision Service Providers
+  code: 150000000X
+
+nursing_service_providers:
+  name: Nursing Service Providers
+  code: 160000000X
+
+pharmacy_service_providers_individuals:
+  name: Pharmacy Service Providers (Individuals)
+  code: 180000000X
+
+allopathic_and_osteopathic_physicians:
+  name: Allopathic & Osteopathic Physicians
+  code: 200000000X
+
+podiatric_medicine_and_surgery_providers:
+  name: Podiatric Medicine and Surgery Providers
+  code: 210000000X
+
+respiratory_rehabilitative_and_restorative_service_providers:
+  name: Respiratory, Rehabilitative and Restorative Service Providers
+  code: 220000000X
+
+speech_language_and_hearing_providers:
+  name: Speech, Language and Hearing Providers
+  code: 230000000X
+
+agencies:
+  name: Agencies
+  code: 250000000X
+
+ambulatory_health_care_facilities:
+  name: Ambulatory Health Care Facilities
+  code: 260000000X
+
+hospitals:
+  name: Hospitals
+  code: 280000000X
+
+laboratories:
+  name: Laboratories
+  code: 290000000X
+
+managed_care_organizations:
+  name: Managed Care Organizations
+  code: 300000000X
+
+nursing_and_custodial_care_facilities:
+  name: Nursing and Custodial Care Facilities
+  code: 310000000X
+
+residential_treatment_facilities:
+  name: Residential Treatment Facilities
+  code: 320000000X
+
+suppliers_including_pharmacies_and_durable_medical_equipment:
+  name: Suppliers (including Pharmacies and Durable Medical Equipment)
+  code: 330000000X
+
+physician_assistants_and_advanced_practice_nursing_providers:
+  name: Physician Assistants and Advanced Practice Nursing Providers
+  code: 360000000X
+
+nursing_service_related_providers:
+  name: Nursing Service Related Providers
+  code: 370000000X
+
+respite_care_facility:
+  name: Respite Care Facility
+  code: 380000000X

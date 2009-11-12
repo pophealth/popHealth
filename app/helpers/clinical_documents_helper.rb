@@ -1,0 +1,2 @@
+module ClinicalDocumentsHelper
+end

@@ -1,0 +1,2 @@
+class LanguagesController < PatientChildrenController
+end

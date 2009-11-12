@@ -1,0 +1,58 @@
+<% if @encounter.new_record?
+  encounter_div = 'encounterNew' %>
+  <div id="encounterNew">
+<% else
+  encounter_div = "encounter#{@encounter.id}"
+end %>
+<% patient_form_for([@patient, @encounter], :update => encounter_div) do |f| -%>
+
+<table>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Encounter Date <%= requirements_for @encounter, :encounter_date %></td>
+    <td>
+      <%= f.calendar_date_select :encounter_date %>
+    </td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Encounter ID <%= requirements_for @encounter, :encounter_id %></td>
+    <td>
+      <%= f.text_field :encounter_id, :onfocus => "Effect.BlindDown('uuid-#{controller.class}');", :onblur => "Effect.BlindUp('uuid-#{controller.class}');" %>
+      <em><%= render :partial => '/layouts/uuid_help_text' %></em>
+    </td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Free Text <%= requirements_for @encounter, :free_text %></td>
+    <td><%= f.text_field :free_text %></td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Encounter Name <%= requirements_for @encounter, :name %></td>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Encounter Type <%= requirements_for @encounter, :encounter_type_id %></td>
+    <td>
+      <%= f.select :encounter_type_id, EncounterType.select_options, {:include_blank => true} %>
+    </td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td colspan="2" class="lighttext">Encounter Provider</td>
+  </tr>
+  <%= f.person_name_fields %>
+  <%= f.address_fields     %>
+  <%= f.telecom_fields     %>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Location Name <%= requirements_for @encounter, :location_name %></td>
+    <td><%= f.text_field :location_name %></td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td class="lighttext">Location Code <%= requirements_for @encounter, :encounter_location_code_id %></td>
+    <td>
+      <%= f.select :encounter_location_code_id, EncounterLocationCode.select_options, {:include_blank => true} %>
+    </td>
+  </tr>
+  <tr class="<%= cycle("darkzebra", "lightzebra")%>">
+    <td></td>
+    <td><%= f.submit "Save" %></td>
+  </tr>
+</table>
+<% end %>

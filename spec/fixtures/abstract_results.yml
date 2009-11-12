@@ -1,0 +1,29 @@
+jennifer_thompson_result:
+  patient: jennifer_thompson
+  result_id: 57d07056-bd97-4c90-891d-eb716d3170c8
+  result_code: 2093-3
+  result_code_display_name: Cholesterol
+  code_system: loinc
+  status_code: N
+  result_date: 2007-11-17
+  value_scalar: 135
+  value_unit: mg/dL
+  type: Result
+  organizer_id: 7c5a02a0-67a4-11ca-bd13-0700a00a9a45
+  act_status_code: completed
+  result_type_code: chemistry
+  
+jennifer_thompson_vital_sign:
+  patient: jennifer_thompson
+  result_id: 33d07056-bd27-4c90-891d-eb716d3170c4
+  result_code: 3141-9
+  result_code_display_name: Body Weight (Measured)
+  code_system: loinc
+  status_code: N
+  result_date: 2007-11-17
+  value_scalar: 155
+  value_unit: lbs
+  type: VitalSign
+  organizer_id: 3b3b01b0-13a0-10ab-aa12-0200200c5a43
+  act_status_code: completed
+  result_type_code: chemistry

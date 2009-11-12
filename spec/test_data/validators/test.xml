@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<famous-persons>
+<persons category="medicine">
+  <person>
+    <firstname>Edward</firstname>
+    <name>Jenner</name>
+</person>
+
+  <person>
+    <firstname>Gertrude</firstname>
+    <name>Elion</name>
+</person>
+</persons>
+
+<persons category="computer science">
+  <person>
+    <firstname>Charles</firstname>
+    <name>Babbage</name>
+</person>
+
+  <person>
+    <firstname>Alan</firstname>
+    <name>Touring</name>
+</person>
+
+  <person>
+    <firstname>Ada</firstname>
+    <name>Byron</name>
+</person>
+</persons>
+
+<persons category="astronomy">
+  <person>
+    <firstname>Tycho</firstname>
+    <name>Brahe</name>
+</person>
+
+  <person>
+    <firstname>Johannes</firstname>
+    <name>Kepler</name>
+</person>
+
+  <person>
+    <firstname>Galileo</firstname>
+    <name>Galilei</name>
+</person>
+</persons>
+
+</famous-persons>

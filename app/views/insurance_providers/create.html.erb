@@ -1,0 +1,11 @@
+<%= render :partial => '/insurance_providers/show', :locals => {:insurance_provider  => @insurance_provider, :patient => @patient} %>
+
+<script type="text/javascript">
+//<![CDATA[
+var newInsuranceProviderDiv = $('insurance_providerNew');
+if (newInsuranceProviderDiv != null)
+{
+    newInsuranceProviderDiv.id = 'insurance_provider<%= @insurance_provider.id %>';
+}
+//]]>
+</script>

@@ -1,0 +1,35 @@
+resuscitation:
+  name: Resuscitation
+  code: 304251008
+
+intubation:
+  name: Intubation
+  code: 52765003
+
+iv_fluid_support:
+  name: IV Fluid and Support
+  code: 225204009
+
+cpr:
+  name: CPR
+  code: 89666000
+
+antibiotics:
+  name: Antibiotics
+  code: 281789004
+
+life_support:
+  name: Life Support
+  code: 78823007
+
+tube_feedings:
+  name: Tube Feedings
+  code: 61420007
+
+transfusion_of_blood:
+  name: Transfusion of Blood
+  code: 116859006
+
+other_directive:
+  name: Other Directive
+  code: 71388002

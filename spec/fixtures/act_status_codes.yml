@@ -1,0 +1,31 @@
+normal:
+  name: Normal
+  code: normal
+
+aborted:
+  name: Aborted
+  code: aborted
+
+active:
+  name: Active
+  code: active
+
+cancelled:
+  name: Cancelled
+  code: cancelled
+
+completed:
+  name: Completed
+  code: completed
+
+held:
+  name: Held
+  code: held
+
+new:
+  name: New
+  code: new
+
+suspended:
+  name: Suspended
+  code: suspended
