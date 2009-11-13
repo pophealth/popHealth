@@ -1,9 +1,10 @@
 class ReportsController < ApplicationController
 
   # todo: this needs to be a final (immutable) variable
-  @@valid_parameters = [:gender, :age, :medications, :blood_pressures, :therapies, :diabetes,
-                        :smoking, :hypertension, :ischemic_vascular_disease, 
-                        :lipoid_disorder, :ldl_cholesterol]
+  @@valid_parameters = [:gender, :age, :medications, :blood_pressures, 
+                        :therapies, :diabetes, :smoking, :hypertension, 
+                        :ischemic_vascular_disease, :lipoid_disorder, 
+                        :ldl_cholesterol]
 
   @@reports = {
     1 => {
@@ -63,189 +64,50 @@ class ReportsController < ApplicationController
       :id => 7
     }
   }
-
-  # todo *rjm
-  # This entire method can be replaced by passing the proper prameters to 
-  # the generate_report method
-  def load_report_data(resp = {})
-
-    resp[:count] = @patient_count.to_i
-
-    resp[:gender] = {
-      'Male' => [Patient.count_by_sql("select count(*)                                         " +
-                                      "from patients, registration_information                 " +
-                                      "where registration_information.patient_id = patients.id " +
-                                      "and registration_information.gender_id = " + @male.id.to_s).to_i, @patient_count],
-      'Female' => [Patient.count_by_sql("select count(*)                                         " +
-                                        "from patients, registration_information                 " +
-                                        "where registration_information.patient_id = patients.id " +
-                                        "and registration_information.gender_id = " + @female.id.to_s).to_i, @patient_count]
-    }
-
-    resp[:age] = {
-      "18-34" => [Patient.count_by_sql("select count(*)                                         " +
-                                       "from patients, registration_information                 " +
-                                       "where registration_information.patient_id = patients.id " +
-                                       "and now()::DATE - registration_information.date_of_birth::DATE >= (365*18) " +
-                                       "and now()::DATE - registration_information.date_of_birth::DATE < (365*35)"), @patient_count],
-      "35-49" => [Patient.count_by_sql("select count(*)                                         " +
-                                       "from patients, registration_information                 " +
-                                       "where registration_information.patient_id = patients.id " +
-                                       "and now()::DATE - registration_information.date_of_birth::DATE >= (365*34) " +
-                                       "and now()::DATE - registration_information.date_of_birth::DATE < (365*50)"), @patient_count],
-      "50-64" => [Patient.count_by_sql("select count(*)                                         " +
-                                       "from patients, registration_information                 " +
-                                       "where registration_information.patient_id = patients.id " +
-                                       "and now()::DATE - registration_information.date_of_birth::DATE >= (365*50) " +
-                                       "and now()::DATE - registration_information.date_of_birth::DATE < (365*65)"), @patient_count],
-      "65-75" => [Patient.count_by_sql("select count(*)                                         " +
-                                       "from patients, registration_information                 " +
-                                       "where registration_information.patient_id = patients.id " +
-                                       "and now()::DATE - registration_information.date_of_birth::DATE >= (365*65) " +
-                                       "and now()::DATE - registration_information.date_of_birth::DATE < (365*76)"), @patient_count],
-      "76+" => [Patient.count_by_sql("select count(*)                                         " +
-                                     "from patients, registration_information                 " +
-                                     "where registration_information.patient_id = patients.id " +
-                                     "and now()::DATE - registration_information.date_of_birth::DATE >= (365*76)"), @patient_count]
-    }
-
-    resp[:medications] = {
-      "Aspirin" => [Patient.count_by_sql("select count(*)                             " +
-                                         "from patients, medications                  " +
-                                         "where medications.patient_id = patients.id  " +
-                                         "and medications.product_code = 'R16CO5Y76E'"), @patient_count]
-    }
-
-    resp[:therapies] = {
-      "Smoking Cessation" => [Patient.count_by_sql("select count(*)                               " +
-                                                   "from patients, social_history                 " +
-                                                   "where social_history.patient_id = patients.id " +
-                                                   "and social_history.social_history_type_id =   " + 
-                                                   @tobacco_use_and_exposure.id.to_s).to_i, @patient_count],
-    }
-
-    resp[:ldl_cholesterol] = {
-      "100" => [Patient.count_by_sql("select count(*)                                           " +
-                                      "from patients, abstract_results ldl_cholesterol           " +
-                                      "where ldl_cholesterol.patient_id = patients.id            " +
-                                      "and ldl_cholesterol.result_code = '18261-8'               " + 
-                                      "and ldl_cholesterol.value_scalar::varchar::text::int <= 100"), @patient_count],
-      "100-120" => [Patient.count_by_sql("select count(*)                                            " +
-                                         "from patients, abstract_results ldl_cholesterol            " +
-                                         "where ldl_cholesterol.patient_id = patients.id             " +
-                                         "and ldl_cholesterol.result_code = '18261-8'                " + 
-                                         "and ldl_cholesterol.value_scalar::varchar::text::int > 100 " + 
-                                          "and ldl_cholesterol.value_scalar::varchar::text::int <= 120"), @patient_count],
-      "130-160" => [Patient.count_by_sql("select count(*)                                            " +
-                                         "from patients, abstract_results ldl_cholesterol            " +
-                                         "where ldl_cholesterol.patient_id = patients.id             " +
-                                         "and ldl_cholesterol.result_code = '18261-8'                " + 
-                                         "and ldl_cholesterol.value_scalar::varchar::text::int > 130 " + 
-                                          "and ldl_cholesterol.value_scalar::varchar::text::int <= 160"), @patient_count],
-      "160-180" => [Patient.count_by_sql("select count(*)                                            " +
-                                         "from patients, abstract_results ldl_cholesterol            " +
-                                         "where ldl_cholesterol.patient_id = patients.id             " +
-                                         "and ldl_cholesterol.result_code = '18261-8'                " + 
-                                         "and ldl_cholesterol.value_scalar::varchar::text::int > 160 " + 
-                                         "and ldl_cholesterol.value_scalar::varchar::text::int <= 180"), @patient_count],
-      "180+" => [Patient.count_by_sql("select count(*)                                            " +
-                                         "from patients, abstract_results ldl_cholesterol            " +
-                                         "where ldl_cholesterol.patient_id = patients.id             " +
-                                         "and ldl_cholesterol.result_code = '18261-8'                " + 
-                                         "and ldl_cholesterol.value_scalar::varchar::text::int > 180"), @patient_count]
-    }
-
-    resp[:blood_pressures] = {
-      "110/70" => [Patient.count_by_sql("select count(*)                                      " +
-                                        "from patients, abstract_results diastolic            " +
-                                        "where diastolic.patient_id = patients.id " +
-                                        "and diastolic.result_code = '8462-4' " + 
-                                        "and diastolic.value_scalar::varchar::text::int >= 70 " +
-                                        "and diastolic.value_scalar::varchar::text::int <= 79"), @patient_count],
-      "120/80" => [Patient.count_by_sql("select count(*)                                      " +
-                                        "from patients, abstract_results diastolic            " +
-                                        "where diastolic.patient_id = patients.id " +
-                                        "and diastolic.result_code = '8462-4' " + 
-                                        "and diastolic.value_scalar::varchar::text::int >= 75 " +
-                                        "and diastolic.value_scalar::varchar::text::int <= 84"), @patient_count],
-      "140/90" => [Patient.count_by_sql("select count(*)                                      " +
-                                        "from patients, abstract_results diastolic            " +
-                                        "where diastolic.patient_id = patients.id " +
-                                        "and diastolic.result_code = '8462-4' " + 
-                                        "and diastolic.value_scalar::varchar::text::int >= 85 " +
-                                        "and diastolic.value_scalar::varchar::text::int <= 94"), @patient_count],
-      "160/100" => [Patient.count_by_sql("select count(*)                                     " +
-                                         "from patients, abstract_results diastolic           " +
-                                         "where diastolic.patient_id = patients.id " +
-                                         "and diastolic.result_code = '8462-4' " + 
-                                         "and diastolic.value_scalar::varchar::text::int >= 95 " +
-                                         "and diastolic.value_scalar::varchar::text::int <= 104"), @patient_count],
-      "180/110+" => [Patient.count_by_sql("select count(*)                                    " +
-                                         "from patients, abstract_results diastolic           " +
-                                         "where diastolic.patient_id = patients.id " +
-                                         "and diastolic.result_code = '8462-4' " + 
-                                         "and diastolic.value_scalar::varchar::text::int >= 105 " +
-                                         "and diastolic.value_scalar::varchar::text::int <= 114"), @patient_count]
-    }
-
-    # smoking
-    smokers = Patient.count_by_sql("select count(*)                           " +
-                                   "from patients, conditions                 " +
-                                   "where conditions.patient_id = patients.id " +
-                                   "and conditions.free_text_name = 'Diabetes mellitus disorder'")
-    resp[:smoking] = {
-      "Current Smoker" => [smokers, @patient_count],
-      "Non-Smoker"  => [(@patient_count-smokers), @patient_count]
-    }
-
-    # diabetes
-    diabetics = Patient.count_by_sql("select count(*)                           " +
-                                     "from patients, conditions                 " +
-                                     "where conditions.patient_id = patients.id " +
-                                     "and conditions.free_text_name = 'Diabetes mellitus disorder'")
-    resp[:diabetes] = {
-      "Yes" => [diabetics, @patient_count],
-      "No" => [(@patient_count-diabetics), @patient_count]
-    }
-
-    # hypertension
-    hypertension = Patient.count_by_sql("select count(*)                           " +
-                                        "from patients, conditions                 " +
-                                        "where conditions.patient_id = patients.id " +
-                                        "and conditions.free_text_name = 'Essential hypertension disorder'")
-    resp[:hypertension] = {
-      "Yes" => [hypertension, @patient_count],
-      "No" => [(@patient_count-hypertension), @patient_count]
-    }
-
-    ischemic_vascular_disease = Patient.count_by_sql("select count(*)                           " +
-                                                     "from patients, conditions                 " +
-                                                     "where conditions.patient_id = patients.id " +
-                                                     "and conditions.free_text_name = 'Ischemia disorder'")
-    resp[:ischemic_vascular_disease] = {
-      "Yes" => [ischemic_vascular_disease, @patient_count],
-      "No" => [(@patient_count-ischemic_vascular_disease), @patient_count]
-    }
-
-    entire_lipoid_disorder_population = @patient_count
-    lipoid_disorder = Patient.count_by_sql("select count(*)                           " +
-                                           "from patients, conditions                 " +
-                                           "where conditions.patient_id = patients.id " +
-                                           "and conditions.free_text_name = 'Hyperlipoproteinemia disorder'")
-    resp[:lipoid_disorder] = {
-      "Yes" => [lipoid_disorder, @patient_count],
-      "No" =>[(@patient_count-lipoid_disorder), @patient_count]
-    }
-
-    resp
-
-  end
-
+  
+  # These are the hash parameters for loading specific fields, or one single metric on the database
+  @@male_query_hash =                           {:gender => ['Male']}
+  @@female_query_hash =                         {:gender => ['Female']}
+  @@age_18_34_query_hash =                      {:age => ['18-34']}
+  @@age_35_49_query_hash =                      {:age => ['35-49']}
+  @@age_50_64_query_hash =                      {:age => ['50-64']}
+  @@age_65_75_query_hash =                      {:age => ['65-75']}
+  @@age_76_up_query_hash =                      {:age => ['76+']}
+  @@aspirin_query_hash =                        {:medications => 'Aspirin'}
+  @@smoking_cessation_hash =                    {:therapies => 'Smoking Cessation'}  
+  @@ldl_100_query_hash =                        {:ldl_cholesterol => '100'}
+  @@ldl_100_120_query_hash =                    {:ldl_cholesterol => '100-120'}
+  @@ldl_130_160_query_hash =                    {:ldl_cholesterol => '130-160'}
+  @@ldl_160_180_query_hash =                    {:ldl_cholesterol => '160-180'}
+  @@ldl_180_query_hash =                        {:ldl_cholesterol => '180+'}
+  @@bp_110_70_query_hash =                      {:blood_pressures => '110/70'}
+  @@bp_120_80_query_hash =                      {:blood_pressures => '120/80'}
+  @@bp_140_90_query_hash =                      {:blood_pressures => '140/90'}
+  @@bp_160_100_query_hash =                     {:blood_pressures => '160/100'}
+  @@bp_180_110_query_hash =                     {:blood_pressures => '180/110+'}
+  @@smoking_yes_query_hash =                    {:smoking => 'Current Smoker'}
+  @@smoking_no_query_hash =                     {:smoking => 'Non-Smoker'}
+  @@diabetic_yes_query_hash =                   {:diabetes => 'Yes'}
+  @@diabetic_no_query_hash =                    {:diabetes => 'No'}
+  @@hypertension_yes_query_hash =               {:hypertension => 'Yes'}
+  @@hypertension_no_query_hash =                {:hypertension => 'No'}
+  @@ischemic_vascular_disease_yes_query_hash =  {:ischemic_vascular_disease => 'Yes'}
+  @@ischemic_vascular_disease_no_query_hash =   {:ischemic_vascular_disease => 'No'}
+  @@lipoid_disorder_yes_query_hash =            {:lipoid_disorder => 'Yes'}
+  @@lipoid_disorder_no_query_hash =             {:lipoid_disorder => 'No'}  
+  
   # GET /reports
   def index
     if params[:id]
+      load_static_content
       generate_report(@@reports[params[:id].to_i][:denominator_fields])
-      render :json => handle_report_get(params)
+      #render :json => process_detailed_report(params)
+      resp = {}
+      resp = @@reports[params[:id].to_i]
+      load_static_content
+      load_report_data(@@reports[params[:id].to_i][:numerator_fields], resp)
+      resp.to_json
+      render :json => resp.to_json
     else
       # load the sidebar summary information
       resp = {
@@ -292,18 +154,79 @@ class ReportsController < ApplicationController
 
     resp = @@reports[params[:id].to_i]
     load_static_content
-    load_report_data(resp)
+    resp = load_report_data(params[:numerator], resp)
     render :json => resp.to_json
   end
 
   private
+  
+  def load_report_data(report_parameters, resp = {})
 
-  def handle_report_get(params)
-    resp = {}
-    resp = @@reports[params[:id].to_i]
-    load_static_content
-    load_report_data(resp)
-    resp.to_json
+    resp[:count] = @patient_count
+
+    resp[:gender] = {
+      'Male' =>   [generate_report(@@male_query_hash), @patient_count],
+      'Female' => [generate_report(@@female_query_hash), @patient_count]
+    }
+
+    resp[:age] = {
+      "18-34" =>  [generate_report(@@age_18_34_query_hash), @patient_count],
+      "35-49" =>  [generate_report(@@age_35_49_query_hash), @patient_count],
+      "50-64" =>  [generate_report(@@age_50_64_query_hash), @patient_count],
+      "65-75" =>  [generate_report(@@age_65_75_query_hash), @patient_count],
+      "76+" =>    [generate_report(@@age_76_up_query_hash), @patient_count]
+    }
+
+    resp[:medications] = {
+      "Aspirin" => [generate_report(@@aspirin_query_hash), @patient_count]
+    }
+
+    resp[:therapies] = {
+      "Smoking Cessation" => [generate_report(@@smoking_cessation_hash), @patient_count]
+    }
+
+    resp[:ldl_cholesterol] = {
+      "100" =>      [generate_report(@@ldl_100_query_hash),     @patient_count],
+      "100-120" =>  [generate_report(@@ldl_100_120_query_hash), @patient_count],
+      "130-160" =>  [generate_report(@@ldl_130_160_query_hash), @patient_count],
+      "160-180" =>  [generate_report(@@ldl_160_180_query_hash), @patient_count],
+      "180+" =>     [generate_report(@@ldl_180_query_hash),     @patient_count]
+    }
+
+    resp[:blood_pressures] = {
+      "110/70" =>   [generate_report(@@bp_110_70_query_hash),  @patient_count],
+      "120/80" =>   [generate_report(@@bp_120_80_query_hash),  @patient_count],
+      "140/90" =>   [generate_report(@@bp_140_90_query_hash),  @patient_count],
+      "160/100" =>  [generate_report(@@bp_160_100_query_hash), @patient_count],
+      "180/110+" => [generate_report(@@bp_180_110_query_hash), @patient_count]
+    }
+    
+    resp[:smoking] = {
+      "Current Smoker" =>  [generate_report(@@smoking_yes_query_hash),  @patient_count],
+      "Non-Smoker" =>   [generate_report(@@smoking_no_query_hash),  @patient_count]
+    }
+
+    resp[:diabetes] = {
+      "Yes" =>  [generate_report(@@diabetic_yes_query_hash),  @patient_count],
+      "No" =>   [generate_report(@@diabetic_no_query_hash),  @patient_count]
+    }
+
+    resp[:hypertension] = {
+      "Yes" =>  [generate_report(@@hypertension_yes_query_hash),  @patient_count],
+      "No" =>   [generate_report(@@hypertension_no_query_hash),  @patient_count]
+    }
+
+    resp[:ischemic_vascular_disease] = {
+      "Yes" =>  [generate_report(@@ischemic_vascular_disease_yes_query_hash),  @patient_count],
+      "No" =>   [generate_report(@@ischemic_vascular_disease_no_query_hash),  @patient_count]
+    }
+    
+    resp[:lipoid_disorder] = {
+      "Yes" =>  [generate_report(@@lipoid_disorder_yes_query_hash),  @patient_count],
+      "No" =>   [generate_report(@@lipoid_disorder_no_query_hash),  @patient_count]
+    }
+
+    resp
   end
 
   def generate_report(report_request)
@@ -367,8 +290,7 @@ class ReportsController < ApplicationController
     population_query = "select count(distinct patients.id) from patients"
     population_query = population_query + generate_from_sql(request, generate_new_join_table_hash_status())
     population_query = population_query + generate_where_sql(request, generate_new_join_table_hash_status())
-    puts "The query22 is " + population_query
-    return population_query
+    population_query
   end
 
   def generate_from_sql(request, from_tables)
@@ -795,7 +717,7 @@ class ReportsController < ApplicationController
         elsif next_ldl_query == "160-180"
           where_sql = where_sql + "(ldl_cholesterol.value_scalar::varchar::text::int > 160 "
           where_sql = where_sql + "and ldl_cholesterol.value_scalar::varchar::text::int <= 180) "
-        elsif next_bp_query == "180+"
+        elsif next_ldl_query == "180+"
           where_sql = where_sql + "(ldl_cholesterol.value_scalar::varchar::text::int > 180) "
         end
       end
