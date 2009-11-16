@@ -33,6 +33,7 @@
   <div id='header'>
     <%= image_tag("logo.png", :class => 'logo', :alt => 'popconnect') %>
     <ul>
+	  <li><%= link_to "Export", {:controller => :popconnect, :action => :pqri_report} %></li>
       <li><%= link_to "Upload", {:controller => :popconnect, :action => :upload}, :class => 'fancybox' %></li>
       <li><%= link_to 'Logout', logout_path %> (<%= current_user.first_name %>)</li>
     </ul>

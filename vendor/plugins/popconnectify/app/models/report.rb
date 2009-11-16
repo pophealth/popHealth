@@ -1,11 +1,34 @@
 class Report < ActiveRecord::Base
   
+  def numerator=(val)
+     @numerator = val
+   end
+
+   def denominator=(val)
+     @denominator = val
+   end
+
+   def numerator
+     @numerator ||= YAML.load(self[:numerator]) if self[:numerator].present?
+     @numerator
+   end
+
+   def denominator
+     @denominator ||= YAML.load(self[:denominator]) if self[:denominator].present?
+     @denominator
+   end
+
+   def save(*args)
+     self[:denominator] = YAML.dump(denominator)
+     self[:numerator] = YAML.dump(numerator)
+     super(args)
+   end
+   
   # Build a PQRI document representing the report.
   #
   # @return [Builder::XmlMarkup] PQRI representation of report data
   def to_pqri(pqri_xml = nil)
     pqri_xml ||= Builder::XmlMarkup.new(:indent => 2)
-    pqri_xml.instruct!
     pqri_xml.submission("type" => "PQRI-REGISTRY", "option" => "PAYMENT", "version" => "1.0",
                         "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance",
                         "xsi:noNamespaceSchemaLocation" => "Registry_Payment.xsd") {
@@ -44,8 +67,6 @@ class Report < ActiveRecord::Base
         }
       end
     }
-    pqri_xml
-
   end
 
 end

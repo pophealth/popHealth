@@ -8,8 +8,9 @@ class PopconnectController < ApplicationController
      render :layout => false
   end
   
-  def export
-     render :layout => false
+  def pqri_report
+     @report = Report.new
+     render 'pqri_report.xml', :layout => false
   end
 
   def patient_record_save
