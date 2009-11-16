@@ -16,8 +16,6 @@ class Condition < ActiveRecord::Base
     }
   end
 
-
- 
   def to_c32(xml)
     xml.entry do
       xml.act("classCode" => "ACT", "moodCode" => "EVN") do
@@ -67,7 +65,6 @@ class Condition < ActiveRecord::Base
     end
   end
 
-  
   def randomize(gender, birth_date, condition)
     
     self.start_event = DateTime.new(rand_range(birth_date.year, DateTime.now.year), rand(12) + 1, rand(28) +1)
@@ -108,7 +105,12 @@ class Condition < ActiveRecord::Base
                                                      [45, 65] => {:M => 0.245, :F => 0.193},
                                                      [65, 100] => {:M => 0.126, :F => 0.083} })    
     when :mammogram
-      condition_code = "77176002"
+      #129788004 (Mammographic breast mass finding)
+      #168750009 (Mammography abnormal finding)
+      #397143007 (Probably benign finding short interval follow up finding)
+      #168749009 (Mammography normal finding)
+      mammogram_findings = ["129788004", "168750009", "397143007", "168749009"]
+      condition_code = mammogram_findings[rand(mammogram_findings.length)]
       has_condition = Condition.make_has_condition({ [10, 20]  => {:M => 0.0, :F => 0.044}, 
                                                      [20, 30]  => {:M => 0.0, :F => 0.201}, 
                                                      [30, 40]  => {:M => 0.0, :F => 0.322}, 
@@ -130,13 +132,11 @@ class Condition < ActiveRecord::Base
     else
       return false
     end
-    
   end
   
   # creates a proc has_condition_x
   # age_buckets is a hash of the form {[age_min, age_max] => {:M => prob_male, :F => prob_female], ...}
   def Condition.make_has_condition (age_buckets)
-    
     return lambda { |p_condition, age, gender|
       age_buckets.each {|bucket, prob|
         return true if age >= bucket[0] && age < bucket[1] && p_condition <= prob[gender]

@@ -141,6 +141,16 @@ class ReportsController < ApplicationController
   # GET /reports
   def index
     
+    i=0
+    # number = params[:number]
+    while i<= 343
+      patient = Patient.new
+      patient.randomize()
+      patient.save!
+      i += 1
+      puts "creating patient number " + i.to_s
+    end
+    
     if params[:id]
       load_static_content
       generate_report(@@reports[params[:id].to_i][:denominator_fields])
