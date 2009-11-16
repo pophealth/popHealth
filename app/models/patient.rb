@@ -255,6 +255,11 @@ class Patient < ActiveRecord::Base
       self.conditions << condition
     end
 
+    condition = Condition.new
+    if condition.randomize(self.registration_information.gender, self.registration_information.date_of_birth, :mammogram)
+      self.conditions << condition
+    end
+
     #language = Language.new
     #language.randomize()
     #self.languages << language

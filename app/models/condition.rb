@@ -106,8 +106,18 @@ class Condition < ActiveRecord::Base
       has_condition = Condition.make_has_condition({ [19, 25]  => {:M => 0.295, :F => 0.193}, 
                                                      [25, 45] => {:M => 0.26, :F => 0.21},
                                                      [45, 65] => {:M => 0.245, :F => 0.193},
-                                                     [65, 100] => {:M => 0.126, :F => 0.083} })
-
+                                                     [65, 100] => {:M => 0.126, :F => 0.083} })    
+    when :mammogram
+      condition_code = "77176002"
+      has_condition = Condition.make_has_condition({ [10, 20]  => {:M => 0.0, :F => 0.044}, 
+                                                     [20, 30]  => {:M => 0.0, :F => 0.201}, 
+                                                     [30, 40]  => {:M => 0.0, :F => 0.322}, 
+                                                     [40, 50]  => {:M => 0.0, :F => 0.635}, 
+                                                     [50, 60]  => {:M => 0.0, :F => 0.718},
+                                                     [60, 70]  => {:M => 0.0, :F => 0.638},
+                                                     [70, 80]  => {:M => 0.0, :F => 0.621},
+                                                     [80, 90]  => {:M => 0.0, :F => 0.540},
+                                                     [90, 100] => {:M => 0.0, :F => 0.476} })
     else #if no condition is specified, chance of random condition
       condition_code = SnowmedProblem.find(:random).code
       has_condition = Condition.make_has_condition({[0, 150] => {:M => 0.4, :F => 0.35}})
@@ -134,8 +144,6 @@ class Condition < ActiveRecord::Base
       return false
     }
   end
-
-
 
   def self.c32_component(conditions, xml)
     if conditions.size > 0
