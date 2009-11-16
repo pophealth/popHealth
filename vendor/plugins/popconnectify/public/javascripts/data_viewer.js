@@ -37,9 +37,10 @@ popConnect.DataViewer = function(element, options) {
         types: {
           blood_pressures: {label: 'Blood Pressure', sort: ['110/70', '120/80', '140/90', '160/100', '180/110+']},
           smoking: {label: 'Smoking', sort: ['Current Smoker', 'Non-Smoker']},
-          colorectal_cancer_screening: {label: 'Colon Cancer Screening', sort: ['Yes', 'No']}
+          colorectal_cancer_screening: {label: 'Colon Cancer Screening', sort: ['Yes', 'No']},
+          mammography: {label: 'Mammography 24 Months', sort: ['Yes', 'No']}
         },
-        sort: ['blood_pressures', 'smoking', 'colorectal_cancer_screening']
+        sort: ['blood_pressures', 'smoking', 'colorectal_cancer_screening', 'mammography']
       },
       treatments: {
         label: 'Treatments',
@@ -67,7 +68,7 @@ popConnect.DataViewer = function(element, options) {
         sort: ['ldl_cholesterol']
       }
     },
-    sort: ['demographics', 'disease_conditions', 'risk_factors', 'lab_results', 'treatments']
+    sort: ['demographics', 'lab_results', 'disease_conditions', 'risk_factors', 'treatments']
   };
 
   var irregularLabels = {
@@ -76,9 +77,10 @@ popConnect.DataViewer = function(element, options) {
     ischemic_vascular_disease: {'Yes': 'Vascular Disease', 'No': 'Without Vascular Disease'},
     lipoid_disorder: {'Yes': 'Lipoid disorder', 'No': 'Without Lipoid disorder'},
     colorectal_cancer_screening: {'Yes': 'Performed Colon Cancer Screen', 'No': 'No Colon Cancer Screen'},
+    mammography: {'Yes': 'Mammography Last 24 Months', 'No': 'No Mammography Last 24 Months'},
     ldl_cholesterol: {'100': 'LDL <100 mg/dL', '100-120': 'LDL 100-120 mg/dL', '130-160': 'LDL 130-160 mg/dL', '160-180': 'LDL 160-180 mg/dL', '180+': 'LDL 180+ mg/dL'}
   }
-  
+
   // Public functions
 
 
