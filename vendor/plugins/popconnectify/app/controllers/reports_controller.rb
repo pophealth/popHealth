@@ -50,7 +50,7 @@ class ReportsController < ApplicationController
     6 => {
       :title => 'ABCS: Cholesterol Control 2',
       :numerator => 8,
-      :denominator => 37,
+      :denominator => 67,
       :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75', '76+'], :diabetes => ['Yes'], :hypertension => ['Yes']},
       :numerator_fields => {:blood_pressures => ['120/80']},
       :id => 6
@@ -72,36 +72,60 @@ class ReportsController < ApplicationController
       :id => 8
     },
     9 => {
-      :title => 'LDL-C Under Control',
-      :numerator => 283,
-      :denominator => 10024,
+      :title => 'Diabetic A1C Under Control',
+      :numerator => 1583,
+      :denominator => 9224,
       :denominator_fields => {:gender => ['Female', 'Male']},
       :numerator_fields => {:ldl_cholesterol => ['<100']},
       :id => 9
     },
     10 => {
+      :title => 'LDL-C Under Control',
+      :numerator => 2683,
+      :denominator => 10024,
+      :denominator_fields => {:gender => ['Female', 'Male']},
+      :numerator_fields => {:ldl_cholesterol => ['<100']},
+      :id => 10
+    },
+    11 => {
       :title => 'Smoking Cessation',
       :numerator => 660,
       :denominator => 1517,
       :denominator_fields => {:age => ['18-34', '35-49', '50-64', '65-75', '76+'], :smoking => ['Current Smoker']},
       :numerator_fields => {:therapies => ['Smoking Cessation']},
-      :id => 10
-    },
-    11 => {
-      :title => 'High-Risk Cardiac, Aspirin',
-      :numerator => 190,
-      :denominator => 570,
-      :denominator_fields => {:ischemic_vascular_disease => ['Yes']},
-      :numerator_fields => {:medications => ['Aspirin']},
       :id => 11
     },
     12 => {
+      :title => 'High-Risk Cardiac, Aspirin',
+      :numerator => 399,
+      :denominator => 741,
+      :denominator_fields => {:ischemic_vascular_disease => ['Yes']},
+      :numerator_fields => {:medications => ['Aspirin']},
+      :id => 12
+    },
+    13 => {
       :title => 'Colorectal Cancer Screening',
-      :numerator => 190,
-      :denominator => 570,
+      :numerator => 121,
+      :denominator => 870,
       :denominator_fields => {:age => ['50-64', '65-75', '76+']},
       :numerator_fields => {:colorectal_cancer_screening => ['Yes']},
-      :id => 12
+      :id => 13
+    },
+    14 => {
+      :title => '40+ Mammography Screening',
+      :numerator => 400,
+      :denominator => 590,
+      :denominator_fields => {:age => ['50-64', '65-75', '76+']},
+      :numerator_fields => {:colorectal_cancer_screening => ['Yes']},
+      :id => 13
+    },
+    15 => {
+      :title => 'Influenza Vaccination',
+      :numerator => 144,
+      :denominator => 527,
+      :denominator_fields => {:age => ['50-64', '65-75', '76+']},
+      :numerator_fields => {:colorectal_cancer_screening => ['Yes']},
+      :id => 13
     }
   }
   
@@ -139,18 +163,7 @@ class ReportsController < ApplicationController
   @@colorectal_cancer_screening_no_query_hash =   {:colorectal_cancer_screening => 'No'}
   
   # GET /reports
-  def index
-    
-    i=0
-    # number = params[:number]
-    while i<= 343
-      patient = Patient.new
-      patient.randomize()
-      patient.save!
-      i += 1
-      puts "creating patient number " + i.to_s
-    end
-    
+  def index    
     if params[:id]
       load_static_content
       generate_report(@@reports[params[:id].to_i][:denominator_fields])
@@ -349,10 +362,6 @@ class ReportsController < ApplicationController
     population_query = "select count(distinct patients.id) from patients"
     population_query = population_query + generate_from_sql(request, generate_new_join_table_hash_status())
     population_query = population_query + generate_where_sql(request, generate_new_join_table_hash_status())
-    
-    puts "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
-    puts population_query.to_s
-    
     population_query
   end
 
@@ -454,16 +463,12 @@ class ReportsController < ApplicationController
       end
     end
 
-    puts "THERE GOES THE TEST"
     if request.has_key?(:colorectal_cancer_screening)
-      puts "THAT IS IT!!!!!!"
       if request[:colorectal_cancer_screening].include?("Yes")
         if from_tables["abstract_results colorectal_cancer_screening"] == false
           from_sql = from_sql + ", abstract_results colorectal_cancer_screening"
           from_tables["abstract_results colorectal_cancer_screening"] = true
         end
-      else
-        puts "WHAAAA?!?!?!?!"
       end
     end
 
