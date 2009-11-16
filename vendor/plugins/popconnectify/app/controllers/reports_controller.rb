@@ -4,7 +4,8 @@ class ReportsController < ApplicationController
   @@valid_parameters = [:gender, :age, :medications, :blood_pressures, 
                         :therapies, :diabetes, :smoking, :hypertension, 
                         :ischemic_vascular_disease, :lipoid_disorder, 
-                        :ldl_cholesterol, :colorectal_cancer_screening]
+                        :ldl_cholesterol, :colorectal_cancer_screening,
+                        :mammography]
 
   @@reports = {
     1 => {
@@ -161,6 +162,8 @@ class ReportsController < ApplicationController
   @@lipoid_disorder_no_query_hash =               {:lipoid_disorder => 'No'}
   @@colorectal_cancer_screening_yes_query_hash =  {:colorectal_cancer_screening => 'Yes'}
   @@colorectal_cancer_screening_no_query_hash =   {:colorectal_cancer_screening => 'No'}
+  @@mammography_yes_query_hash =                  {:mammography => 'Yes'}
+  @@mammography_no_query_hash =                   {:mammography => 'No'}
   
   # GET /reports
   def index    
@@ -297,6 +300,11 @@ class ReportsController < ApplicationController
       "No" =>   [generate_report(@@colorectal_cancer_screening_no_query_hash),  @patient_count]
     }
 
+    resp[:mammography] = {
+      "Yes" =>  [generate_report(@@mammography_yes_query_hash), @patient_count],
+      "No" =>   [generate_report(@@mammography_no_query_hash),  @patient_count]
+    }
+
     resp
   end
 
@@ -351,6 +359,7 @@ class ReportsController < ApplicationController
                         "conditions ischemic_vascular_disease" =>         false,
                         "conditions lipoid_disorder" =>                   false,
                         "conditions smoking" =>                           false,
+                        "conditions mammography" =>                       false,
                         "medications aspirin" =>                          false,
                         "social_history smoking_cessation" =>             false,
                         "abstract_results diastolic" =>                   false,
@@ -468,6 +477,15 @@ class ReportsController < ApplicationController
         if from_tables["abstract_results colorectal_cancer_screening"] == false
           from_sql = from_sql + ", abstract_results colorectal_cancer_screening"
           from_tables["abstract_results colorectal_cancer_screening"] = true
+        end
+      end
+    end
+    
+    if request.has_key?(:mammography)
+      if request[:mammography].include?("Yes")
+        if from_tables["conditions mammography"] == false
+          from_sql = from_sql + ", conditions mammography"
+          from_tables["conditions mammography"] = true
         end
       end
     end
@@ -826,6 +844,36 @@ class ReportsController < ApplicationController
                                    "select abstract_results.patient_id " +
                                    "from abstract_results " +
                                    "where abstract_results.result_code = '54047-6') "
+      end
+    end
+    
+    if request.has_key?(:mammography)
+      if request[:mammography].include?("Yes")
+        if start_using_and_keyword == true
+          where_sql = where_sql + "and "
+        end
+        start_using_and_keyword = true
+        if where_tables["conditions mammography"] == false
+          where_sql = where_sql + "mammography.patient_id = patients.id "
+          where_tables["conditions mammography"] = true
+        end
+        where_sql = where_sql + "and (mammography.free_text_name = 'Mammographic breast mass finding finding' "
+        where_sql = where_sql + "or mammography.free_text_name = 'Mammography abnormal finding' "
+        where_sql = where_sql + "or mammography.free_text_name = 'Mammography assessment Category 3    Probably benign finding short interval follow up finding' "
+        where_sql = where_sql + "or mammography.free_text_name = 'Mammography normal finding') "
+      end
+      if request[:mammography].include?("No")
+        if start_using_and_keyword == true
+          where_sql = where_sql + "and "
+        end
+        start_using_and_keyword = true
+        where_sql = where_sql + "patients.id not in (" + 
+                                  "select conditions.patient_id " +
+                                  "from conditions " +
+                                  "where (conditions.free_text_name = 'Mammographic breast mass finding finding' " +
+                                  "or conditions.free_text_name = 'Mammography abnormal finding' " + 
+                                  "or conditions.free_text_name = 'Mammography assessment Category 3    Probably benign finding short interval follow up finding' " + 
+                                  "or conditions.free_text_name = 'Mammography normal finding')) "
       end
     end
 
