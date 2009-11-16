@@ -273,8 +273,16 @@ class Patient < ActiveRecord::Base
     self.information_source = InformationSource.new
     self.information_source.randomize()
 
+    #result = Result.new
+    #result.randomize(self.registration_information.gender, self.registration_information.date_of_birth)
+    #self.results << result
+
     result = Result.new
-    result.randomize(self.registration_information.gender, self.registration_information.date_of_birth)
+    result.randomize(self.registration_information.gender, self.registration_information.date_of_birth, :cholesterol)
+    self.results << result
+    
+    result = Result.new
+    result.randomize(self.registration_information.gender, self.registration_information.date_of_birth, :colorectal_screening)
     self.results << result
 
     vital_sign = VitalSign.new

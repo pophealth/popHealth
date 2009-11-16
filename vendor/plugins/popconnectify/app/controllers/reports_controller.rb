@@ -4,11 +4,11 @@ class ReportsController < ApplicationController
   @@valid_parameters = [:gender, :age, :medications, :blood_pressures, 
                         :therapies, :diabetes, :smoking, :hypertension, 
                         :ischemic_vascular_disease, :lipoid_disorder, 
-                        :ldl_cholesterol]
+                        :ldl_cholesterol, :colorectal_cancer_screening]
 
   @@reports = {
     1 => {
-      :title => 'Aspirin Therapy',
+      :title => 'ABCS: Aspirin Therapy',
       :numerator => 229,
       :denominator => 667,
       :denominator_fields => {:age => ['35-49', '50-64', '65-75', '76+'], :diabetes => ['Yes']},
@@ -16,7 +16,7 @@ class ReportsController < ApplicationController
       :id => 1
     },
     2 => {
-      :title => 'BP Control 1',
+      :title => 'ABCS: BP Control 1',
       :numerator => 267,
       :denominator => 495,
       :denominator_fields => {:age => ['18-34', '35-49', '50-64', '65-75', '76+'], :hypertension => ['Yes'], :ischemic_vascular_disease => ['No']},
@@ -24,7 +24,7 @@ class ReportsController < ApplicationController
       :id => 2
     },
     3 => {
-      :title => 'BP Control 2',
+      :title => 'ABCS: BP Control 2',
       :numerator => 32,
       :denominator => 96,
       :denominator_fields => {:age => ['18-34', '35-49', '50-64', '65-75', '76+'], :diabetes => ['Yes'], :hypertension => ['Yes']},
@@ -32,7 +32,7 @@ class ReportsController < ApplicationController
       :id => 3
     },
     4 => {
-      :title => 'BP Control 3',
+      :title => 'ABCS: BP Control 3',
       :numerator => 14,
       :denominator => 96,
       :denominator_fields => {:age => ['18-34', '35-49', '50-64', '65-75', '76+'], :diabetes => ['Yes'], :hypertension => ['Yes']},
@@ -40,7 +40,7 @@ class ReportsController < ApplicationController
       :id => 4
     },
     5 => {
-      :title => 'Cholesterol Control 1',
+      :title => 'ABCS: Cholesterol Control 1',
       :numerator => 8,
       :denominator => 37,
       :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75', '76+'], :diabetes => ['Yes'], :hypertension => ['Yes']},
@@ -48,7 +48,7 @@ class ReportsController < ApplicationController
       :id => 5
     },
     6 => {
-      :title => 'Cholesterol Control 2',
+      :title => 'ABCS: Cholesterol Control 2',
       :numerator => 8,
       :denominator => 37,
       :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75', '76+'], :diabetes => ['Yes'], :hypertension => ['Yes']},
@@ -56,48 +56,91 @@ class ReportsController < ApplicationController
       :id => 6
     },
     7 => {
-      :title => 'Smoking Cessation',
+      :title => 'ABCS: Smoking Cessation',
       :numerator => 292,
       :denominator => 673,
       :denominator_fields => {:gender => ['Female'], :age => ['18-34', '35-49', '50-64', '65-75', '76+'], :smoking => ['Current Smoker']},
       :numerator_fields => {:therapies => ['Smoking Cessation']},
       :id => 7
+    },
+    8 => {
+      :title => 'Hypertensive BP Under Control',
+      :numerator => 283,
+      :denominator => 517,
+      :denominator_fields => {:age => ['18-34', '35-49', '50-64', '65-75', '76+'], :hypertension => ['Yes']},
+      :numerator_fields => {:blood_pressures => ['110/70', '120/80', '140/90']},
+      :id => 8
+    },
+    9 => {
+      :title => 'LDL-C Under Control',
+      :numerator => 283,
+      :denominator => 10024,
+      :denominator_fields => {:gender => ['Female', 'Male']},
+      :numerator_fields => {:ldl_cholesterol => ['<100']},
+      :id => 9
+    },
+    10 => {
+      :title => 'Smoking Cessation',
+      :numerator => 660,
+      :denominator => 1517,
+      :denominator_fields => {:age => ['18-34', '35-49', '50-64', '65-75', '76+'], :smoking => ['Current Smoker']},
+      :numerator_fields => {:therapies => ['Smoking Cessation']},
+      :id => 10
+    },
+    11 => {
+      :title => 'High-Risk Cardiac, Aspirin',
+      :numerator => 190,
+      :denominator => 570,
+      :denominator_fields => {:ischemic_vascular_disease => ['Yes']},
+      :numerator_fields => {:medications => ['Aspirin']},
+      :id => 11
+    },
+    12 => {
+      :title => 'Colorectal Cancer Screening',
+      :numerator => 190,
+      :denominator => 570,
+      :denominator_fields => {:age => ['50-64', '65-75', '76+']},
+      :numerator_fields => {:colorectal_cancer_screening => ['Yes']},
+      :id => 12
     }
   }
   
   # These are the hash parameters for loading specific fields, or one single metric on the database
-  @@male_query_hash =                           {:gender => ['Male']}
-  @@female_query_hash =                         {:gender => ['Female']}
-  @@age_18_34_query_hash =                      {:age => ['18-34']}
-  @@age_35_49_query_hash =                      {:age => ['35-49']}
-  @@age_50_64_query_hash =                      {:age => ['50-64']}
-  @@age_65_75_query_hash =                      {:age => ['65-75']}
-  @@age_76_up_query_hash =                      {:age => ['76+']}
-  @@aspirin_query_hash =                        {:medications => 'Aspirin'}
-  @@smoking_cessation_hash =                    {:therapies => 'Smoking Cessation'}  
-  @@ldl_100_query_hash =                        {:ldl_cholesterol => '100'}
-  @@ldl_100_120_query_hash =                    {:ldl_cholesterol => '100-120'}
-  @@ldl_130_160_query_hash =                    {:ldl_cholesterol => '130-160'}
-  @@ldl_160_180_query_hash =                    {:ldl_cholesterol => '160-180'}
-  @@ldl_180_query_hash =                        {:ldl_cholesterol => '180+'}
-  @@bp_110_70_query_hash =                      {:blood_pressures => '110/70'}
-  @@bp_120_80_query_hash =                      {:blood_pressures => '120/80'}
-  @@bp_140_90_query_hash =                      {:blood_pressures => '140/90'}
-  @@bp_160_100_query_hash =                     {:blood_pressures => '160/100'}
-  @@bp_180_110_query_hash =                     {:blood_pressures => '180/110+'}
-  @@smoking_yes_query_hash =                    {:smoking => 'Current Smoker'}
-  @@smoking_no_query_hash =                     {:smoking => 'Non-Smoker'}
-  @@diabetic_yes_query_hash =                   {:diabetes => 'Yes'}
-  @@diabetic_no_query_hash =                    {:diabetes => 'No'}
-  @@hypertension_yes_query_hash =               {:hypertension => 'Yes'}
-  @@hypertension_no_query_hash =                {:hypertension => 'No'}
-  @@ischemic_vascular_disease_yes_query_hash =  {:ischemic_vascular_disease => 'Yes'}
-  @@ischemic_vascular_disease_no_query_hash =   {:ischemic_vascular_disease => 'No'}
-  @@lipoid_disorder_yes_query_hash =            {:lipoid_disorder => 'Yes'}
-  @@lipoid_disorder_no_query_hash =             {:lipoid_disorder => 'No'}  
+  @@male_query_hash =                             {:gender => ['Male']}
+  @@female_query_hash =                           {:gender => ['Female']}
+  @@age_18_34_query_hash =                        {:age => ['18-34']}
+  @@age_35_49_query_hash =                        {:age => ['35-49']}
+  @@age_50_64_query_hash =                        {:age => ['50-64']}
+  @@age_65_75_query_hash =                        {:age => ['65-75']}
+  @@age_76_up_query_hash =                        {:age => ['76+']}
+  @@aspirin_query_hash =                          {:medications => 'Aspirin'}
+  @@smoking_cessation_hash =                      {:therapies => 'Smoking Cessation'}  
+  @@ldl_100_query_hash =                          {:ldl_cholesterol => '100'}
+  @@ldl_100_120_query_hash =                      {:ldl_cholesterol => '100-120'}
+  @@ldl_130_160_query_hash =                      {:ldl_cholesterol => '130-160'}
+  @@ldl_160_180_query_hash =                      {:ldl_cholesterol => '160-180'}
+  @@ldl_180_query_hash =                          {:ldl_cholesterol => '180+'}
+  @@bp_110_70_query_hash =                        {:blood_pressures => '110/70'}
+  @@bp_120_80_query_hash =                        {:blood_pressures => '120/80'}
+  @@bp_140_90_query_hash =                        {:blood_pressures => '140/90'}
+  @@bp_160_100_query_hash =                       {:blood_pressures => '160/100'}
+  @@bp_180_110_query_hash =                       {:blood_pressures => '180/110+'}
+  @@smoking_yes_query_hash =                      {:smoking => 'Current Smoker'}
+  @@smoking_no_query_hash =                       {:smoking => 'Non-Smoker'}
+  @@diabetic_yes_query_hash =                     {:diabetes => 'Yes'}
+  @@diabetic_no_query_hash =                      {:diabetes => 'No'}
+  @@hypertension_yes_query_hash =                 {:hypertension => 'Yes'}
+  @@hypertension_no_query_hash =                  {:hypertension => 'No'}
+  @@ischemic_vascular_disease_yes_query_hash =    {:ischemic_vascular_disease => 'Yes'}
+  @@ischemic_vascular_disease_no_query_hash =     {:ischemic_vascular_disease => 'No'}
+  @@lipoid_disorder_yes_query_hash =              {:lipoid_disorder => 'Yes'}
+  @@lipoid_disorder_no_query_hash =               {:lipoid_disorder => 'No'}
+  @@colorectal_cancer_screening_yes_query_hash =  {:colorectal_cancer_screening => 'Yes'}
+  @@colorectal_cancer_screening_no_query_hash =   {:colorectal_cancer_screening => 'No'}
   
   # GET /reports
   def index
+    
     if params[:id]
       load_static_content
       generate_report(@@reports[params[:id].to_i][:denominator_fields])
@@ -202,28 +245,33 @@ class ReportsController < ApplicationController
     }
     
     resp[:smoking] = {
-      "Current Smoker" =>  [generate_report(@@smoking_yes_query_hash),  @patient_count],
-      "Non-Smoker" =>   [generate_report(@@smoking_no_query_hash),  @patient_count]
+      "Current Smoker" =>  [generate_report(@@smoking_yes_query_hash), @patient_count],
+      "Non-Smoker" =>   [generate_report(@@smoking_no_query_hash),     @patient_count]
     }
 
     resp[:diabetes] = {
-      "Yes" =>  [generate_report(@@diabetic_yes_query_hash),  @patient_count],
+      "Yes" =>  [generate_report(@@diabetic_yes_query_hash), @patient_count],
       "No" =>   [generate_report(@@diabetic_no_query_hash),  @patient_count]
     }
 
     resp[:hypertension] = {
-      "Yes" =>  [generate_report(@@hypertension_yes_query_hash),  @patient_count],
+      "Yes" =>  [generate_report(@@hypertension_yes_query_hash), @patient_count],
       "No" =>   [generate_report(@@hypertension_no_query_hash),  @patient_count]
     }
 
     resp[:ischemic_vascular_disease] = {
-      "Yes" =>  [generate_report(@@ischemic_vascular_disease_yes_query_hash),  @patient_count],
+      "Yes" =>  [generate_report(@@ischemic_vascular_disease_yes_query_hash), @patient_count],
       "No" =>   [generate_report(@@ischemic_vascular_disease_no_query_hash),  @patient_count]
     }
     
     resp[:lipoid_disorder] = {
-      "Yes" =>  [generate_report(@@lipoid_disorder_yes_query_hash),  @patient_count],
+      "Yes" =>  [generate_report(@@lipoid_disorder_yes_query_hash), @patient_count],
       "No" =>   [generate_report(@@lipoid_disorder_no_query_hash),  @patient_count]
+    }
+
+    resp[:colorectal_cancer_screening] = {
+      "Yes" =>  [generate_report(@@colorectal_cancer_screening_yes_query_hash), @patient_count],
+      "No" =>   [generate_report(@@colorectal_cancer_screening_no_query_hash),  @patient_count]
     }
 
     resp
@@ -273,23 +321,28 @@ class ReportsController < ApplicationController
   # this is used to generate the SQL select statement efficiently
   def generate_new_join_table_hash_status
     load_static_content
-    join_tables = Hash["registration_information" =>              false,
-                        "medications aspirin" =>                  false,
-                        "conditions hypertension" =>              false,
-                        "conditions diabetes" =>                  false,
-                        "conditions ischemic_vascular_disease" => false,
-                        "conditions lipoid_disorder" =>           false,
-                        "conditions smoking" =>                   false,
-                        "medications aspirin" =>                  false,
-                        "social_history smoking_cessation" =>     false,
-                        "abstract_results diastolic" =>           false,
-                        "abstract_results ldl_cholesterol" =>     false]
+    join_tables = Hash["registration_information" =>                      false,
+                        "medications aspirin" =>                          false,
+                        "conditions hypertension" =>                      false,
+                        "conditions diabetes" =>                          false,
+                        "conditions ischemic_vascular_disease" =>         false,
+                        "conditions lipoid_disorder" =>                   false,
+                        "conditions smoking" =>                           false,
+                        "medications aspirin" =>                          false,
+                        "social_history smoking_cessation" =>             false,
+                        "abstract_results diastolic" =>                   false,
+                        "abstract_results ldl_cholesterol" =>             false, 
+                        "abstract_results colorectal_cancer_screening" => false]
   end
 
   def generate_population_query(request)
     population_query = "select count(distinct patients.id) from patients"
     population_query = population_query + generate_from_sql(request, generate_new_join_table_hash_status())
     population_query = population_query + generate_where_sql(request, generate_new_join_table_hash_status())
+    
+    puts "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+    puts population_query.to_s
+    
     population_query
   end
 
@@ -388,6 +441,19 @@ class ReportsController < ApplicationController
       if from_tables["abstract_results diastolic"] == false
         from_sql = from_sql + ", abstract_results diastolic"
         from_tables["abstract_results diastolic"] = true
+      end
+    end
+
+    puts "THERE GOES THE TEST"
+    if request.has_key?(:colorectal_cancer_screening)
+      puts "THAT IS IT!!!!!!"
+      if request[:colorectal_cancer_screening].include?("Yes")
+        if from_tables["abstract_results colorectal_cancer_screening"] == false
+          from_sql = from_sql + ", abstract_results colorectal_cancer_screening"
+          from_tables["abstract_results colorectal_cancer_screening"] = true
+        end
+      else
+        puts "WHAAAA?!?!?!?!"
       end
     end
 
@@ -722,6 +788,30 @@ class ReportsController < ApplicationController
         end
       end
       where_sql = where_sql + ")"
+    end
+
+    if request.has_key?(:colorectal_cancer_screening)
+      if request[:colorectal_cancer_screening].include?("Yes")
+        if start_using_and_keyword == true
+          where_sql = where_sql + "and "
+        end
+        start_using_and_keyword = true
+        if where_tables["abstract_results colorectal_cancer_screening"] == false
+          where_sql = where_sql + "colorectal_cancer_screening.patient_id = patients.id "
+          where_tables["abstract_results colorectal_cancer_screening"] = true
+        end
+        where_sql = where_sql + "and colorectal_cancer_screening.result_code = '54047-6' "
+      end
+      if request[:colorectal_cancer_screening].include?("No")
+        if start_using_and_keyword == true
+          where_sql = where_sql + "and "
+        end
+        start_using_and_keyword = true
+        where_sql = where_sql + "patients.id not in (" + 
+                                   "select abstract_results.patient_id " +
+                                   "from abstract_results " +
+                                   "where abstract_results.result_code = '54047-6') "
+      end
     end
 
     where_sql

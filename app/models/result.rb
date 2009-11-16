@@ -58,32 +58,42 @@ class Result < AbstractResult
     # End Results
   end
   
-  def randomize(gender, birthdate)
+  def randomize(gender, birthdate, result)
 
     self.result_id = rand(100).to_s + 'd' + rand(100000).to_s + '-bd' + rand(100).to_s + '-4c90-891d-eb716d' + rand(10000).to_s + 'c4'
     self.result_date = DateTime.new(2000 + rand(9), rand(12) + 1, rand(28) + 1)
     self.code_system = CodeSystem.find_by_code("2.16.840.1.113883.6.1") # sets code system as LOINC
     self.status_code = 'N'
     
-    # cholesterol
-    self.value_unit = 'mg/dL'
-    self.result_code_display_name = 'LDL Cholesterol'
-    self.result_code = '18261-8'
-    
-    p = rand
-    if p < 0.25
-      self.value_scalar = rand_range(80, 100)
-    elsif p < 0.5 
-      self.value_scalar = rand_range(100, 130)
-    elsif p < 0.75
-      self.value_scalar = rand_range(130, 160)
-    elsif p < 0.9
-      self.value_scalar = rand_range(160, 190)
-    else
-      self.value_scalar = rand_range(190, 210)
+    case result
+    when :cholesterol
+      self.value_unit = 'mg/dL'
+      self.result_code_display_name = 'LDL Cholesterol'
+      self.result_code = '18261-8'
+      p = rand
+      if p < 0.25
+        self.value_scalar = rand_range(80, 100)
+      elsif p < 0.5 
+        self.value_scalar = rand_range(100, 130)
+      elsif p < 0.75
+        self.value_scalar = rand_range(130, 160)
+      elsif p < 0.9
+        self.value_scalar = rand_range(160, 190)
+      else
+        self.value_scalar = rand_range(190, 210)
+      end  
+    when :colorectal_screening
+      #Colorectal Cancer Screening
+      age = Date.today.year - birthdate.year
+      if  age > 50
+        p = rand
+        if p < 0.42
+          self.result_code_display_name = 'Colorectal Cancer Screening'
+          self.result_code = '54047-6'
+        end
+      end
     end
-    
-  end
 
+  end
 
 end

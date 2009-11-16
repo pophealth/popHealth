@@ -32,6 +32,15 @@ popConnect.DataViewer = function(element, options) {
         },
         sort: ['gender', 'age']
       },
+	  risk_factors: {
+        label: 'Risk Factors',
+        types: {
+          blood_pressures: {label: 'Blood Pressure', sort: ['110/70', '120/80', '140/90', '160/100', '180/110+']},
+          smoking: {label: 'Smoking', sort: ['Current Smoker', 'Non-Smoker']},
+          colorectal_cancer_screening: {label: 'Colon Cancer Screening', sort: ['Yes', 'No']}
+        },
+        sort: ['blood_pressures', 'smoking', 'colorectal_cancer_screening']
+      },
       treatments: {
         label: 'Treatments',
         types: {
@@ -39,14 +48,6 @@ popConnect.DataViewer = function(element, options) {
           therapies: {label: 'Therapies', sort: ['Smoking Cessation']}
         },
         sort: ['medications', 'therapies']
-      },
-      risk_factors: {
-        label: 'Risk Factors',
-        types: {
-          blood_pressures: {label: 'Blood Pressure', sort: ['110/70', '120/80', '140/90', '160/100', '180/110+']},
-          smoking: {label: 'Smoking', sort: ['Current Smoker', 'Non-Smoker']}
-        },
-        sort: ['blood_pressures', 'smoking']
       },
       disease_conditions: {
         label: 'Disease & Conditions',
@@ -66,7 +67,7 @@ popConnect.DataViewer = function(element, options) {
         sort: ['ldl_cholesterol']
       }
     },
-    sort: ['demographics', 'risk_factors', 'disease_conditions', 'treatments', 'lab_results']
+    sort: ['demographics', 'disease_conditions', 'risk_factors', 'lab_results', 'treatments']
   };
 
   var irregularLabels = {
@@ -74,6 +75,7 @@ popConnect.DataViewer = function(element, options) {
     hypertension: {'Yes': 'Hypertension', 'No': 'Without Hypertension'},
     ischemic_vascular_disease: {'Yes': 'Vascular Disease', 'No': 'Without Vascular Disease'},
     lipoid_disorder: {'Yes': 'Lipoid disorder', 'No': 'Without Lipoid disorder'},
+    colorectal_cancer_screening: {'Yes': 'Performed Colon Cancer Screen', 'No': 'No Colon Cancer Screen'},
     ldl_cholesterol: {'100': 'LDL <100 mg/dL', '100-120': 'LDL 100-120 mg/dL', '130-160': 'LDL 130-160 mg/dL', '160-180': 'LDL 160-180 mg/dL', '180+': 'LDL 180+ mg/dL'}
   }
 
