@@ -599,7 +599,7 @@ class ReportsController < ApplicationController
     # If you are reading this comment and going WTF?, see me (McCready) and I'll buy you a
     # lunch as well as numerous shots of some form of alcholic liquid to explain what is 
     # going on here, and why I am working a Sunday... pissed that named scopes completely 
-    # failed me on the popConnect work...  So sorry!!!
+    # failed me on the popHealth work...  So sorry!!!
     if request.has_key?(:diabetes)
       if request[:diabetes].include?("Yes")
         if start_using_and_keyword == true

@@ -12,7 +12,7 @@ class AccountController < ApplicationController
         self.current_user.remember_me
         cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
       end
-      # Hack to force the re-direct to the popConnect Dashboard
+      # Hack to force the re-direct to the popHealth Dashboard
       redirect_to '/popconnect'
     else
       flash[:notice] = %{
