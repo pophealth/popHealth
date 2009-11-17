@@ -8,7 +8,6 @@ class Result < AbstractResult
     '2.16.840.1.113883.3.88.11.32.16'
   end
 
-
   def self.c32_component(results, xml)
     # Start Results
     unless results.empty?
@@ -46,25 +45,21 @@ class Result < AbstractResult
                 end
               end
             end
-
           end
-
           yield
-
-
         end
       end
     end
     # End Results
   end
   
-  def randomize(gender, birthdate, result)
-
-    self.result_id = rand(100).to_s + 'd' + rand(100000).to_s + '-bd' + rand(100).to_s + '-4c90-891d-eb716d' + rand(10000).to_s + 'c4'
+  def randomize(gender, birthdate, result, conditions = nil)
+    self.result_id = rand(100).to_s + 'd' + rand(100000).to_s + '-bd' + 
+                     rand(100).to_s + '-4c90-891d-eb716d' + rand(10000).to_s + 'c4'
     self.result_date = DateTime.new(2000 + rand(9), rand(12) + 1, rand(28) + 1)
-    self.code_system = CodeSystem.find_by_code("2.16.840.1.113883.6.1") # sets code system as LOINC
+    # sets code system as LOINC
+    self.code_system = CodeSystem.find_by_code("2.16.840.1.113883.6.1") 
     self.status_code = 'N'
-    
     case result
     when :cholesterol
       self.value_unit = 'mg/dL'
@@ -81,7 +76,7 @@ class Result < AbstractResult
         self.value_scalar = rand_range(160, 190)
       else
         self.value_scalar = rand_range(190, 210)
-      end  
+      end
     when :colorectal_screening
       #Colorectal Cancer Screening
       age = Date.today.year - birthdate.year
@@ -92,8 +87,43 @@ class Result < AbstractResult
           self.result_code = '54047-6'
         end
       end
+    when :A1c
+      #hemoglobin A1c
+      if conditions
+        conditions.try(:each) do |condition|
+          if condition.free_text_name == "Diabetes mellitus disorder"
+            @diabetes = true
+          end
+        end
+      end
+      if @diabetes
+        self.value_unit = '%'
+        self.result_code_display_name = 'HbA1c'
+        self.result_code = '54039-3'
+        p = rand
+        if p < 0.20
+          self.value_scalar = rand_range(0, 7)
+        elsif p < 0.45
+          self.value_scalar = rand_range(7, 9)
+        else
+          self.value_scalar = rand_range(9, 18)
+        end
+      end   
+    when :LDL_C
+      self.value_unit = 'mg/dL'
+      self.result_code_display_name = 'LDL-C'
+      self.result_code = '54040-1'
+      p = rand
+      if p < 0.40
+        self.value_scalar = rand_range(80, 100)
+      elsif p < 0.25
+        self.value_scalar = rand_range(100, 130)
+      elsif p < 0.20
+        self.value_scalar = rand_range(130, 160)
+      else 
+        self.value_scalar = rand_range(160, 210)
+      end
     end
-
   end
 
 end
