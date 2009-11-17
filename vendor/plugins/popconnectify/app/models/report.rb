@@ -57,7 +57,7 @@ class Report < ActiveRecord::Base
     			pqri_xml.tag! :'waiver-signed', "Y"
     			pqri_xml.tag! :'pqri-measure' do
     				pqri_xml.tag! :'pqri-measure-number'
-    				pqri_xml.tag! :'eligible-instances'          # denominator
+    				pqri_xml.tag! :'eligible-instances'       # denominator
     				pqri_xml.tag! :'meets-performance-instances' # numerator 
     				pqri_xml.tag! :'performance-exclusion-instances'
     				pqri_xml.tag! :'performance-not-met-instances'
