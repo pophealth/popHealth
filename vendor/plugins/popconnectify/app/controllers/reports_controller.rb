@@ -166,7 +166,7 @@ class ReportsController < ApplicationController
   @@mammography_no_query_hash =                   {:mammography => 'No'}
   
   # GET /reports
-  def index    
+  def index
     if params[:id]
       load_static_content
       generate_report(@@reports[params[:id].to_i][:denominator_fields])
