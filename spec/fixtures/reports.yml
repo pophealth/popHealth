@@ -199,7 +199,7 @@ mammography:
   numerator_query: "--- \n\
     :colorectal_cancer_screening: \n\
     - \"Yes\"\n"
-  title: 40+ Mammography Screening
+  title: Mammography Screening
   denominator_query: "--- \n\
     :age: \n\
     - 50-64\n\

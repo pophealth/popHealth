@@ -69,6 +69,7 @@ class ReportsController < ApplicationController
 
   # POST /reports
   def create
+
     resp = {}
 
     # create a new report
@@ -81,7 +82,6 @@ class ReportsController < ApplicationController
         @report.denominator = generate_report(@report.denominator_query)
       end
       @report.save
-      
     # create a blank report but don't save  
     elsif params[:id].blank? && params[:numerator].blank? && params[:denominator].blank? && params[:title].blank? 
       @report = Report.new
@@ -89,7 +89,6 @@ class ReportsController < ApplicationController
       @report.denominator_query = {}
       @report.denominator = @patient_count
       @report.title = "Untitled Report"
-    
     elsif params[:id] # update an existing report
       @report = Report.find(params[:id])
       @report.numerator_query = params[:numerator] if params[:numerator]
@@ -111,8 +110,9 @@ class ReportsController < ApplicationController
     render :json => resp.to_json
   end
   
-  def pqri_report   
-     render 'pqri_report.xml', :layout => false
+  def pqri_report
+    @report = Report.find(:first)
+    render 'pqri_report.xml', :layout => false
   end
 
   private
