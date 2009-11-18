@@ -287,7 +287,15 @@ class Patient < ActiveRecord::Base
     self.results << result
     
     result = Result.new
+    result.randomize(self.registration_information.gender, self.registration_information.date_of_birth, :LDL_C, conditions)
+    self.results << result
+    
+    result = Result.new
     result.randomize(self.registration_information.gender, self.registration_information.date_of_birth, :colorectal_screening)
+    self.results << result
+
+    result = Result.new
+    result.randomize(self.registration_information.gender, self.registration_information.date_of_birth, :A1c, conditions)
     self.results << result
 
     vital_sign = VitalSign.new
