@@ -4,6 +4,8 @@
 # Fields with nothing selected won't be sent...no point in crowding the request. You can always do a merge
 # on the server.
 
+Non-Smoker
+
 params = {
   :denominator => {
     :gender => ['Male', 'Female'],

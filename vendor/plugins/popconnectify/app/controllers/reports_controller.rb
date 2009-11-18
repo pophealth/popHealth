@@ -6,129 +6,6 @@ class ReportsController < ApplicationController
                         :ischemic_vascular_disease, :lipoid_disorder, 
                         :ldl_cholesterol, :colorectal_cancer_screening,
                         :mammography]
-
-  @@reports = {
-    1 => {
-      :title => 'ABCS: Aspirin Therapy',
-      :numerator => 229,
-      :denominator => 667,
-      :denominator_fields => {:age => ['35-49', '50-64', '65-75', '76+'], :diabetes => ['Yes']},
-      :numerator_fields => {:medications => ['Aspirin']},
-      :id => 1
-    },
-    2 => {
-      :title => 'ABCS: BP Control 1',
-      :numerator => 267,
-      :denominator => 495,
-      :denominator_fields => {:age => ['18-34', '35-49', '50-64', '65-75', '76+'], :hypertension => ['Yes'], :ischemic_vascular_disease => ['No']},
-      :numerator_fields => {:blood_pressures => ['110/70', '120/80', '140/90']},
-      :id => 2
-    },
-    3 => {
-      :title => 'ABCS: BP Control 2',
-      :numerator => 32,
-      :denominator => 96,
-      :denominator_fields => {:age => ['18-34', '35-49', '50-64', '65-75', '76+'], :diabetes => ['Yes'], :hypertension => ['Yes']},
-      :numerator_fields => {:blood_pressures => ['110/70', '120/80']},
-      :id => 3
-    },
-    4 => {
-      :title => 'ABCS: BP Control 3',
-      :numerator => 14,
-      :denominator => 96,
-      :denominator_fields => {:age => ['18-34', '35-49', '50-64', '65-75', '76+'], :diabetes => ['Yes'], :hypertension => ['Yes']},
-      :numerator_fields => {:blood_pressures => ['120/80']},
-      :id => 4
-    },
-    5 => {
-      :title => 'ABCS: Cholesterol Control 1',
-      :numerator => 8,
-      :denominator => 37,
-      :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75', '76+'], :diabetes => ['Yes'], :hypertension => ['Yes']},
-      :numerator_fields => {:blood_pressures => ['120/80']},
-      :id => 5
-    },
-    6 => {
-      :title => 'ABCS: Cholesterol Control 2',
-      :numerator => 8,
-      :denominator => 67,
-      :denominator_fields => {:gender => ['Male', 'Female'], :age => ['18-34', '35-49', '50-64', '65-75', '76+'], :diabetes => ['Yes'], :hypertension => ['Yes']},
-      :numerator_fields => {:blood_pressures => ['120/80']},
-      :id => 6
-    },
-    7 => {
-      :title => 'ABCS: Smoking Cessation',
-      :numerator => 292,
-      :denominator => 673,
-      :denominator_fields => {:gender => ['Female'], :age => ['18-34', '35-49', '50-64', '65-75', '76+'], :smoking => ['Current Smoker']},
-      :numerator_fields => {:therapies => ['Smoking Cessation']},
-      :id => 7
-    },
-    8 => {
-      :title => 'Hypertensive BP Under Control',
-      :numerator => 283,
-      :denominator => 517,
-      :denominator_fields => {:age => ['18-34', '35-49', '50-64', '65-75', '76+'], :hypertension => ['Yes']},
-      :numerator_fields => {:blood_pressures => ['110/70', '120/80', '140/90']},
-      :id => 8
-    },
-    9 => {
-      :title => 'Diabetic A1C Under Control',
-      :numerator => 1583,
-      :denominator => 9224,
-      :denominator_fields => {:gender => ['Female', 'Male']},
-      :numerator_fields => {:ldl_cholesterol => ['<100']},
-      :id => 9
-    },
-    10 => {
-      :title => 'LDL-C Under Control',
-      :numerator => 2683,
-      :denominator => 10024,
-      :denominator_fields => {:gender => ['Female', 'Male']},
-      :numerator_fields => {:ldl_cholesterol => ['<100']},
-      :id => 10
-    },
-    11 => {
-      :title => 'Smoking Cessation',
-      :numerator => 660,
-      :denominator => 1517,
-      :denominator_fields => {:age => ['18-34', '35-49', '50-64', '65-75', '76+'], :smoking => ['Current Smoker']},
-      :numerator_fields => {:therapies => ['Smoking Cessation']},
-      :id => 11
-    },
-    12 => {
-      :title => 'High-Risk Cardiac, Aspirin',
-      :numerator => 399,
-      :denominator => 741,
-      :denominator_fields => {:ischemic_vascular_disease => ['Yes']},
-      :numerator_fields => {:medications => ['Aspirin']},
-      :id => 12
-    },
-    13 => {
-      :title => 'Colorectal Cancer Screening',
-      :numerator => 121,
-      :denominator => 870,
-      :denominator_fields => {:age => ['50-64', '65-75', '76+']},
-      :numerator_fields => {:colorectal_cancer_screening => ['Yes']},
-      :id => 13
-    },
-    14 => {
-      :title => '40+ Mammography Screening',
-      :numerator => 400,
-      :denominator => 590,
-      :denominator_fields => {:age => ['50-64', '65-75', '76+']},
-      :numerator_fields => {:colorectal_cancer_screening => ['Yes']},
-      :id => 13
-    },
-    15 => {
-      :title => 'Influenza Vaccination',
-      :numerator => 144,
-      :denominator => 527,
-      :denominator_fields => {:age => ['50-64', '65-75', '76+']},
-      :numerator_fields => {:colorectal_cancer_screening => ['Yes']},
-      :id => 13
-    }
-  }
   
   # These are the hash parameters for loading specific fields, or one single metric on the database
   @@male_query_hash =                             {:gender => ['Male']}
@@ -168,13 +45,14 @@ class ReportsController < ApplicationController
   # GET /reports
   def index
     if params[:id]
+      @report = Report.find(params[:id])
       load_static_content
-      generate_report(@@reports[params[:id].to_i][:denominator_fields])
+      generate_report(@report.denominator_query)
       #render :json => process_detailed_report(params)
       resp = {}
-      resp = @@reports[params[:id].to_i]
+      resp = @report.to_json_hash
       load_static_content
-      load_report_data(@@reports[params[:id].to_i][:numerator_fields], resp)
+      load_report_data(@report.numerator_query, resp)
       resp.to_json
       render :json => resp.to_json
     else
@@ -182,12 +60,8 @@ class ReportsController < ApplicationController
       resp = {
         "populationCount" => Patient.count_by_sql("select count(*) from patients").to_s,
         "populationName" => "Columbia Road Health Services",
-        "reports" => []
+        "reports" => Report.find(:all, :order => 'title asc')
       }
-      # this eventually needs to come from the DB
-      @@reports.values.each do |report|
-        resp['reports'] << report
-      end
       render :json => resp.to_json
     end
   end
@@ -198,33 +72,48 @@ class ReportsController < ApplicationController
 
     # create a new report
     if params[:id].blank? && (!params[:numerator].blank? || !params[:denominator].blank? || !params[:title].blank?)
-      params[:id] = @@reports.length + 1
-      @@reports[params[:id]] = {}
-      @@reports[params[:id]][:title] = "Untitled Report " + (@@reports.values.select {|r| r[:title] =~ /Untitled Report /}.length + 1).to_s
-      @@reports[params[:id]][:id] = params[:id]
-    end
-
-    # update an existing report
-    if params[:id]
-      params[:id] = params[:id].to_i
-      @@reports[params[:id]][:numerator_fields] = params[:numerator] || {}
-      @@reports[params[:id]][:denominator_fields] = params[:denominator] || {}
-      @@reports[params[:id]][:title] = params[:title] if params[:title]
-      @@reports[params[:id]][:numerator] = @@reports[params[:id]][:numerator_fields].length > 0 ? rand(1000) : 0
-      @@reports[params[:id]][:denominator] = generate_report(@@reports[params[:id].to_i][:denominator_fields])
-      # only run the numerator query if there are any fields provided
-      if @@reports[params[:id].to_i][:numerator_fields].size > 0
-        @@reports[params[:id]][:numerator] = generate_report(merge_popconnect_request(@@reports[params[:id].to_i][:denominator_fields],
-                                                                                      @@reports[params[:id].to_i][:numerator_fields]))
-      else
-        @@reports[params[:id]][:numerator] = 0
+      @report = Report.new
+      @report.numerator_query = params[:numerator] || {}
+      @report.denominator_query = params[:denominator] || {}
+      @report.title = params[:title] || "Untitled Report"
+      if !params[:denominator].blank? 
+        @report.denominator = generate_report(@report.denominator_query)
       end
-    end
+      @report.save
+      
+    # create a blank report but don't save  
+    elsif params[:id].blank? && params[:numerator].blank? && params[:denominator].blank? && params[:title].blank? 
+      @report = Report.new
+      @report.numerator_query =  {}
+      @report.denominator_query = {}
+      @report.numerator = 0
+      @report.denominator = @patient_count
+      @report.title = "Untitled Report"
+    
+    elsif params[:id] # update an existing report
+      @report = Report.find(params[:id])
+      @report.numerator_query = params[:numerator] if params[:numerator]
+      @report.denominator_query = params[:denominator] if params[:denominator]
+      @report.title = params[:title] if params[:title]
+      @report.denominator = generate_report(@report.denominator_query)
 
-    resp = @@reports[params[:id].to_i]
+    end
+    
+    # only run the numerator query if there are any fields provided
+    if @report.numerator_query.size > 0
+      @report.numerator = generate_report(merge_popconnect_request(@report.denominator_query, @report.numerator_query))
+    else
+      @report.numerator = 0
+    end
+    
+    resp = @report.to_json_hash
     load_static_content
-    resp = load_report_data(params[:numerator], resp)
+    resp = load_report_data(@report.numerator_query, resp)
     render :json => resp.to_json
+  end
+  
+  def pqri_report   
+     render 'pqri_report.xml', :layout => false
   end
 
   private

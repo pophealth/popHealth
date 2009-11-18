@@ -1,0 +1,220 @@
+aspirin:
+  numerator_query: "--- \n\
+    :medications: \n\
+  - Aspirin\n"
+  title: "ABCS: Aspirin Therapy"
+  denominator_query: "--- \n\
+  :diabetes: \n\
+  - \"Yes\"\n\
+  :age: \n\
+  - 35-49\n\
+  - 50-64\n\
+  - 65-75\n\
+  - 76+\n"
+
+bp1:
+  numerator_query: "--- \n\
+    :blood_pressures: \n\
+    - 110/70\n\
+    - 120/80\n\
+    - 140/90\n"
+  title: "ABCS: BP Control 1"
+  denominator_query: "--- \n\
+    :hypertension: \n\
+    - \"Yes\"\n\
+    :ischemic_vascular_disease: \n\
+    - \"No\"\n\
+    :age: \n\
+    - 18-34\n\
+    - 35-49\n\
+    - 50-64\n\
+    - 65-75\n\
+    - 76+\n"
+
+bp2:
+  numerator_query: "--- \n\
+    :blood_pressures: \n\
+    - 110/70\n\
+    - 120/80\n"
+  title: "ABCS: BP Control 2"
+  denominator_query: "--- \n\
+    :diabetes: \n\
+    - \"Yes\"\n\
+    :hypertension: \n\
+    - \"Yes\"\n\
+    :age: \n\
+    - 18-34\n\
+    - 35-49\n\
+    - 50-64\n\
+    - 65-75\n\
+    - 76+\n"
+
+bp3:
+  numerator_query: "--- \n\
+    :blood_pressures: \n\
+    - 120/80\n"
+  title: "ABCS: BP Control 3"
+  denominator_query: "--- \n\
+    :diabetes: \n\
+    - \"Yes\"\n\
+    :hypertension: \n\
+    - \"Yes\"\n\
+    :age: \n\
+    - 18-34\n\
+    - 35-49\n\
+    - 50-64\n\
+    - 65-75\n\
+    - 76+\n"
+
+chol1:
+  numerator_query: "--- \n\
+    :blood_pressures: \n\
+    - 120/80\n"
+  title: "ABCS: Cholesterol Control 1"
+  denominator_query: "--- \n\
+    :diabetes: \n\
+    - \"Yes\"\n\
+    :gender: \n\
+    - Male\n\
+    - Female\n\
+    :hypertension: \n\
+    - \"Yes\"\n\
+    :age: \n\
+    - 18-34\n\
+    - 35-49\n\
+    - 50-64\n\
+    - 65-75\n\
+    - 76+\n"
+
+chol2:
+  numerator_query: "--- \n\
+    :blood_pressures: \n\
+    - 120/80\n"
+  title: "ABCS: Cholesterol Control 2"
+  denominator_query: "--- \n\
+    :diabetes: \n\
+    - \"Yes\"\n\
+    :gender: \n\
+    - Male\n\
+    - Female\n\
+    :hypertension: \n\
+    - \"Yes\"\n\
+    :age: \n\
+    - 18-34\n\
+    - 35-49\n\
+    - 50-64\n\
+    - 65-75\n\
+    - 76+\n"
+
+abcs_smoking:
+  numerator_query: "--- \n\
+    :therapies: \n\
+    - Smoking Cessation\n"
+  title: "ABCS: Smoking Cessation"
+  denominator_query: "--- \n\
+    :gender: \n\
+    - Female\n\
+    :smoking: \n\
+    - Current Smoker\n\
+    :age: \n\
+    - 18-34\n\
+    - 35-49\n\
+    - 50-64\n\
+    - 65-75\n\
+    - 76+\n"
+
+ht_bp:
+  numerator_query: "--- \n\
+    :blood_pressures: \n\
+    - 110/70\n\
+    - 120/80\n\
+    - 140/90\n"
+  :title: Hypertensive BP Under Control
+  :denominator_query: "--- \n\
+    :hypertension: \n\
+    - \"Yes\"\n\
+    :age: \n\
+    - 18-34\n\
+    - 35-49\n\
+    - 50-64\n\
+    - 65-75\n\
+    - 76+\n"
+
+da1c:
+  numerator_query: "--- \n\
+    :ldl_cholesterol: \n\
+    - <100\n"
+  title: Diabetic A1C Under Control
+  denominator_query: "--- \n\
+    :gender: \n\
+    - Female\n\
+    - Male\n"
+
+ldlc: 
+  numerator_query: "--- \n\
+    :ldl_cholesterol: \n\
+    - <100\n"
+  title: LDL-C Under Control
+  denominator_query: "--- \n\
+    :gender: \n\
+    - Female\n\
+    - Male\n"
+
+smoking:
+  numerator_query: "--- \n\
+    :therapies: \n\
+    - Smoking Cessation\n"
+  title: Smoking Cessation
+  denominator_query: "--- \n\
+    :smoking: \n\
+    - Current Smoker\n\
+    :age: \n\
+    - 18-34\n\
+    - 35-49\n\
+    - 50-64\n\
+    - 65-75\n\
+    - 76+\n"
+
+hr_cardiac:
+  numerator_query: "--- \n\
+    :medications: \n\
+    - Aspirin\n"
+  title: High-Risk Cardiac, Aspirin
+  denominator_query: "--- \n\
+    :ischemic_vascular_disease: \n\
+    - \"Yes\"\n"
+
+colorectal:
+  numerator_query: "--- \n\
+    :colorectal_cancer_screening: \n\
+    - \"Yes\"\n"
+  title: Colorectal Cancer Screening
+  denominator_query: "--- \n\
+    :age: \n\
+    - 50-64\n\
+    - 65-75\n\
+    - 76+\n"
+
+mammography:
+  numerator_query: "--- \n\
+    :colorectal_cancer_screening: \n\
+    - \"Yes\"\n"
+  title: 40+ Mammography Screening
+  denominator_query: "--- \n\
+    :age: \n\
+    - 50-64\n\
+    - 65-75\n\
+    - 76+\n"
+
+flu:
+  numerator_query: "--- \n\
+    :colorectal_cancer_screening: \n\
+    - \"Yes\"\n"
+  title: Influenza Vaccination
+  denominator_query: "--- \n\
+    :age: \n\
+    - 50-64\n\
+    - 65-75\n\
+    - 76+\n"
+
+
