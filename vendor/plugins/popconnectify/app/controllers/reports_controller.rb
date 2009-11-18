@@ -58,10 +58,11 @@ class ReportsController < ApplicationController
       render :json => resp.to_json
     else
       # load the sidebar summary information
+      @reports = Report.all(:order => 'title asc')
       resp = {
         "populationCount" => Patient.count_by_sql("select count(*) from patients").to_s,
         "populationName" => "Columbia Road Health Services",
-        "reports" => Report.find(:all, :order => 'title asc')
+        "reports" => @reports
       }
       render :json => resp.to_json
     end
