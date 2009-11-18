@@ -9,11 +9,11 @@ class Report < ActiveRecord::Base
   end
   
   def numerator
-    @numerator || rand(3246)
+    @numerator || 0
   end
   
   def denominator
-    @denominator || 3746
+    @denominator 
   end
 
   def numerator_query=(val)

@@ -47,7 +47,8 @@ class ReportsController < ApplicationController
     if params[:id]
       @report = Report.find(params[:id])
       load_static_content
-      generate_report(@report.denominator_query)
+      @report.denominator = generate_report(@report.denominator_query)
+      @report.numerator = generate_report(merge_popconnect_request(@report.denominator_query, @report.numerator_query))
       #render :json => process_detailed_report(params)
       resp = {}
       resp = @report.to_json_hash
@@ -86,7 +87,6 @@ class ReportsController < ApplicationController
       @report = Report.new
       @report.numerator_query =  {}
       @report.denominator_query = {}
-      @report.numerator = 0
       @report.denominator = @patient_count
       @report.title = "Untitled Report"
     
@@ -96,7 +96,6 @@ class ReportsController < ApplicationController
       @report.denominator_query = params[:denominator] if params[:denominator]
       @report.title = params[:title] if params[:title]
       @report.denominator = generate_report(@report.denominator_query)
-
     end
     
     # only run the numerator query if there are any fields provided
