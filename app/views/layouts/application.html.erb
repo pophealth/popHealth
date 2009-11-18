@@ -33,7 +33,7 @@
   <div id='header'>
     <%= image_tag("logo.png", :class => 'logo', :alt => 'popconnect') %>
     <ul>
-	  <li><%= link_to "Export", {:controller => :reports, :action => :pqri_report} %></li>
+	    <li><%= link_to "Export", '#', :id => 'exportReport' %></li>
       <li><%= link_to "Upload", {:controller => :popconnect, :action => :upload}, :class => 'fancybox' %></li>
       <li><%= link_to 'Logout', logout_path %> (<%= current_user.first_name %>)</li>
     </ul>
@@ -52,7 +52,8 @@
     $(document).ready(function() {
       var dataViewer = new popConnect.DataViewer('#main', {
           dataUrl: '/reports',
-          reportId: <%= Report.first.id %>
+          reportId: <%= Report.first.id %>,
+          exportLink: $('#exportReport')
         });
 
         var reportNavigator = new popConnect.ReportNavigator('#sidebar', {
@@ -61,13 +62,13 @@
           reportId: <%= Report.first.id %>
         });
 
-		$('.fancybox').fancybox({
-				'zoomOpacity':		true,
-				'overlayShow':		false,
-		  		'zoomSpeedIn':		500,
-		   		'zoomSpeedOut': 		500,
-		   		'hideOnContentClick': false
-		});
+    		$('.fancybox').fancybox({
+    				'zoomOpacity':		true,
+    				'overlayShow':		false,
+    		  		'zoomSpeedIn':		500,
+    		   		'zoomSpeedOut': 		500,
+    		   		'hideOnContentClick': false
+    		});
     });
 
     popConnect.session = {

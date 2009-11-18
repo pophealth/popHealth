@@ -13,7 +13,7 @@ class Report < ActiveRecord::Base
   end
   
   def denominator
-    @denominator 
+    @denominator || 0
   end
 
   def numerator_query=(val)

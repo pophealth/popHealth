@@ -111,7 +111,8 @@ class ReportsController < ApplicationController
     render :json => resp.to_json
   end
   
-  def pqri_report   
+  def pqri_report
+     @report = Report.find(params[:id])
      render 'pqri_report.xml', :layout => false
   end
 

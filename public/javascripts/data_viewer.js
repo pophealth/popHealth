@@ -19,6 +19,9 @@ popConnect.DataViewer = function(element, options) {
   var busyness = 0;                         // Current number of jobs. Controls when loading indicator is shown. Don't change directly, use busy/notBusy
   this.onComplete = options.complete;        // Callback for when data is loaded
   this.onError = options.error;              // Callback for when data doesn't load
+  if(options.exportLink)
+    this.exportLink = options.exportLink;
+
 
   // It's sort of arbitrary to split dataDefinition out this way, but I think
   // the individual unit to consider is each section.
@@ -106,7 +109,7 @@ popConnect.DataViewer = function(element, options) {
       numerator_fields: [],
       denominator_fields: []       // These fields should match up letter-for-letter with the actual field names
     };
-    that.reload(buildTailoredData(), 'POST')
+    that.reload(buildTailoredData(), 'POST');
   }
 
   // Reload DOM elements from data
@@ -441,6 +444,7 @@ popConnect.DataViewer = function(element, options) {
 
   // Reload data given selected fields
   this.reload = function(requestData, requestMethod) {
+    $(that.exportLink).hide();    
     $.ajax({
       type: requestMethod,
       url: dataUrl,
@@ -448,6 +452,11 @@ popConnect.DataViewer = function(element, options) {
       data: requestData,
       success: function(responseData) {
         data = responseData;
+        if(data.id) {
+          $(that.exportLink).show().attr('href', '/popconnect/export?id=' + data.id);
+        } else {
+          $(that.exportLink).hide().attr('href', '#');
+        }
         that.refresh();
         notBusy();
         if(that.onComplete) {
