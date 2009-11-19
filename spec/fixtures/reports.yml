@@ -157,23 +157,33 @@ ht_bp:
 
 da1c:
   numerator_query: "--- \n\
-    :ldl_cholesterol: \n\
-    - 100\n"
-  title: Diabetic A1C Under Control
+    :medications: \n\
+  - Aspirin\n"
+  title: "Diabletic A1c Under Contro"
   denominator_query: "--- \n\
-    :gender: \n\
-    - Female\n\
-    - Male\n"
+  :diabetes: \n\
+  - \"Yes\"\n\
+  :age: \n\
+  - 40-50\n\
+  - 50-60\n\
+  - 60-70\n\
+  - 70-80\n\
+  - 80+\n"
 
 ldlc: 
   numerator_query: "--- \n\
-    :ldl_cholesterol: \n\
-    - 100\n"
-  title: LDL-C Under Control
+    :medications: \n\
+  - Aspirin\n"
+  title: "LDL Under Control"
   denominator_query: "--- \n\
-    :gender: \n\
-    - Female\n\
-    - Male\n"
+  :diabetes: \n\
+  - \"Yes\"\n\
+  :age: \n\
+  - 40-50\n\
+  - 50-60\n\
+  - 60-70\n\
+  - 70-80\n\
+  - 80+\n"
 
 smoking:
   numerator_query: "--- \n\

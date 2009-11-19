@@ -10,7 +10,6 @@ class ReportsController < ApplicationController
   # These are the hash parameters for loading specific fields, or one single metric on the database
   @@male_query_hash =                             {:gender => ['Male']}
   @@female_query_hash =                           {:gender => ['Female']}
-  
   @@age_less_18query_hash =                       {:age => ['<18']}
   @@age_18_30_query_hash =                        {:age => ['18-30']}
   @@age_30_40_query_hash =                        {:age => ['30-40']}
@@ -19,12 +18,6 @@ class ReportsController < ApplicationController
   @@age_60_70_query_hash =                        {:age => ['60-70']}
   @@age_70_80_query_hash =                        {:age => ['70-80']}
   @@age_80_plus_query_hash =                      {:age => ['80+']}
-  
-  @@age_18_34_query_hash =                        {:age => ['18-34']}
-  @@age_35_49_query_hash =                        {:age => ['35-49']}
-  @@age_50_64_query_hash =                        {:age => ['50-64']}
-  @@age_65_75_query_hash =                        {:age => ['65-75']}
-  @@age_76_up_query_hash =                        {:age => ['76+']}
   @@aspirin_query_hash =                          {:medications => 'Aspirin'}
   @@smoking_cessation_hash =                      {:therapies => 'Smoking Cessation'}  
   @@ldl_100_query_hash =                          {:ldl_cholesterol => '100'}
@@ -79,7 +72,6 @@ class ReportsController < ApplicationController
       load_static_content
       @report.denominator = generate_report(@report.denominator_query)
       @report.numerator = generate_report(merge_popconnect_request(@report.denominator_query, @report.numerator_query))
-      #render :json => process_detailed_report(params)
       resp = {}
       resp = @report.to_json_hash
       load_static_content
