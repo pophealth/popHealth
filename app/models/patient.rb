@@ -328,6 +328,10 @@ class Patient < ActiveRecord::Base
     my_social_history = SocialHistory.new
     my_social_history.randomize(self.registration_information.date_of_birth, conditions)
     self.social_history << my_social_history
+    
+    immunization = Immunization.new
+    immunization.randomize(self.registration_information.date_of_birth)
+    self.immunizations << immunization
 
     self
   end

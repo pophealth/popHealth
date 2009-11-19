@@ -179,7 +179,7 @@ hr_cardiac:
   numerator_query: "--- \n\
     :medications: \n\
     - Aspirin\n"
-  title: High-Risk Cardiac, Aspirin
+  title: "High-Risk Cardiac, Aspirin"
   denominator_query: "--- \n\
     :ischemic_vascular_disease: \n\
     - \"Yes\"\n"
@@ -197,9 +197,9 @@ colorectal:
 
 mammography:
   numerator_query: "--- \n\
-    :colorectal_cancer_screening: \n\
+    :mammography: \n\
     - \"Yes\"\n"
-  title: 40+ Mammography Screening
+  title: "Mammography Screening"
   denominator_query: "--- \n\
     :age: \n\
     - 50-64\n\
@@ -208,13 +208,10 @@ mammography:
 
 flu:
   numerator_query: "--- \n\
-    :colorectal_cancer_screening: \n\
+    :influenza_vaccine: \n\
     - \"Yes\"\n"
   title: Influenza Vaccination
   denominator_query: "--- \n\
-    :age: \n\
-    - 50-64\n\
-    - 65-75\n\
-    - 76+\n"
-
-
+    :gender: \n\
+    - Female\n\
+    - Male\n"

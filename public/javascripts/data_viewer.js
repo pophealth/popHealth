@@ -69,9 +69,16 @@ popConnect.DataViewer = function(element, options) {
           ldl_cholesterol: {label: 'LDL Cholesterol (mg/dL)', sort: ['100', '100-120', '130-160', '160-180', '180+']}
         },
         sort: ['ldl_cholesterol']
+      },
+      immunizations: {
+          label: 'Immunizations',
+          types: {
+          influenza_vaccine: {label: 'Influenza', sort: ['Yes', 'No']}
+          },
+          sort: ['influenza_vaccine']
       }
     },
-    sort: ['demographics', 'lab_results', 'disease_conditions', 'risk_factors', 'treatments']
+    sort: ['demographics', 'lab_results', 'disease_conditions', 'risk_factors', 'treatments', 'immunizations']
   };
 
   var irregularLabels = {
@@ -81,6 +88,7 @@ popConnect.DataViewer = function(element, options) {
     lipoid_disorder: {'Yes': 'Lipoid disorder', 'No': 'Without Lipoid disorder'},
     colorectal_cancer_screening: {'Yes': 'Performed Colon Cancer Screen', 'No': 'No Colon Cancer Screen'},
     mammography: {'Yes': 'Mammography Last 24 Months', 'No': 'No Mammography Last 24 Months'},
+    influenza_vaccine: {'Yes': 'Influenza Vaccine Administered', 'No': 'No Influenza Vaccine Administered'},
     ldl_cholesterol: {'100': 'LDL <100 mg/dL', '100-120': 'LDL 100-120 mg/dL', '130-160': 'LDL 130-160 mg/dL', '160-180': 'LDL 160-180 mg/dL', '180+': 'LDL 180+ mg/dL'}
   }
 

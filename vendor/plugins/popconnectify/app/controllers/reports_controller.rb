@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
                         :therapies, :diabetes, :smoking, :hypertension, 
                         :ischemic_vascular_disease, :lipoid_disorder, 
                         :ldl_cholesterol, :colorectal_cancer_screening,
-                        :mammography]
+                        :mammography, :influenza_vaccine]
   
   # These are the hash parameters for loading specific fields, or one single metric on the database
   @@male_query_hash =                             {:gender => ['Male']}
@@ -41,9 +41,25 @@ class ReportsController < ApplicationController
   @@colorectal_cancer_screening_no_query_hash =   {:colorectal_cancer_screening => 'No'}
   @@mammography_yes_query_hash =                  {:mammography => 'Yes'}
   @@mammography_no_query_hash =                   {:mammography => 'No'}
+  @@influenza_vaccine_yes_query_hash =            {:influenza_vaccine => 'Yes'}
+  @@influenza_vaccine_no_query_hash =             {:influenza_vaccine => 'No'}
   
   # GET /reports
   def index
+
+    #i=0
+    #while i<= 343
+    #  begin
+    #    patient = Patient.new
+    #    patient.randomize()
+    #    patient.save!
+    #    i += 1
+    #    puts "creating patient number " + i.to_s
+    #  rescue
+    #    puts "ERROR creating patient " + i.to_s
+    #  end
+    #end
+
     if params[:id]
       @report = Report.find(params[:id])
       load_static_content
@@ -193,6 +209,11 @@ class ReportsController < ApplicationController
       "No" =>   [generate_report(@@mammography_no_query_hash),  @patient_count]
     }
 
+    resp[:influenza_vaccine] = {
+      "Yes" =>  [generate_report(@@influenza_vaccine_yes_query_hash), @patient_count],
+      "No" =>   [generate_report(@@influenza_vaccine_no_query_hash), @patient_count]
+    }
+
     resp
   end
 
@@ -252,13 +273,22 @@ class ReportsController < ApplicationController
                         "social_history smoking_cessation" =>             false,
                         "abstract_results diastolic" =>                   false,
                         "abstract_results ldl_cholesterol" =>             false, 
-                        "abstract_results colorectal_cancer_screening" => false]
+                        "abstract_results colorectal_cancer_screening" => false,
+                        "immunizations influenza_immunization" =>         false,
+                        "vaccines influenza_vaccine" =>                   false]
   end
 
   def generate_population_query(request)
     population_query = "select count(distinct patients.id) from patients"
     population_query = population_query + generate_from_sql(request, generate_new_join_table_hash_status())
     population_query = population_query + generate_where_sql(request, generate_new_join_table_hash_status())
+
+    puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+    puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+    puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+    puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+    puts "THE SELECT QUERY IS " + population_query.to_s
+    
     population_query
   end
 
@@ -374,6 +404,19 @@ class ReportsController < ApplicationController
         if from_tables["conditions mammography"] == false
           from_sql = from_sql + ", conditions mammography"
           from_tables["conditions mammography"] = true
+        end
+      end
+    end
+    
+    if request.has_key?(:influenza_vaccine)
+      if request[:influenza_vaccine].include?("Yes")
+        if from_tables["immunizations influenza_immunization"] == false
+          from_sql = from_sql + ", immunizations influenza_immunization"
+          from_tables["immunizations influenza_immunization"] = true
+        end
+        if from_tables["vaccines influenza_vaccine"] == false
+          from_sql = from_sql + ", vaccines influenza_vaccine"
+          from_tables["vaccines influenza_vaccine"] = true
         end
       end
     end
@@ -762,6 +805,35 @@ class ReportsController < ApplicationController
                                   "or conditions.free_text_name = 'Mammography abnormal finding' " + 
                                   "or conditions.free_text_name = 'Mammography assessment Category 3    Probably benign finding short interval follow up finding' " + 
                                   "or conditions.free_text_name = 'Mammography normal finding')) "
+      end
+    end
+
+    if request.has_key?(:influenza_vaccine)
+      if request[:influenza_vaccine].include?("Yes")
+        if start_using_and_keyword == true
+          where_sql = where_sql + "and "
+        end
+        start_using_and_keyword = true
+        if where_tables["immunizations influenza_immunization"] == false
+          where_sql = where_sql + "influenza_immunization.patient_id = patients.id "
+          where_tables["immunizations influenza_immunization"] = true
+        end
+        if where_tables["vaccines influenza_vaccine"] == false
+          where_sql = where_sql + "and influenza_immunization.vaccine_id = influenza_vaccine.id "
+          where_tables["vaccines influenza_vaccine"] = true
+        end
+        where_sql = where_sql + "and influenza_vaccine.name like 'Influenza Virus Vaccine%' "
+      end
+      if request[:influenza_vaccine].include?("No")
+        if start_using_and_keyword == true
+          where_sql = where_sql + "and "
+        end
+        start_using_and_keyword = true
+        where_sql = where_sql + "patients.id not in (" + 
+                                   "select immunizations.patient_id " +
+                                   "from immunizations, vaccines " +
+                                   "where immunizations.vaccine_id = vaccines.id " +
+                                   "and vaccines.name like 'Influenza Virus Vaccine%') "
       end
     end
 
