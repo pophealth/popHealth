@@ -54,18 +54,18 @@ class ReportsController < ApplicationController
   # GET /reports
   def index
 
-    #i=0
-    #while i<= 100
-    #  begin
-    #    patient = Patient.new
-    #    patient.randomize()
-    #    patient.save!
-    #    i += 1
-    #    puts "creating patient number " + i.to_s
-    #  rescue
-    #    puts "ERROR creating patient " + i.to_s
-    #  end
-    #end
+    i=0
+    while i<= 20
+      begin
+        patient = Patient.new
+        patient.randomize()
+        patient.save!
+        i += 1
+        puts "creating patient number " + i.to_s
+      rescue
+        puts "ERROR creating patient " + i.to_s
+      end
+    end
 
     if params[:id]
       @report = Report.find(params[:id])

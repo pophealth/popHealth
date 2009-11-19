@@ -51,17 +51,20 @@ bp2:
     - 40-50\n\
     - 50-60\n\
     - 60-70\n\
-    - 70-80\n\
-    - 80+\n"
+    - 70-80\n"
 
 bp3:
   numerator_query: "--- \n\
     :blood_pressures: \n\
-    - 120/80\n"
+    - 110/70\n\
+    - 120/80\n\
+    - 140/90\n"
   title: "ABCS: BP Control 3"
   denominator_query: "--- \n\
     :diabetes: \n\
-    - \"Yes\"\n\
+    - \"No\"\n\
+    :ischemic_vascular_disease: \n\
+    - \"No\"\n\
     :hypertension: \n\
     - \"Yes\"\n\
     :age: \n\
@@ -70,21 +73,17 @@ bp3:
     - 40-50\n\
     - 50-60\n\
     - 60-70\n\
-    - 70-80\n\
-    - 80+\n"
+    - 70-80\n"
 
 chol1:
   numerator_query: "--- \n\
-    :blood_pressures: \n\
-    - 120/80\n"
+    :ldl_cholesterol: \n\
+    - \"100\"\n"
   title: "ABCS: Cholesterol Control 1"
   denominator_query: "--- \n\
-    :diabetes: \n\
+    :ischemic_vascular_disease: \n\
     - \"Yes\"\n\
-    :gender: \n\
-    - Male\n\
-    - Female\n\
-    :hypertension: \n\
+    :diabetes: \n\
     - \"Yes\"\n\
     :age: \n\
     - 18-30\n\
@@ -92,13 +91,12 @@ chol1:
     - 40-50\n\
     - 50-60\n\
     - 60-70\n\
-    - 70-80\n\
-    - 80+\n"
+    - 70-80\n"
 
 chol2:
   numerator_query: "--- \n\
-    :blood_pressures: \n\
-    - 120/80\n"
+    :ldl_cholesterol: \n\
+    - \"100\"\n"
   title: "ABCS: Cholesterol Control 2"
   denominator_query: "--- \n\
     :diabetes: \n\
@@ -114,8 +112,7 @@ chol2:
     - 40-50\n\
     - 50-60\n\
     - 60-70\n\
-    - 70-80\n\
-    - 80+\n"
+    - 70-80\n"
 
 abcs_smoking:
   numerator_query: "--- \n\
