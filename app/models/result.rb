@@ -101,14 +101,14 @@ class Result < AbstractResult
         self.result_code_display_name = 'HbA1c'
         self.result_code = '54039-3'
         p = rand
-        if p < 0.20
+        if p < 0.10
           self.value_scalar = rand_range(0, 7)
-        elsif p < 0.45
+        elsif p < 0.60
           self.value_scalar = rand_range(7, 9)
         else
           self.value_scalar = rand_range(9, 18)
         end
-      end   
+      end
     when :LDL_C
       self.value_unit = 'mg/dL'
       self.result_code_display_name = 'LDL-C'

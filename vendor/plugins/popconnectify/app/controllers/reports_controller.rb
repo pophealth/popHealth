@@ -5,11 +5,21 @@ class ReportsController < ApplicationController
                         :therapies, :diabetes, :smoking, :hypertension, 
                         :ischemic_vascular_disease, :lipoid_disorder, 
                         :ldl_cholesterol, :colorectal_cancer_screening,
-                        :mammography]
+                        :mammography, :influenza_vaccine, :hb_a1c]
   
   # These are the hash parameters for loading specific fields, or one single metric on the database
   @@male_query_hash =                             {:gender => ['Male']}
   @@female_query_hash =                           {:gender => ['Female']}
+  
+  @@age_less_18query_hash =                       {:age => ['<18']}
+  @@age_18_30_query_hash =                        {:age => ['18-30']}
+  @@age_30_40_query_hash =                        {:age => ['30-40']}
+  @@age_40_50_query_hash =                        {:age => ['40-50']}
+  @@age_50_60_query_hash =                        {:age => ['50-60']}
+  @@age_60_70_query_hash =                        {:age => ['60-70']}
+  @@age_70_80_query_hash =                        {:age => ['70-80']}
+  @@age_80_plus_query_hash =                      {:age => ['80+']}
+  
   @@age_18_34_query_hash =                        {:age => ['18-34']}
   @@age_35_49_query_hash =                        {:age => ['35-49']}
   @@age_50_64_query_hash =                        {:age => ['50-64']}
@@ -41,9 +51,29 @@ class ReportsController < ApplicationController
   @@colorectal_cancer_screening_no_query_hash =   {:colorectal_cancer_screening => 'No'}
   @@mammography_yes_query_hash =                  {:mammography => 'Yes'}
   @@mammography_no_query_hash =                   {:mammography => 'No'}
+  @@influenza_vaccine_yes_query_hash =            {:influenza_vaccine => 'Yes'}
+  @@influenza_vaccine_no_query_hash =             {:influenza_vaccine => 'No'}
+  @@hb_a1c_less_7_query_hash =                    {:hb_a1c => '<7'}
+  @@hb_a1c_7_8_query_hash =                       {:hb_a1c => '7-8'}
+  @@hb_a1c_8_9_query_hash =                       {:hb_a1c => '8-9'}
+  @@hb_a1c_9_plus_query_hash =                    {:hb_a1c => '9+'}
   
   # GET /reports
   def index
+
+    #i=0
+    #while i<= 100
+    #  begin
+    #    patient = Patient.new
+    #    patient.randomize()
+    #    patient.save!
+    #    i += 1
+    #    puts "creating patient number " + i.to_s
+    #  rescue
+    #    puts "ERROR creating patient " + i.to_s
+    #  end
+    #end
+
     if params[:id]
       @report = Report.find(params[:id])
       load_static_content
@@ -128,11 +158,14 @@ class ReportsController < ApplicationController
     }
 
     resp[:age] = {
-      "18-34" =>  [generate_report(@@age_18_34_query_hash), @patient_count],
-      "35-49" =>  [generate_report(@@age_35_49_query_hash), @patient_count],
-      "50-64" =>  [generate_report(@@age_50_64_query_hash), @patient_count],
-      "65-75" =>  [generate_report(@@age_65_75_query_hash), @patient_count],
-      "76+" =>    [generate_report(@@age_76_up_query_hash), @patient_count]
+      "<18" =>    [generate_report(@@age_less_18query_hash),  @patient_count],
+      "18-30" =>  [generate_report(@@age_18_30_query_hash),   @patient_count],
+      "30-40" =>  [generate_report(@@age_30_40_query_hash),   @patient_count],
+      "40-50" =>  [generate_report(@@age_40_50_query_hash),   @patient_count],
+      "50-60" =>  [generate_report(@@age_50_60_query_hash),   @patient_count],
+      "60-70" =>  [generate_report(@@age_60_70_query_hash),   @patient_count],
+      "70-80" =>  [generate_report(@@age_70_80_query_hash),   @patient_count],
+      "80+" =>    [generate_report(@@age_80_plus_query_hash), @patient_count]
     }
 
     resp[:medications] = {
@@ -194,7 +227,20 @@ class ReportsController < ApplicationController
       "No" =>   [generate_report(@@mammography_no_query_hash),  @patient_count]
     }
 
+    resp[:influenza_vaccine] = {
+      "Yes" =>  [generate_report(@@influenza_vaccine_yes_query_hash), @patient_count],
+      "No" =>   [generate_report(@@influenza_vaccine_no_query_hash),  @patient_count]
+    }
+    
+    resp[:hb_a1c] = {
+      "<7" =>   [generate_report(@@hb_a1c_less_7_query_hash),  @patient_count],
+      "7-8" =>  [generate_report(@@hb_a1c_7_8_query_hash),     @patient_count],
+      "8-9" =>  [generate_report(@@hb_a1c_8_9_query_hash),     @patient_count],
+      "9+" =>   [generate_report(@@hb_a1c_9_plus_query_hash),  @patient_count]
+    }
+
     resp
+
   end
 
   def generate_report(report_request)
@@ -253,7 +299,10 @@ class ReportsController < ApplicationController
                         "social_history smoking_cessation" =>             false,
                         "abstract_results diastolic" =>                   false,
                         "abstract_results ldl_cholesterol" =>             false, 
-                        "abstract_results colorectal_cancer_screening" => false]
+                        "abstract_results colorectal_cancer_screening" => false,
+                        "abstract_results hb_a1c" =>                      false,
+                        "immunizations influenza_immunization" =>         false,
+                        "vaccines influenza_vaccine" =>                   false]
   end
 
   def generate_population_query(request)
@@ -378,6 +427,26 @@ class ReportsController < ApplicationController
         end
       end
     end
+    
+    if request.has_key?(:influenza_vaccine)
+      if request[:influenza_vaccine].include?("Yes")
+        if from_tables["immunizations influenza_immunization"] == false
+          from_sql = from_sql + ", immunizations influenza_immunization"
+          from_tables["immunizations influenza_immunization"] = true
+        end
+        if from_tables["vaccines influenza_vaccine"] == false
+          from_sql = from_sql + ", vaccines influenza_vaccine"
+          from_tables["vaccines influenza_vaccine"] = true
+        end
+      end
+    end
+
+    if request.has_key?(:hb_a1c)
+      if from_tables["abstract_results hb_a1c"] == false
+        from_sql = from_sql + ", abstract_results hb_a1c"
+        from_tables["abstract_results hb_a1c"] = true
+      end
+    end
 
     from_sql
 
@@ -446,24 +515,35 @@ class ReportsController < ApplicationController
           where_sql = where_sql + "or "
         end
         first_age_query = false
-        if next_age_query == "18-34"
-          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*18) "
-          where_sql = where_sql + "and now()::DATE - registration_information.date_of_birth::DATE < (365*35)) "
+        if next_age_query == "<18"
+          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE < (365*18)) "
         end
-        if next_age_query == "35-49"
-          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*35) "
+        if next_age_query == "18-30"
+          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*18) "
+          where_sql = where_sql + "and now()::DATE - registration_information.date_of_birth::DATE < (365*30)) "
+        end
+        if next_age_query == "30-40"
+          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*30) "
+          where_sql = where_sql + "and now()::DATE - registration_information.date_of_birth::DATE < (365*40)) "
+        end
+        if next_age_query == "40-50"
+          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*40) "
           where_sql = where_sql + "and now()::DATE - registration_information.date_of_birth::DATE < (365*50)) "
         end
-        if next_age_query == "50-64"
+        if next_age_query == "50-60"
           where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*50) "
-          where_sql = where_sql + "and now()::DATE - registration_information.date_of_birth::DATE < (365*65)) "
+          where_sql = where_sql + "and now()::DATE - registration_information.date_of_birth::DATE < (365*60)) "
         end
-        if next_age_query == "65-75"
-          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*65) "
-          where_sql = where_sql + "and now()::DATE - registration_information.date_of_birth::DATE < (365*76)) "
+        if next_age_query == "60-70"
+          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*60) "
+          where_sql = where_sql + "and now()::DATE - registration_information.date_of_birth::DATE < (365*70)) "
         end
-        if next_age_query == "76+"
-          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*76)) "
+        if next_age_query == "70-80"
+          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*70) "
+          where_sql = where_sql + "and now()::DATE - registration_information.date_of_birth::DATE < (365*80)) "
+        end
+        if next_age_query == "80+"
+          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*80)) "
         end
       end
       where_sql = where_sql + ")"
@@ -764,6 +844,69 @@ class ReportsController < ApplicationController
                                   "or conditions.free_text_name = 'Mammography assessment Category 3    Probably benign finding short interval follow up finding' " + 
                                   "or conditions.free_text_name = 'Mammography normal finding')) "
       end
+    end
+
+    if request.has_key?(:influenza_vaccine)
+      if request[:influenza_vaccine].include?("Yes")
+        if start_using_and_keyword == true
+          where_sql = where_sql + "and "
+        end
+        start_using_and_keyword = true
+        if where_tables["immunizations influenza_immunization"] == false
+          where_sql = where_sql + "influenza_immunization.patient_id = patients.id "
+          where_tables["immunizations influenza_immunization"] = true
+        end
+        if where_tables["vaccines influenza_vaccine"] == false
+          where_sql = where_sql + "and influenza_immunization.vaccine_id = influenza_vaccine.id "
+          where_tables["vaccines influenza_vaccine"] = true
+        end
+        where_sql = where_sql + "and influenza_vaccine.name like 'Influenza Virus Vaccine%' "
+      end
+      if request[:influenza_vaccine].include?("No")
+        if start_using_and_keyword == true
+          where_sql = where_sql + "and "
+        end
+        start_using_and_keyword = true
+        where_sql = where_sql + "patients.id not in (" + 
+                                   "select immunizations.patient_id " +
+                                   "from immunizations, vaccines " +
+                                   "where immunizations.vaccine_id = vaccines.id " +
+                                   "and vaccines.name like 'Influenza Virus Vaccine%') "
+      end
+    end
+
+    if request.has_key?(:hb_a1c)
+      if where_tables["abstract_results hb_a1c"] == false
+        if start_using_and_keyword == true
+          where_sql = where_sql + "and "
+        end
+        where_sql = where_sql + "hb_a1c.patient_id = patients.id "
+        where_sql = where_sql + "and hb_a1c.result_code = '54039-3' "
+        where_tables["abstract_results hb_a1c"] = true
+        start_using_and_keyword = true
+      end
+      where_sql = where_sql + "and ("
+      first_hb_a1c_query = true
+      hb_a1c_requests = request[:hb_a1c]
+      hb_a1c_requests.each do |next_hb_a1c_query|
+        # or conditional query
+        if first_hb_a1c_query == false
+          where_sql = where_sql + "or "
+        end
+        first_hb_a1c_query = false
+        if next_hb_a1c_query == "<7"
+          where_sql = where_sql + "(hb_a1c.value_scalar::varchar::text::int <= 7) "
+        elsif next_hb_a1c_query == "7-8"
+          where_sql = where_sql + "(hb_a1c.value_scalar::varchar::text::int > 7 "
+          where_sql = where_sql + "and hb_a1c.value_scalar::varchar::text::int <= 8) "
+        elsif next_hb_a1c_query == "8-9"
+          where_sql = where_sql + "(hb_a1c.value_scalar::varchar::text::int > 8 "
+          where_sql = where_sql + "and hb_a1c.value_scalar::varchar::text::int <= 9) "
+        elsif next_hb_a1c_query == "9+"
+          where_sql = where_sql + "(hb_a1c.value_scalar::varchar::text::int > 9) "
+        end
+      end
+      where_sql = where_sql + ")"
     end
 
     where_sql

@@ -48,13 +48,64 @@ class Immunization < ActiveRecord::Base
   end
 
   def randomize(birth_date)
-    self.administration_date = DateTime.new(birth_date.year + rand(DateTime.now.year - birth_date.year), rand(12) + 1, rand(28) + 1)
+    self.administration_date = DateTime.new(birth_date.year + 
+                                            rand(DateTime.now.year - birth_date.year), 
+                                            rand(12) + 1, 
+                                            rand(28) + 1)
     self.lot_number_text = "mm345-417-DFF"
-    self.vaccine = Vaccine.find :random
-    if (rand > 0.5)
+    p = rand
+    # 50% chance patient should be considered of influenza vaccine
+    if p < 0.5
+      influenza_vaccines = Vaccine.find(:all, :conditions => "name like 'Influenza Virus Vaccine%'")
+      random_influenza_vaccine = influenza_vaccines[rand(influenza_vaccines.length)]
+
+      age = Date.today.year - birth_date.year
+      if age <= 2
+        if p < 0.90
+          self.vaccine = random_influenza_vaccine
+        end
+      elsif age <= 10
+        if p < 0.65
+          self.vaccine = random_influenza_vaccine
+        end
+      elsif age <= 20
+        if p < 0.40
+          self.vaccine = random_influenza_vaccine
+        end
+      elsif age <= 30
+        if p < 0.55
+          self.vaccine = random_influenza_vaccine
+        end
+      elsif age <= 40
+        if p < 0.65
+          self.vaccine = random_influenza_vaccine
+        end
+      elsif age <= 50
+        if p < 0.80
+          self.vaccine = random_influenza_vaccine
+        end
+      elsif age <= 60
+        if p < 0.85
+          self.vaccine = random_influenza_vaccine
+        end
+      elsif age <= 70
+        if p < 0.90
+          self.vaccine = random_influenza_vaccine
+        end
+      else
+        if p < 0.95
+          self.vaccine = random_influenza_vaccine
+        end
+      end
+    # 50% chance for some random vaccine
+    else
+      self.vaccine = Vaccine.find :random
+    end
+
+    # 10% chance that the patient refused the vaccine
+    if (rand > 0.1)
       self.refusal = true
       self.no_immunization_reason = NoImmunizationReason.find :random
-
     else
       self.refusal = false
     end
