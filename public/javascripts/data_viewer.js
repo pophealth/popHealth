@@ -66,9 +66,10 @@ popConnect.DataViewer = function(element, options) {
       lab_results: {
         label: 'Lab Results',
         types: {
-          ldl_cholesterol: {label: 'LDL Cholesterol (mg/dL)', sort: ['100', '100-120', '130-160', '160-180', '180+']}
+          ldl_cholesterol: {label: 'LDL Cholesterol (mg/dL)', sort: ['100', '100-120', '130-160', '160-180', '180+']},
+          hb_a1c: {label: 'Hemoglobin A1c (%)', sort: ['<7', '7-8', '8-9', '9+']}
         },
-        sort: ['ldl_cholesterol']
+        sort: ['ldl_cholesterol', 'hb_a1c']
       },
       immunizations: {
           label: 'Immunizations',
@@ -84,12 +85,14 @@ popConnect.DataViewer = function(element, options) {
   var irregularLabels = {
     diabetes: {'Yes': 'Diabetes', 'No': 'Without Diabetes'},
     hypertension: {'Yes': 'Hypertension', 'No': 'Without Hypertension'},
+    medications: {'Aspirin': 'Aspirin Therapy'},
     ischemic_vascular_disease: {'Yes': 'Vascular Disease', 'No': 'Without Vascular Disease'},
-    lipoid_disorder: {'Yes': 'Lipoid disorder', 'No': 'Without Lipoid disorder'},
-    colorectal_cancer_screening: {'Yes': 'Performed Colon Cancer Screen', 'No': 'No Colon Cancer Screen'},
-    mammography: {'Yes': 'Mammography Last 24 Months', 'No': 'No Mammography Last 24 Months'},
-    influenza_vaccine: {'Yes': 'Influenza Vaccine Administered', 'No': 'No Influenza Vaccine Administered'},
-    ldl_cholesterol: {'100': 'LDL <100 mg/dL', '100-120': 'LDL 100-120 mg/dL', '130-160': 'LDL 130-160 mg/dL', '160-180': 'LDL 160-180 mg/dL', '180+': 'LDL 180+ mg/dL'}
+    lipoid_disorder: {'Yes': 'Lipoid disorder', 'No': 'No Lipoid disorder'},
+    colorectal_cancer_screening: {'Yes': 'Colon Cancer Screen', 'No': 'Without Colon Cancer Screen'},
+    mammography: {'Yes': 'Mammography Screen', 'No': 'Without Mammography Screen'},
+    influenza_vaccine: {'Yes': 'Influenza Vaccine', 'No': 'Without Influenza Vaccine'},
+    ldl_cholesterol: {'100': 'LDL <100 mg/dL', '100-120': 'LDL 100-120 mg/dL', '130-160': 'LDL 130-160 mg/dL', '160-180': 'LDL 160-180 mg/dL', '180+': 'LDL 180+ mg/dL'},
+	hb_a1c: {'<7':'Hb A1c < 7%', '7-8':'Hb A1c 7%-8%', '8-9':'Hb A1c 8%-9%', '9+': 'Hb A1c > 9%'}
   }
 
   // Public functions

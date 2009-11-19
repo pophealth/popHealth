@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
                         :therapies, :diabetes, :smoking, :hypertension, 
                         :ischemic_vascular_disease, :lipoid_disorder, 
                         :ldl_cholesterol, :colorectal_cancer_screening,
-                        :mammography, :influenza_vaccine]
+                        :mammography, :influenza_vaccine, :hb_a1c]
   
   # These are the hash parameters for loading specific fields, or one single metric on the database
   @@male_query_hash =                             {:gender => ['Male']}
@@ -43,6 +43,10 @@ class ReportsController < ApplicationController
   @@mammography_no_query_hash =                   {:mammography => 'No'}
   @@influenza_vaccine_yes_query_hash =            {:influenza_vaccine => 'Yes'}
   @@influenza_vaccine_no_query_hash =             {:influenza_vaccine => 'No'}
+  @@hb_a1c_less_7_query_hash =                    {:hb_a1c => '<7'}
+  @@hb_a1c_7_8_query_hash =                       {:hb_a1c => '7-8'}
+  @@hb_a1c_8_9_query_hash =                       {:hb_a1c => '8-9'}
+  @@hb_a1c_9_plus_query_hash =                    {:hb_a1c => '9+'}
   
   # GET /reports
   def index
@@ -211,10 +215,18 @@ class ReportsController < ApplicationController
 
     resp[:influenza_vaccine] = {
       "Yes" =>  [generate_report(@@influenza_vaccine_yes_query_hash), @patient_count],
-      "No" =>   [generate_report(@@influenza_vaccine_no_query_hash), @patient_count]
+      "No" =>   [generate_report(@@influenza_vaccine_no_query_hash),  @patient_count]
+    }
+    
+    resp[:hb_a1c] = {
+      "<7" =>   [generate_report(@@hb_a1c_less_7_query_hash),  @patient_count],
+      "7-8" =>  [generate_report(@@hb_a1c_7_8_query_hash),     @patient_count],
+      "8-9" =>  [generate_report(@@hb_a1c_8_9_query_hash),     @patient_count],
+      "9+" =>   [generate_report(@@hb_a1c_9_plus_query_hash),  @patient_count]
     }
 
     resp
+
   end
 
   def generate_report(report_request)
@@ -274,6 +286,7 @@ class ReportsController < ApplicationController
                         "abstract_results diastolic" =>                   false,
                         "abstract_results ldl_cholesterol" =>             false, 
                         "abstract_results colorectal_cancer_screening" => false,
+                        "abstract_results hb_a1c" =>                      false,
                         "immunizations influenza_immunization" =>         false,
                         "vaccines influenza_vaccine" =>                   false]
   end
@@ -282,13 +295,6 @@ class ReportsController < ApplicationController
     population_query = "select count(distinct patients.id) from patients"
     population_query = population_query + generate_from_sql(request, generate_new_join_table_hash_status())
     population_query = population_query + generate_where_sql(request, generate_new_join_table_hash_status())
-
-    puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-    puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-    puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-    puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-    puts "THE SELECT QUERY IS " + population_query.to_s
-    
     population_query
   end
 
@@ -418,6 +424,13 @@ class ReportsController < ApplicationController
           from_sql = from_sql + ", vaccines influenza_vaccine"
           from_tables["vaccines influenza_vaccine"] = true
         end
+      end
+    end
+
+    if request.has_key?(:hb_a1c)
+      if from_tables["abstract_results hb_a1c"] == false
+        from_sql = from_sql + ", abstract_results hb_a1c"
+        from_tables["abstract_results hb_a1c"] = true
       end
     end
 
@@ -835,6 +848,40 @@ class ReportsController < ApplicationController
                                    "where immunizations.vaccine_id = vaccines.id " +
                                    "and vaccines.name like 'Influenza Virus Vaccine%') "
       end
+    end
+
+    if request.has_key?(:hb_a1c)
+      if where_tables["abstract_results hb_a1c"] == false
+        if start_using_and_keyword == true
+          where_sql = where_sql + "and "
+        end
+        where_sql = where_sql + "hb_a1c.patient_id = patients.id "
+        where_sql = where_sql + "and hb_a1c.result_code = '54039-3' "
+        where_tables["abstract_results hb_a1c"] = true
+        start_using_and_keyword = true
+      end
+      where_sql = where_sql + "and ("
+      first_hb_a1c_query = true
+      hb_a1c_requests = request[:hb_a1c]
+      hb_a1c_requests.each do |next_hb_a1c_query|
+        # or conditional query
+        if first_hb_a1c_query == false
+          where_sql = where_sql + "or "
+        end
+        first_hb_a1c_query = false
+        if next_hb_a1c_query == "<7"
+          where_sql = where_sql + "(hb_a1c.value_scalar::varchar::text::int <= 7) "
+        elsif next_hb_a1c_query == "7-8"
+          where_sql = where_sql + "(hb_a1c.value_scalar::varchar::text::int > 7 "
+          where_sql = where_sql + "and hb_a1c.value_scalar::varchar::text::int <= 8) "
+        elsif next_hb_a1c_query == "8-9"
+          where_sql = where_sql + "(hb_a1c.value_scalar::varchar::text::int > 8 "
+          where_sql = where_sql + "and hb_a1c.value_scalar::varchar::text::int <= 9) "
+        elsif next_hb_a1c_query == "9+"
+          where_sql = where_sql + "(hb_a1c.value_scalar::varchar::text::int > 9) "
+        end
+      end
+      where_sql = where_sql + ")"
     end
 
     where_sql
