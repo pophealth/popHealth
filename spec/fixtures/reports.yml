@@ -7,10 +7,11 @@ aspirin:
   :diabetes: \n\
   - \"Yes\"\n\
   :age: \n\
-  - 35-49\n\
-  - 50-64\n\
-  - 65-75\n\
-  - 76+\n"
+  - 40-50\n\
+  - 50-60\n\
+  - 60-70\n\
+  - 70-80\n\
+  - 80+\n"
 
 bp1:
   numerator_query: "--- \n\
@@ -25,11 +26,13 @@ bp1:
     :ischemic_vascular_disease: \n\
     - \"No\"\n\
     :age: \n\
-    - 18-34\n\
-    - 35-49\n\
-    - 50-64\n\
-    - 65-75\n\
-    - 76+\n"
+    - 18-30\n\
+    - 30-40\n\
+    - 40-50\n\
+    - 50-60\n\
+    - 60-70\n\
+    - 70-80\n\
+    - 80+\n"
 
 bp2:
   numerator_query: "--- \n\
@@ -43,11 +46,13 @@ bp2:
     :hypertension: \n\
     - \"Yes\"\n\
     :age: \n\
-    - 18-34\n\
-    - 35-49\n\
-    - 50-64\n\
-    - 65-75\n\
-    - 76+\n"
+    - 18-30\n\
+    - 30-40\n\
+    - 40-50\n\
+    - 50-60\n\
+    - 60-70\n\
+    - 70-80\n\
+    - 80+\n"
 
 bp3:
   numerator_query: "--- \n\
@@ -60,11 +65,13 @@ bp3:
     :hypertension: \n\
     - \"Yes\"\n\
     :age: \n\
-    - 18-34\n\
-    - 35-49\n\
-    - 50-64\n\
-    - 65-75\n\
-    - 76+\n"
+    - 18-30\n\
+    - 30-40\n\
+    - 40-50\n\
+    - 50-60\n\
+    - 60-70\n\
+    - 70-80\n\
+    - 80+\n"
 
 chol1:
   numerator_query: "--- \n\
@@ -80,11 +87,13 @@ chol1:
     :hypertension: \n\
     - \"Yes\"\n\
     :age: \n\
-    - 18-34\n\
-    - 35-49\n\
-    - 50-64\n\
-    - 65-75\n\
-    - 76+\n"
+    - 18-30\n\
+    - 30-40\n\
+    - 40-50\n\
+    - 50-60\n\
+    - 60-70\n\
+    - 70-80\n\
+    - 80+\n"
 
 chol2:
   numerator_query: "--- \n\
@@ -100,11 +109,13 @@ chol2:
     :hypertension: \n\
     - \"Yes\"\n\
     :age: \n\
-    - 18-34\n\
-    - 35-49\n\
-    - 50-64\n\
-    - 65-75\n\
-    - 76+\n"
+    - 18-30\n\
+    - 30-40\n\
+    - 40-50\n\
+    - 50-60\n\
+    - 60-70\n\
+    - 70-80\n\
+    - 80+\n"
 
 abcs_smoking:
   numerator_query: "--- \n\
@@ -117,11 +128,13 @@ abcs_smoking:
     :smoking: \n\
     - Current Smoker\n\
     :age: \n\
-    - 18-34\n\
-    - 35-49\n\
-    - 50-64\n\
-    - 65-75\n\
-    - 76+\n"
+    - 18-30\n\
+    - 30-40\n\
+    - 40-50\n\
+    - 50-60\n\
+    - 60-70\n\
+    - 70-80\n\
+    - 80+\n"
 
 ht_bp:
   numerator_query: "--- \n\
@@ -134,11 +147,13 @@ ht_bp:
     :hypertension: \n\
     - \"Yes\"\n\
     :age: \n\
-    - 18-34\n\
-    - 35-49\n\
-    - 50-64\n\
-    - 65-75\n\
-    - 76+\n"
+    - 18-30\n\
+    - 30-40\n\
+    - 40-50\n\
+    - 50-60\n\
+    - 60-70\n\
+    - 70-80\n\
+    - 80+\n"
 
 da1c:
   numerator_query: "--- \n\
@@ -169,11 +184,13 @@ smoking:
     :smoking: \n\
     - Current Smoker\n\
     :age: \n\
-    - 18-34\n\
-    - 35-49\n\
-    - 50-64\n\
-    - 65-75\n\
-    - 76+\n"
+    - 18-30\n\
+    - 30-40\n\
+    - 40-50\n\
+    - 50-60\n\
+    - 60-70\n\
+    - 70-80\n\
+    - 80+\n"
 
 hr_cardiac:
   numerator_query: "--- \n\
@@ -191,9 +208,13 @@ colorectal:
   title: Colorectal Cancer Screening
   denominator_query: "--- \n\
     :age: \n\
-    - 50-64\n\
-    - 65-75\n\
-    - 76+\n"
+    - 18-30\n\
+    - 30-40\n\
+    - 40-50\n\
+    - 50-60\n\
+    - 60-70\n\
+    - 70-80\n\
+    - 80+\n"
 
 mammography:
   numerator_query: "--- \n\
@@ -202,9 +223,13 @@ mammography:
   title: "Mammography Screening"
   denominator_query: "--- \n\
     :age: \n\
-    - 50-64\n\
-    - 65-75\n\
-    - 76+\n"
+    - 18-30\n\
+    - 30-40\n\
+    - 40-50\n\
+    - 50-60\n\
+    - 60-70\n\
+    - 70-80\n\
+    - 80+\n"
 
 flu:
   numerator_query: "--- \n\

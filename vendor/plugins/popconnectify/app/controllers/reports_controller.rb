@@ -10,6 +10,16 @@ class ReportsController < ApplicationController
   # These are the hash parameters for loading specific fields, or one single metric on the database
   @@male_query_hash =                             {:gender => ['Male']}
   @@female_query_hash =                           {:gender => ['Female']}
+  
+  @@age_less_18query_hash =                       {:age => ['<18']}
+  @@age_18_30_query_hash =                        {:age => ['18-30']}
+  @@age_30_40_query_hash =                        {:age => ['30-40']}
+  @@age_40_50_query_hash =                        {:age => ['40-50']}
+  @@age_50_60_query_hash =                        {:age => ['50-60']}
+  @@age_60_70_query_hash =                        {:age => ['60-70']}
+  @@age_70_80_query_hash =                        {:age => ['70-80']}
+  @@age_80_plus_query_hash =                      {:age => ['80+']}
+  
   @@age_18_34_query_hash =                        {:age => ['18-34']}
   @@age_35_49_query_hash =                        {:age => ['35-49']}
   @@age_50_64_query_hash =                        {:age => ['50-64']}
@@ -147,11 +157,14 @@ class ReportsController < ApplicationController
     }
 
     resp[:age] = {
-      "18-34" =>  [generate_report(@@age_18_34_query_hash), @patient_count],
-      "35-49" =>  [generate_report(@@age_35_49_query_hash), @patient_count],
-      "50-64" =>  [generate_report(@@age_50_64_query_hash), @patient_count],
-      "65-75" =>  [generate_report(@@age_65_75_query_hash), @patient_count],
-      "76+" =>    [generate_report(@@age_76_up_query_hash), @patient_count]
+      "<18" =>    [generate_report(@@age_less_18query_hash),  @patient_count],
+      "18-30" =>  [generate_report(@@age_18_30_query_hash),   @patient_count],
+      "30-40" =>  [generate_report(@@age_30_40_query_hash),   @patient_count],
+      "40-50" =>  [generate_report(@@age_40_50_query_hash),   @patient_count],
+      "50-60" =>  [generate_report(@@age_50_60_query_hash),   @patient_count],
+      "60-70" =>  [generate_report(@@age_60_70_query_hash),   @patient_count],
+      "70-80" =>  [generate_report(@@age_70_80_query_hash),   @patient_count],
+      "80+" =>    [generate_report(@@age_80_plus_query_hash), @patient_count]
     }
 
     resp[:medications] = {
@@ -501,24 +514,35 @@ class ReportsController < ApplicationController
           where_sql = where_sql + "or "
         end
         first_age_query = false
-        if next_age_query == "18-34"
-          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*18) "
-          where_sql = where_sql + "and now()::DATE - registration_information.date_of_birth::DATE < (365*35)) "
+        if next_age_query == "<18"
+          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE < (365*18)) "
         end
-        if next_age_query == "35-49"
-          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*35) "
+        if next_age_query == "18-30"
+          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*18) "
+          where_sql = where_sql + "and now()::DATE - registration_information.date_of_birth::DATE < (365*30)) "
+        end
+        if next_age_query == "30-40"
+          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*30) "
+          where_sql = where_sql + "and now()::DATE - registration_information.date_of_birth::DATE < (365*40)) "
+        end
+        if next_age_query == "40-50"
+          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*40) "
           where_sql = where_sql + "and now()::DATE - registration_information.date_of_birth::DATE < (365*50)) "
         end
-        if next_age_query == "50-64"
+        if next_age_query == "50-60"
           where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*50) "
-          where_sql = where_sql + "and now()::DATE - registration_information.date_of_birth::DATE < (365*65)) "
+          where_sql = where_sql + "and now()::DATE - registration_information.date_of_birth::DATE < (365*60)) "
         end
-        if next_age_query == "65-75"
-          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*65) "
-          where_sql = where_sql + "and now()::DATE - registration_information.date_of_birth::DATE < (365*76)) "
+        if next_age_query == "60-70"
+          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*60) "
+          where_sql = where_sql + "and now()::DATE - registration_information.date_of_birth::DATE < (365*70)) "
         end
-        if next_age_query == "76+"
-          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*76)) "
+        if next_age_query == "70-80"
+          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*70) "
+          where_sql = where_sql + "and now()::DATE - registration_information.date_of_birth::DATE < (365*80)) "
+        end
+        if next_age_query == "80+"
+          where_sql = where_sql + "(now()::DATE - registration_information.date_of_birth::DATE >= (365*80)) "
         end
       end
       where_sql = where_sql + ")"

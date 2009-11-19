@@ -31,7 +31,7 @@ popConnect.DataViewer = function(element, options) {
         label: 'Demographics',
         types: {
           gender: {label: 'Gender', sort: ['Male', 'Female']},
-          age: {label: 'Age', sort: ['18-34', '35-49', '50-64', '65-75', '76+']}
+          age: {label: 'Age', sort: ['<18', '18-30', '30-40', '40-50', '50-60', '60-70', '70-80', '80+']}
         },
         sort: ['gender', 'age']
       },
