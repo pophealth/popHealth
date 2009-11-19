@@ -158,7 +158,7 @@ ht_bp:
 da1c:
   numerator_query: "--- \n\
     :ldl_cholesterol: \n\
-    - <100\n"
+    - 100\n"
   title: Diabetic A1C Under Control
   denominator_query: "--- \n\
     :gender: \n\
@@ -168,7 +168,7 @@ da1c:
 ldlc: 
   numerator_query: "--- \n\
     :ldl_cholesterol: \n\
-    - <100\n"
+    - 100\n"
   title: LDL-C Under Control
   denominator_query: "--- \n\
     :gender: \n\

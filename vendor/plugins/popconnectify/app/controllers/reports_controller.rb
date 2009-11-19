@@ -62,7 +62,7 @@ class ReportsController < ApplicationController
   def index
 
     #i=0
-    #while i<= 343
+    #while i<= 100
     #  begin
     #    patient = Patient.new
     #    patient.randomize()
