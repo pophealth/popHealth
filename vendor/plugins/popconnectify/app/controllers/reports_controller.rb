@@ -104,7 +104,7 @@ class ReportsController < ApplicationController
     resp = {}
 
     # create a new report
-    if params[:id].blank? && (!params[:numerator].blank? || !params[:denominator].blank? || !params[:title].blank?)
+    if params[:id].blank? && (params[:numerator].present? || params[:denominator].present? || params[:title].present?)
       @report = Report.new
       @report.numerator_query = params[:numerator] || {}
       @report.denominator_query = params[:denominator] || {}
@@ -122,8 +122,8 @@ class ReportsController < ApplicationController
       @report.title = "Untitled Report"
     elsif params[:id] # update an existing report
       @report = Report.find(params[:id])
-      @report.numerator_query = params[:numerator] if params[:numerator]
-      @report.denominator_query = params[:denominator] if params[:denominator]
+      @report.numerator_query = params[:numerator] || {}
+      @report.denominator_query = params[:denominator] || {}
       @report.title = params[:title] if params[:title]
       @report.denominator = generate_report(@report.denominator_query)
     end

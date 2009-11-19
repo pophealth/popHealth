@@ -72,5 +72,21 @@ describe ReportsController do
     
     JSON.load(response.body)['id'].should == assigns[:report].id
   end
+  
+  it "should respond with blank numerator and denominator when POSTed with an ID and no numerator or denominator" do
+    report = reports(:bp1)
+    
+    post :create, :id => report.id
+    
+    report.reload
+    
+    report.denominator_query.should == {:hypertension=>["Yes"], :ischemic_vascular_disease=>["No"], :age=>["18-34", "35-49", "50-64", "65-75", "76+"]}
+    
+    json_response = JSON.load(response.body)
+    
+    json_response['denominator_fields'].should == {}
+    json_response['numerator_fields'].should == {}
+    json_response['id'].should == reports(:bp1).id
+  end
 
 end
