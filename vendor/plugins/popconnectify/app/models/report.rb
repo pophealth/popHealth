@@ -65,7 +65,7 @@ class Report < ActiveRecord::Base
           pqri_xml.tin("Tax Id #")
           pqri_xml.tag! :'waiver-signed', "Y"
           pqri_xml.tag! :'pqri-measure' do
-            pqri_xml.tag! :'pqri-measure-number', self.title
+            pqri_xml.tag! :'pqri-measure-number', self.id
             pqri_xml.tag! :'eligible-instances', self.denominator
             pqri_xml.tag! :'meets-performance-instances', self.numerator
             pqri_xml.tag! :'performance-exclusion-instances', 0
