@@ -54,24 +54,25 @@ class ReportsController < ApplicationController
   # GET /reports
   def index
 
-    i=0
-    while i<= 20
-      begin
-        patient = Patient.new
-        patient.randomize()
-        patient.save!
-        i += 1
-        puts "creating patient number " + i.to_s
-      rescue
-        puts "ERROR creating patient " + i.to_s
-      end
-    end
-
+    #i=0
+    #while i<= 4000
+    #  begin
+    #    patient = Patient.new
+    #    patient.randomize()
+    #    patient.save!
+    #    i += 1
+    #    puts "creating patient number " + i.to_s
+    #  rescue
+    #    puts "ERROR creating patient " + i.to_s
+    #  end
+    #end
+    load_static_content
     if params[:id]
       @report = Report.find(params[:id])
-      load_static_content
-      @report.denominator = generate_report(@report.denominator_query)
-      @report.numerator = generate_report(merge_popconnect_request(@report.denominator_query, @report.numerator_query))
+      @report.numerator = (generate_report(merge_popconnect_request(@report.denominator_query, 
+                                                                    @report.numerator_query)))
+      @report.denominator = (generate_report(@report.denominator_query))
+      @report.save!
       resp = {}
       resp = @report.to_json_hash
       load_static_content
@@ -81,6 +82,12 @@ class ReportsController < ApplicationController
     else
       # load the sidebar summary information
       @reports = Report.all(:order => 'title asc')
+      @reports.each do |next_report|
+        next_report.numerator = (generate_report(merge_popconnect_request(next_report.denominator_query,
+                                                                          next_report.numerator_query)))
+        next_report.denominator = (generate_report(next_report.denominator_query))
+        next_report.save!
+      end
       resp = {
         "populationCount" => Patient.count_by_sql("select count(*) from patients").to_s,
         "populationName" => "Columbia Road Health Services",

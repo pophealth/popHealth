@@ -1,21 +1,5 @@
 class Report < ActiveRecord::Base
   
-  def numerator=(num)
-    @numerator = num
-  end
-  
-  def denominator=(num)
-    @denominator = num
-  end
-  
-  def numerator
-    @numerator || 123
-  end
-  
-  def denominator
-    @denominator || 1234
-  end
-
   def numerator_query=(val)
     @numerator_query = val
   end
@@ -82,10 +66,10 @@ class Report < ActiveRecord::Base
           pqri_xml.tag! :'waiver-signed', "Y"
           pqri_xml.tag! :'pqri-measure' do
             pqri_xml.tag! :'pqri-measure-number', self.title
-            pqri_xml.tag! :'eligible-instances', self.denominator       # denominator
-            pqri_xml.tag! :'meets-performance-instances', self.numerator # numerator 
+            pqri_xml.tag! :'eligible-instances', self.denominator
+            pqri_xml.tag! :'meets-performance-instances', self.numerator
             pqri_xml.tag! :'performance-exclusion-instances', 0
-            pqri_xml.tag! :'performance-not-met-instances', self.denominator - self.numerator
+            pqri_xml.tag! :'performance-not-met-instances', (self.denominator - self.numerator)
             pqri_xml.tag! :'reporting-rate', "100.00"
             pqri_xml.tag! :'performance-rate', Float.induced_from(self.numerator) / Float.induced_from(self.denominator) * 100
           end

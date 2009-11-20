@@ -443,8 +443,10 @@ ActiveRecord::Schema.define(:version => 20091015151118) do
 
   create_table "reports", :force => true do |t|
     t.string   "title"
-    t.string   "numerator_query",   :limit => 2000
-    t.string   "denominator_query", :limit => 2000
+    t.string   "numerator_query",   :limit => 8192
+    t.string   "denominator_query", :limit => 8192
+    t.integer  "numerator"
+    t.integer  "denominator"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
