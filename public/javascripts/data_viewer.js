@@ -93,7 +93,7 @@ popConnect.DataViewer = function(element, options) {
     influenza_vaccine: {'Yes': 'Influenza Vaccine', 'No': 'Without Influenza Vaccine'},
     ldl_cholesterol: {'100': 'LDL <100 mg/dL', '100-120': 'LDL 100-120 mg/dL', '130-160': 'LDL 130-160 mg/dL', '160-180': 'LDL 160-180 mg/dL', '180+': 'LDL 180+ mg/dL'},
 	hb_a1c: {'<7':'Hb A1c < 7%', '7-8':'Hb A1c 7%-8%', '8-9':'Hb A1c 8%-9%', '9+': 'Hb A1c > 9%'}
-  }
+  };
 
   // Public functions
 
@@ -112,7 +112,7 @@ popConnect.DataViewer = function(element, options) {
   this.selectReport = function(id) {
     busy();
     that.reload({id: id}, 'GET');
-  }
+  };
   
   this.newReport = function() {
     busy();
@@ -121,7 +121,7 @@ popConnect.DataViewer = function(element, options) {
       denominator_fields: []       // These fields should match up letter-for-letter with the actual field names
     };
     that.reload(buildTailoredData(), 'POST');
-  }
+  };
 
   // Reload DOM elements from data
   this.refresh = function() {
@@ -197,7 +197,6 @@ popConnect.DataViewer = function(element, options) {
 
     dataDefinition.denominatorFieldsDomNode.empty();
     var hasDenominator = false; // There must be a better way to do that
-    var key;
     for(key in data.denominator_fields) {
       if(data.denominator_fields.hasOwnProperty(key)) {
         hasDenominator = true;
@@ -282,7 +281,7 @@ popConnect.DataViewer = function(element, options) {
               });
             }
             var thisPercentage = setAt / data.count * 100;
-            if(thisPercentage < .5) {
+            if(thisPercentage < 0.5) {
               $(value).find('.percentage').text('<1');
             } else {
               $(value).find('.percentage').text(Math.round(thisPercentage));
@@ -325,7 +324,7 @@ popConnect.DataViewer = function(element, options) {
       dataDefinition.reportTitle.toggle();
       dataDefinition.reportTitleEdit.toggle();
       if(data.title) {
-        dataDefinition.changedReportTitle.val(data.title)
+        dataDefinition.changedReportTitle.val(data.title);
       } else {
         dataDefinition.changedReportTitle.val('Type report name');
       }
@@ -429,7 +428,7 @@ popConnect.DataViewer = function(element, options) {
             return;
           } else {
             if(!fields_objs[that.currentlyDraggedSubsection]) {
-              fields_objs[that.currentlyDraggedSubsection] = []
+              fields_objs[that.currentlyDraggedSubsection] = [];
             }
             fields_objs[that.currentlyDraggedSubsection].push(that.currentlyDraggedValue);
 
@@ -492,15 +491,16 @@ popConnect.DataViewer = function(element, options) {
     $('body').droppable({
        drop: function(evt, ui) {
          var reload = false;
+         var inArr;
          if(data.numerator_fields[that.currentlyDraggedSubsection]) {
-           var inArr = $.inArray(that.currentlyDraggedValue, data.numerator_fields[that.currentlyDraggedSubsection]);
+           inArr = $.inArray(that.currentlyDraggedValue, data.numerator_fields[that.currentlyDraggedSubsection]);
            if(inArr > -1) {
              reload = true;
              data.numerator_fields[that.currentlyDraggedSubsection].splice(inArr, 1);
            }
          }
          if(data.denominator_fields[that.currentlyDraggedSubsection]) {
-           var inArr = $.inArray(that.currentlyDraggedValue, data.denominator_fields[that.currentlyDraggedSubsection]);
+           inArr = $.inArray(that.currentlyDraggedValue, data.denominator_fields[that.currentlyDraggedSubsection]);
            if(inArr > -1) {
              reload = true;
              data.denominator_fields[that.currentlyDraggedSubsection].splice(inArr, 1);
@@ -512,13 +512,14 @@ popConnect.DataViewer = function(element, options) {
          }
        }
     });
-    
+    var requestData;
+    var method;
     if(data.id) {
-      var requestData = {id: data.id}
-      var method = "GET";
+      requestData = {id: data.id};
+      method = "GET";
     } else {
-      var requestData = buildTailoredData();
-      var method = "POST";
+      requestData = buildTailoredData();
+      method = "POST";
     }
     
     that.reload(requestData, method);
@@ -528,8 +529,8 @@ popConnect.DataViewer = function(element, options) {
   function buildTailoredData() {
     var query_object = {
       numerator: data.numerator_fields,
-      denominator: data.denominator_fields,
-    }
+      denominator: data.denominator_fields
+    };
     
     if(data.title) {
       query_object.title = data.title;
@@ -570,4 +571,4 @@ popConnect.DataViewer = function(element, options) {
   };
 
   _init(options);
-}
+};

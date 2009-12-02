@@ -52,6 +52,8 @@ popConnect.ReportNavigator = function(element, options) {
       url: dataUrl,
       dataType: 'json',
       success: function(responseData) {
+        alert('got ajax');
+        
         data = responseData;
         that.refresh();
         notBusy();
@@ -66,7 +68,7 @@ popConnect.ReportNavigator = function(element, options) {
           onError();
         }
       }
-    })
+    });
   };
 
 
@@ -96,6 +98,7 @@ popConnect.ReportNavigator = function(element, options) {
   };
   
   this.updateReport = function(reportData) {
+    var percentage;
     domReferences.reportsContainer.children().removeClass('selected');
     if(reportData.id) {
       var found = false;
@@ -106,7 +109,7 @@ popConnect.ReportNavigator = function(element, options) {
           report.numerator = reportData.numerator;
           
           report.domNode.find('.report-name').text(report.title);
-          var percentage = 0;
+          percentage = 0;
           if(reportData.denominator > 0) {
             percentage = reportData.numerator / reportData.denominator * 100;
           }
@@ -123,8 +126,8 @@ popConnect.ReportNavigator = function(element, options) {
         report = {
           title: reportData.title,
           id: reportData.id
-        }
-        var percentage = 0;
+        };
+        percentage = 0;
         if(reportData.denominator > 0) {
           percentage = reportData.numerator / reportData.denominator * 100;
         }
@@ -135,16 +138,15 @@ popConnect.ReportNavigator = function(element, options) {
           data.reports.push(report);
       }
     } 
-  }
+  };
 
   // Private functions
   function _init(options) {
     if(options.dataViewer) {
       options.dataViewer.onComplete = that.updateReport;      
     }
-    
     that.buildInitialDom();
-    that.reload();
+    that.reload();    
   };
 
   // The other option is to post it, which might be necessary if the query string becomes long...
@@ -183,10 +185,11 @@ popConnect.ReportNavigator = function(element, options) {
       percentage = report.numerator / report.denominator * 100;
     }
     
+    var text;
     if(percentage < 0.5 && percentage > 0) {
-      var text = '<1%';
+      text = '<1%';
     } else {
-      var text = Math.round(percentage) + '%';
+      text = Math.round(percentage) + '%';
     }
     
     var reportDom = $('<li>').addClass('report').append(
@@ -207,4 +210,4 @@ popConnect.ReportNavigator = function(element, options) {
   }
 
   _init(options);
-}
+};

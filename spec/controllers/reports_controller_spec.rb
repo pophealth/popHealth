@@ -45,7 +45,7 @@ describe ReportsController do
     
     report.reload
     
-    report.denominator_query.should == {:hypertension=>["Yes"], :ischemic_vascular_disease=>["No"], :age=>["18-34", "35-49", "50-64", "65-75", "76+"]}
+    report.denominator_query.should == {:hypertension=>["Yes"], :ischemic_vascular_disease=>["No"], :age=>["18-30", "30-40", "40-50", "50-60", "60-70", "70-80", "80+"]}
     
     json_response = JSON.load(response.body)
     
@@ -80,7 +80,7 @@ describe ReportsController do
     
     report.reload
     
-    report.denominator_query.should == {:hypertension=>["Yes"], :ischemic_vascular_disease=>["No"], :age=>["18-34", "35-49", "50-64", "65-75", "76+"]}
+    report.denominator_query.should == {:hypertension=>["Yes"], :ischemic_vascular_disease=>["No"], :age=>["18-30", "30-40", "40-50", "50-60", "60-70", "70-80", "80+"]}
     
     json_response = JSON.load(response.body)
     
