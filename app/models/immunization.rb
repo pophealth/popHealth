@@ -48,8 +48,7 @@ class Immunization < ActiveRecord::Base
   end
 
   def randomize(birth_date)
-    self.administration_date = DateTime.new(birth_date.year + 
-                                            rand(DateTime.now.year - birth_date.year), 
+    self.administration_date = DateTime.new(rand_range(birth_date.year, DateTime.now.year), 
                                             rand(12) + 1, 
                                             rand(28) + 1)
     self.lot_number_text = "mm345-417-DFF"
