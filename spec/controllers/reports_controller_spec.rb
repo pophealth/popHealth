@@ -30,7 +30,7 @@ describe ReportsController do
     json_response['numerator'].should == 0
     json_response['denominator'].should == 0
     json_response['numerator_fields'].keys[0].should == 'blood_pressures'
-    json_response['denominator_fields'].keys[0].should == 'hypertension'
+    json_response['denominator_fields'].keys[1].should == 'hypertension'
     
     # Make sure the other fields aren't nil
     json_response['hypertension'].should_not be_nil

@@ -1,5 +1,5 @@
 class XdsPlan < TestPlan
-  serialize :test_type_data, ::XDS::Metadata
+  #serialize :test_type_data, ::XDS::Metadata
   validates_presence_of :test_type_data
 
   # Return a list of XDS metadata objects corresponding to the current patient identifier

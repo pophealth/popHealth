@@ -53,8 +53,8 @@ class ReportsController < ApplicationController
   
   # GET /reports
   def index
-    i=0
-    while i<= 50
+   # i=0
+  #  while i<= 50
       #begin
       #  patient = Patient.new
       #  patient.randomize()
@@ -64,7 +64,7 @@ class ReportsController < ApplicationController
       #rescue
       #  puts "ERROR creating patient " + i.to_s + ": "+ $!
       #end
-    end
+   # end
     load_static_content
     if params[:id]
       @report = Report.find(params[:id])
