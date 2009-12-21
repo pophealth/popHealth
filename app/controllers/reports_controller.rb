@@ -68,9 +68,13 @@ class ReportsController < ApplicationController
     load_static_content
     if params[:id]
       @report = Report.find(params[:id])
-      @report.numerator = (generate_report(merge_popconnect_request(@report.denominator_query, 
-                                                                    @report.numerator_query)))
       @report.denominator = (generate_report(@report.denominator_query))
+      # only run the numerator query if there are any fields provided
+      if @report.numerator_query.size > 0
+        @report.numerator = generate_report(merge_popconnect_request(@report.denominator_query, @report.numerator_query))
+      else
+        @report.numerator = 0
+      end
       @report.save!
       resp = {}
       resp = @report.to_json_hash
@@ -82,9 +86,16 @@ class ReportsController < ApplicationController
       # load the sidebar summary information
       @reports = Report.all(:order => 'title asc')
       @reports.each do |next_report|
-        next_report.numerator = (generate_report(merge_popconnect_request(next_report.denominator_query,
-                                                                          next_report.numerator_query)))
         next_report.denominator = (generate_report(next_report.denominator_query))
+        
+        # only run the numerator query if there are any fields provided
+        if next_report.numerator_query.size > 0
+          next_report.numerator = generate_report(merge_popconnect_request(next_report.denominator_query,
+                                                                            next_report.numerator_query))
+        else
+          next_report.numerator = 0
+        end
+        
         next_report.save!
       end
       resp = {

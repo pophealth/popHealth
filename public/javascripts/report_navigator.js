@@ -52,7 +52,7 @@ popConnect.ReportNavigator = function(element, options) {
       url: dataUrl,
       dataType: 'json',
       success: function(responseData) {
-        alert('got ajax');
+       // alert('got ajax');
         
         data = responseData;
         that.refresh();

@@ -216,13 +216,9 @@ colorectal:
   title: Colorectal Cancer Screening
   denominator_query: "--- \n\
     :age: \n\
-    - 18-30\n\
-    - 30-40\n\
-    - 40-50\n\
     - 50-60\n\
     - 60-70\n\
-    - 70-80\n\
-    - 80+\n"
+    - 70-80\n"
 
 mammography:
   numerator_query: "--- \n\
@@ -230,14 +226,12 @@ mammography:
     - \"Yes\"\n"
   title: "Mammography Screening"
   denominator_query: "--- \n\
+    :gender: \n\
+    - Female\n\
     :age: \n\
-    - 18-30\n\
-    - 30-40\n\
     - 40-50\n\
     - 50-60\n\
-    - 60-70\n\
-    - 70-80\n\
-    - 80+\n"
+    - 60-70\n"
 
 flu:
   numerator_query: "--- \n\
@@ -246,10 +240,12 @@ flu:
   title: Influenza Vaccination
   denominator_query: "--- \n\
     :age: \n\
-    - 18-30\n\
-    - 30-40\n\
-    - 40-50\n\
     - 50-60\n\
     - 60-70\n\
     - 70-80\n\
     - 80+\n"
+
+new:
+  numerator_query: "--- {}\n\n"
+  title: Untitled
+  denominator_query: "--- {}\n\n"

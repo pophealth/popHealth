@@ -30,7 +30,7 @@ class AccountController < ApplicationController
     self.current_user = @user
     
     # user has no test plans on initial signup, go straight to patient data
-    redirect_to patients_url
+    redirect_to '/popconnect'
   rescue ActiveRecord::RecordInvalid
     render :action => 'signup'
   end
