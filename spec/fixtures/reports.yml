@@ -240,6 +240,10 @@ flu:
   title: Influenza Vaccination
   denominator_query: "--- \n\
     :age: \n\
+    - <18\n\
+    - 18-30\n\
+    - 30-40\n\
+    - 40-50\n\
     - 50-60\n\
     - 60-70\n\
     - 70-80\n\
