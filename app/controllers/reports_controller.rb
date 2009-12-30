@@ -111,7 +111,8 @@ class ReportsController < ApplicationController
   def create
 
     resp = {}
-
+    load_static_content
+    
     # create a new report
     if params[:id].blank? && (params[:numerator].present? || params[:denominator].present? || params[:title].present?)
       @report = Report.new
@@ -120,8 +121,10 @@ class ReportsController < ApplicationController
       @report.title = params[:title] || "Untitled Report"
       if !params[:denominator].blank? 
         @report.denominator = generate_report(@report.denominator_query)
+      else
+        @report.denominator = @patient_count
       end
-      @report.save
+      # @report.save <-- right now this just has the effect of saving the first change and nothing afterwards
     # create a blank report but don't save  
     elsif params[:id].blank? && params[:numerator].blank? && params[:denominator].blank? && params[:title].blank? 
       @report = Report.new
@@ -145,7 +148,6 @@ class ReportsController < ApplicationController
     end
     
     resp = @report.to_json_hash
-    load_static_content
     resp = load_report_data(@report.numerator_query, resp)
     render :json => resp.to_json
   end
@@ -157,6 +159,7 @@ class ReportsController < ApplicationController
 
   private
   
+  # TODO: this method should be cached so the SQL only gets called when the DB is updated -shauni
   def load_report_data(report_parameters, resp = {})
 
     resp[:count] = @patient_count

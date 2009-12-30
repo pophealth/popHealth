@@ -248,8 +248,3 @@ flu:
     - 60-70\n\
     - 70-80\n\
     - 80+\n"
-
-new:
-  numerator_query: "--- {}\n\n"
-  title: Untitled
-  denominator_query: "--- {}\n\n"

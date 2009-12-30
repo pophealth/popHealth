@@ -9,18 +9,18 @@ class Report < ActiveRecord::Base
   end
 
   def numerator_query
-    @numerator_query ||= YAML.load(self[:numerator_query]) if self[:numerator_query].present?
+    self[:numerator_query].present? ? @numerator_query ||= YAML.load(self[:numerator_query]) : @numerator_query ||= {}  
     @numerator_query
   end
 
   def denominator_query
-    @denominator_query ||= YAML.load(self[:denominator_query]) if self[:denominator_query].present?
+    self[:denominator_query].present? ? @denominator_query ||= YAML.load(self[:denominator_query]) : @denominator_query ||= {}
     @denominator_query
   end
 
   def save(*args)
-    self[:denominator_query] = YAML.dump(denominator)
-    self[:numerator_query] = YAML.dump(numerator)
+    self[:denominator_query] = YAML.dump(denominator_query)
+    self[:numerator_query] = YAML.dump(numerator_query)
     super(args)
   end
   
