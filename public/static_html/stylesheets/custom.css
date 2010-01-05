@@ -168,7 +168,7 @@ div#footer ul li{
   width:          100%;
   border-bottom:  1px solid #ccc;
   padding-bottom: 20px;
-  margin-bottom:  20px;
+  margin: 15px 0 0 15px;
 }
 
 .data_viewer .top_frame .report_stats{
@@ -188,6 +188,7 @@ div#footer ul li{
 
 .top_frame .master_percentage h1{
   margin: 0 0 0 25px;
+  font-size: 600%;
 }
 
 
@@ -226,12 +227,13 @@ div#footer ul li{
 
 
 .bottom_frame{
-  display: block !important;
+/*  display: block !important;*/
+  margin: 0 0 0 15px;
 }
 
 .bottom_frame .section {
-  width:          325px;
-  margin:         0 25px 25px 0;
+  width:          340px;
+  margin:         25px 25px 0 0;
   display:        inline-block;
   vertical-align: top;
 }
@@ -384,11 +386,6 @@ span.name-edit a, span.name-edit input{
 }
 
 
-#main{
-/*  overflow: hidden;*/
-  margin: 15px 0 0 15px !important;
-}
-
 #patienttable_wrapper{
   /*clear: both;
   margin-left: 4px;*/
@@ -451,7 +448,7 @@ table{
 }
 
 .value{
-  
+
 }
 
 .panel{

@@ -19,7 +19,9 @@ popConnect.DataViewer = function(element, options) {
   var busyness = 0;                         // Current number of jobs. Controls when loading indicator is shown. Don't change directly, use busy/notBusy
   this.onComplete = options.complete;        // Callback for when data is loaded
   this.onError = options.error;              // Callback for when data doesn't load
-  this.counters = []
+  this.counters = [];
+  if(options.exportLink)
+    this.exportLink = options.exportLink;
 
   // It's sort of arbitrary to split dataDefinition out this way, but I think
   // the individual unit to consider is each section.
@@ -29,9 +31,19 @@ popConnect.DataViewer = function(element, options) {
         label: 'Demographics',
         types: {
           gender: {label: 'Gender', sort: ['Male', 'Female']},
-          age: {label: 'Age', sort: ['18-34', '35-49', '50-64', '65-75', '76+']}
+          age: {label: 'Age', sort: ['<18', '18-30', '30-40', '40-50', '50-60', '60-70', '70-80', '80+']}
         },
         sort: ['gender', 'age']
+      },
+	  risk_factors: {
+        label: 'Risk Factors',
+        types: {
+          blood_pressures: {label: 'Blood Pressure', sort: ['110/70', '120/80', '140/90', '160/100', '180/110+']},
+          smoking: {label: 'Smoking', sort: ['Current Smoker', 'Non-Smoker']},
+          colorectal_cancer_screening: {label: 'Colon Cancer Screening', sort: ['Yes', 'No']},
+          mammography: {label: 'Mammography 24 Months', sort: ['Yes', 'No']}
+        },
+        sort: ['blood_pressures', 'smoking', 'colorectal_cancer_screening', 'mammography']
       },
       treatments: {
         label: 'Treatments',
@@ -41,34 +53,48 @@ popConnect.DataViewer = function(element, options) {
         },
         sort: ['medications', 'therapies']
       },
-      risk_factors: {
-        label: 'Risk Factors',
-        types: {
-          blood_pressures: {label: 'Blood Pressure', sort: ['90-119/60-79', '120-139/80-89', '140-159/90-99', '>160/>100']},
-          cholesterol: {label: 'Cholesterol', sort: ['<100', '100-129', '130-159', '160-189', '>190']},
-          smoking: {label: 'Smoking', sort: ['Non-smoker', 'Ex-smoker', 'Smoker']}
-        },
-        sort: ['blood_pressures', 'cholesterol', 'smoking']
-      },
       disease_conditions: {
         label: 'Disease & Conditions',
         types: {
           diabetes: {label: 'Diabetes', sort: ['Yes', 'No']},
-          hypertension: {label: 'Hypertension', sort: ['Yes', 'No']}
+          hypertension: {label: 'Hypertension', sort: ['Yes', 'No']},
+          ischemic_vascular_disease: {label: 'Ischemic Vascular Disease', sort:['Yes', 'No']},
+          lipoid_disorder: {label: 'Lipoid Disorder', sort:['Yes', 'No']}
         },
-        sort: ['diabetes', 'hypertension']
+        sort: ['diabetes', 'hypertension', 'ischemic_vascular_disease', 'lipoid_disorder']
+      },
+      lab_results: {
+        label: 'Lab Results',
+        types: {
+          ldl_cholesterol: {label: 'LDL Cholesterol (mg/dL)', sort: ['100', '100-120', '130-160', '160-180', '180+']},
+          hb_a1c: {label: 'Hemoglobin A1c (%)', sort: ['<7', '7-8', '8-9', '9+']}
+        },
+        sort: ['ldl_cholesterol', 'hb_a1c']
+      },
+      immunizations: {
+          label: 'Immunizations',
+          types: {
+          influenza_vaccine: {label: 'Influenza', sort: ['Yes', 'No']}
+          },
+          sort: ['influenza_vaccine']
       }
     },
-    sort: ['demographics', 'risk_factors', 'disease_conditions', 'treatments']
+    sort: ['demographics', 'lab_results', 'disease_conditions', 'risk_factors', 'treatments', 'immunizations']
   };
 
+
   var irregularLabels = {
-    diabetes:         {'Yes': 'Diabetes', 'No': 'without Diabetes'},
-    hypertension:     {'Yes': 'Hypertension', 'No': 'without Hypertension'},
-    blood_pressures:  {'90-119/60-79': 'BP 90-119/60-79', '90-119/60-79': 'BP 90-119/60-79', '120-139/80-89': 'BP 120-139/80-89', '140-159/90-99':'BP 140-159/90-99', '>160/>100':'BP >160/>100'},
-    cholesterol:      {'<100': 'Chol <100', '100-129':'Chol 100-129', '130-159':'Chol 130-159', '160-189':'Chol 160-189', '>190':'Chol >190'},
-    age:              {'18-34':'ages 18-34', '35-49':'ages 35-49', '50-64':'ages 50-64', '65-75':'ages 65-75', '76+':'ages 76+'}
-  }
+    diabetes: {'Yes': 'Diabetes', 'No': 'Without Diabetes'},
+    hypertension: {'Yes': 'Hypertension', 'No': 'Without Hypertension'},
+    medications: {'Aspirin': 'Aspirin Therapy'},
+    ischemic_vascular_disease: {'Yes': 'Vascular Disease', 'No': 'Without Vascular Disease'},
+    lipoid_disorder: {'Yes': 'Lipoid disorder', 'No': 'No Lipoid disorder'},
+    colorectal_cancer_screening: {'Yes': 'Colon Cancer Screen', 'No': 'Without Colon Cancer Screen'},
+    mammography: {'Yes': 'Mammography Screen', 'No': 'Without Mammography Screen'},
+    influenza_vaccine: {'Yes': 'Influenza Vaccine', 'No': 'Without Influenza Vaccine'},
+    ldl_cholesterol: {'100': 'LDL <100 mg/dL', '100-120': 'LDL 100-120 mg/dL', '130-160': 'LDL 130-160 mg/dL', '160-180': 'LDL 160-180 mg/dL', '180+': 'LDL 180+ mg/dL'},
+    hb_a1c: {'<7':'Hb A1c < 7%', '7-8':'Hb A1c 7%-8%', '8-9':'Hb A1c 8%-9%', '9+': 'Hb A1c > 9%'}
+  };
 
   // Public functions
 
@@ -85,7 +111,7 @@ popConnect.DataViewer = function(element, options) {
   this.selectReport = function(id) {
     busy();
     that.reload({id: id}, 'GET');
-  }
+  };
 
   this.newReport = function() {
     busy();
@@ -93,8 +119,8 @@ popConnect.DataViewer = function(element, options) {
       numerator_fields: [],
       denominator_fields: []       // These fields should match up letter-for-letter with the actual field names
     };
-    that.reload(buildTailoredData(), 'POST')
-  }
+    that.reload(buildTailoredData(), 'POST');
+  };
 
   // Reload DOM elements from data
   this.refresh = function() {
@@ -115,25 +141,25 @@ popConnect.DataViewer = function(element, options) {
     }
 
     // Assume the dom nodes already exist and have been set
-    var percentage = 0;   // Giant percentage number
-    var startpercent = 0;
-    var startdenom = 0;
-    var startnumer = 0;
+    var percentage    = 0;   // Giant percentage number
+    var startpercent  = 0;
+    var startdenom    = 0;
+    var startnumer    = 0;
     if(dataDefinition.masterPercentageDomNode.text()){
-      startpercent = dataDefinition.masterPercentageDomNode.text()
+      startpercent = dataDefinition.masterPercentageDomNode.text();
     }
     if(dataDefinition.denominatorValueDomNode.text()){
-      startdenom = dataDefinition.denominatorValueDomNode.text()
+      startdenom = dataDefinition.denominatorValueDomNode.text();
     }
     if(dataDefinition.numeratorValueDomNode.text()){
-      startnumer = dataDefinition.numeratorValueDomNode.text()
+      startnumer = dataDefinition.numeratorValueDomNode.text();
     }
 
     // Let's run the calculations on the data...
     if(data.denominator > 0) {
       percentage = data.numerator / data.denominator * 100; // Dividing by 0 apparently doesn't work!! Who knew!?
       dataDefinition.denominatorValueDomNode.removeClass('disabled')//.text( addCommas(data.denominator) );
-      var dc = new popConnect.Counter(startdenom, data.denominator, dataDefinition.denominatorValueDomNode)
+      var dc = new popConnect.Counter(startdenom, data.denominator, dataDefinition.denominatorValueDomNode);
       this.counters.push(dc.interval);
 
     } else {
@@ -142,7 +168,7 @@ popConnect.DataViewer = function(element, options) {
 
     if(data.numerator > 0) {
       dataDefinition.numeratorValueDomNode.removeClass('disabled')//.text( addCommas(data.numerator) );
-      var nc = new popConnect.Counter(startnumer, data.numerator, dataDefinition.numeratorValueDomNode)
+      var nc = new popConnect.Counter(startnumer, data.numerator, dataDefinition.numeratorValueDomNode);
       this.counters.push(nc.interval);
 
     } else {
@@ -155,7 +181,7 @@ popConnect.DataViewer = function(element, options) {
     } else {
       //dataDefinition.masterPercentageDomNode.removeClass('disabled').text(Math.round(percentage) + '%');
       dataDefinition.masterPercentageDomNode.removeClass('disabled');
-      var pc = new popConnect.Counter(startpercent, Math.round(percentage), dataDefinition.masterPercentageDomNode, '%')
+      var pc = new popConnect.Counter(startpercent, Math.round(percentage), dataDefinition.masterPercentageDomNode, '%');
       this.counters.push(pc.interval);
 //      countNums(startpercent, Math.round(percentage), dataDefinition.masterPercentageDomNode)
     }
@@ -177,7 +203,9 @@ popConnect.DataViewer = function(element, options) {
           }
           var cds = key.toString();
           var cdv = value.toString();
-          span.addClass('draggable-value').corners('15px');
+          span.addClass('draggable-value')
+          if (!$.browser.msie) span.corner('15px');
+
           span.draggable({
             revert: true,
             helper: 'clone',
@@ -199,7 +227,6 @@ popConnect.DataViewer = function(element, options) {
 
     dataDefinition.denominatorFieldsDomNode.empty();
     var hasDenominator = false; // There must be a better way to do that
-    var key;
     for(key in data.denominator_fields) {
       if(data.denominator_fields.hasOwnProperty(key)) {
         hasDenominator = true;
@@ -212,7 +239,9 @@ popConnect.DataViewer = function(element, options) {
           }
           var cds = key.toString();
           var cdv = value.toString();
-          span.addClass('draggable-value').corners('15px');
+          span.addClass('draggable-value');
+          if (!$.browser.msie) span.corner('15px');
+
           span.draggable({
             revert: true,
             helper: 'clone',
@@ -264,7 +293,9 @@ popConnect.DataViewer = function(element, options) {
               $(value).addClass('in-numerator').removeClass('in-denominator');
             }
             if(inNumerator || inDenominator) {
-              $(value).addClass('nodrag').corners('15px').addClass('selected').removeClass('draggable-value');
+              $(value).addClass('nodrag').addClass('selected').removeClass('draggable-value');
+              if (!$.browser.msie) $(value).corner('15px');
+
               var old = $(value);
               value = $(value).clone();
               $(old).replaceWith(value);
@@ -284,7 +315,7 @@ popConnect.DataViewer = function(element, options) {
               });
             }
             var thisPercentage = setAt / data.count * 100;
-            if(thisPercentage < .5) {
+            if(thisPercentage < 0.5) {
               $(value).find('.percentage').text('<1');
             } else {
               $(value).find('.percentage').text(Math.round(thisPercentage));
@@ -301,6 +332,9 @@ popConnect.DataViewer = function(element, options) {
         });
       });
     });
+    
+    // need to trigger the layout to calculate the correct size for center
+    setTimeout('myLayout.resizeContent("center")', 500);
   };
 
 
@@ -327,7 +361,7 @@ popConnect.DataViewer = function(element, options) {
       dataDefinition.reportTitle.toggle();
       dataDefinition.reportTitleEdit.toggle();
       if(data.title) {
-        dataDefinition.changedReportTitle.val(data.title)
+        dataDefinition.changedReportTitle.val(data.title);
       } else {
         dataDefinition.changedReportTitle.val('Type report name');
       }
@@ -383,7 +417,9 @@ popConnect.DataViewer = function(element, options) {
         ));
 
         $(dataDefinition.types[sectionName].types[subsectionName].sort).each(function(labelIndex, valueLabel) {
-          var value = $('<div>').addClass('value').corners('15px');
+          var value = $('<div>').addClass('value');
+          if (!$.browser.msie) value.corner('15px');
+
           value.append($('<div>').addClass('label').text(valueLabel));
           value.append($('<div>').addClass('percentage'));
           value.append($('<div>').addClass('number'));
@@ -432,7 +468,7 @@ popConnect.DataViewer = function(element, options) {
             return;
           } else {
             if(!fields_objs[that.currentlyDraggedSubsection]) {
-              fields_objs[that.currentlyDraggedSubsection] = []
+              fields_objs[that.currentlyDraggedSubsection] = [];
             }
             fields_objs[that.currentlyDraggedSubsection].push(that.currentlyDraggedValue);
 
@@ -458,6 +494,7 @@ popConnect.DataViewer = function(element, options) {
 
   // Reload data given selected fields
   this.reload = function(requestData, requestMethod) {
+    $(that.exportLink).hide();
     $.ajax({
       type: requestMethod,
       url: dataUrl,
@@ -465,6 +502,11 @@ popConnect.DataViewer = function(element, options) {
       data: requestData,
       success: function(responseData) {
         data = responseData;
+        if(data.id) {
+          $(that.exportLink).show().attr('href', '/popconnect/export?id=' + data.id);
+        } else {
+          $(that.exportLink).hide().attr('href', '#');
+        }
         that.refresh();
         notBusy();
         if(that.onComplete) {
@@ -489,15 +531,16 @@ popConnect.DataViewer = function(element, options) {
     $('body').droppable({
        drop: function(evt, ui) {
          var reload = false;
+         var inArr;
          if(data.numerator_fields[that.currentlyDraggedSubsection]) {
-           var inArr = $.inArray(that.currentlyDraggedValue, data.numerator_fields[that.currentlyDraggedSubsection]);
+           inArr = $.inArray(that.currentlyDraggedValue, data.numerator_fields[that.currentlyDraggedSubsection]);
            if(inArr > -1) {
              reload = true;
              data.numerator_fields[that.currentlyDraggedSubsection].splice(inArr, 1);
            }
          }
          if(data.denominator_fields[that.currentlyDraggedSubsection]) {
-           var inArr = $.inArray(that.currentlyDraggedValue, data.denominator_fields[that.currentlyDraggedSubsection]);
+           inArr = $.inArray(that.currentlyDraggedValue, data.denominator_fields[that.currentlyDraggedSubsection]);
            if(inArr > -1) {
              reload = true;
              data.denominator_fields[that.currentlyDraggedSubsection].splice(inArr, 1);
@@ -510,12 +553,14 @@ popConnect.DataViewer = function(element, options) {
        }
     });
 
+    var requestData;
+    var method;
     if(data.id) {
-      var requestData = {id: data.id}
-      var method = "GET";
+      requestData = {id: data.id};
+      method = "GET";
     } else {
-      var requestData = buildTailoredData();
-      var method = "POST";
+      requestData = buildTailoredData();
+      method = "POST";
     }
 
     that.reload(requestData, method);
@@ -525,8 +570,8 @@ popConnect.DataViewer = function(element, options) {
   function buildTailoredData() {
     var query_object = {
       numerator: data.numerator_fields,
-      denominator: data.denominator_fields,
-    }
+      denominator: data.denominator_fields
+    };
 
     if(data.title) {
       query_object.title = data.title;
@@ -534,6 +579,10 @@ popConnect.DataViewer = function(element, options) {
 
     if(data.id) {
       query_object.id = data.id;
+    }
+
+    if(popConnect.session && popConnect.session.authToken) {
+      query_object.authenticity_token = popConnect.session.authToken;
     }
 
     return popConnect.railsSerializer.serialize(query_object);
@@ -563,4 +612,4 @@ popConnect.DataViewer = function(element, options) {
   };
 
   _init(options);
-}
+};

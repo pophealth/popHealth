@@ -18,11 +18,12 @@
   <script type="text/javascript" src="javascripts/jquery-1.3.2.min.js"></script>
   <script type="text/javascript" src="javascripts/jquery-ui-1.7.2.custom.min.js"></script>
   <script type="text/javascript" src="javascripts/jquery-blockui.js"></script>
-  <script type="text/javascript" src="javascripts/jquery.corners.min.js"></script>
+  <script type="text/javascript" src="javascripts/jquery.corner.js"></script>
   <script type="text/javascript" src="javascripts/pop_connect.js"></script>
   <script type="text/javascript" src="javascripts/data_viewer.js"></script>
   <script type="text/javascript" src="javascripts/report_navigator.js"></script>
   <script type="text/javascript" src="javascripts/jquery.layout.js"></script>
+
 </head>
 <body>
   <div id='header' class="ui-layout-north">
@@ -37,10 +38,13 @@
   <div id='main' class="ui-layout-center"></div>
 
   <script>
+    var myLayout;
+
     $(document).ready(function() {
       var dataViewer = new popConnect.DataViewer('#main', {
           dataUrl: '/reports',
-          reportId: 1
+          reportId: 1,
+          exportLink: $('#exportReport')
         });
 
         var reportNavigator = new popConnect.ReportNavigator('#sidebar', {
@@ -49,9 +53,14 @@
           reportId: 1
         });
 
-      var myLayout = $('body').layout({
+      // turn off scrolling for < ie8
+      var contentsel = '.bottom_frame';
+      if ($.browser.msie && $.browser.version < 8) contentsel='';
+
+      myLayout = $('body').layout({
         defaults:{
-          closable:         false
+          closable:         false,
+          contentSelector:  contentsel
         },
         north:{
           resizable:    false,
@@ -62,6 +71,7 @@
           minSize:    250
         }
       });
+//      setTimeout('myLayout.resizeContent("center")', 700);
 
   });
 
