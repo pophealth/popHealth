@@ -156,7 +156,7 @@ da1c:
   numerator_query: "--- \n\
     :hb_a1c: \n\
     - \"<7\"\n"
-  title: "Diabletic A1c Under Contro"
+  title: "Diabetic A1c Under Control"
   denominator_query: "--- \n\
     :diabetes: \n\
     - \"Yes\"\n\
