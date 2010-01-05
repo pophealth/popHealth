@@ -1,4 +1,4 @@
-class QueryBuilder < ActiveRecord::Base
+class QueryBuilder
  
   def generate_population_query(request)
     population_query = "select count(distinct patients.id) from patients"
