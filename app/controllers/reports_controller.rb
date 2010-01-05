@@ -160,7 +160,7 @@ class ReportsController < ApplicationController
   private
   
   # TODO: this method should be cached so the SQL only gets called when the DB is updated -shauni
-  def load_report_data(report_parameters, resp = {})
+  def load_report_data_old(report_parameters, resp = {})
 
     resp[:count] = @patient_count
 
@@ -249,6 +249,102 @@ class ReportsController < ApplicationController
       "7-8" =>  [generate_report(@@hb_a1c_7_8_query_hash),     @patient_count],
       "8-9" =>  [generate_report(@@hb_a1c_8_9_query_hash),     @patient_count],
       "9+" =>   [generate_report(@@hb_a1c_9_plus_query_hash),  @patient_count]
+    }
+
+    resp
+
+  end
+  
+  # TODO: this method should be cached so the SQL only gets called when the DB is updated -shauni
+  def load_report_data(report_parameters, resp = {})
+
+    resp[:count] = @patient_count
+
+    resp[:gender] = {
+      'Male' =>   [10, @patient_count],
+      'Female' => [10, @patient_count]
+    }
+
+    resp[:age] = {
+      "<18" =>    [10,  @patient_count],
+      "18-30" =>  [10,   @patient_count],
+      "30-40" =>  [3,   @patient_count],
+      "40-50" =>  [54,   @patient_count],
+      "50-60" =>  [3,   @patient_count],
+      "60-70" =>  [6,   @patient_count],
+      "70-80" =>  [5,   @patient_count],
+      "80+" =>    [5, @patient_count]
+    }
+
+    resp[:medications] = {
+      "Aspirin" => [6, @patient_count]
+    }
+
+    resp[:therapies] = {
+      "Smoking Cessation" => [5, @patient_count]
+    }
+
+    resp[:ldl_cholesterol] = {
+      "100" =>      [5,     @patient_count],
+      "100-120" =>  [4, @patient_count],
+      "130-160" =>  [6, @patient_count],
+      "160-180" =>  [4, @patient_count],
+      "180+" =>     [8,     @patient_count]
+    }
+
+    resp[:blood_pressures] = {
+      "110/70" =>   [5,  @patient_count],
+      "120/80" =>   [5,  @patient_count],
+      "140/90" =>   [4,  @patient_count],
+      "160/100" =>  [4, @patient_count],
+      "180/110+" => [4, @patient_count]
+    }
+    
+    resp[:smoking] = {
+      "Current Smoker" =>  [4, @patient_count],
+      "Non-Smoker" =>   [4,     @patient_count]
+    }
+
+    resp[:diabetes] = {
+      "Yes" =>  [4, @patient_count],
+      "No" =>   [6,  @patient_count]
+    }
+
+    resp[:hypertension] = {
+      "Yes" =>  [4, @patient_count],
+      "No" =>   [5,  @patient_count]
+    }
+
+    resp[:ischemic_vascular_disease] = {
+      "Yes" =>  [7, @patient_count],
+      "No" =>   [7,  @patient_count]
+    }
+    
+    resp[:lipoid_disorder] = {
+      "Yes" =>  [8, @patient_count],
+      "No" =>   [9,  @patient_count]
+    }
+
+    resp[:colorectal_cancer_screening] = {
+      "Yes" =>  [9, @patient_count],
+      "No" =>   [9,  @patient_count]
+    }
+
+    resp[:mammography] = {
+      "Yes" =>  [9, @patient_count],
+      "No" =>   [6,  @patient_count]
+    }
+
+    resp[:influenza_vaccine] = {
+      "Yes" =>  [8, @patient_count],
+      "No" =>   [7,  @patient_count]
+    }
+    
+    resp[:hb_a1c] = {
+      "<7" =>   [9,  @patient_count],
+      "7-8" =>  [8,     @patient_count],
+      "8-9" =>  [8,     @patient_count],
+      "9+" =>   [5,  @patient_count]
     }
 
     resp
