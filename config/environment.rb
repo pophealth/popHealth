@@ -81,7 +81,7 @@ Rails::Initializer.run do |config|
   config.gem 'faker',                :version => '0.3.1'
   config.gem 'calendar_date_select', :version => '1.15'
   config.gem 'mislav-will_paginate', :version => '>= 2.3.6', :lib => 'will_paginate', :source => 'http://gems.github.com'
-  config.gem 'CCHIT-xds-facade', :lib => 'xds-facade', :version => '>= 0.1.1', :source => 'http://gems.github.com'
+  #config.gem 'CCHIT-xds-facade', :lib => 'xds-facade', :version => '>= 0.1.1', :source => 'http://gems.github.com'
 
   # These are dependencies for the tests.
   # We just want to make sure they're available without loading them.
