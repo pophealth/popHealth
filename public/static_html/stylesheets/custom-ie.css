@@ -1,0 +1,11 @@
+body {text-align:left;}
+
+div#header ul{
+  position: absolute;
+  right:    0px;
+}
+
+#main{
+  float: left;
+}
+
