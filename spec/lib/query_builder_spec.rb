@@ -1,3 +1,5 @@
+require File.dirname(__FILE__) + '/../spec_helper'
+
 describe QueryBuilder do
   it "should return a query for all the patients when passed an empty request hash" do
     request = {}

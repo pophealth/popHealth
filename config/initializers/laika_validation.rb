@@ -26,3 +26,5 @@ require 'importers/c32/condition_c32_importer'
 require 'importers/c32/patient_c32_importer'
 
 require 'active_record_comparator'
+
+require 'query_builder'
