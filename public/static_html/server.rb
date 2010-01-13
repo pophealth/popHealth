@@ -86,11 +86,14 @@ def add_random_numbers(resp = {})
     'Female' => [rand(5901), 5901]
   }
   resp[:age] = {
-    "18-34" => [rand(1640), 3900],
-    "35-49" => [rand(2100), 2100],
-    "50-64" => [rand(2100), 2100],
-    "65-75" => [rand(900), 900],
-    "76+" => [rand(900), 900]
+    "<18" => [rand(1640), 3900],
+    "18-30" => [rand(1640), 3900],
+    "30-40" => [rand(2100), 2100],
+    "40-50" => [rand(2100), 2100],
+    "50-60" => [rand(900), 900],
+    "60-70" => [rand(900), 900],
+    "70-80" => [rand(900), 900],
+    "80+" => [rand(900), 900]
   }
   resp[:medications] = {
     "Aspirin" => [rand(4300), 4300]
@@ -99,22 +102,22 @@ def add_random_numbers(resp = {})
     "Smoking Cessation" => [rand(1100), 1100]
   }
   resp[:blood_pressures] =  {
-    '90-119/60-79'  => [rand(800), 800],
-    '120-139/80-89' => [rand(2200), 2200],
-    '140-159/90-99' => [rand(2000), 2000],
-    '>160/>100' => [rand(500), 500]
+    '110/70'  => [rand(800), 800],
+    '120/80' => [rand(2200), 2200],
+    '140/90' => [rand(2000), 2000],
+    '160/100' => [rand(2000), 2000],
+    '180/110+' => [rand(500), 500]
   }
-  resp[:cholesterol] =  {
-    "<100" => [rand(800), 800],
-    "100-129" => [rand(2200), 2200],
-    "130-159" => [rand(2000), 2000],
-    "160-189" => [rand(800), 800],
-    ">190" => [rand(500), 500]
+  resp[:ldl_cholesterol] =  {
+    "100" => [rand(800), 800],
+    "100-120" => [rand(2200), 2200],
+    "130-160" => [rand(2000), 2000],
+    "160-180" => [rand(800), 800],
+    "180+" => [rand(500), 500]
   }
   resp[:smoking] = {
-    "Non-smoker" => [rand(3500), 3500],
-    "Ex-smoker" => [rand(2000), 2000],
-    "Smoker" => [rand(900), 900]
+    "Non-Smoker" => [rand(3500), 3500],
+    "Current Smoker" => [rand(2000), 2000]
   }
   resp[:diabetes] = {
     "Yes" => [rand(800), 800],
@@ -123,6 +126,32 @@ def add_random_numbers(resp = {})
   resp[:hypertension] = {
     "Yes" => [rand(700), 700],
     "No" => [rand(9300), 9300]
+  }
+  resp[:ischemic_vascular_disease] = {
+    "Yes" => [rand(700), 700],
+    "No" => [rand(9300), 9300]
+  }
+  resp[:lipoid_disorder] = {
+    "Yes" => [rand(700), 700],
+    "No" => [rand(9300), 9300]
+  }
+  resp[:colorectal_cancer_screening] = {
+    "Yes" => [rand(700), 700],
+    "No" => [rand(9300), 9300]
+  }
+  resp[:mammography] = {
+    "Yes" => [rand(700), 700],
+    "No" => [rand(9300), 9300]
+  }
+  resp[:influenza_vaccine] = {
+    "Yes" => [rand(700), 700],
+    "No" => [rand(9300), 9300]
+  }
+  resp[:hb_a1c] = {
+    "<7" => [rand(700), 700],
+    "7-8" => [rand(9300), 9300],
+    "8-9" => [rand(9300), 9300],
+    "9+" => [rand(9300), 9300]
   }
   resp  
 end
