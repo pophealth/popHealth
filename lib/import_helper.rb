@@ -21,8 +21,12 @@ module ImportHelper
   # Pulls the entry elements from the section element. Once it has the entry Elements, it will pass them to an import_entry
   # method to do the job of extracting the data and putting it into an ActiveRecord object
   def import_entries(section_element)
-    entry_elements = entries(section_element)
-    entry_elements.map {|ee| import_entry(ee)}
+    if section_element
+      entry_elements = entries(section_element)
+      entry_elements.map {|ee| import_entry(ee)}
+    else
+      Array.new
+    end
   end
   
   # Helper method that wraps an elemen in an ElementWrapper that has some methods to shorten up boilerplate REXML code
