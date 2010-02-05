@@ -6,11 +6,14 @@
     <link rel="stylesheet" href="stylesheets/main.css" type="text/css" media="screen">
     <link rel="icon" type="image/png" href="/images/favicon.ico" />
     <title>popHealth - An open source population health reporting service</title>
+    <script type="text/javascript" src="javascripts/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.corner.js"></script>
+    
   </head>
   <body>
     <div id="page">
       <div id="header">
-        <ul>
+        <ul> 
           <li><a href="index.html" class="selected">Home</a></li>
           <li><a href="screen_shots.html">Screen Shots</a></li>
           <li><a href="http://sugar.mitre.org:3000/popconnect" target="_external">Demo</a></li>
@@ -21,20 +24,51 @@
           <li><a href="mailto:talk@projectpophealth.org">Talk</a></li>
         </ul>
       </div>
-      <div id="splitContent">
+
         <div id="leftColumn">
           <div id="logo">
             <a href="index.html"><img src="images/popHealth_logo_small.png" alt="popHealth Logo" /></a>
           </div>
-            <h1>A Open Source population health reporting tool</h1>          
-          <h3 class='projectHeader'>popHealth is an open source project that automates population health reporting.  popHealth integrates with a healthcare provider's electronic health record (EHR) system to produce <a href="http://healthit.hhs.gov/portal/server.pt?open=512&objID=1325&parentname=CommunityPage&parentid=1&mode=2">Meaningful Use Quality Measures</a> on the provider's patient population.  popHealth provides a streamlined mechanism for reporting summary quality information to federal agencies.</h3>
-  	      <div id="screenshot">
-              <a href="screen_shots.html">
-  	            <img src="images/ui.png" alt="popHealth Dashboard Screenshot" class="screenshot">
-  	          </a>
-  	        <p class="imageDescription">popHealth <a href="screen_shots.html">Dashboard</a></p>
-  	      </div>
-
+          
+          <div id='projectHeader'>
+            <h2>A Open Source population health reporting tool</h2>
+            <h3>popHealth is an open source project that automates population health reporting.  popHealth integrates with a healthcare provider's electronic health record (EHR) system to produce <a href="http://healthit.hhs.gov/portal/server.pt?open=512&objID=1325&parentname=CommunityPage&parentid=1&mode=2">Meaningful Use Quality Measures</a> on the provider's patient population.  popHealth provides a streamlined mechanism for reporting summary quality information to federal agencies.</h3>
+          </div>
+          <div  class="milestonesList">
+            <h2>Project Milestones</h2>
+            <table>
+              <tbody>
+                <tr>
+    	          <td class="milestoneDate">11 Jan 09</td>
+    	          <td class="milestoneSubject"><del>popHealth Presented at <a href="http://www.ihe.net/north_america/connectathon2009.cfm">IHE Connectathon</a></del></td>
+    	        </tr>
+    	        <tr>
+    	          <td class="milestoneDate">21 Feb 10</td>
+    	          <td class="milestoneSubject">v0.2 of popHealth Source Code Released</td>
+    	        </tr>
+                <tr>
+    	          <td class="milestoneDate">28 Feb 10</td>
+    	          <td class="milestoneSubject">PopHealth Software Design Document Released</td>
+    	        </tr>
+                <tr>
+    	          <td class="milestoneDate">1 Mar 10</td>
+    	          <td class="milestoneSubject">Presenting popHealth with the <a href="http://www.connectopensource.org/display/Gateway/CONNECT+Community+Portal" target="_external">CONNECT</a> team at <a href="http://www.himssconference.org/">HIMSS</a></td>
+    	        </tr>
+                <tr>
+    	          <td class="milestoneDate">26 Mar 10</td>
+    	          <td class="milestoneSubject">Support for <a href="screen_shots.html">hRecord</a> Continuity of Care View</td>
+    	        </tr>
+                <tr>
+    	          <td class="milestoneDate">14 Apr 10</td>
+    	          <td class="milestoneSubject">eMeasure/C106 Report Expression Supported</td>
+    	        </tr>
+                <tr>
+    	          <td class="milestoneDate">30 Apr 10</td>
+    	          <td class="milestoneSubject">Design for Digital Signature of Reports</td>
+    	        </tr>
+              </tbody>
+            </table>
+          </div>
 		  <div class="projectDescription"><h2>What is the project objective?</h2></div>
 
 	      <p>popHealth is designed to simplify the reporting of meaningful use quality measures, to shorten the time necessary to achieve meaningful use, and to decrease the total cost to achieve this goal.</p>
@@ -47,47 +81,29 @@
             <div id="feedbackLink">For more information, contact us at: <a href="talk@projectpophealth.org">talk@projectpophealth.org</a></div>
           </div>
         </div>
-      </div>
+
       <div id="sidebar">
         <a href="http://groups.google.com/group/pophealth-talk/subscribe" target="_external"><img class='announce' src="images/button_announcements.png" alt="Join Announcement List" /></a>
-        <table class="milestonesList">
-          <caption><h2>Project Milestones</h2></caption>
-          <tbody>
-            <tr>
-	          <td class="milestoneDate">11 Jan 09</td>
-	          <td class="milestoneSubject"><del>popHealth Presented at <a href="http://www.ihe.net/north_america/connectathon2009.cfm">IHE Connectathon</a></del></td>
-	        </tr>
-	        <tr>
-	          <td class="milestoneDate">21 Feb 10</td>
-	          <td class="milestoneSubject">v0.2 of popHealth Source Code Released</td>
-	        </tr>
-            <tr>
-	          <td class="milestoneDate">28 Feb 10</td>
-	          <td class="milestoneSubject">PopHealth Software Design Document Released</td>
-	        </tr>
-            <tr>
-	          <td class="milestoneDate">1 Mar 10</td>
-	          <td class="milestoneSubject">Presenting popHealth with the <a href="http://www.connectopensource.org/display/Gateway/CONNECT+Community+Portal" target="_external">CONNECT</a> team at <a href="http://www.himssconference.org/">HIMSS</a></td>
-	        </tr>
-            <tr>
-	          <td class="milestoneDate">26 Mar 10</td>
-	          <td class="milestoneSubject">Support for <a href="screen_shots.html">hRecord</a> Continuity of Care View</td>
-	        </tr>
-            <tr>
-	          <td class="milestoneDate">14 Apr 10</td>
-	          <td class="milestoneSubject">eMeasure/C106 Report Expression Supported</td>
-	        </tr>
-            <tr>
-	          <td class="milestoneDate">30 Apr 10</td>
-	          <td class="milestoneSubject">Design for Digital Signature of Reports</td>
-	        </tr>
-          </tbody>
-        </table>
+        <div id="screenshot">
+            <a href="screen_shots.html">
+	            <img src="images/ui.png" alt="popHealth Dashboard Screenshot" class="screenshot">
+	          </a>
+	        <p class="imageDescription">popHealth <a href="screen_shots.html">Dashboard</a></p>
+	      </div>
+
       </div>    
       <div id="footer">
         <div id="footerSourceForge"><a href="http://github.com/" target="_external"><img src="images/github_icon.png" alt="GitHub Logo"></a></div>
       </div>
     </div>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        console.log($('#projectHeader'))
+        $('#projectHeader').corner("10px");
+      });
+      
+    </script>
+    
     <script type="text/javascript">
       var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
       document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
