@@ -26,7 +26,7 @@
     <config name="server-config">
       <http-service>
         <access-log rotation-suffix="yyyy-MM-dd" rotation-interval-in-minutes="15"></access-log>
-        <virtual-server id="server" docroot="/Users/rmccready/Data/popconnect/tmp/.glassfish/docroot" access-log="/Users/rmccready/Data/popconnect/tmp/.glassfish/logs/access" network-listeners="http-listener-1"></virtual-server>
+        <virtual-server id="server" docroot="/Users/rmccready/Data/pophealth/tmp/.glassfish/docroot" access-log="/Users/rmccready/Data/pophealth/tmp/.glassfish/logs/access" network-listeners="http-listener-1"></virtual-server>
       </http-service>
       <admin-service system-jmx-connector-name="system" type="das-and-server">
         <jmx-connector port="8686" address="0.0.0.0" security-enabled="false" name="system" auth-realm-name="admin-realm"></jmx-connector>
