@@ -1,3 +1,0 @@
-class EncountersController < PatientChildrenController
-
-end

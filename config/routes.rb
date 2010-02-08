@@ -11,15 +11,10 @@ ActionController::Routing::Routes.draw do |map|
     vendors.resources :test_plans, :only => :index
   end
   map.resources :users, :except => [:index]
-  map.resources :xds_utility, :singular => "xds_utility_instance"
   map.resources :document_locations
   map.resources :news, :singular => 'news_item'
 
   map.resources :settings, :only => [:index, :update]
-
-  map.resources :test_plans, :member => {:mark => :post, :checklist => :get}
-  # additional test-specific actions
-  map.test_action '/test_plans/:id/:action', :controller => 'test_plans'
 
   map.resources :patients,
       :has_one  => [:registration_information, :support, :information_source, :advance_directive, :pregnancy],
@@ -31,10 +26,6 @@ ActionController::Routing::Routes.draw do |map|
       :member   => {:set_no_known_allergies => :post, :edit_template_info => :get, :copy => :post },
       :collection => { :autoCreate => :post }
 
-  map.with_options :controller => 'xds_patients' do |xds_patients|
-    xds_patients.provide_and_register_xds_patient '/xds_patients/provide_and_register/:id', :action => 'provide_and_register'
-    xds_patients.do_provide_and_register_xds_patient '/xds_patients/do_provide_and_register', :action => 'do_provide_and_register'
-  end
 
   map.with_options :controller => 'account' do |account|
     %w[ signup login logout forgot_password reset_password ].each do |action|
@@ -49,8 +40,6 @@ ActionController::Routing::Routes.draw do |map|
         :controller => controller, :action => "auto_complete_for_#{action}"
     end
   end
-
-  map.root :controller => "test_plans"
 
   # The priority is based upon order of creation: first created -> highest priority.
 

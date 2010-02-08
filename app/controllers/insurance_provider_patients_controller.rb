@@ -1,3 +1,0 @@
-class InsuranceProviderPatientsController < PatientChildrenController
-
-end

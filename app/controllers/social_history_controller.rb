@@ -1,3 +1,0 @@
-class SocialHistoryController < PatientChildrenController
-
-end
