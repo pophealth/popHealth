@@ -1,5 +1,5 @@
 {
-    "populationName": "Lahey (34234)",
+    "populationName": "Columbia Road Health Services",
     "populationCount": 10001,
     "reports": [{
         "title": "Cholesterol Control 1",
