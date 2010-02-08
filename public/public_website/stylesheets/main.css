@@ -62,7 +62,7 @@ img{
 }
 
 .projectDescription, .faq_title, .gossary_title, .l32_title, .about_title{
-    display:block;
+    display: block;
     /*color:#666;
     font:normal 1.13em arial;*/
     font-weight: bold;
