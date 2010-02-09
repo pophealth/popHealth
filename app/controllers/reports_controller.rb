@@ -591,7 +591,8 @@ class ReportsController < ApplicationController
           where_sql = where_sql + "diabetes.patient_id = patients.id "
           where_tables["conditions diabetes"] = true
         end
-        where_sql = where_sql + "and diabetes.free_text_name = 'Diabetes mellitus disorder' "
+        #where_sql = where_sql + "and diabetes.free_text_name = 'Diabetes mellitus disorder' "
+        where_sql = where_sql + "and diabetes.free_text_name like 'Diabetes mellitus%' "
       end
       if request[:diabetes].include?("No")
         if start_using_and_keyword == true
@@ -601,7 +602,8 @@ class ReportsController < ApplicationController
         where_sql = where_sql + "patients.id not in (" + 
                                    "select conditions.patient_id " +
                                    "from conditions " +
-                                   "where conditions.free_text_name = 'Diabetes mellitus disorder') "
+                                   #"where conditions.free_text_name = 'Diabetes mellitus disorder') "
+                                 "where conditions.free_text_name like 'Diabetes mellitus%')"
       end
     end
 
@@ -616,7 +618,9 @@ class ReportsController < ApplicationController
           where_sql = where_sql + "hypertension.patient_id = patients.id "
           where_tables["conditions hypertension"] = true
         end
-        where_sql = where_sql + "and hypertension.free_text_name = 'Essential hypertension disorder' "
+        #where_sql = where_sql + "and hypertension.free_text_name = 'Essential hypertension disorder' "
+        where_sql = where_sql + "and (hypertension.free_text_name like '%hypertension disorder%' "
+        where_sql = where_sql + "or hypertension.free_text_name like '%Hypertensive disorder%' )"
       end
       if request[:hypertension].include?("No")
         if start_using_and_keyword == true
@@ -626,7 +630,10 @@ class ReportsController < ApplicationController
         where_sql = where_sql + "patients.id not in (" + 
                                 "select conditions.patient_id " +
                                 "from conditions " +
-                                "where conditions.free_text_name = 'Essential hypertension disorder') "
+                                #"where conditions.free_text_name = 'Essential hypertension disorder') "
+                                "where (conditions.free_text_name like '%hypertension disorder%' " + 
+                                "or conditions.free_text_name like '%Hypertensive disorder%')) "
+                                
       end
     end
 
@@ -641,7 +648,8 @@ class ReportsController < ApplicationController
           where_sql = where_sql + "ischemic_vascular_disease.patient_id = patients.id "
           where_tables["conditions ischemic_vascular_disease"] = true
         end
-        where_sql = where_sql + "and ischemic_vascular_disease.free_text_name = 'Ischemia disorder' "
+        #where_sql = where_sql + "and ischemic_vascular_disease.free_text_name = 'Ischemia disorder' "
+        where_sql = where_sql + "and ischemic_vascular_disease.free_text_name like 'Ischemia %' "
       end
       if request[:ischemic_vascular_disease].include?("No")
         if start_using_and_keyword == true
@@ -651,7 +659,8 @@ class ReportsController < ApplicationController
         where_sql = where_sql + "patients.id not in (" + 
                                 "select conditions.patient_id " +
                                 "from conditions " +
-                                "where conditions.free_text_name = 'Ischemia disorder') "
+                                #"where conditions.free_text_name = 'Ischemia disorder') "
+                                "where conditions.free_text_name like 'Ischemia %') "
       end
     end
 
@@ -666,7 +675,8 @@ class ReportsController < ApplicationController
           where_sql = where_sql + "lipoid_disorder.patient_id = patients.id "
           where_tables["conditions lipoid_disorder"] = true
         end
-        where_sql = where_sql + "and lipoid_disorder.free_text_name = 'Hyperlipoproteinemia disorder' "
+        #where_sql = where_sql + "and lipoid_disorder.free_text_name = 'Hyperlipoproteinemia disorder' "
+        where_sql = where_sql + "and lipoid_disorder.free_text_name like 'Hyperlipoproteinemia %' "
       end
       if request[:lipoid_disorder].include?("No")
         if start_using_and_keyword == true
@@ -676,7 +686,8 @@ class ReportsController < ApplicationController
         where_sql = where_sql + "patients.id not in (" + 
                                 "select conditions.patient_id " +
                                 "from conditions " +
-                                "where conditions.free_text_name = 'Hyperlipoproteinemia disorder') "
+                                #"where conditions.free_text_name = 'Hyperlipoproteinemia disorder') "
+                                "where conditions.free_text_name like 'Hyperlipoproteinemia %') "
       end
     end
 
@@ -691,7 +702,8 @@ class ReportsController < ApplicationController
           where_sql = where_sql + "smoking.patient_id = patients.id "
           where_tables["conditions smoking"] = true
         end
-        where_sql = where_sql + "and smoking.free_text_name = 'Smoker finding' "
+        #where_sql = where_sql + "and smoking.free_text_name = 'Smoker finding' "
+        where_sql = where_sql + "and smoking.free_text_name like 'Smoker %' "
       end
       if request[:smoking].include?("Non-Smoker")
         if start_using_and_keyword == true
@@ -701,7 +713,8 @@ class ReportsController < ApplicationController
         where_sql = where_sql + "patients.id not in (" + 
                                 "select conditions.patient_id " +
                                 "from conditions " +
-                                "where conditions.free_text_name = 'Smoker finding') "
+                                #"where conditions.free_text_name = 'Smoker finding') "
+                                "where conditions.free_text_name like 'Smoker %') "
       end
     end
 
