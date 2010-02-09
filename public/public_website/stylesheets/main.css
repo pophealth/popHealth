@@ -1,0 +1,349 @@
+html,body{
+  font-family:Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  padding:0;
+  margin: 0;
+  border: 0;
+  background: #fff;
+}
+
+a,
+#header a:hover
+{
+    color:#56a0ab;
+}
+
+#header a,
+a.noHighlights,
+a.noHighlights:hover{
+    color:#000000;
+    text-decoration:none;
+}
+
+/*navigation for the blind, blend this into the background*/
+#header #skipNavigation,
+#header #skipNavigation:hover{
+    color: #FFFFFF;
+}
+
+#header li.dead_link,
+#header li.dead_link:hover{
+color: #AAAAAA;
+}
+
+#page {
+    margin:0 0 0 50px;
+    width:920px;
+}
+
+#logo {
+    margin: 20px 0 30px 0;
+    width:100%;
+}
+
+#logo img{
+    margin: 0 35px 35px 0;
+}
+
+img.announce{
+  padding-top: 5px;
+  margin-left: 70px;
+}
+
+img{
+    border-style: none
+}
+
+#SourceForgeLogo{
+    width:88px;
+    height:31px;
+}
+
+.projectDescription, .faq_title, .gossary_title, .l32_title, .about_title{
+    display: block;
+    /*color:#666;
+    font:normal 1.13em arial;*/
+    font-weight: bold;
+}
+
+#projectHeader{
+  margin: 0 20px 40px 0;
+  float: left;
+  width: 250px;
+  border: 1px solid #e6e6e6;
+  padding: 10px;
+  background-image: url('../images/grad.png');
+}
+
+#projectHeader h2{
+  margin-top: 0;
+}
+
+.bumper{
+  font-size: 250%;
+}
+
+.l32_title h2 {
+  margin-top:0px;
+}
+
+.l32_header{
+  font-size:24px;
+}
+
+#feedback{
+    display:block;
+    vertical-align: bottom;
+}
+#feedback a{
+    font-weight: bold;
+	/*color:#000000;*/
+}
+#feedback a:hover{
+    text-decoration: underline;
+}
+
+#screenshot{
+    margin-top: 75px;
+}
+.imageDescription{
+    text-align: center;
+}
+
+.coming_soon{
+  color:gray;
+}
+
+/** Header **/
+#header {
+    margin:0px;
+    display: block;
+    border-bottom: 1px dotted #CCC;
+    width: 100%;
+}
+#header ul {
+    text-align:right;
+    /*padding-right:120px;*/
+    margin:20px 0 5px 0;
+}
+
+#header li {
+    display:inline;
+    padding-left: 20px;
+}
+
+#header a.selected {
+    font-weight: bold;
+}
+
+/** Announcement Subscription**/
+table.announcementSubscription{
+    width: 100%;
+}
+
+table.announcementSubscription td.inputLabel{
+    background-color: #dddddd;
+    width: 150px;
+}
+
+table.announcementSubscription input{
+    width: 250px;
+}
+
+table.announcementSubscription input#emailDigest{
+    width:auto;
+    margin-left:0px;
+}
+
+.submitEmailSubscription{
+    margin-left:220px;
+}
+fieldset{
+	border: none;
+}
+
+/* * Sidebar * */
+#sidebar {
+    margin: 0 0 25px 30px;
+    width:      350px;
+    float:      left;
+}
+
+
+.milestonesList {
+    margin: 0 0 50px 0;
+}
+
+
+.milestonesList h2 {
+  margin-bottom: 25px;
+}
+
+#sidebar tr:hover {
+    background:#f9f9f9;
+}
+
+/*.milestonesList td,*/
+.milestoneDate{
+    text-align:right;
+    width: 75px;
+    color:#666;
+    padding: 5px 5px 5px 0;
+}
+
+/*.milestonesList td+td,*/
+.milestoneSubject{
+    width:230px;
+    color:#000000;
+}
+
+.milestonesList td{
+    border-bottom: 1px  dotted #666;
+}
+th{
+    text-align:left;
+}
+#sidebar thead th{
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 10px;
+}
+
+/* * Content * */
+#leftColumn{
+    float:left;
+    width:540px;
+}
+
+#leftColumn div.projectDescription,
+div.projectDescription {
+  padding-bottom:0px;
+}
+
+#leftColumn div.projectDescription h2,
+div.projectDescription h2,
+div.gossary_title h2 {
+  margin-top:40px;
+  padding-bottom:0px;
+  margin-bottom:0px;
+}
+
+#leftColumn p {
+  margin-top:5px;
+}
+
+#middleColumn{
+    float:left;
+}
+#logoDiv{
+    float: left;
+    display:block;
+    width: 100%;
+}
+
+#content,
+#splitContent,
+#aboutContent,
+#l32Content {
+    padding:0 20px 30px 0;
+    min-height:400px;
+}
+
+#splitContent,
+#aboutContent {
+  float:left;
+  width:600px;
+}
+
+#updates{
+  float: right;
+}
+
+#l32Content {
+  clear:both;
+  border-top:1px dotted #ccc;
+  padding-top:30px;
+}
+
+.questionAnswer {
+    border-top:1px dotted #ccc;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
+.firstQuestion {
+  border-top:0px
+}
+
+.questionAnswer p{
+  margin-top:0px;
+}
+
+.question {
+    font-weight: bold;
+    padding-top:10px;
+    padding-bottom:5px;
+}
+#faqHeader, #l32_docs {
+    /*padding-bottom:20px;*/
+    list-style:none;
+}
+
+#l32_docs{
+  padding-left:0px;
+}
+
+.mailinglist p{
+  margin-top:0px;
+  padding-top:10px;
+  padding-bottom:5px;
+}
+
+/* * Footer * */
+#footer {
+    color:#000;
+    border-top:1px dotted #ccc;
+    margin:0 0 30px 0;
+    padding:5px 0 20px 0;
+    clear:both;
+}
+
+#footer a {
+    font-weight:bold;
+    color:#000;
+}
+
+#footer a:hover {
+    color:#c30;
+}
+
+#footerLicense{
+    float:left;
+    width: 500px;
+}
+
+#footerSourceForge{
+    float:left;
+    width: 50px;
+}
+
+#footerLinks{
+    float:right;
+}
+
+a.feedBurner {
+    background:url(../images/feedicon.gif) no-repeat 0 100% ;
+    padding:1px 20px 0 20px;
+}
+
+a.feedBurner:hover {
+    background:url(../images/feedicon.gif) no-repeat ;
+}
+
+a.delicious {
+    background:url(../images/delicon.gif) no-repeat 0 100% ;
+    padding:1px 0px 0 20px;
+}
+
+a.delicious:hover{
+    background:url(../images/delicon.gif) no-repeat ;
+}

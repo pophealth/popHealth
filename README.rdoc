@@ -25,17 +25,17 @@ You will need to install Rails for JRuby, as well as the Factory Girl and Should
  $ jruby -S gem install thoughtbot-factory_girl 
  $ jruby -S gem install thoughtbot-shoulda 
 
-Install the rest of the gem dependencies; from the root of your popHealth project:
-
- $ jruby -S rake gems:install
-
-== Database
 Install the database adapters:
 
   $ jruby -S gem install activerecord-jdbcmysql-adapter
   $ jruby -S gem install activerecord-jdbcpostgresql-adapter
 
-Make sure your local database server is running and create a new user *poplaika* with password *poplaika* and a new database/schema called *poplaika*. Find the database.yml.template file in laika/config under your local Laika project and edit it to include your database settings, for example:
+Install the rest of the gem dependencies; from the root of your popHealth project:
+
+ $ jruby -S rake gems:install
+
+== Database
+Make sure your local database server is running and create a new user *poplaika* with password *poplaika* and a new database/schema called *poplaika*. Find the database.yml.template file in laika/config under your local popHealth project and edit it to include your database settings, for example:
 
   development:
    adapter: jdbcpostgresql

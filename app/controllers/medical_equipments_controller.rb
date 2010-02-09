@@ -1,2 +1,0 @@
-class MedicalEquipmentsController < PatientChildrenController
-end

@@ -1,2 +1,0 @@
-class AdvanceDirectivesController < PatientChildController
-end

@@ -1,3 +1,0 @@
-class ImmunizationsController < PatientChildrenController
-
-end

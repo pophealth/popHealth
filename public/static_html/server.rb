@@ -79,7 +79,7 @@ DEFAULT_OPTS = {
 }
 
 def add_random_numbers(resp = {})
-  resp[:count] = 10001
+  resp[:count] = 4948
   
   resp[:gender] = {
     'Male' => [rand(4100), 4100],
@@ -172,8 +172,8 @@ get '/reports' do
     handle_report_get(params)
   else
     resp = {
-      "populationCount" => 10001,
-      "populationName" => "Lahey (34234)",
+      "populationCount" => 4948,
+      "populationName" => "Columbia Road Health Services",
       "reports" => []
     }
     @@reports.values.each {|report|
