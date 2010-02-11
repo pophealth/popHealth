@@ -31,17 +31,51 @@ class PatientC32Importer
       new_patient.medications << imported_medications
       
       vitals_section = VitalSignC32Importer.section(clinical_document)
-      imported_vitals = VitalSignC32Importer.import_entries(vitals_section)
-      new_patient.vital_signs << imported_vitals
+      if vitals_section
+        imported_vitals = VitalSignC32Importer.import_entries(vitals_section)
+        new_patient.vital_signs << imported_vitals
+      else
+        vital_sign = VitalSign.new
+        vital_sign.randomize(new_patient.registration_information.gender, new_patient.registration_information.date_of_birth, :systolic)
+        new_patient.vital_signs << vital_sign
+
+        vital_sign = VitalSign.new
+        vital_sign.randomize(new_patient.registration_information.gender, new_patient.registration_information.date_of_birth, :diastolic)
+        new_patient.vital_signs << vital_sign
+      end
       
       result_section = ResultC32Importer.section(clinical_document)
-      imported_results = ResultC32Importer.import_entries(result_section)
-      new_patient.results << imported_results
+      if result_section
+        imported_results = ResultC32Importer.import_entries(result_section)
+        new_patient.results << imported_results
+      else
+        result = Result.new
+        result.randomize(new_patient.registration_information.gender, new_patient.registration_information.date_of_birth, :cholesterol)
+        new_patient.results << result
+        
+        result = Result.new
+        result.randomize(new_patient.registration_information.gender, new_patient.registration_information.date_of_birth, :LDL_C, imported_conditions)
+        new_patient.results << result
+
+        result = Result.new
+        result.randomize(new_patient.registration_information.gender, new_patient.registration_information.date_of_birth, :colorectal_screening)
+        new_patient.results << result
+
+        result = Result.new
+        result.randomize(new_patient.registration_information.gender, new_patient.registration_information.date_of_birth, :A1c, imported_conditions)
+        new_patient.results << result
+      end
       
       social_history_section = SocialHistoryC32Importer.section(clinical_document)
-      imported_social_history = SocialHistoryC32Importer.import_entries(social_history_section)
-      new_patient.social_history << imported_social_history
-      
+      if social_history_section
+        imported_social_history = SocialHistoryC32Importer.import_entries(social_history_section)
+        new_patient.social_history << imported_social_history
+      else
+        my_social_history = SocialHistory.new
+        my_social_history.randomize(new_patient.registration_information.date_of_birth, imported_conditions)
+        new_patient.social_history << my_social_history
+      end
+        
       new_patient.save!
     else
       false
