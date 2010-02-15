@@ -106,6 +106,10 @@ img{
 #screenshot{
     margin-top: 75px;
 }
+.imageHeader{
+    text-align: center;
+    font-size: 20px;
+}
 .imageDescription{
     text-align: center;
     font-size: 14px;
