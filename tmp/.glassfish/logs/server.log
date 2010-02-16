@@ -21400,3 +21400,1466 @@ INFO: Rendering reports/pqri_report
 Feb 12, 2010 11:17:29 AM com.sun.grizzly.config.GrizzlyServiceListener
 INFO: Completed in 82ms (View: 37, DB: 5) | 200 OK [http://sugar.mitre.org/popconnect/export?id=1819138991]
 
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (19.0ms)[0m   [0mselect count(distinct patients.id) from patients where patients.id not in (select abstract_results.patient_id from abstract_results where abstract_results.result_code = '54047-6') [0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (6.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (6.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, conditions mammography where mammography.patient_id = patients.id and (mammography.free_text_name = 'Mammographic breast mass finding finding' or mammography.free_text_name = 'Mammography abnormal finding' or mammography.free_text_name = 'Mammography assessment Category 3 Probably benign finding short interval follow up finding' or mammography.free_text_name = 'Mammography normal finding') [0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (10.0ms)[0m   [0mselect count(distinct patients.id) from patients where patients.id not in (select conditions.patient_id from conditions where (conditions.free_text_name = 'Mammographic breast mass finding finding' or conditions.free_text_name = 'Mammography abnormal finding' or conditions.free_text_name = 'Mammography assessment Category 3 Probably benign finding short interval follow up finding' or conditions.free_text_name = 'Mammography normal finding')) [0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (16.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, immunizations influenza_immunization, vaccines influenza_vaccine where influenza_immunization.patient_id = patients.id and influenza_immunization.vaccine_id = influenza_vaccine.id and influenza_vaccine.name like 'Influenza Virus Vaccine%' [0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (10.0ms)[0m   [0mselect count(distinct patients.id) from patients where patients.id not in (select immunizations.patient_id from immunizations, vaccines where immunizations.vaccine_id = vaccines.id and vaccines.name like 'Influenza Virus Vaccine%') [0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (14.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, abstract_results hb_a1c where hb_a1c.patient_id = patients.id and hb_a1c.result_code = '54039-3' and ((hb_a1c.value_scalar::varchar::text::int <= 7) )[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:03 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (12.0ms)[0m   [0mselect count(distinct patients.id) from patients, abstract_results hb_a1c where hb_a1c.patient_id = patients.id and hb_a1c.result_code = '54039-3' and ((hb_a1c.value_scalar::varchar::text::int > 7 and hb_a1c.value_scalar::varchar::text::int <= 8) )[0m
+
+Feb 16, 2010 12:12:04 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:04 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:04 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:04 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:04 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:04 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:04 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:04 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:04 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (11.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, abstract_results hb_a1c where hb_a1c.patient_id = patients.id and hb_a1c.result_code = '54039-3' and ((hb_a1c.value_scalar::varchar::text::int > 8 and hb_a1c.value_scalar::varchar::text::int <= 9) )[0m
+
+Feb 16, 2010 12:12:04 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:04 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:04 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:04 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:04 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:04 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:04 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:04 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:04 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (13.0ms)[0m   [0mselect count(distinct patients.id) from patients, abstract_results hb_a1c where hb_a1c.patient_id = patients.id and hb_a1c.result_code = '54039-3' and ((hb_a1c.value_scalar::varchar::text::int > 9) )[0m
+
+Feb 16, 2010 12:12:04 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Completed in 1267ms (View: 2, DB: 970) | 200 OK [http://sugar.mitre.org/reports]
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing ReportsController#create (for  at 2010-02-16 12:12:11) [POST]
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   Parameters: {"numerator"=>{"diabetes"=>["Yes"]}, "denominator"=>{"gender"=>["Female"], "age"=>["50-60", "60-70", "70-80", "80+"]}, "title"=>"Untitled Report", "authenticity_token"=>"n3bozUbAgCqhHu2aLP8j+b3rasIL3Ct3GNehUmuhA6c=", "controller"=>"reports", "action"=>"create"}
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mUser Load (1.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1458360766) LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (7.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mGender Load (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mGender Load (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mSocialHistoryType Load (1.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (16.0ms)[0m   [0mselect count(distinct patients.id) from patients, registration_information where registration_information.patient_id = patients.id and ((registration_information.gender_id = 1249151596) )and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*60)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*60) and now()::DATE - registration_information.date_of_birth::DATE < (365*70)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*70) and now()::DATE - registration_information.date_of_birth::DATE < (365*80)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*80)) )[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (7.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, registration_information, conditions diabetes where registration_information.patient_id = patients.id and ((registration_information.gender_id = 1249151596) )and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*60)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*60) and now()::DATE - registration_information.date_of_birth::DATE < (365*70)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*70) and now()::DATE - registration_information.date_of_birth::DATE < (365*80)) or (now()::DATE - registration_information.date_of_birth::DATE >= (365*80)) )and diabetes.patient_id = patients.id and diabetes.free_text_name like 'Diabetes mellitus%' [0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (8.0ms)[0m   [0mselect count(distinct patients.id) from patients, registration_information where registration_information.patient_id = patients.id and ((registration_information.gender_id = 1435361449) )[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (8.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, registration_information where registration_information.patient_id = patients.id and ((registration_information.gender_id = 1249151596) )[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (10.0ms)[0m   [0mselect count(distinct patients.id) from patients, registration_information where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE < (365*18)) )[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (14.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, registration_information where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*18) and now()::DATE - registration_information.date_of_birth::DATE < (365*30)) )[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (12.0ms)[0m   [0mselect count(distinct patients.id) from patients, registration_information where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*30) and now()::DATE - registration_information.date_of_birth::DATE < (365*40)) )[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (6.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (13.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, registration_information where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*40) and now()::DATE - registration_information.date_of_birth::DATE < (365*50)) )[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (11.0ms)[0m   [0mselect count(distinct patients.id) from patients, registration_information where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*50) and now()::DATE - registration_information.date_of_birth::DATE < (365*60)) )[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (6.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (10.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, registration_information where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*60) and now()::DATE - registration_information.date_of_birth::DATE < (365*70)) )[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (9.0ms)[0m   [0mselect count(distinct patients.id) from patients, registration_information where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*70) and now()::DATE - registration_information.date_of_birth::DATE < (365*80)) )[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (8.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, registration_information where registration_information.patient_id = patients.id and ((now()::DATE - registration_information.date_of_birth::DATE >= (365*80)) )[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (8.0ms)[0m   [0mselect count(distinct patients.id) from patients, medications aspirin where aspirin.patient_id = patients.id and aspirin.product_code = 'R16CO5Y76E' [0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, social_history smoking_cessation where smoking_cessation.patient_id = patients.id and smoking_cessation.social_history_type_id = 1819138991 [0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (22.0ms)[0m   [0mselect count(distinct patients.id) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ((ldl_cholesterol.value_scalar::varchar::text::int <= 100) )[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (20.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ((ldl_cholesterol.value_scalar::varchar::text::int > 100 and ldl_cholesterol.value_scalar::varchar::text::int <= 120) )[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (21.0ms)[0m   [0mselect count(distinct patients.id) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ((ldl_cholesterol.value_scalar::varchar::text::int > 130 and ldl_cholesterol.value_scalar::varchar::text::int <= 160) )[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:11 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (17.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ((ldl_cholesterol.value_scalar::varchar::text::int > 160 and ldl_cholesterol.value_scalar::varchar::text::int <= 180) )[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (18.0ms)[0m   [0mselect count(distinct patients.id) from patients, abstract_results ldl_cholesterol where ldl_cholesterol.patient_id = patients.id and ldl_cholesterol.result_code = '18261-8' and ((ldl_cholesterol.value_scalar::varchar::text::int > 180) )[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (18.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and ((diastolic.value_scalar::varchar::text::int <= 74) )[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (18.0ms)[0m   [0mselect count(distinct patients.id) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and ((diastolic.value_scalar::varchar::text::int >= 75 and diastolic.value_scalar::varchar::text::int <= 84) )[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (21.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and ((diastolic.value_scalar::varchar::text::int >= 85 and diastolic.value_scalar::varchar::text::int <= 94) )[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (20.0ms)[0m   [0mselect count(distinct patients.id) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and ((diastolic.value_scalar::varchar::text::int >= 95 and diastolic.value_scalar::varchar::text::int <= 104) )[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (18.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, abstract_results diastolic where diastolic.patient_id = patients.id and diastolic.result_code = '8462-4' and ((diastolic.value_scalar::varchar::text::int >= 105) )[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients, conditions smoking where smoking.patient_id = patients.id and smoking.free_text_name like 'Smoker %' [0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (9.0ms)[0m   [0;1mselect count(distinct patients.id) from patients where patients.id not in (select conditions.patient_id from conditions where conditions.free_text_name like 'Smoker %') [0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (4.0ms)[0m   [0mselect count(distinct patients.id) from patients, conditions diabetes where diabetes.patient_id = patients.id and diabetes.free_text_name like 'Diabetes mellitus%' [0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (9.0ms)[0m   [0;1mselect count(distinct patients.id) from patients where patients.id not in (select conditions.patient_id from conditions where conditions.free_text_name like 'Diabetes mellitus%')[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(distinct patients.id) from patients, conditions hypertension where hypertension.patient_id = patients.id and (hypertension.free_text_name like '%hypertension disorder%' or hypertension.free_text_name like '%Hypertensive disorder%' )[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (9.0ms)[0m   [0;1mselect count(distinct patients.id) from patients where patients.id not in (select conditions.patient_id from conditions where (conditions.free_text_name like '%hypertension disorder%' or conditions.free_text_name like '%Hypertensive disorder%')) [0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (4.0ms)[0m   [0mselect count(distinct patients.id) from patients, conditions ischemic_vascular_disease where ischemic_vascular_disease.patient_id = patients.id and ischemic_vascular_disease.free_text_name like 'Ischemia %' [0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (8.0ms)[0m   [0;1mselect count(distinct patients.id) from patients where patients.id not in (select conditions.patient_id from conditions where conditions.free_text_name like 'Ischemia %') [0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients, conditions lipoid_disorder where lipoid_disorder.patient_id = patients.id and lipoid_disorder.free_text_name like 'Hyperlipoproteinemia %' [0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (8.0ms)[0m   [0;1mselect count(distinct patients.id) from patients where patients.id not in (select conditions.patient_id from conditions where conditions.free_text_name like 'Hyperlipoproteinemia %') [0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (15.0ms)[0m   [0mselect count(distinct patients.id) from patients, abstract_results colorectal_cancer_screening where colorectal_cancer_screening.patient_id = patients.id and colorectal_cancer_screening.result_code = '54047-6' [0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (6.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (18.0ms)[0m   [0;1mselect count(distinct patients.id) from patients where patients.id not in (select abstract_results.patient_id from abstract_results where abstract_results.result_code = '54047-6') [0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(distinct patients.id) from patients, conditions mammography where mammography.patient_id = patients.id and (mammography.free_text_name = 'Mammographic breast mass finding finding' or mammography.free_text_name = 'Mammography abnormal finding' or mammography.free_text_name = 'Mammography assessment Category 3 Probably benign finding short interval follow up finding' or mammography.free_text_name = 'Mammography normal finding') [0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (9.0ms)[0m   [0;1mselect count(distinct patients.id) from patients where patients.id not in (select conditions.patient_id from conditions where (conditions.free_text_name = 'Mammographic breast mass finding finding' or conditions.free_text_name = 'Mammography abnormal finding' or conditions.free_text_name = 'Mammography assessment Category 3 Probably benign finding short interval follow up finding' or conditions.free_text_name = 'Mammography normal finding')) [0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (15.0ms)[0m   [0mselect count(distinct patients.id) from patients, immunizations influenza_immunization, vaccines influenza_vaccine where influenza_immunization.patient_id = patients.id and influenza_immunization.vaccine_id = influenza_vaccine.id and influenza_vaccine.name like 'Influenza Virus Vaccine%' [0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (10.0ms)[0m   [0;1mselect count(distinct patients.id) from patients where patients.id not in (select immunizations.patient_id from immunizations, vaccines where immunizations.vaccine_id = vaccines.id and vaccines.name like 'Influenza Virus Vaccine%') [0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (14.0ms)[0m   [0mselect count(distinct patients.id) from patients, abstract_results hb_a1c where hb_a1c.patient_id = patients.id and hb_a1c.result_code = '54039-3' and ((hb_a1c.value_scalar::varchar::text::int <= 7) )[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (6.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (12.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, abstract_results hb_a1c where hb_a1c.patient_id = patients.id and hb_a1c.result_code = '54039-3' and ((hb_a1c.value_scalar::varchar::text::int > 7 and hb_a1c.value_scalar::varchar::text::int <= 8) )[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (12.0ms)[0m   [0mselect count(distinct patients.id) from patients, abstract_results hb_a1c where hb_a1c.patient_id = patients.id and hb_a1c.result_code = '54039-3' and ((hb_a1c.value_scalar::varchar::text::int > 8 and hb_a1c.value_scalar::varchar::text::int <= 9) )[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (13.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, abstract_results hb_a1c where hb_a1c.patient_id = patients.id and hb_a1c.result_code = '54039-3' and ((hb_a1c.value_scalar::varchar::text::int > 9) )[0m
+
+Feb 16, 2010 12:12:12 PM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Completed in 1308ms (View: 4, DB: 987) | 200 OK [http://sugar.mitre.org/reports]
+
