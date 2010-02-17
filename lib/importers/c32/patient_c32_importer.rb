@@ -30,6 +30,10 @@ class PatientC32Importer
       imported_medications = MedicationC32Importer.import_entries(medication_section)
       new_patient.medications << imported_medications
       
+      immunization_section = ImmunizationC32Importer.section(clinical_document)
+      imported_immunizations = ImmunizationC32Importer.import_entries(immunization_section)
+      new_patient.immunizations << imported_immunizations
+      
       vitals_section = VitalSignC32Importer.section(clinical_document)
       if vitals_section
         imported_vitals = VitalSignC32Importer.import_entries(vitals_section)
