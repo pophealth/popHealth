@@ -1,6 +1,5 @@
 class MedicationC32Importer 
   extend ImportHelper
-  include MatchHelper
   
   def self.template_id
     '2.16.840.1.113883.10.20.1.8'
