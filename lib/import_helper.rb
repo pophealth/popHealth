@@ -37,9 +37,9 @@ module ImportHelper
 
   def deref(code)
     if code
-      ref = REXML::XPath.first(code,"cda:reference",MatchHelper::DEFAULT_NAMESPACES)
+      ref = REXML::XPath.first(code,"cda:reference",DEFAULT_NAMESPACES)
       if ref
-        REXML::XPath.first(code.document,"//cda:content[@ID=$id]/text()",MatchHelper::DEFAULT_NAMESPACES,{"id"=>ref.attributes['value'].gsub("#",'')}) 
+        REXML::XPath.first(code.document,"//cda:content[@ID=$id]/text()",DEFAULT_NAMESPACES,{"id"=>ref.attributes['value'].gsub("#",'')}) 
       else
         nil
       end
