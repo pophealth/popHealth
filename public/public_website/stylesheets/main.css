@@ -1,8 +1,6 @@
 html,body{
   font-family:Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  height: 100%;
-  width:  100%;
+  font-size: 14px;
   padding:0;
   margin: 0;
   border: 0;
@@ -39,7 +37,7 @@ color: #AAAAAA;
 }
 
 #logo {
-    margin: 20px 0 30px 0;
+    margin: 20px 0 0px 0;
     width:100%;
 }
 
@@ -61,17 +59,17 @@ img{
     height:31px;
 }
 
-.projectDescription, .faq_title, .gossary_title, .l32_title, .about_title{
-    display:block;
+.faq_title, .gossary_title, .l32_title, .about_title{
+    display: block;
     /*color:#666;
     font:normal 1.13em arial;*/
     font-weight: bold;
 }
 
 #projectHeader{
-  margin: 0 20px 40px 0;
+  margin: 0 20px 20px 0;
   float: left;
-  width: 250px;
+  width: 900px;
   border: 1px solid #e6e6e6;
   padding: 10px;
   background-image: url('../images/grad.png');
@@ -106,10 +104,15 @@ img{
 }
 
 #screenshot{
-    margin-top: 75px;
+    margin-top: 210px;
+}
+.imageHeader{
+    text-align: center;
+    font-size: 20px;
 }
 .imageDescription{
     text-align: center;
+    font-size: 14px;
 }
 
 .coming_soon{
@@ -173,7 +176,8 @@ fieldset{
 
 
 .milestonesList {
-    margin: 0 0 50px 0;
+    margin: 0px 0 50px 20px;
+	float: right;
 }
 
 
@@ -195,7 +199,7 @@ fieldset{
 
 /*.milestonesList td+td,*/
 .milestoneSubject{
-    width:230px;
+    width:180px;
     color:#000000;
 }
 
@@ -224,9 +228,13 @@ div.projectDescription {
 #leftColumn div.projectDescription h2,
 div.projectDescription h2,
 div.gossary_title h2 {
-  margin-top:40px;
+  margin-top:20px;
   padding-bottom:0px;
   margin-bottom:0px;
+}
+
+#leftColumn .projectDescription h2 {
+	font-weight: bold;
 }
 
 #leftColumn p {
@@ -245,10 +253,6 @@ div.gossary_title h2 {
 #content,
 #splitContent,
 #aboutContent,
-#l32Content {
-    padding:0 20px 30px 0;
-    min-height:400px;
-}
 
 #splitContent,
 #aboutContent {
@@ -258,12 +262,6 @@ div.gossary_title h2 {
 
 #updates{
   float: right;
-}
-
-#l32Content {
-  clear:both;
-  border-top:1px dotted #ccc;
-  padding-top:30px;
 }
 
 .questionAnswer {

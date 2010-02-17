@@ -41,7 +41,6 @@
   	        <li><a href="#license">What are the open source licensing details associated with popHealth?</a></li>
   	        <li><a href="#browsers">What web browsers can be used with popHealth?</a></li>
   	        <li><a href="#newfields">Can a user add new measurements to the list of fields to choose from?</a></li>
-  	        <li><a href="#nonc32support">Can popHealth support other standards behind the HITSP C32?</a></li>
   	        <li><a href="#contribute">Can I contribute software source code to popHealth?</a></li>
             <li><a href="#vendor">Do I need to be a healthcare provider or EHR vendor to use popHealth?</a></li>
             <li><a href="#languages">What programming languages will popHealth use?</a></li>
@@ -49,18 +48,18 @@
           </ul>
         <div class="questionAnswer firstQuestion">
   	      <div class="question" id="whatIsPopHealth">What is popHealth?</div>
-          <p>popHealth is an open source project that automates population health reporting.  popHealth integrates with a healthcare provider's electronic health record (EHR) system to produce <a href="http://healthit.hhs.gov/portal/server.pt?open=512&objID=1325&parentname=CommunityPage&parentid=1&mode=2">Meaningful Use Quality Measures</a> on the provider's patient population.</p>
+          <p>popHealth is a prototype open source tool that automates population health reporting.  popHealth integrates with a healthcare provider's electronic health record (EHR) system to produce summary quality measures on the provider's patient population.  popHealth provides a streamlined mechanism for reporting summary quality information to federal agencies.</p>
         </div>
         <div class="questionAnswer">
   	      <div class="question" id="objective">What is the objective of popHealth?</div>
-          <p>popHealth is designed to simplify the reporting of meaningful use quality measures, to shorten the time necessary to achieve meaningful use, and to decrease the total cost to achieve this goal.</p>
+          <p>popHealth is designed to simplify the reporting of summary quality measures, and streamline the exchange of summary quality data.</p>
         </div>
         <div class="questionAnswer">
   	      <div class="question" id="users">Who are the intended users of popHealth?</div>
-          <p>popHealth has been designed to provide assistance to healthcare providers, and EHR vendors.  Providers are empowered to better understand the health of their patient population through reports aligned with the latest meaningful use quality measures. EHR vendors are free to download, use, and redistribute the popHealth software to accelerate their support for Meaningful Use quality measures in their products.</p>
-		<p>Key to popHealth's value for providers and vendors interested in implementing meaningful use quality reporting:</p>
+          <p>popHealth has been designed to provide proof of concept to healthcare providers, and EHR vendors.  Providers are empowered to better understand the health of their patient population through reports of quality measures. EHR vendors are free to download, use, and redistribute the popHealth software in their products.</p>
+		<p>Key to popHealth's value for providers and vendors interested in implementing summary quality reporting:</p>
 		  <ul>
-            <li>The ability to quickly view and report static quality measures based on the latest proposed Meaningful Use guidance</li>
+            <li>The ability to quickly view and report static quality measures based on established quality measures</li>
             <li>Provides users with the ability to dynamically add new, ad hoc reports based upon individually composed queries</li>
             <li>Infrastructure to eventually remotely automate the addition of new quality measure reports, and export multiple modes of reporting output</li>
           </ul>
@@ -86,7 +85,7 @@
         <div class="questionAnswer">
   	      <div class="question" id="provideruse">What is basic Concept of Operations for use of popHealth by a provider?</div>
           <p>popHealth has been designed to operate within a provider’s infrastructure.  This design decision has been made to address privacy and security concerns associated with access to information associated with individual patient records.</p>
-          <img src="images/provider_workflow.png" alt="popHealth Provider Workflow" class="screenshot">
+          <img src="images/provider_workflow.png" alt="popHealth Provider Workflow" class="screenshot" style="border:1px solid #EEEEEE">
         </div>
         <div class="questionAnswer">
   	      <div class="question" id="connect">How is popHealth related to CONNECT open source?</div>
@@ -94,11 +93,11 @@
         </div>
         <div class="questionAnswer">
   	      <div class="question" id="laika">How is popHealth related to project Laika?</div>
-          <p>The vast majority of the software supporting popHealth runs atop of the open source <a href="http://projectlaika.org" target="_external">Laika</a> project infrastructure.  All of the supporting Laika software and source code, is also freely available under an Apache 2.0 open source distribution license.</p>
+          <p>The vast majority of the software supporting popHealth runs atop of <a href="http://www.mitre.org" target="_external">the MITRE Corporation's</a> open source <a href="http://projectlaika.org" target="_external">Laika</a> project infrastructure.  All of the supporting Laika software and source code, is also freely available under an Apache 2.0 open source distribution license.</p>
         </div>
         <div class="questionAnswer">
   	      <div class="question" id="cost">How much does it cost to use popHealth?</div>
-          <p>popHealth is a free open source software project. There is no cost to use, modify, integrate, and/or redistribute it.  We only require attribution on your use of the open source popHealth software.</p>
+          <p>popHealth is a free open source software project. There is no cost to use, modify, integrate, and/or redistribute it.</p>
         </div>
         <div class="questionAnswer">
   	      <div class="question" id="license">What are the open source licensing details associated with popHealth?</div>
@@ -113,12 +112,10 @@
   	      <p>Adding new measurements from the continuity of care record, beyond those listed on the dashboard and report views, is possible.  However, it requires some reconfiguring by a software engineer.  The estimated scope of adding a new measurement (ie. a new lab result type) to the user interface should take under 1 hour for an experienced software engineer.</p>
         </div>
         <div class="questionAnswer">
-  	      <div class="question" id="nonc32support">Can popHealth support other standards behind the HITSP C32?</div>
-  	      <p>Yes.  popHealth has been designed to be permissive in support of different XML standards when using different inputs, like the HITSP C32, ASTM CCR, CMS QRDA, and other standards which may be identified in the future.</p>
-        </div>
-        <div class="questionAnswer">
   	      <div class="question" id="contribute">Can I contribute software source code to popHealth?</div>
   	      <p>Yes!  Code contributions, bug fixes, ideas for new features, are all welcome.  Our only requirement is that any and all software contributed to popHealth is released under an Apache 2.0 open source distribution license.  Source code contributions, as well as dialog/discussions for feature requests and enhancements will be publicly reviewed and vetted by the popHealth project's governing organizations.</p>
+  	      <p>To submit a new feature for consideration into the popHealth repository, setup an account on <a href="https://github.com/">GitHub</a>.  Fork the popHealth code, and create a branch of popHealth on your repository.  Send the link to your popHealth branch to the popHealth <a href="mailto:dev@projectpophealth.org">developer email list</a>, and cite either an existing bug or feature from the popHealth project tracker to specify the changes that you are contributing.</p>
+  	      <p>If you have suggestions on new features, or want to report a bug that has not yet been tracked, send an email to the <a href="mailto:dev@projectpophealth.org">developer email list</a> with either the details to reproduce a bug, or detailed description about a suggested feature that you would like to see added to popHealth.</p>
         </div>
         <div class="questionAnswer">
   	      <div class="question" id="vendor">Do I need to be a healthcare provider or EHR vendor to use popHealth?</div>
