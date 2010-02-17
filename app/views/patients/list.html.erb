@@ -1,0 +1,9 @@
+<%= grid(@list, :name => "patients").show(:url => "/patients/:id/show/?return=:return").page().columns { |g|
+	   	g.column :name
+	   	g.column :pregnant
+		g.column "registration_information.date_of_birth"
+		g.column "registration_information.race.name", :title => "Race"
+} %>
+
+
+

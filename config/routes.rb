@@ -23,8 +23,8 @@ ActionController::Routing::Routes.draw do |map|
                     :insurance_provider_guarantors, :medications, :allergies, :conditions, 
                     :results, :immunizations, :vital_signs,
                     :encounters, :procedures, :medical_equipments, :patient_identifiers],
-      :member   => {:set_no_known_allergies => :post, :edit_template_info => :get, :copy => :post },
-      :collection => { :autoCreate => :post }
+      :member   => {:set_no_known_allergies => :post, :edit_template_info => :get, :copy => :post, :show => :get },
+      :collection => { :autoCreate => :post, :list => :get }
 
 
   map.with_options :controller => 'account' do |account|
