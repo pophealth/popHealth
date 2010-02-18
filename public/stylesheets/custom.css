@@ -364,3 +364,200 @@ span.name-edit{
 span.name-edit a, span.name-edit input{
   margin-right: 10px;
 }
+
+/** Breadcrumbs */ 
+.breadcrumbs{
+  list-style: none;
+  padding:    5px 0 0 15px;
+  margin:     0 0 15px 0;
+  background:     url('../images/darkgradient.png') center;
+  border-bottom:  1px solid #ccc;
+  font-weight:    bold;
+  font-size:      1.1em;
+}
+
+.breadcrumbs li{
+  margin-right:   5px;
+  padding:        5px;
+  display:        inline;
+}
+
+
+/** Sections */
+.section, section {
+	clear: both;
+	margin-bottom: 10px;
+	float: left;
+}
+
+.section .column h2, section .column h2 {
+	text-transform: uppercase;
+	color: #ccc;
+	font-weight: bold;
+	font-size: 130%;
+	border-bottom: 1px solid #ccc;
+}
+
+.column {
+	float: left;
+	width: 400px;
+	margin: 5px;
+}
+
+/** Lists */
+
+.stack, .data {
+	list-style-type: none;
+	display: block;
+	overflow: visible;
+	margin: 0;
+	padding: 0;
+	clear: both;
+}
+
+.stack label {
+	color: #ccc;
+	float: left;
+	display: block;
+	width: 100%;
+	text-transform: capitalize;
+}
+
+.stack li,
+.stack ul.data li {
+	display: block;
+	float: left;
+	clear: both;
+}
+
+.stack.stats li,
+.stack.contact-information li {
+	clear: none;
+	margin: 5px 5px;
+}
+
+.stack.stats .data li,
+.stack.contact-information .data li {
+	margin: 1px 0px;
+}
+
+/** Stats List */
+
+.stack.stats li {
+	width: 70px;
+}
+
+.stack.stats .age {
+	width: 40px;
+}
+
+.stats.stats .gender {
+	width: 50px;
+}
+
+.stack.stats .date-of-birth {
+	width: 125px;
+	margin-left: 35px;
+}
+
+.stack.stats .blood-pressure {
+	width: 100px;
+}
+
+.stack.stats .insurance-provider {
+	width: 200px;
+}
+
+/** Contact Info List */
+
+.stack.contact-information .phone-numbers {
+	width: 130px;
+}
+
+.stack.contact-information .address {
+	width: 125px;
+}
+
+.stack.contact-information .email {
+	width: 340px;
+}
+
+.stack.contact-information .insurance-group-number {
+	width: 200px;
+}
+
+/** Conditions */ 
+
+.conditions dl {
+	float: left;
+	display: block;
+	width: 290px;
+	margin-right: 10px;
+}
+
+.conditions .stack li {
+	width: 100%;
+}
+
+.conditions .stack ul {
+	display: block;
+	clear: none;
+	float: right;
+	width: 100px;
+}
+
+/** Grid */
+
+table .pagination a, 
+table .pagination span,
+table .pagination label, 
+table .pagination input {
+	float: left;
+	display: block;
+}
+
+table .pagination form {
+	display: inline;
+	float: left;
+}
+
+table .pagination .current-page {
+	margin: 0px 10px;
+}
+
+table .pagination .current-page input {
+	margin: 0 5px;
+	padding: 0;
+}
+table .pagination .current-page .count {
+	display: inline;
+	float: none;
+}
+
+table .pagination .page-size {
+	float: right;
+}
+
+tbody.tablecontent {
+  overflow-x: hidden !important;
+}
+
+
+tr.alt {
+  background-color: #efefef;
+}
+
+
+table{
+  margin-bottom:0;
+}
+
+.midori-bind-grid th { 
+	border: 1px solid #d3d3d3; 
+	background: #e6e6e6 url(smoothness/images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x; 
+	font-weight: normal; 
+	color: #555555; 
+	outline: none; 
+}
+
+
