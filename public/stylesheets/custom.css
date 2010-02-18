@@ -19,12 +19,12 @@ a:hover{
   text-decoration:underline;
 }
 
-
 #header{
   height:         40px;
   background:     url('../images/gradient.png');
   border-bottom:  1px solid #cccccc;
 }
+
 #header .logo{
   margin: 0 10px;
 }
@@ -45,7 +45,6 @@ div#header ul li a{
   
 }
 
-
 #sidebar{
   position:           absolute;
   width:              250px;
@@ -54,6 +53,7 @@ div#header ul li a{
   top:                41px;
   bottom:             0px;
 }
+
 #main{
   position:     absolute;
   left:         251px;
@@ -61,7 +61,6 @@ div#header ul li a{
   top:          41px;
   bottom:       0px;
 }
-
 
 #sidebar ul li, #sidebar div.new-report {
   padding: 10px 0;
@@ -79,7 +78,6 @@ div#header ul li a{
   color:          #000 !important;
 }
 
-
 #sidebar ul li span, #sidebar div.new-report span {
   padding: 0 10px;
 }
@@ -88,12 +86,6 @@ div#header ul li a{
   color: #ccc !important;
 }
 
-
-
-
-
-
-
 /*
 #sidebar ul li span.report-name, #sidebar ul li span.report-percentage{
   font-size:    1.2em;
@@ -101,18 +93,15 @@ div#header ul li a{
 }
 */
 
-
 #sidebar ul li.selected{
   background:     url('../images/darkgradient.png');
   color:          #000;
   border-bottom:  1px solid #888;
 }
 
-
 #sidebar ul li span.report-percentage{
   float: right;
 }
-
 
 #sidebar ul{
   list-style-type:  none;
@@ -158,7 +147,6 @@ div#header ul li a{
 .data_viewer .top_frame .report_stats{
 
 }
-
 
 .data_viewer .top_frame .master_percentage span{
   font-size: 65%;
@@ -208,8 +196,6 @@ div#header ul li a{
   cursor: move;
 }
 
-
-
 .bottom_frame .section {
   width:          395px;
   margin:         0 25px 25px 0;
@@ -253,13 +239,11 @@ div#header ul li a{
 }
 */
 
-
 .bottom_frame .label {
   width:          150px;
   text-align:     left;
   margin-right:   10px;
 }
-
 
 .bottom_frame .percentage, .bottom_frame .number{
   text-align:     right;
@@ -283,7 +267,6 @@ div.numerator, div.denominator{
   border:     1px solid #fff;
 }
 
-
 div.numerator.dropshelf{
   background-color: #eaf4d8;
   border:           0.5px solid #95c83d;
@@ -301,7 +284,6 @@ div.numerator.dropshelf.over{
 div.denominator.dropshelf.over{
   background-color: #b4e1e6;
 }
-
 
 div.in-numerator{
   background-color: #eaf4d8;
@@ -326,8 +308,6 @@ div.denominator .draggable-value{
   border:           1px solid #44B3c0 !important;
 }
 
-
-
 /*
   BARS
 */
@@ -351,7 +331,6 @@ div.denominator .draggable-value{
   height:     100%;
   background: #ccc;
 }
-
 
 /*
   NAME EDIT
@@ -381,7 +360,6 @@ span.name-edit a, span.name-edit input{
   padding:        5px;
   display:        inline;
 }
-
 
 /** Sections */
 .content .section, .content section {
@@ -542,11 +520,9 @@ tbody.tablecontent {
   overflow-x: hidden !important;
 }
 
-
 tr.alt {
   background-color: #efefef;
 }
-
 
 table{
   margin-bottom:0;
@@ -559,5 +535,3 @@ table{
 	color: #555555; 
 	outline: none; 
 }
-
-
