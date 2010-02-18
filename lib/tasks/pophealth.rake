@@ -24,23 +24,23 @@ end
 
 
 namespace :ph do
-  
+
   desc "Load random data into the current environment's database."
   task :randomize => :environment do
     print "How many patient records do you want to create ? "
-    
+
     count = $stdin.gets.to_i
-    
+
     puts "you have decided to create #{count} random patient records."
     puts "hit ctrl + c to stop script at anytime."
     puts "starting..."
-    
+
     if count > 1000
       modulus = 100
     else
       modulus = 10
     end
-    
+
     i=0
     while i<= count
       begin
@@ -49,11 +49,38 @@ namespace :ph do
         patient.save!
         i += 1
         if i % modulus == 0
-           puts i.to_s + " patient records done ..." 
+          puts i.to_s + " patient records done ..." 
         end
       rescue
         puts "ERROR creating patient " + i.to_s + ": "+ $!
       end
+    end
+  end
+  
+  
+  desc "Import patient records from C32 files in specified directory into database."
+  task :import => :environment do
+    print "Please specify the full path for the directory of C32 files: "
+
+    begin 
+      dir = Dir.new($stdin.gets.strip!)
+      count = 0
+      puts "Beginning import ... hit ctrl + c to stop script at any time."
+      dir.each { |file_name|
+        if File.extname(file_name) == ".xml"
+          File.open(dir.path + file_name) do |file|
+            begin 
+              PatientC32Importer.import_c32(REXML::Document.new(file))
+              count += 1
+            rescue
+              puts "Error importing patient: "+ $!
+            end
+          end
+        end
+      }
+      puts "Imported #{count} C32 patient record(s) into the popHealth database"
+    rescue SystemCallError
+      puts "Invalid directory name: "+ $!
     end
   end
   
