@@ -28,11 +28,22 @@ module ImportHelper
       Array.new
     end
   end
-  
+
   # Helper method that wraps an elemen in an ElementWrapper that has some methods to shorten up boilerplate REXML code
   def with_element(element)
     wrapped_element = ElementWrapper.new(element)
     yield wrapped_element
+  end
+
+  def deref(code)
+    if code
+      ref = REXML::XPath.first(code,"cda:reference",DEFAULT_NAMESPACES)
+      if ref
+        REXML::XPath.first(code.document,"//cda:content[@ID=$id]/text()",DEFAULT_NAMESPACES,{"id"=>ref.attributes['value'].gsub("#",'')}) 
+      else
+        nil
+      end
+    end
   end
 end
 
