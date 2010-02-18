@@ -15,7 +15,7 @@ describe ReportsController do
     
     json_response = JSON.load(response.body)
     json_response['populationCount'].should == '7'
-    json_response['populationName'].should == 'Columbia Road Health Services'
+    json_response['populationName'].should == 'Sagacious Healthcare Services'
   end
   
   it "should be able to return a report by ID" do

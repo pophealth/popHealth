@@ -173,7 +173,7 @@ get '/reports' do
   else
     resp = {
       "populationCount" => 4948,
-      "populationName" => "Columbia Road Health Services",
+      "populationName" => "Sagacious Healthcare Services",
       "reports" => []
     }
     @@reports.values.each {|report|

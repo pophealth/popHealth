@@ -100,7 +100,7 @@ class ReportsController < ApplicationController
       end
       resp = {
         "populationCount" => Patient.count_by_sql("select count(*) from patients").to_s,
-        "populationName" => "Columbia Road Health Services",
+        "populationName" => "Sagacious Healthcare Services",
         "reports" => @reports
       }
       render :json => resp.to_json
