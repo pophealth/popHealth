@@ -384,10 +384,10 @@ span.name-edit a, span.name-edit input{
 
 
 /** Sections */
-.section, section {
-	clear: both;
-	margin-bottom: 10px;
-	float: left;
+.content .section, .content section {
+    clear: both;
+    margin-bottom: 10px;
+    float: left;
 }
 
 .section .column h2, section .column h2 {
