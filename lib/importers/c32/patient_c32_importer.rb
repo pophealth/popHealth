@@ -27,12 +27,24 @@ class PatientC32Importer
       new_patient.conditions << imported_conditions
       
       medication_section = MedicationC32Importer.section(clinical_document)
-      imported_medications = MedicationC32Importer.import_entries(medication_section)
-      new_patient.medications << imported_medications
+      if medication_section
+        imported_medications = MedicationC32Importer.import_entries(medication_section)
+        new_patient.medications << imported_medications
+      else
+        medication = Medication.new
+        medication.randomize()
+        new_patient.medications << medication
+      end
       
       immunization_section = ImmunizationC32Importer.section(clinical_document)
-      imported_immunizations = ImmunizationC32Importer.import_entries(immunization_section)
-      new_patient.immunizations << imported_immunizations
+      if immunization_section
+        imported_immunizations = ImmunizationC32Importer.import_entries(immunization_section)
+        new_patient.immunizations << imported_immunizations
+      else
+        immunization = Immunization.new
+        immunization.randomize(new_patient.registration_information.date_of_birth)
+        new_patient.immunizations << immunization
+      end
       
       vitals_section = VitalSignC32Importer.section(clinical_document)
       if vitals_section
