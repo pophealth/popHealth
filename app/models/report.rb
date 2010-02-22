@@ -1,5 +1,7 @@
 class Report < ActiveRecord::Base
   
+  attr_accessor :numerator_sql
+
   def numerator_query=(val)
     @numerator_query = val
   end
@@ -25,7 +27,7 @@ class Report < ActiveRecord::Base
   end
   
   def to_json_hash
-    {:title => self.title, :numerator => self.numerator, :denominator => self.denominator, :id => self.id,
+    {:title => self.title, :numerator_sql => self.numerator_sql, :numerator => self.numerator, :denominator => self.denominator, :id => self.id,
       :numerator_fields => self.numerator_query, :denominator_fields => self.denominator_query}
   end
   

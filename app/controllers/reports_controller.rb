@@ -71,7 +71,14 @@ class ReportsController < ApplicationController
       @report.denominator = (generate_report(@report.denominator_query))
       # only run the numerator query if there are any fields provided
       if @report.numerator_query.size > 0
-        @report.numerator = generate_report(merge_popconnect_request(@report.denominator_query, @report.numerator_query))
+        temp_request = merge_popconnect_request(@report.denominator_query, @report.numerator_query)
+        population_query = ""
+
+        population_query = population_query + generate_from_sql(temp_request, generate_new_join_table_hash_status())
+        population_query = population_query + generate_where_sql(temp_request, generate_new_join_table_hash_status())
+        @report.numerator_sql = population_query
+
+        @report.numerator = generate_report(temp_request)
       else
         @report.numerator = 0
       end

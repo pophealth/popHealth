@@ -74,6 +74,9 @@
 
   <div class="ui-layout-center">
     <div class='content'>
+		<% if flash[:error] %>
+			<div class='error'><%= flash[:error]%>
+		<% end %>
     	<%= yield %>
     </div>
 </div>

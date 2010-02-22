@@ -9,6 +9,7 @@ popConnect.DataViewer = function(element, options) {
   // Private member variables
   var data = {                    // This is where the response to the JSON request will go
     id: options.reportId,
+		numerator_sql: "",
     numerator_fields: [],
     denominator_fields: []       // These fields should match up letter-for-letter with the actual field names
   };
@@ -127,6 +128,11 @@ popConnect.DataViewer = function(element, options) {
   this.refresh = function() {
     // Assumes the markup is already there and domNode properties have been set correctly
     // ie don't call this if the DOM element is missing! Call buildInitialDom...
+
+		if(data.numerator_sql)
+		{
+			 dataDefinition.numeratorSqlDomNode.attr("href", "/patients/list?query=" +  escape(data.numerator_sql))
+		}
 
     if(data.title) {
       dataDefinition.reportTitle.text(data.title).removeClass('disabled');
@@ -310,6 +316,9 @@ popConnect.DataViewer = function(element, options) {
     dataDefinition.denominatorValueDomNode = $('<h2>');
     dataDefinition.numeratorFieldsDomNode = $('<div>');
     dataDefinition.denominatorFieldsDomNode = $('<div>');
+    dataDefinition.numeratorSqlDomNode = $('<a>view patients</a>');
+
+
     
     dataDefinition.reportTitle = $('<h2>').addClass('reportTitle').click(function() {
       dataDefinition.reportTitle.toggle();
@@ -343,6 +352,7 @@ popConnect.DataViewer = function(element, options) {
     
     var topFrame = $('<div>').addClass('top_frame');
     topFrame.append(dataDefinition.reportTitle);
+    topFrame.append(dataDefinition.numeratorSqlDomNode)
     topFrame.append(dataDefinition.reportTitleEdit);
     var statsContainer = $('<div>').addClass('report_stats');
     var mathsContainer = $('<div>').addClass('maths');
