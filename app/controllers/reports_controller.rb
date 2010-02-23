@@ -54,7 +54,7 @@ class ReportsController < ApplicationController
   # GET /reports
   def index
     #i=0
-    #while i<= 5123
+    #while i<= 2628
     #  begin
     #    patient = Patient.new
     #    patient.randomize()
