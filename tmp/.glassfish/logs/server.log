@@ -14970,3 +14970,1104 @@ INFO:   [4;36;1mPatient Count (14.0ms)[0m   [0;1mselect count(distinct patien
 Feb 22, 2010 10:33:29 AM com.sun.grizzly.config.GrizzlyServiceListener
 INFO: Completed in 1246ms (View: 2, DB: 972) | 200 OK [http://127.0.0.1/reports]
 
+Feb 23, 2010 9:07:52 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:52 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:52 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:52 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:52 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:52 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:52 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:52 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (8.0ms)[0m   [0mselect count(distinct patients.id) from patients where patients.id not in (select conditions.patient_id from conditions where conditions.free_text_name like 'Diabetes mellitus%')[0m
+
+Feb 23, 2010 9:07:52 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:52 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:52 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:52 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, conditions hypertension where hypertension.patient_id = patients.id and (hypertension.free_text_name like '%hypertension disorder%' or hypertension.free_text_name like '%Hypertensive disorder%' )[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (9.0ms)[0m   [0mselect count(distinct patients.id) from patients where patients.id not in (select conditions.patient_id from conditions where (conditions.free_text_name like '%hypertension disorder%' or conditions.free_text_name like '%Hypertensive disorder%')) [0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, conditions ischemic_vascular_disease where ischemic_vascular_disease.patient_id = patients.id and ischemic_vascular_disease.free_text_name like 'Ischemia %' [0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (8.0ms)[0m   [0mselect count(distinct patients.id) from patients where patients.id not in (select conditions.patient_id from conditions where conditions.free_text_name like 'Ischemia %') [0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (4.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, conditions lipoid_disorder where lipoid_disorder.patient_id = patients.id and lipoid_disorder.free_text_name like 'Hyperlipoproteinemia %' [0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (8.0ms)[0m   [0mselect count(distinct patients.id) from patients where patients.id not in (select conditions.patient_id from conditions where conditions.free_text_name like 'Hyperlipoproteinemia %') [0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (14.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, abstract_results colorectal_cancer_screening where colorectal_cancer_screening.patient_id = patients.id and colorectal_cancer_screening.result_code = '54047-6' [0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (6.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (19.0ms)[0m   [0mselect count(distinct patients.id) from patients where patients.id not in (select abstract_results.patient_id from abstract_results where abstract_results.result_code = '54047-6') [0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (7.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, conditions mammography where mammography.patient_id = patients.id and (mammography.free_text_name = 'Mammographic breast mass finding finding' or mammography.free_text_name = 'Mammography abnormal finding' or mammography.free_text_name = 'Mammography assessment Category 3 Probably benign finding short interval follow up finding' or mammography.free_text_name = 'Mammography normal finding') [0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (9.0ms)[0m   [0mselect count(distinct patients.id) from patients where patients.id not in (select conditions.patient_id from conditions where (conditions.free_text_name = 'Mammographic breast mass finding finding' or conditions.free_text_name = 'Mammography abnormal finding' or conditions.free_text_name = 'Mammography assessment Category 3 Probably benign finding short interval follow up finding' or conditions.free_text_name = 'Mammography normal finding')) [0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (16.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, immunizations influenza_immunization, vaccines influenza_vaccine where influenza_immunization.patient_id = patients.id and influenza_immunization.vaccine_id = influenza_vaccine.id and influenza_vaccine.name like 'Influenza Virus Vaccine%' [0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (10.0ms)[0m   [0mselect count(distinct patients.id) from patients where patients.id not in (select immunizations.patient_id from immunizations, vaccines where immunizations.vaccine_id = vaccines.id and vaccines.name like 'Influenza Virus Vaccine%') [0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (14.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, abstract_results hb_a1c where hb_a1c.patient_id = patients.id and hb_a1c.result_code = '54039-3' and ((hb_a1c.value_scalar::varchar::text::int <= 7) )[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (12.0ms)[0m   [0mselect count(distinct patients.id) from patients, abstract_results hb_a1c where hb_a1c.patient_id = patients.id and hb_a1c.result_code = '54039-3' and ((hb_a1c.value_scalar::varchar::text::int > 7 and hb_a1c.value_scalar::varchar::text::int <= 8) )[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (5.0ms)[0m   [0;1mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mPatient Count (11.0ms)[0m   [0;1mselect count(distinct patients.id) from patients, abstract_results hb_a1c where hb_a1c.patient_id = patients.id and hb_a1c.result_code = '54039-3' and ((hb_a1c.value_scalar::varchar::text::int > 8 and hb_a1c.value_scalar::varchar::text::int <= 9) )[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (5.0ms)[0m   [0mselect count(distinct patients.id) from patients[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "genders" WHERE ("genders"."code" = 'M') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "genders" WHERE ("genders"."code" = 'F') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "social_history_types" WHERE ("social_history_types"."name" = 'Tobacco use and exposure') LIMIT 1[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mPatient Count (13.0ms)[0m   [0mselect count(distinct patients.id) from patients, abstract_results hb_a1c where hb_a1c.patient_id = patients.id and hb_a1c.result_code = '54039-3' and ((hb_a1c.value_scalar::varchar::text::int > 9) )[0m
+
+Feb 23, 2010 9:07:53 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Completed in 1319ms (View: 2, DB: 1024) | 200 OK [http://sugar.mitre.org/reports?id=279688773]
+
+Feb 23, 2010 9:31:37 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 9:31:37 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing AccountController#logout (for  at 2010-02-23 09:31:37) [GET]
+
+Feb 23, 2010 9:31:37 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   Parameters: {"controller"=>"account", "action"=>"logout"}
+
+Feb 23, 2010 9:31:37 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mUser Load (1.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1458360768) LIMIT 1[0m
+
+Feb 23, 2010 9:31:37 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Redirected to http://sugar.mitre.org:3000/popconnect
+
+Feb 23, 2010 9:31:37 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Completed in 35ms (DB: 3) | 302 Found [http://sugar.mitre.org/account/logout]
+
+Feb 23, 2010 9:31:37 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 9:31:37 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing PopconnectController#index (for  at 2010-02-23 09:31:37) [GET]
+
+Feb 23, 2010 9:31:37 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   Parameters: {"controller"=>"popconnect", "action"=>"index"}
+
+Feb 23, 2010 9:31:37 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Redirected to http://sugar.mitre.org:3000/account/login
+
+Feb 23, 2010 9:31:37 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Filter chain halted as [:login_required] rendered_or_redirected.
+
+Feb 23, 2010 9:31:37 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Completed in 5ms (DB: 2) | 302 Found [http://sugar.mitre.org/popconnect]
+
+Feb 23, 2010 9:31:37 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 9:31:37 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing AccountController#login (for  at 2010-02-23 09:31:37) [GET]
+
+Feb 23, 2010 9:31:37 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   Parameters: {"controller"=>"account", "action"=>"login"}
+
+Feb 23, 2010 9:31:37 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering template within layouts/account
+
+Feb 23, 2010 9:31:37 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering account/login
+
+Feb 23, 2010 9:31:37 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Completed in 15ms (View: 10, DB: 2) | 200 OK [http://sugar.mitre.org/account/login]
+
+Feb 23, 2010 11:29:04 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 11:29:04 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing PopconnectController#index (for  at 2010-02-23 11:29:04) [GET]
+
+Feb 23, 2010 11:29:04 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   Parameters: {"controller"=>"popconnect", "action"=>"index"}
+
+Feb 23, 2010 11:29:04 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Redirected to http://sugar.mitre.org:3000/account/login
+
+Feb 23, 2010 11:29:04 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Filter chain halted as [:login_required] rendered_or_redirected.
+
+Feb 23, 2010 11:29:04 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Completed in 9ms (DB: 2) | 302 Found [http://sugar.mitre.org/popconnect/]
+
+Feb 23, 2010 11:29:04 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 11:29:04 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing AccountController#login (for  at 2010-02-23 11:29:04) [GET]
+
+Feb 23, 2010 11:29:04 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   Parameters: {"controller"=>"account", "action"=>"login"}
+
+Feb 23, 2010 11:29:04 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering template within layouts/account
+
+Feb 23, 2010 11:29:04 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering account/login
+
+Feb 23, 2010 11:29:04 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Completed in 15ms (View: 9, DB: 3) | 200 OK [http://sugar.mitre.org/account/login]
+
+Feb 23, 2010 11:29:13 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 11:29:13 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing AccountController#login (for  at 2010-02-23 11:29:13) [POST]
+
+Feb 23, 2010 11:29:13 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   Parameters: {"authenticity_token"=>"1E2GcpR7SmWEOM/u2u2dZ8h+PIjx3+vJPCEatIGPa4o=", "email"=>"mherndon@amptools.net", "password"=>"[FILTERED]", "eventHandler"=>"", "controller"=>"account", "action"=>"login"}
+
+Feb 23, 2010 11:29:13 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mUser Load (1.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."email" = 'mherndon@amptools.net') LIMIT 1[0m
+
+Feb 23, 2010 11:29:13 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Redirected to http://sugar.mitre.org:3000/account/login
+
+Feb 23, 2010 11:29:13 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Completed in 33ms (DB: 4) | 302 Found [http://sugar.mitre.org/account/login]
+
+Feb 23, 2010 11:29:13 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 11:29:13 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing AccountController#login (for  at 2010-02-23 11:29:13) [GET]
+
+Feb 23, 2010 11:29:13 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   Parameters: {"controller"=>"account", "action"=>"login"}
+
+Feb 23, 2010 11:29:13 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering template within layouts/account
+
+Feb 23, 2010 11:29:13 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering account/login
+
+Feb 23, 2010 11:29:13 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Completed in 13ms (View: 7, DB: 3) | 200 OK [http://sugar.mitre.org/account/login]
+
+Feb 23, 2010 11:29:21 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 11:29:21 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing AccountController#signup (for  at 2010-02-23 11:29:21) [GET]
+
+Feb 23, 2010 11:29:21 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   Parameters: {"controller"=>"account", "action"=>"signup"}
+
+Feb 23, 2010 11:29:21 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering template within layouts/account
+
+Feb 23, 2010 11:29:21 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering account/signup
+
+Feb 23, 2010 11:29:21 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+ActionView::TemplateError (undefined local variable or method `test_plans_url' for #<ActionView::Base:0x2ce9baa4>) on line #49 of app/views/account/signup.rhtml:
+46:            </ul>
+47:          </div>
+48:          <div style="margin:20px 0 0 20px;"><%= image_tag "register_doggy.png", :id => 'firstdog', :style => 'visibility:visible'%>
+49:            <%= link_to image_tag("cancel_account.png"), test_plans_url, :style => "position:relative; z-index:100" %>
+50:            <input type="image" value="Create Laika Account" src="<%= controller.relative_url_root %>/images/create_account.png" class="actbtn" style="z-index:100"/>
+51:            <input class="create-account-btn" name="commit" type="submit" value="Create Laika Account" style="display:none" />
+52:            <div id="whyreg">
+
+    app/views/account/signup.rhtml:49:in `_run_rhtml_app47views47account47signup46rhtml'
+    app/views/account/signup.rhtml:1:in `_run_rhtml_app47views47account47signup46rhtml'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:82:in `serve_rails'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:109:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/jruby/rack/rails.rb:69:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/handler/grizzly.rb:55:in `call'
+    :1
+
+
+Feb 23, 2010 11:29:21 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering template within layouts/account
+
+Feb 23, 2010 11:29:21 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering rescues/error
+
+Feb 23, 2010 11:29:22 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 11:29:22 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing ApplicationController#index (for  at 2010-02-23 11:29:22) [GET]
+
+Feb 23, 2010 11:29:22 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+ActionController::RoutingError (No route matches "/css/blueprint/lib/ie.css" with {:method=>:get}):
+  file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:82:in `serve_rails'
+  file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:109:in `call'
+  file:tmp/.glassfish/static-cache/gf/glassfish.jar!/jruby/rack/rails.rb:69:in `call'
+  file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/handler/grizzly.rb:55:in `call'
+  :1
+
+
+Feb 23, 2010 11:29:22 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering template within layouts/application
+
+Feb 23, 2010 11:29:22 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering rescues/error
+
+Feb 23, 2010 11:29:22 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: /!\ FAILSAFE /!\  February 23, 2010
+  Status: 500 Internal Server Error
+  
+ActionView::TemplateError (undefined method `first_name' for :false:Symbol) on line #38 of app/views/layouts/application.html.erb:
+35:     <ul>
+36: 	    <li><%= link_to "Export", '#', :id => 'exportReport' %></li>
+37:       <li><%= link_to "Upload", {:controller => :popconnect, :action => :upload}, :class => 'fancybox' %></li>
+38:       <li><%= link_to 'Logout', logout_path %> (<%= current_user.first_name %>)</li>
+39:     </ul>
+40:   </div>
+41: 
+
+    app/views/layouts/application.html.erb:38
+    app/controllers/application_controller.rb:67:in `rescue_action_in_public'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:82:in `serve_rails'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:109:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/jruby/rack/rails.rb:69:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/handler/grizzly.rb:55:in `call'
+    :1
+
+
+    On line #38 of app/views/layouts/application.html.erb
+
+    35:     <ul>
+    36: 	    <li><%= link_to "Export", '#', :id => 'exportReport' %></li>
+    37:       <li><%= link_to "Upload", {:controller => :popconnect, :action => :upload}, :class => 'fancybox' %></li>
+    38:       <li><%= link_to 'Logout', logout_path %> (<%= current_user.first_name %>)</li>
+    39:     </ul>
+    40:   </div>
+    41: 
+
+    app/views/layouts/application.html.erb:38
+    app/controllers/application_controller.rb:67:in `rescue_action_in_public'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:82:in `serve_rails'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:109:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/jruby/rack/rails.rb:69:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/handler/grizzly.rb:55:in `call'
+    :1
+
+Feb 23, 2010 11:29:22 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 11:29:22 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing ApplicationController#index (for  at 2010-02-23 11:29:22) [GET]
+
+Feb 23, 2010 11:29:22 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+ActionController::RoutingError (No route matches "/css/blueprint/lib/ie.css" with {:method=>:get}):
+  file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:82:in `serve_rails'
+  file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:109:in `call'
+  file:tmp/.glassfish/static-cache/gf/glassfish.jar!/jruby/rack/rails.rb:69:in `call'
+  file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/handler/grizzly.rb:55:in `call'
+  :1
+
+
+Feb 23, 2010 11:29:22 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering template within layouts/application
+
+Feb 23, 2010 11:29:22 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering rescues/error
+
+Feb 23, 2010 11:29:22 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: /!\ FAILSAFE /!\  February 23, 2010
+  Status: 500 Internal Server Error
+  
+ActionView::TemplateError (undefined method `first_name' for :false:Symbol) on line #38 of app/views/layouts/application.html.erb:
+35:     <ul>
+36: 	    <li><%= link_to "Export", '#', :id => 'exportReport' %></li>
+37:       <li><%= link_to "Upload", {:controller => :popconnect, :action => :upload}, :class => 'fancybox' %></li>
+38:       <li><%= link_to 'Logout', logout_path %> (<%= current_user.first_name %>)</li>
+39:     </ul>
+40:   </div>
+41: 
+
+    app/views/layouts/application.html.erb:38
+    app/controllers/application_controller.rb:67:in `rescue_action_in_public'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:82:in `serve_rails'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:109:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/jruby/rack/rails.rb:69:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/handler/grizzly.rb:55:in `call'
+    :1
+
+
+    On line #38 of app/views/layouts/application.html.erb
+
+    35:     <ul>
+    36: 	    <li><%= link_to "Export", '#', :id => 'exportReport' %></li>
+    37:       <li><%= link_to "Upload", {:controller => :popconnect, :action => :upload}, :class => 'fancybox' %></li>
+    38:       <li><%= link_to 'Logout', logout_path %> (<%= current_user.first_name %>)</li>
+    39:     </ul>
+    40:   </div>
+    41: 
+
+    app/views/layouts/application.html.erb:38
+    app/controllers/application_controller.rb:67:in `rescue_action_in_public'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:82:in `serve_rails'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:109:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/jruby/rack/rails.rb:69:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/handler/grizzly.rb:55:in `call'
+    :1
+
+Feb 23, 2010 11:29:35 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 11:29:35 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing AccountController#login (for  at 2010-02-23 11:29:35) [GET]
+
+Feb 23, 2010 11:29:35 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   Parameters: {"controller"=>"account", "action"=>"login"}
+
+Feb 23, 2010 11:29:35 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering template within layouts/account
+
+Feb 23, 2010 11:29:35 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering account/login
+
+Feb 23, 2010 11:29:35 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Completed in 13ms (View: 8, DB: 2) | 200 OK [http://sugar.mitre.org/account/login]
+
+Feb 23, 2010 11:29:56 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 11:29:56 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing AccountController#login (for  at 2010-02-23 11:29:56) [POST]
+
+Feb 23, 2010 11:29:56 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   Parameters: {"authenticity_token"=>"1E2GcpR7SmWEOM/u2u2dZ8h+PIjx3+vJPCEatIGPa4o=", "email"=>"rmccready@mitre.org", "password"=>"[FILTERED]", "eventHandler"=>"", "controller"=>"account", "action"=>"login"}
+
+Feb 23, 2010 11:29:56 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;36;1mUser Load (2.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."email" = 'rmccready@mitre.org') LIMIT 1[0m
+
+Feb 23, 2010 11:29:56 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Redirected to http://sugar.mitre.org:3000/account/login
+
+Feb 23, 2010 11:29:56 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Completed in 31ms (DB: 4) | 302 Found [http://sugar.mitre.org/account/login]
+
+Feb 23, 2010 11:29:56 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 11:29:56 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing AccountController#login (for  at 2010-02-23 11:29:56) [GET]
+
+Feb 23, 2010 11:29:56 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   Parameters: {"controller"=>"account", "action"=>"login"}
+
+Feb 23, 2010 11:29:56 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering template within layouts/account
+
+Feb 23, 2010 11:29:56 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering account/login
+
+Feb 23, 2010 11:29:56 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Completed in 13ms (View: 7, DB: 3) | 200 OK [http://sugar.mitre.org/account/login]
+
+Feb 23, 2010 11:30:18 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 11:30:18 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing AccountController#login (for  at 2010-02-23 11:30:18) [GET]
+
+Feb 23, 2010 11:30:18 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   Parameters: {"controller"=>"account", "action"=>"login"}
+
+Feb 23, 2010 11:30:18 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering template within layouts/account
+
+Feb 23, 2010 11:30:18 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering account/login
+
+Feb 23, 2010 11:30:18 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Completed in 13ms (View: 8, DB: 2) | 200 OK [http://sugar.mitre.org/account/login]
+
+Feb 23, 2010 11:30:43 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 11:30:43 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing AccountController#login (for  at 2010-02-23 11:30:43) [POST]
+
+Feb 23, 2010 11:30:43 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   Parameters: {"authenticity_token"=>"1E2GcpR7SmWEOM/u2u2dZ8h+PIjx3+vJPCEatIGPa4o=", "email"=>"rmccready@mitre.org", "password"=>"[FILTERED]", "eventHandler"=>"", "controller"=>"account", "action"=>"login"}
+
+Feb 23, 2010 11:30:43 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   [4;35;1mUser Load (1.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."email" = 'rmccready@mitre.org') LIMIT 1[0m
+
+Feb 23, 2010 11:30:43 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Redirected to http://sugar.mitre.org:3000/account/login
+
+Feb 23, 2010 11:30:43 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Completed in 31ms (DB: 3) | 302 Found [http://sugar.mitre.org/account/login]
+
+Feb 23, 2010 11:30:43 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 11:30:43 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing AccountController#login (for  at 2010-02-23 11:30:43) [GET]
+
+Feb 23, 2010 11:30:43 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   Parameters: {"controller"=>"account", "action"=>"login"}
+
+Feb 23, 2010 11:30:43 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering template within layouts/account
+
+Feb 23, 2010 11:30:43 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering account/login
+
+Feb 23, 2010 11:30:43 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Completed in 12ms (View: 8, DB: 2) | 200 OK [http://sugar.mitre.org/account/login]
+
+Feb 23, 2010 11:30:54 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 11:30:54 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing AccountController#forgot_password (for  at 2010-02-23 11:30:54) [GET]
+
+Feb 23, 2010 11:30:54 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   Parameters: {"controller"=>"account", "action"=>"forgot_password"}
+
+Feb 23, 2010 11:30:54 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering template within layouts/account
+
+Feb 23, 2010 11:30:54 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering account/forgot_password
+
+Feb 23, 2010 11:30:54 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Completed in 37ms (View: 32, DB: 2) | 200 OK [http://sugar.mitre.org/account/forgot_password]
+
+Feb 23, 2010 11:31:00 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 11:31:00 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing AccountController#signup (for  at 2010-02-23 11:31:00) [GET]
+
+Feb 23, 2010 11:31:00 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   Parameters: {"controller"=>"account", "action"=>"signup"}
+
+Feb 23, 2010 11:31:00 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering template within layouts/account
+
+Feb 23, 2010 11:31:00 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering account/signup
+
+Feb 23, 2010 11:31:00 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+ActionView::TemplateError (undefined local variable or method `test_plans_url' for #<ActionView::Base:0xaabf9e9>) on line #49 of app/views/account/signup.rhtml:
+46:            </ul>
+47:          </div>
+48:          <div style="margin:20px 0 0 20px;"><%= image_tag "register_doggy.png", :id => 'firstdog', :style => 'visibility:visible'%>
+49:            <%= link_to image_tag("cancel_account.png"), test_plans_url, :style => "position:relative; z-index:100" %>
+50:            <input type="image" value="Create Laika Account" src="<%= controller.relative_url_root %>/images/create_account.png" class="actbtn" style="z-index:100"/>
+51:            <input class="create-account-btn" name="commit" type="submit" value="Create Laika Account" style="display:none" />
+52:            <div id="whyreg">
+
+    app/views/account/signup.rhtml:49:in `_run_rhtml_app47views47account47signup46rhtml'
+    app/views/account/signup.rhtml:1:in `_run_rhtml_app47views47account47signup46rhtml'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:82:in `serve_rails'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:109:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/jruby/rack/rails.rb:69:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/handler/grizzly.rb:55:in `call'
+    :1
+
+
+Feb 23, 2010 11:31:00 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering template within layouts/account
+
+Feb 23, 2010 11:31:00 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering rescues/error
+
+Feb 23, 2010 11:31:01 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 11:31:01 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing ApplicationController#index (for  at 2010-02-23 11:31:01) [GET]
+
+Feb 23, 2010 11:31:01 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+ActionController::RoutingError (No route matches "/css/blueprint/lib/ie.css" with {:method=>:get}):
+  file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:82:in `serve_rails'
+  file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:109:in `call'
+  file:tmp/.glassfish/static-cache/gf/glassfish.jar!/jruby/rack/rails.rb:69:in `call'
+  file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/handler/grizzly.rb:55:in `call'
+  :1
+
+
+Feb 23, 2010 11:31:01 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering template within layouts/application
+
+Feb 23, 2010 11:31:01 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering rescues/error
+
+Feb 23, 2010 11:31:01 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: /!\ FAILSAFE /!\  February 23, 2010
+  Status: 500 Internal Server Error
+  
+ActionView::TemplateError (undefined method `first_name' for :false:Symbol) on line #38 of app/views/layouts/application.html.erb:
+35:     <ul>
+36: 	    <li><%= link_to "Export", '#', :id => 'exportReport' %></li>
+37:       <li><%= link_to "Upload", {:controller => :popconnect, :action => :upload}, :class => 'fancybox' %></li>
+38:       <li><%= link_to 'Logout', logout_path %> (<%= current_user.first_name %>)</li>
+39:     </ul>
+40:   </div>
+41: 
+
+    app/views/layouts/application.html.erb:38
+    app/controllers/application_controller.rb:67:in `rescue_action_in_public'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:82:in `serve_rails'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:109:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/jruby/rack/rails.rb:69:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/handler/grizzly.rb:55:in `call'
+    :1
+
+
+    On line #38 of app/views/layouts/application.html.erb
+
+    35:     <ul>
+    36: 	    <li><%= link_to "Export", '#', :id => 'exportReport' %></li>
+    37:       <li><%= link_to "Upload", {:controller => :popconnect, :action => :upload}, :class => 'fancybox' %></li>
+    38:       <li><%= link_to 'Logout', logout_path %> (<%= current_user.first_name %>)</li>
+    39:     </ul>
+    40:   </div>
+    41: 
+
+    app/views/layouts/application.html.erb:38
+    app/controllers/application_controller.rb:67:in `rescue_action_in_public'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:82:in `serve_rails'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:109:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/jruby/rack/rails.rb:69:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/handler/grizzly.rb:55:in `call'
+    :1
+
+Feb 23, 2010 11:31:01 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 11:31:01 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing ApplicationController#index (for  at 2010-02-23 11:31:01) [GET]
+
+Feb 23, 2010 11:31:01 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+ActionController::RoutingError (No route matches "/css/blueprint/lib/ie.css" with {:method=>:get}):
+  file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:82:in `serve_rails'
+  file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:109:in `call'
+  file:tmp/.glassfish/static-cache/gf/glassfish.jar!/jruby/rack/rails.rb:69:in `call'
+  file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/handler/grizzly.rb:55:in `call'
+  :1
+
+
+Feb 23, 2010 11:31:01 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering template within layouts/application
+
+Feb 23, 2010 11:31:01 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering rescues/error
+
+Feb 23, 2010 11:31:01 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: /!\ FAILSAFE /!\  February 23, 2010
+  Status: 500 Internal Server Error
+  
+ActionView::TemplateError (undefined method `first_name' for :false:Symbol) on line #38 of app/views/layouts/application.html.erb:
+35:     <ul>
+36: 	    <li><%= link_to "Export", '#', :id => 'exportReport' %></li>
+37:       <li><%= link_to "Upload", {:controller => :popconnect, :action => :upload}, :class => 'fancybox' %></li>
+38:       <li><%= link_to 'Logout', logout_path %> (<%= current_user.first_name %>)</li>
+39:     </ul>
+40:   </div>
+41: 
+
+    app/views/layouts/application.html.erb:38
+    app/controllers/application_controller.rb:67:in `rescue_action_in_public'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:82:in `serve_rails'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:109:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/jruby/rack/rails.rb:69:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/handler/grizzly.rb:55:in `call'
+    :1
+
+
+    On line #38 of app/views/layouts/application.html.erb
+
+    35:     <ul>
+    36: 	    <li><%= link_to "Export", '#', :id => 'exportReport' %></li>
+    37:       <li><%= link_to "Upload", {:controller => :popconnect, :action => :upload}, :class => 'fancybox' %></li>
+    38:       <li><%= link_to 'Logout', logout_path %> (<%= current_user.first_name %>)</li>
+    39:     </ul>
+    40:   </div>
+    41: 
+
+    app/views/layouts/application.html.erb:38
+    app/controllers/application_controller.rb:67:in `rescue_action_in_public'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:82:in `serve_rails'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/adapter/rails.rb:109:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/jruby/rack/rails.rb:69:in `call'
+    file:tmp/.glassfish/static-cache/gf/glassfish.jar!/rack/handler/grizzly.rb:55:in `call'
+    :1
+
+Feb 23, 2010 11:31:04 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: DEPRECATION WARNING: protect_from_forgery only takes :only and :except options now. :digest and :secret have no effect. (called from /Users/rmccready/Data/pophealth/app/controllers/application_controller.rb:17)
+
+Feb 23, 2010 11:31:04 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: 
+
+Processing AccountController#forgot_password (for  at 2010-02-23 11:31:04) [GET]
+
+Feb 23, 2010 11:31:04 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO:   Parameters: {"controller"=>"account", "action"=>"forgot_password"}
+
+Feb 23, 2010 11:31:04 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering template within layouts/account
+
+Feb 23, 2010 11:31:04 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Rendering account/forgot_password
+
+Feb 23, 2010 11:31:04 AM com.sun.grizzly.config.GrizzlyServiceListener
+INFO: Completed in 12ms (View: 8, DB: 1) | 200 OK [http://sugar.mitre.org/account/forgot_password]
+
