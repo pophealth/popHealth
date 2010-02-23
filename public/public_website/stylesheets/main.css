@@ -37,7 +37,7 @@ color: #AAAAAA;
 }
 
 #logo {
-    margin: 20px 0 0px 0;
+    margin: 45px 0 0px 0;
     width:100%;
 }
 
@@ -67,7 +67,7 @@ img{
 }
 
 #projectHeader{
-  margin: 0 20px 20px 0;
+  margin: 0 20px 50px 0;
   float: left;
   width: 900px;
   border: 1px solid #e6e6e6;
@@ -77,6 +77,12 @@ img{
 
 #projectHeader h2{
   margin-top: 0;
+}
+
+#projectHeader ul{
+  font-size: 120%;
+  font-weight: bold;
+  padding-left: 15px;
 }
 
 .bumper{
@@ -111,8 +117,9 @@ img{
     font-size: 20px;
 }
 .imageDescription{
-    text-align: center;
+    margin-left: 10px;
     font-size: 14px;
+    margin-top: 0;
 }
 
 .coming_soon{
@@ -172,6 +179,10 @@ fieldset{
     margin: 0 0 25px 30px;
     width:      350px;
     float:      left;
+}
+
+#links{
+  margin-left: 80px;
 }
 
 
