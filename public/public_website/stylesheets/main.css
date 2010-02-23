@@ -67,7 +67,7 @@ img{
 }
 
 #projectHeader{
-  margin: 0 20px 50px 0;
+  margin: 0 20px 20px 0;
   float: left;
   width: 900px;
   border: 1px solid #e6e6e6;
@@ -80,7 +80,7 @@ img{
 }
 
 #projectHeader ul{
-  font-size: 120%;
+  font-size: 150%;
   font-weight: bold;
   padding-left: 15px;
 }
@@ -110,7 +110,7 @@ img{
 }
 
 #screenshot{
-    margin-top: 225px;
+    margin-top: 200px;
 }
 .imageHeader{
     text-align: center;
@@ -233,7 +233,7 @@ th{
 
 #leftColumn div.projectDescription,
 div.projectDescription {
-  padding-bottom:0px;
+  padding-bottom: 20px;
 }
 
 #leftColumn div.projectDescription h2,
@@ -311,7 +311,7 @@ div.gossary_title h2 {
 
 /* * Footer * */
 #footer {
-    color:#000;
+    color:#999999;
     border-top:1px dotted #ccc;
     margin:0 0 30px 0;
     padding:5px 0 20px 0;
@@ -319,12 +319,11 @@ div.gossary_title h2 {
 }
 
 #footer a {
-    font-weight:bold;
     color:#000;
 }
 
 #footer a:hover {
-    color:#c30;
+    color:#56a0ab;
 }
 
 #footerLicense{
@@ -338,6 +337,7 @@ div.gossary_title h2 {
 }
 
 #footerLinks{
+	font-size: 12px;
     float:right;
 }
 
