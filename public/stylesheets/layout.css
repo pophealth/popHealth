@@ -1,0 +1,738 @@
+/* http://meyerweb.com/eric/tools/css/reset/ */
+/* v1.0 | 20080212 */
+
+/** Eric Meyer Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/** Begin Custom Css */
+/** Tags */
+html, body {
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-size: .8em;
+	background: #fff;
+	position: relative;
+}
+
+a {
+	color: #44B3c0;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight:bold;
+	color:#111;
+	font-family:  Arial, Sans-Serif;
+}
+
+h1 {
+	font-size: 3em;
+	line-height: 1;
+	font-weight: normal;
+}
+
+h2 {
+	font-size: 2em;
+	font-weight: normal;
+}
+h3 {
+	font-size: 1.5em;
+	line-height: 1;
+}
+h4 {
+	font-size: 1.2em;
+	line-height: 1.25;
+}
+h5 {
+	font-size: 1em;
+}
+h6 {
+	font-size: 1em;
+}
+
+
+/** Global Classes */
+.disabled {
+	color: #aaa;
+}
+
+.error {
+	color: #ff0000;
+} 
+
+
+/** Header */ 
+#header {
+	float: left;
+	display: block;
+	width: 100%;
+	clear: both;
+	background:  transparent url('../images/gradient.png');
+	border-bottom:  1px solid #ccc;
+}
+
+#header h1 {
+	float: left;
+	display: block;
+	overflow: visible;
+	margin: 0 10px;
+}
+
+#header h1 a {
+	float: left;
+	display: block;
+	text-indent: -999em;
+	background: transparent url('../images/logo.png') no-repeat;
+	height: 40px;
+	width: 100px;
+}
+
+#header ul {
+	list-style: none;
+	float: right;
+	display: block;
+}
+
+#header ul li {
+	margin: 10px;	
+	padding: 5px;
+	display: block;
+	float: left;
+}
+
+
+/** Content */
+#container {
+	float: left;
+	width: 100%;
+	clear: both;
+	position: relative;
+}
+
+
+/** Sidebar */
+#sidebar {
+	float: left;
+	display: block;
+	overflow: visible;
+	width: 250px;
+	background-color: #f2f2f2;
+	color: #888;
+	font-size: 1em;
+	font-weight:  bold;	
+	min-height: 400px;
+	text-align: left;
+	border-right: 1px solid #ccc;
+}
+
+#sidebar ul {
+	list-style-type:  none;
+	float: left;
+	display: block;
+	clear: both;
+	width: 100%;
+}
+
+
+#sidebar .report {
+	padding: 15px 0;
+	float: left;
+	display: block;
+	width: 100%;
+	clear: both;
+	background: transparent url('../images/gradient.png');
+	border-bottom:  1px solid #ccc;
+	cursor: pointer;
+}
+
+#sidebar .report:hover,
+#sidebar .report.new:hover {
+	background:  transparent url('../images/darkgradient.png');
+	border-bottom:  1px solid #888;
+	color: #000;
+}
+
+#sidebar .report.new {
+	color: #ccc;
+}
+
+#sidebar .report span {
+	margin: 0 10px;
+	display: block;
+	float: left;
+}
+
+#sidebar .report .name {
+	max-width: 180px;
+}
+
+#sidebar .report .percentage {
+	float: right;
+}
+
+#sidebar .report.selected{
+	background: transparent url('../images/darkgradient.png');
+	color: #000;
+	border-bottom: 1px solid #888;
+}
+
+#info {
+	padding: 0px 10px 15px 10px;
+	border-bottom: 1px solid #888;
+}
+
+#info span {
+	color: #888;
+	font-weight: normal;
+}
+
+.ui-layout-resizer { /** currently not in use */
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	background: #F0F0F0 url('../images/ehandle.gif') no-repeat scroll 50% 50%;
+}
+
+/** Main */ 
+#main {
+	position: absolute;
+	left: 260px;
+	top: 0px;
+	overflow: visible;
+	text-align: left;
+	width: 745px;
+}
+
+.section h3 {
+	color: #666;
+	font-size: 1.5em;
+	font-weight: normal;
+	margin-bottom: 10px;
+}
+
+.section h4 {
+	color: #999;
+	font-weight: normal;
+	font-size: 1.2em;
+}
+
+
+/** Report  */
+
+
+/** Report Overview */
+.report .overview {
+	width: 100%;
+	padding-bottom: 20px;
+	margin: 15px 0 20px 0;
+	float: left;
+	overflow: visible;
+	position: relative;
+}
+
+.report .quotient {
+	float: left;
+	width: 600px;
+	overflow: visible;
+	position: relative;
+	margin-top: 20px;
+}
+
+.report .numerator, 
+.report .denominator {
+	margin-bottom: 10px;
+	float: left;
+	width: 100%;
+	clear: both;
+	overflow: visible;
+}
+
+.report .denominator  {
+	margin-bottom: -20px;
+}
+
+.report .numerator,
+.report .overview {
+	border-bottom:  1px solid #ccc;
+}
+
+.report .numerator h2, 
+.report .denominator h2 {
+	float: left;
+	display: block;
+	width: 50px;
+	margin-left: 20px;
+}
+
+.report .numerator div, 
+.report .denominator div {
+	float: left;
+	width: 500px;
+}
+
+.report .quotient .draggable-value {
+	float: left;
+	display: block;
+	padding: 4px 10px;
+	margin: 2px;
+	border: 1px solid #ccc;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-khtml-border-radius: 15px;
+}
+
+.report .numerator .draggable-value {
+	background: #eaf4d8;
+	border: 1px solid #95c83d;
+}
+
+.report .denominator .draggable-value{
+	background-color: #ecfbfc;
+	border: 1px solid #44B3c0;
+}
+
+.report .quotient .draggable-value:hover {
+	cursor: move;
+}
+
+.report .numerator .draggable-value:hover {
+	background: #fafce8;
+}
+
+.report .denominator .draggable-value:hover {
+	background: #ffffff;
+}
+
+.report .master-percentage {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	right: 20px;
+	width: 80px;
+	vertical-align: 0;
+}
+
+.report .master-percentage h1 {
+	margin-top: 55px;
+}
+
+.report .numerator.dropshelf { 
+	background: #eaf4d8;
+	border: 0.5px solid #95c83d;
+	width: 99%;
+}
+
+.report .denominator.dropshelf {
+	background: #ecfbfc;
+	border: 0.5px solid #44B3c0;
+	width: 99%;
+}
+
+.report .numerator.dropshelf.over{
+	background: #d5e9b1;
+}
+
+.report .denominator.dropshelf.over{
+	background: #b4e1e6;
+}
+
+
+/** Report Data */
+.report .section {
+	width: 345px;
+	float: left;
+	overflow: visible;
+	margin-right: 15px;
+	margin: 0 25px 15px 0;
+}
+
+.report .section .section {
+	width: 100%;
+	clear: both;
+	margin-bottom: 20px;
+}
+
+.report .data .row {
+	border:   1px solid #fff;
+	padding:  3px 0;
+	float: left;
+	width: 100%;
+	clear: both;
+	margin: 1px 0;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-khtml-border-radius: 15px;
+}
+
+.report .data .in-numerator{
+	background-color: #eaf4d8;
+	border: 1px solid #95c83d;
+}
+
+.report .data .in-denominator {
+	background-color: #ecfbfc;
+	border: 1px solid #44B3c0;
+}
+
+
+.report .data h4 span, 
+.report .data .row div {
+	display: block;
+	float: left;
+}
+
+.report .data .row .label{
+	margin-left: 5px;
+}
+
+.report .data h4 .percentage {
+	margin-left: 5px;
+}
+
+.report .data .label {
+	width: 140px;
+	margin-right: 10px;
+}
+
+.report .data .percentage, 
+.report .data .number {
+	text-align:     right;
+	margin-right:   10px;
+}
+
+.report .data .percentage {
+	width: 25px;
+}
+
+.report .data .number {
+	width: 25px;
+}
+
+.report .data .draggable-value:hover{
+	background: #f1f1f1;
+	border: 1px solid #ccc;
+	cursor: move;
+}
+
+
+/** Bars */
+.report .data .bar {
+	position: relative;
+	width: 100px;
+	height: 11px;
+	top: 0px;
+}
+
+.report .data .bar span {
+	position: absolute;
+}
+
+.report .data .bar .selected {
+	height: 100%;
+	background: #231f20;
+	z-index: 1;
+}
+
+.report .data .bar .total {
+	height: 100%;
+	background: #ccc;
+}
+
+
+/** Name edit */
+span.name-edit{
+  margin-bottom: 20px;
+}
+
+span.name-edit a, span.name-edit input{
+  margin-right: 10px;
+}
+
+/** Breadcrumbs */ 
+.breadcrumbs{
+  list-style: none;
+  padding:    5px 0 5px 15px;
+  margin:     0 0 15px 0;
+  background:     url('../images/darkgradient.png') center;
+  border-bottom:  1px solid #ccc;
+  font-weight:    bold;
+  font-size:      1.1em;
+}
+
+.breadcrumbs li{
+  margin-right:   5px;
+  padding:        5px;
+  display:        inline;
+}
+
+/** Sections */
+.content .section, .content section {
+    clear: both;
+    margin-bottom: 10px;
+    float: left;
+	width: 100%;
+}
+
+.section .column h2, 
+section .column h2 {
+	text-transform: uppercase;
+	color: #ccc;
+	font-weight: bold;
+	font-size: 130%;
+	border-bottom: 1px solid #ccc;
+}
+
+.column {
+	float: left;
+	width: 360px;
+	margin: 5px;
+}
+
+
+/** Lists */
+.stack, .data {
+	list-style-type: none;
+	display: block;
+	overflow: visible;
+	margin: 0;
+	padding: 0;
+	clear: both;
+}
+
+.stack label {
+	color: #ccc;
+	float: left;
+	display: block;
+	width: 100%;
+	text-transform: capitalize;
+}
+
+.stack li,
+.stack ul.data li {
+	display: block;
+	float: left;
+	clear: both;
+}
+
+.stack.stats li,
+.stack.contact-information li,
+.stack.insurance li {
+	clear: none;
+	margin: 5px 5px;
+}
+
+.stack.stats .data li,
+.stack.contact-information .data li,
+.stack.insurance .data li {
+	margin: 1px 0px;
+	width: 100%;
+}
+
+
+/** Stats List */
+.stack.stats li {
+	width: 70px;
+}
+
+.stack.stats .age {
+	width: 40px;
+}
+
+.stats.stats .gender {
+	width: 50px;
+}
+
+.stack.stats .weight {
+	margin-left: 30px;
+}
+
+.stack.stats .date-of-birth {
+	width: 125px;
+	margin-left: 85px;
+}
+
+.stack.stats .blood-pressure {
+	width: 100px;
+}
+
+
+
+/** Contact Info List */
+.stack.contact-information .phone-numbers {
+	width: 180px;
+}
+
+.stack.contact-information .address {
+	width: 150px;
+}
+
+.stack.contact-information .email {
+	width: 340px;
+}
+
+
+
+/** Insurance List */
+.stack.insurance .provider {
+	width: 340px;
+}
+.stack.insurance .group-number {
+	width: 200px;
+}
+
+.stack.insurance {
+	margin-bottom: 25px;
+	clear: both;
+	float: left;
+}
+
+
+/** Conditions */ 
+.conditions dl {
+	float: left;
+	display: block;
+	width: 290px;
+	margin-right: 10px;
+}
+
+.conditions .stack li {
+	width: 100%;
+}
+
+.conditions .stack ul {
+	display: block;
+	clear: none;
+	float: right;
+	width: 100px;
+}
+
+
+/** Grid */
+table {
+	margin-bottom:1.4em;
+	width:100%;
+}
+
+th {
+	font-weight: bold;
+}
+
+thead th {
+	background:#c3d9ff;
+}
+
+th, td, caption {
+	padding:4px 10px 4px 5px; 
+	text-align: left;
+}
+
+tr:hover td, tr.alt:hover td {
+	background: #eaf4d8;
+}
+
+caption {
+	background:#eee; 
+}
+
+table .pagination a, 
+table .pagination span,
+table .pagination label, 
+table .pagination input {
+	float: left;
+	display: block;
+}
+
+table .pagination form {
+	display: inline;
+	float: left;
+}
+
+table .pagination .current-page {
+	margin: 0px 10px;
+}
+
+table .pagination .current-page input {
+	margin: 0 5px;
+	padding: 0;
+}
+table .pagination .current-page .count {
+	display: inline;
+	float: none;
+}
+
+table .pagination .page-size {
+	float: right;
+}
+
+tbody.tablecontent {
+  overflow-x: hidden !important;
+}
+
+tr.alt td {
+  background-color: #efefef;
+}
+
+table{
+  margin-bottom:0;
+}
+
+.midori-bind-grid th { 
+	border: 1px solid #d3d3d3; 
+	background: #e6e6e6 url(smoothness/images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x; 
+	font-weight: normal; 
+	color: #555555; 
+	outline: none; 
+}

@@ -181,7 +181,7 @@ popConnect.DataViewer = function(element, options) {
           }
           var cds = key.toString();
           var cdv = value.toString();
-          span.addClass('draggable-value').corners('15px');
+          span.addClass('draggable-value');
           span.draggable({
             revert: true,
             helper: 'clone',
@@ -215,7 +215,7 @@ popConnect.DataViewer = function(element, options) {
           }
           var cds = key.toString();
           var cdv = value.toString();
-          span.addClass('draggable-value').corners('15px');
+          span.addClass('draggable-value')
           span.draggable({
             revert: true,
             helper: 'clone',
@@ -253,7 +253,7 @@ popConnect.DataViewer = function(element, options) {
         // currentTypeDefinition is the sub-section
         var currentTypeDefinition = dataDefinition.types[currentSection].types[currentType];
 
-        $(currentTypeDefinition.domNode).find('.value').each(function(index, value) {
+        $(currentTypeDefinition.domNode).find('.row').each(function(index, value) {
           var labelText = $(value).find('.label').text();
           if(data[currentType][labelText]) {
             var setAt = data[currentType][labelText][0];
@@ -267,7 +267,7 @@ popConnect.DataViewer = function(element, options) {
               $(value).addClass('in-numerator').removeClass('in-denominator');
             }
             if(inNumerator || inDenominator) {
-              $(value).addClass('nodrag').corners('15px').addClass('selected').removeClass('draggable-value');
+              $(value).addClass('nodrag').addClass('selected').removeClass('draggable-value');
               var old = $(value);
               value = $(value).clone();
               $(old).replaceWith(value);
@@ -310,7 +310,7 @@ popConnect.DataViewer = function(element, options) {
   // Build the initial DOM containers given the dataDefinition
   // Set the domNode references too!
   this.buildInitialDom = function() {
-    $(element).addClass('data_viewer');
+    $(element).addClass('report view');
     dataDefinition.masterPercentageDomNode = $('<h1>');
     dataDefinition.numeratorValueDomNode = $('<h2>');
     dataDefinition.denominatorValueDomNode = $('<h2>');
@@ -320,7 +320,7 @@ popConnect.DataViewer = function(element, options) {
 
 
     
-    dataDefinition.reportTitle = $('<h2>').addClass('reportTitle').click(function() {
+    dataDefinition.reportTitle = $('<h2>').addClass('title').click(function() {
       dataDefinition.reportTitle.toggle();
       dataDefinition.reportTitleEdit.toggle();
       dataDefinition.changedReportTitle.focus();
@@ -350,12 +350,12 @@ popConnect.DataViewer = function(element, options) {
     
     dataDefinition.reportTitleEdit.append(dataDefinition.changedReportTitle).append(ok).append(cancel).hide();
     
-    var topFrame = $('<div>').addClass('top_frame');
+    var topFrame = $('<div>').addClass('overview');
     topFrame.append(dataDefinition.reportTitle);
     topFrame.append(dataDefinition.numeratorSqlDomNode)
     topFrame.append(dataDefinition.reportTitleEdit);
-    var statsContainer = $('<div>').addClass('report_stats');
-    var mathsContainer = $('<div>').addClass('maths');
+    var statsContainer = $('<div>').addClass('stats');
+    var quotientContainer = $('<div>').addClass('quotient');
     
     dataDefinition.numeratorNode = $('<div>').addClass('numerator').append(
       dataDefinition.numeratorValueDomNode).append(
@@ -365,22 +365,31 @@ popConnect.DataViewer = function(element, options) {
       dataDefinition.denominatorValueDomNode).append(
       dataDefinition.denominatorFieldsDomNode);
       
-    mathsContainer.append(dataDefinition.numeratorNode);
-    mathsContainer.append($('<hr>'));
-    mathsContainer.append(dataDefinition.denominatorNode);
-    statsContainer.append( mathsContainer );
+    quotientContainer.append(dataDefinition.numeratorNode);
+    quotientContainer.append(dataDefinition.denominatorNode);
+    statsContainer.append( quotientContainer );
       
-    statsContainer.append( $('<div>').addClass('master_percentage').append(dataDefinition.masterPercentageDomNode) );
+    statsContainer.append( $('<div>').addClass('master-percentage').append(dataDefinition.masterPercentageDomNode) );
     topFrame.append(statsContainer);
 
-    var bottomFrame = $('<div>').addClass('bottom_frame');
+    var bottomFrame = $('<div>').addClass('data');
+    var ul = $('<ul>').addClass('stack');
+    bottomFrame.append(ul);
+    var count = 0;
+    var li = null;
     $(dataDefinition.sort).each(function(sectionIndex, sectionName) {
+	  if(count % 2 == 0)
+	  {
+	    li = $('<li>');
+		ul.append(li);
+	  }
+	  count++;
       var sectionDiv = $('<div>').addClass('section').addClass(sectionName);
       dataDefinition.types[sectionName].domNode = sectionDiv;
       $(sectionDiv).append($('<h3>').text(dataDefinition.types[sectionName].label));
 
       $(dataDefinition.types[sectionName].sort).each(function(subsectionIndex, subsectionName) {
-        var subsectionDiv = $('<div>').addClass('subsection').addClass(subsectionName);
+        var subsectionDiv = $('<div>').addClass('section').addClass(subsectionName);
         dataDefinition.types[sectionName].types[subsectionName].domNode = subsectionDiv;
         $(subsectionDiv).append($('<h4>').append(
           $('<span>').text(dataDefinition.types[sectionName].types[subsectionName].label).addClass('label')).append(
@@ -389,7 +398,7 @@ popConnect.DataViewer = function(element, options) {
         ));
 
         $(dataDefinition.types[sectionName].types[subsectionName].sort).each(function(labelIndex, valueLabel) {
-          var value = $('<div>').addClass('value');
+          var value = $('<div>').addClass('row');
           value.append($('<div>').addClass('label').text(valueLabel));
           value.append($('<div>').addClass('percentage'));
           value.append($('<div>').addClass('number'));
@@ -402,7 +411,7 @@ popConnect.DataViewer = function(element, options) {
       });
 
       dataDefinition.types[sectionName].domNode = sectionDiv;
-      bottomFrame.append(sectionDiv);
+      li.append(sectionDiv);
     });
     
     $([dataDefinition.numeratorNode, dataDefinition.denominatorNode]).each(function(i, type) {
@@ -411,12 +420,12 @@ popConnect.DataViewer = function(element, options) {
         tolerance: 'pointer',
         activate: function(event,ui){
           $(this).toggleClass('dropshelf');
-          $(this).animate({padding: '3px 145px 3px 10px'}, 700);
+          $(this).animate({}, 700);
         },
         deactivate: function(event,ui){
           $(this).toggleClass('dropshelf');
           $(this).removeClass('over');
-          $(this).animate({padding: '3px 10px 3px 10px'}, 400);
+          $(this).animate({}, 400);
         },
         over: function(event,ui){
           $(this).toggleClass('over');
@@ -559,7 +568,8 @@ popConnect.DataViewer = function(element, options) {
 
   function showError(msg) {
     // TODO: Something...
-    console.log(msg);
+    if(window.console != undefined && console.log != undefined)
+    	console.log(msg);
   }
 
   // Call when you're doing some sort of work that will take awhile

@@ -67,13 +67,13 @@ class Report < ActiveRecord::Base
           pqri_xml.tin("Tax Id #")
           pqri_xml.tag! :'waiver-signed', "Y"
           pqri_xml.tag! :'pqri-measure' do
-            pqri_xml.tag! :'pqri-measure-number', self.id
+            pqri_xml.tag! :'pqri-measure-number', self.id.to_s + " - " + self.title 
             pqri_xml.tag! :'eligible-instances', self.denominator
             pqri_xml.tag! :'meets-performance-instances', self.numerator
             pqri_xml.tag! :'performance-exclusion-instances', 0
             pqri_xml.tag! :'performance-not-met-instances', (self.denominator - self.numerator)
             pqri_xml.tag! :'reporting-rate', "100.00"
-            pqri_xml.tag! :'performance-rate', Float.induced_from(self.numerator) / Float.induced_from(self.denominator) * 100
+            pqri_xml.tag! :'performance-rate', "%.2f" % (Float.induced_from(self.numerator) / Float.induced_from(self.denominator) * 100)
           end
         }
       end

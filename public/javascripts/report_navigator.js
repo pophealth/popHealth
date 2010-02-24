@@ -85,7 +85,7 @@ popConnect.ReportNavigator = function(element, options) {
     
     domReferences.reportsContainer = $('<ul>').attr('id', 'reports');
     
-    domReferences.newReport = $('<div>').append($('<span>').text('New report')).addClass('new-report').click(function() {
+    domReferences.newReport = $('<div>').append($('<span>').text('New report')).addClass('report new').click(function() {
       domReferences.reportsContainer.children().removeClass('selected');
       if(dataViewer) {
         dataViewer.newReport();
@@ -108,15 +108,15 @@ popConnect.ReportNavigator = function(element, options) {
           report.denominator = reportData.denominator;
           report.numerator = reportData.numerator;
           
-          report.domNode.find('.report-name').text(report.title);
+          report.domNode.find('.name').text(report.title);
           percentage = 0;
           if(reportData.denominator > 0) {
             percentage = reportData.numerator / reportData.denominator * 100;
           }
           if(percentage < 0.5 && percentage > 0) {
-            report.domNode.find('.report-percentage').text('<1%');
+            report.domNode.find('.percentage').text('<1%');
           } else {
-            report.domNode.find('.report-percentage').text(Math.round(percentage) + '%');
+            report.domNode.find('.percentage').text(Math.round(percentage) + '%');
           }
           found = true;
           report.domNode.addClass('selected');
@@ -193,8 +193,8 @@ popConnect.ReportNavigator = function(element, options) {
     }
     
     var reportDom = $('<li>').addClass('report').append(
-      $('<span>').addClass('report-name').text(report.title)).append(
-      $('<span>').addClass('report-percentage').text(text)).click(function() {
+      $('<span>').addClass('name').text(report.title)).append(
+      $('<span>').addClass('percentage').text(text)).click(function() {
         if(!report.domNode.hasClass('selected')) {
           domReferences.reportsContainer.children().removeClass('selected');
           reportId = report.id;
