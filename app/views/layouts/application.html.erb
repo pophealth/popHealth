@@ -1,23 +1,40 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-
 <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=7"/>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="Cache-Control" content="no-cache" />
-  <meta name="description" content="popHealth is a popuation reporting web application, developed by the MITRE Corporation." />
-  <meta name="keywords" content="population, health, MITRE, MITRE corporation, FHA, Federal Health Architecture, HHS, Health and Human Services, C32, HITSP, HITSP C32, XML, quality, report, health case reporting, emergency preparedness, laika, region, regional, national, states, pay for performance, PFP" />
-  <title>popHealth Quality Reports</title>  
-
-  <link rel="icon" type="image/png" href="<%= controller.relative_url_root %>/images/favicon.ico" />
-
-  <%= stylesheet_link_tag 'screen.css', :media => "screen, projection" %>
+  <meta name="description" content="<%= @description %>" />
+  <meta name="keywords" content="<%= @keywords %>" />
+  <title><%= @page_title %>: popHealth</title>  
+  <link rel="profile" type="text/html" href="http://purl.org/uF/2008/03/" />
+  <link rel="icon" type="image/png" href="<%= controller.relative_url_root %>/favicon.ico" />
+  <%= stylesheet_link_tag 'layout.css', 'default.css', 'jquery.fancybox.css', :media => "screen, projection" %>
+<!-- fix up print styles. 
   <%= stylesheet_link_tag 'print.css', :media => "print" %>
-  <%= stylesheet_link_tag 'jquery.fancybox.css' %>
-  <%= stylesheet_link_tag 'custom.css', :media => "screen, projection" %>
+-->
   <!--[if lt IE 8]>
   <%= stylesheet_link_tag 'ie.css' , :media => "screen, projection" %>
   <![endif]-->
-
+</head>
+<body>
+	<div id="canvas">
+		<div id="page">
+			<div id='header'>
+				<h1>
+					<a href="/"><%= image_tag("logo.png", :class => 'logo', :alt => 'popHealth') %> <%= @page_title %></a>
+				</h1>
+				<ul>
+					<li><%= link_to "Export", '#', :id => 'exportReport' %></li>
+					<li><%= link_to "Upload", {:controller => :popconnect, :action => :upload}, :class => 'fancybox' %></li>
+					<li><%= link_to 'Logout', logout_path %> (<%= current_user.first_name %>)</li>
+			    	</ul>
+			</div>
+			<div id='container'>
+				<%= yield %>
+			</div>
+		</div>
+	</div>
   <%= javascript_include_tag 'jquery-1.3.2.min.js' %>
   <%= javascript_include_tag 'jquery-ui-1.7.2.custom.min.js' %>
   <%= javascript_include_tag 'jquery-blockui.js' %>
@@ -26,56 +43,10 @@
   <%= javascript_include_tag 'pop_connect.js' %>
   <%= javascript_include_tag 'data_viewer.js' %>
   <%= javascript_include_tag 'report_navigator.js' %>
-</head>
-
-<body>
-
-  <div id='header'>
-    <%= image_tag("logo.png", :class => 'logo', :alt => 'popHealth') %>
-    <ul>
-	    <li><%= link_to "Export", '#', :id => 'exportReport' %></li>
-      <li><%= link_to "Upload", {:controller => :popconnect, :action => :upload}, :class => 'fancybox' %></li>
-      <li><%= link_to 'Logout', logout_path %> (<%= current_user.first_name %>)</li>
-    </ul>
-  </div>
-
-  <div id='container'>
-    <div id='sidebar'>
-    </div>
-    <div id='main'>
-    </div>
-  </div>
-
-  <div id='footer'></div>
-
-  <script>
-    $(document).ready(function() {
-      var dataViewer = new popConnect.DataViewer('#main', {
-          dataUrl: '/reports',
-          reportId: <%= Report.first.id %>,
-          exportLink: $('#exportReport')
-        });
-
-        var reportNavigator = new popConnect.ReportNavigator('#sidebar', {
-          dataUrl: '/reports',
-          dataViewer: dataViewer,
-          reportId: <%= Report.first.id %>
-        });
-
-    		$('.fancybox').fancybox({
-    				'zoomOpacity':		true,
-    				'overlayShow':		false,
-    		  		'zoomSpeedIn':		500,
-    		   		'zoomSpeedOut': 		500,
-    		   		'hideOnContentClick': false
-    		});
-    });
-
-    popConnect.session = {
-      authToken: '<%= form_authenticity_token -%>'
-    };
-  </script>
-
+	<script type="text/javascript">
+	   // <![CDATA[
+		<%= @inline_javascript %>
+		// ]]>
+	</script>
 </body>
-
 </html>

@@ -7,6 +7,21 @@ class ApplicationController < ActionController::Base
   include AuthenticatedSystem
 
   filter_parameter_logging :password
+  
+  attr_accessor :inline_javascript
+  attr_accessor :keywords
+  attr_accessor :description
+  
+  def initialize
+    inline_javascript = ""
+    #todo: put this information in an about page.
+    # keywords and descriptions should always be relevant to actual content on the page.
+    # search engines usually decrease your validity for having keywords that do not occur in the content. 
+    @keywords = "popHealth population, health, MITRE, MITRE corporation, FHA, Federal Health Architecture, "
+    @keywords << "HHS, Health and Human Services, C32, HITSP, HITSP C32, XML, quality, report, "
+    @keywords << " health case reporting, emergency preparedness, laika, region, regional, national, states, pay for performance, PFP"
+    @description = "popHealth is a popuation reporting web application, developed by the MITRE Corporation."
+  end
 
   # "remember me" functionality
   before_filter :login_from_cookie
