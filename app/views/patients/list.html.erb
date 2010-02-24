@@ -1,9 +1,12 @@
-<%= grid(@list, :name => "patients").show(:url => "/patients/:id/show/?return=:return").page().columns { |g|
+<%
+	show_url = "/patients/:id/show/?return=:return&amp;query=" + CGI.escape(@query)
+	page_url =  "/patients/list/?"
+%>
+
+<%= grid(@list, :name => "patients").show(:url => show_url).page(:url => page_url, :params => {:query => @query }).columns { |g|
 	   	g.column :name
 	   	g.column :pregnant
 		g.column "registration_information.date_of_birth"
 		g.column "registration_information.race.name", :title => "Race"
 } %>
-
-
 

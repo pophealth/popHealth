@@ -66,7 +66,7 @@ module UI
     # tells the grid to have 'show' action, in the actions column.
     def show(options = {})
       if @data.length > 0
-        default = {:url => @type.pluralize.downcase + "/show/:id", :text => "show"}
+        default = {:url => "/" + @type.pluralize.downcase + "/show/:id", :text => "show"}
         @show_action = default.merge(options)
         @actions = true
       end
@@ -81,7 +81,7 @@ module UI
     # instructs the grid to use pagination for the result set.
     def page(options = {})
       if(@data.length > 0)
-        default = {:url => @type.pluralize.downcase + "/list", :text => ""}
+        default = {:url => "/" + @type.pluralize.downcase + "/list/?", :text => ""}
         @page_action = default.merge(options)
         @actions = true   
       end
@@ -199,7 +199,7 @@ module UI
       if !@page_action.nil?
         prefix = "#{@name.dasherize.downcase}-pagination"
         link = @page_action[:url]
-        return_url = CGI.escape "/#{link}/?#{prefix}[sort]=#{@data.sort}&#{prefix}[page]=#{@data.page}&#{prefix}[page_size]=#{@data.page_size}"
+        return_url = CGI.escape "#{link}#{prefix}[sort]=#{@data.sort}&#{prefix}[page]=#{@data.page}&#{prefix}[page_size]=#{@data.page_size}"
       end
       
       if  will_show && @show_action[:url].include?(":return")
@@ -267,7 +267,15 @@ module UI
       if !@page_action.nil?
         prefix = "#{@name.dasherize.downcase}-pagination"
         link = @page_action[:url]
-        query = "/#{link}/?#{prefix}[sort]=#{@data.sort}"
+        inputs = ""
+        @page_action[:params].each do |k,v|
+            link = link + "#{k}=#{CGI.escape(v)}&amp;"
+            inputs = inputs + "<input type='hidden' name='#{k}' value=\"#{v}\" /> "
+        end
+        query = "#{link}#{prefix}[sort]=#{@data.sort}"
+        
+       
+        
   
         output = "#{@tab}         <div class=\"pagination\">"
         if @data.previous?
@@ -285,6 +293,7 @@ module UI
         output << "<input class=\"text\" type=\"text\" name=\"#{prefix}[page]\" value=\"#{@data.page}\" />"
         output << "<input type=\"hidden\" name=\"#{prefix}[page_size]\" value=\"#{@data.page_size}\" />"
         output << "<input type=\"hidden\" name=\"#{prefix}[sort]\" value=\"#{@data.sort}\" />"
+        output << inputs
         output << "<span class=\"pages\">of <span class=\"count\">#{@data.pages}</span></span>"
         output << "<input type=\"submit\" value=\"change\" /> </div> "
         output << "</form>"
@@ -303,6 +312,7 @@ module UI
         output << "<div><label>rows displayed</label>"
         output << "<input type=\"hidden\" name=\"#{prefix}[page]\" value=\"#{@data.page}\" />"
         output << "<input type=\"hidden\" name=\"#{prefix}[sort]\" value=\"#{@data.sort}\" />"
+        output << inputs
         sizes = [5,10,15,25]
         output << "<select name=\"#{prefix}[page_size]\">"
         sizes.each do |row|
@@ -440,11 +450,8 @@ module UI
         end 
 
         results = yield options
+        count = results[:count]
         
-        if results[:count] < ((page + 1) * page_size)
-          page = results[:count] / page_size
-          page = page > page.ceil ? page.ceil + 1 : page.ceil
-        end
 
         return PaginatedResults.new(results[:data], results[:count], page, page_size, sort)
     end

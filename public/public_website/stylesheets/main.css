@@ -37,7 +37,7 @@ color: #AAAAAA;
 }
 
 #logo {
-    margin: 20px 0 0px 0;
+    margin: 45px 0 0px 0;
     width:100%;
 }
 
@@ -79,6 +79,12 @@ img{
   margin-top: 0;
 }
 
+#projectHeader ul{
+  font-size: 150%;
+  font-weight: bold;
+  padding-left: 15px;
+}
+
 .bumper{
   font-size: 250%;
 }
@@ -104,15 +110,16 @@ img{
 }
 
 #screenshot{
-    margin-top: 225px;
+    margin-top: 200px;
 }
 .imageHeader{
     text-align: center;
     font-size: 20px;
 }
 .imageDescription{
-    text-align: center;
+    margin-left: 10px;
     font-size: 14px;
+    margin-top: 0;
 }
 
 .coming_soon{
@@ -174,6 +181,10 @@ fieldset{
     float:      left;
 }
 
+#links{
+  margin-left: 80px;
+}
+
 
 .milestonesList {
     margin: 0px 0 50px 20px;
@@ -222,7 +233,7 @@ th{
 
 #leftColumn div.projectDescription,
 div.projectDescription {
-  padding-bottom:0px;
+  padding-bottom: 20px;
 }
 
 #leftColumn div.projectDescription h2,
@@ -300,7 +311,7 @@ div.gossary_title h2 {
 
 /* * Footer * */
 #footer {
-    color:#000;
+    color:#999999;
     border-top:1px dotted #ccc;
     margin:0 0 30px 0;
     padding:5px 0 20px 0;
@@ -308,12 +319,11 @@ div.gossary_title h2 {
 }
 
 #footer a {
-    font-weight:bold;
     color:#000;
 }
 
 #footer a:hover {
-    color:#c30;
+    color:#56a0ab;
 }
 
 #footerLicense{
@@ -327,6 +337,7 @@ div.gossary_title h2 {
 }
 
 #footerLinks{
+	font-size: 12px;
     float:right;
 }
 
