@@ -8,6 +8,10 @@ class VitalSignC32Importer
   def self.entry_xpath
     "cda:entry/cda:observation[cda:templateId/@root='2.16.840.1.113883.3.88.11.32.15']"
   end
+  
+  def self.entry_organizer_xpath
+    "cda:entry/cda:organizer/cda:component/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.1.31']"
+  end
 
   def self.import_entry(entry_element)
     vital_sign = VitalSign.new

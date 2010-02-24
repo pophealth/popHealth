@@ -15,7 +15,11 @@ module ImportHelper
   # to find the entries. You don't need to provide an XPath expression that will return just the entry tag, as the useful
   # data is often nested several tags down.
   def entries(section_element)
-    REXML::XPath.match(section_element, entry_xpath, DEFAULT_NAMESPACES)
+    if REXML::XPath.match(section_element, "cda:entry/cda:organizer", DEFAULT_NAMESPACES).empty?
+      REXML::XPath.match(section_element, entry_xpath, DEFAULT_NAMESPACES)
+    else
+      REXML::XPath.match(section_element, entry_organizer_xpath, DEFAULT_NAMESPACES)
+    end
   end
   
   # Pulls the entry elements from the section element. Once it has the entry Elements, it will pass them to an import_entry

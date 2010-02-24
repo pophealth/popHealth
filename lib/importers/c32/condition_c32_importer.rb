@@ -24,11 +24,25 @@ class ConditionC32Importer
       end
       
       obs_xpath = "cda:entryRelationship[@typeCode='SUBJ']/cda:observation[cda:templateId[@root='2.16.840.1.113883.10.20.1.28']]/"
+      
+      if !condition.start_event #sometimes the timestamps are nested in the observation
+        start_event_string = element.find_first(obs_xpath + "cda:effectiveTime/cda:low/@value").try(:value)
+        if start_event_string
+          condition.start_event = start_event_string.to_s.from_hl7_ts_to_date
+        end
+
+        end_event_string = element.find_first(obs_xpath + "cda:effectiveTime/cda:high/@value").try(:value)
+        if end_event_string
+          condition.end_event = end_event_string.to_s.from_hl7_ts_to_date
+        end
+      end
+      
       coded_name = element.find_first(obs_xpath + "cda:value/@displayName").try(:value)
       if coded_name  
         condition.free_text_name = coded_name
       else
-        text_name = deref(element.find_first(obs_xpath + "cda:text"))
+        text_element = element.find_first(obs_xpath + "cda:text")
+        text_element.has_elements? ? text_name = deref(text_element) : text_name = text_element.try(:text)
         if text_name
           condition.free_text_name = text_name
         end
