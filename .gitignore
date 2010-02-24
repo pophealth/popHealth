@@ -13,3 +13,4 @@ config/glassfish.yml
 *.pid
 doc
 .yardoc
+Thumbs.db

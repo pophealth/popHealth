@@ -1,7 +1,8 @@
 class PopconnectController < ApplicationController
 
   def index
-
+    page_title "Quality Reports"
+    render
   end
 
   def upload

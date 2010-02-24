@@ -11,6 +11,26 @@ module ApplicationHelper
     options = args.extract_options!
     remote_form_for(record, *(args << options.merge(:builder => PatientFormBuilder)), &proc)
   end
+  
+  # Allows for nesting layouts/templates without having to recreate layouts. 
+  # from pastie.org/537822 from Josh Goebel
+  #
+  # usage. 
+  #  <% inside_layout 'application' do %>
+  #     <div id="content"> 
+  #       tons of markup
+  #       <%= yield %>
+  #     </div>
+  #  <% %>
+  def inside_layout(layout, &block)
+    layout = layout.to_s
+    layout = layout.include?('/') ? layout : "layouts/#{layout}"
+    @template.instance_variable_set('@content_for_layout', capture(&block))
+    concat (
+      @template.render(:file => layout, :use_full_path => true)
+    )  
+  end
+
 
   # Return an HTML span describing the requirements for the given model field.
   def requirements_for(model, field)

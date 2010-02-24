@@ -78,10 +78,6 @@
 					<% end %>
 					</span>
 				</li>
-				<li class='insurance-provider'>
-					<label>insurance provider</label>
-					<span class='value text'><%= insurance_provider.nil? ? "n/a" : insurance_provider.represented_organization %></span>
-				</li>
 			</ul>
 			<ul class='stack contact-information'>
 				<li class='phone-numbers'>
@@ -131,7 +127,14 @@
 					n/a
 					<% end %>
 				</li>
-				<li class='insurance-group-number'>
+				
+			</ul>
+			<ul class="stack insurance">	
+				<li class='provider'>
+					<label>insurance provider</label>
+					<span class='value text'><%= insurance_provider.nil? ? "n/a" : insurance_provider.represented_organization %></span>
+				</li>
+				<li class='group-number'>
 					<label>insurance group number</label>
 					<% if !insurance_provider.nil? && !insurance_provider.group_number.nil? %>
 					<span class='value text'><%= insurance_provider.group_number %></span>
