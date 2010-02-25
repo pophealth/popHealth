@@ -1,4 +1,4 @@
-class PopconnectController < ApplicationController
+class PophealthController < ApplicationController
 
   def index
     page_title "Quality Reports"
@@ -12,7 +12,7 @@ class PopconnectController < ApplicationController
 
   def patient_record_save
     PatientC32Importer.import_c32(ClinicalDocument.create!(params[:clinical_document]).as_xml_document)
-    redirect_to :controller => 'popconnect'
+    redirect_to :controller => 'pophealth'
   end
 
 end

@@ -94,12 +94,11 @@ Rails::Initializer.run do |config|
   config.time_zone = "Eastern Time (US & Canada)"
 end
 
-ENV['HOST_URL'] = 'http://demo.cchit.org/laika'
-ENV['HELP_LIST'] = 'talk@projectlaika.org'
+ENV['HOST_URL'] = 'http://projectpophealth.org/demo'
+ENV['HELP_LIST'] = 'talk@projectpophealth.org'
 
 ActionMailer::Base.smtp_settings = {
   :address => "mail.mitre.org",
   :port => 25,
   :domain => "mitre.org",
 }
-

@@ -1,6 +1,6 @@
 <h2>Upload a new C32 Patient Record</h2>
 <% form_for(:clinical_document, 
-            :url => {:controller => 'popconnect', :action => :patient_record_save},
+            :url => {:controller => 'pophealth', :action => :patient_record_save},
             :html => {:multipart => true }) do |f| -%>
 
   <p><label>Select File</label> : 

@@ -393,14 +393,16 @@ h6 {
 .report .section {
 	width: 345px;
 	float: left;
-	overflow: visible;
 	margin-right: 15px;
-	margin: 0 25px 15px 0;
+	margin: 0 25px 0px 0;
+}
+
+.report .stack li {
+	margin-bottom: 25px;
 }
 
 .report .section .section {
 	width: 100%;
-	clear: both;
 	margin-bottom: 20px;
 }
 
@@ -565,6 +567,7 @@ section .column h2 {
 	display: block;
 	float: left;
 	clear: both;
+	width: 100%;
 }
 
 .stack.stats li,
@@ -572,6 +575,7 @@ section .column h2 {
 .stack.insurance li {
 	clear: none;
 	margin: 5px 5px;
+	width: auto;
 }
 
 .stack.stats .data li,

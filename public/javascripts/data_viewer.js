@@ -482,7 +482,7 @@ popConnect.DataViewer = function(element, options) {
       success: function(responseData) {
         data = responseData;
         if(data.id) {
-          $(that.exportLink).show().attr('href', '/popconnect/export?id=' + data.id);
+          $(that.exportLink).show().attr('href', '/pophealth/export?id=' + data.id);
         } else {
           $(that.exportLink).hide().attr('href', '#');
         }
