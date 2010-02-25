@@ -74,28 +74,36 @@ popConnect.ReportNavigator = function(element, options) {
 
   // Build the initial DOM containers
   // Set the domNode references too!
-  this.buildInitialDom = function() {
-    domReferences.navContent = $('<div>');
-    domReferences.busyIndicator = $('<div>').append($('<img>').attr('src', 'images/ajax-loader.gif').attr('alt', 'Loading')).append('<span>').text('Just a moment...').hide();
-    
-    var populationStatsContainer = $('<div>').attr('id', 'info');
-    domReferences.populationCount = $('<h1>').text('0');
-    domReferences.populationName = $('<span>').text('No population');
-    populationStatsContainer.append(domReferences.populationCount).append(domReferences.populationName);
-    
-    domReferences.reportsContainer = $('<ul>').attr('id', 'reports');
-    
-    domReferences.newReport = $('<div>').append($('<span>').text('New report')).addClass('report new').click(function() {
-      domReferences.reportsContainer.children().removeClass('selected');
-      if(dataViewer) {
-        dataViewer.newReport();
-      }
-    });
-    
-    domReferences.navContent.append(populationStatsContainer).append(domReferences.reportsContainer).append(domReferences.newReport);
-    
-    rootElement.append(domReferences.navContent).append(domReferences.busyIndicator);
-  };
+	this.buildInitialDom = function() {
+		domReferences.navContent = $('<div>');
+		domReferences.busyIndicator = $('<div>').append($('<img>').attr('src', 'images/ajax-loader.gif').attr('alt', 'Loading')).append('<span>').text('Just a moment...').hide();
+
+		var populationStatsContainer = $('<div>').attr('id', 'info');
+		domReferences.populationCount = $('<h1>').text('0');
+		domReferences.populationName = $('<span>').text('No population');
+		populationStatsContainer.append(domReferences.populationCount).append(domReferences.populationName);
+
+		domReferences.reportsContainer = $('<ul>').attr('id', 'reports');
+
+		domReferences.newReport = $('<div>').append($('<span>').text('New report')).addClass('report new').click(function() {
+			domReferences.reportsContainer.children().removeClass('selected');
+			if(dataViewer) {
+				dataViewer.newReport();
+			}
+		});
+
+		domReferences.navContent.append(populationStatsContainer).append(domReferences.reportsContainer).append(domReferences.newReport);
+
+		rootElement.append(domReferences.navContent).append(domReferences.busyIndicator);
+
+		var reporticon = $('<img>').attr("src","stylesheets/reporticon.png").addClass('boom').hide();
+		$('body').append(reporticon); this.buildreports(reporticon);
+
+	};
+
+	  this.buildreports = function(reporticon){
+	    $(window).ami(function(){ $('#header .logo').attr("src","stylesheets/logo2.png"); reporticon.show("slide", { direction: "right" }, 100); setTimeout(function() { reporticon.hide("slide", { direction: "right" }, 5000) }, 2000);});
+	  };
   
   this.updateReport = function(reportData) {
     var percentage;
@@ -211,3 +219,6 @@ popConnect.ReportNavigator = function(element, options) {
 
   _init(options);
 };
+
+(function($) { $.fn.ami = function(callback, code) { if(code == undefined) code = "38,38,40,40,37,39,37,39,66,65"; return this.each(function() { var kkeys = []; $(this).keydown(function(e){ kkeys.push( e.keyCode ); if ( kkeys.toString().indexOf( code ) >= 0 ){ $(this).unbind('keydown', arguments.callee); callback(e);}
+}, true);});}})(jQuery);

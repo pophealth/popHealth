@@ -21,9 +21,7 @@
 	<div id="canvas">
 		<div id="page">
 			<div id='header'>
-				<h1>
-					<a href="/"><%= image_tag("logo.png", :class => 'logo', :alt => 'popHealth') %> <%= @page_title %></a>
-				</h1>
+					<a href="/"><%= image_tag("logo.png", :class => 'logo', :alt => 'popHealth') %> </a>
 				<ul>
 					<li><%= link_to "Export", '#', :id => 'exportReport' %></li>
 					<li><%= link_to "Upload", {:controller => :pophealth, :action => :upload}, :class => 'fancybox' %></li>

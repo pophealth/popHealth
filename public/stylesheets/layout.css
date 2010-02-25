@@ -469,6 +469,12 @@ h6 {
 	cursor: move;
 }
 
+.boom{
+  float:    right;
+  z-index:  200;
+  position: relative;
+	top: -450px;
+}
 
 /** Bars */
 .report .data .bar {
