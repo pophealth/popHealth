@@ -1,10 +1,13 @@
-= Laika Design and Architecture
+= popHealth Design and Architecture
 
+popHealth leverages the infrastructure data models from the open source EHR testing
+tool Laika: http://github.com/CCHIT/laika/.
+ 
 The classes covered in this document are grouped into three sections.
 Application-specific code is the scaffolding and business logic that holds
-Laika together. Test and test type code manages EHR testing state and related
-data. Patient code is responsible for reading, updating, processing and
-generating C32 from patient data.
+popHealth together. Report code handles the querying logic to generate the 
+quality measure reports. Patient code is responsible for reading, updating, processing, 
+importing and generating C32 from patient data.
 
 == Application-specific Code
 
@@ -19,9 +22,6 @@ generating C32 from patient data.
 
 === Controllers
 
-The Dashboard tab is implemented by {TestPlansController#index} and the
-Library tab is implemented by {PatientsController#index}.
-
 {AccountController}:: login, logout and registration
 {ApplicationController}:: application-wide controller functionality
 {NewsController}:: display and post news items
@@ -33,42 +33,21 @@ Library tab is implemented by {PatientsController#index}.
 
 * {SortOrder}
 
-== Tests and Test Types
-
-Remember that we're talking about the EHR testing performed by Laika, *not*
-the automated test suite used to check for regressions in Laika itself. The
-test types are all sub-classes of {TestPlan}. The list of test plan types is
-enumerated in config/initializers/load_test_plan_types.rb.
-
-=== Test Types
-
-The state of an individual test plan is represented by a sub-class of {TestPlan}:
-
-* {C32DisplayAndFilePlan}
-* {C32GenerateAndFormatPlan}
-* {PdqQueryPlan}
-* {PixFeedPlan}
-* {PixQueryPlan}
-* {XdsProvideAndRegisterPlan}
-* {XdsQueryAndRetrievePlan}
+== Reports
 
 === Models
 
-{MessageLog}:: references an external table, used for ???
-{AtnaAudit}:: references an external table, used for viewing ATNA logs
-{ClinicalDocument}:: C32 document attachment
-{ContentError}:: C32 validation error
-{Vendor}:: categorize tests by an arbitrary string
+{Report}:: represents a quality measure report; handles PQRI representation
 
 === Controllers
 
-{TestPlansController}:: test plan operations, includes several test-specific actions
-{XdsPatientsController}:: XDS utility operations
+{ReportsController}:: querying logic as well as new report/save functionality 
+{PopconnectController}:: patient record import and pqri export 
 
 == Patients
 
 A {Patient} instance represents a single patient's medical history. Most of the
-models in Laika are part of this structure and represent different sections or
+models in popHealth are part of this structure and represent different sections or
 subsections of patient data. Patient and its subordinate types are based on
 the C32 document standard: http://wiki.hitsp.org/docs/C32/C32-1.html
 
@@ -98,6 +77,7 @@ one represents a section or subsection of patient data.
 {Provider}:: doctor or hospital
 {RegistrationInformation}:: general patient and contact info
 {Result}:: medical test results (child of {AbstractResult})
+{SocialHistory}:: patient social history
 {Support}:: supporting contacts
 {Telecom}:: phone contacts
 {VitalSign}:: patient vitals (child of {AbstractResult})
@@ -152,33 +132,5 @@ These models represent lookup data needed for the UI and validation.
 
 * {HasSelectOptionsExtension}
 
-=== Controllers
 
-Most of the controllers involved in updating patient data are descendants of
-either {PatientChildController} or {PatientChildrenController} depending on
-whether the patient has one or many of the given resource, respectively.
-{PatientsController} controls high-level patient operations and the Library
-view.
-
-* {AdvanceDirectivesController}
-* {AllergiesController}
-* {ConditionsController}
-* {EncountersController}
-* {ImmunizationsController}
-* {InformationSourcesController}
-* {InsuranceProviderGuarantorsController}
-* {InsuranceProviderPatientsController}
-* {InsuranceProviderSubscribersController}
-* {InsuranceProvidersController}
-* {LanguagesController}
-* {MedicalEquipmentsController}
-* {MedicationsController}
-* {PatientIdentifiersController}
-* {PregnanciesController}
-* {ProceduresController}
-* {ProvidersController}
-* {RegistrationInformationController}
-* {ResultsController}
-* {SupportsController}
-* {VitalSignsController}
 
