@@ -13,7 +13,7 @@ class AccountController < ApplicationController
         cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
       end
       # Hack to force the re-direct to the popHealth Dashboard
-      redirect_to '/popconnect'
+      redirect_to '/pophealth'
     else
       flash[:notice] = %{
         Sorry mate, your email and password <strong>do not match</strong>.
@@ -29,7 +29,7 @@ class AccountController < ApplicationController
     @user.save!
     self.current_user = @user
     
-    redirect_to '/popconnect'
+    redirect_to '/pophealth'
   rescue ActiveRecord::RecordInvalid
     render :action => 'signup'
   end
@@ -39,7 +39,7 @@ class AccountController < ApplicationController
     cookies.delete :auth_token
     reset_session
     flash[:notice] = "You have been logged out."
-    redirect_back_or_default '/popconnect'
+    redirect_back_or_default '/pophealth'
   end
   
   def forgot_password

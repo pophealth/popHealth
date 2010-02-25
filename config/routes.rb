@@ -1,9 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
-  map.connect 'popconnect/upload', :controller => 'popconnect', :action => 'upload'
-  map.connect 'popconnect/export', :controller => 'reports', :action => 'pqri_report'
-  map.connect 'popconnect/patient_record_save', :controller => 'popconnect', :action => 'patient_record_save'
-  map.resources :reports, :popconnect
-  map.root :controller => 'popconnect', :action => 'index'
+  map.connect 'pophealth/upload', :controller => 'pophealth', :action => 'upload'
+  map.connect 'pophealth/export', :controller => 'reports', :action => 'pqri_report'
+  map.connect 'pophealth/patient_record_save', :controller => 'pophealth', :action => 'patient_record_save'
+  map.resources :reports, :pophealth
+  map.root :controller => 'pophealth', :action => 'index'
   
   map.resources :message_logs
   map.resources :atna_audits

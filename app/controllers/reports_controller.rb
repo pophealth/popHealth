@@ -71,7 +71,7 @@ class ReportsController < ApplicationController
       @report.denominator = (generate_report(@report.denominator_query))
       # only run the numerator query if there are any fields provided
       if @report.numerator_query.size > 0
-        temp_request = merge_popconnect_request(@report.denominator_query, @report.numerator_query)
+        temp_request = merge_pophealth_request(@report.denominator_query, @report.numerator_query)
         population_query = ""
 
         population_query = population_query + generate_from_sql(temp_request, generate_new_join_table_hash_status())
@@ -97,7 +97,7 @@ class ReportsController < ApplicationController
         
         # only run the numerator query if there are any fields provided
         if next_report.numerator_query.size > 0
-          next_report.numerator = generate_report(merge_popconnect_request(next_report.denominator_query,
+          next_report.numerator = generate_report(merge_pophealth_request(next_report.denominator_query,
                                                                             next_report.numerator_query))
         else
           next_report.numerator = 0
@@ -149,7 +149,7 @@ class ReportsController < ApplicationController
     
     # only run the numerator query if there are any fields provided
     if @report.numerator_query.size > 0
-      @report.numerator = generate_report(merge_popconnect_request(@report.denominator_query, @report.numerator_query))
+      @report.numerator = generate_report(merge_pophealth_request(@report.denominator_query, @report.numerator_query))
     else
       @report.numerator = 0
     end
@@ -269,7 +269,7 @@ class ReportsController < ApplicationController
   # this merge is a little bit specialized, since it will do a careful merge of the values in
   # the hashs' arrays, where there will be no duplicate entries in the arrays, and no entries
   # will be deleted with the merge
-  def merge_popconnect_request(hash1, hash2)
+  def merge_pophealth_request(hash1, hash2)
     resp = {}
     @@valid_parameters.each do |next_parameter|
       if (hash1.has_key?(next_parameter) || hash2.has_key?(next_parameter))

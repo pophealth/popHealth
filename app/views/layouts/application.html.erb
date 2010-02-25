@@ -26,7 +26,7 @@
 				</h1>
 				<ul>
 					<li><%= link_to "Export", '#', :id => 'exportReport' %></li>
-					<li><%= link_to "Upload", {:controller => :popconnect, :action => :upload}, :class => 'fancybox' %></li>
+					<li><%= link_to "Upload", {:controller => :pophealth, :action => :upload}, :class => 'fancybox' %></li>
 					<li><%= link_to 'Logout', logout_path %> (<%= current_user.first_name %>)</li>
 			    	</ul>
 			</div>
