@@ -121,7 +121,7 @@ class Patient < ActiveRecord::Base
                      "assigningAuthorityName" => "HITSP/C32")
       xml.id("root" => "2.16.840.1.113883.3.72", 
              "extension" => "Laika C32 Test", 
-             "assigningAuthorityName" => "Laika: An Open Source EHR Testing Framework projectlaika.org")
+             "assigningAuthorityName" => "popHealth: An Open Source Population Health Reporting Prototype")
       xml.code("code" => "34133-9", 
                "displayName" => "Summarization of patient data", 
                "codeSystem" => "2.16.840.1.113883.6.1", 
