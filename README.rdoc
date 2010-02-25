@@ -6,7 +6,7 @@ popHealth is a Ruby on Rails application that targets JRuby/Glassfish for deploy
 
 = Dependencies
 
-* JRuby >= 1.3.1
+* JRuby = 1.3.1
 * Sun Java >= 1.5 (1.6 required for the Glassfish gem)
 * MySQL >= 5.0 or PostgreSQL >= 8.1 for popHealth DB
 
@@ -59,12 +59,27 @@ Navigate to the root of your popHealth project and run:
 
 As an alternative, you may create the CLASSPATH environment variable and manually set them to the Saxon jars as part of the user's profile (otherwise you will have to follow the above steps every time you open a new terminal window). 
 
+== Creating/Importing Patient Records
+There are two ways to populate the popHealth database with patient records: popHealth can create statistically feasible randomized test records or import records from C32s on the file system.
+
+==== Randomized Patient Records
+Run the following rake task (you will be prompted for the number of records you wish to create):
+
+	$ jruby -S rake ph:randomize
+	
+==== Importing C32s from File System
+Run the following rake task:
+
+	$ jruby -S rake ph:import
+
+When prompted for the directory, enter the *full path* of the directory where the C32 files are located on disk, i.e. "/Users/popHealth/data/C32-files/" or "C:\data\popHealth\C32-files\" on Windows. 
+
 == Running the Server
 To run the application, run the following command from the root of your popHealth project.
 
   $ jruby script/server
 
-Or you may use Glassfish (instructions below).
+Or you may deploy on Glassfish (instructions below).
 Point your browser to http://localhost:3000/. 
 
 == GlassFish
@@ -72,9 +87,9 @@ Install the Glassfish server using the Glassfish gem:
 
   $ jruby -S gem install glassfish
 
-GlassFish will use default options for the server if you do not have a glassfish.yml file in your config directory. Laika provides a glassfish.yml.template file that you may edit. Note that GlassFish cannot run as a daemon process on Windows.
+GlassFish will use default options for the server if you do not have a glassfish.yml file in your config directory. popHealth provides a glassfish.yml.template file that you may edit. Note that GlassFish cannot run as a daemon process on Windows.
 
-Deploying Laika on the GlassFish server is very simple. Run the following command from the root of your Laika project:
+Deploying popHealth on the GlassFish server is very simple. Run the following command from the root of your Laika project:
 
   $ jruby -S glassfish
 
