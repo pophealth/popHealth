@@ -1,0 +1,12 @@
+popHealth
+Copyright 2010 Federal Health Architecture
+
+This product includes software developed at
+Project Laika (http://projectlaika.org/).
+
+This software contains code derived from the open source Laika
+software project, including various modifications by the MITRE 
+Corporation http://www.mitre.org, the Certification Commission 
+for Healthcare Information Technology http://www.cchit.org, 
+Citius Tech http://www.citiustech.com/, and Open Sourcery 
+http://www.opensourcery.com/.
