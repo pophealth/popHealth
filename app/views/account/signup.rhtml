@@ -1,68 +1,59 @@
 <% form_for :user do |f| -%>
-  <div id="login">
-    <div id="cap-top"></div>
-      <div id="cap-body">
-        <div id="branding">
-          <%= image_tag "laika.png", :id => 'imgLogo', :alt => 'Laika' %>
-          <h1>Account Creation.</h1>
-          Let's start with the fundamentals.
-          <hr class="login">
-          <%= error_messages_for :user %>
-        </div>
-        <div id="panelLogin">
-          <div>
-           <ul class="register">
-             <li>
-               <label class="desc" for="email"><b>1.</b> What's Your Email Address*</label>
-               <div><%= f.text_field :email %></div>
-               <p>*We will never ever sell or disclose your email address to third parties.</p>
-             </li>
-             <li>
-               <div class="left" style="float:left; width:233px;display:inline;">
-                 <label class="desc" for="email"><b>2.</b> Your First Name?</label><%= f.text_field :first_name %>
-               </div>
-               <label class="desc" for="email">Your Last Name?</label><%= f.text_field :last_name %>
-               <div style="padding-bottom:28px;"></div>
-             </li>
-             <li>
-               <div class="left" style="float:left; width:233px;display:inline;">
-                 <label class="desc" for="password"><b>3.</b> Choose a Password</label><%= f.password_field :password %>
-                 <p>Must be at least 5 characters long.</p>
-               </div>
-               <label class="desc" for="password1">Verify Password</label><%= f.password_field :password_confirmation %>
-               <div style="padding-bottom:28px;"></div>
-             </li>
-             <li>
-               <div class="left" style="float:left; width:233px;display:inline;">
-                 <label class="desc" for="email"><b>4.</b> Your Company?</label><%= f.text_field :company %>
-               </div>
-               <label class="desc" for="email">Your Company's URL?</label><%= f.text_field :company_url %>
-             </li>
-             <li>
-               <div style="padding-top:18px"></div>
-               <span id="regcheckbox"><%= f.check_box :send_updates %>
-               <label style="display:inline">Keep me updated about the Laika project.</label></span>
-             </li>
-           </ul>
-         </div>
-         <div style="margin:20px 0 0 20px;"><%= image_tag "register_doggy.png", :id => 'firstdog', :style => 'visibility:visible'%>
-           <%= link_to image_tag("cancel_account.png"), test_plans_url, :style => "position:relative; z-index:100" %>
-           <input type="image" value="Create Laika Account" src="<%= controller.relative_url_root %>/images/create_account.png" class="actbtn" style="z-index:100"/>
-           <input class="create-account-btn" name="commit" type="submit" value="Create Laika Account" style="display:none" />
-           <div id="whyreg">
-             <a href="#" id="whyreglink" onclick="toggleVisibility('firstdog','whyreglink', 'regpopup'); return false;">Why do I need to register?</a>
-             <span id="regpopup" style="display:none;">
-               <%= image_tag "why_register_doggy.png", :class => 'doggyappear' %>
-               <div id="doggyappeartxt" onclick="toggleVisibility('firstdog','whyreglink','regpopup'); return false;">
-                 <span id="barkpad">Bark! Bark!</span><br/>Prevents unauthorized data access<br/>and gives you a "Laika" identity!</span>
-               </div>
-             </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    <div id="cap-bottom"></div>
-  </div><!-- END #login -->
-    
-<% end -%>
+<div id="login">
+	<div id="cap-top"></div>
+	<div id="cap-body">
+		<div id="branding">
+			<%= image_tag "pophealth_welcome.png", :id => 'imgLogo', :alt => 'popHealth' %>
+			<h1>Account Creation.</h1>
+			Let's start with the fundamentals.
+			<hr class="login">
+			<%= error_messages_for :user %>
+		</div>
+		<div id="panelLogin">
+			<div>
+				<ul class="register">
+					<li>
+						<label class="desc" for="email"><b>1.</b> What's Your Email Address*</label>
+						<div><%= f.text_field :email %></div>
+						<p>*We will never ever sell or disclose your email address to third parties.</p>
+					</li>
+					<li>
+						<div class="left" style="float:left; width:233px;display:inline;">
+							<label class="desc" for="email"><b>2.</b> Your First Name?</label><%= f.text_field :first_name %>
+						</div>
+						<label class="desc" for="email">Your Last Name?</label><%= f.text_field :last_name %>
+						<div style="padding-bottom:28px;"></div>
+					</li>
+					<li>
+						<div class="left" style="float:left; width:233px;display:inline;">
+							<label class="desc" for="password"><b>3.</b> Choose a Password</label><%= f.password_field :password %>
+							<p>Must be at least 5 characters long.</p>
+						</div>
+						<label class="desc" for="password1">Verify Password</label><%= f.password_field :password_confirmation %>
+						<div style="padding-bottom:28px;"></div>
+					</li>
+					<li>
+						<div class="left" style="float:left; width:233px;display:inline;">
+							<label class="desc" for="email"><b>4.</b> Your Organization?</label><%= f.text_field :company %>
+						</div>
+						<label class="desc" for="email">Organization's URL?</label><%= f.text_field :company_url %>
+					</li>
+					<li>
+						<div style="padding-top:18px"></div>
+						<span id="regcheckbox"><%= f.check_box :send_updates %>
+							<label style="display:inline">Keep me updated about the popHealth project.</label></span>
+						</li>
+					</ul>
+				</div>
+				<div style="margin:20px 0 0 20px;">
+					<input type="image" value="Create popHealth Account" src="<%= controller.relative_url_root %>/images/create_account.png" class="actbtn" style="z-index:100"/>
+					<input class="create-account-btn" name="commit" type="submit" value="Create popHealth Account" style="display:none" />
+					<%= link_to image_tag("cancel_account.png"), login_url, :style => "position:relative; z-index:100" %>
+				</div>
+			</div>
+		</div>
+		<div id="cap-bottom"></div>
+	</div><!-- END #login -->
+
+	<% end -%>
 
