@@ -22,11 +22,14 @@
 				</div>
 				<div id="reports">
 					<ul>
-						<% @reports.each do |item|  %>
+						<% @reports.each do |item|  
+							ratio = ((item.numerator.to_f / item.denominator.to_f) * 100)
+							#percentage = ratio * 100
+							%>
 						<li class="report">
 							<a href="/popconnect/report/<%= item.id %>">
 								<span class="name"><%= item.title %></span>
-								<span class="percentage"><%= ((item.numerator/item.denominator) * 100) %></span>
+								<span class="percentage"><%= ratio.round.to_s%>%</span>
 							</a>
 						</li>
 						<% end %>

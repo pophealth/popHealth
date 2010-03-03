@@ -17,6 +17,7 @@ class PatientsController < ApplicationController
   def list
     @page_title = "list of patients"
     @report_id = nil
+    @ret = "/pophealth"
     
     #TODO: abstract this out into a module for active record. 
     if params[:report_id].nil?
@@ -29,6 +30,11 @@ class PatientsController < ApplicationController
         
           {:data => Patient.find(:all, options), :count => count}
       }
+      first = Report.first
+      if first
+          @ret = @ret + "/report/" + Report.first.id.to_s
+      end
+    
     else 
       query = Report.find_and_generate_patients_query(params[:report_id], "")
       @report_id = params[:report_id]
@@ -42,6 +48,9 @@ class PatientsController < ApplicationController
         {:data => Patient.find_by_sql("SELECT patients.* FROM patients #{query} LIMIT #{options[:limit]} OFFSET #{options[:offset]}"), :count => count}
       }
       @query = params[:query]
+      
+      
+      @ret = @ret + "/report/" + @report_id.to_s
     end
     
     return render 
@@ -57,6 +66,11 @@ class PatientsController < ApplicationController
     @ret = params[:return]  || "/patients/list/"
     @ret = @ret + (params[:return].nil? ? "?" : "&amp;")
     @ret = @ret + "report_id=" + CGI.escape(@report_id)
+    
+    if @report_id == ""
+      @report_id = Report.first.id.to_s
+    end
+    
     
     if id.nil? || id.to_i <= 0
       flash[:error] = "The patient id (#{id}) is invalid."

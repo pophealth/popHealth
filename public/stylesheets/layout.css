@@ -56,7 +56,7 @@ table {
 /** Begin Custom Css */
 /** Tags */
 html, body {
-	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-size: .8em;
 	background: #fff;
 	position: relative;
@@ -74,7 +74,6 @@ a:hover {
 h1, h2, h3, h4, h5, h6 {
 	font-weight:bold;
 	color:#111;
-	font-family:  Arial, Sans-Serif;
 }
 
 h1 {
@@ -155,24 +154,27 @@ h6 {
 
 /** Content */
 #container {
-	float: left;
-	width: 100%;
 	clear: both;
-	position: relative;
+	top: 41px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
 }
 
 
 /** Sidebar */
 #sidebar {
-	float: left;
 	display: block;
-	overflow: visible;
+	overflow: hidden;
 	width: 250px;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	position: absolute;
 	background-color: #f2f2f2;
-	color: #888;
 	font-size: 1em;
 	font-weight:  bold;	
-	min-height: 400px;
 	text-align: left;
 	border-right: 1px solid #ccc;
 }
@@ -185,6 +187,9 @@ h6 {
 	width: 100%;
 }
 
+#sidebar ul a, #sidebar ul a:visited {
+	color:#888
+}
 
 #sidebar .report {
 	padding: 15px 0;
@@ -206,6 +211,9 @@ h6 {
 
 #sidebar .report.new {
 	color: #ccc;
+	float: left;
+	width: 100%;
+	clear: both;
 }
 
 #sidebar .report span {
@@ -228,14 +236,26 @@ h6 {
 	border-bottom: 1px solid #888;
 }
 
-#info {
-	padding: 0px 10px 15px 10px;
-	border-bottom: 1px solid #888;
+#reports {
+	color: #888;
+	position: absolute;
+	overflow: auto;
+	top: 80px;
+	bottom: 5px;
+	left: 0px;
+	right: 0px;
 }
 
-#info span {
+#info {
+	padding: 15px 10px 15px 10px;
+	border-bottom: 1px solid #888;
+	height: 40px;
+}
+
+#info span, #info p {
 	color: #888;
 	font-weight: normal;
+	display: inline;
 }
 
 .ui-layout-resizer { /** currently not in use */
@@ -247,12 +267,37 @@ h6 {
 /** Main */ 
 #main {
 	position: absolute;
-	left: 260px;
+	left: 250px;
 	top: 0px;
-	overflow: visible;
+	bottom: 0px;
+	right: 0px;
 	text-align: left;
-	width: 745px;
 }
+
+#main #patients, #main .vcard, #main div.data, #main div.overview  {
+	position: absolute;
+	top: 22px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	overflow: auto;
+
+}
+
+#main .overview {
+	position: absolute;
+	height: 150px;
+}
+
+#main div.data {
+	top: 190px;
+}
+
+#main div.vcard {
+	padding: 5px;
+}
+
+
 
 .section h3 {
 	color: #666;
@@ -273,9 +318,7 @@ h6 {
 
 /** Report Overview */
 .report .overview {
-	width: 100%;
-	padding-bottom: 20px;
-	margin: 15px 0 20px 0;
+	margin: 5px 5px 20px 5px;
 	float: left;
 	overflow: visible;
 	position: relative;
@@ -299,11 +342,17 @@ h6 {
 }
 
 .report .denominator  {
-	margin-bottom: -20px;
+	margin-bottom: 0px;
+}
+
+.report .stats {
+	float: left;
+	overflow: hidden;
+	width: 100%;
 }
 
 .report .numerator,
-.report .overview {
+.report .stats {
 	border-bottom:  1px solid #ccc;
 }
 
@@ -390,6 +439,10 @@ h6 {
 
 
 /** Report Data */
+.report .data {
+	padding: 5px;
+}
+
 .report .section {
 	width: 345px;
 	float: left;
@@ -496,8 +549,10 @@ h6 {
 
 .report .data .bar .total {
 	height: 100%;
-	background: #ccc;
 }
+
+
+
 
 
 /** Name edit */
@@ -547,6 +602,10 @@ section .column h2 {
 	float: left;
 	width: 360px;
 	margin: 5px;
+}
+
+.column .stack, .column p {
+	margin-top: 5px;
 }
 
 
@@ -689,7 +748,7 @@ th, td, caption {
 	text-align: left;
 }
 
-tr:hover td, tr.alt:hover td {
+tbody tr:hover td, tbody tr.alt:hover td {
 	background: #eaf4d8;
 }
 
@@ -743,6 +802,16 @@ table {
 	border: 1px solid #d3d3d3; 
 	background: #e6e6e6 url(smoothness/images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x; 
 	font-weight: normal; 
-	color: #555555; 
+	color: #555; 
 	outline: none; 
+	text-transform: capitalize;
+}
+
+.simple caption {
+	display: none;
+}
+
+.simple th {
+	border: none;
+	background: transparent;
 }

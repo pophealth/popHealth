@@ -1,3 +1,15 @@
+body {
+	overflow: hidden;
+}
+
+#reports ul {
+   width: 233px;
+}
+
+#main #patients table {
+	width: 98%;
+}
+
 /** Report Overview */
 .report .numerator, 
 .report .denominator {

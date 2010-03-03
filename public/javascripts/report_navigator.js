@@ -75,15 +75,18 @@ popConnect.ReportNavigator = function(element, options) {
   // Build the initial DOM containers
   // Set the domNode references too!
 	this.buildInitialDom = function() {
-		domReferences.navContent = $('<div>');
 		domReferences.busyIndicator = $('<div>').append($('<img>').attr('src', 'images/ajax-loader.gif').attr('alt', 'Loading')).append('<span>').text('Just a moment...').hide();
 
 		var populationStatsContainer = $('<div>').attr('id', 'info');
 		domReferences.populationCount = $('<h1>').text('0');
-		domReferences.populationName = $('<span>').text('No population');
+		domReferences.populationName = $('<p>').text('No population');
 		populationStatsContainer.append(domReferences.populationCount).append(domReferences.populationName);
-
-		domReferences.reportsContainer = $('<ul>').attr('id', 'reports');
+        
+        domReferences.populationStatsContainer = populationStatsContainer;
+        domReferences.reportsDiv = $('<div>').attr('id', 'reports');
+       
+		domReferences.reportsContainer = $('<ul>');
+ 		domReferences.reportsDiv.append(domReferences.reportsContainer);
 
 		domReferences.newReport = $('<div>').append($('<span>').text('New report')).addClass('report new').click(function() {
 			domReferences.reportsContainer.children().removeClass('selected');
@@ -91,8 +94,10 @@ popConnect.ReportNavigator = function(element, options) {
 				dataViewer.newReport();
 			}
 		});
+		
+		domReferences.reportsDiv.append(domReferences.newReport)
 
-		domReferences.navContent.append(populationStatsContainer).append(domReferences.reportsContainer).append(domReferences.newReport);
+		rootElement.append(populationStatsContainer).append(domReferences.reportsDiv);
 
 		rootElement.append(domReferences.navContent).append(domReferences.busyIndicator);
 
@@ -172,7 +177,8 @@ popConnect.ReportNavigator = function(element, options) {
     busyness++;
 
     if(busyness > 0) { // Only show the loading indicator if it's not already showing
-      domReferences.navContent.hide();
+     domReferences.populationStatsContainer.hide();
+	  domReferences.reportsDiv.hide();
       domReferences.busyIndicator.show();
     }
   };
@@ -182,8 +188,10 @@ popConnect.ReportNavigator = function(element, options) {
     busyness--;
 
     if(busyness < 1) { // Only hide the loading indicator if all work is finished
-      domReferences.navContent.show();
-      domReferences.busyIndicator.hide();
+	  domReferences.busyIndicator.hide();
+      domReferences.populationStatsContainer.show();
+	  domReferences.reportsDiv.show();
+      
     }
   };
   

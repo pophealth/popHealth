@@ -29,7 +29,7 @@ module UI
   # todo: seriously refactor and get a code review.
   # todo: make active record mixins for handling paging/sorting.  
   class Grid
-    attr_accessor :columns, :output, :data, :name, :type, :empty_template, :class_namess
+    attr_accessor :columns, :output, :data, :name, :type, :empty_template, :classes
     attr_accessor :actions, :show_action, :edit_action, :delete_action, :sort_action, :page_action
     attr_accessor :empty_action, :attributes
 
@@ -38,6 +38,7 @@ module UI
       @data = enumerable
       @controller = controller
       ensure_name(options)
+      @classes = String.new
       
       options.each do |k,v|
         instance_variable_set('@' + k.to_s, v)
@@ -45,7 +46,7 @@ module UI
       
       @page_action = nil
 
-      @class_names = String.new
+   
       @columns = ColumnList.new
       @output = String.new
     end
@@ -81,7 +82,7 @@ module UI
     # instructs the grid to use pagination for the result set.
     def page(options = {})
       if(@data.length > 0)
-        default = {:url => "/" + @type.pluralize.downcase + "/list/?", :text => ""}
+        default = {:url => "/" + @type.pluralize.downcase + "/list/?", :text => "", :bottom => true, :top => false}
         @page_action = default.merge(options)
         @actions = true   
       end
@@ -92,8 +93,8 @@ module UI
     def render
       output = ""
       attributes = ""
-      classes = "midori-ui-control midori-bind-grid" + @class_names
-      @attributes[:class] = classes
+      css_classes = "midori-ui-control midori-bind-grid "  + @classes
+      @attributes[:class] = css_classes
       
       @attributes.each do |k,v|
         attributes << " #{k}=\"#{v}\""
@@ -141,7 +142,13 @@ module UI
     end
     
     def render_caption
-      return "<span class='title'>#{@type.pluralize.titleize}</span> (<span class='count'>#{@data.total}</span>)"
+      pagination = ""
+      
+      if @page_action && @page_action[:top]
+        pagination = render_pagination
+      end
+      
+      return "<span class='title'>#{@type.pluralize.titleize}</span> (<span class='count'>#{@data.total}</span>) #{pagination}"
     end
     
     def find_value(item, path)
@@ -243,11 +250,17 @@ module UI
         length = length + 1
       end
       
+      pagination = "&nbsp;"
+      
+      if @page_action && @page_action[:bottom]
+        pagination = render_pagination
+      end
+      
       output = <<-EOF
 #{@tab}   <tfoot>
 #{@tab}     <tr>
 #{@tab}       <td colspan=\"#{length}\">
-#{render_pagination}
+#{pagination}
 #{@tab}       </td>
 #{@tab}     </tr>
 #{@tab}   </tfoot>

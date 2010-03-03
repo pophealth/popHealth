@@ -1,6 +1,12 @@
 				
-				<div id='sidebar'>&nbsp;</div>
-				<div id='main'>&nbsp;</div>
+				<div id='sidebar'></div>
+				<div id='main'>
+					<ul class='breadcrumbs'>
+						<li>Report</li>
+						<li>&#62;</li>
+						<li><a id="list-url" href="/patients/list">Patients</a></li>
+					</ul>
+				</div>
 <% 
 			@inline_javascript ||= ""
 			@inline_javascript << %{  $(document).ready(function() {

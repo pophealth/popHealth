@@ -27,7 +27,9 @@
 %>
 		
 		<ul class='breadcrumbs'>
-			<li><a href='<%= @ret %>'>Patient List</a></li>
+			<li><a href='/pophealth/report/<%= @report_id %>'>Report</a></li>
+			<li>&#62;</li>
+			<li><a href='<%= @ret %>'>Patients</a></li>
 			<li>&#62;</li>
 			<li><%= @patient.name %></li>
 		</ul>
@@ -171,7 +173,7 @@
 				</div>
 				<div class='column vitals'>
 					<h2>vitals</h2>
-					<%= grid(vitals, :name => 'vitals', :class_names => 'simple').empty.columns { |g|
+					<%= grid(vitals, :name => 'vitals', :classes => 'simple').empty.columns { |g|
 							g.column :result_code_display_name, :title => 'name'
 							g.column :value_scalar, :title => 'result', :format => lambda { |value,item| return "#{value} #{item.value_unit}" }
 							g.column :result_date, :title => 'date'
@@ -182,7 +184,7 @@
 			<div class='section'>
 				<div class='column medications'>
 					<h2>medications</h2>
-					<%= grid(@patient.medications, :name => 'medications', :class_names => 'simple').empty.columns { |g| 
+					<%= grid(@patient.medications, :name => 'medications', :classes => 'simple').empty.columns { |g| 
 							g.column :product_coded_display_name, :title => 'name'
 							g.column :quantity_ordered_value, :title => 'dosage', :format => lambda { |value,item| return "#{value} #{item.quantity_ordered_unit}" }
 							g.column :expiration_time, :title => 'expires'
@@ -205,7 +207,7 @@
 			<div class='section'>
 				<div class='column labs'>
 					<h2>labs</h2>
-					<%= grid(@patient.results, :type => 'labs', :class_names => 'simple').empty.columns { |g|
+					<%= grid(@patient.results, :type => 'labs', :classes => 'simple').empty.columns { |g|
 						g.column	:result_code_display_name, :title => 'name'
 						g.column	:value_scalar, :title => 'result', :format => lambda { |value, item| return "#{value} #{item.value_unit}"  }
 						g.column	:result_date, :title => 'date'

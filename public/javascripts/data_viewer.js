@@ -316,7 +316,7 @@ popConnect.DataViewer = function(element, options) {
     dataDefinition.denominatorValueDomNode = $('<h2>');
     dataDefinition.numeratorFieldsDomNode = $('<div>');
     dataDefinition.denominatorFieldsDomNode = $('<div>');
-    dataDefinition.numeratorSqlDomNode = $('<a>view patients</a>');
+    dataDefinition.numeratorSqlDomNode = $('#list-url');
 
 
     
@@ -352,7 +352,6 @@ popConnect.DataViewer = function(element, options) {
     
     var topFrame = $('<div>').addClass('overview');
     topFrame.append(dataDefinition.reportTitle);
-    topFrame.append(dataDefinition.numeratorSqlDomNode)
     topFrame.append(dataDefinition.reportTitleEdit);
     var statsContainer = $('<div>').addClass('stats');
     var quotientContainer = $('<div>').addClass('quotient');
