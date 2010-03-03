@@ -469,7 +469,7 @@ h6 {
 	cursor: move;
 }
 
-.boom{
+.boom {
   float:    right;
   z-index:  200;
   position: relative;
@@ -735,7 +735,7 @@ tr.alt td {
   background-color: #efefef;
 }
 
-table{
+table {
   margin-bottom:0;
 }
 

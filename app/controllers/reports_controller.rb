@@ -65,39 +65,48 @@ class ReportsController < ApplicationController
     #    puts "ERROR creating patient " + i.to_s + ": "+ $!
     #  end
     #end
-    load_static_content
+    #load_static_content
     if params[:id]
+=begin
       @report = Report.find(params[:id])
-      @report.denominator = (generate_report(@report.denominator_query))
+      @report.denominator = (patient_count(@report.denominator_query))
       # only run the numerator query if there are any fields provided
       if @report.numerator_query.size > 0
-        temp_request = merge_pophealth_request(@report.denominator_query, @report.numerator_query)
+        temp_request = merge_popconnect_request(@report.denominator_query, @report.numerator_query)
         population_query = ""
 
         population_query = population_query + generate_from_sql(temp_request, generate_new_join_table_hash_status())
         population_query = population_query + generate_where_sql(temp_request, generate_new_join_table_hash_status())
         @report.numerator_sql = population_query
 
-        @report.numerator = generate_report(temp_request)
+        @report.numerator = patient_count(temp_request)
       else
         @report.numerator = 0
       end
-      @report.save!
-      resp = {}
-      resp = @report.to_json_hash
-      load_static_content
-      load_report_data(@report.numerator_query, resp)
-      resp.to_json
-      render :json => resp.to_json
+=end
+      response = ""
+      begin
+            @report = Report.find_and_populate(params[:id])
+            @report.save!
+            resp = {}
+            resp = @report.to_json_hash
+            load_report_data(@report.numerator_query, resp, Report.patient_count)
+            response = resp.to_json
+      rescue => e
+        response = "#{e}".to_json
+      end
+       render :json => response
     else
       # load the sidebar summary information
+    
+=begin
       @reports = Report.all(:order => 'title asc')
       @reports.each do |next_report|
-        next_report.denominator = (generate_report(next_report.denominator_query))
+        next_report.denominator = (patient_count(next_report.denominator_query))
         
         # only run the numerator query if there are any fields provided
         if next_report.numerator_query.size > 0
-          next_report.numerator = generate_report(merge_pophealth_request(next_report.denominator_query,
+          next_report.numerator = patient_count(merge_popconnect_request(next_report.denominator_query,
                                                                             next_report.numerator_query))
         else
           next_report.numerator = 0
@@ -105,12 +114,20 @@ class ReportsController < ApplicationController
         
         next_report.save!
       end
-      resp = {
-        "populationCount" => Patient.count_by_sql("select count(*) from patients").to_s,
-        "populationName" => "Sagacious Healthcare Services",
-        "reports" => @reports
-      }
-      render :json => resp.to_json
+=end
+      response = ""
+      begin
+        @reports = Report.all_and_populate(:order => 'title asc')
+        resp = {
+          "populationCount" => Patient.count_by_sql("select count(*) from patients").to_s,
+          "populationName" => "Sagacious Healthcare Services",
+          "reports" => @reports
+        }
+        response = resp.to_json
+      rescue => e
+        response = "#{e}".to_json
+      end
+      render :json => response
     end
   end
 
@@ -118,6 +135,8 @@ class ReportsController < ApplicationController
   def create
 
     resp = {}
+    
+=begin
     load_static_content
     
     # create a new report
@@ -127,9 +146,9 @@ class ReportsController < ApplicationController
       @report.denominator_query = params[:denominator] || {}
       @report.title = params[:title] || "Untitled Report"
       if !params[:denominator].blank? 
-        @report.denominator = generate_report(@report.denominator_query)
+        @report.denominator = [Report.count_patients(@report.denominator_query, true)
       else
-        @report.denominator = @patient_count
+        @report.denominator = patient_count
       end
       # @report.save <-- right now this just has the effect of saving the first change and nothing afterwards
     # create a blank report but don't save  
@@ -137,26 +156,33 @@ class ReportsController < ApplicationController
       @report = Report.new
       @report.numerator_query =  {}
       @report.denominator_query = {}
-      @report.denominator = @patient_count
+      @report.denominator = patient_count
       @report.title = "Untitled Report"
     elsif params[:id] # update an existing report
       @report = Report.find(params[:id])
       @report.numerator_query = params[:numerator] || {}
       @report.denominator_query = params[:denominator] || {}
       @report.title = params[:title] if params[:title]
-      @report.denominator = generate_report(@report.denominator_query)
+      @report.denominator = [Report.count_patients(@report.denominator_query, true)
     end
     
     # only run the numerator query if there are any fields provided
     if @report.numerator_query.size > 0
-      @report.numerator = generate_report(merge_pophealth_request(@report.denominator_query, @report.numerator_query))
+      @report.numerator = patient_count(merge_popconnect_request(@report.denominator_query, @report.numerator_query))
     else
       @report.numerator = 0
     end
-    
-    resp = @report.to_json_hash
-    resp = load_report_data(@report.numerator_query, resp)
-    render :json => resp.to_json
+=end 
+    response = ""
+    begin
+     @report = Report.create_and_populate(params) 
+     resp = @report.to_json_hash
+     resp = load_report_data(@report.numerator_query, resp, Report.patient_count)
+     response = resp.to_json
+    rescue => e
+      response = "#{e}".to_json
+    end
+    render :json => response
   end
   
   def pqri_report
@@ -167,109 +193,109 @@ class ReportsController < ApplicationController
   private
   
   # TODO: this method should be cached so the SQL only gets called when the DB is updated -shauni
-  def load_report_data(report_parameters, resp = {})
+  def load_report_data(report_parameters, resp = {}, patient_count = 0)
 
-    resp[:count] = @patient_count
+    resp[:count] = patient_count
 
     resp[:gender] = {
-      'Male' =>   [generate_report(@@male_query_hash), @patient_count],
-      'Female' => [generate_report(@@female_query_hash), @patient_count]
+      'Male' =>   [Report.count_patients(@@male_query_hash), patient_count],
+      'Female' => [Report.count_patients(@@female_query_hash), patient_count]
     }
 
     resp[:age] = {
-      "<18" =>    [generate_report(@@age_less_18query_hash),  @patient_count],
-      "18-30" =>  [generate_report(@@age_18_30_query_hash),   @patient_count],
-      "30-40" =>  [generate_report(@@age_30_40_query_hash),   @patient_count],
-      "40-50" =>  [generate_report(@@age_40_50_query_hash),   @patient_count],
-      "50-60" =>  [generate_report(@@age_50_60_query_hash),   @patient_count],
-      "60-70" =>  [generate_report(@@age_60_70_query_hash),   @patient_count],
-      "70-80" =>  [generate_report(@@age_70_80_query_hash),   @patient_count],
-      "80+" =>    [generate_report(@@age_80_plus_query_hash), @patient_count]
+      "<18" =>    [Report.count_patients(@@age_less_18query_hash),  patient_count],
+      "18-30" =>  [Report.count_patients(@@age_18_30_query_hash),   patient_count],
+      "30-40" =>  [Report.count_patients(@@age_30_40_query_hash),   patient_count],
+      "40-50" =>  [Report.count_patients(@@age_40_50_query_hash),   patient_count],
+      "50-60" =>  [Report.count_patients(@@age_50_60_query_hash),   patient_count],
+      "60-70" =>  [Report.count_patients(@@age_60_70_query_hash),   patient_count],
+      "70-80" =>  [Report.count_patients(@@age_70_80_query_hash),   patient_count],
+      "80+" =>    [Report.count_patients(@@age_80_plus_query_hash), patient_count]
     }
 
     resp[:medications] = {
-      "Aspirin" => [generate_report(@@aspirin_query_hash), @patient_count]
+      "Aspirin" => [Report.count_patients(@@aspirin_query_hash), patient_count]
     }
 
     resp[:therapies] = {
-      "Smoking Cessation" => [generate_report(@@smoking_cessation_hash), @patient_count]
+      "Smoking Cessation" => [Report.count_patients(@@smoking_cessation_hash), patient_count]
     }
 
     resp[:ldl_cholesterol] = {
-      "100" =>      [generate_report(@@ldl_100_query_hash),     @patient_count],
-      "100-120" =>  [generate_report(@@ldl_100_120_query_hash), @patient_count],
-      "130-160" =>  [generate_report(@@ldl_130_160_query_hash), @patient_count],
-      "160-180" =>  [generate_report(@@ldl_160_180_query_hash), @patient_count],
-      "180+" =>     [generate_report(@@ldl_180_query_hash),     @patient_count]
+      "100" =>      [Report.count_patients(@@ldl_100_query_hash),     patient_count],
+      "100-120" =>  [Report.count_patients(@@ldl_100_120_query_hash), patient_count],
+      "130-160" =>  [Report.count_patients(@@ldl_130_160_query_hash), patient_count],
+      "160-180" =>  [Report.count_patients(@@ldl_160_180_query_hash), patient_count],
+      "180+" =>     [Report.count_patients(@@ldl_180_query_hash),     patient_count]
     }
 
     resp[:blood_pressures] = {
-      "110/70" =>   [generate_report(@@bp_110_70_query_hash),  @patient_count],
-      "120/80" =>   [generate_report(@@bp_120_80_query_hash),  @patient_count],
-      "140/90" =>   [generate_report(@@bp_140_90_query_hash),  @patient_count],
-      "160/100" =>  [generate_report(@@bp_160_100_query_hash), @patient_count],
-      "180/110+" => [generate_report(@@bp_180_110_query_hash), @patient_count]
+      "110/70" =>   [Report.count_patients(@@bp_110_70_query_hash),  patient_count],
+      "120/80" =>   [Report.count_patients(@@bp_120_80_query_hash),  patient_count],
+      "140/90" =>   [Report.count_patients(@@bp_140_90_query_hash),  patient_count],
+      "160/100" =>  [Report.count_patients(@@bp_160_100_query_hash), patient_count],
+      "180/110+" => [Report.count_patients(@@bp_180_110_query_hash), patient_count]
     }
     
     resp[:smoking] = {
-      "Current Smoker" =>  [generate_report(@@smoking_yes_query_hash), @patient_count],
-      "Non-Smoker" =>   [generate_report(@@smoking_no_query_hash),     @patient_count]
+      "Current Smoker" =>  [Report.count_patients(@@smoking_yes_query_hash), patient_count],
+      "Non-Smoker" =>   [Report.count_patients(@@smoking_no_query_hash),     patient_count]
     }
 
     resp[:diabetes] = {
-      "Yes" =>  [generate_report(@@diabetic_yes_query_hash), @patient_count],
-      "No" =>   [generate_report(@@diabetic_no_query_hash),  @patient_count]
+      "Yes" =>  [Report.count_patients(@@diabetic_yes_query_hash), patient_count],
+      "No" =>   [Report.count_patients(@@diabetic_no_query_hash),  patient_count]
     }
 
     resp[:hypertension] = {
-      "Yes" =>  [generate_report(@@hypertension_yes_query_hash), @patient_count],
-      "No" =>   [generate_report(@@hypertension_no_query_hash),  @patient_count]
+      "Yes" =>  [Report.count_patients(@@hypertension_yes_query_hash), patient_count],
+      "No" =>   [Report.count_patients(@@hypertension_no_query_hash),  patient_count]
     }
 
     resp[:ischemic_vascular_disease] = {
-      "Yes" =>  [generate_report(@@ischemic_vascular_disease_yes_query_hash), @patient_count],
-      "No" =>   [generate_report(@@ischemic_vascular_disease_no_query_hash),  @patient_count]
+      "Yes" =>  [Report.count_patients(@@ischemic_vascular_disease_yes_query_hash), patient_count],
+      "No" =>   [Report.count_patients(@@ischemic_vascular_disease_no_query_hash),  patient_count]
     }
     
     resp[:lipoid_disorder] = {
-      "Yes" =>  [generate_report(@@lipoid_disorder_yes_query_hash), @patient_count],
-      "No" =>   [generate_report(@@lipoid_disorder_no_query_hash),  @patient_count]
+      "Yes" =>  [Report.count_patients(@@lipoid_disorder_yes_query_hash), patient_count],
+      "No" =>   [Report.count_patients(@@lipoid_disorder_no_query_hash),  patient_count]
     }
 
     resp[:colorectal_cancer_screening] = {
-      "Yes" =>  [generate_report(@@colorectal_cancer_screening_yes_query_hash), @patient_count],
-      "No" =>   [generate_report(@@colorectal_cancer_screening_no_query_hash),  @patient_count]
+      "Yes" =>  [Report.count_patients(@@colorectal_cancer_screening_yes_query_hash), patient_count],
+      "No" =>   [Report.count_patients(@@colorectal_cancer_screening_no_query_hash),  patient_count]
     }
 
     resp[:mammography] = {
-      "Yes" =>  [generate_report(@@mammography_yes_query_hash), @patient_count],
-      "No" =>   [generate_report(@@mammography_no_query_hash),  @patient_count]
+      "Yes" =>  [Report.count_patients(@@mammography_yes_query_hash), patient_count],
+      "No" =>   [Report.count_patients(@@mammography_no_query_hash),  patient_count]
     }
 
     resp[:influenza_vaccine] = {
-      "Yes" =>  [generate_report(@@influenza_vaccine_yes_query_hash), @patient_count],
-      "No" =>   [generate_report(@@influenza_vaccine_no_query_hash),  @patient_count]
+      "Yes" =>  [Report.count_patients(@@influenza_vaccine_yes_query_hash), patient_count],
+      "No" =>   [Report.count_patients(@@influenza_vaccine_no_query_hash),  patient_count]
     }
     
     resp[:hb_a1c] = {
-      "<7" =>   [generate_report(@@hb_a1c_less_7_query_hash),  @patient_count],
-      "7-8" =>  [generate_report(@@hb_a1c_7_8_query_hash),     @patient_count],
-      "8-9" =>  [generate_report(@@hb_a1c_8_9_query_hash),     @patient_count],
-      "9+" =>   [generate_report(@@hb_a1c_9_plus_query_hash),  @patient_count]
+      "<7" =>   [Report.count_patients(@@hb_a1c_less_7_query_hash),  patient_count],
+      "7-8" =>  [Report.count_patients(@@hb_a1c_7_8_query_hash),     patient_count],
+      "8-9" =>  [Report.count_patients(@@hb_a1c_8_9_query_hash),     patient_count],
+      "9+" =>   [Report.count_patients(@@hb_a1c_9_plus_query_hash),  patient_count]
     }
 
     resp
 
   end
-
-  def generate_report(report_request)
+=begin
+  def patient_count(report_request)
     Patient.count_by_sql(generate_population_query(report_request))
   end
 
   # this merge is a little bit specialized, since it will do a careful merge of the values in
   # the hashs' arrays, where there will be no duplicate entries in the arrays, and no entries
   # will be deleted with the merge
-  def merge_pophealth_request(hash1, hash2)
+  def merge_popconnect_request(hash1, hash2)
     resp = {}
     @@valid_parameters.each do |next_parameter|
       if (hash1.has_key?(next_parameter) || hash2.has_key?(next_parameter))
@@ -296,7 +322,7 @@ class ReportsController < ApplicationController
   end
 
   def load_static_content
-    @patient_count = Patient.count_by_sql("select count(distinct patients.id) from patients").to_i
+    patient_count = Patient.count_by_sql("select count(distinct patients.id) from patients").to_i
     @male = Gender.find_by_code('M')
     @female = Gender.find_by_code('F')
     @tobacco_use_and_exposure = SocialHistoryType.find_by_name("Tobacco use and exposure")
@@ -944,5 +970,5 @@ class ReportsController < ApplicationController
     where_sql
 
   end
-
+=end
 end

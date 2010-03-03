@@ -1,18 +1,8 @@
 <% @inline_javascript ||= "" 
 	@inline_javascript = %{
 		$(document).ready(function() {
-			var dataViewer = new popConnect.DataViewer('#content', {
-			     dataUrl: '/reports',
-			     reportId:  1,
-			     exportLink: $('#exportReport')
-			   });
-			
-			var reportNavigator = new popConnect.ReportNavigator('#sidebar', {
-	        	dataUrl: '/reports',
-	        	dataViewer: '',
-	        	reportId: 1
-	    	});
-	
+
+		
 			$('.fancybox').fancybox({
 					'zoomOpacity':		true,
 					'overlayShow':		false,
@@ -25,7 +15,31 @@
 
 %>
 		<% inside_layout 'application' do %>
-			<div id="sidebar">&nbsp;</div>
+			<div id="sidebar">
+				<div id="info">
+					<h1><%= @population_count %> Patients</h1>
+					<p><%= @population_name %></p>
+				</div>
+				<div id="reports">
+					<ul>
+						<% @reports.each do |item|  %>
+						<li class="report">
+							<a href="/popconnect/report/<%= item.id %>">
+								<span class="name"><%= item.title %></span>
+								<span class="percentage"><%= ((item.numerator/item.denominator) * 100) %></span>
+							</a>
+						</li>
+						<% end %>
+						<!--
+						<li class="report new">
+							<a href="/popconnect/create">
+								<span class="name">New Report</span>
+							</a>
+						</li>
+						-->
+					</ul>
+				</div>
+			</div>
 			<div id="main" class='content'>
 				<% if flash[:error] %>
 				<div class='error'><%= flash[:error]%></div>

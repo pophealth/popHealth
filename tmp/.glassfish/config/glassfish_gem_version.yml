@@ -1,7 +1,0 @@
-#
-#GlassFish gem version file that goes inside the temporary domain.
-#This is primarily used to determine if the temporary domain
-#directory was created by the different version of gem. 
-#
-glassfish:
-  version: 0.9.5

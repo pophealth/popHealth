@@ -9,7 +9,7 @@
   <title><%= @page_title %>: popHealth</title>  
   <link rel="profile" type="text/html" href="http://purl.org/uF/2008/03/" />
   <link rel="icon" type="image/png" href="<%= controller.relative_url_root %>/favicon.ico" />
-  <%= stylesheet_link_tag 'layout.css', 'default.css', 'jquery.fancybox.css', :media => "screen, projection" %>
+  <%= stylesheet_link_tag 'layout.css', 'jquery.fancybox.css', :media => "screen, projection" %>
 <!-- fix up print styles. 
   <%= stylesheet_link_tag 'print.css', :media => "print" %>
 -->
@@ -21,7 +21,9 @@
 	<div id="canvas">
 		<div id="page">
 			<div id='header'>
-					<a href="/"><%= image_tag("logo.png", :class => 'logo', :alt => 'popHealth') %> </a>
+				<h1>
+					<a href="/"><%= image_tag("logo.png", :class => 'logo', :alt => 'popHealth') %> <%= @page_title %></a>
+				</h1>
 				<ul>
 					<li><%= link_to "Export", '#', :id => 'exportReport' %></li>
 					<li><%= link_to "Upload", {:controller => :pophealth, :action => :upload}, :class => 'fancybox' %></li>

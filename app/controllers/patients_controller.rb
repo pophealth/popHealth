@@ -2,16 +2,24 @@ require 'ui/grid'
 
 class PatientsController < ApplicationController
 
+
+  before_filter :initialize_reports
   skip_before_filter :login_required
   layout  "site"
+  
+  def initialize_reports
+     @reports = Report.all_and_populate(:order => 'title asc')
+     @population_count = Patient.count_by_sql("select count(*) from patients").to_s
+     @population_name = "Sagacious Healthcare Services"
+  end
   
   #GET
   def list
     @page_title = "list of patients"
-    @query = ""
+    @report_id = nil
     
     #TODO: abstract this out into a module for active record. 
-    if params[:query].nil? && params[:query] != ""
+    if params[:report_id].nil?
       @list = UI::PaginatedResults.wrap(:patients, params) { |options|
           count = Patient.count
  
@@ -22,14 +30,16 @@ class PatientsController < ApplicationController
           {:data => Patient.find(:all, options), :count => count}
       }
     else 
+      query = Report.find_and_generate_patients_query(params[:report_id], "")
+      @report_id = params[:report_id]
       @list = UI::PaginatedResults.wrap(:patients, params) { |options|
-        count = Patient.count_by_sql("SELECT COUNT( DISTINCT patients.id) from patients #{params[:query]} ")
+        count = Patient.count_by_sql("SELECT COUNT( DISTINCT patients.id) FROM patients #{query} ")
         
           if(count > 0 && options[:offset] > count)
             options[:offset] = count - options[:limit]
           end
         
-        {:data => Patient.find_by_sql("SELECT patients.* FROM patients #{params[:query]} LIMIT #{options[:limit]} OFFSET #{options[:offset]}"), :count => count}
+        {:data => Patient.find_by_sql("SELECT patients.* FROM patients #{query} LIMIT #{options[:limit]} OFFSET #{options[:offset]}"), :count => count}
       }
       @query = params[:query]
     end
@@ -42,10 +52,11 @@ class PatientsController < ApplicationController
     redirect = false
     id = params[:id]
     
-    @query = params[:query] || ""
+    @report_id = params[:report_id] || ""
     
     @ret = params[:return]  || "/patients/list/"
-    @ret = @ret + (params[:return].nil? ? ("?query=" + CGI.escape(@query)) : ("&query=" + CGI.escape(@query)))
+    @ret = @ret + (params[:return].nil? ? "?" : "&amp;")
+    @ret = @ret + "report_id=" + CGI.escape(@report_id)
     
     if id.nil? || id.to_i <= 0
       flash[:error] = "The patient id (#{id}) is invalid."

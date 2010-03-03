@@ -1,9 +1,9 @@
 <%
-	show_url = "/patients/:id/show/?return=:return&amp;query=" + CGI.escape(@query)
+	show_url = "/patients/:id/show/?return=:return&amp;report_id=" + CGI.escape(@report_id)
 	page_url =  "/patients/list/?"
 %>
 
-<%= grid(@list, :name => "patients").show(:url => show_url).page(:url => page_url, :params => {:query => @query }).columns { |g|
+<%= grid(@list, :name => "patients").show(:url => show_url).page(:url => page_url, :params => {:report_id => @report_id }).columns { |g|
 	   	g.column :name
 	   	g.column :pregnant
 		g.column "registration_information.date_of_birth"

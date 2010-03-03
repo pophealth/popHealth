@@ -6,14 +6,14 @@
 			@inline_javascript << %{  $(document).ready(function() {
 			 var dataViewer = new popConnect.DataViewer('#main', {
 			     dataUrl: '/reports',
-			     reportId:  #{Report.first.id},
+			     reportId:  #{@report_id},
 			     exportLink: $('#exportReport')
 			   });
 
 			   var reportNavigator = new popConnect.ReportNavigator('#sidebar', {
 			     dataUrl: '/reports',
 			     dataViewer: dataViewer,
-			     reportId: #{Report.first.id}
+			     reportId: #{@report_id}
 			   });
 
 				$('.fancybox').fancybox({

@@ -129,9 +129,9 @@ popConnect.DataViewer = function(element, options) {
     // Assumes the markup is already there and domNode properties have been set correctly
     // ie don't call this if the DOM element is missing! Call buildInitialDom...
 
-		if(data.numerator_sql)
+		if(data.id)
 		{
-			 dataDefinition.numeratorSqlDomNode.attr("href", "/patients/list?query=" +  escape(data.numerator_sql))
+			 dataDefinition.numeratorSqlDomNode.attr("href", "/patients/list?report_id=" +  escape(data.id))
 		}
 
     if(data.title) {

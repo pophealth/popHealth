@@ -2,6 +2,15 @@ class PophealthController < ApplicationController
 
   def index
     page_title "Quality Reports"
+    
+    @report_id = 0
+    
+    if params[:id]
+      @report_id = params[:id]
+    else
+      @report_id = Report.first.id
+    end
+    
     render
   end
 
