@@ -1,5 +1,5 @@
 <%
-	show_url = "/patients/:id/show/?report_id=" + CGI.escape(@report_id)
+	show_url = "/patients/:id/show/?report_id=" + (@report_id.nil? ? "" :  CGI.escape(@report_id) ) 
 	page_url =  "/patients/list/?"
 %>
 <ul class='breadcrumbs'>

@@ -1,6 +1,40 @@
 
 /** Begin Custom Css */
 /** Tags */
+
+/** 
+  Notes in general.
+
+  background requires a color, even if its transparent. 
+  background: transparent url(path/to/image)
+
+  overflow: hidden/visible is often used in conjuction with floats in order to adjust the height automatically.
+
+  .outer {
+      overflow: visible;
+      width: 280px;
+      padding: 10px
+  }
+
+  .inner {
+      float: left
+      width: 100%;
+  }
+
+  <div class="outer">
+      <div class="inner">
+        <h1> section </h1>
+        <p> tons of text </p>
+      </div>
+      <div class="inner">
+       <!-- more stuff -->
+      </div>
+  </div>
+
+*/
+
+
+/* position relative allows for absolute positioning */
 html, body {
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: .8em;
@@ -59,6 +93,13 @@ h6 {
 
 
 /** Header */ 
+/**
+  The header is floated with a 100% width and clear so that it will push the block items after it down below
+  while taking up the whole width of the top as the browser expands. 
+  
+ 
+  
+ */
 #header {
 	float: left;
 	display: block;
@@ -75,6 +116,10 @@ h6 {
 	margin: 0 10px;
 }
 
+/*
+   the text is while stylesheets are available, but appears for screen readers.
+   use the logo as the link to go to the home page.  
+*/
 #header h1 a {
 	float: left;
 	display: block;
@@ -84,12 +129,19 @@ h6 {
 	width: 100px;
 }
 
+/*
+   make the list display as a block element, push it to the right of the header
+   let it expand as there are li items added. 
+*/
 #header ul {
 	list-style: none;
 	float: right;
 	display: block;
 }
 
+/*
+    use the li elements as horizontally stacked containers
+*/
 #header ul li {
 	margin: 10px;	
 	padding: 5px;
@@ -99,6 +151,12 @@ h6 {
 
 
 /** Content */
+/*
+    use the container to seperate the content from the header (and footer if one existed)
+    
+    use absolute positioning to bind the margins to the edges so that height and width is always 
+    fitting in the size of the browser.  
+*/
 #container {
 	clear: both;
 	top: 41px;
@@ -110,6 +168,12 @@ h6 {
 
 
 /** Sidebar */
+/** 
+   position the sidebar to the left, only 250px wide, this is also using absolute positioning 
+   in order to always stretch the full height of the browser.
+
+   force the text left due to the ie style sheet. 
+*/
 #sidebar {
 	display: block;
 	overflow: hidden;
@@ -120,11 +184,15 @@ h6 {
 	position: absolute;
 	background-color: #f2f2f2;
 	font-size: 1em;
-	font-weight:  bold;	
+	font-weight: bold;	
 	text-align: left;
 	border-right: 1px solid #ccc;
 }
 
+/** 
+   get the list to act like a block element so that its pushes the new report div under
+   down.  forcing the scroll.
+*/
 #sidebar ul {
 	list-style-type:  none;
 	float: left;
@@ -137,6 +205,9 @@ h6 {
 	color:#888
 }
 
+/** 
+   the li.report styling.  
+*/
 #sidebar .report {
 	padding: 15px 0;
 	float: left;
@@ -148,6 +219,9 @@ h6 {
 	cursor: pointer;
 }
 
+/**
+  used to create hoverstyles, however this will not work in IE 6 and below.
+*/
 #sidebar .report:hover,
 #sidebar .report.new:hover {
 	background:  transparent url('../../images/darkgradient.png');
@@ -155,6 +229,9 @@ h6 {
 	color: #000;
 }
 
+/**
+   push the new report div below the reports ul. 
+*/
 #sidebar .report.new {
 	color: #ccc;
 	float: left;
@@ -162,26 +239,44 @@ h6 {
 	clear: both;
 }
 
+/**
+   have the spans act like block elements so that you can wrap text and align them
+   using floats withing the li.report element.  
+*/
 #sidebar .report span {
 	margin: 0 10px;
 	display: block;
 	float: left;
 }
 
+/**
+     wrap the name when it reaches 180px that way it doesn't force the use to expand
+     sidebar as it currently does not save the width when a user changes it.  
+*/
 #sidebar .report .name {
 	max-width: 180px;
 }
 
+/**
+     align the percentage to the right. 
+*/
 #sidebar .report .percentage {
 	float: right;
 }
 
+/** 
+     highlight the selected report in the sidebar.
+*/
 #sidebar .report.selected{
 	background: transparent url('../../images/darkgradient.png');
 	color: #000;
 	border-bottom: 1px solid #888;
 }
 
+/*
+    this is used to create a box that expands as the browser is resized, but also scrolls
+    vertically as the content grows past the allotted height.  
+*/
 #reports {
 	color: #888;
 	position: absolute;
@@ -192,25 +287,38 @@ h6 {
 	right: 0px;
 }
 
+/* 
+   pad and add a border to the info box that alwa
+*/
 #info {
 	padding: 15px 10px 15px 10px;
 	border-bottom: 1px solid #888;
 	height: 40px;
 }
 
+/*
+    the info name
+*/
 #info span, #info p {
 	color: #888;
 	font-weight: normal;
 	display: inline;
 }
 
-.ui-layout-resizer { /** currently not in use */
+
+/*
+    the jquery.layout resizer style, the bar/splitter that allows you to adjust the width of the sidebar. 
+*/
+.ui-layout-resizer { 
 	border-left: 1px solid #cccccc;
 	border-right: 1px solid #cccccc;
 	background: #F0F0F0 url('../../images/ehandle.gif') no-repeat scroll 50% 50%;
 }
 
 /** Main */ 
+/*
+     tells the main content to adjust the browser as it resizes. 
+*/
 #main {
 	position: absolute;
 	left: 250px;
@@ -220,6 +328,11 @@ h6 {
 	text-align: left;
 }
 
+/*
+     tells the following elements inside the #main div to scroll vertically if the
+     content is longer than current height of the container, while also resizing
+     with the browser.  
+*/
 #main #patients, #main .vcard, #main div.data, #main div.overview  {
 	position: absolute;
 	top: 22px;
@@ -227,7 +340,6 @@ h6 {
 	right: 0px;
 	bottom: 0px;
 	overflow: auto;
-
 }
 
 #main .overview {
@@ -269,7 +381,10 @@ h6 {
 	overflow: visible;
 	position: relative;
 }
-
+/**
+  helps to wrap the quotient values, using the term quotient to fit what it is. 
+  it was maths, but you can't pluralize the word math, only the word mathematics.
+*/
 .report .quotient {
 	float: left;
 	width: 600px;
@@ -278,6 +393,10 @@ h6 {
 	margin-top: 20px;
 }
 
+
+/**
+  helps to wrap the quotient values
+*/
 .report .numerator, 
 .report .denominator {
 	margin-bottom: 10px;
@@ -302,6 +421,9 @@ h6 {
 	border-bottom:  1px solid #ccc;
 }
 
+/*
+  aligns the headers to the left, these are the number of patients for the num/den
+*/
 .report .numerator h2, 
 .report .denominator h2 {
 	float: left;
@@ -316,6 +438,9 @@ h6 {
 	width: 500px;
 }
 
+/*
+   rounds the corners for various browsers without using js.  
+*/
 .report .quotient .draggable-value {
 	float: left;
 	display: block;
@@ -350,6 +475,9 @@ h6 {
 	background: #ffffff;
 }
 
+/*
+    keeps the percentage to the right of the quotient.  
+*/
 .report .master-percentage {
 	position: absolute;
 	top: 0px;
@@ -385,6 +513,9 @@ h6 {
 
 
 /** Report Data */
+/*
+  the data inside the various grids in the report. 
+*/
 .report .data {
 	padding: 5px;
 }
@@ -400,11 +531,21 @@ h6 {
 	margin-bottom: 25px;
 }
 
+/*
+   nested sections.  sooner or later you'll be able to use this. its semantic.
+   http://www.w3schools.com/html5/tag_section.asp
+ 
+   or use the HTML5 script for IE, all the other browsers already support it. 
+   http://remysharp.com/2009/01/07/html5-enabling-script/
+*/
 .report .section .section {
 	width: 100%;
 	margin-bottom: 20px;
 }
 
+/*
+    like a table row.  
+*/
 .report .data .row {
 	border:   1px solid #fff;
 	padding:  3px 0;
@@ -418,7 +559,7 @@ h6 {
 	-khtml-border-radius: 15px;
 }
 
-.report .data .in-numerator{
+.report .data .in-numerator {
 	background-color: #eaf4d8;
 	border: 1px solid #95c83d;
 }
@@ -428,7 +569,9 @@ h6 {
 	border: 1px solid #44B3c0;
 }
 
-
+/*
+   the columns in the table row
+*/
 .report .data h4 span, 
 .report .data .row div {
 	display: block;
@@ -476,6 +619,9 @@ h6 {
 }
 
 /** Bars */
+/*
+  the graphical bars used in the report. 
+*/
 .report .data .bar {
 	position: relative;
 	width: 100px;
@@ -498,10 +644,10 @@ h6 {
 }
 
 
-
-
-
 /** Name edit */
+/*
+    the editable portion of the name of the report. 
+*/
 span.name-edit{
   margin-bottom: 20px;
 }
@@ -511,6 +657,9 @@ span.name-edit a, span.name-edit input{
 }
 
 /** Breadcrumbs */ 
+/*
+    used inside the top navigation bar inside the #main div
+*/
 .breadcrumbs{
   list-style: none;
   padding:    5px 0 5px 15px;
@@ -528,6 +677,9 @@ span.name-edit a, span.name-edit input{
 }
 
 /** Sections */
+/*
+   used on the patient list and hrecord pages, changes how sections are used.
+*/
 .content .section, .content section {
     clear: both;
     margin-bottom: 10px;
@@ -535,6 +687,9 @@ span.name-edit a, span.name-edit input{
 	width: 100%;
 }
 
+/*
+   use css to transform the text to uppercase.  
+*/
 .section .column h2, 
 section .column h2 {
 	text-transform: uppercase;
@@ -556,6 +711,14 @@ section .column h2 {
 
 
 /** Lists */
+/*
+    unordered lists are used as a way to semantically stack items vertically or horizontally in lists or
+    rows, or as columns.  
+
+    .stack tells the ul that it will be used as stack. 
+
+    these lists are mainly in the hrecord view.  
+*/
 .stack, .data {
 	list-style-type: none;
 	display: block;
@@ -581,6 +744,14 @@ section .column h2 {
 	width: 100%;
 }
 
+/*
+
+    stats,
+    contact-information,
+    insurance 
+
+    these are all stacked horizontally like columns.  
+*/
 .stack.stats li,
 .stack.contact-information li,
 .stack.insurance li {
@@ -657,6 +828,15 @@ section .column h2 {
 
 
 /** Conditions */ 
+/*
+   currently in the static html the conditions have the description to go along with the 
+   term for the condition.  however the database looks at it currently does not support this.
+
+   in the meantime, we're using a dl (definition list) so that it will define terms once that
+   information is in the database.  
+
+   then align the conditions using a stack list.  
+*/
 .conditions dl {
 	float: left;
 	display: block;
@@ -703,6 +883,7 @@ caption {
 	background:#eee; 
 }
 
+/** Table Pagination */
 table .pagination {
 	margin-top: 10px;
 	overflow: hidden;
@@ -750,7 +931,7 @@ table .pagination .page-size {
 }
 
 tbody.tablecontent {
-  overflow-x: hidden !important;
+  overflow-x: hidden;
 }
 
 tr.alt td {
@@ -761,6 +942,11 @@ table {
   margin-bottom:0;
 }
 
+
+/*
+   this came over while pulling the code from c# grid that I had written, this can be replaced when its fixed
+   in the lib/ui/grid.rb file.  
+*/
 .midori-bind-grid th { 
 	border: 1px solid #d3d3d3; 
 	background: #e6e6e6 url(../smoothness/images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x; 
@@ -770,6 +956,10 @@ table {
 	text-transform: capitalize;
 }
 
+/*
+   adding the class .simple to a grid should remove the caption, remove the background for the 
+   headers and borders.   
+*/
 .simple caption {
 	display: none;
 }

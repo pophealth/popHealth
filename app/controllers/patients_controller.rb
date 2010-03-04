@@ -16,11 +16,11 @@ class PatientsController < ApplicationController
   #GET
   def list
     @page_title = "list of patients"
-    @report_id = nil
+    @report_id = params[:report_id] || params[:id]
     @ret = "/pophealth"
     
     #TODO: abstract this out into a module for active record. 
-    if params[:report_id].nil?
+    if @report_id.nil? || @report_id == ""
       @list = UI::PaginatedResults.wrap(:patients, params) { |options|
           count = Patient.count
  
@@ -31,8 +31,9 @@ class PatientsController < ApplicationController
           {:data => Patient.find(:all, options), :count => count}
       }
       first = Report.first
-      if first
-          @ret = @ret + "/report/" + Report.first.id.to_s
+      if !first.nil?
+          @report_id = first.id.to_s
+          @ret = @ret + "/report/" + first.id.to_s
       end
     
     else 
@@ -59,12 +60,12 @@ class PatientsController < ApplicationController
   # GET
   def show
     redirect = false
-    id = params[:id]
+    id = params[:id] || params[:report_id]
     
-    @report_id = params[:report_id] || ""
+    @report_id = id || ""
     
-    @ret = params[:return]  || "/patients/list/"
-    @ret = @ret + (params[:return].nil? ? "?" : "&amp;")
+    @ret = "/patients/list/" 
+    @ret = @ret + (params[:return].nil? ? "?" : "return=#{params[:return]}&amp;")
     @ret = @ret + "report_id=" + CGI.escape(@report_id)
     
     if @report_id == ""

@@ -5,7 +5,7 @@ class PophealthController < ApplicationController
     
     @report_id = 0
     
-    if params[:id]
+    if !params[:id].nil?
       @report_id = params[:id]
     else
       @report_id = Report.first.id

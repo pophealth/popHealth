@@ -8,9 +8,23 @@
 
   <title>Laika Message Logs</title>
 
-  <%= stylesheet_link_tag 'blueprint/screen', :media => "screen, projection, print" %>
-  <%= stylesheet_link_tag 'style', :media => "screen, projection, print"%>
-  <%= stylesheet_link_tag 'progressbar', :media => "screen, projection, print"%>
+  <<% if RAILS_ENV == "development"  %>
+  <%= stylesheet_link_tag 'blueprint/src/reset.css', 'blueprint/src/typography.css',  :media => "screen, projection" %>
+  <%= stylesheet_link_tag 'blueprint/src/grid.css', 'blueprint/src/forms.css',  :media => "screen, projection" %>
+  <%= stylesheet_link_tag 'app/custom.css', 'app/jquery.fancybox.css',  :media => "screen, projection" %>
+  <%= stylesheet_link_tag 'blueprint/src/print.css', :media => "print" %>
+ <!--[if lt IE 8]>
+  <%= stylesheet_link_tag 'blueprint/src/ie.css' , :media => "screen, projection" %>
+  <%= stylesheet_link_tag 'app/ie-custom.css' , :media => "screen, projection" %>
+ <![endif]-->
+  <% else %>
+  <%= stylesheet_link_tag 'app/screen.css', :media => "screen, projection" %>
+  <%= stylesheet_link_tag 'app/print.css', :media => "print" %>
+  <!--[if lt IE 8]>
+  <%= stylesheet_link_tag 'app/ie.css' , :media => "screen, projection" %>
+  <![endif]-->
+  <% end%>
+ 
 
   <%= javascript_include_tag 'prototype' %>
   <%= javascript_include_tag 'common' %>  
