@@ -50,6 +50,7 @@ div#cap-top {
 	background: transparent url(../../images/cap-top.png) no-repeat;
 	height: 8px;
 	width: 546px;
+	float: left;
 }
 
 * html #cap-top {
@@ -64,6 +65,8 @@ div#cap-top {
 div#cap-body {
 	background: transparent url(../../images/cap-bg.png) repeat-y;
 	width: 545px;
+	float:left;
+	overflow: visible;
 }
 
 * html div#cap-body {
@@ -75,6 +78,7 @@ div#cap-bottom {
 	background: transparent url(../../images/cap-bottom.png) no-repeat;
 	height: 15px;
 	width: 546px;
+	float: left;
 }
 
 * html div#cap-bottom {
@@ -120,7 +124,7 @@ div#login label {
 }
 
 #login ul li {
-	margin: 15px 0px;
+	margin: 0px 0px 10px 0px;
 }
 
 div#login input {
