@@ -1,76 +1,41 @@
-/* -------------------------------------------------------------- 
-   
-   ie.css
-   
-   Contains every hack for Internet Explorer,
-   so that our core files stay sweet and nimble.
-   
--------------------------------------------------------------- */
-
-/* Make sure the layout is centered in IE5 */
-body { text-align: center; }
-.container { text-align: left; }
-
-/* Fixes IE margin bugs */
-* html .column, * html div.span-1, * html div.span-2, 
-* html div.span-3, * html div.span-4, * html div.span-5, 
-* html div.span-6, * html div.span-7, * html div.span-8, 
-* html div.span-9, * html div.span-10, * html div.span-11, 
-* html div.span-12, * html div.span-13, * html div.span-14, 
-* html div.span-15, * html div.span-16, * html div.span-17, 
-* html div.span-18, * html div.span-19, * html div.span-20, 
-* html div.span-21, * html div.span-22, * html div.span-23, 
-* html div.span-24 { display:inline; overflow-x: hidden; }
+/* -----------------------------------------------------------------------
 
 
-/* Elements
--------------------------------------------------------------- */
+ Blueprint CSS Framework 0.9
+ http://blueprintcss.org
 
-/* Fixes incorrect styling of legend in IE6. */
-* html legend { margin:0px -8px 16px 0; padding:0; }
+   * Copyright (c) 2007-Present. See LICENSE for more info.
+   * See README for instructions on how to use Blueprint.
+   * For credits and origins, see AUTHORS.
+   * This is a compressed file. See the sources in the 'src' directory.
 
-/* Fixes wrong line-height on sup/sub in IE. */
-sup { vertical-align:text-top; }
-sub { vertical-align:text-bottom; }
+----------------------------------------------------------------------- */
 
-/* Fixes IE7 missing wrapping of code elements. */
-html>body p code { *white-space: normal; } 
+/* ie.css */
+body {text-align:center;}
+.pccontainer {text-align:left;}
+* html .pccolumn, * html div.pcspan-1, * html div.pcspan-2, * html div.pcspan-3, * html div.pcspan-4, * html div.pcspan-5, * html div.pcspan-6, * html div.pcspan-7, * html div.pcspan-8, * html div.pcspan-9, * html div.pcspan-10, * html div.pcspan-11, * html div.pcspan-12, * html div.pcspan-13, * html div.pcspan-14, * html div.pcspan-15, * html div.pcspan-16, * html div.pcspan-17, * html div.pcspan-18, * html div.pcspan-19, * html div.pcspan-20, * html div.pcspan-21, * html div.pcspan-22, * html div.pcspan-23, * html div.pcspan-24 {display:inline;overflow-x:hidden;}
+* html legend {margin:0px -8px 16px 0;padding:0;}
+sup {vertical-align:text-top;}
+sub {vertical-align:text-bottom;}
+html>body p code {*white-space:normal;}
+hr {margin:-8px auto 11px;}
+img {-ms-interpolation-mode:bicubic;}
+.pcclearfix, .pccontainer {display:inline-block;}
+* html .pcclearfix, * html .pccontainer {height:1%;}
+fieldset {padding-top:0;}
+textarea {overflow:auto;}
+input.pctext, input.pctitle, textarea {background-color:#fff;border:1px solid #bbb;}
+input.pctext:focus, input.pctitle:focus {border-color:#666;}
+input.pctext, input.pctitle, textarea, select {margin:0.5em 0;}
+input.pccheckbox, input.pcradio {position:relative;top:.25em;}
+form.pcinline div, form.pcinline p {vertical-align:middle;}
+form.pcinline label {position:relative;top:-0.25em;}
+form.pcinline input.pccheckbox, form.pcinline input.pcradio, form.pcinline input.pcbutton, form.pcinline button {margin:0.5em 0;}
+button, input.pcbutton {position:relative;top:0.25em;}
 
-/* IE 6&7 has problems with setting proper <hr> margins. */
-hr  { margin:-8px auto 11px; }
-
-/* Explicitly set interpolation, allowing dynamically resized images to not look horrible */
-img { -ms-interpolation-mode:bicubic; }
-
-/* Clearing 
--------------------------------------------------------------- */
-
-/* Makes clearfix actually work in IE */ 
-.clearfix, .container { display:inline-block; }
-* html .clearfix,
-* html .container { height:1%; }
-
-
-/* Forms 
--------------------------------------------------------------- */
-
-/* Fixes padding on fieldset */
-fieldset { padding-top:0; }
-
-/* Makes classic textareas in IE 6 resemble other browsers */
-textarea { overflow:auto; }
-
-/* Fixes rule that IE 6 ignores */
-input.text, input.title, textarea { background-color:#fff; border:1px solid #bbb; }
-input.text:focus, input.title:focus { border-color:#666; }
-input.text, input.title, textarea, select { margin:0.5em 0; }
-input.checkbox, input.radio { position:relative; top:.25em; }
-
-/* Fixes alignment of inline form elements */ 
-form.inline div, form.inline p { vertical-align:middle; }
-form.inline label { position:relative;top:-0.25em; }
-form.inline input.checkbox, form.inline input.radio,
-form.inline input.button, form.inline button { 
-  margin:0.5em 0; 
-}
-button, input.button { position:relative;top:0.25em; }
+/* ie-custom.css */
+body {overflow:hidden;}
+#reports ul {width:233px;}
+#main #patients table {width:98%;}
+.report .numerator, .report .denominator {padding-bottom:2px;}

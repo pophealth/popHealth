@@ -1,7 +1,7 @@
 <% @inline_javascript ||= "" 
 	@inline_javascript = %{
 		$(document).ready(function() {
-
+			window.myLayout = myLayout = null;
 		
 			$('.fancybox').fancybox({
 					'zoomOpacity':		true,
@@ -10,12 +10,19 @@
 			   		'zoomSpeedOut': 		500,
 			   		'hideOnContentClick': false
 			});
+			
+			myLayout = $('#container').layout({
+		        west:{
+		          minSize:    250,
+				  resizable: true
+		        }
+			});
 		});
 	}
 
 %>
 		<% inside_layout 'application' do %>
-			<div id="sidebar">
+			<div id="sidebar" class="ui-layout-west">
 				<div id="info">
 					<h1><%= @population_count %> Patients</h1>
 					<p><%= @population_name %></p>
@@ -43,7 +50,7 @@
 					</ul>
 				</div>
 			</div>
-			<div id="main" class='content'>
+			<div id="main" class='content ui-layout-center'>
 				<% if flash[:error] %>
 				<div class='error'><%= flash[:error]%></div>
 				<% end %>

@@ -9,7 +9,7 @@
   <title><%= @page_title %>: popHealth</title>  
   <link rel="profile" type="text/html" href="http://purl.org/uF/2008/03/" />
   <link rel="icon" type="image/png" href="<%= controller.relative_url_root %>/favicon.ico" />
-  <%= stylesheet_link_tag 'layout.css', 'jquery.fancybox.css', :media => "screen, projection" %>
+  <%= stylesheet_link_tag 'layout.css', 'jquery.fancybox.css', 'smoothness/jquery-ui-1.7.2.custom.css', :media => "screen, projection" %>
 <!-- fix up print styles. 
   <%= stylesheet_link_tag 'print.css', :media => "print" %>
 -->
@@ -38,11 +38,12 @@
   <%= javascript_include_tag 'jquery-1.3.2.min.js' %>
   <%= javascript_include_tag 'jquery-ui-1.7.2.custom.min.js' %>
   <%= javascript_include_tag 'jquery-blockui.js' %>
-  <%= javascript_include_tag 'jquery.corners.min.js' %>
+
   <%= javascript_include_tag 'jquery.fancybox-1.2.1.pack.js' %>
   <%= javascript_include_tag 'pop_connect.js' %>
   <%= javascript_include_tag 'data_viewer.js' %>
   <%= javascript_include_tag 'report_navigator.js' %>
+  <%= javascript_include_tag 'jquery.layout.js' %>
 	<script type="text/javascript">
 	   // <![CDATA[
 		<%= @inline_javascript %>

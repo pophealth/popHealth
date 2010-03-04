@@ -229,7 +229,7 @@ module UI
         @columns.each do |c|
           value = find_value item, c.path
             if !c.format.nil?
-              value = c.format.call(value, item)
+              value = c.format.call(value, item, return_url)
             end
           output << "#{@tab}        <td class=\"#{c.name.dasherize}\">#{value}</td>\n"
         end

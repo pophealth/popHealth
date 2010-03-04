@@ -1,13 +1,20 @@
 body {
-	overflow: hidden;
+	overflow:hidden;
+	float: left;
+	width: 100%;
 }
 
-#reports ul {
-   width: 233px;
+#reports {
+	overflow-x:hidden;
 }
 
-#main #patients table {
-	width: 98%;
+#reports ul .percentage {
+	margin-right: 25px;
+}
+
+#main #patients, #main div.data, #main div.vcard, #reports {
+    overflow-x:hidden;
+    bottom: 45px;
 }
 
 /** Report Overview */

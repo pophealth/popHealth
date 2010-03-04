@@ -1,0 +1,223 @@
+/* -----------------------------------------------------------------------
+
+
+ Blueprint CSS Framework 0.9
+ http://blueprintcss.org
+
+   * Copyright (c) 2007-Present. See LICENSE for more info.
+   * See README for instructions on how to use Blueprint.
+   * For credits and origins, see AUTHORS.
+   * This is a compressed file. See the sources in the 'src' directory.
+
+----------------------------------------------------------------------- */
+
+/* reset.css */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;}
+body {line-height:1;}
+ol, ul {list-style:none;}
+blockquote, q {quotes:none;}
+blockquote:before, blockquote:after, q:before, q:after {content:'';content:none;}
+:focus {outline:0;}
+ins {text-decoration:none;}
+del {text-decoration:line-through;}
+table {border-collapse:collapse;border-spacing:0;}
+
+/* typography.css */
+html {font-size:100.01%;}
+body {font-size:75%;color:#222;background:#fff;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal;color:#111;}
+h1 {font-size:3em;line-height:1;margin-bottom:0.5em;}
+h2 {font-size:2em;margin-bottom:0.75em;}
+h3 {font-size:1.5em;line-height:1;margin-bottom:1em;}
+h4 {font-size:1.2em;line-height:1.25;margin-bottom:1.25em;}
+h5 {font-size:1em;font-weight:bold;margin-bottom:1.5em;}
+h6 {font-size:1em;font-weight:bold;}
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {margin:0;}
+p {margin:0 0 1.5em;}
+p img.pcleft {float:left;margin:1.5em 1.5em 1.5em 0;padding:0;}
+p img.pcright {float:right;margin:1.5em 0 1.5em 1.5em;}
+a:focus, a:hover {color:#000;}
+a {color:#009;text-decoration:underline;}
+blockquote {margin:1.5em;color:#666;font-style:italic;}
+strong {font-weight:bold;}
+em, dfn {font-style:italic;}
+dfn {font-weight:bold;}
+sup, sub {line-height:0;}
+abbr, acronym {border-bottom:1px dotted #666;}
+address {margin:0 0 1.5em;font-style:italic;}
+del {color:#666;}
+pre {margin:1.5em 0;white-space:pre;}
+pre, code, tt {font:1em 'andale mono', 'lucida console', monospace;line-height:1.5;}
+li ul, li ol {margin:0;}
+ul, ol {margin:0 1.5em 1.5em 0;padding-left:3.333em;}
+ul {list-style-type:disc;}
+ol {list-style-type:decimal;}
+dl {margin:0 0 1.5em 0;}
+dl dt {font-weight:bold;}
+dd {margin-left:1.5em;}
+table {margin-bottom:1.4em;width:100%;}
+th {font-weight:bold;}
+thead th {background:#c3d9ff;}
+th, td, caption {padding:4px 10px 4px 5px;}
+tr.pceven td {background:#e5ecf9;}
+tfoot {font-style:italic;}
+caption {background:#eee;}
+.pcsmall {font-size:.8em;margin-bottom:1.875em;line-height:1.875em;}
+.pclarge {font-size:1.2em;line-height:2.5em;margin-bottom:1.25em;}
+.pchide {display:none;}
+.pcquiet {color:#666;}
+.pcloud {color:#000;}
+.pchighlight {background:#ff0;}
+.pcadded {background:#060;color:#fff;}
+.pcremoved {background:#900;color:#fff;}
+.pcfirst {margin-left:0;padding-left:0;}
+.pclast {margin-right:0;padding-right:0;}
+.pctop {margin-top:0;padding-top:0;}
+.pcbottom {margin-bottom:0;padding-bottom:0;}
+
+/* forms.css */
+.pcerror, .pcnotice, .pcsuccess {padding:.8em;margin-bottom:1em;border:2px solid #ddd;}
+.pcerror {background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4;}
+.pcnotice {background:#FFF6BF;color:#514721;border-color:#FFD324;}
+.pcsuccess {background:#E6EFC2;color:#264409;border-color:#C6D880;}
+.pcerror a {color:#8a1f11;}
+.pcnotice a {color:#514721;}
+.pcsuccess a {color:#264409;}
+
+/* grid.css */
+
+/* layout.css */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;}
+body {line-height:1;}
+ol, ul {list-style:none;}
+blockquote, q {quotes:none;}
+blockquote:before, blockquote:after, q:before, q:after {content:'';content:none;}
+:focus {outline:0;}
+ins {text-decoration:none;}
+del {text-decoration:line-through;}
+table {border-collapse:collapse;border-spacing:0;}
+html, body {font-family:Helvetica, Arial, sans-serif;font-size:.8em;background:#fff;position:relative;}
+a {color:#44B3c0;text-decoration:none;}
+a:hover {text-decoration:underline;}
+h1, h2, h3, h4, h5, h6 {font-weight:bold;color:#111;}
+h1 {font-size:3em;line-height:1;font-weight:normal;}
+h2 {font-size:2em;font-weight:normal;}
+h3 {font-size:1.5em;line-height:1;}
+h4 {font-size:1.2em;line-height:1.25;}
+h5 {font-size:1em;}
+h6 {font-size:1em;}
+.disabled {color:#aaa;}
+.error {color:#ff0000;}
+#header {float:left;display:block;width:100%;clear:both;background:transparent url('../images/gradient.png');border-bottom:1px solid #ccc;}
+#header h1 {float:left;display:block;overflow:visible;margin:0 10px;}
+#header h1 a {float:left;display:block;text-indent:-999em;background:transparent url('../images/logo.png') no-repeat;height:40px;width:100px;}
+#header ul {list-style:none;float:right;display:block;}
+#header ul li {margin:10px;padding:5px;display:block;float:left;}
+#container {clear:both;top:41px;left:0;right:0;bottom:0;position:absolute;}
+#sidebar {display:block;overflow:hidden;width:250px;top:0px;left:0px;bottom:0px;position:absolute;background-color:#f2f2f2;font-size:1em;font-weight:bold;text-align:left;border-right:1px solid #ccc;}
+#sidebar ul {list-style-type:none;float:left;display:block;clear:both;width:100%;}
+#sidebar ul a, #sidebar ul a:visited {color:#888;}
+#sidebar .report {padding:15px 0;float:left;display:block;width:100%;clear:both;background:transparent url('../images/gradient.png');border-bottom:1px solid #ccc;cursor:pointer;}
+#sidebar .report:hover, #sidebar .report.new:hover {background:transparent url('../images/darkgradient.png');border-bottom:1px solid #888;color:#000;}
+#sidebar .report.new {color:#ccc;float:left;width:100%;clear:both;}
+#sidebar .report span {margin:0 10px;display:block;float:left;}
+#sidebar .report .name {max-width:180px;}
+#sidebar .report .percentage {float:right;}
+#sidebar .report.selected {background:transparent url('../images/darkgradient.png');color:#000;border-bottom:1px solid #888;}
+#reports {color:#888;position:absolute;overflow:auto;top:80px;bottom:5px;left:0px;right:0px;}
+#info {padding:15px 10px 15px 10px;border-bottom:1px solid #888;height:40px;}
+#info span, #info p {color:#888;font-weight:normal;display:inline;}
+.ui-layout-resizer {border-left:1px solid #cccccc;border-right:1px solid #cccccc;background:#F0F0F0 url('../images/ehandle.gif') no-repeat scroll 50% 50%;}
+#main {position:absolute;left:250px;top:0px;bottom:0px;right:0px;text-align:left;}
+#main #patients, #main .vcard, #main div.data, #main div.overview {position:absolute;top:22px;left:0px;right:0px;bottom:0px;overflow:auto;}
+#main .overview {position:absolute;height:150px;}
+#main div.data {top:190px;}
+#main div.vcard {padding:5px;}
+.section h3 {color:#666;font-size:1.5em;font-weight:normal;margin-bottom:10px;}
+.section h4 {color:#999;font-weight:normal;font-size:1.2em;}
+.report .overview {margin:5px 5px 20px 5px;float:left;overflow:visible;position:relative;}
+.report .quotient {float:left;width:600px;overflow:visible;position:relative;margin-top:20px;}
+.report .numerator, .report .denominator {margin-bottom:10px;float:left;width:100%;clear:both;overflow:visible;}
+.report .denominator {margin-bottom:0px;}
+.report .stats {float:left;overflow:hidden;width:100%;}
+.report .numerator, .report .stats {border-bottom:1px solid #ccc;}
+.report .numerator h2, .report .denominator h2 {float:left;display:block;width:50px;margin-left:20px;}
+.report .numerator div, .report .denominator div {float:left;width:500px;}
+.report .quotient .draggable-value {float:left;display:block;padding:4px 10px;margin:2px;border:1px solid #ccc;border-radius:15px;-moz-border-radius:15px;-webkit-border-radius:15px;-khtml-border-radius:15px;}
+.report .numerator .draggable-value {background:#eaf4d8;border:1px solid #95c83d;}
+.report .denominator .draggable-value {background-color:#ecfbfc;border:1px solid #44B3c0;}
+.report .quotient .draggable-value:hover {cursor:move;}
+.report .numerator .draggable-value:hover {background:#fafce8;}
+.report .denominator .draggable-value:hover {background:#ffffff;}
+.report .master-percentage {position:absolute;top:0px;bottom:0px;right:20px;width:80px;vertical-align:0;}
+.report .master-percentage h1 {margin-top:55px;}
+.report .numerator.dropshelf {background:#eaf4d8;border:0.5px solid #95c83d;width:99%;}
+.report .denominator.dropshelf {background:#ecfbfc;border:0.5px solid #44B3c0;width:99%;}
+.report .numerator.dropshelf.over {background:#d5e9b1;}
+.report .denominator.dropshelf.over {background:#b4e1e6;}
+.report .data {padding:5px;}
+.report .section {width:345px;float:left;margin-right:15px;margin:0 25px 0px 0;}
+.report .stack li {margin-bottom:25px;}
+.report .section .section {width:100%;margin-bottom:20px;}
+.report .data .row {border:1px solid #fff;padding:3px 0;float:left;width:100%;clear:both;margin:1px 0;border-radius:15px;-moz-border-radius:15px;-webkit-border-radius:15px;-khtml-border-radius:15px;}
+.report .data .in-numerator {background-color:#eaf4d8;border:1px solid #95c83d;}
+.report .data .in-denominator {background-color:#ecfbfc;border:1px solid #44B3c0;}
+.report .data h4 span, .report .data .row div {display:block;float:left;}
+.report .data .row .label {margin-left:5px;}
+.report .data h4 .percentage {margin-left:5px;}
+.report .data .label {width:140px;margin-right:10px;}
+.report .data .percentage, .report .data .number {text-align:right;margin-right:10px;}
+.report .data .percentage {width:25px;}
+.report .data .number {width:25px;}
+.report .data .draggable-value:hover {background:#f1f1f1;border:1px solid #ccc;cursor:move;}
+.boom {float:right;z-index:200;position:relative;top:-450px;}
+.report .data .bar {position:relative;width:100px;height:11px;top:0px;}
+.report .data .bar span {position:absolute;}
+.report .data .bar .selected {height:100%;background:#231f20;z-index:1;}
+.report .data .bar .total {height:100%;}
+span.name-edit {margin-bottom:20px;}
+span.name-edit a, span.name-edit input {margin-right:10px;}
+.breadcrumbs {list-style:none;padding:5px 0 5px 15px;margin:0 0 15px 0;background:url('../images/darkgradient.png') center;border-bottom:1px solid #ccc;font-weight:bold;font-size:1.1em;}
+.breadcrumbs li {margin-right:5px;padding:5px;display:inline;}
+.content .section, .content section {clear:both;margin-bottom:10px;float:left;width:100%;}
+.section .column h2, section .column h2 {text-transform:uppercase;color:#ccc;font-weight:bold;font-size:130%;border-bottom:1px solid #ccc;}
+.column {float:left;width:360px;margin:5px;}
+.column .stack, .column p {margin-top:5px;}
+.stack, .data {list-style-type:none;display:block;overflow:visible;margin:0;padding:0;clear:both;}
+.stack label {color:#ccc;float:left;display:block;width:100%;text-transform:capitalize;}
+.stack li, .stack ul.data li {display:block;float:left;clear:both;width:100%;}
+.stack.stats li, .stack.contact-information li, .stack.insurance li {clear:none;margin:5px 5px;width:auto;}
+.stack.stats .data li, .stack.contact-information .data li, .stack.insurance .data li {margin:1px 0px;width:100%;}
+.stack.stats li {width:70px;}
+.stack.stats .age {width:40px;}
+.stats.stats .gender {width:50px;}
+.stack.stats .weight {margin-left:30px;}
+.stack.stats .date-of-birth {width:125px;margin-left:85px;}
+.stack.stats .blood-pressure {width:100px;}
+.stack.contact-information .phone-numbers {width:180px;}
+.stack.contact-information .address {width:150px;}
+.stack.contact-information .email {width:340px;}
+.stack.insurance .provider {width:340px;}
+.stack.insurance .group-number {width:200px;}
+.stack.insurance {margin-bottom:25px;clear:both;float:left;}
+.conditions dl {float:left;display:block;width:290px;margin-right:10px;}
+.conditions .stack li {width:100%;}
+.conditions .stack ul {display:block;clear:none;float:right;width:100px;}
+table {margin-bottom:1.4em;width:100%;}
+th {font-weight:bold;}
+thead th {background:#c3d9ff;}
+th, td, caption {padding:4px 10px 4px 5px;text-align:left;}
+tbody tr:hover td, tbody tr.alt:hover td {background:#eaf4d8;}
+caption {background:#eee;}
+table .pagination a, table .pagination span, table .pagination label, table .pagination input {float:left;display:block;}
+table .pagination form {display:inline;float:left;}
+table .pagination .current-page {margin:0px 10px;}
+table .pagination .current-page input {margin:0 5px;padding:0;}
+table .pagination .current-page .count {display:inline;float:none;}
+table .pagination .page-size {float:right;}
+tbody.tablecontent {overflow-x:hidden !important;}
+tr.alt td {background-color:#efefef;}
+table {margin-bottom:0;}
+.midori-bind-grid th {border:1px solid #d3d3d3;background:#e6e6e6 url(smoothness/images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x;font-weight:normal;color:#555;outline:none;text-transform:capitalize;}
+.simple caption {display:none;}
+.simple th {border:none;background:transparent;}

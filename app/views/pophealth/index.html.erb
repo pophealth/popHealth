@@ -1,6 +1,6 @@
 				
-				<div id='sidebar'></div>
-				<div id='main'>
+				<div id='sidebar' class="ui-layout-west ui-layout-resizer"></div>
+				<div id='main' class="ui-layout-center">
 					<ul class='breadcrumbs'>
 						<li>Report</li>
 						<li>&#62;</li>
@@ -10,6 +10,9 @@
 <% 
 			@inline_javascript ||= ""
 			@inline_javascript << %{  $(document).ready(function() {
+				
+				var myLayout = null;
+				
 			 var dataViewer = new popConnect.DataViewer('#main', {
 			     dataUrl: '/reports',
 			     reportId:  #{@report_id},
@@ -28,6 +31,13 @@
 				  		'zoomSpeedIn':		500,
 				   		'zoomSpeedOut': 		500,
 				   		'hideOnContentClick': false
+				});
+				
+				myLayout = $('#container').layout({
+			        west:{
+			          minSize:    250,
+					  resizable: true
+			        }
 				});
 			});
 

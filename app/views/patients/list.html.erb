@@ -1,5 +1,5 @@
 <%
-	show_url = "/patients/:id/show/?return=:return&amp;report_id=" + CGI.escape(@report_id)
+	show_url = "/patients/:id/show/?report_id=" + CGI.escape(@report_id)
 	page_url =  "/patients/list/?"
 %>
 <ul class='breadcrumbs'>
@@ -7,8 +7,8 @@
 	<li>&#62;</li>
 	<li>Patients</li>
 </ul>
-<%= grid(@list, :name => "patients").show(:url => show_url).page(:url => page_url, :bottom => false, :top => true, :params => {:report_id => @report_id }).columns { |g|
-	   	g.column :name
+<%= grid(@list, :name => "patients").page(:url => page_url, :bottom => false, :top => true, :params => {:report_id => @report_id }).columns { |g|
+	   	g.column :name, :format => lambda { |value,item, return_url | return "<a href=\"#{show_url}&amp;return=#{ CGI.escape(return_url)}\">#{value}</a>".sub(/\:\bid\b/, item.id.to_s)  }
 	   	g.column :pregnant
 		g.column "registration_information.date_of_birth"
 		g.column "registration_information.race.name", :title => "Race"

@@ -1,10 +1,12 @@
 # refer to http://www.yaml.org/spec/1.1/ for clarification on YAML collections
 pophealth:
-  path: /Users/bstaats/Projects/pophealth/src/stylesheets
+  path: ../blueprint/src
   namespace: pc
   custom_css:
+    ie.css:
+      - ie-custom.css
     screen.css:
-      - custom.css
+      - layout.css
   custom_layout:
     column_count: 12
     column_width: 70
