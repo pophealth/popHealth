@@ -1,6 +1,6 @@
 # refer to http://www.yaml.org/spec/1.1/ for clarification on YAML collections
 pophealth:
-  path: ./public/stylesheets/app/
+  path: public/stylesheets/app/
   namespace: pc
   custom_css:
     ie.css:
@@ -13,7 +13,7 @@ pophealth:
     column_width: 70
     gutter_width: 10
 account:
-  path: ./public/stylesheets/account
+  path: public/stylesheets/account
   namespace: pc
   custom_css:
     screen.css:

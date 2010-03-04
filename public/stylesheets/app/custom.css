@@ -703,12 +703,26 @@ caption {
 	background:#eee; 
 }
 
+table .pagination {
+	margin-top: 10px;
+	overflow: hidden;
+	float: left;
+	width: 100%;
+	line-height: 2em;
+}
+
 table .pagination a, 
 table .pagination span,
 table .pagination label, 
 table .pagination input {
 	float: left;
 	display: block;
+}
+
+table .pagination span,
+table .pagination a,
+table .pagination label {
+	margin: 0 5px;
 }
 
 table .pagination form {
@@ -723,6 +737,7 @@ table .pagination .current-page {
 table .pagination .current-page input {
 	margin: 0 5px;
 	padding: 0;
+	vertical-align: middle;
 }
 
 table .pagination .current-page .count {

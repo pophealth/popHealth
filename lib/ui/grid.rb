@@ -83,8 +83,7 @@ module UI
     def page(options = {})
       if(@data.length > 0)
         default = {:url => "/" + @type.pluralize.downcase + "/list/?", :text => "", :bottom => true, :top => false}
-        @page_action = default.merge(options)
-        @actions = true   
+        @page_action = default.merge(options) 
       end
       return self   
     end
