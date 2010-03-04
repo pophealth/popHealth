@@ -895,7 +895,8 @@ table .pagination {
 table .pagination a, 
 table .pagination span,
 table .pagination label, 
-table .pagination input {
+table .pagination input,
+table .pagination select {
 	float: left;
 	display: block;
 }
@@ -915,7 +916,9 @@ table .pagination .current-page {
 	margin: 0px 10px;
 }
 
-table .pagination .current-page input {
+table .pagination .current-page input,
+table .pagination .page-size input,
+table .pagination .page-size select  {
 	margin: 0 5px;
 	padding: 0;
 	vertical-align: middle;

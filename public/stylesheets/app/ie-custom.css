@@ -8,9 +8,11 @@ body {
 	overflow-x:hidden;
 }
 
-#reports ul .percentage {
-	margin-right: 25px;
+#reports ul span.percentage {
+	width: 35px;
+	display: block;
 }
+
 
 #main #patients, #main div.data, #main div.vcard, #reports {
     overflow-x:hidden;
@@ -22,3 +24,8 @@ body {
 .report .denominator {
 	padding-bottom: 2px;
 }
+
+table .pagination .page-size {
+	width: 250px;
+}
+
