@@ -1,12 +1,24 @@
 # refer to http://www.yaml.org/spec/1.1/ for clarification on YAML collections
 pophealth:
-  path: ../blueprint/src
+  path: ./public/stylesheets/app/
   namespace: pc
   custom_css:
     ie.css:
       - ie-custom.css
     screen.css:
-      - layout.css
+      - custom.css
+      - jquery.fancybox.css
+  custom_layout:
+    column_count: 12
+    column_width: 70
+    gutter_width: 10
+account:
+  path: ./public/stylesheets/account
+  namespace: pc
+  custom_css:
+    screen.css:
+      - button.css
+      - account.css
   custom_layout:
     column_count: 12
     column_width: 70

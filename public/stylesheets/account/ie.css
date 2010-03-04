@@ -1,0 +1,35 @@
+/* -----------------------------------------------------------------------
+
+
+ Blueprint CSS Framework 0.9
+ http://blueprintcss.org
+
+   * Copyright (c) 2007-Present. See LICENSE for more info.
+   * See README for instructions on how to use Blueprint.
+   * For credits and origins, see AUTHORS.
+   * This is a compressed file. See the sources in the 'src' directory.
+
+----------------------------------------------------------------------- */
+
+/* ie.css */
+body {text-align:center;}
+.pcpccontainer {text-align:left;}
+* html .pcpccolumn, * html div.pcpcspan-1, * html div.pcpcspan-2, * html div.pcpcspan-3, * html div.pcpcspan-4, * html div.pcpcspan-5, * html div.pcpcspan-6, * html div.pcpcspan-7, * html div.pcpcspan-8, * html div.pcpcspan-9, * html div.pcpcspan-10, * html div.pcpcspan-11, * html div.pcpcspan-12, * html div.pcpcspan-13, * html div.pcpcspan-14, * html div.pcpcspan-15, * html div.pcpcspan-16, * html div.pcpcspan-17, * html div.pcpcspan-18, * html div.pcpcspan-19, * html div.pcpcspan-20, * html div.pcpcspan-21, * html div.pcpcspan-22, * html div.pcpcspan-23, * html div.pcpcspan-24 {display:inline;overflow-x:hidden;}
+* html legend {margin:0px -8px 16px 0;padding:0;}
+sup {vertical-align:text-top;}
+sub {vertical-align:text-bottom;}
+html>body p code {*white-space:normal;}
+hr {margin:-8px auto 11px;}
+img {-ms-interpolation-mode:bicubic;}
+.pcpcclearfix, .pcpccontainer {display:inline-block;}
+* html .pcpcclearfix, * html .pcpccontainer {height:1%;}
+fieldset {padding-top:0;}
+textarea {overflow:auto;}
+input.pcpctext, input.pcpctitle, textarea {background-color:#fff;border:1px solid #bbb;}
+input.pcpctext:focus, input.pcpctitle:focus {border-color:#666;}
+input.pcpctext, input.pcpctitle, textarea, select {margin:0.5em 0;}
+input.pcpccheckbox, input.pcpcradio {position:relative;top:.25em;}
+form.pcpcinline div, form.pcpcinline p {vertical-align:middle;}
+form.pcpcinline label {position:relative;top:-0.25em;}
+form.pcpcinline input.pcpccheckbox, form.pcpcinline input.pcpcradio, form.pcpcinline input.pcpcbutton, form.pcpcinline button {margin:0.5em 0;}
+button, input.pcpcbutton {position:relative;top:0.25em;}

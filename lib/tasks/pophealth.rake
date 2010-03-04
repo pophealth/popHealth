@@ -24,6 +24,21 @@ end
 
 
 namespace :ph do
+  
+  desc "Run blueprint compress"
+  task :blueprint do
+    fhi = IO.popen("jruby public/stylesheets/lib/compress.rb -p pophealth -o public/stylesheets/app ")
+    while (line = fhi.gets)
+          print line
+            print "and"
+    end
+    
+    fhi = IO.popen("jruby public/stylesheets/lib/compress.rb -p account -o public/stylesheets/account ")
+    while (line = fhi.gets)
+          print line
+            print "and"
+    end
+  end
 
   desc "Load random data into the current environment's database."
   task :randomize => :environment do

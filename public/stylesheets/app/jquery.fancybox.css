@@ -39,7 +39,7 @@ div#fancy_loading div {
 	left: 0;
 	width: 40px;
 	height: 480px;
-	background: transparent url('/images/fancybox/fancy_progress.png') no-repeat;
+	background: transparent url('../../images/fancybox/fancy_progress.png') no-repeat;
 }
 
 div#fancy_loading_overlay {
@@ -50,7 +50,7 @@ div#fancy_loading_overlay {
 
 div#fancy_loading_icon {
 	position: absolute;
-	background: url('fancy_loading.gif') no-repeat;
+	background: url('../../images/fancybox/fancy_loading.gif') no-repeat;
 	z-index: 35;
 	width: 16px;
 	height: 16px;
@@ -108,7 +108,7 @@ div#fancy_close {
 	right: -15px;
 	height: 30px;
 	width: 30px;
-	background: url('/images/fancybox/fancy_closebox.png') top left no-repeat;
+	background: url('../../images/fancybox/fancy_closebox.png') top left no-repeat;
 	cursor: pointer;
 	z-index: 181;
 	display: none;
@@ -160,12 +160,12 @@ span.fancy_ico {
 
 span#fancy_left_ico {
 	left: -9999px;
-	background: transparent url('/images/fancybox/fancy_left.png') no-repeat;
+	background: transparent url('../../images/fancybox/fancy_left.png') no-repeat;
 }
 
 span#fancy_right_ico {
 	right: -9999px;
-	background: transparent url('/images/fancybox/fancy_right.png') no-repeat;
+	background: transparent url('../../images/fancybox/fancy_right.png') no-repeat;
 }
 
 a#fancy_left:hover {
@@ -217,7 +217,7 @@ div.fancy_bg_n {
 	top: -18px;
 	width: 100%;
 	height: 18px;
-	background: transparent url('/images/fancybox/fancy_shadow_n.png') repeat-x;
+	background: transparent url('../../images/fancybox/fancy_shadow_n.png') repeat-x;
 }
 
 div.fancy_bg_ne {
@@ -225,14 +225,14 @@ div.fancy_bg_ne {
 	right: -13px;
 	width: 13px;
 	height: 18px;
-	background: transparent url('/images/fancybox/fancy_shadow_ne.png') no-repeat;
+	background: transparent url('../../images/fancybox/fancy_shadow_ne.png') no-repeat;
 }
 
 div.fancy_bg_e {
 	right: -13px;
 	height: 100%;
 	width: 13px;
-	background: transparent url('/images/fancybox/fancy_shadow_e.png') repeat-y;
+	background: transparent url('../../images/fancybox/fancy_shadow_e.png') repeat-y;
 }
 
 div.fancy_bg_se {
@@ -240,14 +240,14 @@ div.fancy_bg_se {
 	right: -13px;
 	width: 13px;
 	height: 18px;
-	background: transparent url('/images/fancybox/fancy_shadow_se.png') no-repeat;
+	background: transparent url('../../images/fancybox/fancy_shadow_se.png') no-repeat;
 }
 
 div.fancy_bg_s {
 	bottom: -18px;
 	width: 100%;
 	height: 18px;
-	background: transparent url('/images/fancybox/fancy_shadow_s.png') repeat-x;
+	background: transparent url('../../images/fancybox/fancy_shadow_s.png') repeat-x;
 }
 
 div.fancy_bg_sw {
@@ -255,14 +255,14 @@ div.fancy_bg_sw {
 	left: -13px;
 	width: 13px;
 	height: 18px;
-	background: transparent url('/images/fancybox/fancy_shadow_sw.png') no-repeat;
+	background: transparent url('../../images/fancybox/fancy_shadow_sw.png') no-repeat;
 }
 
 div.fancy_bg_w {
 	left: -13px;
 	height: 100%;
 	width: 13px;
-	background: transparent url('/images/fancybox/fancy_shadow_w.png') repeat-y;
+	background: transparent url('../../images/fancybox/fancy_shadow_w.png') repeat-y;
 }
 
 div.fancy_bg_nw {
@@ -270,7 +270,7 @@ div.fancy_bg_nw {
 	left: -13px;
 	width: 13px;
 	height: 18px;
-	background: transparent url('/images/fancybox/fancy_shadow_nw.png') no-repeat;
+	background: transparent url('../../images/fancybox/fancy_shadow_nw.png') no-repeat;
 }
 
 div#fancy_title {
@@ -300,16 +300,16 @@ div#fancy_title table td {
 td#fancy_title_left {
 	height: 32px;
 	width: 15px;
-	background: transparent url(/images/fancybox/fancy_title_left.png) repeat-x;
+	background: transparent url(../../images/fancybox/fancy_title_left.png) repeat-x;
 }
 
 td#fancy_title_main {
 	height: 32px;
-	background: transparent url(/images/fancybox/fancy_title_main.png) repeat-x;
+	background: transparent url(../../images/fancybox/fancy_title_main.png) repeat-x;
 }
 
 td#fancy_title_right {
 	height: 32px;
 	width: 15px;
-	background: transparent url(/images/fancybox/fancy_title_right.png) repeat-x;
+	background: transparent url(../../images/fancybox/fancy_title_right.png) repeat-x;
 }

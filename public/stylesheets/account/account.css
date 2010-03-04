@@ -22,6 +22,10 @@ input, select, textarea {
 	font-size: 18px;
 }
 
+.left {
+	clear: both;
+}
+
 
 input.textbox340 {
 	width: 323px;
@@ -43,7 +47,7 @@ div#login {
 }
 
 div#cap-top {
-	background: transparent url(../images/cap-top.png) no-repeat;
+	background: transparent url(../../images/cap-top.png) no-repeat;
 	height: 8px;
 	width: 546px;
 }
@@ -54,11 +58,11 @@ div#cap-top {
 
 * html div#cap-top {
 	background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/cap-top.png", sizingMethod="crop");
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../imagesimages/cap-top.png", sizingMethod="crop");
 }
 
 div#cap-body {
-	background: transparent url(../images/cap-bg.png) repeat-y;
+	background: transparent url(../../images/cap-bg.png) repeat-y;
 	width: 545px;
 }
 
@@ -68,7 +72,7 @@ div#cap-body {
 }
 
 div#cap-bottom {
-	background: transparent url(../images/cap-bottom.png) no-repeat;
+	background: transparent url(../../images/cap-bottom.png) no-repeat;
 	height: 15px;
 	width: 546px;
 }
@@ -179,7 +183,7 @@ body.login div#panelErrorMsg {
 }
 
 hr.login {
-	background: url(../images/hr.png) repeat-x;
+	background: url(../../images/hr.png) repeat-x;
 	width:446px;
 	height:4px;
 	border:0;
@@ -194,7 +198,7 @@ input.create-account-btn {
     padding: 0px 0 0;
     margin: 0;
     border: 0;
-    background: transparent url(/images/create_account.png) no-repeat center top;
+    background: transparent url(../../images/create_account.png) no-repeat center top;
     overflow: hidden;
     cursor: pointer; /* hand-shaped cursor */
     cursor: hand; /* for IE 5.x */
@@ -208,7 +212,7 @@ input.login-account-btn {
     padding: 0px 0 0;
     margin: 0;
     border: 0;
-    background: transparent url(/images/login_landing.png) no-repeat center top;
+    background: transparent url(../../images/login_landing.png) no-repeat center top;
     overflow: hidden;
     cursor: pointer; /* hand-shaped cursor */
     cursor: hand; /* for IE 5.x */

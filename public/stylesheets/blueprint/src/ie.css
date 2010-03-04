@@ -33,9 +33,3 @@ form.pcinline div, form.pcinline p {vertical-align:middle;}
 form.pcinline label {position:relative;top:-0.25em;}
 form.pcinline input.pccheckbox, form.pcinline input.pcradio, form.pcinline input.pcbutton, form.pcinline button {margin:0.5em 0;}
 button, input.pcbutton {position:relative;top:0.25em;}
-
-/* ie-custom.css */
-body {overflow:hidden;}
-#reports ul {width:233px;}
-#main #patients table {width:98%;}
-.report .numerator, .report .denominator {padding-bottom:2px;}

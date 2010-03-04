@@ -1,57 +1,3 @@
-/* http://meyerweb.com/eric/tools/css/reset/ */
-/* v1.0 | 20080212 */
-
-/** Eric Meyer Reset */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	font-size: 100%;
-	vertical-align: baseline;
-	background: transparent;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-
-/* remember to define focus styles! */
-:focus {
-	outline: 0;
-}
-
-/* remember to highlight inserts somehow! */
-ins {
-	text-decoration: none;
-}
-del {
-	text-decoration: line-through;
-}
-
-/* tables still need 'cellspacing="0"' in the markup */
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
 
 /** Begin Custom Css */
 /** Tags */
@@ -118,7 +64,7 @@ h6 {
 	display: block;
 	width: 100%;
 	clear: both;
-	background:  transparent url('../images/gradient.png');
+	background:  transparent url('../../images/gradient.png');
 	border-bottom:  1px solid #ccc;
 }
 
@@ -133,7 +79,7 @@ h6 {
 	float: left;
 	display: block;
 	text-indent: -999em;
-	background: transparent url('../images/logo.png') no-repeat;
+	background: transparent url('../../images/logo.png') no-repeat;
 	height: 40px;
 	width: 100px;
 }
@@ -197,14 +143,14 @@ h6 {
 	display: block;
 	width: 100%;
 	clear: both;
-	background: transparent url('../images/gradient.png');
+	background: transparent url('../../images/gradient.png');
 	border-bottom:  1px solid #ccc;
 	cursor: pointer;
 }
 
 #sidebar .report:hover,
 #sidebar .report.new:hover {
-	background:  transparent url('../images/darkgradient.png');
+	background:  transparent url('../../images/darkgradient.png');
 	border-bottom:  1px solid #888;
 	color: #000;
 }
@@ -231,7 +177,7 @@ h6 {
 }
 
 #sidebar .report.selected{
-	background: transparent url('../images/darkgradient.png');
+	background: transparent url('../../images/darkgradient.png');
 	color: #000;
 	border-bottom: 1px solid #888;
 }
@@ -261,7 +207,7 @@ h6 {
 .ui-layout-resizer { /** currently not in use */
 	border-left: 1px solid #cccccc;
 	border-right: 1px solid #cccccc;
-	background: #F0F0F0 url('../images/ehandle.gif') no-repeat scroll 50% 50%;
+	background: #F0F0F0 url('../../images/ehandle.gif') no-repeat scroll 50% 50%;
 }
 
 /** Main */ 
@@ -569,7 +515,7 @@ span.name-edit a, span.name-edit input{
   list-style: none;
   padding:    5px 0 5px 15px;
   margin:     0 0 15px 0;
-  background:     url('../images/darkgradient.png') center;
+  background:     url('../../images/darkgradient.png') center;
   border-bottom:  1px solid #ccc;
   font-weight:    bold;
   font-size:      1.1em;
@@ -698,6 +644,7 @@ section .column h2 {
 .stack.insurance .provider {
 	width: 340px;
 }
+
 .stack.insurance .group-number {
 	width: 200px;
 }
@@ -777,6 +724,7 @@ table .pagination .current-page input {
 	margin: 0 5px;
 	padding: 0;
 }
+
 table .pagination .current-page .count {
 	display: inline;
 	float: none;
@@ -800,7 +748,7 @@ table {
 
 .midori-bind-grid th { 
 	border: 1px solid #d3d3d3; 
-	background: #e6e6e6 url(smoothness/images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x; 
+	background: #e6e6e6 url(../smoothness/images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x; 
 	font-weight: normal; 
 	color: #555; 
 	outline: none; 

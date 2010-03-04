@@ -4,7 +4,7 @@
 }
 
 a.bluebutton, a.whitebutton {
-    background: transparent url('../images/blue_right.png') no-repeat scroll top right;
+    background: transparent url('../../images/blue_right.png') no-repeat scroll top right;
     color: #787878;
     display: block;
     float: left;
@@ -21,18 +21,18 @@ a.bluebutton, a.whitebutton {
 }
 
 a.whitebutton {
-    background: transparent url('../images/white_right.png') no-repeat scroll top right;
+    background: transparent url('../../images/white_right.png') no-repeat scroll top right;
 }
 
 a.bluebutton span, a.whitebutton span {
-    background: transparent url('../images/blue_left.png') no-repeat;
+    background: transparent url('../../images/blue_left.png') no-repeat;
     display: block;
     line-height: 14px;
     padding: 8px 10px 8px 28px;
 }
 
 a.whitebutton span {
-    background: transparent url('../images/white_left.png') no-repeat;
+    background: transparent url('../../images/white_left.png') no-repeat;
 }
 
 .bluebutton:active, .whitebutton.active {
