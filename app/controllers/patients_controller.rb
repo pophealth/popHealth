@@ -15,7 +15,7 @@ class PatientsController < ApplicationController
   #GET
   def list
     @page_title = "list of patients"
-    @report_id = params[:report_id] || params[:id]
+    @report_id = params[:report_id] || params[:id] || 0
     @ret = "/pophealth"
     
     #TODO: abstract this out into a module for active record. 

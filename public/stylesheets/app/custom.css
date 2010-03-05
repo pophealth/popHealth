@@ -267,7 +267,8 @@ h6 {
 /** 
      highlight the selected report in the sidebar.
 */
-#sidebar .report.selected{
+#sidebar .report.selected,
+#sidebar .report.selected a {
 	background: transparent url('../../images/darkgradient.png');
 	color: #000;
 	border-bottom: 1px solid #888;
@@ -310,6 +311,7 @@ h6 {
     the jquery.layout resizer style, the bar/splitter that allows you to adjust the width of the sidebar. 
 */
 .ui-layout-resizer { 
+	cursor: col-resize !important; /* for whatever reason, jquery layout uses the style element to enforce the cursor */
 	border-left: 1px solid #cccccc;
 	border-right: 1px solid #cccccc;
 	background: #F0F0F0 url('../../images/ehandle.gif') no-repeat scroll 50% 50%;
@@ -348,7 +350,7 @@ h6 {
 }
 
 #main div.data {
-	top: 190px;
+	top: 177px;
 }
 
 #main div.vcard {
@@ -406,6 +408,10 @@ h6 {
 	overflow: visible;
 }
 
+.report .numerator {
+	padding-bottom: 10px;
+}
+
 .report .denominator  {
 	margin-bottom: 0px;
 }
@@ -417,7 +423,7 @@ h6 {
 }
 
 .report .numerator,
-.report .stats {
+.report .overview {
 	border-bottom:  1px solid #ccc;
 }
 
@@ -741,7 +747,19 @@ section .column h2 {
 	display: block;
 	float: left;
 	clear: both;
-	width: 100%;
+	padding:4px 0px; 
+}
+
+.column .stack ul.data ul {
+	margin: 0;
+}
+
+.column p {
+	padding:4px 0px; 
+}
+
+.column .stack, .column table, .column p  {
+	margin-top: 10px;
 }
 
 /*
@@ -840,7 +858,7 @@ section .column h2 {
 .conditions dl {
 	float: left;
 	display: block;
-	width: 290px;
+	width: 250px;
 	margin-right: 10px;
 }
 
@@ -853,6 +871,9 @@ section .column h2 {
 	clear: none;
 	float: right;
 	width: 100px;
+}
+.condition ul.data li {
+	padding: 0px;
 }
 
 
@@ -881,14 +902,20 @@ tbody tr:hover td, tbody tr.alt:hover td {
 
 caption {
 	background:#eee; 
+	line-height: 2em;
+}
+
+caption .title {
+	float: left;
+	display: block;
+	margin-right: 10px;
 }
 
 /** Table Pagination */
 table .pagination {
-	margin-top: 10px;
 	overflow: hidden;
-	float: left;
-	width: 100%;
+	float: right;
+	width: 650px;
 	line-height: 2em;
 }
 
@@ -963,6 +990,9 @@ table {
    adding the class .simple to a grid should remove the caption, remove the background for the 
    headers and borders.   
 */
+
+
+
 .simple caption {
 	display: none;
 }
@@ -970,4 +1000,9 @@ table {
 .simple th {
 	border: none;
 	background: transparent;
+}
+
+.simple td, 
+.simple th {
+	padding-left: 0px;
 }
