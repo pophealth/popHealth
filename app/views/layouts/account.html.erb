@@ -9,14 +9,20 @@
 
     <title><%= @page_title %>popHealth</title>
 
-    <%= stylesheet_link_tag 'layout', 'account', :media => "screen, projection" %>
-    <!--[if IE 7]>
-    <![endif]--> 
-    <!--[if lt IE 7]>
-    <link rel="stylesheet" href="/CatalystStyles/ie6.css" type="text/css" media="screen" />    
-    <![endif]-->    
-    
-
+    <% if RAILS_ENV == "development" %>
+    <%= stylesheet_link_tag 'blueprint/src/reset.css', 'blueprint/src/typography.css', :media => "screen, projection" %>
+    <%= stylesheet_link_tag 'account/button.css', 'account/account.css', :media => "screen, projection" %>
+    <%= stylesheet_link_tag 'blueprint/src/print.css', :media => 'print' %>
+    <!--[if lt IE 8>
+    <%= stylesheet_link_tag 'blueprint/src/ie.css', :media => "screen, projection" %>  
+    <![endif]-->  
+    <% else %>
+    <%= stylesheet_link_tag 'account/screen.css', :media => "screen, projection" %>
+    <%= stylesheet_link_tag 'account/print.css', :media => "print" %>
+    <!--[if lt IE 8]>
+    <%= stylesheet_link_tag 'account/ie.css' , :media => "screen, projection" %>
+    <![endif]-->
+    <% end %>
 </head>
 
 <body class="login">

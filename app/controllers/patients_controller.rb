@@ -4,7 +4,6 @@ class PatientsController < ApplicationController
 
 
   before_filter :initialize_reports
-  skip_before_filter :login_required
   layout  "site"
   
   def initialize_reports
@@ -16,12 +15,30 @@ class PatientsController < ApplicationController
   #GET
   def list
     @page_title = "list of patients"
-    @report_id = nil
+    @report_id = params[:report_id] || params[:id] || 0
     @ret = "/pophealth"
     
     #TODO: abstract this out into a module for active record. 
-    if params[:report_id].nil?
-      @list = UI::PaginatedResults.wrap(:patients, params) { |options|
+    if @report_id.nil? || @report_id == ""
+    
+      query = Report.find_and_generate_patients_query(params[:report_id], "")
+      if !query.nil?
+        @report_id = params[:report_id]
+        @list = UI::PaginatedResults.wrap(:patients, params) { |options|
+          count = Patient.count_by_sql("SELECT COUNT( DISTINCT patients.id) FROM patients #{query} ")
+        
+            if(count > 0 && options[:offset] > count)
+              options[:offset] = count - options[:limit]
+            end
+        
+          {:data => Patient.find_by_sql("SELECT patients.* FROM patients #{query} LIMIT #{options[:limit]} OFFSET #{options[:offset]}"), :count => count}
+        }
+        @ret = @ret + "/report/" + @report_id.to_s
+        render 
+      end
+    end
+    
+     @list = UI::PaginatedResults.wrap(:patients, params) { |options|
           count = Patient.count
  
           if(count > 0 && options[:offset] > count)
@@ -31,27 +48,10 @@ class PatientsController < ApplicationController
           {:data => Patient.find(:all, options), :count => count}
       }
       first = Report.first
-      if first
-          @ret = @ret + "/report/" + Report.first.id.to_s
+      if !first.nil?
+          @report_id = first.id.to_s
+          @ret = @ret + "/report/" + first.id.to_s
       end
-    
-    else 
-      query = Report.find_and_generate_patients_query(params[:report_id], "")
-      @report_id = params[:report_id]
-      @list = UI::PaginatedResults.wrap(:patients, params) { |options|
-        count = Patient.count_by_sql("SELECT COUNT( DISTINCT patients.id) FROM patients #{query} ")
-        
-          if(count > 0 && options[:offset] > count)
-            options[:offset] = count - options[:limit]
-          end
-        
-        {:data => Patient.find_by_sql("SELECT patients.* FROM patients #{query} LIMIT #{options[:limit]} OFFSET #{options[:offset]}"), :count => count}
-      }
-      @query = params[:query]
-      
-      
-      @ret = @ret + "/report/" + @report_id.to_s
-    end
     
     return render 
   end
@@ -59,17 +59,22 @@ class PatientsController < ApplicationController
   # GET
   def show
     redirect = false
-    id = params[:id]
+    id =  params[:id]
+        
+    @report_id = params[:report_id]|| ""
+   
+     if @report_id == ""
+        first = Report.first;
+        if !first.nil?
+          @report_id = first.id.to_s
+        end
+      end
     
-    @report_id = params[:report_id] || ""
+    @return = CGI.unescape(params[:return])
+    @ret =  (params[:return].nil? ? "/patients/list/?" : "#{@return}&amp;")
+    @ret = @ret + "report_id=" + @report_id
     
-    @ret = params[:return]  || "/patients/list/"
-    @ret = @ret + (params[:return].nil? ? "?" : "&amp;")
-    @ret = @ret + "report_id=" + CGI.escape(@report_id)
-    
-    if @report_id == ""
-      @report_id = Report.first.id.to_s
-    end
+   
     
     
     if id.nil? || id.to_i <= 0

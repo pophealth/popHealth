@@ -1,0 +1,1008 @@
+
+/** Begin Custom Css */
+/** Tags */
+
+/** 
+  Notes in general.
+
+  background requires a color, even if its transparent. 
+  background: transparent url(path/to/image)
+
+  overflow: hidden/visible is often used in conjuction with floats in order to adjust the height automatically.
+
+  .outer {
+      overflow: visible;
+      width: 280px;
+      padding: 10px
+  }
+
+  .inner {
+      float: left
+      width: 100%;
+  }
+
+  <div class="outer">
+      <div class="inner">
+        <h1> section </h1>
+        <p> tons of text </p>
+      </div>
+      <div class="inner">
+       <!-- more stuff -->
+      </div>
+  </div>
+
+*/
+
+
+/* position relative allows for absolute positioning */
+html, body {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: .8em;
+	background: #fff;
+	position: relative;
+}
+
+a {
+	color: #44B3c0;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight:bold;
+	color:#111;
+}
+
+h1 {
+	font-size: 3em;
+	line-height: 1;
+	font-weight: normal;
+}
+
+h2 {
+	font-size: 2em;
+	font-weight: normal;
+}
+h3 {
+	font-size: 1.5em;
+	line-height: 1;
+}
+h4 {
+	font-size: 1.2em;
+	line-height: 1.25;
+}
+h5 {
+	font-size: 1em;
+}
+h6 {
+	font-size: 1em;
+}
+
+
+/** Global Classes */
+.disabled {
+	color: #aaa;
+}
+
+.error {
+	color: #ff0000;
+} 
+
+
+/** Header */ 
+/**
+  The header is floated with a 100% width and clear so that it will push the block items after it down below
+  while taking up the whole width of the top as the browser expands. 
+  
+ 
+  
+ */
+#header {
+	float: left;
+	display: block;
+	width: 100%;
+	clear: both;
+	background:  transparent url('../../images/gradient.png');
+	border-bottom:  1px solid #ccc;
+}
+
+#header h1 {
+	float: left;
+	display: block;
+	overflow: visible;
+	margin: 0 10px;
+}
+
+/*
+   the text is while stylesheets are available, but appears for screen readers.
+   use the logo as the link to go to the home page.  
+*/
+#header h1 a {
+	float: left;
+	display: block;
+	text-indent: -999em;
+	background: transparent url('../../images/logo.png') no-repeat;
+	height: 40px;
+	width: 100px;
+}
+
+/*
+   make the list display as a block element, push it to the right of the header
+   let it expand as there are li items added. 
+*/
+#header ul {
+	list-style: none;
+	float: right;
+	display: block;
+}
+
+/*
+    use the li elements as horizontally stacked containers
+*/
+#header ul li {
+	margin: 10px;	
+	padding: 5px;
+	display: block;
+	float: left;
+}
+
+
+/** Content */
+/*
+    use the container to seperate the content from the header (and footer if one existed)
+    
+    use absolute positioning to bind the margins to the edges so that height and width is always 
+    fitting in the size of the browser.  
+*/
+#container {
+	clear: both;
+	top: 41px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+}
+
+
+/** Sidebar */
+/** 
+   position the sidebar to the left, only 250px wide, this is also using absolute positioning 
+   in order to always stretch the full height of the browser.
+
+   force the text left due to the ie style sheet. 
+*/
+#sidebar {
+	display: block;
+	overflow: hidden;
+	width: 250px;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	position: absolute;
+	background-color: #f2f2f2;
+	font-size: 1em;
+	font-weight: bold;	
+	text-align: left;
+	border-right: 1px solid #ccc;
+}
+
+/** 
+   get the list to act like a block element so that its pushes the new report div under
+   down.  forcing the scroll.
+*/
+#sidebar ul {
+	list-style-type:  none;
+	float: left;
+	display: block;
+	clear: both;
+	width: 100%;
+}
+
+#sidebar ul a, #sidebar ul a:visited {
+	color:#888
+}
+
+/** 
+   the li.report styling.  
+*/
+#sidebar .report {
+	padding: 15px 0;
+	float: left;
+	display: block;
+	width: 100%;
+	clear: both;
+	background: transparent url('../../images/gradient.png');
+	border-bottom:  1px solid #ccc;
+	cursor: pointer;
+}
+
+/**
+  used to create hoverstyles, however this will not work in IE 6 and below.
+*/
+#sidebar .report:hover,
+#sidebar .report.new:hover {
+	background:  transparent url('../../images/darkgradient.png');
+	border-bottom:  1px solid #888;
+	color: #000;
+}
+
+/**
+   push the new report div below the reports ul. 
+*/
+#sidebar .report.new {
+	color: #ccc;
+	float: left;
+	width: 100%;
+	clear: both;
+}
+
+/**
+   have the spans act like block elements so that you can wrap text and align them
+   using floats withing the li.report element.  
+*/
+#sidebar .report span {
+	margin: 0 10px;
+	display: block;
+	float: left;
+}
+
+/**
+     wrap the name when it reaches 180px that way it doesn't force the use to expand
+     sidebar as it currently does not save the width when a user changes it.  
+*/
+#sidebar .report .name {
+	max-width: 180px;
+}
+
+/**
+     align the percentage to the right. 
+*/
+#sidebar .report .percentage {
+	float: right;
+}
+
+/** 
+     highlight the selected report in the sidebar.
+*/
+#sidebar .report.selected,
+#sidebar .report.selected a {
+	background: transparent url('../../images/darkgradient.png');
+	color: #000;
+	border-bottom: 1px solid #888;
+}
+
+/*
+    this is used to create a box that expands as the browser is resized, but also scrolls
+    vertically as the content grows past the allotted height.  
+*/
+#reports {
+	color: #888;
+	position: absolute;
+	overflow: auto;
+	top: 80px;
+	bottom: 5px;
+	left: 0px;
+	right: 0px;
+}
+
+/* 
+   pad and add a border to the info box that alwa
+*/
+#info {
+	padding: 15px 10px 15px 10px;
+	border-bottom: 1px solid #888;
+	height: 40px;
+}
+
+/*
+    the info name
+*/
+#info span, #info p {
+	color: #888;
+	font-weight: normal;
+	display: inline;
+}
+
+
+/*
+    the jquery.layout resizer style, the bar/splitter that allows you to adjust the width of the sidebar. 
+*/
+.ui-layout-resizer { 
+	cursor: col-resize !important; /* for whatever reason, jquery layout uses the style element to enforce the cursor */
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	background: #F0F0F0 url('../../images/ehandle.gif') no-repeat scroll 50% 50%;
+}
+
+/** Main */ 
+/*
+     tells the main content to adjust the browser as it resizes. 
+*/
+#main {
+	position: absolute;
+	left: 250px;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
+	text-align: left;
+}
+
+/*
+     tells the following elements inside the #main div to scroll vertically if the
+     content is longer than current height of the container, while also resizing
+     with the browser.  
+*/
+#main #patients, #main .vcard, #main div.data, #main div.overview  {
+	position: absolute;
+	top: 22px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	overflow: auto;
+}
+
+#main .overview {
+	position: absolute;
+	height: 150px;
+}
+
+#main div.data {
+	top: 177px;
+}
+
+#main div.vcard {
+	padding: 5px;
+}
+
+
+
+.section h3 {
+	color: #666;
+	font-size: 1.5em;
+	font-weight: normal;
+	margin-bottom: 10px;
+}
+
+.section h4 {
+	color: #999;
+	font-weight: normal;
+	font-size: 1.2em;
+}
+
+
+/** Report  */
+
+
+/** Report Overview */
+.report .overview {
+	margin: 5px 5px 20px 5px;
+	float: left;
+	overflow: visible;
+	position: relative;
+}
+/**
+  helps to wrap the quotient values, using the term quotient to fit what it is. 
+  it was maths, but you can't pluralize the word math, only the word mathematics.
+*/
+.report .quotient {
+	float: left;
+	width: 600px;
+	overflow: visible;
+	position: relative;
+	margin-top: 20px;
+}
+
+
+/**
+  helps to wrap the quotient values
+*/
+.report .numerator, 
+.report .denominator {
+	margin-bottom: 10px;
+	float: left;
+	width: 100%;
+	clear: both;
+	overflow: visible;
+}
+
+.report .numerator {
+	padding-bottom: 10px;
+}
+
+.report .denominator  {
+	margin-bottom: 0px;
+}
+
+.report .stats {
+	float: left;
+	overflow: hidden;
+	width: 100%;
+}
+
+.report .numerator,
+.report .overview {
+	border-bottom:  1px solid #ccc;
+}
+
+/*
+  aligns the headers to the left, these are the number of patients for the num/den
+*/
+.report .numerator h2, 
+.report .denominator h2 {
+	float: left;
+	display: block;
+	width: 50px;
+	margin-left: 20px;
+}
+
+.report .numerator div, 
+.report .denominator div {
+	float: left;
+	width: 500px;
+}
+
+/*
+   rounds the corners for various browsers without using js.  
+*/
+.report .quotient .draggable-value {
+	float: left;
+	display: block;
+	padding: 4px 10px;
+	margin: 2px;
+	border: 1px solid #ccc;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-khtml-border-radius: 15px;
+}
+
+.report .numerator .draggable-value {
+	background: #eaf4d8;
+	border: 1px solid #95c83d;
+}
+
+.report .denominator .draggable-value{
+	background-color: #ecfbfc;
+	border: 1px solid #44B3c0;
+}
+
+.report .quotient .draggable-value:hover {
+	cursor: move;
+}
+
+.report .numerator .draggable-value:hover {
+	background: #fafce8;
+}
+
+.report .denominator .draggable-value:hover {
+	background: #ffffff;
+}
+
+/*
+    keeps the percentage to the right of the quotient.  
+*/
+.report .master-percentage {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	right: 20px;
+	width: 80px;
+	vertical-align: 0;
+}
+
+.report .master-percentage h1 {
+	margin-top: 55px;
+}
+
+.report .numerator.dropshelf { 
+	background: #eaf4d8;
+	border: 0.5px solid #95c83d;
+	width: 99%;
+}
+
+.report .denominator.dropshelf {
+	background: #ecfbfc;
+	border: 0.5px solid #44B3c0;
+	width: 99%;
+}
+
+.report .numerator.dropshelf.over{
+	background: #d5e9b1;
+}
+
+.report .denominator.dropshelf.over{
+	background: #b4e1e6;
+}
+
+
+/** Report Data */
+/*
+  the data inside the various grids in the report. 
+*/
+.report .data {
+	padding: 5px;
+}
+
+.report .section {
+	width: 345px;
+	float: left;
+	margin-right: 15px;
+	margin: 0 25px 0px 0;
+}
+
+.report .stack li {
+	margin-bottom: 25px;
+}
+
+/*
+   nested sections.  sooner or later you'll be able to use this. its semantic.
+   http://www.w3schools.com/html5/tag_section.asp
+ 
+   or use the HTML5 script for IE, all the other browsers already support it. 
+   http://remysharp.com/2009/01/07/html5-enabling-script/
+*/
+.report .section .section {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+/*
+    like a table row.  
+*/
+.report .data .row {
+	border:   1px solid #fff;
+	padding:  3px 0;
+	float: left;
+	width: 100%;
+	clear: both;
+	margin: 1px 0;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-khtml-border-radius: 15px;
+}
+
+.report .data .in-numerator {
+	background-color: #eaf4d8;
+	border: 1px solid #95c83d;
+}
+
+.report .data .in-denominator {
+	background-color: #ecfbfc;
+	border: 1px solid #44B3c0;
+}
+
+/*
+   the columns in the table row
+*/
+.report .data h4 span, 
+.report .data .row div {
+	display: block;
+	float: left;
+}
+
+.report .data .row .label{
+	margin-left: 5px;
+}
+
+.report .data h4 .percentage {
+	margin-left: 5px;
+}
+
+.report .data .label {
+	width: 140px;
+	margin-right: 10px;
+}
+
+.report .data .percentage, 
+.report .data .number {
+	text-align:     right;
+	margin-right:   10px;
+}
+
+.report .data .percentage {
+	width: 25px;
+}
+
+.report .data .number {
+	width: 25px;
+}
+
+.report .data .draggable-value:hover{
+	background: #f1f1f1;
+	border: 1px solid #ccc;
+	cursor: move;
+}
+
+.boom {
+  float:    right;
+  z-index:  200;
+  position: relative;
+	top: -450px;
+}
+
+/** Bars */
+/*
+  the graphical bars used in the report. 
+*/
+.report .data .bar {
+	position: relative;
+	width: 100px;
+	height: 11px;
+	top: 0px;
+}
+
+.report .data .bar span {
+	position: absolute;
+}
+
+.report .data .bar .selected {
+	height: 100%;
+	background: #231f20;
+	z-index: 1;
+}
+
+.report .data .bar .total {
+	height: 100%;
+}
+
+
+/** Name edit */
+/*
+    the editable portion of the name of the report. 
+*/
+span.name-edit{
+  margin-bottom: 20px;
+}
+
+span.name-edit a, span.name-edit input{
+  margin-right: 10px;
+}
+
+/** Breadcrumbs */ 
+/*
+    used inside the top navigation bar inside the #main div
+*/
+.breadcrumbs{
+  list-style: none;
+  padding:    5px 0 5px 15px;
+  margin:     0 0 15px 0;
+  background:     url('../../images/darkgradient.png') center;
+  border-bottom:  1px solid #ccc;
+  font-weight:    bold;
+  font-size:      1.1em;
+}
+
+.breadcrumbs li{
+  margin-right:   5px;
+  padding:        5px;
+  display:        inline;
+}
+
+/** Sections */
+/*
+   used on the patient list and hrecord pages, changes how sections are used.
+*/
+.content .section, .content section {
+    clear: both;
+    margin-bottom: 10px;
+    float: left;
+	width: 100%;
+}
+
+/*
+   use css to transform the text to uppercase.  
+*/
+.section .column h2, 
+section .column h2 {
+	text-transform: uppercase;
+	color: #ccc;
+	font-weight: bold;
+	font-size: 130%;
+	border-bottom: 1px solid #ccc;
+}
+
+.column {
+	float: left;
+	width: 360px;
+	margin: 5px;
+}
+
+.column .stack, .column p {
+	margin-top: 5px;
+}
+
+
+/** Lists */
+/*
+    unordered lists are used as a way to semantically stack items vertically or horizontally in lists or
+    rows, or as columns.  
+
+    .stack tells the ul that it will be used as stack. 
+
+    these lists are mainly in the hrecord view.  
+*/
+.stack, .data {
+	list-style-type: none;
+	display: block;
+	overflow: visible;
+	margin: 0;
+	padding: 0;
+	clear: both;
+}
+
+.stack label {
+	color: #ccc;
+	float: left;
+	display: block;
+	width: 100%;
+	text-transform: capitalize;
+}
+
+.stack li,
+.stack ul.data li {
+	display: block;
+	float: left;
+	clear: both;
+	padding:4px 0px; 
+}
+
+.column .stack ul.data ul {
+	margin: 0;
+}
+
+.column p {
+	padding:4px 0px; 
+}
+
+.column .stack, .column table, .column p  {
+	margin-top: 10px;
+}
+
+/*
+
+    stats,
+    contact-information,
+    insurance 
+
+    these are all stacked horizontally like columns.  
+*/
+.stack.stats li,
+.stack.contact-information li,
+.stack.insurance li {
+	clear: none;
+	margin: 5px 5px;
+	width: auto;
+}
+
+.stack.stats .data li,
+.stack.contact-information .data li,
+.stack.insurance .data li {
+	margin: 1px 0px;
+	width: 100%;
+}
+
+
+/** Stats List */
+.stack.stats li {
+	width: 70px;
+}
+
+.stack.stats .age {
+	width: 40px;
+}
+
+.stats.stats .gender {
+	width: 50px;
+}
+
+.stack.stats .weight {
+	margin-left: 30px;
+}
+
+.stack.stats .date-of-birth {
+	width: 125px;
+	margin-left: 85px;
+}
+
+.stack.stats .blood-pressure {
+	width: 100px;
+}
+
+
+
+/** Contact Info List */
+.stack.contact-information .phone-numbers {
+	width: 180px;
+}
+
+.stack.contact-information .address {
+	width: 150px;
+}
+
+.stack.contact-information .email {
+	width: 340px;
+}
+
+
+
+/** Insurance List */
+.stack.insurance .provider {
+	width: 340px;
+}
+
+.stack.insurance .group-number {
+	width: 200px;
+}
+
+.stack.insurance {
+	margin-bottom: 25px;
+	clear: both;
+	float: left;
+}
+
+
+/** Conditions */ 
+/*
+   currently in the static html the conditions have the description to go along with the 
+   term for the condition.  however the database looks at it currently does not support this.
+
+   in the meantime, we're using a dl (definition list) so that it will define terms once that
+   information is in the database.  
+
+   then align the conditions using a stack list.  
+*/
+.conditions dl {
+	float: left;
+	display: block;
+	width: 250px;
+	margin-right: 10px;
+}
+
+.conditions .stack li {
+	width: 100%;
+}
+
+.conditions .stack ul {
+	display: block;
+	clear: none;
+	float: right;
+	width: 100px;
+}
+.condition ul.data li {
+	padding: 0px;
+}
+
+
+/** Grid */
+table {
+	margin-bottom:1.4em;
+	width:100%;
+}
+
+th {
+	font-weight: bold;
+}
+
+thead th {
+	background:#c3d9ff;
+}
+
+th, td, caption {
+	padding:4px 10px 4px 5px; 
+	text-align: left;
+}
+
+tbody tr:hover td, tbody tr.alt:hover td {
+	background: #eaf4d8;
+}
+
+caption {
+	background:#eee; 
+	line-height: 2em;
+}
+
+caption .title {
+	float: left;
+	display: block;
+	margin-right: 10px;
+}
+
+/** Table Pagination */
+table .pagination {
+	overflow: hidden;
+	float: right;
+	width: 650px;
+	line-height: 2em;
+}
+
+table .pagination a, 
+table .pagination span,
+table .pagination label, 
+table .pagination input,
+table .pagination select {
+	float: left;
+	display: block;
+}
+
+table .pagination span,
+table .pagination a,
+table .pagination label {
+	margin: 0 5px;
+}
+
+table .pagination form {
+	display: inline;
+	float: left;
+}
+
+table .pagination .current-page {
+	margin: 0px 10px;
+}
+
+table .pagination .current-page input,
+table .pagination .page-size input,
+table .pagination .page-size select  {
+	margin: 0 5px;
+	padding: 0;
+	vertical-align: middle;
+}
+
+table .pagination .current-page .count {
+	display: inline;
+	float: none;
+}
+
+table .pagination .page-size {
+	float: right;
+}
+
+tbody.tablecontent {
+  overflow-x: hidden;
+}
+
+tr.alt td {
+  background-color: #efefef;
+}
+
+table {
+  margin-bottom:0;
+}
+
+
+/*
+   this came over while pulling the code from c# grid that I had written, this can be replaced when its fixed
+   in the lib/ui/grid.rb file.  
+*/
+.midori-bind-grid th { 
+	border: 1px solid #d3d3d3; 
+	background: #e6e6e6 url(../smoothness/images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x; 
+	font-weight: normal; 
+	color: #555; 
+	outline: none; 
+	text-transform: capitalize;
+}
+
+/*
+   adding the class .simple to a grid should remove the caption, remove the background for the 
+   headers and borders.   
+*/
+
+
+
+.simple caption {
+	display: none;
+}
+
+.simple th {
+	border: none;
+	background: transparent;
+}
+
+.simple td, 
+.simple th {
+	padding-left: 0px;
+}
