@@ -34,7 +34,7 @@
 							#percentage = ratio * 100
 							%>
 						<li class="report<%= @report_id == item.id.to_s ? " selected" : "" %>">
-							<a href="/popconnect/report/<%= item.id %>">
+							<a href="/pophealth/report/<%= item.id %>">
 								<span class="name"><%= item.title %></span>
 								<span class="percentage"><%= ratio.round.to_s%>%</span>
 							</a>

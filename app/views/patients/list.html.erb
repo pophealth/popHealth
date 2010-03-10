@@ -7,7 +7,7 @@
 	<li>&#62;</li>
 	<li>Patients</li>
 </ul>
-<%= grid(@list, :name => "patients").page(:url => page_url, :bottom => false, :top => true, :params => {:report_id => @report_id }).columns { |g|
+<%= grid(@list, :name => "patients").page(:url => page_url, :bottom => false, :outside => true, :params => {:report_id => @report_id }).columns { |g|
 	   	g.column :name, :format => lambda { |value,item, return_url | return "<a href=\"#{show_url}&amp;return=#{ CGI.escape(return_url)}\">#{value}</a>".sub(/\:\bid\b/, item.id.to_s)  }
 	   	g.column :pregnant
 		g.column "registration_information.date_of_birth"
