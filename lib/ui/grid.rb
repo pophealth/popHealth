@@ -99,6 +99,14 @@ module UI
         attributes << " #{k}=\"#{v}\""
       end
       
+      if !@empty_action && @data.length > 0
+        if @page_action[:outside]
+          output << "#{@tab}<div id=\"#{@name}-pagination\">"
+          output << render_pagination
+          output << "</div>"
+        end
+      end
+      
       output << "#{@tab}<div id=\"#{@name}\" #{attributes}>"
       
       if @empty_action && @data.length == 0
@@ -332,6 +340,7 @@ module UI
           output << "<option value=\"#{row}\"#{selected}>#{row}</option>"
         end
         output << "</select><input type=\"submit\" value=\"change\"></div></form>"
+        output << "</div>"
         return output
       end
     
