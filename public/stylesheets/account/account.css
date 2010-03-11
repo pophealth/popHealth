@@ -2,11 +2,13 @@
 
 body, form {
 	background: #fafafa;
+	font-family: Helvetica, Arial, sans-serif;
 }
 
 label {
 	color: #888;
 	font-weight: normal;
+	font-family: Helvetica, Arial, sans-serif;
 }
 
 input {
