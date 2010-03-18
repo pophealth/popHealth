@@ -63,7 +63,7 @@ class ReportsController < ApplicationController
   end
 
   private
-  
+
   def load_report_data(report_parameters, resp = {}, patient_count = 0)
 
     resp[:count] = patient_count
@@ -77,7 +77,6 @@ class ReportsController < ApplicationController
       }  
       resp[field.symbol] = bar_lengths
     }
-
     resp
   end
   
