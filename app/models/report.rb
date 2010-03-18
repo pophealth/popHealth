@@ -1,6 +1,16 @@
 class Report < ActiveRecord::Base
   
   attr_accessor :numerator_request
+  
+  @@patient_count = Patient.count_by_sql("select count(distinct patients.id) from patients").to_i
+  @@male = Gender.find_by_code('M')
+  @@female = Gender.find_by_code('F')
+  @@tobacco_use_and_exposure = SocialHistoryType.find_by_name("Tobacco use and exposure")
+  @@valid_parameters = [:gender, :age, :medications, :blood_pressures, 
+                         :therapies, :diabetes, :smoking, :hypertension, 
+                         :ischemic_vascular_disease, :lipoid_disorder, 
+                         :ldl_cholesterol, :colorectal_cancer_screening,
+                         :mammography, :influenza_vaccine, :hb_a1c]
 
   def numerator_query=(val)
     @numerator_query = val
@@ -41,7 +51,7 @@ class Report < ActiveRecord::Base
   end
   
   def self.create_and_populate(params)
-    load_static_content
+    reload_static_content
     
     if params[:id].blank? && (params[:numerator].present? || params[:denominator].present? || params[:title].present?)
       report = Report.new
@@ -81,7 +91,7 @@ class Report < ActiveRecord::Base
   
   def self.all_and_populate(options = {})
     reports = all(options)
-    load_static_content
+    reload_static_content
     reports.each do |item|
        item.denominator = (count_patients(item.denominator_query))
         # only run the numerator query if there are any fields provided
@@ -98,16 +108,8 @@ class Report < ActiveRecord::Base
   end
   
   
-  def self.load_static_content
+  def self.reload_static_content
     @@patient_count = Patient.count_by_sql("select count(distinct patients.id) from patients").to_i
-    @@male = Gender.find_by_code('M')
-    @@female = Gender.find_by_code('F')
-    @@tobacco_use_and_exposure = SocialHistoryType.find_by_name("Tobacco use and exposure")
-    @@valid_parameters = [:gender, :age, :medications, :blood_pressures, 
-                           :therapies, :diabetes, :smoking, :hypertension, 
-                           :ischemic_vascular_disease, :lipoid_disorder, 
-                           :ldl_cholesterol, :colorectal_cancer_screening,
-                           :mammography, :influenza_vaccine, :hb_a1c]
   end
   
   def self.find_and_populate(id)
@@ -117,7 +119,7 @@ class Report < ActiveRecord::Base
       return nil
     end
     
-    load_static_content
+    reload_static_content
     
     report.denominator = (count_patients(report.denominator_query))
       # only run the numerator query if there are any fields provided
@@ -160,10 +162,11 @@ class Report < ActiveRecord::Base
   
   def self.count_patients(report_request, load = false)
     if load
-      load_static_content
+      reload_static_content
     end
     Patient.count_by_sql(generate_population_query(report_request))
   end
+  
    # this merge is a little bit specialized, since it will do a careful merge of the values in
    # the hashs' arrays, where there will be no duplicate entries in the arrays, and no entries
    # will be deleted with the merge

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091015151118) do
+ActiveRecord::Schema.define(:version => 20100301162247) do
 
   create_table "abstract_results", :force => true do |t|
     t.string  "result_id"
@@ -182,6 +182,15 @@ ActiveRecord::Schema.define(:version => 20091015151118) do
     t.string "name"
     t.string "code"
     t.string "hierarchy"
+  end
+
+  create_table "field_configurations", :force => true do |t|
+    t.string "name"
+    t.string "ccd_module"
+    t.string "module_field"
+    t.string "codes"
+    t.string "bins"
+    t.string "symbol"
   end
 
   create_table "genders", :force => true do |t|
