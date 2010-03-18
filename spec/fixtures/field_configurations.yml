@@ -1,0 +1,118 @@
+gender:
+  name: Gender
+  ccd_module: registration_information
+  module_field: gender
+  codes: M;F
+  bins: Male;Female
+  symbol: gender
+
+age:
+  name: Age
+  ccd_module: registration_information
+  bins: <18;18-30;30-40;40-50;50-60;60-70;70-80;80+
+  symbol: age
+
+diabetes:
+  name: Diabetes
+  ccd_module: conditions
+  module_field: free_text_name  
+  codes: Diabetes mellitus%
+  bins: Yes;No
+  symbol: diabetes
+
+hypertension:
+  name: Hypertension
+  ccd_module: conditions
+  module_field: free_text_name 
+  codes: %hypertension disorder%;%Hypertensive disorder%
+  bins: Yes;No
+  symbol: hypertension
+  
+ischemia:
+  name: Ischemic Vascular Disease
+  ccd_module: conditions
+  module_field: free_text_name 
+  codes: Ischemia %
+  bins: Yes;No
+  symbol: ischemic_vascular_disease
+
+lipoid_disorder:
+  name: Lipoid Disorder
+  ccd_module: conditions
+  module_field: free_text_name 
+  codes: Hyperlipoproteinemia %
+  bins: Yes;No
+  symbol: lipoid_disorder
+
+ldl_chol:
+  name: LDL Cholesterol (mg/dL)
+  ccd_module: abstract_results
+  module_field: result_code 
+  codes: 18261-8
+  bins: 100;100-120;130-160;160-180;180+
+  symbol: ldl_cholesterol
+
+hemoglobin:
+  name: Hemoglobin A1c (%)
+  ccd_module: abstract_results
+  module_field: result_code 
+  codes: 54039-3
+  bins: <7;7-8;8-9;9+
+  symbol: hb_a1c
+
+blood_pressure:
+  name: Blood Pressure
+  ccd_module: abstract_results
+  module_field: result_code 
+  codes: 8462-4
+  bins: 110/70;120/80;140/90;160/100;180/110+
+  symbol: blood_pressure
+
+aspirin:
+  name: Aspirin
+  ccd_module: medications
+  module_field: product_code 
+  codes: R16CO5Y76E
+  bins: Aspirin
+  symbol: medications
+
+smoking_cess:
+  name: Smoking Cessation
+  ccd_module: social_history
+  module_field: social_history_type; name
+  codes: Tobacco use and exposure
+  bins: Smoking Cessation
+  symbol: therapies
+
+smoker:
+  name: Smoking
+  ccd_module: conditions
+  module_field: free_text_name 
+  codes: Smoker %
+  bins: Current Smoker; Non-Smoker
+  symbol: smoking
+
+flu_vaccine:
+  name: Influenza
+  ccd_module: immunizations
+  module_field: vaccines; name
+  codes: Influenza Virus Vaccine%
+  bins: Yes;No
+  symbol: influenza_vaccine
+
+mammography:
+  name: Mammography
+  ccd_module: conditions
+  module_field: free_text_name 
+  codes: Mammograph%
+  bins: Yes;No
+  symbol: mammography
+
+colon_cancer:
+  name: Colon Cancer Screening
+  ccd_module: abstract_results
+  module_field: result_code 
+  codes: 54047-6
+  bins: Yes;No
+  symbol: colorectal_cancer_screening
+  
