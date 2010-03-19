@@ -164,7 +164,11 @@ class Report < ActiveRecord::Base
     if load
       reload_static_content
     end
-    Patient.count_by_sql(generate_population_query(report_request))
+    patient_count_with_ids(report_request).size
+  end
+  
+  def self.patient_count_with_ids(report_request)
+    ActiveRecord::Base.connection.select_values(generate_population_query(report_request))
   end
   
    # this merge is a little bit specialized, since it will do a careful merge of the values in
@@ -197,7 +201,7 @@ class Report < ActiveRecord::Base
    end
    
    
-   def self.generate_population_query(request, prepend_sql = "SELECT COUNT( DISTINCT patients.id ) FROM patients ")
+   def self.generate_population_query(request, prepend_sql = "SELECT DISTINCT patients.id FROM patients ")
      population_query = prepend_sql
      population_query = population_query + generate_from_sql(request, generate_new_join_table_hash_status())
      population_query = population_query + generate_where_sql(request, generate_new_join_table_hash_status())

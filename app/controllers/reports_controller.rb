@@ -16,10 +16,10 @@ class ReportsController < ApplicationController
             @report.save!
             resp = {}
             resp = @report.to_json_hash
-            load_report_data(@report.numerator_query, resp, Report.patient_count)
+            load_report_data(Report.merge_popconnect_request(@report.denominator_query, @report.numerator_query), resp)
             response = resp.to_json
-      rescue => e
-        response = "#{e}".to_json
+      #rescue => e
+      #  response = "#{e}".to_json
       end
        render :json => response
     else
@@ -33,8 +33,8 @@ class ReportsController < ApplicationController
           "reports" => @reports
         }
         response = resp.to_json
-      rescue => e
-        response = "#{e}".to_json
+      #rescue => e
+      #  response = "#{e}".to_json
       end
       render :json => response
     end
@@ -42,17 +42,15 @@ class ReportsController < ApplicationController
 
   # POST /reports
   def create
-
     resp = {}
-    
     response = ""
     begin
      @report = Report.create_and_populate(params) 
      resp = @report.to_json_hash
-     resp = load_report_data(@report.numerator_query, resp, Report.patient_count)
+     resp = load_report_data(Report.merge_popconnect_request(@report.denominator_query, @report.numerator_query), resp)
      response = resp.to_json
-    rescue => e
-      response = "#{e}".to_json
+    #rescue => e
+    #  response = "#{e}".to_json
     end
     render :json => response
   end
@@ -63,17 +61,15 @@ class ReportsController < ApplicationController
   end
 
   private
-
-  def load_report_data(report_parameters, resp = {}, patient_count = 0)
-
-    resp[:count] = patient_count
-
+  
+  def load_report_data(report_parameters, resp = {})
+    resp[:count] = Report.patient_count
+    report_id_array = Report.patient_count_with_ids(report_parameters)
     FieldConfiguration.find(:all).each { |field|
-      
       bar_lengths = Hash.new
-      
       0.upto(field.bins.length - 1) { |i|
-        bar_lengths[field.bins[i]] = [i, patient_count] #Report.count_patients(field.bin_hashes[i])
+        bar_lengths[field.bins[i]] = [ReportDataCalculator.get_bar_length(field.symbol, i, report_id_array), 
+                                      ReportDataCalculator.get_bar_length(field.symbol, i)] 
       }  
       resp[field.symbol] = bar_lengths
     }

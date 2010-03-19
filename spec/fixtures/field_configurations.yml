@@ -66,7 +66,7 @@ blood_pressure:
   module_field: result_code 
   codes: 8462-4
   bins: 110/70;120/80;140/90;160/100;180/110+
-  symbol: blood_pressure
+  symbol: blood_pressures
 
 aspirin:
   name: Aspirin
@@ -89,7 +89,7 @@ smoker:
   ccd_module: conditions
   module_field: free_text_name 
   codes: Smoker %
-  bins: Current Smoker; Non-Smoker
+  bins: Current Smoker;Non-Smoker
   symbol: smoking
 
 flu_vaccine:
