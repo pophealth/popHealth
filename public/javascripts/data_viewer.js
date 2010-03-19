@@ -219,6 +219,7 @@ popConnect.DataViewer = function(element, options) {
           span.draggable({
             revert: true,
             helper: 'clone',
+						appendTo: "#main",
             opacity: 0.80,
             start: function() {
               that.currentlyDraggedSubsection = cds;
@@ -240,7 +241,8 @@ popConnect.DataViewer = function(element, options) {
     $(dataDefinition.sort).each(function(i, currentSection) {
       $(dataDefinition.types[currentSection].sort).each(function(i, subsection) {
         $(dataDefinition.types[currentSection].types[subsection].sort).each(function(i, value) {
-          if(data[subsection][value][1] > highestPopulationCount) {
+          console.log(' ' + subsection)
+					if(data[subsection][value][1] > highestPopulationCount) {
             highestPopulationCount = data[subsection][value][1];
           }
         });
@@ -279,6 +281,7 @@ popConnect.DataViewer = function(element, options) {
               $(value).draggable({
                 revert: true,
                 helper: 'clone',
+								appendTo: '#main',
                 opacity: 0.80,
                 start: function(evt, ui) {
                   that.currentlyDraggedSubsection = currentType;
