@@ -16,4 +16,19 @@ class FieldConfiguration < ActiveRecord::Base
     @symbol ||= self[:symbol].intern
   end
   
+  def yes_no_bins?
+    bins.include? "Yes" || symbol == :smoking
+  end
+  
+  def from_table
+    table = self[:ccd_module].downcase 
+    if table == "results" || table == "vital signs"
+      "abstract_results"
+    elsif table == "immunizations"
+      "immunizations, vaccines"
+    else
+      table
+    end
+  end
+  
 end

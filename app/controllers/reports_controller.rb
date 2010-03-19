@@ -33,8 +33,8 @@ class ReportsController < ApplicationController
           "reports" => @reports
         }
         response = resp.to_json
-      #rescue => e
-      #  response = "#{e}".to_json
+      rescue => e
+        response = "#{e}".to_json
       end
       render :json => response
     end
@@ -49,8 +49,8 @@ class ReportsController < ApplicationController
      resp = @report.to_json_hash
      resp = load_report_data(Report.merge_popconnect_request(@report.denominator_query, @report.numerator_query), resp)
      response = resp.to_json
-    #rescue => e
-    #  response = "#{e}".to_json
+    rescue => e
+      response = "#{e}".to_json
     end
     render :json => response
   end

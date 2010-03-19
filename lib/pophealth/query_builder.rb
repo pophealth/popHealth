@@ -12,9 +12,25 @@ module QueryBuilder
 
   private
 
-  def generate_from(from_tables)
+  def self.generate_from_sql(request)
+     from_sql = ""
 
-  end
+     fields = FieldConfiguration.find(:all)
+     
+     fields.each { |field|
+       if request.has_key?(field.symbol) && !from_sql.include?(field.from_table)
+         if field.yes_no_bins? 
+           if request[field.symbol].include?("Yes") || request[field.symbol].include?("Current Smoker")
+             from_sql = from_sql + ", " + field.from_table
+           end
+         else
+           from_sql = from_sql + ", " + field.from_table 
+         end
+       end
+     }
+
+     from_sql
+   end
 
   def generate_where_sql(table_name, column_name, codes, bin)
     where_sql = "" #part of above loop
