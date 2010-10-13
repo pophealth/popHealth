@@ -1,1 +1,0 @@
-page.remove "medical_equipment#{params[:id]}"

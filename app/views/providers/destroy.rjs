@@ -1,1 +1,0 @@
-page.remove "provider#{params[:id]}"

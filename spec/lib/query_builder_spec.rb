@@ -1,3 +1,0 @@
-describe QueryBuilder do
-  
-end

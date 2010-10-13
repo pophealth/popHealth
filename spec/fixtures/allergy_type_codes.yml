@@ -1,7 +1,0 @@
-allergy:
-  name: Allergy
-  code: 106190000
-  
-adverse_reaction:
-  name: Adverse Reaction
-  code: 281647001

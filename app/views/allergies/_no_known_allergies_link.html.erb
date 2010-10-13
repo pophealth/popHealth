@@ -1,9 +1,0 @@
- <table>
-     <tr class="<%= cycle("darkzebra", "lightzebra")%>">
-       <td></td>
-        <td>
-        <%= link_to_remote 'Set no known allergies', :url => set_no_known_allergies_patient_url(patient),
-                                                                  :method => 'post', :update => 'allergiesAndDrugsContainer' %>
-         </td>
-     </tr>
-</table>
