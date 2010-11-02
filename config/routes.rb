@@ -1,4 +1,10 @@
 PopHealth::Application.routes.draw do
+  #get 'measures/result'
+  match 'measures/result/:id', :to => 'measures#result'  
+
+  #get 'measures/definition'
+  match 'measures/definition/:id', :to => 'measures#definition'  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

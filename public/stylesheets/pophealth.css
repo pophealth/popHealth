@@ -1,0 +1,251 @@
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header, hgroup, nav, section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+}
+article, aside, dialog, figure, footer, header, hgroup, nav, section { display: block; }
+body { line-height: 1.5; }
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+}
+table, td, th { vertical-align: middle; }
+blockquote:before { content: ""; }
+blockquote:after { content: ""; }
+q:before { content: ""; }
+q:after { content: ""; }
+blockquote, q { quotes: "" ""; }
+a img { border: none; }
+body { width: 100%; }
+#container {
+  font-family: "Myriad Pro", "Frutiger", Helvetica, Arial;
+  font-size: 0.9em;
+  width: 1000px;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+#header {
+  background: #f4f4f4;
+  background: -moz-linear-gradient(top, #f8f8f8, #f0f0f0);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f8f8f8), color-stop(100%, #f0f0f0));
+  width: 100%;
+}
+#header a:hover { text-decoration: underline; }
+#header ul {
+  list-style: none;
+  margin-left: 115px;
+}
+#header ul li { float: left; }
+#header ul li .sep { margin: 0 5px; }
+#breadcrumbBox {
+  padding: 5px 0 5px 0;
+  border-bottom: 1px solid #cccccc;
+  background: transparent url(../images/popHealthMiniLogo.png) 0 10% no-repeat;
+}
+#measureTitle {
+  padding: 10px 25px;
+  color: #373737;
+}
+#measureTitle h1 {
+  font-size: 1.5em;
+  margin: 5px 0 0 0;
+}
+#measureTitle h2 {
+  font-size: 1em;
+  margin-top: 20px;
+}
+#measureTitle h2 span.subconditionsPhrase {
+  font-weight: bold;
+  font-style: italic;
+}
+#measureCtrl {
+  width: 370px;
+  float: right;
+}
+#measureCtrl #mcp {
+  font-size: 1.5em;
+  line-height: 2em;
+  margin-bottom: 20px;
+}
+#measureCtrl input {
+  background-color: #dddddd;
+  border: 1px solid #dddddd;
+  padding: 6px 8px 8px 8px;
+  margin-right: 10px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+.bar {
+  margin-top: 5px;
+  background-color: #dddddd;
+  width: 320px;
+  line-height: 1.5em;
+}
+.barVal {
+  background-color: #000000;
+  height: 100%;
+  color: #eeeeee;
+}
+.barVal span { margin: 3px 0 0 5px; }
+#measurementPeriod {
+  padding: 20px 0 10px 0;
+  color: #646464;
+}
+#measurementPeriod input {
+  padding: 5px 30px 5px 2px;
+  border: 1px solid #cccccc;
+  color: #666666;
+  font-size: 0.9em;
+  background: transparent url(../images/icnMiniCalendar.png) 98% 50% no-repeat;
+}
+#measurementPeriod span { margin: 10px; }
+.measureBox { padding: 10px; }
+#measureEditContainer { border-top: 1px solid #e9e9e9; }
+#measureEditContainer .paramGroupContainer { xborder: 1px solid red; }
+#measureEditContainer .paramGroup {
+  margin: 10px 0 20px 20px;
+  -webkit-box-shadow: -2px -2px 2px #aaaaaa;
+  -moz-box-shadow: -2px -2px 2px #aaaaaa;
+  box-shadow: -2px -2px 2px #aaaaaa;
+  padding: 5px;
+  display: table;
+}
+#measureEditContainer .paramGroupToggle { margin: 10px 0 5px 0; }
+#measureEditContainer .paramItem {
+  background-color: white;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  padding: 5px;
+  display: table;
+}
+#measureEditContainer .paramItem .paramBar {
+  margin-left: 5px;
+  background-color: #dddddd;
+  width: 100px;
+  display: inline-block;
+}
+#measureEditContainer .paramItem .paramBarVal {
+  background-color: #333333;
+  color: #eeeeee;
+  height: 100%;
+  padding-left: 0px;
+  font-size: 0.95em;
+  position: relative;
+}
+#measureEditContainer .paramItem .paramBarVal span { margin-left: 5px; }
+#measureEditContainer .paramItem .paramBarVal span.short {
+  position: relative;
+  right: -100%;
+  color: #000000;
+}
+#measureEditContainer .paramItem h4 { color: #999999; }
+.exclusionTab {
+  font-size: 0.9em;
+  background: url(../images/bkgExclusionsTab.png) 100% 50% no-repeat;
+  width: 120px;
+  padding: 5px 20px 1px 5px;
+  color: #646464;
+  text-transform: uppercase;
+}
+#eligibilityMeasures {
+  width: 365px;
+  display: table-cell;
+}
+#eligibilityMeasures h3 {
+  font-size: 1.5em;
+  padding: 0 10px;
+  background-color: #eafcff;
+}
+#eligibilityMeasures .paramGroup { background-color: #a4d9dd; }
+#eligibilityMeasures .paramGroup .paramGroup {
+  background-color: #51b2bc;
+  -webkit-box-shadow: -2px -2px 2px #477c81;
+  -moz-box-shadow: -2px -2px 2px #477c81;
+  box-shadow: -2px -2px 2px #477c81;
+  width: auto;
+}
+#eligibilityMeasures .paramGroup .paramGroup .paramGroup {
+  background-color: #37696e;
+  -webkit-box-shadow: -2px -2px 2px #264e51;
+  -moz-box-shadow: -2px -2px 2px #264e51;
+  box-shadow: -2px -2px 2px #264e51;
+}
+#outcomeMeasures {
+  width: 365px;
+  xfloat: right;
+  display: table-cell;
+  border-left: 1px solid #e9e9e9;
+}
+#outcomeMeasures h3 {
+  font-size: 1.5em;
+  padding: 0 10px;
+  background-color: #e9f4d9;
+}
+#outcomeMeasures .paramGroup { background-color: #cfe1a5; }
+#outcomeMeasures .paramGroup .paramGroup {
+  background-color: #9db26d;
+  -webkit-box-shadow: -2px -2px 2px #717f4f;
+  -moz-box-shadow: -2px -2px 2px #717f4f;
+  box-shadow: -2px -2px 2px #717f4f;
+  width: auto;
+}
+#outcomeMeasures .paramGroup .paramGroup .paramGroup {
+  background-color: #68822c;
+  -webkit-box-shadow: -2px -2px 2px #475527;
+  -moz-box-shadow: -2px -2px 2px #475527;
+  box-shadow: -2px -2px 2px #475527;
+}
+#parameterList {
+  display: table-cell;
+  width: 260px;
+  background-color: #353535;
+  color: #eeeeee;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+#parameterList div.icons { height: 29px; }
+#parameterList div.icons img { margin-right: 5px; }
+#parameterList h3 { line-height: 2em; }
+#parameterList .paramList {
+  background-color: #f2f2f2;
+  color: #333333;
+  margin: 5px 0;
+  padding: 10px 5px;
+}
+#parameterList .paramList p {
+  color: #666666;
+  line-height: 1.2em;
+}
+#parameterList .paramList ul {
+  margin: 10px 5px;
+  list-style: none;
+}
+#parameterList .paramList ul label {
+  padding-left: 15px;
+  background: url(../images/liClosed.png) 0 35% no-repeat;
+}
+#parameterList .paramList ul label.open { background: url(../images/liOpen.png) 0 35% no-repeat; }
+#parameterList div.paramItemList {
+  line-height: 1.2;
+  font-size: 0.9em;
+  border: 1px solid #dcdcdc;
+  background-color: white;
+}
+#parameterList div.paramItemList ul {
+  background-color: white;
+  margin: 5px;
+}

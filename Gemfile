@@ -1,11 +1,18 @@
-source 'http://rubygems.org'
+source 'http://gemcutter.org'
 
 gem 'rails', '3.0.1'
+
+group :test do
+  gem 'rspec-rails',      '>= 2.0.0.beta.22'
+end
+
+gem 'quality-measure-engine'
+gem 'therubyracer', :require => 'v8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3-ruby', :require => 'sqlite3'
+#gem 'sqlite3-ruby', :require => 'sqlite3'
 
 # Use unicorn as the web server
 # gem 'unicorn'

@@ -3,5 +3,12 @@
 
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
+#require 'rspec/core/rake_task'
 
 PopHealth::Application.load_tasks
+
+#RSpec::Core::RakeTask.new do |t|
+#  t.rspec_opts = ["-c", "-f progress", "-r ./spec/spec_helper.rb"]
+#  t.pattern = 'spec/**/*_spec.rb'
+#end
+
