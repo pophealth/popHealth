@@ -1,11 +1,10 @@
 GIT
   remote: http://github.com/pophealth/quality-measure-engine.git
-  revision: b90b3fc08e2194a6b2d8b899b5c61ff50e9ebc5f
+  revision: 98658c2b187d17dfa60c729ccf63ea83c78fa4e8
   branch: develop
   specs:
     quality-measure-engine (0.1.2)
       mongo (~> 1.1)
-      therubyracer (~> 0.7.5)
 
 GEM
   remote: http://gemcutter.org/
@@ -83,7 +82,6 @@ GEM
     rspec-mocks (2.1.0)
     rspec-rails (2.1.0)
       rspec (~> 2.1.0)
-    therubyracer (0.7.5)
     thor (0.14.4)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
@@ -96,4 +94,3 @@ DEPENDENCIES
   quality-measure-engine!
   rails (= 3.0.1)
   rspec-rails (>= 2.0.0.beta.22)
-  therubyracer
