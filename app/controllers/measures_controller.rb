@@ -1,5 +1,3 @@
-require 'v8'
-
 class MeasuresController < ApplicationController
   
   def index
