@@ -22,5 +22,13 @@ class MeasuresController < ApplicationController
     
     render :json => @definition
   end
+  
+  def dashboard
+    render 'dashboard'
+  end
+  
+  def measure
+    render 'measure'
+  end
 
 end

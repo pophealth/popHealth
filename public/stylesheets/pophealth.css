@@ -31,6 +31,11 @@ body { width: 100%; }
   font-size: 0.9em;
   width: 1000px;
 }
+#dashboardContainer {
+  font-family: "Myriad Pro", "Frutiger", Helvetica, Arial;
+  font-size: 0.9em;
+  width: 1225px;
+}
 a {
   color: black;
   text-decoration: none;
@@ -52,6 +57,15 @@ a {
   padding: 5px 0 5px 0;
   border-bottom: 1px solid #cccccc;
   background: transparent url(../images/popHealthMiniLogo.png) 0 10% no-repeat;
+}
+#logOut { padding: 5px 20px 0 0; }
+#logOut a {
+  float: right;
+  color: #44b3be;
+}
+#logOut a:hover {
+  text-decoration: none;
+  color: #368f98;
 }
 #measureTitle {
   padding: 10px 25px;
@@ -209,8 +223,8 @@ a {
   box-shadow: -2px -2px 2px #475527;
 }
 #parameterList {
-  display: table-cell;
   width: 260px;
+  display: table-cell;
   background-color: #353535;
   color: #eeeeee;
   padding-bottom: 5px;
@@ -248,4 +262,162 @@ a {
 #parameterList div.paramItemList ul {
   background-color: white;
   margin: 5px;
+}
+#providerReports {
+  display: table-cell;
+  width: 300px;
+  background-color: #f2f2f2;
+  color: #000000;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+#providerReports h3 {
+  padding: 0 0 0 10px;
+  font-size: 0.9em;
+}
+#providerReports h3.dashboardLabel {
+  color: #afafaf;
+  padding: 10px 0 0px 10px;
+  font-size: 1em;
+}
+#providerReports h3.numberPatients {
+  padding: 0 0 20px 10px;
+  font-size: 1em;
+}
+#providerReports h1 {
+  padding: 10px 0 10px 10px;
+  font-size: 1.4em;
+}
+#providerReports .measureList {
+  background-color: #f2f2f2;
+  color: #afafaf;
+  margin: 5px 0;
+  padding: 0 5px 10px 5px;
+  font-size: 0.9em;
+}
+#providerReports .measureList p {
+  color: #666666;
+  line-height: 1.2em;
+}
+#providerReports .measureList ul {
+  margin: 10px 5px;
+  list-style: none;
+}
+#providerReports .measureList ul label {
+  padding-left: 15px;
+  background: url(../images/liClosed.png) 0 35% no-repeat;
+}
+#providerReports .measureList ul label.open { background: url(../images/liOpen.png) 0 35% no-repeat; }
+#providerReports .measureItemList {
+  color: #000000;
+  line-height: 1.2;
+  font-size: 1.1em;
+  list-style: none;
+}
+#providerReports .measureItemList ul { margin: 5px; }
+#providerReports .measureItemList li {
+  padding: 5px 5px 5px 25px;
+  background: url(../images/smallcheckbox.png) 0 10% no-repeat;
+}
+#providerReports .measureItemList li.open { background: url(../images/smallcheckbox.png) 0 10% no-repeat; }
+#providerReports a {
+  padding: 0 0 0 10px;
+  color: #44b3be;
+}
+#providerReports a:hover {
+  text-decoration: none;
+  color: #368f98;
+}
+#dashboardPeriod {
+  display: table-cell;
+  width: 900px;
+  xfloat: right;
+}
+#dashboardPeriod p.dashboardLabel {
+  position: absolute;
+  width: 700px;
+  color: #afafaf;
+  float: left;
+  padding: 20px 20px 20px 40px;
+}
+#dashboardPeriod input.calendarInput {
+  height: 50px;
+  width: 100px;
+  position: relative;
+  padding-left: 50px;
+  margin: 0px 0px 5px 40px;
+  border: none;
+  color: #666666;
+  font-size: 0.9em;
+  background: transparent url(../images/calendar.png) 0% 50% no-repeat;
+}
+input.exportReport {
+  float: right;
+  color: #44b3be;
+  font-size: 1.4em;
+  background-color: #f2f2f2;
+  border: 1px solid #f2f2f2;
+  padding: 6px 8px 8px 8px;
+  margin-right: 10px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+#measureDetailTable {
+  display: block;
+  width: 900px;
+  padding: 0 10px 0 10px;
+}
+#measureDetailTable p { padding: 20px 0px 5px 5px; }
+#measureDetailTable th {
+  color: #646464;
+  padding: 0 0 0 5px;
+  border-bottom: 3px solid #646464;
+  font-size: 0.9em;
+}
+#measureDetailTable td {
+  padding: 40px 20px 5px 5px;
+  vertical-align: top;
+}
+#measureDetailTable tr { vertical-align: top; }
+#tableMeasureTitle { width: 225px; }
+#tableMeasureDescription { width: 275px; }
+#tableMeasureCtrl {
+  width: 350px;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+#tableMeasureCtrl .fraction {
+  float: left;
+  padding: 0 15px 0 0;
+}
+#tableMeasureCtrl .tableBar {
+  float: left;
+  margin-top: 5px;
+  background-color: #dddddd;
+  width: 150px;
+  padding: 0 5px 0 0;
+}
+#tableMeasureCtrl .tableBarVal {
+  background-color: #000000;
+  height: 100%;
+  color: #eeeeee;
+  padding: 0 5px 0 0;
+  font-size: 0.7em;
+}
+#tableMeasureCtrl .tableBarVal span { margin: 3px 0 0 5px; }
+#tableMeasureCtrl .tableEdit {
+  float: left;
+  margin-top: 5px;
+  font-size: 0.8em;
+}
+#tableMeasureCtrl a {
+  float: left;
+  padding: 0 0 0 10px;
+  color: #44b3be;
+}
+#tableMeasureCtrl a:hover {
+  text-decoration: none;
+  color: #368f98;
 }

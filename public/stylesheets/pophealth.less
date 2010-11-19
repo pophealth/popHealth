@@ -40,6 +40,9 @@ a img {border:none;}
 @barValueColor : #333;
 @barValueText : #eee;
 @barValueBkg : #ddd;
+@dashboardLabel : #AFAFAF;
+@dashboardText : #44B3BE;
+@tableText : #646464;
 
 @eligibilityParamGroup :#a4d9dd;
 @outcomeParamGroup : #cfe1a5;
@@ -50,6 +53,12 @@ body {width:100%}
 	font-family:"Myriad Pro","Frutiger",Helvetica,Arial;
 	font-size:0.9em;
 	width:1000px;
+}
+
+#dashboardContainer {
+	font-family:"Myriad Pro","Frutiger",Helvetica,Arial;
+	font-size:0.9em;
+	width:1225px;
 }
 
 a {color:black; 
@@ -80,10 +89,20 @@ a {color:black;
 #breadcrumbBox {
 	padding:5px 0 5px 0;
 	border-bottom:1px solid #ccc;
-	background:transparent url(img/popHealthMiniLogo.png) 0 10% no-repeat; 
+	background:transparent url(../images/popHealthMiniLogo.png) 0 10% no-repeat; 
 }
 
-
+#logOut {
+    padding:5px 20px 0 0;
+    a {
+       float: right;
+       color: @dashboardText;
+    }
+    a:hover {
+       text-decoration:none;
+       color:#368F98;
+    }
+}
 
 #measureTitle {
 	padding:10px 25px;
@@ -103,7 +122,6 @@ a {color:black;
 	}
 	
 }
-
 
 #measureCtrl {
 	width:370px;
@@ -151,7 +169,7 @@ a {color:black;
 		border:1px solid #ccc;
 		color:#666;
 		font-size:0.9em;
-		background:transparent url(img/icnMiniCalendar.png) 98% 50% no-repeat;
+		background:transparent url(../images/icnMiniCalendar.png) 98% 50% no-repeat;
 		}
 	span {margin:10px}
 	}
@@ -208,7 +226,7 @@ a {color:black;
 	}
 .exclusionTab {
 	font-size:0.9em;
-	background:url(img/bkgExclusionsTab.png) 100% 50% no-repeat;width:120px;padding:5px 20px 1px 5px;color:#646464;
+	background:url(../images/bkgExclusionsTab.png) 100% 50% no-repeat;width:120px;padding:5px 20px 1px 5px;color:#646464;
 	text-transform:uppercase;
 	}
 #eligibilityMeasures {
@@ -266,8 +284,8 @@ a {color:black;
 }
 
 #parameterList {
-	display:table-cell;
 	width:260px;
+	display:table-cell;
 	background-color:@parameterList;
 	color:@parameterListTitle;
 	padding-bottom:5px;
@@ -297,11 +315,11 @@ a {color:black;
 			list-style:none;
 			label {
 				padding-left:15px;
-				background:url(img/liClosed.png) 0 35% no-repeat;
+				background:url(../images/liClosed.png) 0 35% no-repeat;
 				
 			}
 			label.open {
-				background:url(img/liOpen.png) 0 35% no-repeat;
+				background:url(../images/liOpen.png) 0 35% no-repeat;
 			}
 		}
 	}
@@ -315,4 +333,198 @@ a {color:black;
 	}
 
 }
+
+#providerReports {
+	display:table-cell;
+	width:300px;
+	background-color:#F2F2F2;
+	color:#000000;
+	padding-bottom:5px;
+	padding-left:5px;
+	padding-right:5px;
+	h3 {
+	    padding: 0 0 0 10px;
+	    font-size:0.9em;
+	}
+    h3.dashboardLabel {
+		 color:@dashboardLabel;
+		 padding: 10px 0 0px 10px;
+		 font-size:1.0em;
+	}
+	h3.numberPatients {
+	    padding: 0 0 20px 10px;
+	    font-size:1.0em;
+	}
+	h1 {
+		padding: 10px 0 10px 10px;
+	    font-size:1.4em;
+	}
+
+	.measureList {
+		background-color:@paramList;
+		color:@dashboardLabel;
+		margin:5px 0;
+		padding:0 5px 10px 5px;
+		font-size:0.9em;
+		p {
+			color:#666;
+			line-height:1.2em;
+		}
+		ul {
+			margin:10px 5px;
+			list-style:none;
+			label {
+				padding-left:15px;
+				background:url(../images/liClosed.png) 0 35% no-repeat;
+				
+			}
+			label.open {
+				background:url(../images/liOpen.png) 0 35% no-repeat;
+			}
+		}
+	}
+	
+	.measureItemList {
+		color:#000000;
+		line-height:1.2;
+		font-size:1.1em;
+		ul {
+		    margin:5px;
+		}
+		list-style:none;
+		li {
+			padding: 5px 5px 5px 25px;
+			background:url(../images/smallcheckbox.png) 0 10% no-repeat;
+			
+		}
+		li.open {
+			background:url(../images/smallcheckbox.png) 0 10% no-repeat;
+		}
+	}
+	
+	a {
+	   padding: 0 0 0 10px;
+       color:#44B3BE;
+    }
+    a:hover {
+       text-decoration:none;
+       color:#368F98;
+    }
+}
+
+#dashboardPeriod {
+    display:table-cell;
+    width: 900px;
+    xfloat: right;
+	p.dashboardLabel {
+		position:absolute;
+		width: 700px;
+		color:@dashboardLabel;
+		float: left;
+		padding: 20px 20px 20px 40px;
+	}
+	input.calendarInput {
+	    height: 50px;
+	    width: 100px;
+		position: relative;
+		padding-left: 50px;
+		margin: 0px 0px 5px 40px;
+		border:none;
+		color:#666;
+		font-size:0.9em;
+		background:transparent url(../images/calendar.png) 0% 50% no-repeat;
+	}
+}
+	input.exportReport {
+		float: right;
+		color: @dashboardText;
+		font-size:1.4em;
+		background-color:#f2f2f2;
+		border:1px solid #f2f2f2;
+		padding:6px 8px 8px 8px;
+		margin-right:10px;
+		-moz-border-radius : 5px;
+		-webkit-border-radius: 5px;
+		border-radius :5px;
+	}
+	
+#measureDetailTable {
+	display: block;
+	width: 900px;
+	padding: 0 10px 0 10px;
+	p {
+		padding: 20px 0px 5px 5px;
+	}
+	th {
+		
+		color: @tableText;
+		padding: 0 0 0 5px;
+		border-bottom: 3px solid #646464;
+		font-size:0.9em;
+	}
+	td {
+		padding: 40px 20px 5px 5px;
+		vertical-align: top;
+	}
+	tr {
+		vertical-align: top;
+	}
+}
+
+#tableMeasureTitle {
+	width: 225px;
+}
+
+#tableMeasureDescription {
+	width: 275px;
+}
+
+#tableMeasureCtrl {
+	width:350px;
+	font-size: 1.0em;
+	margin-bottom:10px;
+	
+	.fraction {
+		float: left;
+		padding: 0 15px 0 0;
+	}
+	
+	.tableBar {
+		float: left;
+		margin-top:5px;
+		background-color:@measurePopulationChartBar;
+		width:150px;
+		padding: 0 5px 0 0;
+	}
+
+	.tableBarVal {
+		background-color:@measurePopulationChartValue;
+		height:100%;
+		color:@barValueText;
+		padding: 0 5px 0 0;
+		font-size: 0.7em;
+		span {
+			margin:3px 0 0 5px;
+			}
+	}
+	
+	.tableEdit {
+		float: left;
+		margin-top:5px;
+		font-size: 0.8em;
+	}
+	
+	a {
+		float: left;
+	   padding: 0 0 0 10px;
+       color:#44B3BE;
+    }
+
+    a:hover {
+       text-decoration:none;
+       color:#368F98;
+    }
+}
+
+
 
