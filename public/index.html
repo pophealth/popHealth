@@ -91,8 +91,9 @@ function llog(x) {window.console.log(x)}
 	}
 	
 	$(document).ready(function() {
-	//$.getJSON("/measures/definition/0032",popHealth.renderMeasureJSON);
-	$.getJSON("json/bp.json",popHealth.renderMeasureJSON);
+	
+	//$.getJSON("json/bp.json",popHealth.renderMeasureJSON);
+	$.getJSON("/measures/definition/0043",popHealth.renderMeasureJSON);
 	
 	// make the param list expand/collapse
 	$("#parameterClassList li label").click(function(){

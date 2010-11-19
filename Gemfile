@@ -6,8 +6,8 @@ group :test do
   gem 'rspec-rails',      '>= 2.0.0.beta.22'
 end
 
-gem 'quality-measure-engine'
-gem 'therubyracer', :require => 'v8'
+gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'develop'
+gem 'nokogiri'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
