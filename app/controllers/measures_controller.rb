@@ -5,15 +5,15 @@ class MeasuresController < ApplicationController
   end
     
   def result
-    executor = QME::MapReduce::Executor.new(MONGO_DB)
-    @result = executor.measure_result(params[:id], :effective_date=>Time.gm(2010, 9, 19).to_i)
+    executor = QME::MapReduce::Executor.new(mongo)
+    @result = executor.measure_result(params[:id], nil, :effective_date=>Time.gm(2010, 9, 19).to_i)
     
     render :json => @result
   end
 
   def definition
-    executor = QME::MapReduce::Executor.new(MONGO_DB)
-    @definition = executor.measure_def(params[:id])
+    executor = QME::MapReduce::Executor.new(mongo)
+    @definition = executor.measure_def(params[:id], nil)
     
     render :json => @definition
   end

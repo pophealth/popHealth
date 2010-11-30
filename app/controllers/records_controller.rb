@@ -6,7 +6,7 @@ class RecordsController < ApplicationController
     doc.root.add_namespace_definition('cda', 'urn:hl7-org:v3')
     patient = QME::Importer::PatientImporter.instance.parse_c32(doc)
     
-    MONGO_DB['records'] << patient
+    mongo['records'] << patient
     
     render :text => 'Patient imported', :status => 201
   end

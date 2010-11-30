@@ -7,3 +7,5 @@ if ENV['MONGOHQ_URL']
 else
   MONGO_DB = Mongo::Connection.new('localhost', 27017).db('test')
 end
+
+QME::MongoHelpers.initialize_javascript_frameworks(MONGO_DB)
