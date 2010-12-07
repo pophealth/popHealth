@@ -78,7 +78,7 @@ function llog(x) {window.console.log(x)}
 	$(document).ready(function() {
 	
 	//$.getJSON("json/bp.json",popHealth.renderMeasureJSON);
-	$.getJSON("/measures/definition/0043",popHealth.renderMeasureJSON);
+	$.getJSON("/measures/definition/<%= @definition['id'] %>",popHealth.renderMeasureJSON);
 	
 	// make the param list expand/collapse
 	$("#parameterClassList li label").click(function(){
@@ -160,7 +160,7 @@ function llog(x) {window.console.log(x)}
 		<div id="breadcrumbBox">
 			<ul id="breadcrumbItems">
 				<li><a href="#">44 Measures</a> <span class="sep">&raquo;</span></li>
-				<li><a href="#">Pneumonia Vaccination Status for Older Adults</a> <span class="sep">&raquo;</span></li>
+				<li><a href="#"><%= @definition['name'] %></a> <span class="sep">&raquo;</span></li>
 				<li><span>Edit Parameters</span></li>
 			</ul><br style="clear:both"/>
 		</div>
@@ -215,76 +215,6 @@ function llog(x) {window.console.log(x)}
 				</div>
 			</div><!-- end measureBox -->
 		</div><!-- end #outcomeMeasures -->
-		
-		<div id="parameterList">
-			<h3>Parameters</h3>
-			<div class="icons">
-				<img src="images/icnCalendar.png"/>
-				<img src="images/icnCount.png"/>
-				<img src="images/icnInverse.png"/>
-			</div>
-			<div class="paramList">
-				<p>Drag parameters into workspaces to construct quality measure.</p>
-				<ul id="parameterClassList">
-					<li><label>Communications</label>
-						<div class="paramItemList" style="display:none">
-							<ul>
-							<li>Contraceptive Use Education</li>
-							<li>Counseling for Nutrition</li>
-							<li>Counseling for Physical Activity</li>
-							<li>Tobacco Use Cessation Counseling</li>
-							</ul>
-						</div>
-					</li>
-					<li><label>Diagnosis</label>
-						<div class="paramItemList" style="display:none">
-							<ul>
-							<li>Diagnosis param 1</li>
-							<li>Diagnosis param 2</li>
-							<li>Diagnosis param 3</li>
-							<li>Diagnosis param 4</li>
-							</ul>
-						</div>
-					</li>
-					<li><label>Diagnostics</label>
-						<div class="paramItemList" style="display:none">
-							<ul>
-							<li>Diagnostics param 1</li>
-							<li>Diagnostics param 2</li>
-							</ul>
-						</div>
-					</li>
-					<li><label class="open">Encounters</label>
-						<div class="paramItemList">
-							<ul>
-							<li>Acute Inpatient</li>
-							<li>Ambulatory</li>
-							<li>Domicilliary</li>
-							<li>ED</li>
-							<li>Health and Behavior Assess.</li>
-							<li>Influenza</li>
-							<li>Non-Acute Inpatient</li>
-							<li>Nursing Facility</li>
-							<li>Occupational Therapy</li>
-							<li>Office Visit</li>
-							<li>Outpatient</li>
-							<li>Outpatient BH</li>
-							<li>Output</li>
-							<li>Opthamalogical Services</li>
-							<li>Prenatal</li>
-							<li>POS Modifier</li>
-							</ul>
-						</div>
-					</li>
-					<li><label>Lab Works</label></li>
-					<li><label>Patient Characteristics</label></li>
-					<li><label>Physical Exams</label></li>
-					<li><label>Procedures</label></li>
-					<li><label>Symptoms</label></li>
-					<li><label>Treatment</label></li>
-				</ul>
-			</div>
-		</div>
 		
 	</div><!-- end measureEditContainer -->
 	</div><!-- end #pageContent -->

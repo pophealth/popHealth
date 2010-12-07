@@ -1,7 +1,7 @@
 class MeasuresController < ApplicationController
   
   def index
-    @measures = Measure.all
+    render 'dashboard'
   end
     
   def result
@@ -17,12 +17,11 @@ class MeasuresController < ApplicationController
     
     render :json => @definition
   end
-  
-  def dashboard
-    render 'dashboard'
-  end
-  
-  def measure
+
+  def show
+    executor = QME::MapReduce::Executor.new(mongo)
+    @definition = executor.measure_def(params[:id], nil)
+    
     render 'measure'
   end
 
