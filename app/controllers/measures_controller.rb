@@ -1,6 +1,7 @@
 class MeasuresController < ApplicationController
   
   def index
+    @measures = mongo['measures'].find
     render 'dashboard'
   end
     

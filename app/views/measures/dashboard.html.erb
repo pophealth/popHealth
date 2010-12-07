@@ -70,12 +70,11 @@
 					<table>
 						<tr>
 							<th>NAME</th>
-							<th>DESCRIPTION</th>
 							<th>PATIENT STATISTICS</th>
 						</tr>
+						<% @measures.each do |measure| -%>
 						<tr>
-							<td><div id="tableMeasureTitle"><span>Childhood Immunization Status</span></div></td>
-							<td><div id="tableMeasureDescription"><span>Two year old children who received DTaP, polio, MMR, flu, hepatitis b, chicken pox, PCV, hepatitis a, and rotavirus vaccines by their second birthdays</span></div></td>
+							<td><div id="tableMeasureTitle"><span><%= measure['name'] %></span></div></td>
 							<td><table><tr>
 								<div id="tableMeasureCtrl">
 									<div class="fraction"><span id="numeratorValue">3467</span> / <span id="denominatorValue">5432</span>  = <span id="measurePopulationPercentage">64%</span></div>
@@ -83,47 +82,11 @@
 										<div class="tableBarVal" style="width:44%"><span></span></div>
 									</div>	
 									
-									<a class="tableEdit" href="http://localhost:3000">view/edit</a>
-								</div></tr>
-								<tr><div id="tableMeasureCtrl">
-									<div class="fraction"><span id="numeratorValue">1234</span> / <span id="denominatorValue">5432</span>  = <span id="measurePopulationPercentage">23%</span></div>
-									<div class="tableBar">
-										<div class="tableBarVal" style="width:44%"><span></span></div>
-									</div>	
-									
-									<a class="tableEdit" href="#">view/edit</a>
-								</div></tr>	</table>
+									<%= link_to 'view', measure_url(measure['id']), :class => 'tableEdit'%>
+								</div></tr></table>
 							</td>
 						</tr>
-						<tr>
-							<td><div id="tableMeasureTitle"><span>Preventative Care and Screening</span></div></td>
-							<td><div id="tableMeasureDescription"><span>Patients > 18 yrs. who were seen >2 times and asked at least once about tobacco use in 24 months, and who received cessation intervention if they are users.</span></div></td>
-							<td>
-								<div id="tableMeasureCtrl">
-									<div class="fraction">
-										<span id="numeratorValue">1702</span> / <span id="denominatorValue">2478</span> = <span id="measurePopulationPercentage">69%</span></div>
-										<div class="tableBar">
-											<div class="tableBarVal" style="width:44%"><span></span></div>			
-										</div>	
-										<a class="tableEdit" href="http://localhost:3000">view/edit</a>
-									</div>
-							</td>
-						</tr>	
-						
-						<tr>
-							<td><div id="tableMeasureTitle"><span>Adult Weight Screening and Follow-Up</span></div></td>
-							<td><div id="tableMeasureDescription"><span>Patients >18 yrs. whose BMI was calculated w/in 6 months, and who have a documented follow-up plan if BMI falls outside parameters.</span></div></td>
-							<td>
-								<div id="tableMeasureCtrl">
-									<div class="fraction">
-										<span id="numeratorValue">7698</span> / <span id="denominatorValue">9405</span> = <span id="measurePopulationPercentage">82%</span></div>
-										<div class="tableBar">
-											<div class="tableBarVal" style="width:44%"><span></span></div>			
-										</div>	
-										<a class="tableEdit" href="#">view/edit</a>
-									</div>
-							</td>
-						</tr>
+						<% end -%>
 					</table>
 					<p>ADDITIONAL MEASURES</p>
 					<table>
