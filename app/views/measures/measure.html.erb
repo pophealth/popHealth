@@ -130,11 +130,7 @@ function llog(x) {window.console.log(x)}
 	    <div class="paramItem">
 	   <!-- ${percentage=Math.round(Math.random()*100,2)} -->
 			{{if category}}<h4>${category}</h4>{{/if}}
-			<a href="#"><img src="images/icnDelete.png" class="deleteParamIcon"></a>
-				${title}
-			<div class="paramBar">
-				<div class="paramBarVal" style="width:${percentage}%"><span class="${percentage < 25 ? "short" : ""}">${percentage}%</span></div>
-			</div>
+			${title}
 		</div>
     </script>
     <script type="text/html" id="ph_tmpl_paramGroupContainer">
@@ -161,7 +157,7 @@ function llog(x) {window.console.log(x)}
 			<ul id="breadcrumbItems">
 				<li><a href="#">44 Measures</a> <span class="sep">&raquo;</span></li>
 				<li><a href="#"><%= @definition['name'] %></a> <span class="sep">&raquo;</span></li>
-				<li><span>Edit Parameters</span></li>
+				<li><span>Measure Definition</span></li>
 			</ul><br style="clear:both"/>
 		</div>
 	</div><!-- end #header -->
