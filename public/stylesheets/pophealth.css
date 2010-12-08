@@ -383,41 +383,41 @@ input.exportReport {
 #measureDetailTable tr { vertical-align: top; }
 #tableMeasureTitle { width: 225px; }
 #tableMeasureDescription { width: 275px; }
-#tableMeasureCtrl {
+.tableMeasureCtrl {
   width: 350px;
   font-size: 1em;
   margin-bottom: 10px;
 }
-#tableMeasureCtrl .fraction {
+.tableMeasureCtrl .fraction {
   float: left;
   padding: 0 15px 0 0;
 }
-#tableMeasureCtrl .tableBar {
+.tableMeasureCtrl .tableBar {
   float: left;
   margin-top: 5px;
   background-color: #dddddd;
   width: 150px;
   padding: 0 5px 0 0;
 }
-#tableMeasureCtrl .tableBarVal {
+.tableMeasureCtrl .tableBarVal {
   background-color: #000000;
   height: 100%;
   color: #eeeeee;
   padding: 0 5px 0 0;
   font-size: 0.7em;
 }
-#tableMeasureCtrl .tableBarVal span { margin: 3px 0 0 5px; }
-#tableMeasureCtrl .tableEdit {
+.tableMeasureCtrl .tableBarVal span { margin: 3px 0 0 5px; }
+.tableMeasureCtrl .tableEdit {
   float: left;
   margin-top: 5px;
   font-size: 0.8em;
 }
-#tableMeasureCtrl a {
+.tableMeasureCtrl a {
   float: left;
   padding: 0 0 0 10px;
   color: #44b3be;
 }
-#tableMeasureCtrl a:hover {
+.tableMeasureCtrl a:hover {
   text-decoration: none;
   color: #368f98;
 }
