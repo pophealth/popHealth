@@ -1,171 +1,175 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+  </script>
+<% end - %>
 
 <div id="dashboardContainer">
 
-	<div id="header">
-		<div id="breadcrumbBox">
-			<ul id="breadcrumbItems">
-				
-			</ul>
-			<div id="logOut">
-				<a class="log" href="#">log out</a>
-			</div><br style="clear:both"/>
-		</div>
-		
-	</div><!-- end #header -->
-	
-	<div id="pageContent">
-		
-		
-		<div id="providerReports">
-			<h1>Columbia Road Health Services</h1>
-			<h3 class="dashboardLabel">Total # of patients</h3>
-			<h3 class="numberPatients">10,346</h3>
-			<h3>REPORTING</h3>
-			<div class="measureList">
-				<ul id="measureClassList">
-					<li><label>CORE MEASURES</label>
-						<div class="measureItemList" style="display:none">
-							<ul>
-							<li>Childhood Immunization Status</li>
-							<li>Preventative Care and Screening</li>
-							<li>Adult Weight Screening and Follow-Up</li>
-							<li>Preventative Care and Screening: Influenza Immunization for Patients > 50 yrs.</li>
-							<li>Weight Assessment and Counseling for Children and Adolescents</li>
-							<li>Hypertension: BP Measurement</li>
-							</ul>
-						</div>
-					</li>
-					<li><label>ADDITIONAL MEASURES</label>
-						<div class="measureItemList" style="display:none">
-							<ul>
-							<li>Measure 1</li>
-							<li>Measure 2</li>
-							<li>Measure 3</li>
-							<li>Measure 4</li>
-							</ul>
-						</div>
-					</li>
-					<li><label>USER GENERATED MEASURES</label>
-						<div class="measureItemList" style="display:none">
-							<ul>
-							<li>Measure 1</li>
-							<li>Measure 2</li>
-							</ul>
-						</div>
-					</li>
-				</ul>
-			</div><!-- end #measureList -->
-			<a href="#">CREATE NEW</a>
-		</div><!-- end #providerReports -->
-		
-		<div id="dashboardPeriod">
-				<p class="dashboardLabel">MEASUREMENT PERIOD:</p><br><br>
-				<input type="text" class="calendarInput" id="measurementPeriodStartDate" maxlength="10" value="mm/dd/yyyy">
-				<span>-</span>
-				<input type="text" class="calendarInput" id="measurementPeriodEndDate" maxlength="10" value="mm/dd/yyyy">
-				<input type="button" class="exportReport" value="Export Report" id="btnExportReport">
-				
-				<div id="measureDetailTable">
-					<p>CORE MEASURES</p>
-					<table>
-						<tr>
-							<th>NAME</th>
-							<th>PATIENT STATISTICS</th>
-						</tr>
-						<% @measures.each do |measure| -%>
-						<tr>
-							<td><div id="tableMeasureTitle"><span><%= measure['name'] %></span></div></td>
-							<td><table><tr>
-								<div id="tableMeasureCtrl">
-									<div class="fraction"><span id="numeratorValue">3467</span> / <span id="denominatorValue">5432</span>  = <span id="measurePopulationPercentage">64%</span></div>
-									<div class="tableBar">
-										<div class="tableBarVal" style="width:44%"><span></span></div>
-									</div>	
-									
-									<%= link_to 'view', measure_url(measure['id']), :class => 'tableEdit'%>
-								</div></tr></table>
-							</td>
-						</tr>
-						<% end -%>
-					</table>
-					<p>ADDITIONAL MEASURES</p>
-					<table>
-						<tr>
-							<th>NAME</th>
-							<th>DESCRIPTION</th>
-							<th>PATIENT STATISTICS</th>
-						</tr>
-						<tr>
-							<td><div id="tableMeasureTitle"><span>Childhood Immunization Status</span></div></td>
-							<td><div id="tableMeasureDescription"><span>Two year old children who received DTaP, polio, MMR, flu, hepatitis b, chicken pox, PCV, hepatitis a, and rotavirus vaccines by their second birthdays</span></div></td>
-							<td>
-								<div id="tableMeasureCtrl">
-									<div class="fraction">
-										<span id="numeratorValue">7698</span> / <span id="denominatorValue">9405</span> = <span id="measurePopulationPercentage">82%</span></div>
-										<div class="tableBar">
-											<div class="tableBarVal" style="width:44%"><span></span></div>			
-										</div>	
-										<a class="tableEdit" href="#">view/edit</a>
-									</div>
-							</td>
-						</tr>	
-					</table>
-					<p>USER GENERATED MEASURES</p>
-					<table>
-						<tr>
-							<th>NAME</th>
-							<th>DESCRIPTION</th>
-							<th>PATIENT STATISTICS</th>
-						</tr>
-						<tr>
-							<td><div id="tableMeasureTitle"><span>Adult Weight Screening and Follow-Up</span></div></td>
-							<td><div id="tableMeasureDescription"><span>Patients >18 yrs. whose BMI was calculated w/in 6 months, and who have a documented follow-up plan if BMI falls outside parameters.</span></div></td>
-							<td>
-								<div id="tableMeasureCtrl">
-									<div class="fraction">
-										<span id="numeratorValue">7698</span> / <span id="denominatorValue">9405</span> = <span id="measurePopulationPercentage">82%</span></div>
-										<div class="tableBar">
-											<div class="tableBarVal" style="width:44%"><span></span></div>			
-										</div>	
-										<a class="tableEdit" href="#">view/edit</a>
-									</div>
-							</td>
-						</tr>	
-					</table>
-				</div><!-- end #measureDetailTable -->
-		</div><!-- end #dashboardPeriod -->
-		
-		
-			
-	</div><!-- end #pageContent -->
+  <div id="header">
+    <div id="breadcrumbBox">
+      <ul id="breadcrumbItems">
+        
+      </ul>
+      <div id="logOut">
+        <a class="log" href="#">log out</a>
+      </div><br style="clear:both"/>
+    </div>
+    
+  </div><!-- end #header -->
+  
+  <div id="pageContent">
+    
+    
+    <div id="providerReports">
+      <h1>Columbia Road Health Services</h1>
+      <h3 class="dashboardLabel">Total # of patients</h3>
+      <h3 class="numberPatients">10,346</h3>
+      <h3>REPORTING</h3>
+      <div class="measureList">
+        <ul id="measureClassList">
+          <li><label>CORE MEASURES</label>
+            <div class="measureItemList" style="display:none">
+              <ul>
+              <li>Childhood Immunization Status</li>
+              <li>Preventative Care and Screening</li>
+              <li>Adult Weight Screening and Follow-Up</li>
+              <li>Preventative Care and Screening: Influenza Immunization for Patients > 50 yrs.</li>
+              <li>Weight Assessment and Counseling for Children and Adolescents</li>
+              <li>Hypertension: BP Measurement</li>
+              </ul>
+            </div>
+          </li>
+          <li><label>ADDITIONAL MEASURES</label>
+            <div class="measureItemList" style="display:none">
+              <ul>
+              <li>Measure 1</li>
+              <li>Measure 2</li>
+              <li>Measure 3</li>
+              <li>Measure 4</li>
+              </ul>
+            </div>
+          </li>
+          <li><label>USER GENERATED MEASURES</label>
+            <div class="measureItemList" style="display:none">
+              <ul>
+              <li>Measure 1</li>
+              <li>Measure 2</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div><!-- end #measureList -->
+      <a href="#">CREATE NEW</a>
+    </div><!-- end #providerReports -->
+    
+    <div id="dashboardPeriod">
+        <p class="dashboardLabel">MEASUREMENT PERIOD:</p><br><br>
+        <input type="text" class="calendarInput" id="measurementPeriodStartDate" maxlength="10" value="mm/dd/yyyy">
+        <span>-</span>
+        <input type="text" class="calendarInput" id="measurementPeriodEndDate" maxlength="10" value="mm/dd/yyyy">
+        <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
+        
+        <div id="measureDetailTable">
+          <p>CORE MEASURES</p>
+          <table>
+            <tr>
+              <th>NAME</th>
+              <th>PATIENT STATISTICS</th>
+            </tr>
+            <% @measures.each do |measure| -%>
+            <tr>
+              <td><div id="tableMeasureTitle"><span><%= measure['name'] %></span></div></td>
+              <td><table><tr>
+                <div id="tableMeasureCtrl">
+                  <div class="fraction"><span id="numeratorValue">0</span> / <span id="denominatorValue">0</span>  = <span id="measurePopulationPercentage">0%</span></div>
+                  <div class="tableBar">
+                    <div class="tableBarVal" style="width:44%"><span></span></div>
+                  </div>  
+                  
+                  <%= link_to 'view', measure_url(measure['id']), :class => 'tableEdit'%>
+                </div></tr></table>
+              </td>
+            </tr>
+            <% end -%>
+          </table>
+          <p>ADDITIONAL MEASURES</p>
+          <table>
+            <tr>
+              <th>NAME</th>
+              <th>DESCRIPTION</th>
+              <th>PATIENT STATISTICS</th>
+            </tr>
+            <tr>
+              <td><div id="tableMeasureTitle"><span>Childhood Immunization Status</span></div></td>
+              <td><div id="tableMeasureDescription"><span>Two year old children who received DTaP, polio, MMR, flu, hepatitis b, chicken pox, PCV, hepatitis a, and rotavirus vaccines by their second birthdays</span></div></td>
+              <td>
+                <div id="tableMeasureCtrl">
+                  <div class="fraction">
+                    <span id="numeratorValue">7698</span> / <span id="denominatorValue">9405</span> = <span id="measurePopulationPercentage">82%</span></div>
+                    <div class="tableBar">
+                      <div class="tableBarVal" style="width:44%"><span></span></div>      
+                    </div>  
+                    <a class="tableEdit" href="#">view/edit</a>
+                  </div>
+              </td>
+            </tr> 
+          </table>
+          <p>USER GENERATED MEASURES</p>
+          <table>
+            <tr>
+              <th>NAME</th>
+              <th>DESCRIPTION</th>
+              <th>PATIENT STATISTICS</th>
+            </tr>
+            <tr>
+              <td><div id="tableMeasureTitle"><span>Adult Weight Screening and Follow-Up</span></div></td>
+              <td><div id="tableMeasureDescription"><span>Patients >18 yrs. whose BMI was calculated w/in 6 months, and who have a documented follow-up plan if BMI falls outside parameters.</span></div></td>
+              <td>
+                <div id="tableMeasureCtrl">
+                  <div class="fraction">
+                    <span id="numeratorValue">7698</span> / <span id="denominatorValue">9405</span> = <span id="measurePopulationPercentage">82%</span></div>
+                    <div class="tableBar">
+                      <div class="tableBarVal" style="width:44%"><span></span></div>      
+                    </div>  
+                    <a class="tableEdit" href="#">view/edit</a>
+                  </div>
+              </td>
+            </tr> 
+          </table>
+        </div><!-- end #measureDetailTable -->
+    </div><!-- end #dashboardPeriod -->
+    
+    
+      
+  </div><!-- end #pageContent -->
 </div><!-- end #container -->
-	
+  
 
 <% 
 
-	@inline_javascript ||= ""
-	@inline_javascript << %{  $(document).ready(function() {
-				
-	// make the param list expand/collapse
-	$('#measureClassList li label').click(function(){
-		$(this).toggleClass('open');
-		if ($(this).hasClass('open')) {
-			$(this).siblings('div.measureItemList').slideDown();
-		} else {
-			$(this).siblings('div.measureItemList').slideUp();
-		}
-	});
-	
-	$('#measurementPeriodStartDate, #measurementPeriodEndDate').calendricalDate({usa:true});
-	$('#btnExportReport').click(popHealth.exportReport);
-	
-	});
-	
-	var popHealth = popHealth || {};
-	
-	popHealth.exportReport = function() { alert('Export measure report'); };
-	function alertDate(e) {
-		alert('you changed me');
-	}
+  @inline_javascript ||= ""
+  @inline_javascript << %{  $(document).ready(function() {
+        
+  // make the param list expand/collapse
+  $('#measureClassList li label').click(function(){
+    $(this).toggleClass('open');
+    if ($(this).hasClass('open')) {
+      $(this).siblings('div.measureItemList').slideDown();
+    } else {
+      $(this).siblings('div.measureItemList').slideUp();
+    }
+  });
+  
+  $('#measurementPeriodStartDate, #measurementPeriodEndDate').calendricalDate({usa:true});
+  $('#btnExportReport').click(popHealth.exportReport);
+  
+  });
+  
+  var popHealth = popHealth || {};
+  
+  popHealth.exportReport = function() { alert('Export measure report'); };
+  function alertDate(e) {
+    alert('you changed me');
+  }
 }
-%>		
+%>    
