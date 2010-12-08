@@ -20,9 +20,6 @@ function llog(x) {window.console.log(x)}
 		$("#outcomeCount").text(numerator);
 	}
 	
-	popHealth.saveNewMeasure = function() { alert("Save new measure"); };
-	popHealth.returnToDash = function() { alert("return to dashboard"); };
-	popHealth.deleteParam = function() { alert("you clicked delete on a parameter"); };
 	
 	popHealth.renderMeasureJSON = function(data) {
 		var measure = data;
@@ -80,15 +77,6 @@ function llog(x) {window.console.log(x)}
 	//$.getJSON("json/bp.json",popHealth.renderMeasureJSON);
 	$.getJSON("/measures/definition/<%= @definition['id'] %>",popHealth.renderMeasureJSON);
 	
-	// make the param list expand/collapse
-	$("#parameterClassList li label").click(function(){
-		$(this).toggleClass("open");
-		if ($(this).hasClass("open")) {
-			$(this).siblings("div.paramItemList").slideDown();
-		} else {
-			$(this).siblings("div.paramItemList").slideUp();
-		}
-	});
 	$("#measurementPeriodEndDate").val(new Date().format("mm/dd/yyyy"));
 	$(".deleteParamIcon").click(popHealth.deleteParam);
 	$("#btnSaveNewMeasure").click(popHealth.saveNewMeasure);
