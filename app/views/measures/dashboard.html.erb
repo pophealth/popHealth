@@ -1,7 +1,20 @@
 <% content_for :head do %>
   <script type="text/javascript">
+    var popHealth = popHealth || {};
+
+    popHealth.populateStats = function(data) {
+
+    }
+
+    $(document).ready(function() {
+      $('.tableMeasureCtrl').each(function(index) {
+        var measureId = $(this).data('measure-id');
+
+      }
+      );
+    });
   </script>
-<% end - %>
+<% end -%>
 
 <div id="dashboardContainer">
 
@@ -80,7 +93,7 @@
             <tr>
               <td><div id="tableMeasureTitle"><span><%= measure['name'] %></span></div></td>
               <td><table><tr>
-                <div id="tableMeasureCtrl">
+                <div class="tableMeasureCtrl" data-measure-id="<%= measure['id'] %>">
                   <div class="fraction"><span id="numeratorValue">0</span> / <span id="denominatorValue">0</span>  = <span id="measurePopulationPercentage">0%</span></div>
                   <div class="tableBar">
                     <div class="tableBarVal" style="width:44%"><span></span></div>
