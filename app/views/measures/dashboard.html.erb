@@ -100,7 +100,8 @@
                     <div class="tableMeasureCtrl" data-measure-id="<%= measure['id'] %>">
                       <div class="fraction"><span id="numeratorValue">0</span> / <span id="denominatorValue">0</span>  = <span id="measurePopulationPercentage">0%</span></div>
                       <div class="tableBar">
-                        <div class="tableBarVal" style="width:44%"><span></span></div>
+                        <div class="tableBarNumerator" style="width:33%"><span></span></div>
+                        <div class="tableBarDenominator" style="width:33%"><span></span></div>
                       </div>
 
                       <%= link_to 'view', measure_url(measure['id'], sub_id), :class => 'tableEdit'%>

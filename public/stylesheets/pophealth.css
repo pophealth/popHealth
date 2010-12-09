@@ -384,6 +384,14 @@ input.exportReport {
 #tableMeasureTitle { width: 225px; }
 #tableMeasureDescription { width: 275px; }
 .zeroPadding td { padding: 0px; }
+.tableBarVal {
+  background-color: #333333;
+  height: 100%;
+  color: #eeeeee;
+  padding: 0 5px 0 0;
+  font-size: 0.7em;
+}
+.tableBarVal span { margin: 3px 0 0 5px; }
 .tableMeasureCtrl {
   width: 350px;
   font-size: 1em;
@@ -400,14 +408,26 @@ input.exportReport {
   width: 150px;
   padding: 0 5px 0 0;
 }
-.tableMeasureCtrl .tableBarVal {
-  background-color: #000000;
+.tableMeasureCtrl .tableBarDenominator {
+  background-color: #333333;
   height: 100%;
   color: #eeeeee;
   padding: 0 5px 0 0;
   font-size: 0.7em;
+  float: left;
+  background-color: #40b3bc;
 }
-.tableMeasureCtrl .tableBarVal span { margin: 3px 0 0 5px; }
+.tableMeasureCtrl .tableBarDenominator span { margin: 3px 0 0 5px; }
+.tableMeasureCtrl .tableBarNumerator {
+  background-color: #333333;
+  height: 100%;
+  color: #eeeeee;
+  padding: 0 5px 0 0;
+  font-size: 0.7em;
+  float: left;
+  background-color: #9cc45e;
+}
+.tableMeasureCtrl .tableBarNumerator span { margin: 3px 0 0 5px; }
 .tableMeasureCtrl .tableEdit {
   float: left;
   margin-top: 5px;

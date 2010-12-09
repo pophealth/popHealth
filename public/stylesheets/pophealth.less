@@ -43,6 +43,8 @@ a img {border:none;}
 @dashboardLabel : #AFAFAF;
 @dashboardText : #44B3BE;
 @tableText : #646464;
+@denominator : #40B3BC;
+@numerator : #9CC45E;
 
 @eligibilityParamGroup :#a4d9dd;
 @outcomeParamGroup : #cfe1a5;
@@ -486,6 +488,17 @@ a {color:black;
 
 }
 
+.tableBarVal {
+  background-color: @barValueColor;
+  height:100%;
+  color:@barValueText;
+  padding: 0 5px 0 0;
+  font-size: 0.7em;
+  span {
+    margin:3px 0 0 5px;
+    }
+}
+
 .tableMeasureCtrl {
   width:350px;
   font-size: 1.0em;
@@ -503,18 +516,18 @@ a {color:black;
     width:150px;
     padding: 0 5px 0 0;
   }
-
-  .tableBarVal {
-    background-color:@measurePopulationChartValue;
-    height:100%;
-    color:@barValueText;
-    padding: 0 5px 0 0;
-    font-size: 0.7em;
-    span {
-      margin:3px 0 0 5px;
-      }
+  
+  .tableBarDenominator {
+    .tableBarVal;
+    float: left;
+    background-color: @denominator;
   }
   
+  .tableBarNumerator {
+    .tableBarVal;
+    float: left;
+    background-color: @numerator;
+  }
   .tableEdit {
     float: left;
     margin-top:5px;
