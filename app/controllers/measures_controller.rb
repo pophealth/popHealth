@@ -4,6 +4,8 @@ class MeasuresController < ApplicationController
     @measures = mongo['measures'].group([:id, :name], nil,
                                         {:subs => []},
                                         "function(obj,prev) {if (obj.sub_id != null) {prev.subs.push(obj.sub_id);}}")
+
+    @patient_count = mongo['records'].count
     render 'dashboard'
   end
     
