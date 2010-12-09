@@ -1,7 +1,9 @@
 class MeasuresController < ApplicationController
   
   def index
-    @measures = mongo['measures'].find
+    @measures = mongo['measures'].group([:id, :name], nil,
+                                        {:subs => []},
+                                        "function(obj,prev) {if (obj.sub_id != null) {prev.subs.push(obj.sub_id);}}")
     render 'dashboard'
   end
     
