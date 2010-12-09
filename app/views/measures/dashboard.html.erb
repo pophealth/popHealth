@@ -59,8 +59,6 @@
     
     <div id="providerReports">
       <h1>Columbia Road Health Services</h1>
-      <h3 class="dashboardLabel">Total # of reporting patients</h3>
-      <h3 class="numberPatients"><%= @patient_count %></h3>
       <h3>REPORTING</h3>
       <div class="measureList">
         <ul id="measureClassList">
@@ -100,14 +98,16 @@
     </div><!-- end #providerReports -->
     
     <div id="dashboardPeriod">
-        <p class="dashboardLabel">MEASUREMENT PERIOD:</p><br><br>
-        <input type="text" class="calendarInput" id="measurementPeriodStartDate" maxlength="10" value="mm/dd/yyyy">
-        <span>-</span>
-        <input type="text" class="calendarInput" id="measurementPeriodEndDate" maxlength="10" value="mm/dd/yyyy">
-        <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
-        
+
         <div class="measureDetailTable">
-          <p>CORE MEASURES</p>
+          <h3 class="dashboardLabel">REPORTING PERIOD:</h3>
+          <input type="text" class="calendarInput" id="measurementPeriodStartDate" maxlength="10" value="mm/dd/yyyy">
+          <span>-</span>
+          <input type="text" class="calendarInput" id="measurementPeriodEndDate" maxlength="10" value="mm/dd/yyyy">
+          <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
+
+          <h3 class="dashboardLabel">REPORTING PATIENTS: <%= @patient_count %></h3>
+          <h3 class="dashboardLabel">CORE MEASURES</h3>
           <table>
             <tr>
               <th>NAME</th>
@@ -122,7 +122,10 @@
                   <tr class="zeroPadding">
                     <td>
                     <div class="tableMeasureCtrl" data-measure-id="<%= measure['id'] %>" data-measure-sub-id="<%= sub_id %>">
-                      <div class="fraction"><span class="numeratorValue">0</span> / <span class="denominatorValue">0</span>  = <span class="measurePopulationPercentage">0%</span></div>
+                      <div class="fraction">
+                        <span class="numeratorValue">0</span> / <span class="denominatorValue">0</span> = 
+                        <span class="measurePopulationPercentage">0%</span>
+                      </div>
                       <div class="tableBar">
                         <div class="tableBarNumerator" style="width:33%"><span></span></div>
                         <div class="tableBarDenominator" style="width:33%"><span></span></div>
