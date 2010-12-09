@@ -364,25 +364,26 @@ input.exportReport {
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
-#measureDetailTable {
+.measureDetailTable {
   display: block;
   width: 900px;
   padding: 0 10px 0 10px;
 }
-#measureDetailTable p { padding: 20px 0px 5px 5px; }
-#measureDetailTable th {
+.measureDetailTable p { padding: 20px 0px 5px 5px; }
+.measureDetailTable th {
   color: #646464;
   padding: 0 0 0 5px;
   border-bottom: 3px solid #646464;
   font-size: 0.9em;
 }
-#measureDetailTable td {
+.measureDetailTable td {
   padding: 40px 20px 5px 5px;
   vertical-align: top;
 }
-#measureDetailTable tr { vertical-align: top; }
+.measureDetailTable tr { vertical-align: top; }
 #tableMeasureTitle { width: 225px; }
 #tableMeasureDescription { width: 275px; }
+.zeroPadding td { padding: 0px; }
 .tableMeasureCtrl {
   width: 350px;
   font-size: 1em;

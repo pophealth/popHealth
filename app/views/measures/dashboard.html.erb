@@ -82,7 +82,7 @@
         <input type="text" class="calendarInput" id="measurementPeriodEndDate" maxlength="10" value="mm/dd/yyyy">
         <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
         
-        <div id="measureDetailTable">
+        <div class="measureDetailTable">
           <p>CORE MEASURES</p>
           <table>
             <tr>
@@ -92,15 +92,23 @@
             <% @measures.each do |measure| -%>
             <tr>
               <td><div id="tableMeasureTitle"><span><%= measure['name'] %></span></div></td>
-              <td><table><tr>
-                <div class="tableMeasureCtrl" data-measure-id="<%= measure['id'] %>">
-                  <div class="fraction"><span id="numeratorValue">0</span> / <span id="denominatorValue">0</span>  = <span id="measurePopulationPercentage">0%</span></div>
-                  <div class="tableBar">
-                    <div class="tableBarVal" style="width:44%"><span></span></div>
-                  </div>  
-                  
-                  <%= link_to 'view', measure_url(measure['id']), :class => 'tableEdit'%>
-                </div></tr></table>
+              <td>
+                <table>
+                  <% subs_iterator(measure['subs']) do |sub_id| -%>
+                  <tr class="zeroPadding">
+                    <td>
+                    <div class="tableMeasureCtrl" data-measure-id="<%= measure['id'] %>">
+                      <div class="fraction"><span id="numeratorValue">0</span> / <span id="denominatorValue">0</span>  = <span id="measurePopulationPercentage">0%</span></div>
+                      <div class="tableBar">
+                        <div class="tableBarVal" style="width:44%"><span></span></div>
+                      </div>
+
+                      <%= link_to 'view', measure_url(measure['id'], sub_id), :class => 'tableEdit'%>
+                    </div>
+                    </td>
+                  </tr>
+                  <% end -%>
+                </table>
               </td>
             </tr>
             <% end -%>
