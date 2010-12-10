@@ -2,8 +2,8 @@ source 'http://gemcutter.org'
 
 gem 'rails', '3.0.1'
 
-group :test do
-  gem 'rspec-rails',      '>= 2.0.0.beta.22'
+group :test, :development do
+  gem "rspec-rails", "~> 2.0.1"
 end
 
 gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'develop'
