@@ -1,7 +1,8 @@
 class MeasuresController < ApplicationController
   
   def index
-    @measures = Measure.all_by_measure
+    selected_measures = mongo['selected_measures'].find()
+    @measures = selected_measures.group_by {|measure| measure['category']}
     @categories = Measure.all_by_category
 
     @patient_count = mongo['records'].count
@@ -27,6 +28,14 @@ class MeasuresController < ApplicationController
     @definition = executor.measure_def(params[:id], params[:sub_id])
     
     render 'measure'
+  end
+  
+  def select
+    @measure = Measure.add_measure(params[:id])
+  end
+  
+  def remove
+    
   end
 
 end

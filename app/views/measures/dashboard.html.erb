@@ -115,13 +115,14 @@
           <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
 
           <h3 class="dashboardLabel">REPORTING PATIENTS: <%= @patient_count %></h3>
-          <h3 class="dashboardLabel">CORE MEASURES</h3>
+          <% @measures.each_pair do |category, measures| -%>
+          <h3 class="dashboardLabel"><%= category %></h3>
           <table>
             <tr>
               <th>NAME</th>
               <th>PATIENT STATISTICS</th>
             </tr>
-            <% @measures.each do |measure| -%>
+            <% measures.each do |measure| -%>
             <tr>
               <td><div id="tableMeasureTitle"><span><%= measure['name'] %></span></div></td>
               <td>
@@ -148,51 +149,9 @@
               </td>
             </tr>
             <% end -%>
-          </table>
-          <p>ADDITIONAL MEASURES</p>
-          <table>
-            <tr>
-              <th>NAME</th>
-              <th>DESCRIPTION</th>
-              <th>PATIENT STATISTICS</th>
-            </tr>
-            <tr>
-              <td><div id="tableMeasureTitle"><span>Childhood Immunization Status</span></div></td>
-              <td><div id="tableMeasureDescription"><span>Two year old children who received DTaP, polio, MMR, flu, hepatitis b, chicken pox, PCV, hepatitis a, and rotavirus vaccines by their second birthdays</span></div></td>
-              <td>
-                <div id="tableMeasureCtrl">
-                  <div class="fraction">
-                    <span id="numeratorValue">7698</span> / <span id="denominatorValue">9405</span> = <span id="measurePopulationPercentage">82%</span></div>
-                    <div class="tableBar">
-                      <div class="tableBarVal" style="width:44%"><span></span></div>      
-                    </div>  
-                    <a class="tableEdit" href="#">view/edit</a>
-                  </div>
-              </td>
-            </tr> 
-          </table>
-          <p>USER GENERATED MEASURES</p>
-          <table>
-            <tr>
-              <th>NAME</th>
-              <th>DESCRIPTION</th>
-              <th>PATIENT STATISTICS</th>
-            </tr>
-            <tr>
-              <td><div id="tableMeasureTitle"><span>Adult Weight Screening and Follow-Up</span></div></td>
-              <td><div id="tableMeasureDescription"><span>Patients >18 yrs. whose BMI was calculated w/in 6 months, and who have a documented follow-up plan if BMI falls outside parameters.</span></div></td>
-              <td>
-                <div id="tableMeasureCtrl">
-                  <div class="fraction">
-                    <span id="numeratorValue">7698</span> / <span id="denominatorValue">9405</span> = <span id="measurePopulationPercentage">82%</span></div>
-                    <div class="tableBar">
-                      <div class="tableBarVal" style="width:44%"><span></span></div>      
-                    </div>  
-                    <a class="tableEdit" href="#">view/edit</a>
-                  </div>
-              </td>
-            </tr> 
-          </table>
+          </table>              
+          <% end -%>
+
         </div><!-- end #measureDetailTable -->
     </div><!-- end #dashboardPeriod -->
     
