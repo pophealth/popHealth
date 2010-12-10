@@ -7,7 +7,11 @@ class Measure < MongoBase
   def self.all_by_category
     mongo['measures'].group([:category], nil,
                             {:measures => []},
-                            'function(obj,prev) {prev.measures.push({"id": obj.id, "name": obj.name})}')
+                            'function(obj,prev) { 
+                                  if (_.any(prev.measures, function(item){return item.id == obj.id}) == false) {
+                                    prev.measures.push({"id": obj.id, "name": obj.name});
+                                  }
+                             };')
   end
   
   # Finds all measures and groups the sub measures
