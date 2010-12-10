@@ -1,7 +1,7 @@
 <% content_for :head do %>
   <script type="text/javascript">
     var popHealth = popHealth || {};
-    
+
     popHealth.makeMeasureListExpandable = function() {
       $('#measureClassList li label').click(function(){
         $(this).toggleClass('open');
@@ -9,6 +9,17 @@
           $(this).siblings('div.measureItemList').slideDown();
         } else {
           $(this).siblings('div.measureItemList').slideUp();
+        }
+      });
+    };
+    
+    popHealth.makeMeasuresCheckable = function() {
+      $('.measureItemList li').click(function(){
+        $(this).toggleClass('checked');
+        if ($(this).hasClass('checked')) {
+
+        } else {
+
         }
       });
     };
@@ -49,6 +60,7 @@
 
     $(document).ready(function() {
       popHealth.makeMeasureListExpandable();
+      popHealth.makeMeasuresCheckable();
       popHealth.populateMeasureStats();
       $('#measurementPeriodStartDate, #measurementPeriodEndDate').calendricalDate({usa:true});
       $('#btnExportReport').click(popHealth.exportReport);
@@ -75,7 +87,7 @@
     
     <div id="providerReports">
       <h1>Columbia Road Health Services</h1>
-      <h3>REPORTING</h3>
+      <h3>REPORTING:</h3>
       <div class="measureList">
         <ul id="measureClassList">
         <% @categories.each do |category| -%>

@@ -317,10 +317,10 @@ a {
 }
 #providerReports .measureItemList ul { margin: 5px; }
 #providerReports .measureItemList li {
-  padding: 5px 5px 5px 25px;
-  background: url(../images/smallcheckbox.png) 0 10% no-repeat;
+  padding: 0 5px 5px 25px;
+  background: url(../images/unchecked.png) 0 10% no-repeat;
 }
-#providerReports .measureItemList li.open { background: url(../images/smallcheckbox.png) 0 10% no-repeat; }
+#providerReports .measureItemList li.checked { background: url(../images/smallcheckbox.png) 0 10% no-repeat; }
 #providerReports a {
   padding: 0 0 0 10px;
   color: #44b3be;
