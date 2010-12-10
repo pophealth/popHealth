@@ -1,12 +1,19 @@
 <% content_for :head do %>
   <script type="text/javascript">
     var popHealth = popHealth || {};
+    
+    popHealth.makeMeasureListExpandable = function() {
+      $('#measureClassList li label').click(function(){
+        $(this).toggleClass('open');
+        if ($(this).hasClass('open')) {
+          $(this).siblings('div.measureItemList').slideDown();
+        } else {
+          $(this).siblings('div.measureItemList').slideUp();
+        }
+      });
+    };
 
-    popHealth.populateStats = function(data) {
-
-    }
-
-    $(document).ready(function() {
+    popHealth.populateMeasureStats = function() {
       $('.tableMeasureCtrl').each(function(index) {
         // Using attr() instead of data() because jQuery will convert the measure id to number
         // which strips the leading zeros.
@@ -36,6 +43,15 @@
         });
       }
       );
+    }
+
+    popHealth.exportReport = function() { alert('Export measure report'); };
+
+    $(document).ready(function() {
+      popHealth.makeMeasureListExpandable();
+      popHealth.populateMeasureStats();
+      $('#measurementPeriodStartDate, #measurementPeriodEndDate').calendricalDate({usa:true});
+      $('#btnExportReport').click(popHealth.exportReport);
     });
   </script>
 <% end -%>
@@ -192,33 +208,3 @@
       
   </div><!-- end #pageContent -->
 </div><!-- end #container -->
-  
-
-<% 
-
-  @inline_javascript ||= ""
-  @inline_javascript << %{  $(document).ready(function() {
-        
-  // make the param list expand/collapse
-  $('#measureClassList li label').click(function(){
-    $(this).toggleClass('open');
-    if ($(this).hasClass('open')) {
-      $(this).siblings('div.measureItemList').slideDown();
-    } else {
-      $(this).siblings('div.measureItemList').slideUp();
-    }
-  });
-  
-  $('#measurementPeriodStartDate, #measurementPeriodEndDate').calendricalDate({usa:true});
-  $('#btnExportReport').click(popHealth.exportReport);
-  
-  });
-  
-  var popHealth = popHealth || {};
-  
-  popHealth.exportReport = function() { alert('Export measure report'); };
-  function alertDate(e) {
-    alert('you changed me');
-  }
-}
-%>    
