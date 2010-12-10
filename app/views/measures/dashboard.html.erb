@@ -78,36 +78,16 @@
       <h3>REPORTING</h3>
       <div class="measureList">
         <ul id="measureClassList">
-          <li><label>CORE MEASURES</label>
+        <% @categories.each do |category| -%>
+          <li><label><%= category['category'].upcase %></label>
             <div class="measureItemList" style="display:none">
               <ul>
-              <li>Childhood Immunization Status</li>
-              <li>Preventative Care and Screening</li>
-              <li>Adult Weight Screening and Follow-Up</li>
-              <li>Preventative Care and Screening: Influenza Immunization for Patients > 50 yrs.</li>
-              <li>Weight Assessment and Counseling for Children and Adolescents</li>
-              <li>Hypertension: BP Measurement</li>
+              <% category['measures'].each do |measure| -%>
+                <li><%= measure['name'].upcase %></li>
+              <% end -%>
               </ul>
             </div>
-          </li>
-          <li><label>ADDITIONAL MEASURES</label>
-            <div class="measureItemList" style="display:none">
-              <ul>
-              <li>Measure 1</li>
-              <li>Measure 2</li>
-              <li>Measure 3</li>
-              <li>Measure 4</li>
-              </ul>
-            </div>
-          </li>
-          <li><label>USER GENERATED MEASURES</label>
-            <div class="measureItemList" style="display:none">
-              <ul>
-              <li>Measure 1</li>
-              <li>Measure 2</li>
-              </ul>
-            </div>
-          </li>
+        <% end -%>
         </ul>
       </div><!-- end #measureList -->
       <a href="#">CREATE NEW</a>

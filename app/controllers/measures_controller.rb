@@ -1,9 +1,8 @@
 class MeasuresController < ApplicationController
   
   def index
-    @measures = mongo['measures'].group([:id, :name], nil,
-                                        {:subs => []},
-                                        "function(obj,prev) {if (obj.sub_id != null) {prev.subs.push(obj.sub_id);}}")
+    @measures = Measure.all_by_measure
+    @categories = Measure.all_by_category
 
     @patient_count = mongo['records'].count
     render 'dashboard'
