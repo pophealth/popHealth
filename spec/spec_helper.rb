@@ -17,3 +17,14 @@ RSpec.configure do |config|
   # config.mock_with :rr
   config.mock_with :rspec
 end
+
+
+def collection_fixtures(*collection_names)
+  collection_names.each do |collection|
+    MONGO_DB[collection].drop
+    Dir.glob(File.join(Rails.root, 'spec', 'fixtures', collection, '*.json')).each do |json_fixture_file|
+      fixture_json = JSON.parse(File.read(json_fixture_file))
+        MONGO_DB[collection].save(fixture_json)
+    end
+  end
+end
