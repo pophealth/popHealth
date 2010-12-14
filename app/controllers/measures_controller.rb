@@ -1,8 +1,8 @@
 class MeasuresController < ApplicationController
   
   def index
-    selected_measures = mongo['selected_measures'].find()
-    @measures = selected_measures.group_by {|measure| measure['category']}
+    @selected_measures = mongo['selected_measures'].find().to_a #need to call to_a so that it isn't a cursor
+    @grouped_selected_measures = @selected_measures.group_by {|measure| measure['category']}
     @categories = Measure.all_by_category
 
     @patient_count = mongo['records'].count

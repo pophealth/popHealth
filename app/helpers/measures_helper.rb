@@ -12,4 +12,14 @@ module MeasuresHelper
       yield sub_id
     end
   end
+  
+  # Checks a measure id to see if it is in the Array returned
+  # be getting the selected_measure collection
+  def measure_selected(measure_id, selected_measures)
+    if selected_measures.any? {|measure| measure['id'] == measure_id}
+      'checked'
+    else
+      nil
+    end
+  end
 end

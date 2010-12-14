@@ -95,7 +95,7 @@
             <div class="measureItemList" style="display:none">
               <ul>
               <% category['measures'].each do |measure| -%>
-                <li><%= measure['name'].upcase %></li>
+                <li class="<%= measure_selected(measure['id'], @selected_measures)%>"><%= measure['name'].upcase %></li>
               <% end -%>
               </ul>
             </div>
@@ -115,7 +115,7 @@
           <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
 
           <h3 class="dashboardLabel">REPORTING PATIENTS: <%= @patient_count %></h3>
-          <% @measures.each_pair do |category, measures| -%>
+          <% @grouped_selected_measures.each_pair do |category, measures| -%>
           <h3 class="dashboardLabel"><%= category %></h3>
           <table>
             <tr>
