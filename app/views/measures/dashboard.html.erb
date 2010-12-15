@@ -17,7 +17,7 @@
       $('.measureItemList li').click(function(){
         var measureId = $(this).attr("data-measure-id");
         var category = $(this).data("category");
-        var categoryLabel = $(".dashboardLabel").filter(function() {return this.textContent == category;});
+        var categoryLabel = $(".dashboardLabel").filter(function() {return this.innerHTML == category;});
         
         if ($(this).hasClass('checked')) {
             $.post('/measures/remove/' + measureId,
