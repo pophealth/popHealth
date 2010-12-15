@@ -7,12 +7,12 @@
         <td>
         <div class="tableMeasureCtrl" data-measure-id="<%= measure['id'] %>" data-measure-sub-id="<%= sub_id %>">
           <div class="fraction">
-            <span class="numeratorValue">0</span> / <span class="denominatorValue">0</span> = 
-            <span class="measurePopulationPercentage">0%</span>
+            <span class="numeratorValue"><%= value_or_default(measure['id'], sub_id, results, :numerator, 0) %></span> / <span class="denominatorValue"><%= value_or_default(measure['id'], sub_id, results, :denominator, 0) %></span> = 
+            <span class="measurePopulationPercentage"><%= percentage(measure['id'], sub_id, results)%>%</span>
           </div>
           <div class="tableBar">
-            <div class="tableBarNumerator" style="width:33%"><span></span></div>
-            <div class="tableBarDenominator" style="width:33%"><span></span></div>
+            <div class="tableBarNumerator" style="width:<%= numerator_width(measure['id'], sub_id, results)%>"><span></span></div>
+            <div class="tableBarDenominator" style="width:<%= denominator_width(measure['id'], sub_id, results)%>"><span></span></div>
           </div>
 
           <%= link_to 'view', measure_url(measure['id'], sub_id), :class => 'tableEdit'%>

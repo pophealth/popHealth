@@ -32,7 +32,19 @@ class MeasuresController < ApplicationController
   
   def select
     measure = Measure.add_measure(params[:id])
-    render :partial => 'measure_stats', :locals => {:measure => measure}
+    
+    executor = QME::MapReduce::Executor.new(mongo)
+    
+    results = {:patient_count => mongo['records'].count}
+    if measure['subs'].empty?
+      results[measure['id']] = executor.measure_result(params[:id], nil, :effective_date=>Time.gm(2010, 9, 19).to_i)
+    else
+      measure['subs'].each do |sub_id|
+        results[measure['id'] + sub_id] = executor.measure_result(params[:id], sub_id, :effective_date=>Time.gm(2010, 9, 19).to_i)
+      end
+    end
+    
+    render :partial => 'measure_stats', :locals => {:measure => measure, :results => results}
   end
   
   def remove

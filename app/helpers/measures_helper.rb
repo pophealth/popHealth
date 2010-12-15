@@ -22,4 +22,47 @@ module MeasuresHelper
       nil
     end
   end
+  
+  def value_or_default(measure_id, sub_id, results, field, default)
+    real_id_or_default(measure_id, sub_id, results, default) do |result|
+      result[field]
+    end
+  end
+  
+  def percentage(measure_id, sub_id, results)
+    real_id_or_default(measure_id, sub_id, results, 0) do |result|
+      if result[:denominator] > 0
+        ((result[:numerator] / result[:denominator].to_f) * 100).to_i
+      else
+        0
+      end
+    end
+  end
+    
+  def numerator_width(measure_id, sub_id, results)
+    real_id_or_default(measure_id, sub_id, results, '33%') do |result|
+      "#{((result[:numerator] / results[:patient_count].to_f) * 100).to_i}%"
+    end
+  end
+  
+  def denominator_width(measure_id, sub_id, results)
+    real_id_or_default(measure_id, sub_id, results, '33%') do |result|
+      "#{(((result[:denominator] - result[:numerator])/ results[:patient_count].to_f) * 100).to_i}%"
+    end
+  end
+  
+  private
+  
+  def real_id_or_default(measure_id, sub_id, results, default)
+    real_measure_id = measure_id
+    if sub_id
+      real_measure_id += sub_id
+    end
+    
+    if results[real_measure_id]
+      yield results[real_measure_id]
+    else
+      default
+    end
+  end
 end

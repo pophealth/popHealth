@@ -147,7 +147,7 @@
               <th>PATIENT STATISTICS</th>
             </tr>
             <% measures.each do |measure| -%>
-                <%= render :partial => 'measure_stats', :locals => {:measure => measure} %>
+                <%= render :partial => 'measure_stats', :locals => {:measure => measure, :results => {}} %>
             <% end -%>
           </table>
           <% end -%>
