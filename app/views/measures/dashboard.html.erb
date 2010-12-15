@@ -17,17 +17,25 @@
       $('.measureItemList li').click(function(){
         var measureId = $(this).attr("data-measure-id");
         var category = $(this).data("category");
+        var categoryLabel = $(".dashboardLabel").filter(function() {return this.textContent == category;});
         
         if ($(this).hasClass('checked')) {
             $.post('/measures/remove/' + measureId,
                function(data) {
-                   
+                   var measureTable = categoryLabel.next('table')
+                   if (measureTable.children().children().length == 2) {
+                       //this means there is a tr for the header and a tr for a measure
+                       //since there is only one measure, we should remove the whole table
+                       measureTable.remove();
+                       categoryLabel.remove();
+                   } else {
+                       $('#measure' + measureId).remove();
+                   };
                }
             )
         } else {
             $.post('/measures/select/' + measureId,
                function(data) {
-                   var categoryLabel = $(".dashboardLabel").filter(function() {return this.textContent == category;});
                    if (categoryLabel.length != 0) {
                        categoryLabel.next('table').children().first().append(data);
                    } else {
@@ -96,11 +104,10 @@
         <a class="log" href="#">log out</a>
       </div><br style="clear:both"/>
     </div>
-    
+
   </div><!-- end #header -->
-  
+
   <div id="pageContent">
-    
     
     <div id="providerReports">
       <h1>Columbia Road Health Services</h1>
@@ -121,7 +128,7 @@
       </div><!-- end #measureList -->
       <a href="#">CREATE NEW</a>
     </div><!-- end #providerReports -->
-    
+
     <div id="dashboardPeriod">
 
         <div class="measureDetailTable">
@@ -142,14 +149,11 @@
             <% measures.each do |measure| -%>
                 <%= render :partial => 'measure_stats', :locals => {:measure => measure} %>
             <% end -%>
-          </table>              
+          </table>
           <% end -%>
 
         </div><!-- end #measureDetailTable -->
     </div><!-- end #dashboardPeriod -->
-    
-    
-      
   </div><!-- end #pageContent -->
 </div><!-- end #container -->
 <script id="categoryTmpl" type="text/x-jquery-tmpl">
