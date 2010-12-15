@@ -36,4 +36,9 @@ describe Measure do
   it "shouldn't add a measure if it is already there" do
     Measure.add_measure('0032').should be_nil
   end
+  
+  it "should be able to remove a measure" do
+    Measure.remove_measure('0032')
+    MONGO_DB['selected_measures'].count.should == 0
+  end
 end

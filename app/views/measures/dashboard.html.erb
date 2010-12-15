@@ -15,12 +15,29 @@
     
     popHealth.makeMeasuresCheckable = function() {
       $('.measureItemList li').click(function(){
-        $(this).toggleClass('checked');
+        var measureId = $(this).attr("data-measure-id");
+        var category = $(this).data("category");
+        
         if ($(this).hasClass('checked')) {
-
+            $.post('/measures/remove/' + measureId,
+               function(data) {
+                   
+               }
+            )
         } else {
-
+            $.post('/measures/select/' + measureId,
+               function(data) {
+                   var categoryLabel = $(".dashboardLabel").filter(function() {return this.textContent == category;});
+                   if (categoryLabel.length != 0) {
+                       categoryLabel.next('table').children().first().append(data);
+                   } else {
+                       $('.measureDetailTable').append($.tmpl($('#categoryTmpl'), {"category": category, "measureRow": data}));
+                   };
+               }
+            )
         }
+        
+        $(this).toggleClass('checked');
       });
     };
 
@@ -95,7 +112,7 @@
             <div class="measureItemList" style="display:none">
               <ul>
               <% category['measures'].each do |measure| -%>
-                <li class="<%= measure_selected(measure['id'], @selected_measures)%>"><%= measure['name'].upcase %></li>
+                <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="<%= category['category'] %>"><%= measure['name'].upcase %></li>
               <% end -%>
               </ul>
             </div>
@@ -123,31 +140,7 @@
               <th>PATIENT STATISTICS</th>
             </tr>
             <% measures.each do |measure| -%>
-            <tr>
-              <td><div id="tableMeasureTitle"><span><%= measure['name'] %></span></div></td>
-              <td>
-                <table>
-                  <% subs_iterator(measure['subs']) do |sub_id| -%>
-                  <tr class="zeroPadding">
-                    <td>
-                    <div class="tableMeasureCtrl" data-measure-id="<%= measure['id'] %>" data-measure-sub-id="<%= sub_id %>">
-                      <div class="fraction">
-                        <span class="numeratorValue">0</span> / <span class="denominatorValue">0</span> = 
-                        <span class="measurePopulationPercentage">0%</span>
-                      </div>
-                      <div class="tableBar">
-                        <div class="tableBarNumerator" style="width:33%"><span></span></div>
-                        <div class="tableBarDenominator" style="width:33%"><span></span></div>
-                      </div>
-
-                      <%= link_to 'view', measure_url(measure['id'], sub_id), :class => 'tableEdit'%>
-                    </div>
-                    </td>
-                  </tr>
-                  <% end -%>
-                </table>
-              </td>
-            </tr>
+                <%= render :partial => 'measure_stats', :locals => {:measure => measure} %>
             <% end -%>
           </table>              
           <% end -%>
@@ -159,3 +152,13 @@
       
   </div><!-- end #pageContent -->
 </div><!-- end #container -->
+<script id="categoryTmpl" type="text/x-jquery-tmpl">
+    <h3 class="dashboardLabel">${category}</h3>
+    <table>
+      <tr>
+        <th>NAME</th>
+        <th>PATIENT STATISTICS</th>
+      </tr>
+      {{html measureRow}}
+    </table>
+</script>

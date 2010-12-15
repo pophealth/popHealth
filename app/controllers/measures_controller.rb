@@ -31,11 +31,13 @@ class MeasuresController < ApplicationController
   end
   
   def select
-    @measure = Measure.add_measure(params[:id])
+    measure = Measure.add_measure(params[:id])
+    render :partial => 'measure_stats', :locals => {:measure => measure}
   end
   
   def remove
-    
+    Measure.remove_measure(params[:id])
+    render :text => 'Removed'
   end
 
 end

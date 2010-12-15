@@ -55,4 +55,8 @@ class Measure < MongoBase
       end
     end
   end
+  
+  def self.remove_measure(measure_id)
+    mongo['selected_measures'].remove(:id => measure_id)
+  end
 end

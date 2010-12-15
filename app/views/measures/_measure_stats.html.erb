@@ -1,0 +1,25 @@
+<tr id="measure<%= measure['id'] %>">
+  <td><div id="tableMeasureTitle"><span><%= measure['name'] %></span></div></td>
+  <td>
+    <table>
+      <% subs_iterator(measure['subs']) do |sub_id| -%>
+      <tr class="zeroPadding">
+        <td>
+        <div class="tableMeasureCtrl" data-measure-id="<%= measure['id'] %>" data-measure-sub-id="<%= sub_id %>">
+          <div class="fraction">
+            <span class="numeratorValue">0</span> / <span class="denominatorValue">0</span> = 
+            <span class="measurePopulationPercentage">0%</span>
+          </div>
+          <div class="tableBar">
+            <div class="tableBarNumerator" style="width:33%"><span></span></div>
+            <div class="tableBarDenominator" style="width:33%"><span></span></div>
+          </div>
+
+          <%= link_to 'view', measure_url(measure['id'], sub_id), :class => 'tableEdit'%>
+        </div>
+        </td>
+      </tr>
+      <% end -%>
+    </table>
+  </td>
+</tr>
