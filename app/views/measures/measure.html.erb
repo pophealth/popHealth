@@ -25,6 +25,7 @@ function llog(x) {window.console.log(x)}
         var measure = data;
         $.getJSON("<%= measure_result_url(@definition['id'], @definition['sub_id']) %>",popHealth.drawPctChart);
         $("#measureTitleText").text(data.name);
+        $("#measureDescText").text(data.description);
 
         var addParamItems = function(obj,elem,container) {
             if ("and" in obj) {
@@ -140,41 +141,11 @@ function llog(x) {window.console.log(x)}
 
 <div id="container">
 
-    <div id="header">
-        <div id="breadcrumbBox">
-            <ul id="breadcrumbItems">
-                <li><a href="<%= dashboard_url %>">44 Measures</a> <span class="sep">&raquo;</span></li>
-                <li><a href="#"><%= @definition['name'] %></a> <span class="sep">&raquo;</span></li>
-                <li><span>Measure Definition</span></li>
-            </ul><br style="clear:both"/>
-        </div>
-    </div><!-- end #header -->
+    <%= render :partial => 'header', :locals => {:definition => @definition} %>
     
     <div id="pageContent">
 
-        
-        <div id="measureTitle">
-            <div id="measureCtrl">
-                <div id="mcp">
-                    <span id="numeratorValue">0</span> / <span id="denominatorValue">--</span> patients = <span id="measurePopulationPercentage">0%</span>
-                    <div class="bar">
-                        <div class="barVal" style="width:44%"><span>0%</span></div>         
-                    </div>
-                </div>
-                <input type="button" value="Save as new measure" id="btnSaveNewMeasure">
-                <input type="button" value="Return to dashboard" id="btnReturnToDash">
-            </div>
-
-            <h1 id="measureTitleText"></h1>
-            <h2 id="measureDescText"><%= @definition['description'] %></h2>
-
-            <div id="measurementPeriod">
-                <label>Measurement Period: </label>
-                <input type="text" id="measurementPeriodStartDate" size="11" maxlength="10" value="1/1/2009">
-                <span>to</span>
-                <input type="text" id="measurementPeriodEndDate" size="11" maxlength="10" value="">
-            </div>
-        </div><!-- end measureTitle -->
+        <%= render :partial => 'measure_title'%>
 
         <div id="measureEditContainer">
         <div id="eligibilityMeasures">
