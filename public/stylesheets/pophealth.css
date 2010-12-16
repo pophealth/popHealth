@@ -451,3 +451,5 @@ input.exportReport {
   text-decoration: none;
   color: #368f98;
 }
+#patientTable tr.antiNumerator { background-color: #40b3bc; }
+#patientTable tr.numerator { background-color: #9cc45e; }

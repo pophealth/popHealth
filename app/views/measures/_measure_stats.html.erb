@@ -15,7 +15,8 @@
             <div class="tableBarDenominator" style="width:<%= denominator_width(measure['id'], sub_id, results)%>"><span></span></div>
           </div>
 
-          <%= link_to 'view', measure_url(measure['id'], sub_id), :class => 'tableEdit'%>
+          <%= link_to 'params', measure_url(measure['id'], sub_id), :class => 'tableEdit'%> 
+          <%= link_to 'patients', patients_url(measure['id'], sub_id), :class => 'tableEdit'%>
         </div>
         </td>
       </tr>

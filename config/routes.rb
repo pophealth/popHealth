@@ -4,6 +4,7 @@ PopHealth::Application.routes.draw do
   match 'measures/show/:id(/:sub_id)', :to => 'measures#show', :as => :measure, :via => :get
   match 'measures/result/:id(/:sub_id)', :to => 'measures#result', :as => :measure_result, :via => :get
   match 'measures/definition/:id(/:sub_id)', :to => 'measures#definition', :as => :measure_definition, :via => :get
+  match 'measures/patients/:id(/:sub_id)', :to => 'measures#patients', :as => :patients, :via => :get
   match 'measures/select/:id', :to => 'measures#select', :as => :select, :via => :post
   match 'measures/remove/:id', :to => 'measures#remove', :as => :remove, :via => :post
 
