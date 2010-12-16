@@ -150,13 +150,25 @@ a {color:black;
   margin-top:5px;
   background-color:@measurePopulationChartBar;
   width:320px;
+  height: 30px;
   line-height:1.5em;
 
 }
 
-.barVal {
-  background-color:@measurePopulationChartValue;
+.barNumerator {
+  background-color:@numerator;
   height:100%;
+  float: left;
+  color:@barValueText;
+  span {
+    margin:3px 0 0 5px;
+    }
+}
+
+.barDenominator {
+  background-color:@denominator;
+  height:100%;
+  float: left;
   color:@barValueText;
   span {
     margin:3px 0 0 5px;

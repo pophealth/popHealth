@@ -6,18 +6,20 @@ function llog(x) {window.console.log(x)}
     
     popHealth.drawPctChart = function(data) {
         var elem = "#mcp";
-        var numerator = data.numerator;
-        var denominator = data.denominator;
-        $(elem).empty();
-        var percent = denominator > 0 ? (numerator/denominator).toFixed(2)*100 : 0;
-        var percentStr = percent + "%"
-        $.tmpl("${numerator} / ${denominator} patients = ${percentage}",{numerator:numerator,denominator:denominator,percentage:percentStr}).appendTo(elem);
-        var bar = $("<div></div>",{className:"bar"});
-        $("<div></div>",{className:"barVal",width:percentStr,html:"<span>"+percentStr+"</span>"}).appendTo(bar);
-        $(elem).append(bar);
+        var percent = data.denominator > 0 ? (data.numerator/data.denominator).toFixed(2)*100 : 0;
+        var numeratorWidth = (data.numerator/<%= @patient_count %>).toFixed(2)*100;
+        var denominatorWidth = data.denominator > 0 ? ((data.denominator - data.numerator)/<%= @patient_count %>).toFixed(2)*100 : 0;
+        
+        $(elem).find("#numeratorValue").text(data.numerator);
+        $(elem).find("#denominatorValue").text(data.denominator);
+        $(elem).find("#measurePopulationPercentage").text(percent + "%");
+        
+        $(elem).find(".barNumerator").css("width", numeratorWidth + "%");
+        $(elem).find(".barDenominator").css("width", denominatorWidth + "%");
+
         $("#outcomeExclusionMarker").text(data.exceptions + " exclusion" + (data.exceptions = 1 ? "s":""));
-        $("#eligibleCount").text(denominator);
-        $("#outcomeCount").text(numerator);
+        $("#eligibleCount").text(data.denominator);
+        $("#outcomeCount").text(data.numerator);
     }
     
     

@@ -26,6 +26,7 @@ class MeasuresController < ApplicationController
   def show
     executor = QME::MapReduce::Executor.new(mongo)
     @definition = executor.measure_def(params[:id], params[:sub_id])
+    @patient_count = mongo['records'].count
     
     render 'measure'
   end

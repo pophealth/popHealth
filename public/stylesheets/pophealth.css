@@ -105,14 +105,23 @@ a {
   margin-top: 5px;
   background-color: #dddddd;
   width: 320px;
+  height: 30px;
   line-height: 1.5em;
 }
-.barVal {
-  background-color: #000000;
+.barNumerator {
+  background-color: #9cc45e;
   height: 100%;
+  float: left;
   color: #eeeeee;
 }
-.barVal span { margin: 3px 0 0 5px; }
+.barNumerator span { margin: 3px 0 0 5px; }
+.barDenominator {
+  background-color: #40b3bc;
+  height: 100%;
+  float: left;
+  color: #eeeeee;
+}
+.barDenominator span { margin: 3px 0 0 5px; }
 #measurementPeriod {
   padding: 20px 0 10px 0;
   color: #646464;
