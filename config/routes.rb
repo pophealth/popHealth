@@ -7,7 +7,7 @@ PopHealth::Application.routes.draw do
   match 'measures/select/:id', :to => 'measures#select', :as => :select, :via => :post
   match 'measures/remove/:id', :to => 'measures#remove', :as => :remove, :via => :post
 
-  match 'records', :to => 'records#create', :via => 'post'
+  match 'records', :to => 'records#create', :via => :post
 
   root :to => 'measures#index'
 
