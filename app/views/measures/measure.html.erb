@@ -17,7 +17,7 @@ function llog(x) {window.console.log(x)}
         $(elem).find(".barNumerator").css("width", numeratorWidth + "%");
         $(elem).find(".barDenominator").css("width", denominatorWidth + "%");
 
-        $("#outcomeExclusionMarker").text(data.exceptions + " exclusion" + (data.exceptions = 1 ? "s":""));
+        $("#outcomeExclusionMarker").text(data.exclusions + " exclusion" + (data.exceptions = 1 ? "s":""));
         $("#eligibleCount").text(data.denominator);
         $("#outcomeCount").text(data.numerator);
     }
