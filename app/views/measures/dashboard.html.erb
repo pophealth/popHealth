@@ -1,0 +1,168 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+    var popHealth = popHealth || {};
+
+    popHealth.makeMeasureListExpandable = function() {
+      $('#measureClassList li label').click(function(){
+        $(this).toggleClass('open');
+        if ($(this).hasClass('open')) {
+          $(this).siblings('div.measureItemList').slideDown();
+        } else {
+          $(this).siblings('div.measureItemList').slideUp();
+        }
+      });
+    };
+    
+    popHealth.makeMeasuresCheckable = function() {
+      $('.measureItemList li').click(function(){
+        var measureId = $(this).attr("data-measure-id");
+        var category = $(this).data("category");
+        var categoryLabel = $(".dashboardLabel").filter(function() {return this.innerHTML == category;});
+        
+        if ($(this).hasClass('checked')) {
+            $.post('/measures/remove/' + measureId,
+               function(data) {
+                   var measureTable = categoryLabel.next('table')
+                   if (measureTable.children().children().length == 2) {
+                       //this means there is a tr for the header and a tr for a measure
+                       //since there is only one measure, we should remove the whole table
+                       measureTable.remove();
+                       categoryLabel.remove();
+                   } else {
+                       $('#measure' + measureId).remove();
+                   };
+               }
+            )
+        } else {
+            $.post('/measures/select/' + measureId,
+               function(data) {
+                   if (categoryLabel.length != 0) {
+                       categoryLabel.next('table').children().first().append(data);
+                   } else {
+                       $('.measureDetailTable').append($.tmpl($('#categoryTmpl'), {"category": category, "measureRow": data}));
+                   };
+               }
+            )
+        }
+        
+        $(this).toggleClass('checked');
+      });
+    };
+
+    popHealth.populateMeasureStats = function() {
+      $('.tableMeasureCtrl').each(function(index) {
+        // Using attr() instead of data() because jQuery will convert the measure id to number
+        // which strips the leading zeros.
+        var measureId = $(this).attr("data-measure-id");
+        var measureSubId = $(this).data("measure-sub-id");
+        var resultUrl = null;
+        var graphDiv = $(this);
+        
+        if(measureSubId.length == 0) {
+          resultUrl = "/measures/result/" + measureId;
+        }
+        else {
+          resultUrl = "/measures/result/" + measureId + "/" + measureSubId;
+        }
+        
+        $.getJSON(resultUrl, function(data) {
+          var percent = data.denominator > 0 ? (data.numerator/data.denominator).toFixed(2)*100 : 0;
+          var numeratorWidth = (data.numerator/<%= @patient_count %>).toFixed(2)*100;
+          var denominatorWidth = data.denominator > 0 ? ((data.denominator - data.numerator)/<%= @patient_count %>).toFixed(2)*100 : 0;
+          
+          graphDiv.find(".numeratorValue").text(data.numerator);
+          graphDiv.find(".denominatorValue").text(data.denominator);
+          graphDiv.find(".measurePopulationPercentage").text(percent + "%");
+          
+          graphDiv.find(".tableBarNumerator").css("width", numeratorWidth + "%");
+          graphDiv.find(".tableBarDenominator").css("width", denominatorWidth + "%");
+        });
+      }
+      );
+    }
+
+    popHealth.exportReport = function() { alert('Export measure report'); };
+
+    $(document).ready(function() {
+      popHealth.makeMeasureListExpandable();
+      popHealth.makeMeasuresCheckable();
+      popHealth.populateMeasureStats();
+      $('#measurementPeriodStartDate, #measurementPeriodEndDate').calendricalDate({usa:true});
+      $('#btnExportReport').click(popHealth.exportReport);
+    });
+  </script>
+<% end -%>
+
+<div id="dashboardContainer">
+
+  <div id="header">
+    <div id="breadcrumbBox">
+      <ul id="breadcrumbItems">
+        
+      </ul>
+      <div id="logOut">
+        <a class="log" href="#">log out</a>
+      </div><br style="clear:both"/>
+    </div>
+
+  </div><!-- end #header -->
+
+  <div id="pageContent">
+    
+    <div id="providerReports">
+      <h1>Columbia Road Health Services</h1>
+      <h3>REPORTING:</h3>
+      <div class="measureList">
+        <ul id="measureClassList">
+        <% @categories.each do |category| -%>
+          <li><label><%= category['category'].upcase %></label>
+            <div class="measureItemList" style="display:none">
+              <ul>
+              <% category['measures'].each do |measure| -%>
+                <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="<%= category['category'] %>"><%= measure['name'].upcase %></li>
+              <% end -%>
+              </ul>
+            </div>
+        <% end -%>
+        </ul>
+      </div><!-- end #measureList -->
+      <a href="#">CREATE NEW</a>
+    </div><!-- end #providerReports -->
+
+    <div id="dashboardPeriod">
+
+        <div class="measureDetailTable">
+          <h3 class="dashboardLabel">REPORTING PERIOD:</h3>
+          <input type="text" class="calendarInput" id="measurementPeriodStartDate" maxlength="10" value="mm/dd/yyyy">
+          <span>-</span>
+          <input type="text" class="calendarInput" id="measurementPeriodEndDate" maxlength="10" value="mm/dd/yyyy">
+          <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
+
+          <h3 class="dashboardLabel">REPORTING PATIENTS: <%= @patient_count %></h3>
+          <% @grouped_selected_measures.each_pair do |category, measures| -%>
+          <h3 class="dashboardLabel"><%= category %></h3>
+          <table>
+            <tr>
+              <th>NAME</th>
+              <th>PATIENT STATISTICS</th>
+            </tr>
+            <% measures.each do |measure| -%>
+                <%= render :partial => 'measure_stats', :locals => {:measure => measure, :results => {}} %>
+            <% end -%>
+          </table>
+          <% end -%>
+
+        </div><!-- end #measureDetailTable -->
+    </div><!-- end #dashboardPeriod -->
+  </div><!-- end #pageContent -->
+</div><!-- end #container -->
+<script id="categoryTmpl" type="text/x-jquery-tmpl">
+    <h3 class="dashboardLabel">${category}</h3>
+    <table>
+      <tr>
+        <th>NAME</th>
+        <th>PATIENT STATISTICS</th>
+      </tr>
+      {{html measureRow}}
+    </table>
+</script>

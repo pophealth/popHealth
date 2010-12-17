@@ -1,0 +1,28 @@
+{
+  "name": "Result",
+  "properties": {
+    "initialPopulation": {
+      "type": "integer",
+      "description": "Individuals for whom the measure is intended."
+    },
+    "denominator": {
+      "type": "integer",
+      "description": "Individuals who should meet the measure. Sometimes equivalent to the initial population."
+    },
+    "numerator": {
+      "type": "array",
+      "description": "Individuals who do meet the measure.",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "exclusions": {
+      "type": "array",
+      "description": "Individuals that should be in the denominator but have characteristics that make them inappropriate for the measure.",
+      "optional": true,
+      "items": {
+        "type": "integer"
+      }
+    }
+  }
+}

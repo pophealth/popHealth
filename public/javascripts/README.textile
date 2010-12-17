@@ -1,0 +1,103 @@
+h1. JQuery plugin for HTML5 native Drag&Drop
+
+This is a work in progress. Tested on Firefox 3.6 and Safari 4.0.4 on MacOS. Comments are welcome. 
+
+h2. Fixing JQuery events
+
+The plugin restore the **dataTransfer** property to JQuery events:
+
+bc. $('img').bind('dragstart', function(e) {
+    e.dataTransfer.setData( 'URL', $(this).attr('href) ) // <-- yes e.dataTransfer is now available!
+})
+
+h2. Shortcut methods
+
+The plugin add needed events binding shortcut methods:
+
+* $.drag()
+* $.dragenter()
+* $.dragleave()
+* $.dragover()
+* $.dragstart()
+* $.dragend()
+* $.drop()
+
+For example:
+
+bc. $('img').dragstart(function() {
+    e.dataTransfer.setData( 'URL', $(this).attr('href) ) 
+})
+
+h2. Fixing CSS
+
+Webkit based browser need a custom CSS rule to define elements as **draggable**. The plugin insert it automatically.
+
+In fact, these rules are inserted to the current document:
+
+bc. [draggable=true] {
+    -webkit-user-drag: element; 
+    -webkit-user-select: none; 
+    -moz-user-select: none;
+}
+
+h2. $.draggable()
+
+bc. .draggable( dragstartHandler, [dragendHandler] )
+
+The **.draggable** method allows to define a element as draggable, and help to set the **dataTranser** content. You return the **dataTranser** content as a JSON object in the **dragstart** handler.
+
+Elements must define the **draggable="true"** attribute.
+
+bc. $('img').draggable(
+    function() {
+        return {
+            'URL': $(this).attr('href'),
+            'Text': $(this).attr('alt') || $(this).attr('href')
+        }
+    }
+)
+
+You can also add the **effect** property to define the allowed drag effects:
+
+bc. $('img').draggable(
+    function() {
+        return {
+            effect: 'copyMove',
+            'URL': $(this).attr('href'),
+            'Text': $(this).attr('alt') || $(this).attr('href')
+        }
+    }
+)
+
+**.draggable** uses live events. That means that you can add new draggable elements matching the selector in the document later.
+
+h2. $.droppable()
+
+bc. .droppable( contentTypes, [dragenterHandler], [dragleaveHandler], [drophandler] )
+
+The **.droppable** method allows to define a element as a drop zone for several data types. The **dragenter** and **dragleave** handler are called when the drop zone receive a drag of a expected content type (in the same time it fix problems caused by events bubbling in contained elements).
+
+The **contentTypes** argument is a list of space separated accepted content type. Using '*' means that the drop zone accept anything.
+
+Example:
+
+bc. $('#events').droppable(
+    'text/x-vCalendar',
+    function() {
+        $(this).addClass('dropZone')
+    },
+    function() {
+        $(this).removeClass('dropZone')
+    },
+    function(e) {
+        alert( 'Dropped --> ' + e.dataTransfer.getData('text/x-vCalendar') )
+    }
+)
+
+The standard content types shortcuts **URL**, **Text** and **Files** are supported.
+
+**.droppable** uses live events. That means that you can add new drop zones matching the selector in the document later.
+
+h2. Demonstration
+
+The **example.html** file contains several examples.

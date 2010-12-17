@@ -1,0 +1,19 @@
+{
+    "first" : "Bert",
+     "last" : "Bloggs",
+     "birthdate" : -921542400,
+     "measures" : 
+    {
+         "0041" : 
+        {
+             "encounter_prev_med_40_or_older" : 
+            [
+                 1276214400,
+                 1284854400 
+            ],
+             "allergy_to_eggs" : true 
+        }
+         
+    }
+     
+}
