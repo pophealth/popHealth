@@ -14,3 +14,5 @@ config/glassfish.yml
 doc
 .yardoc
 Thumbs.db
+.bundle
+vendor

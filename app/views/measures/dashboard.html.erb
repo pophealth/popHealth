@@ -68,7 +68,7 @@
         $.getJSON(resultUrl, function(data) {
           var percent = data.denominator > 0 ? (data.numerator/data.denominator).toFixed(2)*100 : 0;
           var numeratorWidth = (data.numerator/<%= @patient_count %>).toFixed(2)*100;
-          var denominatorWidth = data.denominator > 0 ? ((data.denominator - data.numerator)/<%= @patient_count %>).toFixed(2)*100 : 0;
+          var denominatorWidth = data.denominator > 0 ? ((data.denominator - data.numerator)/<%= @patient_count -%>).toFixed(2)*100 : 0;
           
           graphDiv.find(".numeratorValue").text(data.numerator);
           graphDiv.find(".denominatorValue").text(data.denominator);
@@ -98,7 +98,6 @@
   <div id="header">
     <div id="breadcrumbBox">
       <ul id="breadcrumbItems">
-        
       </ul>
       <div id="logOut">
         <a class="log" href="#">log out</a>
@@ -110,8 +109,8 @@
   <div id="pageContent">
     
     <div id="providerReports">
-      <h1>Columbia Road Health Services</h1>
-      <h3>REPORTING:</h3>
+      <h1>Reporting:</h1>
+      <p class="note">(Select 3 from each category)</p>
       <div class="measureList">
         <ul id="measureClassList">
         <% @categories.each do |category| -%>
@@ -130,22 +129,31 @@
     </div><!-- end #providerReports -->
 
     <div id="dashboardPeriod">
-
         <div class="measureDetailTable">
-          <h3 class="dashboardLabel">REPORTING PERIOD:</h3>
-          <input type="text" class="calendarInput" id="measurementPeriodStartDate" maxlength="10" value="mm/dd/yyyy">
-          <span>-</span>
-          <input type="text" class="calendarInput" id="measurementPeriodEndDate" maxlength="10" value="mm/dd/yyyy">
-          <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
+    	  <h1>Columbia Road Health Services</h1>
+    	  <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
 
-          <h3 class="dashboardLabel">REPORTING PATIENTS: <%= @patient_count %></h3>
+          <dl>
+	          <dt>Reporting Period:</dt>
+    	      <dd>
+        		  <input type="text" class="calendarInput" id="measurementPeriodStartDate" maxlength="10" value="1 Jan 2009">
+		          <span style="margin-right:12px"> to </span>
+        		  <input type="text" class="calendarInput" id="measurementPeriodEndDate" maxlength="10" value="1 Apr 2009">
+			</dd>
+		</dl>
+		<dl>
+          <dt>Reporting Patients: </dt>
+          <dd><%= @patient_count %></dd>
+        </dl>
+        <div class="clear"></div>  
+        <!-- </div> -->
           <% @grouped_selected_measures.each_pair do |category, measures| -%>
           <h3 class="dashboardLabel"><%= category %></h3>
           <table>
-            <tr>
-              <th>NAME</th>
-              <th>PATIENT STATISTICS</th>
-            </tr>
+           <!-- <tr>
+              <th>Name</th>
+              <th>Patient Statistics</th>
+            </tr> -->
             <% measures.each do |measure| -%>
                 <%= render :partial => 'measure_stats', :locals => {:measure => measure, :results => {}} %>
             <% end -%>
@@ -159,10 +167,7 @@
 <script id="categoryTmpl" type="text/x-jquery-tmpl">
     <h3 class="dashboardLabel">${category}</h3>
     <table>
-      <tr>
-        <th>NAME</th>
-        <th>PATIENT STATISTICS</th>
-      </tr>
+
       {{html measureRow}}
     </table>
 </script>

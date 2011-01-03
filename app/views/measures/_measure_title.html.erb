@@ -1,23 +1,22 @@
-<div id="measureTitle">
-    <div id="measureCtrl">
-        <div id="mcp">
-            <span id="numeratorValue">0</span> / <span id="denominatorValue">--</span> patients = <span id="measurePopulationPercentage">0%</span>
-            <div class="bar">
-                <div class="barNumerator" style="width:33%"></div>
-                <div class="barDenominator" style="width:33%"></div>
-            </div>
-        </div>
-        <input type="button" value="Save as new measure" id="btnSaveNewMeasure">
-        <input type="button" value="Return to dashboard" id="btnReturnToDash">
-    </div>
-
-    <h1 id="measureTitleText"></h1>
-    <h2 id="measureDescText"></h2>
-
-    <div id="measurementPeriod">
-        <label>Measurement Period: </label>
-        <input type="text" id="measurementPeriodStartDate" size="11" maxlength="10" value="1/1/2009">
-        <span>to</span>
-        <input type="text" id="measurementPeriodEndDate" size="11" maxlength="10" value="">
-    </div>
-</div><!-- end measureTitle -->
+<div class="measureDetailTable">
+		<dl>
+          <dt style="line-height:2.5em">Measure Name:</dt>
+          <dd><h1 id="measureTitleText"></h1></dd>
+        </dl>
+        <dl>
+          <dt>Reporting Period:</dt>
+   	      <dd>
+       		  <input type="text" class="calendarInput" id="measurementPeriodStartDate" maxlength="10" value="1 Jan 2009">
+	          <span style="margin-right:12px"> to </span>
+       		  <input type="text" class="calendarInput" id="measurementPeriodEndDate" maxlength="10" value="1 Apr 2009">
+		</dd>
+		</dl>
+        <dl>
+          <dt>Description:</dt>
+   	      <dd>
+       		  <span id="measureDescText"></span>
+		</dd>
+		</dl>
+        <div class="clear"></div>  
+       
+ </div><!-- end #measureDetailTable -->
