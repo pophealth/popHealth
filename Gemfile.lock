@@ -1,5 +1,5 @@
 GIT
-  remote: /Users/bobd/projects/quality-measure-engine
+  remote: http://github.com/pophealth/quality-measure-engine.git
   revision: 0da852bad7b142523e283dc5e33508259d7adf22
   branch: develop
   specs:

@@ -6,7 +6,7 @@ group :test, :development do
   gem "rspec-rails", "~> 2.0.1"
 end
 
-gem 'quality-measure-engine', :git => '/Users/bobd/projects/quality-measure-engine', :branch => 'develop'
+gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'develop'
 gem 'nokogiri'
 
 # Bundle edge Rails instead:
