@@ -48,8 +48,8 @@ class MeasuresController < ApplicationController
     measure_id = params[:id] 
     sub_id = params[:sub_id]
     effective_date = ( params[:effective_date] || Time.now).to_i
-    
-    @records = mongo['cached_measure_patients'].find({:measure_id=>measure_id,:sub_id=>sub_id,:effective_date=>effective_date,type=>true},{:sort=>[sort, sort_order],:skip=>skip,:limit=>limit})
+   cache_name =  "cached_measure_patients_#{measure_id}_#{sub_id}_#{effective_date}"
+    @records = mongo[cache_name].find({:measure_id=>measure_id,:sub_id=>sub_id,:effective_date=>effective_date,type=>true},{:sort=>[sort, sort_order],:skip=>skip,:limit=>limit})
 
   end
   

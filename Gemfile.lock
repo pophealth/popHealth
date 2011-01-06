@@ -1,6 +1,6 @@
 GIT
   remote: /Users/bobd/projects/quality-measure-engine
-  revision: ec8e0494d492f606d2603069353429cfaabea082
+  revision: 0da852bad7b142523e283dc5e33508259d7adf22
   branch: develop
   specs:
     quality-measure-engine (0.1.2)
