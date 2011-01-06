@@ -59,6 +59,12 @@ function llog(x) {window.console.log(x)}
     }
     
     
+    popHealth.sortPatientTable = function(field){
+       sort = field;
+       popHealth.reloadTable();
+    }
+    
+    
     $(document).ready(function() {
     
     //$.getJSON("json/bp.json",popHealth.renderMeasureJSON);
