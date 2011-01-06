@@ -11,7 +11,7 @@ function llog(x) {window.console.log(x)}
     var effective_date = <%=Time.gm(2010, 9, 19).to_i%>;
     var measure_id= '<%=params[:id] %>';
     var sub_id=<%= "'#{params[:sub_id]}'" || 'null' %>;
-    
+    var sort_ascending = true;
     
     popHealth.drawPctChart = function(data) {
         var elem = "#mcp";
@@ -46,7 +46,7 @@ function llog(x) {window.console.log(x)}
           url += "/"+sub_id
         }
           $.ajax({ url:  url,
-                     data: {sort:sort, offset:offset, limit:limit, type:display_type, effective_date:effective_date },
+                     data: {sort:sort, sort_order:(sort_ascending? 'asc' :'desc' ) , offset:offset, limit:limit, type:display_type, effective_date:effective_date },
                      type:"GET",
                      dataType: 'html',
                      success: function(res){

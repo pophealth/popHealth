@@ -3,7 +3,7 @@
   		<tr>
   			<th name="last">Last</th>
   			<th name="first">First</th>
-  			<th name="age">Age</th>
+  			<th name="birthdate">Age</th>
   			<th name="birthdate">DoB</th>
   			<th name="gender">Gender</th>
   		</tr>
@@ -30,8 +30,11 @@ $('#patientTable >thead >tr > th').click(function(){
 
    if ($(this).attr('name') != sort){
      sort=$(this).attr('name');
-     popHealth.reloadTable();
    }
+   else {
+     sort_ascending = !sort_ascending;
+   }
+   popHealth.reloadTable();
 });
 
 </script>

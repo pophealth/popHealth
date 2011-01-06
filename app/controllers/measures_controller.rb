@@ -44,11 +44,12 @@ class MeasuresController < ApplicationController
     skip =( params[:offest] || 0).to_i
     limit = (params[:limit] || 50).to_i
     sort = params[:sort] || "_id"
+    sort_order = params[:sort_order] || :asc
     measure_id = params[:id] 
     sub_id = params[:sub_id]
     effective_date = ( params[:effective_date] || Time.now).to_i
     
-    @records = mongo['cached_measure_patients'].find({:measure_id=>measure_id,:sub_id=>sub_id,:effective_date=>effective_date,type=>true},{:sort=>[sort, :asc],:skip=>skip,:limit=>limit})
+    @records = mongo['cached_measure_patients'].find({:measure_id=>measure_id,:sub_id=>sub_id,:effective_date=>effective_date,type=>true},{:sort=>[sort, sort_order],:skip=>skip,:limit=>limit})
 
   end
   
