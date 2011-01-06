@@ -51,6 +51,18 @@ module MeasuresHelper
     end
   end
   
+  
+  def dob(time)
+    Time.at(time).to_s  
+  end
+  
+  
+  def age_from_time(time)
+   t = Time.now.to_i - time
+   year = 365 * 24 * 60 * 60
+   (t/year).to_i
+  end
+  
   private
   
   def real_id_or_default(measure_id, sub_id, results, default)

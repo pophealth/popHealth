@@ -1,0 +1,25 @@
+ <table id="patientTable">
+  	<thead>
+  		<tr>
+  			<th>Last</th>
+  			<th>First</th>
+  			<th>Age</th>
+  			<th>DoB</th>
+  			<th>Gender</th>
+  		</tr>
+  	</thead>
+      <tbody>
+          <% @records.each do |patient| -%>
+              <tr class="antiNumerator">
+                  <td><%= patient['first'] %></td>
+                  <td><%= patient['last'] %></td>
+                  <td><%= age_from_time(patient['birthdate']) %></td>
+                  <td><%= dob(patient['birthdate']) %></td>
+                  <td><%= patient["gender"] || "UNK" %></td>
+              </tr>
+          <% end -%>  
+      </tbody>
+  </table>
+<div>  
+  <!-- pagination to go here -->
+</div>
