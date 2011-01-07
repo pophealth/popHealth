@@ -31,9 +31,28 @@ class MeasuresController < ApplicationController
     @result = @executor.measure_result(params[:id], params[:sub_id], :effective_date=>Time.gm(2010, 9, 19).to_i)
     @definition = @executor.measure_def(params[:id], params[:sub_id])
     
-    @numerator = mongo['records'].find('_id' => {'$in' => @result[:numerator_members]})
-    @anti_numerator = mongo['records'].find('_id' => {'$in' => @result[:antinumerator_members]})
+   # @numerator = mongo['records'].find('_id' => {'$in' => @result[:numerator_members]})
+   # @anti_numerator = mongo['records'].find('_id' => {'$in' => @result[:antinumerator_members]})
   end
+  
+  
+  
+  def measure_patients
+
+    @result = @executor.measure_result(params[:id], params[:sub_id], :effective_date=>Time.gm(2010, 9, 19).to_i)
+    type = params[:type] || "denominator"
+    skip =( params[:offest] || 0).to_i
+    limit = (params[:limit] || 50).to_i
+    sort = params[:sort] || "_id"
+    sort_order = params[:sort_order] || :asc
+    measure_id = params[:id] 
+    sub_id = params[:sub_id]
+    effective_date = ( params[:effective_date] || Time.now).to_i
+   cache_name =  "cached_measure_patients_#{measure_id}_#{sub_id}_#{effective_date}"
+    @records = mongo[cache_name].find({:measure_id=>measure_id,:sub_id=>sub_id,:effective_date=>effective_date,type=>true},{:sort=>[sort, sort_order],:skip=>skip,:limit=>limit})
+
+  end
+  
   
   def select
     measure = Measure.add_measure(params[:id])
@@ -46,7 +65,6 @@ class MeasuresController < ApplicationController
         results[measure['id'] + sub_id] = @executor.measure_result(params[:id], sub_id, :effective_date=>Time.gm(2010, 9, 19).to_i)
       end
     end
-    
     render :partial => 'measure_stats', :locals => {:measure => measure, :results => results}
   end
   

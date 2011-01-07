@@ -1,8 +1,17 @@
 <% content_for :head do %>
+<%= javascript_include_tag 'widgets/patient_table.js'%>
   <script type="text/javascript">
 function llog(x) {window.console.log(x)}    
     
     var popHealth = popHealth || {};
+    var sort = "_id";
+    var offset = 0;
+    var limit = 50;
+    var display_type= "denominator";
+    var effective_date = <%=Time.gm(2010, 9, 19).to_i%>;
+    var measure_id= '<%=params[:id] %>';
+    var sub_id=<%= "'#{params[:sub_id]}'" || 'null' %>;
+    var sort_ascending = true;
     
     popHealth.drawPctChart = function(data) {
         var elem = "#mcp";
@@ -30,6 +39,32 @@ function llog(x) {window.console.log(x)}
         $("#measureDescText").text(data.description);
     }
     
+    
+    popHealth.reloadTable = function(data){
+       var url = "/measures/measure_patients/"+measure_id;
+        if (sub_id){
+          url += "/"+sub_id
+        }
+          $.ajax({ url:  url,
+                     data: {sort:sort, sort_order:(sort_ascending? 'asc' :'desc' ) , offset:offset, limit:limit, type:display_type, effective_date:effective_date },
+                     type:"GET",
+                     dataType: 'html',
+                     success: function(res){
+                       $('#patientTableContainer').html(res);
+                     },
+                     error: function(xhr, err) {
+                      alert("need to do something about this");
+                     }
+                   });
+    }
+    
+    
+    popHealth.sortPatientTable = function(field){
+       sort = field;
+       popHealth.reloadTable();
+    }
+    
+    
     $(document).ready(function() {
     
     //$.getJSON("json/bp.json",popHealth.renderMeasureJSON);
@@ -40,7 +75,30 @@ function llog(x) {window.console.log(x)}
     $("#btnReturnToDash").click(popHealth.returnToDash);
     $("#measurementPeriodStartDate, #measurementPeriodEndDate").calendricalDate({usa:true});
     
+    
+    $('input[name=patientGroup]').change(function(){
+       //$('#patientTableContainer').patient_table.displayNumerator();
+       if(this.id == "num"){
+         display_type = "numerator";
+       }else if(this.id == "den"){
+           display_type = "denominator";
+       }else{
+           display_type = "antinumerator";
+       }
+       popHealth.reloadTable();
+    });
+    
+    
+    //$('#patientTableContainer').patientTable({measure_id:'<%=params[:id] %>',sub_id:<%=params[:sub_id] || 'null' %>,effective_date:<%=Time.gm(2010, 9, 19).to_i%>});
+    
+    popHealth.reloadTable();
+    
 });
+
+
+
+ 
+  var results = <%=@result.to_json.html_safe %>;
   </script>
 
 <% end %>
@@ -52,19 +110,19 @@ function llog(x) {window.console.log(x)}
     <div id="pageContent">
     
 	<div id="patientMetrics">
-		<span id="measurePopulationPercentage">44%</span>
+		<span id="measurePopulationPercentage"><%= ( (@result[:numerator].to_f / @result[:denominator].to_f) * 100.0).round %>%</span>
 		<span class="paren">(</span>
 		<div class="inline-fraction">
-			<span id="numeratorValue" class="numeratorValue">3456</span>
+			<span id="numeratorValue" class="numeratorValue"><%= @result[:numerator]%></span>
 			<span class="separator"></span>
-			<span id="denominatorValue" class="denominatorValue">7342</span>
+			<span id="denominatorValue" class="denominatorValue"><%= @result[:denominator]%></span>
 		</div><span class="paren">)</span>
 				
 		<div class="patientGroupType"><p>Show Patients in:</p>
         	<ul>
-	          <li class="numerator"><span class="radio"><input type="radio" name="patientGroup" value="1"   id="num"/></span><label for="num">numerator</label> <span class="count">3456</span></li>
-    	      <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="2" id="den"/></span><label for="den"> denominator</label> <span class="count">7834</span> </li>
-        	  <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="3" id="dnn" /></span><label for="dnn"> denominator not numerator</label> <span class="count">4013</span></li>
+	          <li class="numerator"><span class="radio"><input type="radio" name="patientGroup" value="1"   id="num"/></span><label for="num">numerator</label> <span class="count"><%= @result[:numerator]%></span></li>
+    	      <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="2" id="den" checked="true" /></span><label for="den"> denominator</label> <span class="count"><%= @result[:denominator]%></span> </li>
+        	  <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="3" id="dnn" /></span><label for="dnn"> denominator not numerator</label> <span class="count"><%= @result[:antinumerator]%></span></li>
 	        </ul>
     	    <br style="clear:both"/>
 	    </div>
@@ -75,37 +133,7 @@ function llog(x) {window.console.log(x)}
         <%= render :partial => 'measure_title'%>
 
         <div id="patientTableContainer">
-            <table id="patientTable">
-            	<thead>
-            		<tr>
-            			<th>Last</th>
-            			<th>First</th>
-            			<th>Age</th>
-            			<th>DoB</th>
-            			<th>Gender</th>
-            		</tr>
-            	</thead>
-                <tbody>
-                    <% @anti_numerator.each do |patient| -%>
-                        <tr class="antiNumerator">
-                            <td><%= patient['first'] %></td>
-                            <td><%= patient['last'] %></td>
-                            <td><%= rand(75) %></td>
-                            <td>{DOB}</td>
-                            <td>{gender}</td>
-                        </tr>
-                    <% end -%>
-                    <% @numerator.each do |patient| -%>
-                        <tr class="numerator">
-                            <td><%= patient['first'] %></td>
-                            <td><%= patient['last'] %></td>
-                            <td><%= rand(75) %></td>
-                            <td>{DOB}</td>
-                            <td>{gender}</td>
-                        </tr>
-                    <% end -%>
-                </tbody>
-            </table>
+           
         </div><!-- end measureEditContainer -->
         
 	</div>

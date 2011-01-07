@@ -118,7 +118,7 @@
             <div class="measureItemList" style="display:none">
               <ul>
               <% category['measures'].each do |measure| -%>
-                <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="<%= category['category'] %>"><%= measure['name'].upcase %></li>
+                <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="<%= category['category'] %>"><%= measure['name'].upcase if measure['name'] %></li>
               <% end -%>
               </ul>
             </div>
