@@ -25,16 +25,14 @@ q:before { content: ""; }
 q:after { content: ""; }
 blockquote, q { quotes: "" ""; }
 a img { border: none; }
-body { width: 100%; }
-#container {
-  font-family: "Myriad Pro", "Frutiger", Helvetica, Arial;
-  font-size: 0.9em;
-  width: 1000px;
-}
-#dashboardContainer {
+html, body { height: 100%; }
+#container, #dashboardContainer {
   font-family: "Myriad Pro", "Frutiger", Helvetica, Arial;
   font-size: 0.9em;
   width: 1225px;
+  width: 100%;
+  height: 100%;
+  min-width: 1000px;
 }
 a {
   color: black;
@@ -53,8 +51,12 @@ a {
 }
 #header ul li { float: left; }
 #header ul li .sep { margin: 0 5px; }
+#pageContent {
+  height: 100%;
+  display: table;
+}
 #breadcrumbBox {
-  padding: 5px 0 5px 0;
+  padding: 5px 0 2px 0;
   border-bottom: 1px solid #cccccc;
   background: transparent url(../images/popHealthMiniLogo.png) 0 10% no-repeat;
 }
@@ -184,7 +186,7 @@ a {
   text-transform: uppercase;
 }
 #eligibilityMeasures {
-  width: 365px;
+  width: 500px;
   display: table-cell;
 }
 #eligibilityMeasures h3 {
@@ -207,8 +209,7 @@ a {
   box-shadow: -2px -2px 2px #264e51;
 }
 #outcomeMeasures {
-  width: 365px;
-  xfloat: right;
+  width: 500px;
   display: table-cell;
   border-left: 1px solid #e9e9e9;
 }
@@ -274,19 +275,25 @@ a {
 }
 #providerReports {
   display: table-cell;
-  width: 300px;
+  width: 285px;
   background-color: #f2f2f2;
+  height: 100%;
+  vertical-align: top;
   color: #000000;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 0 5px 0 10px;
+  border-right: 1px solid #cccccc;
 }
 #providerReports h3 {
   padding: 0 0 0 10px;
   font-size: 0.9em;
 }
+#providerReports p.note {
+  font-size: 0.9em;
+  padding: 0 0 0 10px;
+  font-style: italic;
+}
 #providerReports h3.dashboardLabel {
-  color: #afafaf;
+  color: #888888;
   padding: 10px 0 0px 10px;
   font-size: 1em;
 }
@@ -295,15 +302,15 @@ a {
   font-size: 1em;
 }
 #providerReports h1 {
-  padding: 10px 0 10px 10px;
+  padding: 10px 0 0px 10px;
   font-size: 1.4em;
 }
 #providerReports .measureList {
   background-color: #f2f2f2;
-  color: #afafaf;
+  color: #888888;
   margin: 5px 0;
   padding: 0 5px 10px 5px;
-  font-size: 0.9em;
+  font-size: 1.1em;
 }
 #providerReports .measureList p {
   color: #666666;
@@ -328,6 +335,7 @@ a {
 #providerReports .measureItemList li {
   padding: 0 5px 5px 25px;
   background: url(../images/unchecked.png) 0 10% no-repeat;
+  font-size: 0.9em;
 }
 #providerReports .measureItemList li.checked { background: url(../images/smallcheckbox.png) 0 10% no-repeat; }
 #providerReports a {
@@ -338,59 +346,107 @@ a {
   text-decoration: none;
   color: #368f98;
 }
-#dashboardPeriod {
-  display: table-cell;
-  width: 900px;
-  xfloat: right;
-}
+#dashboardPeriod { float: left; }
 #dashboardPeriod p.dashboardLabel {
-  color: #afafaf;
+  color: #888888;
   float: left;
   padding: 20px 20px 20px 40px;
 }
 #dashboardPeriod input.calendarInput {
-  height: 50px;
-  width: 100px;
+  width: 80px;
   position: relative;
-  padding-left: 50px;
-  margin: 0px 0px 5px 40px;
+  padding-left: 25px;
+  margin: 0px 0px 5px 0px;
   border: none;
   color: #666666;
   font-size: 0.9em;
-  background: transparent url(../images/calendar.png) 0% 50% no-repeat;
+  background: transparent url(../images/icnMiniCalendar.png) 0% 50% no-repeat;
 }
 input.exportReport {
   float: right;
   color: #44b3be;
-  font-size: 1.4em;
+  font-size: 1em;
+  background: -moz-linear-gradient(top, #ececec, #e5e5e5);
   background-color: #f2f2f2;
-  border: 1px solid #f2f2f2;
-  padding: 6px 8px 8px 8px;
-  margin-right: 10px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+  border: 1px solid #afafaf;
+  padding: 6px 8px 5px 8px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  text-transform: uppercase;
 }
-.measureDetailTable {
+.measureDetailTable { padding: 0; }
+.measureDetailTable h1 {
+  font-size: 1.5em;
+  padding-left: 10px;
+}
+.measureDetailTable h3.dashboardLabel { text-transform: uppercase; }
+.measureDetailTable dl {
   display: block;
-  width: 900px;
-  padding: 0 10px 0 10px;
+  clear: left;
+  margin-top: 10px;
+  padding-left: 10px;
+}
+.measureDetailTable dt {
+  display: table-cell;
+  width: 180px;
+  color: #888888;
+  text-transform: uppercase;
+}
+.measureDetailTable dd {
+  display: table-cell;
+  width: 540px;
+}
+.measureDetailTable dd h1 { padding-left: 0; }
+.measureDetailTable h3.dashboardLabel {
+  color: #888888;
+  clear: left;
+  padding-left: 10px;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #cccccc;
 }
 .measureDetailTable p { padding: 20px 0px 5px 5px; }
-.measureDetailTable th {
+.measureDetailTable table { width: 100%; }
+.measureDetailTable table th {
   color: #646464;
-  padding: 0 0 0 5px;
-  border-bottom: 3px solid #646464;
+  padding: 0 0 0 40px;
+  border-bottom: 1px solid #e9e9e9;
   font-size: 0.9em;
 }
-.measureDetailTable td {
-  padding: 40px 20px 5px 5px;
+.measureDetailTable table td {
+  padding: 15px 0px 5px 40px;
   vertical-align: top;
 }
-.measureDetailTable tr { vertical-align: top; }
-#tableMeasureTitle { width: 225px; }
+.measureDetailTable table tr { vertical-align: top; }
+.inline-fraction {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  text-align: center;
+}
+.inline-fraction span {
+  display: block;
+  margin-right: 5px;
+}
+.inline-fraction span.numeratorValue { color: #9cc45e; }
+.inline-fraction span.denominatorValue { color: #40b3bc; }
+.inline-fraction span.separator { border-top: 1px solid #cccccc; }
+.paren {
+  font-size: 2.5em;
+  color: #999999;
+  position: relative;
+  top: 5px;
+}
+.tableMeasureTitle {
+  width: 225px;
+  margin-top: 0.75em;
+}
 #tableMeasureDescription { width: 275px; }
 .zeroPadding td { padding: 0px; }
+.clear {
+  clear: both;
+  padding: 10px;
+}
 .tableBarVal {
   background-color: #333333;
   height: 100%;
@@ -400,17 +456,26 @@ input.exportReport {
 }
 .tableBarVal span { margin: 3px 0 0 5px; }
 .tableMeasureCtrl {
-  width: 350px;
   font-size: 1em;
   margin-bottom: 10px;
 }
-.tableMeasureCtrl .fraction {
+.tableMeasureCtrl .measureStats {
+  width: 100px;
   float: left;
-  padding: 0 15px 0 0;
+  height: 3em;
+  vertical-align: middle;
+}
+.tableMeasureCtrl .inline-bar {
+  float: left;
+  height: 3em;
+  vertical-align: middle;
+  position: relative;
+  top: 0.5em;
 }
 .tableMeasureCtrl .tableBar {
   float: left;
   margin-top: 5px;
+  margin-right: 15px;
   background-color: #dddddd;
   width: 150px;
   padding: 0 5px 0 0;
@@ -438,18 +503,83 @@ input.exportReport {
 .tableMeasureCtrl .numeratorValue { color: #9cc45e; }
 .tableMeasureCtrl .denominatorValue { color: #40b3bc; }
 .tableMeasureCtrl .tableEdit {
-  float: left;
-  margin-top: 5px;
+  line-height: 2.5em;
   font-size: 0.8em;
 }
+.tableMeasureCtrl .sep { color: #999999; }
 .tableMeasureCtrl a {
-  float: left;
-  padding: 0 0 0 10px;
+  padding: 0 5px 0 5px;
   color: #44b3be;
 }
 .tableMeasureCtrl a:hover {
   text-decoration: none;
   color: #368f98;
 }
-#patientTable tr.antiNumerator { background-color: #40b3bc; }
-#patientTable tr.numerator { background-color: #9cc45e; }
+#patientMetrics {
+  display: block;
+  display: table-cell;
+  vertical-align: top;
+  width: 285px;
+  background-color: #f2f2f2;
+  color: #000000;
+  padding: 0 0 0 15px;
+  min-height: 100%;
+  height: 100%;
+  border-right: 1px solid #cccccc;
+}
+#patientMetrics #measurePopulationPercentage {
+  font-size: 3em;
+  margin-right: 40px;
+  position: relative;
+  top: 7px;
+}
+#patientMetrics .inline-fraction {
+  font-size: 1.4em;
+  line-height: 1.2em;
+}
+#patientMetrics .inline-fraction .separator { padding-bottom: 3px; }
+#patientMetrics .patientGroupType ul { float: right; }
+#patientMetrics .patientGroupType ul li {
+  height: 52px;
+  list-style: none;
+  margin: 15px 0;
+  width: 250px;
+  background: url(/images/pgTabNumerator.png) top left no-repeat;
+  padding-right: 5px;
+  text-align: right;
+}
+#patientMetrics .patientGroupType ul li span {
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
+  height: 52px;
+}
+#patientMetrics .patientGroupType ul li span.radio {
+  width: 30px;
+  padding-left: 7px;
+}
+#patientMetrics .patientGroupType ul li label {
+  width: 150px;
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
+  height: 52px;
+  cursor: pointer;
+}
+#patientMetrics .patientGroupType ul li span.count {
+  text-align: right;
+  width: 70px;
+}
+#patientMetrics .patientGroupType ul li.denominator { background: url(/images/pgTabDenominator.png) top left no-repeat; }
+#patientTableContainer { border-top: 1px solid #e9e9e9; }
+#patientTable {
+  margin: 20px 20px 20px 50px;
+  width: 100%;
+}
+#patientTable th {
+  padding: 2px 5px;
+  color: #888888;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+#patientTable td { padding: 2px 15px 2px 5px; }
