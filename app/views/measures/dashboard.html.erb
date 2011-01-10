@@ -89,6 +89,8 @@
       popHealth.populateMeasureStats();
       $('#measurementPeriodStartDate, #measurementPeriodEndDate').calendricalDate({usa:true});
       $('#btnExportReport').click(popHealth.exportReport);
+     
+
     });
   </script>
 <% end -%>
@@ -98,10 +100,11 @@
   <div id="header">
     <div id="breadcrumbBox">
       <ul id="breadcrumbItems">
+      <li>provider dashboard</li>
       </ul>
       <div id="logOut">
-        <a class="log" href="#">log out</a>
-      </div><br style="clear:both"/>
+        <a class="log">help</a> <span class="sep">|</span><a class="log" href="#">log out</a>
+      </div>
     </div>
 
   </div><!-- end #header -->
@@ -109,8 +112,25 @@
   <div id="pageContent">
     
     <div id="providerReports">
-      <h1>Reporting:</h1>
-      <p class="note">(Select 3 from each category)</p>
+      <h1>Reporting</h1>
+      <p class="note">CORE MEASURES <em>(select 3)</em></p>
+      <div class="measureList">
+      <div class="measureItemList">
+         <ul>
+              <li>Adult weight screening and follow-up</li>
+              <li>Hypertension BP measurement</li>
+              <li>Smoking Cessation</li>
+              <li><span class="note">**</span>Childhood Immunization Status</li>
+              <li><span class="note">**</span>Influenza Immunization for Patients &gt;50 yrs.</li>
+              <li><span class="note">**</span>Weight Assessment and Counseling for Children and Adolescents</li>
+         </ul>
+      <p class="note"><em>** core alternate measures</em></p>
+
+      </div>
+      </div>
+            
+            
+      <p class="note">ADDITIONAL MEASURES <em>(select 3)</em></p>
       <div class="measureList">
         <ul id="measureClassList">
         <% @categories.each do |category| -%>
@@ -118,14 +138,13 @@
             <div class="measureItemList" style="display:none">
               <ul>
               <% category['measures'].each do |measure| -%>
-                <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="<%= category['category'] %>"><%= measure['name'].upcase %></li>
+                <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="<%= category['category'] %>"><%= measure['name'].upcase if measure['name'] %></li>
               <% end -%>
               </ul>
             </div>
         <% end -%>
         </ul>
       </div><!-- end #measureList -->
-      <a href="#">CREATE NEW</a>
     </div><!-- end #providerReports -->
 
     <div id="dashboardPeriod">
@@ -136,9 +155,9 @@
           <dl>
 	          <dt>Reporting Period:</dt>
     	      <dd>
-        		  <input type="text" class="calendarInput" id="measurementPeriodStartDate" maxlength="10" value="1 Jan 2009">
-		          <span style="margin-right:12px"> to </span>
-        		  <input type="text" class="calendarInput" id="measurementPeriodEndDate" maxlength="10" value="1 Apr 2009">
+        		  <span id="measurementPeriodStartDate">Jan.1.2009</span>
+		          <span style="margin:0 10px"> to </span>
+        		  <span id="measurementPeriodEndDate">Apr.1.2009</span>
 			</dd>
 		</dl>
 		<dl>

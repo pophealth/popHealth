@@ -30,9 +30,11 @@ a img {border:none;}
 @headerBkg : #eee;
 @measureTitleText : #373737;
 @measurementPeriodText:#646464;
+@measureList : #000;
 @eligibleHdr : #eafcff;
 @outcomeHdr : #e9f4d9;
 @measureBorderColor:#e9e9e9;
+@providerReports:#f2f2f2;
 @parameterList : #353535;
 @parameterListTitle :#eeeeee;
 @paramList : #f2f2f2;
@@ -85,6 +87,7 @@ a {
     margin-left:115px;
     li {
       float:left;
+      margin-top:5px;
       .sep {margin:0 5px;
       }
     }
@@ -97,15 +100,18 @@ a {
 }
   
 #breadcrumbBox {
-  padding:5px 0 2px 0;
+  padding:2px 0;
   border-bottom:1px solid @borderColor;
   background:transparent url(../images/popHealthMiniLogo.png) 0 10% no-repeat; 
 }
 
 #logOut {
-    padding:5px 20px 0 0;
+    padding:5px 20px 4px 0;
+    text-align:right;
+    font-size:1em;
+    .sep {margin:0 5px;color:#aaa}
     a {
-       float: right;
+       xfloat: right;
        color: @dashboardText;
     }
     a:hover {
@@ -361,7 +367,7 @@ a {
 #providerReports {
   display:table-cell;
   width:285px;
-  background-color:#F2F2F2;
+  background-color:@providerReports;
   height:100%;
   vertical-align:top;
   color:#000000;
@@ -372,10 +378,12 @@ a {
       font-size:0.9em;
   }
   p.note {
-    font-size:0.9em;
     padding:0 0 0 10px;
-    font-style:italic;
+    margin:15px 0;
+    color:@dashboardLabel;
+    
   }
+  em {font-style:italic;}
   h3.dashboardLabel {
      color:@dashboardLabel;
      padding: 10px 0 0px 10px;
@@ -392,13 +400,16 @@ a {
 
   .measureList {
     background-color:@paramList;
-    color:@dashboardLabel;
+    color:@measureList;
     margin:5px 0;
     padding:0 5px 10px 5px;
     font-size:1.1em;
     p {
       color:#666;
-      line-height:1.2em;
+      margin:0 10px 0 0;
+      font-size:0.8em;
+      text-align:right;
+      xline-height:1.2em;
     }
     ul {
       margin:10px 5px;
@@ -426,6 +437,8 @@ a {
       padding: 0 5px 5px 25px;
       background:url(../images/unchecked.png) 0 10% no-repeat;
       font-size:0.9em;
+      cursor:pointer;
+      .note {margin:0 3px 0 0;font-size:0.9em}
     }
     li.checked {
       background:url(../images/smallcheckbox.png) 0 10% no-repeat;
@@ -492,13 +505,13 @@ a {
   }
   dt {
     display:table-cell;
-    width:180px;
+    width:160px;
     color:@dashboardLabel;
     text-transform:uppercase;
   }
   dd {
     display:table-cell;
-    width:540px;
+    width:300px;
     h1 {padding-left:0}
   }
   h3.dashboardLabel {
@@ -536,24 +549,24 @@ a {
     position:relative;
     vertical-align:middle;
     text-align:center;
+line-height:1.2em;
     span {
         display:block;
-        margin-right:5px;
+        margin-right:2px;
         }
     span.numeratorValue {color:@numerator;}
     span.denominatorValue {color:@denominator;}
     span.separator {border-top:1px solid #ccc;}
     
     }
-.paren {
-    font-size:2.5em;
-    color:#999;
-    position:relative;
-    top:5px;
-}
+
+
 .tableMeasureTitle {
   width: 225px;
   margin-top:0.75em;
+  span {
+    cursor:help;
+  }
 }
 
 #tableMeasureDescription {
@@ -585,18 +598,35 @@ a {
   font-size: 1.0em;
   margin-bottom:10px;
   
- .measureStats {
-   width:100px;
+.measureStats {
+   width:140px;
    float:left;
    height:3em;
    vertical-align:middle;
+   .measurePopulationPercentage {
+     display:inline-block;
+     text-align:right;
+     width:2.2em;
+     margin-right:10px;
+     font-size:1.5em;
+     vertical-align:middle;
+     }
+   .paren {
+      font-size:2.0em;
+      font-family:Helvetica;
+      font-weight:100;
+      color:#999;
+      position:relative;
+      margin-right:1px;
+      top:4px;
    }
+}
  .inline-bar {
     float:left;
     height:3em;
     vertical-align:middle;
     position:relative;
-    top:0.5em;} 
+    top:0.75em;} 
   .tableBar {
     float: left;
     margin-top:5px;
@@ -653,6 +683,12 @@ a {
   min-height:100%;
   height:100%;
   border-right:1px solid @borderColor;
+  .paren {
+    font-size:2.5em;
+    color:#999;
+    position:relative;
+    top:5px;
+  }
   #measurePopulationPercentage {
     font-size:3em;
     margin-right:40px;

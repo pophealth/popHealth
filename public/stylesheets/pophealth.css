@@ -49,20 +49,31 @@ a {
   list-style: none;
   margin-left: 115px;
 }
-#header ul li { float: left; }
+#header ul li {
+  float: left;
+  margin-top: 5px;
+}
 #header ul li .sep { margin: 0 5px; }
 #pageContent {
   height: 100%;
   display: table;
 }
 #breadcrumbBox {
-  padding: 5px 0 2px 0;
+  padding: 2px 0;
   border-bottom: 1px solid #cccccc;
   background: transparent url(../images/popHealthMiniLogo.png) 0 10% no-repeat;
 }
-#logOut { padding: 5px 20px 0 0; }
+#logOut {
+  padding: 5px 20px 4px 0;
+  text-align: right;
+  font-size: 1em;
+}
+#logOut .sep {
+  margin: 0 5px;
+  color: #aaaaaa;
+}
 #logOut a {
-  float: right;
+  xfloat: right;
   color: #44b3be;
 }
 #logOut a:hover {
@@ -288,10 +299,11 @@ a {
   font-size: 0.9em;
 }
 #providerReports p.note {
-  font-size: 0.9em;
   padding: 0 0 0 10px;
-  font-style: italic;
+  margin: 15px 0;
+  color: #888888;
 }
+#providerReports em { font-style: italic; }
 #providerReports h3.dashboardLabel {
   color: #888888;
   padding: 10px 0 0px 10px;
@@ -307,14 +319,17 @@ a {
 }
 #providerReports .measureList {
   background-color: #f2f2f2;
-  color: #888888;
+  color: #000000;
   margin: 5px 0;
   padding: 0 5px 10px 5px;
   font-size: 1.1em;
 }
 #providerReports .measureList p {
   color: #666666;
-  line-height: 1.2em;
+  margin: 0 10px 0 0;
+  font-size: 0.8em;
+  text-align: right;
+  xline-height: 1.2em;
 }
 #providerReports .measureList ul {
   margin: 10px 5px;
@@ -335,6 +350,11 @@ a {
 #providerReports .measureItemList li {
   padding: 0 5px 5px 25px;
   background: url(../images/unchecked.png) 0 10% no-repeat;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+#providerReports .measureItemList li .note {
+  margin: 0 3px 0 0;
   font-size: 0.9em;
 }
 #providerReports .measureItemList li.checked { background: url(../images/smallcheckbox.png) 0 10% no-repeat; }
@@ -389,13 +409,13 @@ input.exportReport {
 }
 .measureDetailTable dt {
   display: table-cell;
-  width: 180px;
+  width: 160px;
   color: #888888;
   text-transform: uppercase;
 }
 .measureDetailTable dd {
   display: table-cell;
-  width: 540px;
+  width: 300px;
 }
 .measureDetailTable dd h1 { padding-left: 0; }
 .measureDetailTable h3.dashboardLabel {
@@ -423,24 +443,20 @@ input.exportReport {
   position: relative;
   vertical-align: middle;
   text-align: center;
+  line-height: 1.2em;
 }
 .inline-fraction span {
   display: block;
-  margin-right: 5px;
+  margin-right: 2px;
 }
 .inline-fraction span.numeratorValue { color: #9cc45e; }
 .inline-fraction span.denominatorValue { color: #40b3bc; }
 .inline-fraction span.separator { border-top: 1px solid #cccccc; }
-.paren {
-  font-size: 2.5em;
-  color: #999999;
-  position: relative;
-  top: 5px;
-}
 .tableMeasureTitle {
   width: 225px;
   margin-top: 0.75em;
 }
+.tableMeasureTitle span { cursor: help; }
 #tableMeasureDescription { width: 275px; }
 .zeroPadding td { padding: 0px; }
 .clear {
@@ -460,17 +476,34 @@ input.exportReport {
   margin-bottom: 10px;
 }
 .tableMeasureCtrl .measureStats {
-  width: 100px;
+  width: 140px;
   float: left;
   height: 3em;
   vertical-align: middle;
+}
+.tableMeasureCtrl .measureStats .measurePopulationPercentage {
+  display: inline-block;
+  text-align: right;
+  width: 2.2em;
+  margin-right: 10px;
+  font-size: 1.5em;
+  vertical-align: middle;
+}
+.tableMeasureCtrl .measureStats .paren {
+  font-size: 2em;
+  font-family: Helvetica;
+  font-weight: 100;
+  color: #999999;
+  position: relative;
+  margin-right: 1px;
+  top: 4px;
 }
 .tableMeasureCtrl .inline-bar {
   float: left;
   height: 3em;
   vertical-align: middle;
   position: relative;
-  top: 0.5em;
+  top: 0.75em;
 }
 .tableMeasureCtrl .tableBar {
   float: left;
@@ -526,6 +559,12 @@ input.exportReport {
   min-height: 100%;
   height: 100%;
   border-right: 1px solid #cccccc;
+}
+#patientMetrics .paren {
+  font-size: 2.5em;
+  color: #999999;
+  position: relative;
+  top: 5px;
 }
 #patientMetrics #measurePopulationPercentage {
   font-size: 3em;
