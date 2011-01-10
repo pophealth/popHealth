@@ -59,7 +59,7 @@ a {
   display: table;
 }
 #breadcrumbBox {
-  padding: 2px 0;
+  padding: 1px 0 2px;
   border-bottom: 1px solid #cccccc;
   background: transparent url(../images/popHealthMiniLogo.png) 0 10% no-repeat;
 }
@@ -69,8 +69,9 @@ a {
   font-size: 1em;
 }
 #logOut .sep {
-  margin: 0 5px;
-  color: #aaaaaa;
+  margin: 0 7px 0 5px;
+  color: #cccccc;
+  text-align: center;
 }
 #logOut a {
   xfloat: right;
@@ -366,7 +367,10 @@ a {
   text-decoration: none;
   color: #368f98;
 }
-#dashboardPeriod { float: left; }
+#dashboardPeriod {
+  float: left;
+  padding-top: 10px;
+}
 #dashboardPeriod p.dashboardLabel {
   color: #888888;
   float: left;
@@ -467,7 +471,7 @@ input.exportReport {
   background-color: #333333;
   height: 100%;
   color: #eeeeee;
-  padding: 0 5px 0 0;
+  padding: 0 1px 0 0;
   font-size: 0.7em;
 }
 .tableBarVal span { margin: 3px 0 0 5px; }
@@ -511,15 +515,16 @@ input.exportReport {
   margin-right: 15px;
   background-color: #dddddd;
   width: 150px;
-  padding: 0 5px 0 0;
+  padding: 0 1px 0 0;
 }
 .tableMeasureCtrl .tableBarDenominator {
   background-color: #333333;
   height: 100%;
   color: #eeeeee;
-  padding: 0 5px 0 0;
+  padding: 0 1px 0 0;
   font-size: 0.7em;
   float: left;
+  padding: 0 2px 0 1px;
   background-color: #40b3bc;
 }
 .tableMeasureCtrl .tableBarDenominator span { margin: 3px 0 0 5px; }
@@ -527,7 +532,7 @@ input.exportReport {
   background-color: #333333;
   height: 100%;
   color: #eeeeee;
-  padding: 0 5px 0 0;
+  padding: 0 1px 0 0;
   font-size: 0.7em;
   float: left;
   background-color: #9cc45e;
@@ -610,6 +615,7 @@ input.exportReport {
   width: 70px;
 }
 #patientMetrics .patientGroupType ul li.denominator { background: url(/images/pgTabDenominator.png) top left no-repeat; }
+#patientMetrics .patientGroupType ul li.exclusions { background: url(/images/pgTabExclusions.png) top left no-repeat; }
 #patientTableContainer { border-top: 1px solid #e9e9e9; }
 #patientTable {
   margin: 20px 20px 20px 50px;

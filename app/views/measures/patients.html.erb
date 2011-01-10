@@ -123,6 +123,7 @@ function llog(x) {window.console.log(x)}
 	          <li class="numerator"><span class="radio"><input type="radio" name="patientGroup" value="1"   id="num"/></span><label for="num">numerator</label> <span class="count"><%= @result[:numerator]%></span></li>
     	      <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="2" id="den" checked="true" /></span><label for="den"> denominator</label> <span class="count"><%= @result[:denominator]%></span> </li>
         	  <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="3" id="dnn" /></span><label for="dnn"> denominator not numerator</label> <span class="count"><%= @result[:antinumerator]%></span></li>
+        	  <li class="exclusions"><span class="radio"><input type="radio" name="patientGroup" value="4" id="exc" /></span><label for="exc"> exclusions</label> <span class="count"><%= @result[:exclusions]%></span></li>
 	        </ul>
     	    <br style="clear:both"/>
 	    </div>

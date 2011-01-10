@@ -117,12 +117,16 @@
       <div class="measureList">
       <div class="measureItemList">
          <ul>
-              <li>Adult weight screening and follow-up</li>
-              <li>Hypertension BP measurement</li>
-              <li>Smoking Cessation</li>
-              <li><span class="note">**</span>Childhood Immunization Status</li>
+         <% @core_measures.each do |measure| -%>
+         <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core"><%= measure['name'].upcase if measure['name'] %></li>
+         <% end %>
+         <% @core_alt_measures.each do |measure| -%>
+         <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core"><span class="note">**</span><%= measure['name'].upcase if measure['name'] %></li>
+         <% end %>
+
+           <!--   <li><span class="note">**</span>Childhood Immunization Status</li>
               <li><span class="note">**</span>Influenza Immunization for Patients &gt;50 yrs.</li>
-              <li><span class="note">**</span>Weight Assessment and Counseling for Children and Adolescents</li>
+              <li><span class="note">**</span>Weight Assessment and Counseling for Children and Adolescents</li> -->
          </ul>
       <p class="note"><em>** core alternate measures</em></p>
 
@@ -153,11 +157,11 @@
     	  <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
 
           <dl>
-	          <dt>Reporting Period:</dt>
+	          <dt>Effective date:</dt>
     	      <dd>
-        		  <span id="measurementPeriodStartDate">Jan.1.2009</span>
-		          <span style="margin:0 10px"> to </span>
-        		  <span id="measurementPeriodEndDate">Apr.1.2009</span>
+        		  <span id="measurementPeriodStartDate">Sep.19.2009</span>
+<!--		          <span style="margin:0 10px"> to </span>
+        		  <span id="measurementPeriodEndDate">Apr.1.2009</span> -->
 			</dd>
 		</dl>
 		<dl>

@@ -100,7 +100,7 @@ a {
 }
   
 #breadcrumbBox {
-  padding:2px 0;
+  padding:1px 0 2px;
   border-bottom:1px solid @borderColor;
   background:transparent url(../images/popHealthMiniLogo.png) 0 10% no-repeat; 
 }
@@ -109,7 +109,7 @@ a {
     padding:5px 20px 4px 0;
     text-align:right;
     font-size:1em;
-    .sep {margin:0 5px;color:#aaa}
+    .sep {margin:0 7px 0 5px;color:#ccc;text-align:center}
     a {
        xfloat: right;
        color: @dashboardText;
@@ -457,6 +457,7 @@ a {
 
 #dashboardPeriod {
     float: left;
+    padding-top:10px;
     
   p.dashboardLabel {
     color:@dashboardLabel;
@@ -587,7 +588,7 @@ line-height:1.2em;
   background-color: @barValueColor;
   height:100%;
   color:@barValueText;
-  padding: 0 5px 0 0;
+  padding: 0 1px 0 0;
   font-size: 0.7em;
   span {
     margin:3px 0 0 5px;
@@ -633,12 +634,13 @@ line-height:1.2em;
     margin-right:15px;
     background-color:@measurePopulationChartBar;
     width:150px;
-    padding: 0 5px 0 0;
+    padding: 0 1px 0 0;
   }
   
   .tableBarDenominator {
     .tableBarVal;
     float: left;
+    padding:0 2px 0 1px;
     background-color: @denominator;
   }
   
@@ -723,6 +725,9 @@ line-height:1.2em;
     }
     li.denominator {
         background:url(/images/pgTabDenominator.png) top left no-repeat;
+        }
+    li.exclusions {
+        background:url(/images/pgTabExclusions.png) top left no-repeat;
         }
     }
     }
