@@ -53,14 +53,22 @@ module MeasuresHelper
   
   
   def dob(time)
-    Time.at(time).to_s  
+    if time
+      Time.at(time).to_s 
+    else 
+      nil
+    end
   end
   
   
   def age_from_time(time)
-   t = Time.now.to_i - time
-   year = 365 * 24 * 60 * 60
-   (t/year).to_i
+    if (time)
+      t = Time.now.to_i - time
+      year = 365 * 24 * 60 * 60
+      (t/year).to_i
+    else
+      nil
+    end
   end
   
   private
