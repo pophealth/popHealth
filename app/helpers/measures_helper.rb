@@ -53,7 +53,11 @@ module MeasuresHelper
   
   
   def dob(time)
-    Time.at(time).to_s if time else nil
+    if time
+      Time.at(time).to_s 
+    else 
+      nil
+    end
   end
   
   
