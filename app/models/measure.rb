@@ -14,6 +14,36 @@ class Measure < MongoBase
                              };')
   end
   
+  # Finds all measures by category, except for core and core alternate measures
+  # @return Array - This returns an Array of Hashes. Each Hash will have a category property for
+  #         the name of the category. It will also have a measures property which will be
+  #         another Array of Hashes. The sub hashes will have the name and id of each measure.
+  def self.non_core_measures
+    mongo['measures'].group([:category], {:category => {"$nin" => ['Core', 'Core Alternate']}},
+                            {:measures => []},
+                            'function(obj,prev) { 
+                                  if (_.any(prev.measures, function(item){return item.id == obj.id}) == false) {
+                                    prev.measures.push({"id": obj.id, "name": obj.name});
+                                  }
+                             };')
+  end
+  
+  # Finds all core measures
+  # @return Array - This returns an Array of Hashes. Each Hash will have the name and id of each measure.
+  def self.core_measures
+    mongo['measures'].group([:id, :name], {:category => 'Core'},
+                            {:subs => []},
+                            'function(obj,prev) {if (obj.sub_id != null) {prev.subs.push(obj.sub_id);}}')
+  end
+  
+  # Finds all core alternate measures
+  # @return Array - This returns an Array of Hashes. Each Hash will have the name and id of each measure.
+  def self.core_alternate_measures
+    mongo['measures'].group([:id, :name], {:category => 'Core Alternate'},
+                            {:subs => []},
+                            'function(obj,prev) {if (obj.sub_id != null) {prev.subs.push(obj.sub_id);}}')
+  end
+  
   # Finds all measures and groups the sub measures
   # @return Array - This returns an Array of Hashes. Each Hash will have a name property for
   #         the name of the measure as well and an id for each mesure. It will also have a subs
