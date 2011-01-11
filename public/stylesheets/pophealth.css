@@ -414,10 +414,7 @@ input.exportReport {
   color: #888888;
   text-transform: uppercase;
 }
-.measureDetailTable dd {
-  display: table-cell;
-  width: 500px;
-}
+.measureDetailTable dd { display: table-cell; }
 .measureDetailTable dd h1 { padding-left: 0; }
 .measureDetailTable h3.dashboardLabel {
   color: #888888;
