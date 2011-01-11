@@ -111,7 +111,6 @@ a {
     font-size:1em;
     .sep {margin:0 7px 0 5px;color:#ccc;text-align:center}
     a {
-       xfloat: right;
        color: @dashboardText;
     }
     a:hover {
@@ -409,7 +408,6 @@ a {
       margin:0 10px 0 0;
       font-size:0.8em;
       text-align:right;
-      xline-height:1.2em;
     }
     ul {
       margin:10px 5px;
@@ -458,6 +456,7 @@ a {
 #dashboardPeriod {
     float: left;
     padding-top:10px;
+    min-width:720px;
     
   p.dashboardLabel {
     color:@dashboardLabel;
@@ -512,7 +511,7 @@ a {
   }
   dd {
     display:table-cell;
-    width:300px;
+    width:500px;
     h1 {padding-left:0}
   }
   h3.dashboardLabel {
@@ -537,12 +536,15 @@ a {
         font-size:0.9em;
       }
       td {
-        padding: 15px 0px 5px 40px;
+        padding: 15px 0px 10px 0px;
         vertical-align: top;
       }
       tr {
         vertical-align: top;
       }
+  }
+  table:last-child {
+      padding:0 0 80px 0;
   }
 }
   .inline-fraction {
@@ -550,7 +552,7 @@ a {
     position:relative;
     vertical-align:middle;
     text-align:center;
-line-height:1.2em;
+    line-height:1.2em;
     span {
         display:block;
         margin-right:2px;
@@ -565,6 +567,7 @@ line-height:1.2em;
 .tableMeasureTitle {
   width: 225px;
   margin-top:0.75em;
+  padding-left:40px;
   span {
     cursor:help;
   }

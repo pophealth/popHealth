@@ -73,10 +73,7 @@ a {
   color: #cccccc;
   text-align: center;
 }
-#logOut a {
-  xfloat: right;
-  color: #44b3be;
-}
+#logOut a { color: #44b3be; }
 #logOut a:hover {
   text-decoration: none;
   color: #368f98;
@@ -330,7 +327,6 @@ a {
   margin: 0 10px 0 0;
   font-size: 0.8em;
   text-align: right;
-  xline-height: 1.2em;
 }
 #providerReports .measureList ul {
   margin: 10px 5px;
@@ -370,6 +366,7 @@ a {
 #dashboardPeriod {
   float: left;
   padding-top: 10px;
+  min-width: 720px;
 }
 #dashboardPeriod p.dashboardLabel {
   color: #888888;
@@ -419,7 +416,7 @@ input.exportReport {
 }
 .measureDetailTable dd {
   display: table-cell;
-  width: 300px;
+  width: 500px;
 }
 .measureDetailTable dd h1 { padding-left: 0; }
 .measureDetailTable h3.dashboardLabel {
@@ -438,10 +435,11 @@ input.exportReport {
   font-size: 0.9em;
 }
 .measureDetailTable table td {
-  padding: 15px 0px 5px 40px;
+  padding: 15px 0px 10px 0px;
   vertical-align: top;
 }
 .measureDetailTable table tr { vertical-align: top; }
+.measureDetailTable table:last-child { padding: 0 0 80px 0; }
 .inline-fraction {
   display: inline-block;
   position: relative;
@@ -459,6 +457,7 @@ input.exportReport {
 .tableMeasureTitle {
   width: 225px;
   margin-top: 0.75em;
+  padding-left: 40px;
 }
 .tableMeasureTitle span { cursor: help; }
 #tableMeasureDescription { width: 275px; }

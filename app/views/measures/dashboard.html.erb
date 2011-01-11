@@ -66,9 +66,9 @@
         }
         
         $.getJSON(resultUrl, function(data) {
-          var percent = data.denominator > 0 ? (data.numerator/data.denominator).toFixed(2)*100 : 0;
+          var percent = data.denominator > 0 ? roundNumber(data.numerator/data.denominator*100,0) : 0;
           var numeratorWidth = (data.numerator/<%= @patient_count %>).toFixed(2)*100;
-          var denominatorWidth = data.denominator > 0 ? ((data.denominator - data.numerator)/<%= @patient_count -%>).toFixed(2)*100 : 0;
+          var denominatorWidth = data.denominator > 0 ? roundNumber((data.denominator - data.numerator)/<%= @patient_count -%>*100,0) : 0;
           
           graphDiv.find(".numeratorValue").text(data.numerator);
           graphDiv.find(".denominatorValue").text(data.denominator);
@@ -87,7 +87,6 @@
       popHealth.makeMeasureListExpandable();
       popHealth.makeMeasuresCheckable();
       popHealth.populateMeasureStats();
-      $('#measurementPeriodStartDate, #measurementPeriodEndDate').calendricalDate({usa:true});
       $('#btnExportReport').click(popHealth.exportReport);
      
 
@@ -118,15 +117,11 @@
       <div class="measureItemList">
          <ul>
          <% @core_measures.each do |measure| -%>
-         <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core"><%= measure['name'].upcase if measure['name'] %></li>
+           <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core"><%= measure['name'].upcase if measure['name'] %></li>
          <% end %>
          <% @core_alt_measures.each do |measure| -%>
-         <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core"><span class="note">**</span><%= measure['name'].upcase if measure['name'] %></li>
+           <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core Alternate"><span class="note">**</span><%= measure['name'].upcase if measure['name'] %></li>
          <% end %>
-
-           <!--   <li><span class="note">**</span>Childhood Immunization Status</li>
-              <li><span class="note">**</span>Influenza Immunization for Patients &gt;50 yrs.</li>
-              <li><span class="note">**</span>Weight Assessment and Counseling for Children and Adolescents</li> -->
          </ul>
       <p class="note"><em>** core alternate measures</em></p>
 
@@ -153,30 +148,23 @@
 
     <div id="dashboardPeriod">
         <div class="measureDetailTable">
-    	  <h1>Columbia Road Health Services</h1>
-    	  <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
+          <h1>Columbia Road Health Services</h1>
+          <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
 
           <dl>
-	          <dt>Effective date:</dt>
-    	      <dd>
-        		  <span id="measurementPeriodStartDate">Sep.19.2009</span>
-<!--		          <span style="margin:0 10px"> to </span>
-        		  <span id="measurementPeriodEndDate">Apr.1.2009</span> -->
-			</dd>
-		</dl>
-		<dl>
+              <dt>Effective date:</dt>
+              <dd>
+                  <span id="measurementPeriodStartDate">Sep.19.2009</span>
+            </dd>
+        </dl>
+        <dl>
           <dt>Reporting Patients: </dt>
           <dd><%= @patient_count %></dd>
         </dl>
         <div class="clear"></div>  
-        <!-- </div> -->
           <% @grouped_selected_measures.each_pair do |category, measures| -%>
           <h3 class="dashboardLabel"><%= category %></h3>
           <table>
-           <!-- <tr>
-              <th>Name</th>
-              <th>Patient Statistics</th>
-            </tr> -->
             <% measures.each do |measure| -%>
                 <%= render :partial => 'measure_stats', :locals => {:measure => measure, :results => {}} %>
             <% end -%>

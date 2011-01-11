@@ -73,7 +73,6 @@ function llog(x) {window.console.log(x)}
     $("#measurementPeriodEndDate").val(new Date().format("mm/dd/yyyy"));
     $("#btnSaveNewMeasure").click(popHealth.saveNewMeasure);
     $("#btnReturnToDash").click(popHealth.returnToDash);
-    $("#measurementPeriodStartDate, #measurementPeriodEndDate").calendricalDate({usa:true});
     
     
     $('input[name=patientGroup]').change(function(){

@@ -13,6 +13,11 @@
   <%= javascript_include_tag 'date.format.js' %>
   <%= javascript_include_tag 'jquery.tmpl.js' %>
   <%= javascript_include_tag 'vtip-min.js' %>
+  <script type="text/javascript">
+  function roundNumber(num, dec) {
+	return Math.round(num*Math.pow(10,dec))/Math.pow(10,dec);
+  }
+  </script>
   <%= csrf_meta_tag %>
   <%= yield :head %>
 </head>
