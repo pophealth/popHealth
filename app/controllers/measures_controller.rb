@@ -5,8 +5,8 @@ class MeasuresController < ApplicationController
     @selected_measures = mongo['selected_measures'].find().to_a #need to call to_a so that it isn't a cursor
     @grouped_selected_measures = @selected_measures.group_by {|measure| measure['category']}
     @categories = Measure.non_core_measures
-	@core_measures = Measure.core_measures
-	@core_alt_measures = Measure.core_alternate_measures
+    @core_measures = Measure.core_measures
+    @core_alt_measures = Measure.core_alternate_measures
     render 'dashboard'
   end
     
@@ -49,7 +49,7 @@ class MeasuresController < ApplicationController
     measure_id = params[:id] 
     sub_id = params[:sub_id]
     effective_date = ( params[:effective_date] || Time.now).to_i
-   cache_name =  "cached_measure_patients_#{measure_id}_#{sub_id}_#{effective_date}"
+    cache_name =  "cached_measure_patients_#{measure_id}_#{sub_id}_#{effective_date}"
     @records = mongo[cache_name].find({:measure_id=>measure_id,:sub_id=>sub_id,:effective_date=>effective_date,type=>true},{:sort=>[sort, sort_order],:skip=>skip,:limit=>limit})
 
   end
