@@ -80,9 +80,11 @@ function llog(x) {window.console.log(x)}
        //$('#patientTableContainer').patient_table.displayNumerator();
        if(this.id == "num"){
          display_type = "numerator";
-       }else if(this.id == "den"){
+       } else if(this.id == "den"){
            display_type = "denominator";
-       }else{
+       } else if(this.id == "exc"){
+           display_type = "exclusion";
+       } else {
            display_type = "antinumerator";
        }
        popHealth.reloadTable();
