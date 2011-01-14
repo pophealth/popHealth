@@ -1,6 +1,6 @@
 GIT
   remote: http://github.com/pophealth/quality-measure-engine.git
-  revision: cc3bba4779119a375e2f9fd21e6b59fed07b88bb
+  revision: 6242a1be27bbdbd3813601e691592f6ad2f2a79f
   branch: develop
   specs:
     quality-measure-engine (0.1.2)
@@ -40,7 +40,7 @@ GEM
       activemodel (= 3.0.3)
       activesupport (= 3.0.3)
     activesupport (3.0.3)
-    arel (2.0.6)
+    arel (2.0.7)
     bson (1.1.5)
     bson_ext (1.1.5)
     builder (2.1.2)
