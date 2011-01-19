@@ -9,7 +9,7 @@ PopHealth::Application.routes.draw do
   match 'measures/remove/:id', :to => 'measures#remove', :as => :remove, :via => :post
   match 'measures/measure_patients/:id(/:sub_id)', :to=>'measures#measure_patients', :as => :measure_patients, :via=> :get
   match 'records', :to => 'records#create', :via => :post
-
+  
   root :to => 'measures#index'
 
   # The priority is based upon order of creation:
