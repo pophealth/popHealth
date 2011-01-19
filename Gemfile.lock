@@ -41,8 +41,8 @@ GEM
       activesupport (= 3.0.3)
     activesupport (3.0.3)
     arel (2.0.7)
-    bson (1.1.5)
-    bson_ext (1.1.5)
+    bson (1.2.0)
+    bson_ext (1.2.0)
     builder (2.1.2)
     diff-lcs (1.1.2)
     erubis (2.6.6)
@@ -54,8 +54,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
-    mongo (1.1.5)
-      bson (>= 1.1.5)
+    mongo (1.2.0)
+      bson (>= 1.2.0)
     nokogiri (1.4.4)
     polyglot (0.3.1)
     rack (1.2.1)
@@ -103,6 +103,4 @@ DEPENDENCIES
   quality-measure-engine!
   rails (= 3.0.3)
   rspec-rails (~> 2.0.1)
-  rubyzip
   will_paginate (~> 3.0.pre2)
-
