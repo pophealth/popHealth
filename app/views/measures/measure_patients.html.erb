@@ -41,7 +41,6 @@ $('#patientTable >thead >tr > th').click(function(){
 $(".pagination > a").click(function(){  
   var url = this.href;
   this.href=null;
-  window.console.debug(this.href);
   $.ajax({ url:  url,
              type:"GET",
              dataType: 'html',
@@ -49,8 +48,7 @@ $(".pagination > a").click(function(){
                $('#patientTableContainer').html(res);
              },
              error: function(xhr, err) {
-               debugger;
-              window.console.debug(error);
+              alert("fix this");
              }
            });
   });
