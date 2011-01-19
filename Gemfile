@@ -10,6 +10,8 @@ gem 'quality-measure-engine', :git => 'http://github.com/rdingwell/quality-measu
 gem 'nokogiri'
 gem 'rubyzip'
 
+gem "will_paginate", "~> 3.0.pre2"
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

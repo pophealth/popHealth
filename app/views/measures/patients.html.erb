@@ -1,12 +1,11 @@
 <% content_for :head do %>
-<%= javascript_include_tag 'widgets/patient_table.js'%>
   <script type="text/javascript">
 function llog(x) {window.console.log(x)}    
     
     var popHealth = popHealth || {};
     var sort = "_id";
     var offset = 0;
-    var limit = 50;
+    var limit = 2;
     var display_type= "denominator";
     var effective_date = <%=Time.gm(2010, 9, 19).to_i%>;
     var measure_id= '<%=params[:id] %>';
