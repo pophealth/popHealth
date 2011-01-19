@@ -9,7 +9,7 @@
   		</tr>
   	</thead>
       <tbody>
-          <% @records.each do |patient| -%>
+          <% @page_results.each do |patient| -%>
               <tr class="antiNumerator">
                   <td><%= patient['last'] %></td>
                   <td><%= patient['first'] %></td>
@@ -22,6 +22,7 @@
   </table>
 <div>  
   <!-- pagination to go here -->
+  <%= will_paginate @page_results%>
 </div>
 
 <script>
@@ -36,5 +37,22 @@ $('#patientTable >thead >tr > th').click(function(){
    }
    popHealth.reloadTable();
 });
+
+$(".pagination > a").click(function(){  
+  var url = this.href;
+  this.href=null;
+  window.console.debug(this.href);
+  $.ajax({ url:  url,
+             type:"GET",
+             dataType: 'html',
+             success: function(res){
+               $('#patientTableContainer').html(res);
+             },
+             error: function(xhr, err) {
+               debugger;
+              window.console.debug(error);
+             }
+           });
+  });
 
 </script>

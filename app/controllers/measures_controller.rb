@@ -42,16 +42,22 @@ class MeasuresController < ApplicationController
 
     @result = @executor.measure_result(params[:id], params[:sub_id], :effective_date=>Time.gm(2010, 9, 19).to_i)
     type = params[:type] || "denominator"
-    skip =( params[:offest] || 0).to_i
-    limit = (params[:limit] || 50).to_i
+   
+    @limit = (params[:limit] || 2).to_i
+    @skip =(( params[:page] || 1).to_i - 1 ) * @limit
     sort = params[:sort] || "_id"
     sort_order = params[:sort_order] || :asc
     measure_id = params[:id] 
     sub_id = params[:sub_id]
     effective_date = ( params[:effective_date] || Time.now).to_i
     cache_name =  "cached_measure_patients_#{measure_id}_#{sub_id}_#{effective_date}"
-    @records = mongo[cache_name].find({:measure_id=>measure_id,:sub_id=>sub_id,:effective_date=>effective_date,type=>true},{:sort=>[sort, sort_order],:skip=>skip,:limit=>limit})
-
+    @records = mongo[cache_name].find({:measure_id=>measure_id,:sub_id=>sub_id,:effective_date=>effective_date,type=>true},{:sort=>[sort, sort_order],:skip=>@skip,:limit=>@limit}).to_a
+    @total =  mongo[cache_name].find({:measure_id=>measure_id,:sub_id=>sub_id,:effective_date=>effective_date,type=>true}).count
+    
+    @page_results = WillPaginate::Collection.create((params[:page] || 1), @limit, @total) do |pager|
+       pager.replace(@records)
+    end
+ 
   end
   
   
