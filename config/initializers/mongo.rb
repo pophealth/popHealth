@@ -11,3 +11,4 @@ else
 end
 
 QME::MongoHelpers.initialize_javascript_frameworks(MONGO_DB)
+QME::MongoHelpers.initialze_stored_bundle_frameworks(MONGO_DB)

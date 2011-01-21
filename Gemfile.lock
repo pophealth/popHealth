@@ -95,6 +95,8 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.24)
+    will_paginate (3.0.pre2)
+
 
 PLATFORMS
   ruby
@@ -104,3 +106,5 @@ DEPENDENCIES
   quality-measure-engine!
   rails (= 3.0.3)
   rspec-rails (~> 2.0.1)
+  rubyzip
+  will_paginate (~> 3.0.pre2)
