@@ -1,6 +1,6 @@
 GIT
   remote: http://github.com/pophealth/quality-measure-engine.git
-  revision: 6242a1be27bbdbd3813601e691592f6ad2f2a79f
+  revision: a4a438fe9f51fd9112d76485349ace6350fa0760
   branch: develop
   specs:
     quality-measure-engine (0.1.2)
@@ -9,6 +9,7 @@ GIT
       mongo
       nokogiri
       rake
+      rubyzip
 
 GEM
   remote: http://gemcutter.org/
@@ -41,8 +42,8 @@ GEM
       activesupport (= 3.0.3)
     activesupport (3.0.3)
     arel (2.0.7)
-    bson (1.1.5)
-    bson_ext (1.1.5)
+    bson (1.2.0)
+    bson_ext (1.2.0)
     builder (2.1.2)
     diff-lcs (1.1.2)
     erubis (2.6.6)
@@ -54,8 +55,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
-    mongo (1.1.5)
-      bson (>= 1.1.5)
+    mongo (1.2.0)
+      bson (>= 1.2.0)
     nokogiri (1.4.4)
     polyglot (0.3.1)
     rack (1.2.1)
@@ -89,10 +90,11 @@ GEM
       rspec-expectations (~> 2.0.1)
     rspec-rails (2.0.1)
       rspec (~> 2.0.0)
+    rubyzip (0.9.4)
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
-    tzinfo (0.3.23)
+    tzinfo (0.3.24)
 
 PLATFORMS
   ruby
