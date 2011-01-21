@@ -6,7 +6,7 @@ group :test, :development do
   gem "rspec-rails", "~> 2.0.1"
 end
 
-gem 'quality-measure-engine', :git => 'http://github.com/rdingwell/quality-measure-engine.git', :branch => 'measure_refactor'
+gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'develop'
 gem 'nokogiri'
 gem 'rubyzip'
 
