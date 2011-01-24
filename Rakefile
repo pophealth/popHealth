@@ -7,6 +7,10 @@ require 'rake'
 
 PopHealth::Application.load_tasks
 
+ENV['DB_NAME'] = "pophealth-#{Rails.env}"
+
+require 'qme_test'
+
 #RSpec::Core::RakeTask.new do |t|
 #  t.rspec_opts = ["-c", "-f progress", "-r ./spec/spec_helper.rb"]
 #  t.pattern = 'spec/**/*_spec.rb'
