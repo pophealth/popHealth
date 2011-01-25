@@ -1,6 +1,6 @@
 GIT
   remote: http://github.com/pophealth/quality-measure-engine.git
-  revision: 9731c22c8004b62a668564ccab0fbec94276b432
+  revision: 90950b7038c22844d39bb7070652c5a0a000b9ce
   branch: develop
   specs:
     quality-measure-engine (0.1.2)
@@ -45,15 +45,9 @@ GEM
     bson (1.2.0)
     bson_ext (1.2.0)
     builder (2.1.2)
-    configatron (2.6.4)
-      yamler (>= 0.1.0)
-    cover_me (1.0.0.rc5)
-      configatron
-      hashie
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    hashie (0.4.0)
     i18n (0.5.0)
     mail (2.2.14)
       activesupport (>= 2.3.6)
@@ -102,13 +96,11 @@ GEM
       polyglot (>= 0.3.1)
     tzinfo (0.3.24)
     will_paginate (3.0.pre2)
-    yamler (0.1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  cover_me
   nokogiri
   quality-measure-engine!
   rails (= 3.0.3)
