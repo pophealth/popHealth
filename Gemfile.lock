@@ -72,6 +72,8 @@ GEM
       activesupport (= 3.0.3)
       bundler (~> 1.0)
       railties (= 3.0.3)
+    rails_warden (0.5.2)
+      warden
     railties (3.0.3)
       actionpack (= 3.0.3)
       activesupport (= 3.0.3)
@@ -95,6 +97,8 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.24)
+    warden (1.0.3)
+      rack (>= 1.0.0)
     will_paginate (3.0.pre2)
 
 PLATFORMS
@@ -104,6 +108,8 @@ DEPENDENCIES
   nokogiri
   quality-measure-engine!
   rails (= 3.0.3)
+  rails_warden
   rspec-rails (~> 2.0.1)
   rubyzip
+  warden
   will_paginate (~> 3.0.pre2)

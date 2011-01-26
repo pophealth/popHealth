@@ -1,5 +1,8 @@
 class MeasuresController < ApplicationController
+  include RailsWarden::Mixins::HelperMethods
+  include RailsWarden::Mixins::ControllerOnlyMethods
   before_filter :set_up_executor
+  before_filter :authenticate!
   
   def index
     @selected_measures = mongo['selected_measures'].find().to_a #need to call to_a so that it isn't a cursor
