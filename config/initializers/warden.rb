@@ -18,6 +18,15 @@ Rails.configuration.middleware.use RailsWarden::Manager do |manager|
   # Declare your strategies here
   Warden::Strategies.add(:my_strategy) do
    def authenticate!
-     # do stuff
+      user = session[:user]
+      unless user
+        user = User.authenticate(params[:username],params[:password])
+        session[:user] = user if user
+      end
+     !user.nil? 
    end 
   end
+  
+  
+  
+  

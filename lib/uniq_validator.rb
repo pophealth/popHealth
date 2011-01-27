@@ -4,9 +4,9 @@ class UniqValidator < ActiveModel::EachValidator
 
 
   def validate_each(record, attribute, value)
-    MONGO_DB['users'].find_one({attribute => value})
-   if MONGO_DB['users'].find_one({attribute => value})
-      record.errors[attribute] << (options[:message] || "is not unquie") 
+    u = MONGO_DB['users'].find_one({attribute => value})
+   if u && (record.new_record?  || record._id != u['_id'])
+      record.errors[attribute] << (options[:message] || "is not unique") 
     end
   end
   

@@ -32,100 +32,106 @@ class User < MongoBase
                     :length => {:minimum => 3, :maximum => 254},
                     :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i},
                     :uniq=>true
-  validates :username, :presence => true,:length => {:minimum => 3, :maximum => 254},:uniq=>true
+  validates :username, :presence => true,:length => {:minimum => 3, :maximum => 254}
+  validates :username, :uniq=>true, :if=>:new_record?
   validates :password, :presence =>true,
                       :length => { :minimum => 5, :maximum => 40 }, :confirmation=>true
 
 
   add_delegate :password_confirmation
 
-                        
+  # Lookup a user by the username and password,
+  # param [String] username the username to look for
+  # param [Sting] password the clear text password to look for, pass will be hashed to check                     
   def self.authenticate_user(username, password)
    u = mongo['users'].find_one({username:username, password:hash_password(pass)})
    return User.new(u) if u   
   end
 
 
+  # See if the username already exists
+  # param [String] username
   def self.check_username(username)
     mongo['users'].find_one({username:attributes[:username]})
   end
   
-
-  def self.lock_user(username)
-    u =   mongo['users'].find_one({username:attributes[:username]})
-    if u 
-      u[:locked] = true
-      mongo['users'].save(u)
-    end  
-  end
-
-  
+  # Find users based on hash of key value pairs
+  # param [Hash] params key value pairs to use as a filter - same as would be passed to mongo collection
   def self.find(params)
     mongo['users'].find(params).collect{|u| User.new(u)}
   end
 
+  # Find one user based on hash of key value pairs
+  # param [Hash] params key value pairs to use as a filter - same as would be passed to mongo collection
   def self.find_one(params)
-     User.new mongo['users'].find_one(params)
+     atts =mongo['users'].find_one(params)
+     atts ? User.new(atts) : nil
   end
   
   def initialize(attributes = {})
     @attributes = attributes || {}
   end
   
+  # get the value for a field
+  # param [String || Symbol] key the value to get
   def read_attribute_for_validation(key)
       @attributes[key.to_sym] || @attributes[key.to_s]
   end
   
+  # Set the value for a field, this abstration is here so that symbols and strings can be used for key values
+  # param [String || Symbol] key the field to set
+  # param [String] val the value to set for the field
   def set_attribute_value(key, value)
-      if @attributes.contains_key?(key.to_sym) 
-         @attributes[key.to_sym] = val
+      if @attributes.has_key?(key.to_sym) 
+         @attributes[key.to_sym] = value
        else
-         @attributes[key.to_s] = val
+         @attributes[key.to_s] = value
        end
   end
   
+  # Lock the user
   def lock
-    @attributes['locked']=true
+    set_attribute_value('locked',true)
   end
   
-  
+  # Is this user currently locked
   def is_locked? 
-     @attributes['locked'] == true 
+    read_attribute_for_validation('locked') == true
   end
 
-  
+  # Is there currently a reset_key set for this user to reset their password
   def is_reset?
       read_attribute_for_validation( 'reset_key')
   end
   
-  def reset
-    #call mailer and set the reset key
-  end
-  
-  def clear_reset
-     reset_key = nil
-  end
-  
+  #set the password - the value is hashed before it is set
+  # param [String] val the value of the password
   def password=(val)
     set_attribute_value('password', hash_password(val))
   end
   
+  # Set the password confirmation field
+  # param [String] val the password_confirmation value
   def password_confirmation=(val)
      set_attribute_value('password_confirmation', hash_password(val))
   end
   
-  
-  def update_password(password,verify_password)
-     p = hash_password(password)
-     vp = hash_password(verify_password)
-     @attributes['password'] = p
-     @attributes['password_confirmation'] = vp
+  # Update the password and confirmation fields. This method hashes the values before they are set
+  # param [String] password
+  # params [String] password_confirmation
+  def update_password(pass,verify_password)
+    password = pass
+    password_confirmation = verify_password
   end
 
 
+  # Merge the attributes with the record
+  # @param [Hash] attributes the attributes to merge into this record
   def update(attributes)
     @attributes.merge!(attributes)
   end
+  
+  #Save the user to the db, save only takes place if the record is valid based on the validation
   def save
      
      if(valid?)
@@ -135,16 +141,17 @@ class User < MongoBase
      return false
   end
   
-  def new_record
+  # Is this a new record, ie it has not been saved yet so there is no _id
+  def new_record?
     _id.nil?
   end
   
-  
+  # Remove the user from the db
   def destroy
-    
+    User.mongo['users'].remove(@attributes)
   end
   
-  
+  # reload the user from the stored values in the db, this only works for saved records
   def reload
     unless new_record?
       @attributes = mongo['users'].find_one({'_id' => _id})

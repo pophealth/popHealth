@@ -2,12 +2,12 @@ class AccountController < ApplicationController
   include RailsWarden::Mixins::HelperMethods
   include RailsWarden::Mixins::ControllerOnlyMethods
   before_filter :set_up_executor
-  before_filter :authenticate!  , :only=> [:reset,:update]
+  before_filter :authenticate!  , :only=> [:update]
   
   
   def reset
     key = generate_reset_key
-    get_user
+    @user = User.find_one({:username=>params[:username]})
     @user.reset_key = key
     @user.save
     #send email
@@ -55,5 +55,7 @@ private
     Time.new.to_i.to_s
   end
   
- 
+ def get_user
+   @user = session[:user]
+ end
 end
