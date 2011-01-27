@@ -1,1 +1,11 @@
-login form
+<%= form_tag "/" do %>
+  <%= label_tag(:username, "Username") %>
+  <%= text_field_tag(:username) %>
+  <%= label_tag(:password, "Password") %>
+  <%= password_field_tag(:password) %>
+  <%= submit_tag("Login") %>
+  <%= warden.errors[:login] %>
+<% end %>
+
+<a href="<%= forgot_path %>">Forgot password </a> <br>
+<A href="<%= register_path %>">Register for an account</a>

@@ -23,6 +23,7 @@ class User < MongoBase
   add_delegate :locked
   add_delegate :reset_key
   add_delegate :verified
+  add_delegate :verify_key
   add_delegate :_id
   
   include ActiveModel::Validations
@@ -43,8 +44,8 @@ class User < MongoBase
   # Lookup a user by the username and password,
   # param [String] username the username to look for
   # param [Sting] password the clear text password to look for, pass will be hashed to check                     
-  def self.authenticate_user(username, password)
-   u = mongo['users'].find_one({username:username, password:hash_password(pass)})
+  def self.authenticate(username, password)
+   u = mongo['users'].find_one({username:username, password:hash_password(password)})
    return User.new(u) if u   
   end
 
