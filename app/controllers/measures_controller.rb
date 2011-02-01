@@ -14,7 +14,7 @@ class MeasuresController < ApplicationController
   end
     
   def result
-    @result = @executor.measure_result(params[:id], params[:sub_id], :effective_date=>Time.gm(2010, 9, 19).to_i)
+    @result = @executor.measure_result(params[:id], params[:sub_id], :effective_date=>Time.gm(2010, 12, 31).to_i)
     
     render :json => @result
   end
@@ -32,7 +32,7 @@ class MeasuresController < ApplicationController
   end
   
   def patients
-    @result = @executor.measure_result(params[:id], params[:sub_id], :effective_date=>Time.gm(2010, 9, 19).to_i)
+    @result = @executor.measure_result(params[:id], params[:sub_id], :effective_date=>Time.gm(2010, 12, 31).to_i)
     @definition = @executor.measure_def(params[:id], params[:sub_id])
     
    # @numerator = mongo['records'].find('_id' => {'$in' => @result[:numerator_members]})
@@ -43,16 +43,16 @@ class MeasuresController < ApplicationController
   
   def measure_patients
 
-    @result = @executor.measure_result(params[:id], params[:sub_id], :effective_date=>Time.gm(2010, 9, 19).to_i)
+    @result = @executor.measure_result(params[:id], params[:sub_id], :effective_date=>Time.gm(2010, 12, 31).to_i)
     type = params[:type] || "denominator"
    
-    @limit = (params[:limit] || 2).to_i
+    @limit = (params[:limit] || 20).to_i
     @skip =(( params[:page] || 1).to_i - 1 ) * @limit
     sort = params[:sort] || "_id"
     sort_order = params[:sort_order] || :asc
     measure_id = params[:id] 
     sub_id = params[:sub_id]
-    effective_date = ( params[:effective_date] || Time.now).to_i
+    effective_date = ( params[:effective_date] || Time.gm(2010, 12, 31)).to_i
     cache_name =  "cached_measure_patients_#{measure_id}_#{sub_id}_#{effective_date}"
     @records = mongo[cache_name].find({:measure_id=>measure_id,:sub_id=>sub_id,:effective_date=>effective_date,type=>true},{:sort=>[sort, sort_order],:skip=>@skip,:limit=>@limit}).to_a
     @total =  mongo[cache_name].find({:measure_id=>measure_id,:sub_id=>sub_id,:effective_date=>effective_date,type=>true}).count
@@ -69,10 +69,10 @@ class MeasuresController < ApplicationController
     
     results = {:patient_count => mongo['records'].count}
     if measure['subs'].empty?
-      results[measure['id']] = @executor.measure_result(params[:id], nil, :effective_date=>Time.gm(2010, 9, 19).to_i)
+      results[measure['id']] = @executor.measure_result(params[:id], nil, :effective_date=>Time.gm(2010, 12, 31).to_i)
     else
       measure['subs'].each do |sub_id|
-        results[measure['id'] + sub_id] = @executor.measure_result(params[:id], sub_id, :effective_date=>Time.gm(2010, 9, 19).to_i)
+        results[measure['id'] + sub_id] = @executor.measure_result(params[:id], sub_id, :effective_date=>Time.gm(2010, 12, 31).to_i)
       end
     end
     render :partial => 'measure_stats', :locals => {:measure => measure, :results => results}

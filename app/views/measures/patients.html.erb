@@ -5,9 +5,9 @@ function llog(x) {window.console.log(x)}
     var popHealth = popHealth || {};
     var sort = "_id";
     var offset = 0;
-    var limit = 2;
+    var limit = 20;
     var display_type= "denominator";
-    var effective_date = <%=Time.gm(2010, 9, 19).to_i%>;
+    var effective_date = <%=Time.gm(2010, 12, 31).to_i%>;
     var measure_id= '<%=params[:id] %>';
     var sub_id=<%= "'#{params[:sub_id]}'" || 'null' %>;
     var sort_ascending = true;
