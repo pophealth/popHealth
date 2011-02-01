@@ -3,15 +3,13 @@ class User < MongoBase
   
   
   def self.add_delegate(key)
-    eval %{
-      def #{key.to_s} 
-        read_attribute_for_validation(:#{key.to_s})
-      end
+    define_method(key) do
+      read_attribute_for_validation(key)
+    end
     
-     def #{key}=(val) 
-        set_attribute_value('#{key.to_s}',val)
-     end
-    }
+    define_method("#{key.to_s}=".to_sym) do |val|
+      set_attribute_value(key, val)
+    end
   end
   
   add_delegate :password
@@ -33,8 +31,8 @@ class User < MongoBase
                     :length => {:minimum => 3, :maximum => 254},
                     :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i},
                     :uniq=>true
-  validates :username, :presence => true,:length => {:minimum => 3, :maximum => 254}
-  validates :username, :uniq=>true, :if=>:new_record?
+  validates :username, :presence => true, :length => {:minimum => 3, :maximum => 254}
+  validates :username, :uniq=>true, :if => :new_record?
   validates :password, :presence =>true,
                       :length => { :minimum => 5, :maximum => 40 }, :confirmation=>true
 
