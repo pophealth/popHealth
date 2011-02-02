@@ -106,29 +106,29 @@
   <div id="pageContent">
     <div id="providerReports">
       <h1>Reporting</h1>
-      <p class="note">CORE MEASURES <em>(select 3)</em></p>
+      <p class="note">Core Measures<em>(select 3)</em></p>
       <div class="measureList">
       <div class="measureItemList">
          <ul>
          <% @core_measures.each do |measure| -%>
-           <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core"><%= measure['name'].upcase if measure['name'] %></li>
+           <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core"><%= measure['name'] %></li>
          <% end %>
          <% @core_alt_measures.each do |measure| -%>
-           <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core Alternate"><span class="note">**</span><%= measure['name'].upcase if measure['name'] %></li>
+           <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core Alternate"><span class="note">**</span><%= measure['name'] %></li>
          <% end %>
          </ul>
       <p class="note"><em>** core alternate measures</em></p>
       </div>
       </div>
-      <p class="note">ADDITIONAL MEASURES <em>(select 3)</em></p>
+      <p class="note">Additional Measures<em>(select 3)</em></p>
       <div class="measureList">
         <ul id="measureClassList">
         <% @categories.each do |category| -%>
-          <li><label><%= category['category'].upcase %></label>
+          <li><label><%= category['category'] %></label>
             <div class="measureItemList" style="display:none">
               <ul>
               <% category['measures'].each do |measure| -%>
-                <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="<%= category['category'] %>"><%= measure['name'].upcase if measure['name'] %></li>
+                <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="<%= category['category'] %>"><%= measure['name'] %></li>
               <% end -%>
               </ul>
             </div>
