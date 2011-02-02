@@ -23,8 +23,7 @@
             $.post('/measures/remove/' + measureId,
                function(data) {
                    var measureTable = categoryLabel.next('table')
-                   if (measureTable.children().children().length == 2) {
-                       //this means there is a tr for the header and a tr for a measure
+                   if (measureTable.children().children().length == 1) {
                        //since there is only one measure, we should remove the whole table
                        measureTable.remove();
                        categoryLabel.remove();
