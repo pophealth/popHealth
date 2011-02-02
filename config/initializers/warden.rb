@@ -1,6 +1,6 @@
 Rails.configuration.middleware.use RailsWarden::Manager do |manager|
   manager.default_strategies :my_strategy
-  manager.failure_app = LoginController
+  manager.failure_app = AccountController
 end
 
 # Setup Session Serialization
@@ -10,8 +10,8 @@ class Warden::SessionSerializer
   end
 
   def deserialize(keys)
-     id = keys[0]
-     User.find_one({'_id' => id})
+    id = keys[0]
+    User.find_one({'_id' => id})
   end
 end
 
@@ -25,11 +25,8 @@ Warden::Strategies.add(:my_strategy) do
   def authenticate!
     user = User.authenticate(params[:username],params[:password])
 
-    if user && user.verified
+    if user
       success!(user)
-    elsif user
-      errors.add(:login, "Account not yet verified")
-      fail!
     else
       errors.add(:login, "Username or Password incorrect")
       fail!

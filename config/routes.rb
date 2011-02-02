@@ -9,19 +9,16 @@ PopHealth::Application.routes.draw do
   match 'measures/remove/:id', :to => 'measures#remove', :as => :remove, :via => :post
   match 'measures/measure_patients/:id(/:sub_id)', :to=>'measures#measure_patients', :as => :measure_patients, :via=> :get
   match 'records', :to => 'records#create', :via => :post
-  match 'logout', :to=>'login#logout'
-  match 'forgot', :to=>'account#forgot_password'
-  match 'register', :to=>'account#register'
-  match 'account',:to=>'account'
-  match 'account/register', :to => 'account#register', :via => :get
-  match 'account/create', :to => 'account#create',:via => :post
-  match 'account/delete', :to => 'account#delete',:via => :post
-  match 'account/check_username', :to => 'account#check_username',:via => :get
-  match 'account/forgot_password', :to => 'account#forgot_password',:via => :get
-  match 'account/reset_password', :to => 'account#reset_password',:via => :post
-  match 'account/verify', :to => 'account#verify',:via => :get
+  match 'logout', :to => 'account#logout'
+  match 'login', :to => 'account#login', :via => :post
+  match 'forgot', :to => 'account#forgot_password'
+  match 'register', :to => 'account#register', :via => :get
+  match 'register', :to => 'account#create', :via => :post
+  match 'account/delete', :to => 'account#delete', :via => :post
+  match 'account/check_username', :to => 'account#check_username', :via => :get
+  match 'account/forgot_password', :to => 'account#forgot_password', :via => :get
+  match 'account/reset_password', :to => 'account#reset_password', :via => :post
   match 'account/update', :to => 'account#update',:via => :post
-  
   
   root :to => 'measures#index'
   

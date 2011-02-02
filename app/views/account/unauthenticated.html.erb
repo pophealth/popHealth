@@ -1,4 +1,7 @@
-<%= form_tag "/" do %>
+<h1>Welcome to popHealth</h1>
+
+<div id="loginForm">
+<%= form_tag login_url do %>
   <%= label_tag(:username, "Username") %>
   <%= text_field_tag(:username) %>
   <%= label_tag(:password, "Password") %>
@@ -6,6 +9,7 @@
   <%= submit_tag("Login") %>
   <%= warden.errors[:login] %>
 <% end %>
+</div>
 
 <a href="<%= forgot_path %>">Forgot password </a> <br>
-<A href="<%= register_path %>">Register for an account</a>
+<a href="<%= register_path %>">Register for an account</a>

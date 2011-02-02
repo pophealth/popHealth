@@ -1,3 +1,5 @@
+<%= flash[:message] %>
+
 <%= form_for :user do |f| %>
    <%= f.label :first_name %>:
    <%= f.text_field :first_name %><br />
@@ -6,20 +8,16 @@
    <%= f.text_field :last_name %><br />
 
    <%= f.label :username %>:
-    <%= f.text_field :username %><br />
+   <%= f.text_field :username %><br />
 
    <%= f.label :email %>:
    <%= f.text_field :email %><br />
-   
-   
+
    <%= f.label :password %>:
    <%= f.password_field :password %><br />
-   
-   <%= f.label :password_confirmation %>:
-   <%= f.text_field :password_confirmation %><br />
-   
-   <%= f.submit "Register"%>
- <% end %>
-    
 
-<%= @user.errors.inspect %>
+   <%= f.label :password_confirmation %>:
+   <%= password_field_tag :password_confirmation %><br />
+
+   <%= f.submit "Register"%>
+<% end %>
