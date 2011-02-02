@@ -47,17 +47,17 @@ describe Measure do
   end
   
   it "should add a measure to the selected measures if it isn't there" do
-    measure = Measure.add_measure('0421')
+    measure = Measure.add_measure('andy','0421')
     measure['name'].should == 'Adult Weight Screening and Follow-Up'
     MONGO_DB['selected_measures'].count.should == 2
   end
   
   it "shouldn't add a measure if it is already there" do
-    Measure.add_measure('0032').should be_nil
+    Measure.add_measure('andy', '0032').should be_nil
   end
   
   it "should be able to remove a measure" do
-    Measure.remove_measure('0032')
+    Measure.remove_measure('andy', '0032')
     MONGO_DB['selected_measures'].count.should == 0
   end
 end

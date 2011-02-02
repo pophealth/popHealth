@@ -5,7 +5,7 @@ class MeasuresController < ApplicationController
   before_filter :authenticate!
   
   def index
-    @selected_measures = mongo['selected_measures'].find().to_a #need to call to_a so that it isn't a cursor
+    @selected_measures = mongo['selected_measures'].find({:username => user.username}).to_a #need to call to_a so that it isn't a cursor
     @grouped_selected_measures = @selected_measures.group_by {|measure| measure['category']}
     @categories = Measure.non_core_measures
     @core_measures = Measure.core_measures
@@ -60,7 +60,7 @@ class MeasuresController < ApplicationController
   end
 
   def select
-    measure = Measure.add_measure(params[:id])
+    measure = Measure.add_measure(user.username, params[:id])
     
     results = {:patient_count => mongo['records'].count}
     if measure['subs'].empty?
@@ -74,7 +74,7 @@ class MeasuresController < ApplicationController
   end
   
   def remove
-    Measure.remove_measure(params[:id])
+    Measure.remove_measure(user.username, params[:id])
     render :text => 'Removed'
   end
 
