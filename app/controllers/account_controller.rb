@@ -38,7 +38,7 @@ class AccountController < ApplicationController
   def create
     @user = User.new(params[:user])
     if ((params[:user][:password] == params[:password_confirmation]) && @user.save)
-      user = @user
+      self.user = @user
       redirect_to '/'
     else
       render :template => 'register'
