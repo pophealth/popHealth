@@ -88,8 +88,6 @@
       popHealth.makeMeasuresCheckable();
       popHealth.populateMeasureStats();
       $('#btnExportReport').click(popHealth.exportReport);
-     
-
     });
   </script>
 <% end -%>
@@ -105,11 +103,8 @@
         <a class="log">help</a> <span class="sep">|</span> <a class="log" href="/logout">log out</a>
       </div>
     </div>
-
   </div><!-- end #header -->
-
   <div id="pageContent">
-    
     <div id="providerReports">
       <h1>Reporting</h1>
       <p class="note">CORE MEASURES <em>(select 3)</em></p>
@@ -124,11 +119,8 @@
          <% end %>
          </ul>
       <p class="note"><em>** core alternate measures</em></p>
-
       </div>
       </div>
-            
-            
       <p class="note">ADDITIONAL MEASURES <em>(select 3)</em></p>
       <div class="measureList">
         <ul id="measureClassList">
@@ -145,23 +137,21 @@
         </ul>
       </div><!-- end #measureList -->
     </div><!-- end #providerReports -->
-
     <div id="dashboardPeriod">
         <div class="measureDetailTable">
-          <h1>Columbia Road Health Services</h1>
+          <h1>Community Health Services</h1>
           <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
-
           <dl>
-              <dt>Effective date:</dt>
+            <dt>Reporting Period:</dt>
               <dd>
-                  <span id="measurementPeriodStartDate">Sep.19.2009</span>
-            </dd>
-        </dl>
+                <span id="measurementPeriodStartDate">07/01/2010 - 09/31/2010</span>
+              </dd>
+          </dl>
         <dl>
           <dt>Reporting Patients: </dt>
           <dd><%= @patient_count %></dd>
         </dl>
-        <div class="clear"></div>  
+        <div class="clear"></div>
           <% @grouped_selected_measures.each_pair do |category, measures| -%>
           <h3 class="dashboardLabel"><%= category %></h3>
           <table>
@@ -170,7 +160,6 @@
             <% end -%>
           </table>
           <% end -%>
-
         </div><!-- end #measureDetailTable -->
     </div><!-- end #dashboardPeriod -->
   </div><!-- end #pageContent -->
@@ -178,7 +167,6 @@
 <script id="categoryTmpl" type="text/x-jquery-tmpl">
     <h3 class="dashboardLabel">${category}</h3>
     <table>
-
       {{html measureRow}}
     </table>
 </script>
