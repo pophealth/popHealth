@@ -50,17 +50,15 @@ module MeasuresHelper
       "#{(((result[:denominator] - result[:numerator])/ results[:patient_count].to_f) * 100).to_i}%"
     end
   end
-  
-  
+
   def dob(time)
     if time
-      Time.at(time).to_s 
+      Time.at(time).strftime("%m/%d/%Y").to_s
     else 
       nil
     end
   end
-  
-  
+
   def age_from_time(time)
     if (time)
       t = Time.now.to_i - time
@@ -70,8 +68,7 @@ module MeasuresHelper
       nil
     end
   end
-  
-  
+
   private
   
   def real_id_or_default(measure_id, sub_id, results, default)

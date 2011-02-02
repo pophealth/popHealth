@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PopHealth x</title>
+  <title>popHealth : An Open Source Quality Measure Reporting Service</title>
   <%# stylesheet_link_tag :all %>
   <%= stylesheet_link_tag 'pophealth.css' %>
   <%= stylesheet_link_tag 'engage.itoggle.css' %>
@@ -15,7 +15,7 @@
   <%= javascript_include_tag 'vtip-min.js' %>
   <script type="text/javascript">
   function roundNumber(num, dec) {
-	return Math.round(num*Math.pow(10,dec))/Math.pow(10,dec);
+    return Math.round(num*Math.pow(10,dec))/Math.pow(10,dec);
   }
   </script>
   <%= csrf_meta_tag %>
@@ -24,6 +24,6 @@
 <body>
 
 <%= yield %>
-  
+
 </body>
 </html>
