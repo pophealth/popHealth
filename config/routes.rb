@@ -9,7 +9,7 @@ PopHealth::Application.routes.draw do
   match 'measures/remove/:id', :to => 'measures#remove', :as => :remove, :via => :post
   match 'measures/measure_patients/:id(/:sub_id)', :to=>'measures#measure_patients', :as => :measure_patients, :via=> :get
   match 'records', :to => 'records#create', :via => :post
-  match 'logout', :to => 'account#logout'
+  match 'logout', :to => 'account#log_out', :via => :get
   match 'login', :to => 'account#login', :via => :post
   match 'forgot', :to => 'account#forgot_password'
   match 'register', :to => 'account#register', :via => :get

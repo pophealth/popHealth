@@ -44,6 +44,11 @@ class AccountController < ApplicationController
       render :template => 'register'
     end
   end
+  
+  def log_out
+    logout
+    redirect_to '/'
+  end
 
 
   #just render the registration page
