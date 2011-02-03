@@ -41,7 +41,7 @@ class AccountController < ApplicationController
       self.user = @user
       redirect_to '/'
     else
-      render :template => 'register'
+      render :register
     end
   end
   
