@@ -1,14 +1,14 @@
 class AccountController < ApplicationController
   include RailsWarden::Mixins::HelperMethods
   include RailsWarden::Mixins::ControllerOnlyMethods
-  before_filter :authenticate!  , :only=> [:update, :login]
-  
+  before_filter :authenticate!, :only=> [:update, :login]
+
   def login
     if logged_in?
       redirect_to "/"
     end
   end
-  
+
   def reset_password
     key = generate_reset_key
     @user = User.find_one({:email=>params[:email]})
@@ -19,13 +19,13 @@ class AccountController < ApplicationController
     flash[:message]="Check email for reset link message here"
     render :template=>'account/check_email'
   end
-  
+
   def forgot_password
     if user
       redirect_to "/"
     end
   end
-  
+
   def update
     @user = user
     @user.update(params[:user])
@@ -44,28 +44,28 @@ class AccountController < ApplicationController
       render :register
     end
   end
-  
+
   def log_out
     logout
     redirect_to '/'
   end
 
-
   #just render the registration page
   def register
     @user = User.new()
   end
-  
+
   #check to see if the user name already exists
   def check_username
     if User.check_username(params[:user][:username])
       render :text=>"", :status=>200
     else
       render :text=>"", :status=>500
-    end  
+    end
   end
-  
+
   def bad_login
     render :template => 'unauthenticated'
   end
+
 end

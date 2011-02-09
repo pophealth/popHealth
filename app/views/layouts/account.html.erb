@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <title>popHealth : An Open Source Quality Measure Reporting Service</title>
+    <%= stylesheet_link_tag 'blueprint/screen', :media => "screen, projection" %>
+    <%= stylesheet_link_tag 'blueprint/screen', :media => "print" %>
+    <%= stylesheet_link_tag 'style', :media => "screen, projection, print"%>
+    <%= stylesheet_link_tag 'progressbar', :media => "screen, projection, print"%>
+    <%= stylesheet_link_tag 'master' %>   
+    <%= javascript_include_tag 'prototype' %>
+    <%= javascript_include_tag 'scriptaculous' %>
+    <%= javascript_include_tag 'account' %>
+</head>
+
+<body class="login" onkeypress="return submitKeyPress(event);">
+
+<%= yield %>
+
+</body>
+</html>

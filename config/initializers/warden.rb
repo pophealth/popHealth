@@ -5,6 +5,7 @@ end
 
 # Setup Session Serialization
 class Warden::SessionSerializer
+
   def serialize(record)
     [record._id]
   end
@@ -13,6 +14,7 @@ class Warden::SessionSerializer
     id = keys[0]
     User.find_one({'_id' => id})
   end
+
 end
 
 # Declare your strategies here
@@ -24,7 +26,6 @@ Warden::Strategies.add(:my_strategy) do
 
   def authenticate!
     user = User.authenticate(params[:username],params[:password])
-
     if user
       success!(user)
     else
@@ -32,5 +33,5 @@ Warden::Strategies.add(:my_strategy) do
       fail!
     end
   end
+
 end
-  
