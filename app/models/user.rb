@@ -38,7 +38,7 @@ class User < MongoBase
   # param [String] username the username to look for
   # param [Sting] password the clear text password to look for, pass will be hashed to check                     
   def self.authenticate(username, password)
-    u = mongo['users'].find_one({username: username})
+    u = mongo['users'].find_one({:username => username})
     if u
       bcrypt_pw = BCrypt::Password.new(u['password'])
       if bcrypt_pw.is_password?(password)
@@ -53,7 +53,7 @@ class User < MongoBase
   # See if the username already exists
   # param [String] username
   def self.check_username(username)
-    mongo['users'].find_one({username:attributes[:username]})
+    mongo['users'].find_one({:username => attributes[:username]})
   end
   
   # Find users based on hash of key value pairs
