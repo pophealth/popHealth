@@ -43,7 +43,7 @@ class User < MongoBase
       bcrypt_pw = BCrypt::Password.new(u['password'])
       if bcrypt_pw.is_password?(password)
         return User.new(u)
-      end      
+      end
     end
     
     return nil

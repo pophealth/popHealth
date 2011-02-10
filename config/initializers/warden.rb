@@ -25,11 +25,11 @@ Warden::Strategies.add(:my_strategy) do
   end
 
   def authenticate!
-    user = User.authenticate(params[:username],params[:password])
+    user = User.authenticate(params[:username], params[:password])
     if user
       success!(user)
     else
-      errors.add(:login, "Username or Password incorrect")
+      errors.add(:login, "Login Failed")
       fail!
     end
   end
