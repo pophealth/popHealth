@@ -13,49 +13,49 @@
       <% end %>
       </div>
     </div>
-      <div>
-        <ul class="register">
-          <li>
-            <div class="left" style="float:left; width:233px; display:inline;">
-              <label class="desc" for="email">Your First Name:</label><%= f.text_field :first_name %>
-            </div>
-            <label class="desc" for="email">Your Last Name:</label><%= f.text_field :last_name %>
-            <div style="padding-bottom:28px;"></div>
-          </li>
-          <li>
-            <div class="left" style="float:left; width:233px; display:inline;">
-              <label class="desc" for="email">popHealth User Name:</label><%= f.text_field :username %>
-              <p>Must be at least 5 characters long.</p>
-            </div>
-            <label class="desc" for="email">Your Email Address:</label><%= f.text_field :email %>
-            <div style="padding-bottom:28px;"></div>
-          </li>
-          <li>
-            <div class="left" style="float:left; width:233px;display:inline;">
-              <label class="desc" for="password">popHealth Password:</label><%= f.password_field :password %>
-              <p>Must be at least 5 characters long.</p>
-            </div>
-            <label class="desc" for="password1">Confirm Password:</label><%= password_field_tag :password_confirmation %>
-            <div style="padding-bottom:28px;"></div>
-          </li>
-          <li>
-            <div class="left" style="float:left; width:233px; display:inline;">
-              <label class="desc" for="email">Your Organization:</label><%= f.text_field :company %>
-            </div>
-            <label class="desc" for="email">Your Organization URL:</label><%= f.text_field :company_url %>
-          </li>
-          <li>
-            <div style="padding-top:18px; width:450px;">Performance measures and related data specifications (the "Measures") are copyrighted by the noted quality measure providers as indicated in the applicable Measure.  Coding vocabularies are owned by their copyright owners.  By using the Measures, a user ("User") agrees to these Terms of Use.  Measures are not clinical guidelines and do not establish a standard of medical care and quality measure providers are not responsible for any use of or reliance on the Measures.  <b>THE MEASURES AND SPECIFICATIONS ARE PROVIDED "AS IS" WITHOUT ANY WARRANTY OF ANY KIND, AND ANY AND ALL IMPLIED WARRANTIES ARE HEREBY DISCLAIMED, INCLUDING ANY WARRANTY OF NON-INFRINGEMENT, ACCURACY, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  NO QUALITY MEASURE PROVIDER, NOR ANY OF THEIR TRUSTEES, DIRECTORS, MEMBERS, AFFILIATES, OFFICERS, EMPLOYEES, SUCCESSORS AND/OR ASSIGNS WILL BE LIABLE TO YOU FOR ANY DIRECT, INDIRECT, SPECIAL, EXEMPLARY, INCIDENTAL, PUNITIVE, AND/OR CONSEQUENTIAL DAMAGE OF ANY KIND, IN CONTRACT, TORT OR OTHERWISE, IN CONNECTION WITH THE USE OF THE POPHEALTH TOOL OR THE MEASURES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH LOSS OR DAMAGE.</b>  The Measures are licensed to a User for the limited purpose of using, reproducing and distributing the Measures with the popHealth Tool as delivered to User, without any modification, for commercial and noncommercial uses, but such uses are only permitted if the copies of the Measures contain this complete Copyright, Disclaimer and Terms of Use.  Users of the Measures may not alter, enhance, or otherwise modify the Measures.</div>
-            <br/>
-            <span id="regcheckbox"><%= check_box_tag :agree_license %>
-            <label style="display:inline">I agree to the above Terms and Conditions of use</label></span>
-          </li>
+    <div>
+      <ul class="register">
+        <li>
+          <div class="left" style="float:left; width:233px; display:inline;">
+            <label class="desc" for="email">Your First Name:</label><%= f.text_field :first_name %>
+          </div>
+          <label class="desc" for="email">Your Last Name:</label><%= f.text_field :last_name %>
+          <div style="padding-bottom:28px;"></div>
+        </li>
+        <li>
+          <div class="left" style="float:left; width:233px; display:inline;">
+            <label class="desc" for="email">popHealth User Name:</label><%= f.text_field :username %>
+            <p>Must be at least 5 characters long.</p>
+          </div>
+          <label class="desc" for="email">Your Email Address:</label><%= f.text_field :email %>
+          <div style="padding-bottom:28px;"></div>
+        </li>
+        <li>
+          <div class="left" style="float:left; width:233px;display:inline;">
+            <label class="desc" for="password">popHealth Password:</label><%= f.password_field :password %>
+            <p>Must be at least 5 characters long.</p>
+          </div>
+          <label class="desc" for="password1">Confirm Password:</label><%= password_field_tag :password_confirmation %>
+          <div style="padding-bottom:28px;"></div>
+        </li>
+        <li>
+          <div class="left" style="float:left; width:233px; display:inline;">
+            <label class="desc" for="email">Your Organization:</label><%= f.text_field :company %>
+          </div>
+          <label class="desc" for="email">Your Organization URL:</label><%= f.text_field :company_url %>
+        </li>
+        <li>
+          <div style="padding-top:18px; width:450px;">Performance measures and related data specifications (the "Measures") are copyrighted by the noted quality measure providers as indicated in the applicable Measure.  Coding vocabularies are owned by their copyright owners.  By using the Measures, a user ("User") agrees to these Terms of Use.  Measures are not clinical guidelines and do not establish a standard of medical care and quality measure providers are not responsible for any use of or reliance on the Measures.  <b>THE MEASURES AND SPECIFICATIONS ARE PROVIDED "AS IS" WITHOUT ANY WARRANTY OF ANY KIND, AND ANY AND ALL IMPLIED WARRANTIES ARE HEREBY DISCLAIMED, INCLUDING ANY WARRANTY OF NON-INFRINGEMENT, ACCURACY, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  NO QUALITY MEASURE PROVIDER, NOR ANY OF THEIR TRUSTEES, DIRECTORS, MEMBERS, AFFILIATES, OFFICERS, EMPLOYEES, SUCCESSORS AND/OR ASSIGNS WILL BE LIABLE TO YOU FOR ANY DIRECT, INDIRECT, SPECIAL, EXEMPLARY, INCIDENTAL, PUNITIVE, AND/OR CONSEQUENTIAL DAMAGE OF ANY KIND, IN CONTRACT, TORT OR OTHERWISE, IN CONNECTION WITH THE USE OF THE POPHEALTH TOOL OR THE MEASURES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH LOSS OR DAMAGE.</b>  The Measures are licensed to a User for the limited purpose of using, reproducing and distributing the Measures with the popHealth Tool as delivered to User, without any modification, for commercial and noncommercial uses, but such uses are only permitted if the copies of the Measures contain this complete Copyright, Disclaimer and Terms of Use.  Users of the Measures may not alter, enhance, or otherwise modify the Measures.</div>
+          <br/>
+          <span id="regcheckbox"><%= check_box_tag :agree_license %>
+          <label style="display:inline">I agree to the above Terms and Conditions of use</label></span>
+        </li>
       </div>
       <div style="height: 100px; margin-left:295px; width:auto;">
         <a class="whitebutton" href="/"><span>Cancel</span></a>
         <a class="bluebutton" href="javascript:submitRegisterform();"><span>Create</span></a>
       </div>
-  </div>
+    </div>
   <div id="cap-bottom"></div>
 </div><!-- END #login -->
 <% end -%>
