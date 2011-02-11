@@ -1,0 +1,83 @@
+{
+  "termsets" : {
+      // For CCR Date Types
+    "onset" : {
+      "id" : "onset",
+      "terms" : [ "onset", "start", "started", "start date", "began" ],
+      "codes" : [ ]
+    },
+    "occurred" : {
+      "id" : "occurred",
+      "terms" : [ "encounter", "encounter date", "performed", "perform date" ],
+      "codes" : [ ]
+    },
+    "resolved" : {
+      "id" : "resolved",
+      "terms" : [ "resolved", "completed", "ended", "inactive" ],
+      "codes" : [ ]
+    },
+    "ended" : {
+      "id" : "ended",
+      "terms" : [ "completed", "ended", "end", "end date", "stopped", "stopped", "stop date" ],
+      "codes" : [ ]
+    },
+    "collected" : {
+      "id" : "collected",
+      "terms" : [ "collected", "collection time", "collection date", "specimen date", "performed", "acquired", "run date" ],
+      "codes" : [ ]
+    },
+    "ordered" : {
+      "id" : "ordered",
+      "terms" : [ "order date", "request date", "ordered" ],
+      "codes" : [ ]
+    },
+    "gender_male" : {
+      "id" : "gender_male",
+      "terms" : [ "male", "m", "man" ],
+      "codes" : [ ]
+    },
+    "gender_female" : {
+      "id" : "gender_female",
+      "terms" : [ "female", "f", "woman" ],
+      "codes" : [ ]
+    },
+    // For Controlled Vocabulary References
+    "icd9" : {
+      "id" : "icd9",
+      "terms" : [ "icd9", "icd9-cm", "icd9cm", "icd-9cm", "icd 9 cm" ],
+      "codes" : [ ]
+    },
+    "snomed" : {
+      "id" : "snomed",
+      "terms" : [ "snomed", "snomedct", "snomed-ct" ],
+      "codes" : [ ]
+    },
+    "rxnorm" : {
+      "id" : "rxnorm",
+      "terms" : [ "rxnorm" ],
+      "codes" : [ {
+        "codingSystem" : "",
+        "version" : "",
+        "values" : [  ]
+      } ]
+    },
+    "y" : {
+      "id" : "x",
+      "terms" : [  ],
+      "codes" : [ {
+        "codingSystem" : "",
+        "version" : "",
+        "values" : [  ]
+      } ]
+    },
+    "z" : {
+      "id" : "x",
+      "terms" : [  ],
+      "codes" : [ {
+        "codingSystem" : "",
+        "version" : "",
+        "values" : [  ]
+      } ]
+    }
+  }
+}
