@@ -110,13 +110,9 @@ function llog(x) {window.console.log(x)}
     <div id="pageContent">
     
     <div id="patientMetrics">
-        <span id="measurePopulationPercentage"><%= ( (@result[:numerator].to_f / @result[:denominator].to_f) * 100.0).round %>%</span>
-        <span class="paren">(</span>
-        <div class="inline-fraction">
-            <span id="numeratorValue" class="numeratorValue"><%= @result[:numerator]%></span>
-            <span class="separator"></span>
-            <span id="denominatorValue" class="denominatorValue"><%= @result[:denominator]%></span>
-        </div><span class="paren">)</span>
+    
+    <%= render :partial => 'measure_metrics' %>
+
                 
         <div class="patientGroupType"><p>Show Patients in:</p>
             <ul>
@@ -128,11 +124,17 @@ function llog(x) {window.console.log(x)}
             <br style="clear:both"/>
         </div>
     </div><!-- end #patientMetrics -->
+
     
     <div id="dashboardPeriod" >
-    
+<% content_for :export_links do %>
+    <div id="exportLinks">
+    	<a href="#" class="ctrl">Print List</a>
+		<a href="#" class="ctrl">Export List</a>
+	</div>
+<% end %>
         <%= render :partial => 'measure_title'%>
-
+<br style="clear:left"/>
         <div id="patientTableContainer">
            
         </div><!-- end measureEditContainer -->

@@ -106,7 +106,7 @@
   <div id="pageContent">
     <div id="providerReports">
       <h1>Reporting</h1>
-      <p class="note">Core Measures<em>(select 3)</em></p>
+      <p class="note">Core Measures <em>(select 3)</em></p>
       <div class="measureList">
       <div class="measureItemList">
          <ul>
@@ -120,7 +120,7 @@
       <p class="note"><em>** core alternate measures</em></p>
       </div>
       </div>
-      <p class="note">Additional Measures<em>(select 3)</em></p>
+      <p class="note">Additional Measures <em>(select 3)</em></p>
       <div class="measureList">
         <ul id="measureClassList">
         <% @categories.each do |category| -%>
@@ -137,11 +137,14 @@
       </div><!-- end #measureList -->
     </div><!-- end #providerReports -->
     <div id="dashboardPeriod">
-        <div class="measureDetailTable">
+      <div class="measureDetailTable">
+        <div id="exportLinks">
+          <a href="#" class="ctrl">Print List</a>
+          <a href="#" class="ctrl">Export List</a>
+        </div>
           <h1>Community Health Services</h1>
-          <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
           <dl>
-            <dt>Reporting Period:</dt>
+            <dt>Effective Date:</dt>
               <dd>
                 <span id="measurementPeriodStartDate">07/01/2010 - 09/31/2010</span>
               </dd>
@@ -151,8 +154,18 @@
           <dd><%= @patient_count %></dd>
         </dl>
         <div class="clear"></div>
+          <% legend = true %>
           <% @grouped_selected_measures.each_pair do |category, measures| -%>
           <h3 class="dashboardLabel"><%= category %></h3>
+           <% if legend == true %>
+          <div class="legend">
+              <div class="numerator"></div><span>numerator</span>
+              <div class="denominator"></div><span>denominator</span>
+              <div class="patients"></div><span>reporting patients</span>
+              <div class="exclusions"></div><span>exclusions</span>
+        </div>
+         <% legend = false %>
+        <% end %>
           <table>
             <% measures.each do |measure| -%>
                 <%= render :partial => 'measure_stats', :locals => {:measure => measure, :results => {}} %>
