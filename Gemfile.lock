@@ -107,6 +107,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby
+  json
   nokogiri
   quality-measure-engine!
   rails (= 3.0.3)

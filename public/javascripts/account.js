@@ -34,7 +34,7 @@ function submitRegisterform()
 
 function submitResetPasswordinform()
 {
-  document.reset_form.submit();
+  document.password_reset_form.submit();
 }
 
 function wait(msecs)
