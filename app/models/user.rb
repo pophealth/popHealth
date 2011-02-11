@@ -18,6 +18,8 @@ class User < MongoBase
   add_delegate :first_name
   add_delegate :last_name
   add_delegate :email
+  add_delegate :company
+  add_delegate :company_url
   
   add_delegate :locked
   add_delegate :reset_key
@@ -43,7 +45,7 @@ class User < MongoBase
       bcrypt_pw = BCrypt::Password.new(u['password'])
       if bcrypt_pw.is_password?(password)
         return User.new(u)
-      end      
+      end
     end
     
     return nil
