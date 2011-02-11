@@ -18,7 +18,6 @@
         var measureId = $(this).attr("data-measure-id");
         var category = $(this).data("category");
         var categoryLabel = $(".dashboardLabel").filter(function() {return this.innerHTML == category;});
-        
         if ($(this).hasClass('checked')) {
           $.post('/measures/remove/' + measureId,
                  function(data) {
@@ -54,14 +53,14 @@
         var measureSubId = $(this).data("measure-sub-id");
         var resultUrl = null;
         var graphDiv = $(this);
-        
+
         if(measureSubId.length == 0) {
           resultUrl = "/measures/result/" + measureId;
         }
         else {
           resultUrl = "/measures/result/" + measureId + "/" + measureSubId;
         }
-        
+
         $.getJSON(resultUrl, function(data) {
           var percent = data.denominator > 0 ? roundNumber(data.numerator/data.denominator*100,0) : 0;
           var numeratorWidth = (data.numerator/<%= @patient_count %>).toFixed(2)*100;
@@ -91,17 +90,17 @@
   <div id="header">
     <div id="breadcrumbBox">
       <ul id="breadcrumbItems">
-      <li>provider dashboard</li>
+      <li>measure dashboard</li>
       </ul>
       <div id="logOut">
-        <a class="http://projectpophealth.org/faq.html">help</a> <span class="sep">|</span> <a class="log" href="/logout">log out</a>
+        Welcome, <%= self.user.first_name.to_s %> <span class="sep">|</span> <a class="http://projectpophealth.org/faq.html">help</a> <span class="sep">|</span> <a class="log" href="/logout">log out</a>
       </div>
     </div><!-- end #breadcrumbBox -->
   </div><!-- end #header -->
   <div id="pageContent">
     <div id="providerReports">
       <h1>Reporting</h1>
-      <p class="note">Core Measures<em>(select 3)</em></p>
+      <p class="note">Core Measures <em>(select 3)</em></p>
       <div class="measureList">
       <div class="measureItemList">
          <ul>
@@ -115,7 +114,7 @@
       <p class="note"><em>** core alternate measures</em></p>
       </div>
       </div>
-      <p class="note">Additional Measures<em>(select 3)</em></p>
+      <p class="note">Additional Measures <em>(select 3)</em></p>
       <div class="measureList">
         <ul id="measureClassList">
         <% @categories.each do |category| -%>
@@ -133,21 +132,33 @@
     </div><!-- end #providerReports -->
     <div id="dashboardPeriod">
       <div class="measureDetailTable">
-        <h1>Community Health Services</h1>
-        <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
-        <dl>
-          <dt>Reporting Period:</dt>
-          <dd>
-            <span id="measurementPeriodStartDate">07/01/2010 - 09/30/2010</span>
-          </dd>
-        </dl>
+        <div id="exportLinks">
+          <a href="#" class="ctrl">Export Report</a>
+        </div>
+          <h1>Community Health Services</h1>
+          <dl>
+            <dt>Effective Date:</dt>
+              <dd>
+                <span id="measurementPeriodStartDate">07/01/2010 - 09/31/2010</span>
+              </dd>
+          </dl>
         <dl>
           <dt>Reporting Patients: </dt>
           <dd><%= @patient_count %></dd>
         </dl>
         <div class="clear"></div>
-        <% @grouped_selected_measures.each_pair do |category, measures| -%>
+          <% legend = true %>
+          <% @grouped_selected_measures.each_pair do |category, measures| -%>
           <h3 class="dashboardLabel"><%= category %></h3>
+           <% if legend == true %>
+          <div class="legend">
+              <div class="numerator"></div><span>numerator</span>
+              <div class="denominator"></div><span>denominator</span>
+              <div class="patients"></div><span>reporting patients</span>
+              <div class="exclusions"></div><span>exclusions</span>
+        </div>
+         <% legend = false %>
+        <% end %>
           <table>
             <% measures.each do |measure| -%>
               <%= render :partial => 'measure_stats', :locals => {:measure => measure, :results => {}} %>

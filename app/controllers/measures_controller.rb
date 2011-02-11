@@ -27,6 +27,7 @@ class MeasuresController < ApplicationController
 
   def show
     @definition = @executor.measure_def(params[:id], params[:sub_id])
+    @result = @executor.measure_result(params[:id], params[:sub_id], :effective_date=> @effective_date)
     render 'measure'
   end
 

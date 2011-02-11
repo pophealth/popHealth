@@ -47,12 +47,15 @@ a {
 #header a:hover { text-decoration: underline; }
 #header ul {
   list-style: none;
-  margin-left: 115px;
+  margin-left: 325px;
+  font-size: 0.9em;
 }
 #header ul li {
   float: left;
   margin-top: 5px;
+  color: #333333;
 }
+#header ul li a { color: #44b3be; }
 #header ul li .sep { margin: 0 5px; }
 #pageContent {
   height: 100%;
@@ -146,24 +149,52 @@ a {
 }
 #measurementPeriod span { margin: 10px; }
 .measureBox { padding: 10px; }
-#measureEditContainer { border-top: 1px solid #e9e9e9; }
-#measureEditContainer .paramGroupContainer { xborder: 1px solid red; }
+#measureEditContainer {
+  border-top: 1px solid #e9e9e9;
+  clear: left;
+  position: relative;
+}
+#measureEditContainer span {
+  margin: 5px 0;
+  padding: 1px 3px;
+  text-align: center;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+#measureEditContainer span.and {
+  display: block;
+  width: 3em;
+  background-color: #a4d9dd;
+}
+#measureEditContainer span.or {
+  display: block;
+  width: 2em;
+  background-color: #dddddd;
+}
 #measureEditContainer .paramGroup {
-  margin: 10px 0 20px 20px;
-  -webkit-box-shadow: -2px -2px 2px #aaaaaa;
-  -moz-box-shadow: -2px -2px 2px #aaaaaa;
-  box-shadow: -2px -2px 2px #aaaaaa;
-  padding: 5px;
+  margin: 10px 0 10px 0px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  padding: 2px;
   display: table;
 }
-#measureEditContainer .paramGroupToggle { margin: 10px 0 5px 0; }
+#measureEditContainer .paramGroup.population { background-color: #cccccc; }
+#measureEditContainer .paramGroup.population .paramGroup { background-color: #cccccc; }
+#measureEditContainer .paramGroup.population .paramGroup .paramGroup { background-color: #cccccc; }
+#measureEditContainer .paramGroup.population .and { background-color: #dddddd; }
+#measureEditContainer .paramGroupToggle { margin: 0 0 0 20px; }
 #measureEditContainer .paramItem {
   background-color: white;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  padding: 5px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  padding: 1px 4px 0;
   display: table;
+  margin-left: 10px;
+  color: #000000;
+  text-transform: lowercase;
 }
 #measureEditContainer .paramItem .paramBar {
   margin-left: 5px;
@@ -185,7 +216,11 @@ a {
   right: -100%;
   color: #000000;
 }
-#measureEditContainer .paramItem h4 { color: #999999; }
+#measureEditContainer .paramItem label {
+  color: #000000;
+  font-weight: bold;
+  padding-right: 4px;
+}
 .exclusionTab {
   font-size: 0.9em;
   background: url(../images/bkgExclusionsTab.png) 100% 50% no-repeat;
@@ -200,47 +235,74 @@ a {
 }
 #eligibilityMeasures h3 {
   font-size: 1.5em;
-  padding: 0 10px;
-  background-color: #eafcff;
+  padding: 5px 20px;
+  display: inline-block;
+  margin: 10px 0 0 10px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  background-color: #54b4bd;
 }
+#eligibilityMeasures h3 em { font-style: italic; }
 #eligibilityMeasures .paramGroup { background-color: #a4d9dd; }
 #eligibilityMeasures .paramGroup .paramGroup {
+  margin-left: 10px;
   background-color: #51b2bc;
-  -webkit-box-shadow: -2px -2px 2px #477c81;
-  -moz-box-shadow: -2px -2px 2px #477c81;
-  box-shadow: -2px -2px 2px #477c81;
   width: auto;
 }
 #eligibilityMeasures .paramGroup .paramGroup .paramGroup {
+  margin-left: 10px;
   background-color: #37696e;
-  -webkit-box-shadow: -2px -2px 2px #264e51;
-  -moz-box-shadow: -2px -2px 2px #264e51;
-  box-shadow: -2px -2px 2px #264e51;
 }
 #outcomeMeasures {
   width: 500px;
   display: table-cell;
-  border-left: 1px solid #e9e9e9;
 }
 #outcomeMeasures h3 {
   font-size: 1.5em;
-  padding: 0 10px;
-  background-color: #e9f4d9;
+  padding: 5px 20px;
+  display: inline-block;
+  margin: 10px 0 0 10px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  background-color: #9dc84b;
 }
+#outcomeMeasures h3 em { font-style: italic; }
 #outcomeMeasures .paramGroup { background-color: #cfe1a5; }
+#outcomeMeasures .paramGroup .and { background-color: #cfe1a5; }
 #outcomeMeasures .paramGroup .paramGroup {
   background-color: #9db26d;
-  -webkit-box-shadow: -2px -2px 2px #717f4f;
-  -moz-box-shadow: -2px -2px 2px #717f4f;
-  box-shadow: -2px -2px 2px #717f4f;
   width: auto;
 }
-#outcomeMeasures .paramGroup .paramGroup .paramGroup {
-  background-color: #68822c;
-  -webkit-box-shadow: -2px -2px 2px #475527;
-  -moz-box-shadow: -2px -2px 2px #475527;
-  box-shadow: -2px -2px 2px #475527;
+#outcomeMeasures .paramGroup .paramGroup .paramGroup { background-color: #68822c; }
+#exclusionPanel {
+  width: 500px;
+  position: absolute;
+  left: 500px;
+  top: 0;
 }
+#exclusionPanel h3 {
+  float: right;
+  font-size: 1em;
+  cursor: pointer;
+  padding: 3px 8px 1px 8px;
+  display: inline-block;
+  margin: 0px 0 0 0px;
+  -moz-border-radius: 0 0 10px 10px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  background-color: #eda039;
+}
+#exclusionPanel h3 em { font-style: italic; }
+#exclusionMeasureItems {
+  padding: 5px 5px 5px 10px;
+  border: 1px solid orange;
+  border-top: 0;
+  background-color: white;
+}
+#exclusionMeasureItems .paramGroup { background-color: #fbd198; }
+#exclusionMeasureItems .paramGroup .and { background-color: #fbd198; }
 #parameterList {
   width: 260px;
   display: table-cell;
@@ -298,10 +360,14 @@ a {
 }
 #providerReports p.note {
   padding: 0 0 0 10px;
-  margin: 15px 0;
+  margin: 5px 0 15px 0;
   color: #888888;
+  text-transform: uppercase;
 }
-#providerReports em { font-style: italic; }
+#providerReports em {
+  font-style: italic;
+  text-transform: none;
+}
 #providerReports h3.dashboardLabel {
   color: #888888;
   padding: 10px 0 0px 10px;
@@ -320,7 +386,7 @@ a {
   color: #000000;
   margin: 5px 0;
   padding: 0 5px 10px 5px;
-  font-size: 1.1em;
+  font-size: 1em;
 }
 #providerReports .measureList p {
   color: #666666;
@@ -345,7 +411,7 @@ a {
 }
 #providerReports .measureItemList ul { margin: 5px; }
 #providerReports .measureItemList li {
-  padding: 0 5px 5px 25px;
+  padding: 0 5px 10px 25px;
   background: url(../images/unchecked.png) 0 10% no-repeat;
   font-size: 0.9em;
   cursor: pointer;
@@ -396,17 +462,21 @@ input.exportReport {
   border-radius: 15px;
   text-transform: uppercase;
 }
-.measureDetailTable { padding: 0; }
+.measureDetailTable {
+  padding: 0;
+  float: left;
+  width: 700px;
+}
 .measureDetailTable h1 {
   font-size: 1.5em;
-  padding-left: 10px;
+  padding-left: 25px;
 }
 .measureDetailTable h3.dashboardLabel { text-transform: uppercase; }
 .measureDetailTable dl {
   display: block;
   clear: left;
   margin-top: 10px;
-  padding-left: 10px;
+  padding-left: 25px;
 }
 .measureDetailTable dt {
   display: table-cell;
@@ -419,11 +489,26 @@ input.exportReport {
 .measureDetailTable h3.dashboardLabel {
   color: #888888;
   clear: left;
-  padding-left: 10px;
-  background-color: #f0f0f0;
+  padding-left: 25px;
   border-bottom: 1px solid #cccccc;
 }
 .measureDetailTable p { padding: 20px 0px 5px 5px; }
+.measureDetailTable div.legend {
+  padding-left: 25px;
+  padding-top: 10px;
+}
+.measureDetailTable div.legend div {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 7px;
+  margin-bottom: -1px;
+}
+.measureDetailTable div.legend span { margin-right: 15px; }
+.measureDetailTable div.legend .numerator { background-color: #9cc45e; }
+.measureDetailTable div.legend .denominator { background-color: #40b3bc; }
+.measureDetailTable div.legend .patients { background-color: #dddddd; }
+.measureDetailTable div.legend .exclusions { background-color: #eda039; }
 .measureDetailTable table { width: 100%; }
 .measureDetailTable table th {
   color: #646464;
@@ -452,9 +537,9 @@ input.exportReport {
 .inline-fraction span.denominatorValue { color: #40b3bc; }
 .inline-fraction span.separator { border-top: 1px solid #cccccc; }
 .tableMeasureTitle {
-  width: 225px;
+  width: 255px;
   margin-top: 0.75em;
-  padding-left: 40px;
+  padding-left: 25px;
 }
 .tableMeasureTitle span { cursor: help; }
 #tableMeasureDescription { width: 275px; }
@@ -474,9 +559,11 @@ input.exportReport {
 .tableMeasureCtrl {
   font-size: 1em;
   margin-bottom: 10px;
+  clear: left;
+  height: 3em;
 }
 .tableMeasureCtrl .measureStats {
-  width: 140px;
+  width: 150px;
   float: left;
   height: 3em;
   vertical-align: middle;
@@ -504,6 +591,14 @@ input.exportReport {
   vertical-align: middle;
   position: relative;
   top: 0.75em;
+}
+.tableMeasureCtrl .inline-bar .links {
+  float: left;
+  line-height: 1.2em;
+}
+.tableMeasureCtrl .inline-bar .links a {
+  display: block;
+  font-size: 0.8em;
 }
 .tableMeasureCtrl .tableBar {
   float: left;
@@ -536,10 +631,6 @@ input.exportReport {
 .tableMeasureCtrl .tableBarNumerator span { margin: 3px 0 0 5px; }
 .tableMeasureCtrl .numeratorValue { color: #9cc45e; }
 .tableMeasureCtrl .denominatorValue { color: #40b3bc; }
-.tableMeasureCtrl .tableEdit {
-  line-height: 2.5em;
-  font-size: 0.8em;
-}
 .tableMeasureCtrl .sep { color: #999999; }
 .tableMeasureCtrl a {
   padding: 0 5px 0 5px;
@@ -549,6 +640,46 @@ input.exportReport {
   text-decoration: none;
   color: #368f98;
 }
+#exportLinks {
+  float: right;
+  text-align: right;
+  text-transform: uppercase;
+  margin-top: 10px;
+  padding-bottom: 1em;
+}
+#exportLinks a {
+  display: block;
+  line-height: 2.4em;
+  padding: 1px 0 3px;
+  color: #33aace;
+}
+#measureMetrics .paren {
+  font-size: 3em;
+  color: #999999;
+  position: relative;
+  top: 8px;
+}
+#measureMetrics .inline-fraction {
+  font-size: 1.9em;
+  line-height: 1.2em;
+}
+#measureMetrics .inline-fraction .separator { padding-bottom: 3px; }
+#measurePopulationPercentage {
+  display: inline-block;
+  text-align: center;
+  width: 120px;
+  height: 120px;
+  font-size: 1.5em;
+  vertical-align: middle;
+  background-color: #9cc45e;
+  color: white;
+  font-size: 48px;
+  -moz-border-radius: 200px;
+  -webkit-border-radius: 200px;
+  border-radius: 200px;
+  line-height: 128px;
+  margin-right: 30px;
+}
 #patientMetrics {
   display: block;
   display: table-cell;
@@ -556,28 +687,15 @@ input.exportReport {
   width: 285px;
   background-color: #f2f2f2;
   color: #000000;
-  padding: 0 0 0 15px;
+  padding: 0;
   min-height: 100%;
   height: 100%;
   border-right: 1px solid #cccccc;
 }
-#patientMetrics .paren {
-  font-size: 2.5em;
-  color: #999999;
-  position: relative;
-  top: 5px;
+#patientMetrics .patientGroupType p {
+  margin-left: 15px;
+  text-transform: uppercase;
 }
-#patientMetrics #measurePopulationPercentage {
-  font-size: 3em;
-  margin-right: 40px;
-  position: relative;
-  top: 7px;
-}
-#patientMetrics .inline-fraction {
-  font-size: 1.4em;
-  line-height: 1.2em;
-}
-#patientMetrics .inline-fraction .separator { padding-bottom: 3px; }
 #patientMetrics .patientGroupType ul { float: right; }
 #patientMetrics .patientGroupType ul li {
   height: 52px;

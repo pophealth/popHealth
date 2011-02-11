@@ -90,13 +90,7 @@
   <%= render :partial => 'header', :locals => {:definition => @definition} %>
   <div id="pageContent">
     <div id="patientMetrics">
-      <span id="measurePopulationPercentage"><%= ( (@result[:numerator].to_f / @result[:denominator].to_f) * 100.0).round %>%</span>
-      <span class="paren">(</span>
-      <div class="inline-fraction">
-        <span id="numeratorValue" class="numeratorValue"><%= @result[:numerator]%></span>
-        <span class="separator"></span>
-        <span id="denominatorValue" class="denominatorValue"><%= @result[:denominator]%></span>
-      </div><span class="paren">)</span>
+    <%= render :partial => 'measure_metrics' %>
       <div class="patientGroupType"><p>Show Patients in:</p>
         <ul>
           <li class="numerator"><span class="radio"><input type="radio" name="patientGroup" value="1"   id="num"/></span><label for="num">Numerator</label> <span class="count"><%= @result[:numerator]%></span></li>
@@ -109,8 +103,9 @@
     </div><!-- end #patientMetrics -->
     <div id="dashboardPeriod" >
       <%= render :partial => 'measure_title'%>
+      <br style="clear:left"/>
       <div id="patientTableContainer">
-      </div>
+    </div><!-- end patientTableContainer -->
     </div>
   </div><!-- end #pageContent -->
 </div>
