@@ -20,6 +20,7 @@ function llog(x) {window.console.log(x)}
         $("#outcomeExclusionMarker").text(data.exclusions + " exclusion" + (data.exceptions = 1 ? "s":""));
         $("#eligibleCount").text(data.denominator);
         $("#outcomeCount").text(data.numerator);
+        $("#exclusionCount").text(data.exclusions);
     }
     
     
@@ -62,8 +63,11 @@ function llog(x) {window.console.log(x)}
         if (data.numerator) {
             addParamItems(data.numerator,$("#outcomeMeasureItems"));
         }
-        if ('exclusions' in data && data.exclusions.length > 0) {
+        if ('exclusions' in data && !$.isEmptyObject(data['exclusions'])) {
             addParamItems(data.exclusions,$("#exclusionMeasureItems"));
+            
+            $("#exclusionMeasureItems").hide();
+            $("#exclusionPanel").show();
         }
      }
     
@@ -71,7 +75,9 @@ function llog(x) {window.console.log(x)}
     
     //$.getJSON("json/bp.json",popHealth.renderMeasureJSON);
     $.getJSON("<%= measure_definition_url(@definition['id'], @definition['sub_id']) %>",popHealth.renderMeasureJSON);
-    
+    $("#exclusionPanel h3").click(function() {
+  	  $("#exclusionMeasureItems").slideToggle('slow');
+	});
     $("#measurementPeriodEndDate").val(new Date().format("mm/dd/yyyy"));
     $(".deleteParamIcon").click(popHealth.deleteParam);
     $("#btnSaveNewMeasure").click(popHealth.saveNewMeasure);
@@ -121,6 +127,10 @@ function llog(x) {window.console.log(x)}
         <%= render :partial => 'measure_title'%>
 
         <div id="measureEditContainer">
+        <div id="exclusionPanel" style="display:none;">
+        	<div id="exclusionMeasureItems"></div>
+        	<h3>exclusions <em>(<span id="exclusionCount">0</span>)</em></h3>
+        </div>
         <div id="eligibilityMeasures">
             <h3>denominator <em>(<span id="eligibleCount">0</span>)</em></h3>
             <div class="measureBox">
@@ -140,7 +150,7 @@ function llog(x) {window.console.log(x)}
                 </div>
                 <div id="outcomeMeasureItems">
                 </div>
-                <div id="exclusionMeasureItems">
+                <div id="xexclusionMeasureItems">
                 </div>
             </div><!-- end measureBox -->
         </div><!-- end #outcomeMeasures -->

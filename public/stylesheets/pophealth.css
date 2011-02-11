@@ -47,12 +47,15 @@ a {
 #header a:hover { text-decoration: underline; }
 #header ul {
   list-style: none;
-  margin-left: 115px;
+  margin-left: 325px;
+  font-size: 0.9em;
 }
 #header ul li {
   float: left;
   margin-top: 5px;
+  color: #333333;
 }
+#header ul li a { color: #44b3be; }
 #header ul li .sep { margin: 0 5px; }
 #pageContent {
   height: 100%;
@@ -149,6 +152,7 @@ a {
 #measureEditContainer {
   border-top: 1px solid #e9e9e9;
   clear: left;
+  position: relative;
 }
 #measureEditContainer span {
   margin: 5px 0;
@@ -272,6 +276,33 @@ a {
   width: auto;
 }
 #outcomeMeasures .paramGroup .paramGroup .paramGroup { background-color: #68822c; }
+#exclusionPanel {
+  width: 500px;
+  position: absolute;
+  left: 500px;
+  top: 0;
+}
+#exclusionPanel h3 {
+  float: right;
+  font-size: 1em;
+  cursor: pointer;
+  padding: 3px 8px 1px 8px;
+  display: inline-block;
+  margin: 0px 0 0 0px;
+  -moz-border-radius: 0 0 10px 10px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  background-color: #eda039;
+}
+#exclusionPanel h3 em { font-style: italic; }
+#exclusionMeasureItems {
+  padding: 5px 5px 5px 10px;
+  border: 1px solid orange;
+  border-top: 0;
+  background-color: white;
+}
+#exclusionMeasureItems .paramGroup { background-color: #fbd198; }
+#exclusionMeasureItems .paramGroup .and { background-color: #fbd198; }
 #parameterList {
   width: 260px;
   display: table-cell;
@@ -506,7 +537,7 @@ input.exportReport {
 .inline-fraction span.denominatorValue { color: #40b3bc; }
 .inline-fraction span.separator { border-top: 1px solid #cccccc; }
 .tableMeasureTitle {
-  width: 225px;
+  width: 255px;
   margin-top: 0.75em;
   padding-left: 25px;
 }

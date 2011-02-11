@@ -87,10 +87,13 @@ a {
 
   ul {
     list-style:none;
-    margin-left:115px;
+    margin-left:325px;
+    font-size:0.9em;
     li {
       float:left;
       margin-top:5px;
+      color:#333;
+      a {color:@dashboardText}
       .sep {margin:0 5px;
       }
     }
@@ -208,6 +211,7 @@ a {
 #measureEditContainer {
   border-top:1px solid @measureBorderColor;
   clear:left;
+  position:relative;
     span {margin : 5px 0;padding:1px 3px;text-align:center;
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
@@ -348,6 +352,36 @@ a {
       }
     }
   }
+}
+#exclusionPanel {
+	width:500px;
+	position:absolute;
+	left:500px;
+	top:0;
+	h3 {
+	float:right;
+    font-size:1em;
+    cursor:pointer;
+    padding:3px 8px 1px 8px;
+    display:inline-block;
+    margin:0px 0 0 0px;
+    -moz-border-radius:0 0 10px 10px;
+    -webkit-border-radius:20px;
+    border-radius:20px;
+    background-color:@exclusions;
+    em {font-style:italic}
+  }
+	}
+#exclusionMeasureItems {
+	padding:5px 5px 5px 10px;
+	border:1px solid orange;
+	border-top:0;
+	background-color:white;
+
+	.paramGroup {
+		background-color:#fbd198;
+		.and {background-color:#fbd198}
+	}
 }
 
 #parameterList {
@@ -615,7 +649,7 @@ a {
 
 
 .tableMeasureTitle {
-  width: 225px;
+  width: 255px;
   margin-top:0.75em;
   padding-left:@measureDetailTable-padding;
   span {
