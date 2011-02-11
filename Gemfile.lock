@@ -1,6 +1,6 @@
 GIT
   remote: http://github.com/pophealth/quality-measure-engine.git
-  revision: e47e1bb440f6b1989f450ad865133e936b3bdb59
+  revision: c29165ced78c77d85869a0dd63ded74dddc9e3b1
   branch: develop
   specs:
     quality-measure-engine (0.1.2)
