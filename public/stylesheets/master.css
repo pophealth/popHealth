@@ -180,23 +180,22 @@ div#login div.submit p {
 div#login input#btnLogin,
 div#login input#btnRetrieve,
 div#login input#btnUpdate {
-	float: right;
-	margin-bottom: 10px;
+  float: right;
+  margin-bottom: 10px;
 }
 
 body.login div#panelErrorMsg {
-	color: #000;
-	margin: 30px auto -85px;
-	padding: 18px 18px 18px 54px;
-	width: 450px;
+  color: #000;
+  margin: 30px auto -85px;
+  padding: 18px 18px 18px 54px;
+  width: 450px;
 }
 
 hr.login {
-	background: url(../images/hr.png) repeat-x;
-	width:446px;
-	height:4px;
-	border:0;
-	margin: 0 0 1.4em;
+  width:446px;
+  height:4px;
+  border:0;
+  margin: 0 0 1.4em;
 }
 
 input.create-account-btn {

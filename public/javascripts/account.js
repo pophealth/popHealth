@@ -27,9 +27,9 @@ function submitLoginform()
    document.login_form.submit();
 }
 
-function submitAccountCreationform()
+function submitRegisterform()
 {
-  document.account_creation_form.submit();
+   document.register_form.submit();
 }
 
 function submitResetPasswordinform()
