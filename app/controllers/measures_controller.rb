@@ -1,6 +1,7 @@
 class MeasuresController < ApplicationController
   include RailsWarden::Mixins::HelperMethods
   include RailsWarden::Mixins::ControllerOnlyMethods
+  include MeasuresHelper
   before_filter :set_up_environment
   before_filter :authenticate!
   
@@ -70,12 +71,8 @@ class MeasuresController < ApplicationController
     @report[:tin] = user.tin || 'N/A'
     @report[:results] = []
     selected_measures.each do |measure|
-      if measure['subs'].empty?
-        @report[:results] << extract_result(measure['id'], nil, @effective_date)
-      else
-        measure['subs'].each do |sub_id|
-          @report[:results] << extract_result(measure['id'], sub_id, @effective_date)
-        end
+      subs_iterator(measure['subs']) do |sub_id|
+        @report[:results] << extract_result(measure['id'], sub_id, @effective_date)
       end
     end
     respond_to do |format|
