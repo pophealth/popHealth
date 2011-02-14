@@ -80,7 +80,7 @@
       );
     }
 
-    popHealth.exportReport = function() { alert('Export measure report'); };
+    popHealth.exportReport = function() { window.location.href="/measures/report.xml"; };
 
     $(document).ready(function() {
       popHealth.makeMeasureListExpandable();

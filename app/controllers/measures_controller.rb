@@ -58,6 +58,33 @@ class MeasuresController < ApplicationController
     end
 
   end
+  
+  def measure_report
+    selected_measures = mongo['selected_measures'].find({:username => user.username}).to_a
+    @report = {}
+    @report[:start] = Time.at(@effective_date - 3 * 30 * 24 * 60 * 60) # roughly 3 months
+    @report[:end] = Time.at(@effective_date)
+    @report[:registry_name] = user.registry_name || 'N/A'
+    @report[:registry_id] = user.registry_id || 'N/A'
+    @report[:npi] = user.npi || 'N/A'
+    @report[:tin] = user.tin || 'N/A'
+    @report[:results] = []
+    selected_measures.each do |measure|
+      if measure['subs'].empty?
+        @report[:results] << extract_result(measure['id'], nil, @effective_date)
+      else
+        measure['subs'].each do |sub_id|
+          @report[:results] << extract_result(measure['id'], sub_id, @effective_date)
+        end
+      end
+    end
+    respond_to do |format|
+      format.xml do
+        response.headers['Content-Disposition']='attachment;filename=quality.xml';
+        render :content_type=>'application/pqri+xml'
+      end
+    end
+  end
 
   def select
     measure = Measure.add_measure(user.username, params[:id])
@@ -87,4 +114,15 @@ class MeasuresController < ApplicationController
     @effective_date = Time.gm(2010, 12, 31).to_i
   end
 
+  def extract_result(id, sub_id, effective_date)
+    result = @executor.measure_result(id, sub_id, :effective_date=> effective_date)
+    {
+      :id=>id,
+      :sub_id=>sub_id,
+      :population=>result[:population],
+      :denominator=>result[:denominator],
+      :numerator=>result[:numerator],
+      :exclusions=>result[:exclusions]
+    }
+  end
 end
