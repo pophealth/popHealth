@@ -74,7 +74,7 @@
       });
     }
 
-    popHealth.exportReport = function() { alert('Export measure report'); };
+    popHealth.exportReport = function() { window.location.href="/measures/report.xml"; };
 
     $(document).ready(function() {
       popHealth.makeMeasureListExpandable();
@@ -93,7 +93,7 @@
       <li>measure dashboard</li>
       </ul>
       <div id="logOut">
-        Welcome, <%= self.user.first_name.to_s %> <span class="sep">|</span> <a class="http://projectpophealth.org/faq.html">help</a> <span class="sep">|</span> <a class="log" href="/logout">log out</a>
+        Welcome, <%= self.user.first_name.to_s %> <span class="sep">|</span> <a href="http://projectpophealth.org/faq.html">help</a> <span class="sep">|</span> <a class="log" href="/logout">log out</a>
       </div>
     </div><!-- end #breadcrumbBox -->
   </div><!-- end #header -->
@@ -132,16 +132,14 @@
     </div><!-- end #providerReports -->
     <div id="dashboardPeriod">
       <div class="measureDetailTable">
-        <div id="exportLinks">
-          <a href="#" class="ctrl">Export Report</a>
-        </div>
-          <h1>Community Health Services</h1>
-          <dl>
-            <dt>Effective Date:</dt>
-              <dd>
-                <span id="measurementPeriodStartDate">07/01/2010 - 09/31/2010</span>
-              </dd>
-          </dl>
+        <h1>Community Health Services</h1>
+        <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
+        <dl>
+          <dt>Reporting Period:</dt>
+          <dd>
+            <span id="measurementPeriodStartDate">07/01/2010 - 09/31/2010</span>
+          </dd>
+        </dl>
         <dl>
           <dt>Reporting Patients: </dt>
           <dd><%= @patient_count %></dd>

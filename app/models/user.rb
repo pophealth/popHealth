@@ -19,6 +19,11 @@ class User < MongoBase
   add_delegate :company
   add_delegate :company_url
 
+  add_delegate :registry_id
+  add_delegate :registry_name
+  add_delegate :npi
+  add_delegate :tin
+
   add_delegate :locked
   add_delegate :reset_key
   add_delegate :_id
