@@ -62,10 +62,10 @@ class MeasuresController < ApplicationController
     @report = {}
     @report[:start] = Time.at(@effective_date - 3 * 30 * 24 * 60 * 60) # roughly 3 months
     @report[:end] = Time.at(@effective_date)
-    @report[:registry_name] = user.registry_name || 'N/A'
-    @report[:registry_id] = user.registry_id || 'N/A'
-    @report[:npi] = user.npi || 'N/A'
-    @report[:tin] = user.tin || 'N/A'
+    @report[:registry_name] = REGISTRY_NAME
+    @report[:registry_id] = REGISTRY_ID
+    @report[:npi] = NATIONAL_PROVIDER_ID
+    @report[:tin] = TAX_ID
     @report[:results] = []
     selected_measures.each do |measure|
       subs_iterator(measure['subs']) do |sub_id|
