@@ -31,11 +31,15 @@ module MeasuresHelper
   
   def percentage(measure_id, sub_id, results)
     real_id_or_default(measure_id, sub_id, results, 0) do |result|
-      if result[:denominator] > 0
-        ((result[:numerator] / result[:denominator].to_f) * 100).to_i
-      else
-        0
-      end
+      raw_percentage(result[:numerator], result[:denominator])
+    end
+  end
+  
+  def raw_percentage(numerator, denominator)
+    if denominator > 0
+      ((numerator / denominator.to_f) * 100).to_i
+    else
+      0
     end
   end
     

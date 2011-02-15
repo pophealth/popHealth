@@ -1,6 +1,6 @@
     <div id="measureMetrics" style="width:285px;float:left;padding:15px 0 0 15px;margin-bottom:20px">
 
-<div id="measurePopulationPercentage"><%= ( (@result[:numerator].to_f / @result[:denominator].to_f) * 100.0).round %>%</div>
+<div id="measurePopulationPercentage"><%= raw_percentage(@result[:numerator], @result[:denominator]) %>%</div>
         <span class="paren">(</span>
         <div class="inline-fraction">
             <span id="numeratorValue" class="numeratorValue"><%= @result[:numerator]%></span>
