@@ -2,7 +2,8 @@ class RecordsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   
   def create
-    doc = Nokogiri::XML(params[:content])
+    xml_file = params[:content].tempfile.read
+    doc = Nokogiri::XML(xml_file)
     doc.root.add_namespace_definition('cda', 'urn:hl7-org:v3')
     patient = nil
     root_element_name = doc.root.name
@@ -12,7 +13,7 @@ class RecordsController < ApplicationController
     elsif root_element_name == 'ContinuityOfCareRecord'
       if RUBY_PLATFORM =~ /java/
         ccr_importer = CCRImporter.instance
-        patient_raw_json = ccr_importer.create_patient(params[:content])
+        patient_raw_json = ccr_importer.create_patient(xml_file)
         patient = JSON.parse(patient_raw_json)
       else
         render :text => 'CCR Support is currently disabled', :status => 500
