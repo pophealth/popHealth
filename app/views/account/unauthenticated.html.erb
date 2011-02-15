@@ -17,6 +17,13 @@
       </div>
       <input type="hidden" name="eventHandler" value="" onkeypress="return submitKeyPress(event);"/>
       <br/>
+      <div style="color:#FF0000; font-weight: bold">
+        <% if warden.errors[:login] %>
+        <%   warden.errors[:login].each do |error_message| %>
+        <%=    error_message.to_s %>
+        <%   end %>
+        <% end %>
+      </div>
       <div style="height: 20px; margin-left:295px; width:auto;">
         <a class="whitebutton" href="#"><span>Cancel</span></a>
         <a class="bluebutton" href="javascript:submitLoginform();"><span>Login</span></a>
@@ -29,13 +36,6 @@
           <div style="position:absolute; top:50px; left:20px; font-size:11px;">
             <a class="loginlink" href="<%= forgot_path %>">Forgot Password </a>
           </div>
-        </div>
-        <div style="color:#FF0000; font-weight: bold">
-          <% if warden.errors[:login] %>
-          <%   warden.errors[:login].each do |error_message| %>
-          <%=    error_message.to_s %>
-          <%   end %>
-          <% end %>
         </div>
         <div style="position: absolute; bottom: 0px; right: 0px; text-align:right; font-size:11px;">
           popHealth v0.9<br>
