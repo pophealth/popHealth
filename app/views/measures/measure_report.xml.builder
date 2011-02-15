@@ -33,9 +33,9 @@ xml.submission(
           xml.tag! :'eligible-instances', result[:denominator]
           xml.tag! :'meets-performance-instances', result[:numerator]
           xml.tag! :'performance-exclusion-instances', result[:exclusions]
-          xml.tag! :'performance-not-met-instances', (result[:denominator] - result[:numerator])
+          xml.tag! :'performance-not-met-instances', (result[:denominator] - result[:numerator] - result[:exclusions])
           xml.tag! :'reporting-rate', "100.00"
-          xml.tag! :'performance-rate', "%.2f" % (100.0 * result[:numerator] / result[:denominator])
+          xml.tag! :'performance-rate', "%.2f" % (100.0 * result[:numerator] / (result[:denominator] - result[:exclusions]))
         end
       end
     end
