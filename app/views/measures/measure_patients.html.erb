@@ -1,26 +1,26 @@
  <table id="patientTable">
-  	<thead>
-  		<tr>
-  			<th name="last">Last</th>
-  			<th name="first">First</th>
-  			<th name="birthdate">Age</th>
-  			<th name="birthdate">DoB</th>
-  			<th name="gender">Gender</th>
-  		</tr>
-  	</thead>
-      <tbody>
-          <% @page_results.each do |patient| -%>
-              <tr class="antiNumerator">
-                  <td><%= patient['last'] %></td>
-                  <td><%= patient['first'] %></td>
-                  <td><%= age_from_time(patient['birthdate']) || 'UNK' %></td>
-                  <td><%= dob(patient['birthdate'])  || 'UNK' %></td>
-                  <td><%= patient["gender"] || "UNK" %></td>
-              </tr>
-          <% end -%>  
-      </tbody>
+    <thead>
+       <tr>
+         <th name="last">Last</th>
+         <th name="first">First</th>
+         <th name="birthdate">Age</th>
+         <th name="birthdate">DoB</th>
+         <th name="gender">Gender</th>
+       </tr>
+     </thead>
+     <tbody>
+     <% @page_results.each do |patient| -%>
+       <tr class="antiNumerator">
+         <td><%= patient['last'] %></td>
+         <td><%= patient['first'] %></td>
+         <td><%= age_from_time(patient['birthdate']) || 'UNK' %></td>
+         <td><%= dob(patient['birthdate'])  || 'UNK' %></td>
+         <td><%= patient["gender"] || "UNK" %></td>
+       </tr>
+     <% end -%>
+     </tbody>
   </table>
-<div>  
+<div>
   <!-- pagination to go here -->
   <%= will_paginate @page_results%>
 </div>
@@ -40,7 +40,7 @@ $('#patientTable >thead >tr > th').click(function(){
 
 $(".pagination > a").click(function(){  
   var url = this.href;
-  this.href=null;
+  this.href="#";
   $.ajax({ url:  url,
              type:"GET",
              dataType: 'html',
@@ -48,9 +48,9 @@ $(".pagination > a").click(function(){
                $('#patientTableContainer').html(res);
              },
              error: function(xhr, err) {
-             alert("fix this");
+                 alert("fix this");
              }
            });
-  });
-
+return false;
+});
 </script>

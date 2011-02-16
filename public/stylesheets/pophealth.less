@@ -31,8 +31,8 @@ a img {border:none;}
 @measureTitleText : #373737;
 @measurementPeriodText:#646464;
 @measureList : #000;
-@eligibleHdr : #eafcff;
-@outcomeHdr : #e9f4d9;
+@eligibleHdr : #54b4bd;
+@outcomeHdr : #9dc84b;
 @measureBorderColor:#e9e9e9;
 @providerReports:#f2f2f2;
 @parameterList : #353535;
@@ -47,15 +47,18 @@ a img {border:none;}
 @tableText : #646464;
 @denominator : #40B3BC;
 @numerator : #9CC45E;
+@patients : #dddddd;
+@exclusions: #eda039;
 @link_separator_color : #999999;
 
-@measureDetailTable-padding : 10px;
+@measureDetailTable-padding : 25px;
 
 /* default border color */
 @borderColor :#cccccc;
 @eligibilityParamGroup :#a4d9dd;
 @outcomeParamGroup : #cfe1a5;
 
+@radius : 5px;
 
 html { height:100%;}
 body {height:100%}
@@ -84,10 +87,13 @@ a {
 
   ul {
     list-style:none;
-    margin-left:115px;
+    margin-left:325px;
+    font-size:0.9em;
     li {
       float:left;
       margin-top:5px;
+      color:#333;
+      a {color:@dashboardText}
       .sep {margin:0 5px;
       }
     }
@@ -96,7 +102,7 @@ a {
 
 #pageContent {
     height:100%;
-    display:table;
+   display:table;
 }
   
 #breadcrumbBox {
@@ -204,29 +210,50 @@ a {
 
 #measureEditContainer {
   border-top:1px solid @measureBorderColor;
-
-  .paramGroupContainer {xborder:1px solid red}    
+  clear:left;
+  position:relative;
+    span {margin : 5px 0;padding:1px 3px;text-align:center;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;}
+    span.and {display:block;width:3em;background-color:@eligibilityParamGroup}
+    span.or {display:block;width:2em;background-color:#dddddd}
+    
   
   .paramGroup {
-    margin:10px 0 20px 20px;
-    -webkit-box-shadow: -2px -2px 2px #aaa ;
-    -moz-box-shadow: -2px -2px 2px #aaa;
-    box-shadow: -2px -2px 2px #aaa;
-    padding:5px;
+    margin:10px 0 10px 0px;
+ /*   -webkit-box-shadow: 2px 2px 10px #aaa ;
+    -moz-box-shadow: 2px 2px 10px #aaa; 
+    box-shadow: 2px 2px 10px #aaa;
+*/
+    border-radius: @radius;
+    -moz-border-radius: @radius;
+    -webkit-border-radius: @radius;
+
+    padding:2px;
     display:table;
     
   }
-
-  .paramGroupToggle {margin:10px 0 5px 0}
+  .paramGroup.population {
+    background-color:#cccccc;
+    .paramGroup {background-color:#cccccc;
+      .paramGroup {background-color:#cccccc;}
+      }
+    .and {background-color:#ddd;}
+  }
+  .paramGroupToggle {margin:0 0 0 20px}
 
   .paramItem {
     background-color:white;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    padding:5px;
+    border-radius: @radius;
+    -moz-border-radius: @radius;
+    -webkit-border-radius: @radius;
+    padding:1px 4px 0;
     display:table;
-    
+    margin-left:10px;
+    color:#000;
+    text-transform:lowercase;
+
     .paramBar {
       margin-left:5px;
       background-color:@barValueBkg;
@@ -246,9 +273,11 @@ a {
       //margin-left:23px;
       color:#000}
       }
-    h4 {
-      color:#999;
+    label {
+      color:#000;
+      font-weight:bold; padding-right:4px;
       }
+      
     }
   }
 .exclusionTab {
@@ -262,23 +291,31 @@ a {
   display:table-cell;
   h3 {
     font-size:1.5em;
-    padding:0 10px;
+    padding:5px 20px;
+    display:inline-block;
+    margin:10px 0 0 10px;
+    -moz-border-radius:20px;
+    -webkit-border-radius:20px;
+    border-radius:20px;
     background-color : @eligibleHdr;
+    em {font-style:italic}
   }
   .paramGroup {
     background-color:@eligibilityParamGroup;
     .paramGroup {
+      margin-left:10px;
       background-color:#51b2bc;
-      -webkit-box-shadow: -2px -2px 2px #477c81 ;
-      -moz-box-shadow: -2px -2px 2px #477c81;
-      box-shadow: -2px -2px 2px #477c81;
+  /*    -webkit-box-shadow: 2px 2px 2px #477c81 ;
+      -moz-box-shadow: 2px 2px 2px #477c81;
+      box-shadow: 2px 2px 2px #477c81; */
       width:auto;
 
       .paramGroup {
+       margin-left:10px;
        background-color:#37696e;
-        -webkit-box-shadow: -2px -2px 2px #264e51;
-        -moz-box-shadow: -2px -2px 2px #264e51;
-        box-shadow: -2px -2px 2px #264e51;
+ /*       -webkit-box-shadow: 2px 2px 2px #264e51;
+        -moz-box-shadow: 2px 2px 2px #264e51;
+        box-shadow: 2px 2px 2px #264e51; */
       }
     }
   }
@@ -287,28 +324,64 @@ a {
 #outcomeMeasures {
   width:500px;
   display:table-cell;
-  border-left:1px solid #e9e9e9;
   h3 {
     font-size:1.5em;
-    padding:0 10px;
+    padding:5px 20px;
+    display:inline-block;
+    margin:10px 0 0 10px;
+    -moz-border-radius:20px;
+    -webkit-border-radius:20px;
+    border-radius:20px;
     background-color:@outcomeHdr;
+    em {font-style:italic}
   }
   .paramGroup {background-color:@outcomeParamGroup;
+  .and {background-color:@outcomeParamGroup;}
     .paramGroup {
       background-color:#9DB26D;
-      -webkit-box-shadow: -2px -2px 2px #717F4F ;
+  /*    -webkit-box-shadow: -2px -2px 2px #717F4F ;
       -moz-box-shadow: -2px -2px 2px #717F4F;
-      box-shadow: -2px -2px 2px #717F4F;
+      box-shadow: -2px -2px 2px #717F4F; */
       width:auto;
 
       .paramGroup {
         background-color:#68822C;
-        -webkit-box-shadow: -2px -2px 2px #475527;
+/*        -webkit-box-shadow: -2px -2px 2px #475527;
         -moz-box-shadow: -2px -2px 2px #475527;
-        box-shadow: -2px -2px 2px #475527;
+        box-shadow: -2px -2px 2px #475527; */
       }
     }
   }
+}
+#exclusionPanel {
+	width:500px;
+	position:absolute;
+	left:500px;
+	top:0;
+	h3 {
+	float:right;
+    font-size:1em;
+    cursor:pointer;
+    padding:3px 8px 1px 8px;
+    display:inline-block;
+    margin:0px 0 0 0px;
+    -moz-border-radius:0 0 10px 10px;
+    -webkit-border-radius:20px;
+    border-radius:20px;
+    background-color:@exclusions;
+    em {font-style:italic}
+  }
+	}
+#exclusionMeasureItems {
+	padding:5px 5px 5px 10px;
+	border:1px solid orange;
+	border-top:0;
+	background-color:white;
+
+	.paramGroup {
+		background-color:#fbd198;
+		.and {background-color:#fbd198}
+	}
 }
 
 #parameterList {
@@ -378,11 +451,12 @@ a {
   }
   p.note {
     padding:0 0 0 10px;
-    margin:15px 0;
+    margin:5px 0 15px 0;
     color:@dashboardLabel;
+    text-transform:uppercase;
     
   }
-  em {font-style:italic;}
+  em {font-style:italic;text-transform:none}
   h3.dashboardLabel {
      color:@dashboardLabel;
      padding: 10px 0 0px 10px;
@@ -402,7 +476,7 @@ a {
     color:@measureList;
     margin:5px 0;
     padding:0 5px 10px 5px;
-    font-size:1.1em;
+    font-size:1em;
     p {
       color:#666;
       margin:0 10px 0 0;
@@ -432,7 +506,7 @@ a {
     }
     list-style:none;
     li {
-      padding: 0 5px 5px 25px;
+      padding: 0 5px 10px 25px;
       background:url(../images/unchecked.png) 0 10% no-repeat;
       font-size:0.9em;
       cursor:pointer;
@@ -490,6 +564,8 @@ a {
   
 .measureDetailTable {
   padding: 0;
+  float:left;
+  width:700px;
   h1 {
     font-size:1.5em;
     padding-left:@measureDetailTable-padding;
@@ -517,13 +593,22 @@ a {
     color:@dashboardLabel;
     clear:left;
     padding-left:@measureDetailTable-padding;
-    background-color:#f0f0f0;
     border-bottom:1px solid @borderColor;
   }
   p {
     padding: 20px 0px 5px 5px;
   }
-
+  div.legend {
+    padding-left:@measureDetailTable-padding;
+    padding-top:10px;
+    div {display:inline-block;width:14px;height:14px;margin-right:7px;margin-bottom:-1px;}
+    span {margin-right:15px;}
+    .numerator {background-color:@numerator}
+    .denominator {background-color:@denominator}
+    .patients {background-color:@patients}
+    .exclusions {background-color:@exclusions}
+  }
+//  a.ctrl {float:right;line-height:2.0em}
   table {
     width:100%;
   
@@ -564,9 +649,9 @@ a {
 
 
 .tableMeasureTitle {
-  width: 225px;
+  width: 255px;
   margin-top:0.75em;
-  padding-left:40px;
+  padding-left:@measureDetailTable-padding;
   span {
     cursor:help;
   }
@@ -600,12 +685,15 @@ a {
 .tableMeasureCtrl {
   font-size: 1.0em;
   margin-bottom:10px;
+  clear:left;
+  height:3em;
   
 .measureStats {
-   width:140px;
+   width:150px;
    float:left;
    height:3em;
    vertical-align:middle;
+   
    .measurePopulationPercentage {
      display:inline-block;
      text-align:right;
@@ -629,7 +717,16 @@ a {
     height:3em;
     vertical-align:middle;
     position:relative;
-    top:0.75em;} 
+    top:0.75em;
+    .links {
+      float:left;
+      line-height:1.2em;
+      a {
+         display:block;
+         font-size: 0.8em;
+        }
+      }
+    } 
   .tableBar {
     float: left;
     margin-top:5px;
@@ -660,10 +757,7 @@ a {
     color: @denominator;
   }
 
-  .tableEdit {
-    line-height:2.5em;
-    font-size: 0.8em;
-  }
+
   .sep {color:@link_separator_color;}
   a {
      padding: 0 5px 0 5px;
@@ -676,6 +770,50 @@ a {
     }
 }
 
+#exportLinks {
+  float:right;
+  text-align:right;
+  text-transform:uppercase;
+  margin-top:10px;
+  padding-bottom:1em;
+  a {
+     display: block;
+     line-height:2.4em;
+     padding:1px 0 3px;
+     color:#33aace;
+     }
+  }
+  #measureMetrics {
+  .paren {
+    font-size:3em;
+    color:#999;
+    position:relative;
+    top:8px;
+  }
+
+  .inline-fraction {
+    font-size:1.9em;
+    line-height:1.2em;
+    .separator {padding-bottom:3px}
+    }
+}
+  #measurePopulationPercentage {
+     display:inline-block;
+     text-align:center;
+     width:120px;
+     height:120px;
+    // text-shadow:rgba(0,0,0,.5) -1px -1px 0;
+     font-size:1.5em;
+     vertical-align:middle;
+     background-color:@numerator;
+     color:white;
+     font-size:48px;
+     -moz-border-radius:200px;
+     -webkit-border-radius:200px;
+     border-radius:200px;
+     line-height:128px;
+     margin-right:30px;
+    }
 #patientMetrics {
   display:block;
   display:table-cell;
@@ -683,29 +821,15 @@ a {
   width:285px;
   background-color:#F2F2F2;
   color:#000000;
-  padding:0 0 0 15px;
+//  padding:0 0 0 15px;
+  padding:0;
   min-height:100%;
   height:100%;
   border-right:1px solid @borderColor;
-  .paren {
-    font-size:2.5em;
-    color:#999;
-    position:relative;
-    top:5px;
-  }
-  #measurePopulationPercentage {
-    font-size:3em;
-    margin-right:40px;
-    position:relative;
-    top:7px;
-    }
-  .inline-fraction {
-    font-size:1.4em;
-    line-height:1.2em;
-    .separator {padding-bottom:3px}
-    }
+
     
   .patientGroupType {
+  p {margin-left:15px;text-transform:uppercase;}
    ul {
     float:right;
     li {height:52px;

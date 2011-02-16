@@ -1,178 +1,141 @@
 <% content_for :head do %>
   <script type="text/javascript">
-function llog(x) {window.console.log(x)}    
-    
+    function llog(x) {window.console.log(x)}    
     var popHealth = popHealth || {};
-    
     popHealth.drawPctChart = function(data) {
         var elem = "#mcp";
         var percent = data.denominator > 0 ? (data.numerator/data.denominator).toFixed(2)*100 : 0;
-        var numeratorWidth = (data.numerator/<%= @patient_count %>).toFixed(2)*100;
-        var denominatorWidth = data.denominator > 0 ? ((data.denominator - data.numerator)/<%= @patient_count %>).toFixed(2)*100 : 0;
-        
+        var numeratorWidth = (data.numerator/<%= @patient_count -%>).toFixed(2)*100;
+        var denominatorWidth = data.denominator > 0 ? ((data.denominator - data.numerator)/<%= @patient_count -%>).toFixed(2)*100 : 0;
         $(elem).find("#numeratorValue").text(data.numerator);
         $(elem).find("#denominatorValue").text(data.denominator);
         $(elem).find("#measurePopulationPercentage").text(percent + "%");
-        
         $(elem).find(".barNumerator").css("width", numeratorWidth + "%");
         $(elem).find(".barDenominator").css("width", denominatorWidth + "%");
-
         $("#outcomeExclusionMarker").text(data.exclusions + " exclusion" + (data.exceptions = 1 ? "s":""));
         $("#eligibleCount").text(data.denominator);
         $("#outcomeCount").text(data.numerator);
+        $("#exclusionCount").text(data.exclusions);
     }
-    
-    
+
     popHealth.renderMeasureJSON = function(data) {
         var measure = data;
         $.getJSON("<%= measure_result_url(@definition['id'], @definition['sub_id']) %>",popHealth.drawPctChart);
         $("#measureTitleText").text(data.name);
         $("#measureDescText").text(data.description);
-
-        var addParamItems = function(obj,elem,container) {
-            if ("and" in obj) {
-                for (var i=0; i < obj.and.length; i++) {
-                    addParamItems(obj.and[i],elem);
-                    if (i < obj.and.length-1) {
-                        $(elem.children(".paramGroupContainer:last")).append($("#ph_tmpl_paramToggle").tmpl({id:$("input[type=checkbox]").length,val:"and"}));
-                    }
+        var elemParent;
+        var addParamItems = function(obj,elemParent,container) {
+          var items = obj['and'] || obj['or'];
+          if ($.isArray(items)) {
+            var conjunction = obj['and'] ? 'and' : 'or';
+            // add the grouping container
+            if (!container) {elemParent = $("#ph_tmpl_paramGroup").tmpl({}).appendTo(elemParent).find(".paramItem:last");}
+              $.each(items,function(i,node) {
+                addParamItems(node,elemParent);
+                if (i < items.length-1) {
+                  $(elemParent).append("<span class='"+conjunction+"'>"+conjunction+"</span>");
                 }
+              });
             } else {
-                if ("or" in obj) {
-                    if (!container) {
-                        elem = $("#ph_tmpl_paramGroupContainer").tmpl({}).appendTo(elem);
-                        $("#ph_tmpl_paramGroup").tmpl({}).appendTo(elem);   
-                    }
-                    for (var i=0; i < obj.or.length; i++) {
-                        addParamItems(obj.or[i],elem.find(".paramGroup:last"),elem);
-                        if (i < obj.or.length-1) {
-                            $("#ph_tmpl_paramToggle").tmpl({id:$("input[type=checkbox]").length,val:"or"}).appendTo(elem.find(".paramGroup:last"));
-                    }
-                }
-                } else {
-                    if (!container) {
-                        elem = $("#ph_tmpl_paramGroupContainer").tmpl({}).appendTo(elem);
-                        elem = $("#ph_tmpl_paramGroup").tmpl({}).appendTo(elem);    
-                    }
-                    $("#ph_tmpl_paramItem").tmpl(obj).appendTo(elem);
-                }
+              // we dont have a nested measure clause, add the item to the bottom of the list
+              if (!elemParent.hasClass("paramItem")) {
+                elemParent = $("#ph_tmpl_paramGroup").tmpl({}).appendTo(elemParent).find(".paramItem:last");
+              }
+              $("#ph_tmpl_paramItem").tmpl(obj).appendTo(elemParent);
             }
-            
-        }
-        
+        } // end addParamItems
+
         if (data.population) {
-            addParamItems(data.population,$("#eligibilityMeasureItems"));
+          elemParent = $("#ph_tmpl_paramGroup").tmpl({}).appendTo("#eligibilityMeasureItems").find(".paramItem:last");
+          addParamItems(data.population,elemParent,elemParent);
+          elemParent.parent().addClass("population");
         }
+
         if (!$.isEmptyObject(data.denominator)) {
-            $("#ph_tmpl_paramToggle").tmpl({id:$("#eligibilityMeasureItems input[type=checkbox]").length,val:"and"}).appendTo("#eligibilityMeasureItems .paramGroupContainer:last");
-            addParamItems(data.denominator,$("#eligibilityMeasureItems"));
+          $("#eligibilityMeasureItems").append("<span class='and'>and</span>");
+          addParamItems(data.denominator,$("#eligibilityMeasureItems"));
         }
 
         if (data.numerator) {
-            addParamItems(data.numerator,$("#outcomeMeasureItems"));
+          addParamItems(data.numerator,$("#outcomeMeasureItems"));
         }
-        // turn checkboxes into sliding toggle switches
-        makeToggleSliders();
-    }
-    
+
+        if ('exclusions' in data && !$.isEmptyObject(data['exclusions'])) {
+          addParamItems(data.exclusions,$("#exclusionMeasureItems"));
+          $("#exclusionMeasureItems").hide();
+          $("#exclusionPanel").show();
+        }
+     }
+
     $(document).ready(function() {
-    
-    //$.getJSON("json/bp.json",popHealth.renderMeasureJSON);
-    $.getJSON("<%= measure_definition_url(@definition['id'], @definition['sub_id']) %>",popHealth.renderMeasureJSON);
-    
-    $("#measurementPeriodEndDate").val(new Date().format("mm/dd/yyyy"));
-    $(".deleteParamIcon").click(popHealth.deleteParam);
-    $("#btnSaveNewMeasure").click(popHealth.saveNewMeasure);
-    $("#btnReturnToDash").click(popHealth.returnToDash);
-    
-});
-    function makeToggleSliders() {
-    $('.itoggle input').iToggle({
-        type: 'checkbox',
-        keepLabel: false,
-        easing: 'easeOutExpo',
-        speed: 300,
-        onClick: function(){
-            //Function here
-        },
-        onClickOn: function(){
-            //Function here
-        },
-        onClickOff: function(){
-            //Function here
-        },
-        onSlide: function(){
-            //Function here
-        },
-        onSlideOn: function(){
-            //Function here
-        },
-        onSlideOff: function(){
-            //Function here
-        }
+      //$.getJSON("json/bp.json",popHealth.renderMeasureJSON);
+      $.getJSON("<%= measure_definition_url(@definition['id'], @definition['sub_id']) %>",popHealth.renderMeasureJSON);
+      $("#exclusionPanel h3").click(function() {
+        $("#exclusionMeasureItems").slideToggle('slow');
+      });
+      $("#measurementPeriodEndDate").val(new Date().format("mm/dd/yyyy"));
+      $(".deleteParamIcon").click(popHealth.deleteParam);
+      $("#btnSaveNewMeasure").click(popHealth.saveNewMeasure);
+      $("#btnReturnToDash").click(popHealth.returnToDash);
     });
-    }
+
     function alertDate(e) {
-        alert("you changed me");
-        }
+      alert("you changed me");
+    }
   </script>
- <script type="text/html" id="ph_tmpl_paramItem">
-        <div class="paramItem">
-       <!-- ${percentage=Math.round(Math.random()*100,2)} -->
-            {{if category}}<h4>${category}</h4>{{/if}}
-            ${title}
-        </div>
-    </script>
-    <script type="text/html" id="ph_tmpl_paramGroupContainer">
-        <div class="paramGroupContainer">
-        </div>
-    </script>
-    <script type="text/html" id="ph_tmpl_paramGroup">
-            <div class="paramGroup">
-            </div>
-    </script>
-    <script type="text/html" id="ph_tmpl_paramToggle">
-        <div class="paramGroupToggle">
-            <div class="itoggle" id="toggle_${id}">
-                <input type="checkbox" id="param_cbox_${id}" ${val == "or" ? "" :"checked"}/>
-            </div>
-        </div>
-    </script>
+  <script type="text/html" id="ph_tmpl_paramItem">
+    <div>
+      <!-- ${percentage=Math.round(Math.random()*100,2)} -->
+      {{if category}}<label>${category}</label>{{/if}}
+      ${title}
+    </div>
+  </script>
+  <script type="text/html" id="ph_tmpl_paramGroupContainer">
+    <div class="paramGroupContainer">
+    </div>
+  </script>
+  <script type="text/html" id="ph_tmpl_paramGroup">
+    <div class="paramGroup"><div class="paramItem">
+    </div></div>
+  </script>
+  <script type="text/html" id="ph_tmpl_paramToggle">
+    <div class="paramGroupToggle">
+      <div class="itoggle" id="toggle_${id}">
+        <input type="checkbox" id="param_cbox_${id}" ${val == "or" ? "" :"checked"}/>
+      </div>
+    </div>
+  </script>
 <% end %>
 
 <div id="container">
-
-    <%= render :partial => 'header', :locals => {:definition => @definition} %>
-    
-    <div id="pageContent">
-
-        <%= render :partial => 'measure_title'%>
-
-        <div id="measureEditContainer">
-        <div id="eligibilityMeasures">
-            <h3>Denominator: <span id="eligibleCount">0</span> patients</h3>
-            <div class="measureBox">
-
-            <div id="eligibilityMeasureItems">
-
-                
-            </div><!-- end #eligibilityMeasureItems -->
-            </div><!-- end measureBox -->
-
-        </div><!-- end #eligibilityMeasures -->
-        
-        <div id="outcomeMeasures">
-            <h3>Numerator: <span id="outcomeCount">0</span> patients</h3>
-            <div class="measureBox">
-                <div id="outcomeExclusionMarker" class="exclusionTab">
-                    0 Exclusions
-                </div>
-                <div id="outcomeMeasureItems">
-                </div>
-            </div><!-- end measureBox -->
-        </div><!-- end #outcomeMeasures -->
-        
+  <%= render :partial => 'header', :locals => {:definition => @definition} %>
+  <div>
+    <%= render :partial => 'measure_metrics' %>
+    <%= render :partial => 'measure_title'%>
+    <div id="measureEditContainer">
+      <div id="exclusionPanel" style="display:none;">
+        <div id="exclusionMeasureItems"></div>
+        <h3>exclusions <em>(<span id="exclusionCount">0</span>)</em></h3>
+      </div>
+      <div id="eligibilityMeasures">
+        <h3>denominator <em>(<span id="eligibleCount">0</span>)</em></h3>
+        <div class="measureBox">
+          <div id="eligibilityMeasureItems">
+          </div><!-- end #eligibilityMeasureItems -->
+        </div><!-- end measureBox -->
+      </div><!-- end #eligibilityMeasures -->
+      <div id="outcomeMeasures">
+        <h3>numerator <em>(<span id="outcomeCount">0</span>)</em></h3>
+        <div class="measureBox">
+          <div id="outcomeExclusionMarker" class="exclusionTab" style="display:none">
+            0 Exclusions
+          </div>
+          <div id="outcomeMeasureItems">
+          </div>
+          <div id="xexclusionMeasureItems">
+          </div>
+        </div><!-- end measureBox -->
+      </div><!-- end #outcomeMeasures -->
     </div><!-- end measureEditContainer -->
-    </div><!-- end #pageContent -->
-
+  </div>
 </div>

@@ -1,0 +1,300 @@
+@import 'button.css';
+/* import blueprint: */
+@import 'blueprint/screen.css';
+
+/* @override 
+	http://192.168.118.113/CatalystStyles/master.css
+*/
+
+/*==============================================================
+
+	BC Master: master.css
+	
+	Description: Master CSS for BC Backend
+	
+	Author:   Business Catalyst | http://businesscatalyst.com
+
+	Version:  2007.12.18
+
+==============================================================*/
+
+/* @group Input */
+
+label {
+	color: #888;
+	font-weight: normal;
+}
+
+input {
+	padding: 0 0 0 4px;
+	vertical-align: middle;
+}
+
+input.textbox340:hov r {
+	background: #EFF5F9;
+}
+
+input, select, textarea {
+	font-size: 18px;
+}
+
+
+input.textbox340 {
+	width: 323px;
+}
+
+span.label {
+	color: #888;
+}
+
+/* @end */
+
+/* @group Login */
+
+body.login {
+	background: #fafafa;
+}
+
+div#login {
+	margin: 108px auto 0;
+	width: 546px;
+}
+
+div#cap-top {
+	background: transparent url(../images/cap-top.png) no-repeat;
+	height: 8px;
+	width: 546px;
+}
+
+* html #cap-top {
+	margin-bottom: -8px;
+}
+
+* html div#cap-top {
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/cap-top.png", sizingMethod="crop");
+}
+
+div#cap-body {
+	background: transparent url(../images/cap-bg.png) repeat-y;
+	width: 545px;
+}
+
+* html div#cap-body {
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/cap-bg.png', sizingMethod='scale');
+}
+
+div#cap-bottom {
+	background: transparent url(../images/cap-bottom.png) no-repeat;
+	height: 15px;
+	width: 546px;
+}
+
+* html div#cap-bottom {
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/cap-bottom.png", sizingMethod="crop");
+}
+
+div#login div#panelLogin div, div#login div#panelResetPass div, div#login div#panelChangePass div {
+	margin: 0 auto;
+	width: 456px;
+}
+
+div#login div#panelLogin div.doggyhelp {
+	padding-bottom:0px;
+}
+
+div#login div#branding {
+	padding-top: 20px;
+	display: block;
+	margin: 0 45px 10px 45px;
+	color:#888;
+}
+
+div#login div#branding img {
+	margin:0;	
+	margin-left:-5px;
+	display:block;
+	border-width: 0px; 
+}
+
+div#login div#branding  h1 {
+	margin-top:5px;
+	font-size:13px;
+	font-weight:bold;
+	color:#888;
+}
+
+div#login label {
+	color: #888;
+	/*display: block;*/
+	font-size: 12px;
+}
+
+div#login input {
+	background: #fafafa;
+	border: 1px solid #eee;
+	font-size: 18px;
+	line-height: 20px;
+	margin: 0;
+	padding: 3px;
+	width: 440px;
+}
+
+div#login ul.register input {
+	width: 200px;
+}
+
+div#login input.checkbox {
+	background: #fafafa;
+	border: 1px solid #eee;
+}
+
+* html div#login input#txtLogin,
+* html div#login input#txtPassword,
+* html div#login input#txtEmailAddressResetPass,
+* html div#login input.textbox340 {
+	background: #eee;
+	border: 1px solid #ddd;
+	font-size: 18px;
+	line-height: 20px;
+	margin: 0;
+	padding: 3px;
+	width: 440px;
+}
+
+div#login input#txtLogin:focus,
+div#login input#txtPassword:focus,
+div#login input.textbox340:focus {
+	background: #fcfcfc;
+	border: 1px solid #ccc;
+}
+
+div#login div.submit p {
+	float: left;
+	margin: 0;
+	width:182px;
+}
+
+div#login input#btnLogin,
+div#login input#btnRetrieve,
+div#login input#btnUpdate {
+  float: right;
+  margin-bottom: 10px;
+}
+
+body.login div#panelErrorMsg {
+  color: #000;
+  margin: 30px auto -85px;
+  padding: 18px 18px 18px 54px;
+  width: 450px;
+}
+
+hr.login {
+  width:446px;
+  height:4px;
+  border:0;
+  margin: 0 0 1.4em;
+}
+
+input.create-account-btn {
+    float:right;
+    clear:both;
+    width:155px;
+    height:30px;
+    padding: 0px 0 0;
+    margin: 0;
+    border: 0;
+    background: transparent url(/images/create_account.png) no-repeat center top;
+    overflow: hidden;
+    cursor: pointer; /* hand-shaped cursor */
+    cursor: hand; /* for IE 5.x */
+}
+
+input.login-account-btn {
+    float:right;
+    clear:both;
+    width:85px;
+    height:31px;
+    padding: 0px 0 0;
+    margin: 0;
+    border: 0;
+    background: transparent url(/images/login_landing.png) no-repeat center top;
+    overflow: hidden;
+    cursor: pointer; /* hand-shaped cursor */
+    cursor: hand; /* for IE 5.x */
+}
+
+.doggyhelp {
+	padding-bottom:0;
+	position:relative;
+	left:-10px;
+}
+
+.doggyhelp img {
+	margin:0;
+}
+
+.doggyhelp a {
+	text-decoration:none;
+}
+
+ul.register span#regcheckbox input {
+	width: 15px;
+}
+
+div#login input.actbtn {
+	float:right;
+	position:relative;
+	top:-55px;
+	padding-left:4px;
+	border:0;
+	background: transparent;
+	width:157px;
+	height:31px;
+}
+
+.loginlink {
+	color: #40afee;
+	text-decoration: none;
+}
+
+a:hover.loginlink {
+	color: #40afee;
+	text-decoration: none;
+}
+
+#regpopup {
+	float:left;
+	font-size:11px;
+}
+
+div#whyreg {
+	float: left;
+	position: relative;
+	top: -158px;
+	left: 30px;
+	font-size: 11px;
+}
+
+.doggyappear {
+	position: relative;
+	top: -17px;
+	right: 30px;
+}
+
+div#doggyappeartxt {
+	position: relative;
+	top: -165px;
+	left: 5px;
+	font-size: 11px;
+	float: left;
+}
+
+#barkpad {
+	padding-left: 60px;
+}
+
+/* @end */
+
