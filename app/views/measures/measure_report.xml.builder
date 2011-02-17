@@ -30,12 +30,12 @@ xml.submission(
         xml.tag! :'pqri-measure' do
           xml.tag! :'pqri-measure-number', result[:id]+result[:sub_id].to_s
           xml.tag! :'collection-method', 'A'
-          xml.tag! :'eligible-instances', result[:denominator]
+          xml.tag! :'eligible-instances', result[:denominator] + result[:exclusions]
           xml.tag! :'meets-performance-instances', result[:numerator]
           xml.tag! :'performance-exclusion-instances', result[:exclusions]
           xml.tag! :'performance-not-met-instances', (result[:denominator] - result[:numerator])
           xml.tag! :'reporting-rate', "100.00"
-          xml.tag! :'performance-rate', "%.2f" % (100.0 * result[:numerator] / result[:denominator])
+          xml.tag! :'performance-rate', "%.2f" % (100.0 * result[:numerator] / (result[:denominator]))
         end
       end
     end

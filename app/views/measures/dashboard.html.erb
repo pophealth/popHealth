@@ -93,7 +93,7 @@
       <li>measure dashboard</li>
       </ul>
       <div id="logOut">
-        Welcome, <%= self.user.first_name.to_s %> <span class="sep">|</span> <a href="http://projectpophealth.org/faq.html">help</a> <span class="sep">|</span> <a class="log" href="/logout">log out</a>
+        Welcome, <%= self.user.first_name.to_s %> <span class="sep">|</span> <a href="http://projectpophealth.org/faq.html">help</a> <span class="sep">|</span> <a class="log" href="/logout">logout</a>
       </div>
     </div><!-- end #breadcrumbBox -->
   </div><!-- end #header -->
@@ -145,18 +145,15 @@
           <dd><%= @patient_count %></dd>
         </dl>
         <div class="clear"></div>
-          <% legend = true %>
-          <% @grouped_selected_measures.each_pair do |category, measures| -%>
-          <h3 class="dashboardLabel"><%= category %></h3>
-           <% if legend == true %>
-          <div class="legend">
-              <div class="numerator"></div><span>numerator</span>
-              <div class="denominator"></div><span>denominator</span>
-              <div class="patients"></div><span>reporting patients</span>
-              <div class="exclusions"></div><span>exclusions</span>
+        <div class="legend">
+          <div class="numerator"></div><span>numerator</span>
+          <div class="denominator"></div><span>denominator</span>
+          <div class="patients"></div><span>reporting patients</span>
+          <div class="exclusions"></div><span>exclusions</span>
         </div>
-         <% legend = false %>
-        <% end %>
+        <br/>
+        <% @grouped_selected_measures.each_pair do |category, measures| -%>
+          <h3 class="dashboardLabel"><%= category %></h3>
           <table>
             <% measures.each do |measure| -%>
               <%= render :partial => 'measure_stats', :locals => {:measure => measure, :results => {}} %>
