@@ -4,7 +4,7 @@ measure_ids.each do |id|
   QME::Importer::PatientImporter.instance.add_measure(id, QME::Importer::GenericImporter.new(MONGO_DB.collection('measures').find_one({:id => id})))
 end
 
-if RUBY_PLATFORM =~ /java/
+if RUBY_PLATFORM =~ /java/ && File.exists?(Rails.root+ 'resources/ccr/jars/ccr-importer.jar')
   require 'java'
   
   Dir.glob(Rails.root+ 'resources/ccr/jars/*.jar').each do |jar_file|
