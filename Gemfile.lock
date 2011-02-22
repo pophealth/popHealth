@@ -1,7 +1,6 @@
 GIT
   remote: http://github.com/pophealth/quality-measure-engine.git
-  revision: c3dc312a91164f2c99621ddcf0eccb8801a0a3ad
-  branch: develop
+  revision: d182310e2e8e7d915fdac7ac9d676567a1348bf1
   specs:
     quality-measure-engine (0.1.2)
       mongo (~> 1.2)
@@ -40,7 +39,7 @@ GEM
     activesupport (3.0.3)
     arel (2.0.8)
     bcrypt-ruby (2.1.4)
-    bson (1.2.1)
+    bson (1.2.2)
     builder (2.1.2)
     diff-lcs (1.1.2)
     erubis (2.6.6)
@@ -52,8 +51,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
-    mongo (1.2.1)
-      bson (>= 1.2.1)
+    mongo (1.2.2)
+      bson (>= 1.2.2)
     nokogiri (1.4.4)
     polyglot (0.3.1)
     rack (1.2.1)
