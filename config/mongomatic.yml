@@ -1,3 +1,0 @@
-db = development: Mongo::Connection.new.db("test")
-test: Mongo::Connection.new.db("test")
-production: Mongo::Connection.new.db("test")

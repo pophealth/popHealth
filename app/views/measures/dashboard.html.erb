@@ -12,39 +12,35 @@
         }
       });
     };
-    
+
     popHealth.makeMeasuresCheckable = function() {
       $('.measureItemList li').click(function(){
         var measureId = $(this).attr("data-measure-id");
         var category = $(this).data("category");
         var categoryLabel = $(".dashboardLabel").filter(function() {return this.innerHTML == category;});
-        
         if ($(this).hasClass('checked')) {
-            $.post('/measures/remove/' + measureId,
-               function(data) {
+          $.post('/measures/remove/' + measureId,
+                 function(data) {
                    var measureTable = categoryLabel.next('table')
-                   if (measureTable.children().children().length == 2) {
-                       //this means there is a tr for the header and a tr for a measure
-                       //since there is only one measure, we should remove the whole table
-                       measureTable.remove();
-                       categoryLabel.remove();
+                   if (measureTable.children().children().length == 1) {
+                     //since there is only one measure, we should remove the whole table
+                     measureTable.remove();
+                     categoryLabel.remove();
                    } else {
-                       $('#measure' + measureId).remove();
+                     $('#measure' + measureId).remove();
                    };
-               }
-            )
-        } else {
-            $.post('/measures/select/' + measureId,
-               function(data) {
-                   if (categoryLabel.length != 0) {
-                       categoryLabel.next('table').children().first().append(data);
-                   } else {
-                       $('.measureDetailTable').append($.tmpl($('#categoryTmpl'), {"category": category, "measureRow": data}));
-                   };
-               }
-            )
+          })
         }
-        
+        else {
+          $.post('/measures/select/' + measureId,
+                 function(data) {
+                   if (categoryLabel.length != 0) {
+                     categoryLabel.next('table').children().first().append(data);
+                   } else {
+                     $('.measureDetailTable').append($.tmpl($('#categoryTmpl'), {"category": category, "measureRow": data}));
+                   };
+          })
+        }
         $(this).toggleClass('checked');
       });
     };
@@ -57,117 +53,120 @@
         var measureSubId = $(this).data("measure-sub-id");
         var resultUrl = null;
         var graphDiv = $(this);
-        
+
         if(measureSubId.length == 0) {
           resultUrl = "/measures/result/" + measureId;
         }
         else {
           resultUrl = "/measures/result/" + measureId + "/" + measureSubId;
         }
-        
+
         $.getJSON(resultUrl, function(data) {
-          var percent = data.denominator > 0 ? (data.numerator/data.denominator).toFixed(2)*100 : 0;
+          var percent = data.denominator > 0 ? roundNumber(data.numerator/data.denominator*100,0) : 0;
           var numeratorWidth = (data.numerator/<%= @patient_count %>).toFixed(2)*100;
-          var denominatorWidth = data.denominator > 0 ? ((data.denominator - data.numerator)/<%= @patient_count -%>).toFixed(2)*100 : 0;
-          
+          var denominatorWidth = data.denominator > 0 ? roundNumber((data.denominator - data.numerator)/<%= @patient_count -%>*100,0) : 0;
           graphDiv.find(".numeratorValue").text(data.numerator);
           graphDiv.find(".denominatorValue").text(data.denominator);
           graphDiv.find(".measurePopulationPercentage").text(percent + "%");
-          
           graphDiv.find(".tableBarNumerator").css("width", numeratorWidth + "%");
           graphDiv.find(".tableBarDenominator").css("width", denominatorWidth + "%");
         });
-      }
-      );
+      });
     }
 
-    popHealth.exportReport = function() { alert('Export measure report'); };
+    popHealth.exportReport = function() { window.location.href="/measures/report.xml"; };
 
     $(document).ready(function() {
       popHealth.makeMeasureListExpandable();
       popHealth.makeMeasuresCheckable();
       popHealth.populateMeasureStats();
-      $('#measurementPeriodStartDate, #measurementPeriodEndDate').calendricalDate({usa:true});
       $('#btnExportReport').click(popHealth.exportReport);
     });
   </script>
 <% end -%>
 
 <div id="dashboardContainer">
-
+<!-- add a comment -->
   <div id="header">
     <div id="breadcrumbBox">
       <ul id="breadcrumbItems">
+      <li>measure dashboard</li>
       </ul>
       <div id="logOut">
-        <a class="log" href="#">log out</a>
-      </div><br style="clear:both"/>
-    </div>
-
+        Welcome, <%= self.user.first_name.to_s %> <span class="sep">|</span> <a href="http://projectpophealth.org/faq.html">help</a> <span class="sep">|</span> <a class="log" href="/logout">logout</a>
+      </div>
+    </div><!-- end #breadcrumbBox -->
   </div><!-- end #header -->
-
   <div id="pageContent">
-    
     <div id="providerReports">
-      <h1>Reporting:</h1>
-      <p class="note">(Select 3 from each category)</p>
+      <h1>Reporting</h1>
+      <p class="note">Core Measures <em>(select 3)</em></p>
+      <div class="measureList">
+      <div class="measureItemList">
+         <ul>
+         <% @core_measures.each do |measure| -%>
+           <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core"><%= measure['name'] %></li>
+         <% end %>
+         <% @core_alt_measures.each do |measure| -%>
+           <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core Alternate"><span class="note">**</span><%= measure['name'] %></li>
+         <% end %>
+         </ul>
+      <p class="note"><em>** core alternate measures</em></p>
+      </div>
+      </div>
+      <p class="note">Additional Measures <em>(select 3)</em></p>
       <div class="measureList">
         <ul id="measureClassList">
         <% @categories.each do |category| -%>
-          <li><label><%= category['category'].upcase %></label>
+          <li><label><%= category['category'] %></label>
             <div class="measureItemList" style="display:none">
               <ul>
               <% category['measures'].each do |measure| -%>
-                <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="<%= category['category'] %>"><%= measure['name'].upcase %></li>
+                <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="<%= category['category'] %>"><%= measure['name'] %></li>
               <% end -%>
               </ul>
             </div>
         <% end -%>
         </ul>
       </div><!-- end #measureList -->
-      <a href="#">CREATE NEW</a>
     </div><!-- end #providerReports -->
-
     <div id="dashboardPeriod">
-        <div class="measureDetailTable">
-    	  <h1>Columbia Road Health Services</h1>
-    	  <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
-
-          <dl>
-	          <dt>Reporting Period:</dt>
-    	      <dd>
-        		  <input type="text" class="calendarInput" id="measurementPeriodStartDate" maxlength="10" value="1 Jan 2009">
-		          <span style="margin-right:12px"> to </span>
-        		  <input type="text" class="calendarInput" id="measurementPeriodEndDate" maxlength="10" value="1 Apr 2009">
-			</dd>
-		</dl>
-		<dl>
+      <div class="measureDetailTable">
+        <h1>Community Health Services</h1>
+        <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
+        <dl>
+          <dt>Reporting Period:</dt>
+          <dd>
+            <span id="measurementPeriodStartDate">07/01/2010 - 09/31/2010</span>
+          </dd>
+        </dl>
+        <dl>
           <dt>Reporting Patients: </dt>
           <dd><%= @patient_count %></dd>
         </dl>
-        <div class="clear"></div>  
-        <!-- </div> -->
-          <% @grouped_selected_measures.each_pair do |category, measures| -%>
+        <div class="clear"></div>
+        <div class="legend">
+          <div class="numerator"></div><span>numerator</span>
+          <div class="denominator"></div><span>denominator</span>
+          <div class="patients"></div><span>reporting patients</span>
+          <div class="exclusions"></div><span>exclusions</span>
+        </div>
+        <br/>
+        <% @grouped_selected_measures.each_pair do |category, measures| -%>
           <h3 class="dashboardLabel"><%= category %></h3>
           <table>
-           <!-- <tr>
-              <th>Name</th>
-              <th>Patient Statistics</th>
-            </tr> -->
             <% measures.each do |measure| -%>
-                <%= render :partial => 'measure_stats', :locals => {:measure => measure, :results => {}} %>
+              <%= render :partial => 'measure_stats', :locals => {:measure => measure, :results => {}} %>
             <% end -%>
           </table>
-          <% end -%>
-
-        </div><!-- end #measureDetailTable -->
+        <% end -%>
+      </div><!-- end #measureDetailTable -->
     </div><!-- end #dashboardPeriod -->
   </div><!-- end #pageContent -->
 </div><!-- end #container -->
 <script id="categoryTmpl" type="text/x-jquery-tmpl">
     <h3 class="dashboardLabel">${category}</h3>
     <table>
-
       {{html measureRow}}
     </table>
 </script>

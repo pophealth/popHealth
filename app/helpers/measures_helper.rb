@@ -31,11 +31,15 @@ module MeasuresHelper
   
   def percentage(measure_id, sub_id, results)
     real_id_or_default(measure_id, sub_id, results, 0) do |result|
-      if result[:denominator] > 0
-        ((result[:numerator] / result[:denominator].to_f) * 100).to_i
-      else
-        0
-      end
+      raw_percentage(result[:numerator], result[:denominator])
+    end
+  end
+  
+  def raw_percentage(numerator, denominator)
+    if denominator > 0
+      ((numerator / denominator.to_f) * 100).to_i
+    else
+      0
     end
   end
     
@@ -50,7 +54,25 @@ module MeasuresHelper
       "#{(((result[:denominator] - result[:numerator])/ results[:patient_count].to_f) * 100).to_i}%"
     end
   end
-  
+
+  def dob(time)
+    if time
+      Time.at(time).strftime("%m/%d/%Y").to_s
+    else 
+      nil
+    end
+  end
+
+  def age_from_time(time)
+    if (time)
+      t = Time.now.to_i - time
+      year = 365 * 24 * 60 * 60
+      (t/year).to_i
+    else
+      nil
+    end
+  end
+
   private
   
   def real_id_or_default(measure_id, sub_id, results, default)

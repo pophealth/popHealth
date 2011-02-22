@@ -1,22 +1,20 @@
 <div class="measureDetailTable">
-		<dl>
-          <dt style="line-height:2.5em">Measure Name:</dt>
-          <dd><h1 id="measureTitleText"></h1></dd>
-        </dl>
-        <dl>
-          <dt>Reporting Period:</dt>
-   	      <dd>
-       		  <input type="text" class="calendarInput" id="measurementPeriodStartDate" maxlength="10" value="1 Jan 2009">
-	          <span style="margin-right:12px"> to </span>
-       		  <input type="text" class="calendarInput" id="measurementPeriodEndDate" maxlength="10" value="1 Apr 2009">
-		</dd>
-		</dl>
-        <dl>
-          <dt>Description:</dt>
-   	      <dd>
-       		  <span id="measureDescText"></span>
-		</dd>
-		</dl>
-        <div class="clear"></div>  
-       
+	<%= content_for :export_links %>
+	<dl>
+    <dt style="line-height:2.5em">Measure Name:</dt>
+    <dd><h1 id="measureTitleText"></h1></dd>
+  </dl>
+  <dl>
+    <dt>Effective Date:</dt>
+    <dd>
+      <span id="measurementPeriodStartDate">07/01/2010 - 09/30/2010</span>
+    </dd>
+  </dl>
+  <dl>
+    <dt>Description:</dt>
+     <dd>
+       <span id="measureDescText"></span>
+     </dd>
+  </dl>
+  <div class="clear"></div>
  </div><!-- end #measureDetailTable -->

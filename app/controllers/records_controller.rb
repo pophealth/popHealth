@@ -2,12 +2,29 @@ class RecordsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   
   def create
-    doc = Nokogiri::XML(params[:content])
+    xml_file = params[:content].tempfile.read
+    doc = Nokogiri::XML(xml_file)
     doc.root.add_namespace_definition('cda', 'urn:hl7-org:v3')
-    patient = QME::Importer::PatientImporter.instance.parse_c32(doc)
+    patient = nil
+    root_element_name = doc.root.name
     
-    mongo['records'] << patient
+    if root_element_name == 'ClinicalDocument'
+      patient = QME::Importer::PatientImporter.instance.parse_c32(doc)
+    elsif root_element_name == 'ContinuityOfCareRecord'
+      if RUBY_PLATFORM =~ /java/
+        ccr_importer = CCRImporter.instance
+        patient_raw_json = ccr_importer.create_patient(xml_file)
+        patient = JSON.parse(patient_raw_json)
+      else
+        render :text => 'CCR Support is currently disabled', :status => 500
+      end
+    else
+      render :text => 'Unknown XML Format', :status => 400
+    end
     
-    render :text => 'Patient imported', :status => 201
+    if patient
+      mongo['records'] << patient
+      render :text => 'Patient imported', :status => 201
+    end
   end
 end
