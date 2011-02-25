@@ -7,7 +7,7 @@ class CCRImporter
   def initialize
     @qme = QualityMeasureEvaluator.new
     
-    jc = JAXBContext.new_instance("org.astm.ccr")
+    jc = JAXBContext.new_instance(org.astm.ccr.ContinuityOfCareRecord.java_class)
     @unmarshaller = jc.create_unmarshaller()
   end
   
