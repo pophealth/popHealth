@@ -39,54 +39,27 @@ class AccountController < ApplicationController
   # Create the user and log them in if there were no problems with the parameters
   def create
 
-    @registration_errors = Array.new()
-    if (!params[:user][:password])
-      @registration_errors << "You didn't supply a password!"
-      errors = true
-    end
+    @registration_errors = []
 
     if (params[:user][:password] != params[:password_confirmation])
       @registration_errors << "Your supplied passwords did not match!"
-      errors = true
     end
     
-    if (params[:user][:password].length < 5)
-      @registration_errors << "Passwords must be at least 5 characters long!"
-      errors = true
-    end
-
-    if (!params[:user][:username] || params[:user][:username].length < 1)
-      @registration_errors << "You didn't provide a user name!"
-      errors = true
-    end
-
-    if (params[:user][:username].length < 5)
-      @registration_errors << "Your user name must be at least 5 characters long!"
-      errors = true
-    end
-
-    if (!params[:user][:email] || params[:user][:email].length < 1)
-      @registration_errors << "You didn't provide an email address!"
-      errors = true
-    end
-
-    if (User.find_one({:email => params[:user][:email]}))
-      @registration_errors << "That email address already exists in system!"
-      errors = true
-    end
-
     if (!params[:agree_license])
       @registration_errors << "You must agree to terms and conditions of use to create an account!"
-      errors = true
     end
 
     @user = User.new(params[:user])
-    if errors == true
-      render :register
-    else
+    if @user.valid? && @registration_errors.empty?
       @user.save
       self.user = @user
       redirect_to '/'
+    else
+      @user.errors.each_pair do |key, value|
+        @registration_errors << key.to_s.humanize + ' ' + value.join(' and ')
+      end
+      
+      render :register
     end
   end
 

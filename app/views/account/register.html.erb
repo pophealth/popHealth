@@ -7,7 +7,7 @@
       <div style="color:#FF0000; font-weight: bold">
       <% if @registration_errors %>
       <%   @registration_errors.each do |error_message| %>
-      <%=    error_message.to_s %>
+      <%=    error_message %>
       <br/>
       <%   end %>
       <% end %>
