@@ -2,15 +2,6 @@ require 'uniq_validator'
 
 class User < MongoBase
 
-  def self.add_delegate(key)
-    define_method(key) do
-      read_attribute_for_validation(key)
-    end
-    define_method("#{key.to_s}=".to_sym) do |val|
-      set_attribute_value(key, val)
-    end
-  end
-
   add_delegate :password
   add_delegate :username
   add_delegate :first_name
