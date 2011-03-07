@@ -2,7 +2,7 @@ require 'uniq_validator'
 
 class User < MongoBase
 
-  add_delegate :password
+  add_delegate :password, :protect
   add_delegate :username
   add_delegate :first_name
   add_delegate :last_name
@@ -16,7 +16,8 @@ class User < MongoBase
   add_delegate :tin
 
   add_delegate :locked
-  add_delegate :reset_key
+  add_delegate :reset_key, :protect
+  add_delegate :validation_key, :protect
   add_delegate :_id
 
   validates_presence_of :first_name, :last_name
@@ -51,14 +52,23 @@ class User < MongoBase
   # Find users based on hash of key value pairs
   # param [Hash] params key value pairs to use as a filter - same as would be passed to mongo collection
   def self.find(params)
-    mongo['users'].find(params).collect{|u| User.new(u)}
+    mongo['users'].find(params).map do |model_attributes| 
+      user = User.new(model_attributes)
+      protected_attributes.each {|attribute| user.send("#{attribute}=", model_attributes[attribute])}
+      user
+    end
   end
 
   # Find one user based on hash of key value pairs
   # param [Hash] params key value pairs to use as a filter - same as would be passed to mongo collection
   def self.find_one(params)
-    atts = mongo['users'].find_one(params)
-    atts ? User.new(atts) : nil
+    model_attributes = mongo['users'].find_one(params)
+    user = nil
+    if model_attributes
+      user = User.new(model_attributes)
+      protected_attributes.each {|attribute| user.send("#{attribute}=", model_attributes[attribute])}
+    end
+    user
   end
 
   # Lock the user

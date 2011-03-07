@@ -4,8 +4,13 @@ class MongoBase
   end
   
   include ActiveModel::Validations
+  include ActiveModel::MassAssignmentSecurity
   
-  def self.add_delegate(key)
+  def self.add_delegate(key, protect=nil)
+    if protect == :protect
+      attr_protected key
+    end
+    
     define_method(key) do
       read_attribute_for_validation(key)
     end
@@ -15,7 +20,10 @@ class MongoBase
   end
   
   def initialize(attributes = {})
-    @attributes = attributes || {}
+    @attributes = {}
+    sanitize_for_mass_assignment(attributes).each do |k, v|
+      send("#{k}=", v) if respond_to?("#{k}=")
+    end
   end
   
   # get the value for a field

@@ -50,6 +50,7 @@ class AccountController < ApplicationController
     end
 
     @user = User.new(params[:user])
+    @user.password = params[:user][:password]
     if @user.valid? && @registration_errors.empty?
       @user.save
       self.user = @user
