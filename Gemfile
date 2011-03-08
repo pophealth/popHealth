@@ -1,6 +1,6 @@
 source 'http://gemcutter.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.5'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.0.1"
@@ -15,6 +15,7 @@ gem 'warden'
 gem 'rails_warden'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'json', :platforms => :jruby
+gem 'bson_ext', :platforms => :mri
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
