@@ -87,6 +87,10 @@ class User < MongoBase
     self.validated = true
     save
   end
+  
+  def unverified?
+    validated.nil?
+  end
 
   # Is this a new record, ie it has not been saved yet so there is no _id
   def new_record?

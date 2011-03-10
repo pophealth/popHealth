@@ -49,7 +49,6 @@ class AccountController < ApplicationController
 
   # Create the user and log them in if there were no problems with the parameters
   def create
-
     @registration_errors = []
 
     if (params[:user][:password] != params[:password_confirmation])
@@ -63,10 +62,15 @@ class AccountController < ApplicationController
     @user = User.new(params[:user])
     @user.password = params[:user][:password]
     if @user.valid? && @registration_errors.empty?
-      @user.validation_key = ActiveSupport::SecureRandom.hex(20)
-      @user.save
-      
-      Notifier.verify(@user).deliver
+      if EMAIL_VERIFICATION
+        @user.validation_key = ActiveSupport::SecureRandom.hex(20)
+        @user.save
+        Notifier.verify(@user).deliver
+      else
+        @user.save
+        self.user = @user
+        redirect_to '/'
+      end
     else
       @user.errors.each_pair do |key, value|
         @registration_errors << key.to_s.humanize + ' ' + value.join(' and ')
