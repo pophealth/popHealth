@@ -15,9 +15,9 @@ class User < MongoBase
   add_delegate :npi
   add_delegate :tin
 
-  add_delegate :locked
   add_delegate :reset_key, :protect
   add_delegate :validation_key, :protect
+  add_delegate :validated, :protect
   add_delegate :_id
 
   validates_presence_of :first_name, :last_name
@@ -33,7 +33,7 @@ class User < MongoBase
   # param [String] username the username to look for
   # param [Sting] password the clear text password to look for, pass will be hashed to check                     
   def self.authenticate(username, password)
-    u = mongo['users'].find_one({:username => username})
+    u = mongo['users'].find_one(:username => username)
     if u
       bcrypt_pw = BCrypt::Password.new(u['password'])
       if bcrypt_pw.is_password?(password)
@@ -46,16 +46,14 @@ class User < MongoBase
   # See if the username already exists
   # param [String] username
   def self.check_username(username)
-    mongo['users'].find_one({:username => attributes[:username]})
+    mongo['users'].find_one(:username => @attributes[:username])
   end
 
   # Find users based on hash of key value pairs
   # param [Hash] params key value pairs to use as a filter - same as would be passed to mongo collection
   def self.find(params)
     mongo['users'].find(params).map do |model_attributes| 
-      user = User.new(model_attributes)
-      protected_attributes.each {|attribute| user.send("#{attribute}=", model_attributes[attribute])}
-      user
+      create_user_from_db(model_attributes)
     end
   end
 
@@ -63,27 +61,7 @@ class User < MongoBase
   # param [Hash] params key value pairs to use as a filter - same as would be passed to mongo collection
   def self.find_one(params)
     model_attributes = mongo['users'].find_one(params)
-    user = nil
-    if model_attributes
-      user = User.new(model_attributes)
-      protected_attributes.each {|attribute| user.send("#{attribute}=", model_attributes[attribute])}
-    end
-    user
-  end
-
-  # Lock the user
-  def lock
-    set_attribute_value('locked',true)
-  end
-
-  # Is this user currently locked
-  def is_locked? 
-    read_attribute_for_validation('locked') == true
-  end
-
-  # Is there currently a reset_key set for this user to reset their password
-  def is_reset?
-    read_attribute_for_validation( 'reset_key')
+    create_user_from_db(model_attributes)
   end
 
   # Merge the attributes with the record
@@ -103,6 +81,12 @@ class User < MongoBase
     end
     return false
   end
+  
+  def validate_account!
+    self.validation_key = nil
+    self.validated = true
+    save
+  end
 
   # Is this a new record, ie it has not been saved yet so there is no _id
   def new_record?
@@ -119,6 +103,21 @@ class User < MongoBase
     unless new_record?
       @attributes = mongo['users'].find_one({'_id' => _id})
     end
+  end
+  
+  private
+  
+  # Creates a User from a Hash. This method will also ensure that attributes protected from
+  # mass assignment are set. So this method should only be used when pulling information from
+  # MongoDB. It should not be used to handle params hashes from web requests.
+  def self.create_user_from_db(user_document)
+    user = nil
+    if user_document
+      user = User.new(user_document)
+      protected_attributes.each {|attribute| user.send("#{attribute}=", user_document[attribute])}
+    end
+
+    user
   end
 
 end

@@ -35,6 +35,17 @@ class AccountController < ApplicationController
       #do some I didn't save stuff here
     end
   end
+  
+  def verify
+    @user = User.find_one(:email => params[:email], :validation_key => params[:validation_key])
+    if @user
+      @user.validate_account!
+      self.user = @user
+      redirect_to "/"
+    else
+      render :text => 'Bad validation request', :status => 403
+    end
+  end
 
   # Create the user and log them in if there were no problems with the parameters
   def create
@@ -52,9 +63,10 @@ class AccountController < ApplicationController
     @user = User.new(params[:user])
     @user.password = params[:user][:password]
     if @user.valid? && @registration_errors.empty?
+      @user.validation_key = ActiveSupport::SecureRandom.hex(20)
       @user.save
-      self.user = @user
-      redirect_to '/'
+      
+      Notifier.verify(@user).deliver
     else
       @user.errors.each_pair do |key, value|
         @registration_errors << key.to_s.humanize + ' ' + value.join(' and ')

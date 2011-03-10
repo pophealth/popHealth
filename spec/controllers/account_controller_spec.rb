@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe AccountController do
   it "should allow the creation of new accounts" do
-    controller.should_receive(:user=)
-    
     post :create, :user => {:first_name => 'Joe', :last_name => 'Test', 
                             :username => 'joetest', :password => 'sekret',
                             :email => 'joe@test.org'}, 

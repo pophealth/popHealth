@@ -21,6 +21,7 @@ PopHealth::Application.routes.draw do
   match 'account/forgot_password', :to => 'account#forgot_password', :via => :get
   match 'account/reset_password', :to => 'account#reset_password', :via => :post
   match 'account/update', :to => 'account#update',:via => :post
+  match 'account/verify', :to => 'account#verify',:via => :get
   
   root :to => 'measures#index'
   
