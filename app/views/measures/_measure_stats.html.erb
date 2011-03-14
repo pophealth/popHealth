@@ -4,10 +4,10 @@
       <% subs_iterator(measure['subs']) do |sub_id| -%>
 			<div class="tableMeasureCtrl" data-measure-id="<%= measure['id'] %>" data-measure-sub-id="<%= sub_id %>">
 					<div class="measureStats">
-					<% if measure['subtitle'] %>
-					<span>DTaP</span>
+					<% if (sub_id!=nil) %>
+					<span class="measureShortSubtitle"><%= measure['short_subtitles'][sub_id] %></span>
 					<% else %>
-					<span></span>
+					<span class="measureShortSubtitle"></span>
 					<% end %>
 					<span style="margin-left:5px;" class="measurePopulationPercentage"><%= percentage(measure['id'], sub_id, results)%>%</span>
 	<span class="paren">(</span><div class="inline-fraction">
