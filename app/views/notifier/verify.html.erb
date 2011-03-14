@@ -9,7 +9,7 @@
       your username is: <%= @user.username %>.<br/>
     </p>
     <p>
-      To login to the site, just follow this link: <%= account_verify_url(:email => @user.email, :validation_key => @user.validation_key) %>.
+      To login to the site, just follow this link: <%= verify_accounts_url(:email => @user.email, :validation_key => @user.validation_key) %>.
     </p>
     <p>Thanks for joining and have a great day!</p>
   </body>

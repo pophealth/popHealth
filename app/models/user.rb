@@ -2,6 +2,8 @@ require 'uniq_validator'
 
 class User < MongoBase
 
+  include ActiveModel::Conversion
+
   add_delegate :password, :protect
   add_delegate :username
   add_delegate :first_name
@@ -107,6 +109,14 @@ class User < MongoBase
     unless new_record?
       @attributes = mongo['users'].find_one({'_id' => _id})
     end
+  end
+  
+  def persisted?
+    ! new_record?
+  end
+  
+  def id
+    _id
   end
   
   private

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AccountController do
+describe AccountsController do
   describe 'when creating accounts' do
     it "should allow for new accounts without email verification" do
       EMAIL_VERIFICATION = false

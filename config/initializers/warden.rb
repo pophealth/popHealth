@@ -1,6 +1,6 @@
 Rails.configuration.middleware.use RailsWarden::Manager do |manager|
   manager.default_strategies :my_strategy
-  manager.failure_app = AccountController
+  manager.failure_app = AccountsController
 end
 
 # Setup Session Serialization

@@ -1,9 +1,9 @@
-class AccountController < ApplicationController
+class AccountsController < ApplicationController
 
   include RailsWarden::Mixins::HelperMethods
   include RailsWarden::Mixins::ControllerOnlyMethods
 
-  before_filter :authenticate!, :only=> [:update, :login]
+  before_filter :authenticate!, :only => [:update, :login, :edit]
 
   def login
     if logged_in?
@@ -12,14 +12,12 @@ class AccountController < ApplicationController
   end
 
   def reset_password
-    key = generate_reset_key
-    @user = User.find_one({:email=>params[:email]})
-    @user.reset_key = key
+    @user = User.find_one(:email=>params[:email])
+    @user.reset_key = ActiveSupport::SecureRandom.hex(20)
     @user.save
     Notifier.reset_password(@user).deliver
-    #send email
-    flash[:message]="Check email for reset link message here"
-    render :template=>'account/check_email'
+    flash[:message] = "Check email for reset link message here"
+    render :action => 'create'
   end
 
   def forgot_password
@@ -35,7 +33,11 @@ class AccountController < ApplicationController
       #do some I didn't save stuff here
     end
   end
-  
+
+  def edit
+    @user = user
+  end
+
   def verify
     @user = User.find_one(:email => params[:email], :validation_key => params[:validation_key])
     if @user
@@ -76,7 +78,7 @@ class AccountController < ApplicationController
         @registration_errors << key.to_s.humanize + ' ' + value.join(' and ')
       end
       
-      render :register
+      render :new
     end
   end
 
@@ -86,7 +88,7 @@ class AccountController < ApplicationController
   end
 
   #just prepare the user object and render the registration page
-  def register
+  def new
     @user = User.new()
   end
 

@@ -1,4 +1,4 @@
-<%= form_tag({:controller=>"account", :action=>'login'}, {:name=>"login_form"}) do %>
+<%= form_tag(login_accounts_url, {:name=>"login_form"}) do %>
 <div id="login">
   <div id="cap-top"></div>
   <div id="cap-body">
@@ -31,10 +31,10 @@
       <div class="doggyhelp" style="height: 185px">
         <div style="float: left; position: relative; width: 288px; height: 178px;">
           <div style="width:160px; position:absolute; top:30px; left:20px; line-height:1.2em; font-size:11px;">
-            <a class="loginlink" href="<%= register_path %>">Create New Account</a>
+            <a class="loginlink" href="<%= new_account_url %>">Create New Account</a>
           </div>
           <div style="position:absolute; top:50px; left:20px; font-size:11px;">
-            <a class="loginlink" href="<%= forgot_path %>">Forgot Password </a>
+            <a class="loginlink" href="<%= forgot_password_accounts_url %>">Forgot Password </a>
           </div>
         </div>
         <div style="position: absolute; bottom: 0px; right: 0px; text-align:right; font-size:11px;">
