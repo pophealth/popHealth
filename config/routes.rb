@@ -12,7 +12,7 @@ PopHealth::Application.routes.draw do
 
   match 'records', :to => 'records#create', :via => :post
 
-  resources :accounts, :except => [:index, :destroy] do
+  resources :accounts, :except => [:index, :destroy, :show] do
     collection do
       post 'login'
       get  'log_out'

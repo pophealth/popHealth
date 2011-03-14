@@ -27,10 +27,26 @@ class AccountsController < ApplicationController
   end
 
   def update
+    @registration_errors = []
     @user = user
     @user.update(params[:user])
-    unless @user.save
-      #do some I didn't save stuff here
+    
+    if params[:password].present? && params[:password_confirmation].present?
+      if params[:password] == params[:password_confirmation]
+        @user.salt_and_store_password(params[:password])
+      else
+        @registration_errors << "Your supplied passwords did not match!"
+      end
+    end
+    
+    if @user.save
+      redirect_to '/'
+    else
+      @user.errors.each_pair do |key, value|
+        @registration_errors << key.to_s.humanize + ' ' + value.join(' and ')
+      end
+      
+      render :edit
     end
   end
 
@@ -62,7 +78,7 @@ class AccountsController < ApplicationController
     end
 
     @user = User.new(params[:user])
-    @user.password = params[:user][:password]
+    @user.salt_and_store_password(params[:user][:password])
     if @user.valid? && @registration_errors.empty?
       if EMAIL_VERIFICATION
         @user.validation_key = ActiveSupport::SecureRandom.hex(20)

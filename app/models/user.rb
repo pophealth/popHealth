@@ -3,7 +3,7 @@ require 'uniq_validator'
 class User < MongoBase
 
   include ActiveModel::Conversion
-
+  
   add_delegate :password, :protect
   add_delegate :username
   add_delegate :first_name
@@ -21,6 +21,7 @@ class User < MongoBase
   add_delegate :validation_key, :protect
   add_delegate :validated, :protect
   add_delegate :_id
+
 
   validates_presence_of :first_name, :last_name
   validates :email, :presence => true, 
@@ -72,12 +73,13 @@ class User < MongoBase
     @attributes.merge!(attributes)
   end
 
+  def salt_and_store_password(new_password)
+    @attributes[:password] = BCrypt::Password.create(new_password)
+  end
+  
   #Save the user to the db, save only takes place if the record is valid based on the validation
   def save
     if valid?
-      if new_record?
-        self.password = BCrypt::Password.create(password)
-      end
       User.mongo['users'].save(@attributes)
       return true
     end

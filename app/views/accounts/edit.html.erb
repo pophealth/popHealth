@@ -1,23 +1,45 @@
-<%= form_for :user do |f| %>
+<div style="color:#FF0000; font-weight: bold">
+<% if @registration_errors %>
+<%   @registration_errors.each do |error_message| %>
+<%=    error_message %>
+<br/>
+<%   end %>
+<% end %>
+</div>
+
+<%= form_for @user, :url => account_url(@user) do |f| %>
    <%= f.label :first_name %>:
    <%= f.text_field :first_name %><br />
 
    <%= f.label :last_name %>:
    <%= f.text_field :last_name %><br />
 
-
    <%= f.label :email %>:
    <%= f.text_field :email %><br />
    
-   
    <%= f.label :password %>:
-   <%= f.password_field :password %><br />
+   <%= password_field_tag :password %><br />
    
    <%= f.label :password_confirmation %>:
-   <%= f.text_field :password_confirmation %><br />
+   <%= password_field_tag :password_confirmation %><br />
+   
+   <%= f.label :company %>:
+   <%= f.text_field :company %><br />
+   
+   <%= f.label :company_url %>:
+   <%= f.text_field :company_url %><br />
+   
+   <%= f.label :tin %>:
+   <%= f.text_field :tin %><br />
+   
+   <%= f.label :npi %>:
+   <%= f.text_field :npi %><br />
+   
+   <%= f.label :registry_name %>:
+   <%= f.text_field :registry_name %><br />
+   
+   <%= f.label :registry_id %>:
+   <%= f.text_field :registry_id %><br />
    
    <%= f.submit %>
  <% end %>
-    
-
-<%= @user.errors.inspect %>
