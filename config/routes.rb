@@ -20,6 +20,7 @@ PopHealth::Application.routes.draw do
       get  'verify'
       get  'forgot_password'
       post 'reset_password'
+      get  'password_reset_login'
     end
   end
 

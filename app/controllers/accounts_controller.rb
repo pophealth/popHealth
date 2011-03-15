@@ -13,11 +13,15 @@ class AccountsController < ApplicationController
 
   def reset_password
     @user = User.find_one(:email=>params[:email])
-    @user.reset_key = ActiveSupport::SecureRandom.hex(20)
-    @user.save
-    Notifier.reset_password(@user).deliver
-    flash[:message] = "Check email for reset link message here"
-    render :action => 'create'
+    if @user
+      @user.reset_key = ActiveSupport::SecureRandom.hex(20)
+      @user.save
+      Notifier.reset_password(@user).deliver
+      render :create
+    else
+      flash[:error] = "Unable to find an account with that email address"
+      render :forgot_password
+    end
   end
 
   def forgot_password
@@ -52,6 +56,17 @@ class AccountsController < ApplicationController
 
   def edit
     @user = user
+  end
+
+  def password_reset_login
+    @user = User.find_one(:email => params[:email], :reset_key => params[:reset_key])
+    if @user
+      @user.reset_password!
+      self.user = @user
+      render :edit
+    else
+      render :text => 'Bad password reset request', :status => 403
+    end
   end
 
   def verify

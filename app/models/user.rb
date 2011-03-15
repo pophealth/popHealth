@@ -92,6 +92,12 @@ class User < MongoBase
     save
   end
   
+  def reset_password!
+    self.reset_key = nil
+    save
+    self.password = nil
+  end
+  
   def unverified?
     validated.nil?
   end

@@ -45,9 +45,9 @@ describe AccountsController do
 
   describe 'when logging in' do
     before do
-     collection_fixtures 'users'
-     @strategy = Warden::Strategies[:my_strategy]
-     @user = nil
+      collection_fixtures 'users'
+      @strategy = Warden::Strategies[:my_strategy]
+      @user = nil
     end
     
     it "should allow a user to log in without verification when turned off" do
@@ -88,6 +88,36 @@ describe AccountsController do
     
     it "should reject bad verifications" do
       get :verify, :email => 'unverified_guy@test.org', :validation_key => 'not correct'
+      response.status.should == 403
+    end
+  end
+  
+  describe 'when a password is forgotten' do
+    before do
+      collection_fixtures 'users'
+    end
+    
+    it "should send an email for a user that has forgotten a password" do
+      post :reset_password, :email => "test@test.org"
+      response.should be_success
+      assigns(:user).reset_key.should_not be_nil
+    end
+    
+    it "should alert a user when an email address is not found" do
+      post :reset_password, :email => "db@cooper.org"
+      flash[:error].should == "Unable to find an account with that email address"
+    end
+    
+    it "should allow a password to be reset" do
+      controller.should_receive(:user=)
+      get :password_reset_login, :email => 'forgetful_guy@test.org', :reset_key => '12345'
+      assigns(:user).first_name.should == 'Forgetful'
+      assigns(:user).reset_key.should be_nil
+      response.should be_success
+    end
+    
+    it "should reject bad reset attempts" do
+      get :password_reset_login, :email => 'hax0r@70774lyl33t.org', :reset_key => 'sekret!'
       response.status.should == 403
     end
   end
