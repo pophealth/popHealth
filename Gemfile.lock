@@ -1,7 +1,6 @@
 GIT
   remote: http://github.com/pophealth/quality-measure-engine.git
-  revision: da9b025d490cd6e10e0c088b94950552dbbb5ebf
-  branch: develop
+  revision: 7464cb2150ae591fc58e8670450a836aea8752ad
   specs:
     quality-measure-engine (0.1.2)
       mongo (~> 1.2)
@@ -57,7 +56,7 @@ GEM
       bson (>= 1.2.4)
     nokogiri (1.4.4)
     polyglot (0.3.1)
-    rack (1.2.1)
+    rack (1.2.2)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
     rack-test (0.5.7)
@@ -94,7 +93,7 @@ GEM
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
-    tzinfo (0.3.24)
+    tzinfo (0.3.25)
     warden (1.0.3)
       rack (>= 1.0.0)
     will_paginate (3.0.pre2)
