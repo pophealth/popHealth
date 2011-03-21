@@ -2,13 +2,14 @@ require 'spec_helper'
 
 describe MeasuresController do
   
-  def mock_user(stubs={})
-    @mock_user ||= mock_model('Users', stubs).as_null_object
+  def mock_user
+    @mock_user ||= mock_model('Users', :username => "andy")
   end
   
   def login
      request.env['warden'] = mock(Warden, :authenticate => mock_user,
-                                          :authenticate! => mock_user)
+                                          :authenticate! => mock_user,
+                                          :user => mock_user)
   end
   
   before do
@@ -26,7 +27,6 @@ describe MeasuresController do
   
   describe "GET 'index'" do
     it "should be successful" do
-      pending 'need to get user mocking right'
       get :index
       response.should be_success
       assigns(:patient_count).should == 2

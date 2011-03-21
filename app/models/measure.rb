@@ -73,7 +73,7 @@ class Measure < MongoBase
       measures = mongo['measures'].find(:id => measure_id)
 
       if measures
-        selected_measure_doc = {'subs' => []}
+        selected_measure_doc = {'subs' => [], 'short_subtitles' => {}}
         measures.each do |measure|
           selected_measure_doc['username'] = username
           selected_measure_doc['id'] = measure['id']
@@ -82,6 +82,7 @@ class Measure < MongoBase
           selected_measure_doc['description'] = measure['description']
           if measure['sub_id']
             selected_measure_doc['subs'] << measure['sub_id']
+            selected_measure_doc['short_subtitles'][measure['sub_id']] = measure['short_subtitle']
           end
         end
 

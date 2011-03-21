@@ -33,6 +33,6 @@ if RUBY_PLATFORM =~ /java/ && File.exists?(Rails.root+ 'resources/ccr/jars/ccr-i
   ccr_importer = CCRImporter.instance
   ccr_importer.quality_measures = quality_measures
   
-  vocab = Vocabulary.from_json(FileInputStream.new((Rails.root + 'resources/ccr/ccrvocabulary.json').to_s))
+  vocab = Vocabulary.from_json(File.open(Rails.root + 'resources/ccr/ccrvocabulary.json').to_inputstream)
   ccr_importer.record_creator = RecordCreator.new(vocab)
 end

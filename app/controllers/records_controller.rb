@@ -1,6 +1,8 @@
 class RecordsController < ApplicationController
+
   skip_before_filter :verify_authenticity_token
-  
+  before_filter :authenticate
+
   def create
     xml_file = params[:content].tempfile.read
     doc = Nokogiri::XML(xml_file)
@@ -25,6 +27,14 @@ class RecordsController < ApplicationController
     if patient
       mongo['records'] << patient
       render :text => 'Patient imported', :status => 201
+    end
+  end
+
+  private
+
+  def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      User.authenticate(username, password)
     end
   end
 end

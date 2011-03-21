@@ -25,14 +25,16 @@ q:before { content: ""; }
 q:after { content: ""; }
 blockquote, q { quotes: "" ""; }
 a img { border: none; }
-html, body { height: 100%; }
-#container, #dashboardContainer {
-  font-family: "Myriad Pro", "Frutiger", Helvetica, Arial;
-  font-size: 0.9em;
-  width: 1225px;
-  width: 100%;
+html { height: 100%; }
+body {
   height: 100%;
+  font-family: "Myriad Pro", "Frutiger", Helvetica, Arial;
+  width: 100%;
   min-width: 1000px;
+}
+#container, #dashboardContainer {
+  font-size: 0.9em;
+  height: 100%;
 }
 a {
   color: black;
@@ -399,6 +401,7 @@ a {
   list-style: none;
 }
 #providerReports .measureList ul label {
+  cursor: pointer;
   padding-left: 15px;
   background: url(../images/liClosed.png) 0 35% no-repeat;
 }
@@ -420,7 +423,7 @@ a {
   margin: 0 3px 0 0;
   font-size: 0.9em;
 }
-#providerReports .measureItemList li.checked { background: url(../images/smallcheckbox.png) 0 10% no-repeat; }
+#providerReports .measureItemList li.checked { background: url(../images/checked.png) 0 10% no-repeat; }
 #providerReports a {
   padding: 0 0 0 10px;
   color: #44b3be;
@@ -543,7 +546,6 @@ input.exportReport {
 }
 .tableMeasureTitle span { cursor: help; }
 #tableMeasureDescription { width: 275px; }
-.zeroPadding td { padding: 0px; }
 .clear {
   clear: both;
   padding: 10px;

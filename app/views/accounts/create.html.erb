@@ -1,0 +1,21 @@
+<div id="login">
+  <div id="cap-top"></div>
+  <div id="cap-body">
+    <div id="branding">
+      <%= image_tag "pophealth_welcome.png", :id => 'imgLogo', :title => 'popHealth welcomes you!', :alt => 'popHealth logo' %>
+    </div>
+    <div id="panelReset" class="panel">
+      <h1>Please check your email.</h1>
+      <p><%= message %></p>
+      <div class="accountError">
+          <%= flash[:error] %><br>
+          <%= flash[:message]%>
+      </div>
+
+      <div class="actions">
+        <a class="bluebutton" href="/" ><span>Back to Login</span></a>
+      </div>
+    </div>
+  </div>  
+  <div id="cap-bottom"></div>
+</div>

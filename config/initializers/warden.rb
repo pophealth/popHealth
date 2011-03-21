@@ -1,6 +1,6 @@
 Rails.configuration.middleware.use RailsWarden::Manager do |manager|
   manager.default_strategies :my_strategy
-  manager.failure_app = AccountController
+  manager.failure_app = AccountsController
 end
 
 # Setup Session Serialization
@@ -27,6 +27,10 @@ Warden::Strategies.add(:my_strategy) do
   def authenticate!
     user = User.authenticate(params[:username], params[:password])
     if user
+      if EMAIL_VERIFICATION && user.unverified?
+        errors.add(:login, "Please check your email to verify this account")
+        fail!        
+      end
       success!(user)
     else
       errors.add(:login, "Login Failed")

@@ -1,0 +1,9 @@
+Welcome to popHealth, <%= @user.first_name %> <%= @user.last_name %>
+===============================================
+ 
+You have successfully signed up to popHealth,
+your username is: <%= @user.username %>.
+ 
+To login to the site, just follow this link: <%= verify_accounts_url(:email => @user.email, :validation_key => @user.validation_key) %>.
+ 
+Thanks for joining and have a great day!

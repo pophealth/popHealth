@@ -1,0 +1,78 @@
+<%= form_for @user, :url => account_url(@user), :html => {:name => 'register_form'} do |f| %>
+<div id="login">
+  <div id="cap-top"></div>
+  <div id="cap-body">
+    <div id="branding">
+      <%= image_tag "pophealth_welcome.png", :id => 'imgLogo', :alt => 'popHealth logo' %>
+    </div>
+    <div class="panel">
+      <div class="accountError">
+        <% if @registration_errors %>
+        <%   @registration_errors.each do |error_message| %>
+        <%=    error_message.to_s %><br>
+        <%   end %>
+        <% end %>
+      </div>
+      <h1>Update your popHealth account information</h1>
+      <ul class="register">
+        <li>
+            <label for="first_name">Your First Name:</label>
+            <%= f.text_field :first_name %>
+        </li>
+        <li>
+            <label for="last_name">Your Last Name:</label>
+            <%= f.text_field :last_name %>
+        </li>
+        <li>
+            <label for="username">popHealth User Name:</label>
+            <%= f.text_field :username %>
+            <p>Must be at least 5 characters long.</p>
+        </li>
+        <li>
+          <label for="email">Your Email Address:</label>
+          <%= f.text_field :email %>
+        </li>
+        <li>
+            <label for="password">popHealth Password:</label>
+            <%= password_field_tag :password %>
+            <p>Must be at least 5 characters long.</p>
+        </li>
+        <li>
+          <label for="password_confirmation">Confirm Password:</label>
+          <%= password_field_tag :password_confirmation %>
+        </li>
+        <li>
+            <label for="company">Your Organization:</label>
+            <%= f.text_field :company %>
+        </li>
+        <li>
+            <label for="company_url">Your Organization URL:</label>
+            <%= f.text_field :company_url %>
+        </li>
+        <li>
+            <label for="registry_name">Registry Name:</label>
+            <%= f.text_field :registry_name %>
+        </li>
+        <li>
+          <label for="registry_id">Registry Identifier:</label>
+          <%= f.text_field :registry_id %>
+        </li>
+        <li>
+            <label for="npi">National Provider Id:</label>
+            <%= f.text_field :npi %>
+        </li>
+        <li>
+          <label for="tin">Tax Identifier:</label>
+          <%= f.text_field :tin %>
+        </li>
+      </ul>
+
+      <div class="actions">
+          <a class="whitebutton" href="/"><span>Cancel</span></a>
+          <a class="bluebutton" href='#' onclick="submitRegisterform();"><span>Update Account</span></a>
+      </div>
+    </div><!-- end div.panel -->
+    </div><!-- end #cap-body -->
+  <div id="cap-bottom"></div>
+</div><!-- END #login -->
+<% end -%>

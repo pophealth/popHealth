@@ -26,7 +26,8 @@ describe User do
   end
   
   it 'should allow creation of a user' do
-    u = User.new({:password=>"asdfsadf", :email=>"t@t.tos",:username=>"t@t.tos",:first_name=>"df", :last_name=>"xdf"})
+    u = User.new({:email=>"t@t.tos",:username=>"t@t.tos",:first_name=>"df", :last_name=>"xdf"})
+    u.password = "asdfsadf"
     u.save.should == true
     u._id.nil?.should == false
   end
@@ -49,7 +50,8 @@ describe User do
   end
   
   it "should hash the password when saving" do
-    u = User.new({:password=>"asdfsadf", :email=>"a@t.tos",:username=>"a@t.tos",:first_name=>"df", :last_name=>"xdf"})
+    u = User.new({:email=>"a@t.tos",:username=>"a@t.tos",:first_name=>"df", :last_name=>"xdf"})
+    u.salt_and_store_password("asdfsadf")
     u.save.should == true
     u.password.eql?("asdfsadf").should_not be_true
   end

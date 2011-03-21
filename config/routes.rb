@@ -8,20 +8,22 @@ PopHealth::Application.routes.draw do
   match 'measures/select/:id', :to => 'measures#select', :as => :select, :via => :post
   match 'measures/remove/:id', :to => 'measures#remove', :as => :remove, :via => :post
   match 'measures/measure_patients/:id(/:sub_id)', :to=>'measures#measure_patients', :as => :measure_patients, :via=> :get
-  match 'records', :to => 'records#create', :via => :post
   match 'measures/report', :to=>'measures#measure_report', :as => :measure_report, :via=> :get
+
   match 'records', :to => 'records#create', :via => :post
-  match 'logout', :to => 'account#log_out', :via => :get
-  match 'login', :to => 'account#login', :via => :post
-  match 'forgot', :to => 'account#forgot_password'
-  match 'register', :to => 'account#register', :via => :get
-  match 'register', :to => 'account#create', :via => :post
-  match 'account/delete', :to => 'account#delete', :via => :post
-  match 'account/check_username', :to => 'account#check_username', :via => :get
-  match 'account/forgot_password', :to => 'account#forgot_password', :via => :get
-  match 'account/reset_password', :to => 'account#reset_password', :via => :post
-  match 'account/update', :to => 'account#update',:via => :post
-  
+
+  resources :accounts, :except => [:index, :destroy, :show] do
+    collection do
+      post 'login'
+      get  'log_out'
+      get  'register'
+      get  'verify'
+      get  'forgot_password'
+      post 'reset_password'
+      get  'password_reset_login'
+    end
+  end
+
   root :to => 'measures#index'
   
   # The priority is based upon order of creation:

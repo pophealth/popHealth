@@ -1,14 +1,10 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
-$(function() {
+function roundNumber(num, dec) {
+  return Math.round(num*Math.pow(10,dec))/Math.pow(10,dec);
+}
 
-		// make the param list expand/collapse
-		$("#measureClassList li label").click(function(){
-			$(this).toggleClass("open");
-			if ($(this).hasClass("open")) {
-				$(this).siblings("div.measureItemList").slideDown();
-			} else {
-				$(this).siblings("div.measureItemList").slideUp();
-			}
-		});
-	});
+$(document).ajaxSend(function(e, xhr, options) {
+  var token = $("meta[name='csrf-token']").attr("content");
+  xhr.setRequestHeader("X-CSRF-Token", token);
+});

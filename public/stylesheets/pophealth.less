@@ -1,7 +1,7 @@
 /* popHealth stylesheet
  * Author: Mike Nosal (mnosal@mitre.org)
  * Version 1.0
- * Last Modified Date: 2010-10-22
+ * Last Modified Date: 2011-03-21
  * 
  * This is written in LESS, an alternative CSS grammar.
  * For further information, see http://lesscss.org
@@ -61,15 +61,18 @@ a img {border:none;}
 @radius : 5px;
 
 html { height:100%;}
-body {height:100%}
+
+body { 
+    height:100%;
+    font-family:"Myriad Pro","Frutiger",Helvetica,Arial;
+    width:100%;
+    min-width:1000px;
+}
 
 #container, #dashboardContainer {
-  font-family:"Myriad Pro","Frutiger",Helvetica,Arial;
   font-size:0.9em;
-  width:1225px;
-  width:100%;
   height:100%;
-  min-width:1000px;
+
 }
 
 
@@ -212,10 +215,14 @@ a {
   border-top:1px solid @measureBorderColor;
   clear:left;
   position:relative;
-    span {margin : 5px 0;padding:1px 3px;text-align:center;
-    -moz-border-radius:10px;
-    -webkit-border-radius:10px;
-    border-radius:10px;}
+    span {
+      margin : 5px 0;
+      padding:1px 3px;
+      text-align:center;
+      -moz-border-radius:10px;
+      -webkit-border-radius:10px;
+      border-radius:10px;
+    }
     span.and {display:block;width:3em;background-color:@eligibilityParamGroup}
     span.or {display:block;width:2em;background-color:#dddddd}
     
@@ -487,6 +494,7 @@ a {
       margin:10px 5px;
       list-style:none;
       label {
+      	cursor:pointer;
         padding-left:15px;
         background:url(../images/liClosed.png) 0 35% no-repeat;
         
@@ -513,7 +521,7 @@ a {
       .note {margin:0 3px 0 0;font-size:0.9em}
     }
     li.checked {
-      background:url(../images/smallcheckbox.png) 0 10% no-repeat;
+      background:url(../images/checked.png) 0 10% no-repeat;
     }
   }
   
@@ -661,12 +669,6 @@ a {
   width: 275px;
 }
 
-.zeroPadding {
-  td {
-    padding: 0px;
-  }
-
-}
 .clear {
     clear:both;
     padding:10px;
@@ -802,7 +804,7 @@ a {
      text-align:center;
      width:120px;
      height:120px;
-    // text-shadow:rgba(0,0,0,.5) -1px -1px 0;
+     // text-shadow:rgba(0,0,0,.5) -1px -1px 0;
      font-size:1.5em;
      vertical-align:middle;
      background-color:@numerator;
@@ -814,6 +816,7 @@ a {
      line-height:128px;
      margin-right:30px;
     }
+
 #patientMetrics {
   display:block;
   display:table-cell;
@@ -821,7 +824,6 @@ a {
   width:285px;
   background-color:#F2F2F2;
   color:#000000;
-//  padding:0 0 0 15px;
   padding:0;
   min-height:100%;
   height:100%;
