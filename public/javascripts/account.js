@@ -37,29 +37,3 @@ function submitResetPasswordinform()
   document.forgot_password_form.submit();
 }
 
-function wait(msecs)
-{
-  var start = new Date().getTime();
-  var cur = start
-  while(cur - start < msecs)
-  {
-    cur = new Date().getTime();
-  }
-}
-
-function toggleVisibility(id1,id2,id3)
-{
-  if ($(id1).style.visibility=="hidden")
-  {
-    Effect.toggle(id3,'appear');
-    wait(200);
-    $(id1).style.visibility="visible";
-    $(id2).style.visibility="visible";
-  }
-  else
-  {
-    Effect.toggle(id3,'appear');
-    $(id1).style.visibility="hidden";
-    $(id2).style.visibility="hidden";
-  }
-}

@@ -17,7 +17,7 @@ class AccountsController < ApplicationController
       @user.reset_key = ActiveSupport::SecureRandom.hex(20)
       @user.save
       Notifier.reset_password(@user).deliver
-      render :create
+      render :create, :locals => {:message => 'An email has been sent to your address with a link to reset your password.'}
     else
       flash[:error] = "Unable to find an account with that email address"
       render :forgot_password
@@ -99,6 +99,7 @@ class AccountsController < ApplicationController
         @user.validation_key = ActiveSupport::SecureRandom.hex(20)
         @user.save
         Notifier.verify(@user).deliver
+        render :create, :locals => {:message => 'An email has been sent to your address with a link to confirm your popHealth account.'}
       else
         @user.save
         self.user = @user
