@@ -9,7 +9,7 @@ class Measure < MongoBase
                             :initial => {:measures => []},
                             :reduce =>
                             'function(obj,prev) { 
-                                  if (_.any(prev.measures, function(item){return item.id == obj.id}) == false) {
+                                  if (contains(prev.measures, obj.id) == false) {
                                     prev.measures.push({"id": obj.id, "name": obj.name});
                                   }
                              };')
@@ -25,7 +25,7 @@ class Measure < MongoBase
                             :initial => {:measures => []},
                             :reduce =>
                             'function(obj,prev) { 
-                                  if (_.any(prev.measures, function(item){return item.id == obj.id}) == false) {
+                                  if (contains(prev.measures, obj.id) == false) {
                                     prev.measures.push({"id": obj.id, "name": obj.name});
                                   }
                              };')
