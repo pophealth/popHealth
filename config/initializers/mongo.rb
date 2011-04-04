@@ -1,13 +1,14 @@
 require 'mongo'
 
-if ENV['MONGOHQ_URL']
-  uri = URI.parse(ENV['MONGOHQ_URL'])
-  conn = Mongo::Connection.from_uri(ENV['MONGOHQ_URL'])
-  MONGO_DB = conn.db(uri.path.gsub(/^\//, ''))
-elsif ENV['TEST_DB_HOST']
-  MONGO_DB = Mongo::Connection.new(ENV['TEST_DB_HOST'], 27017).db("pophealth-#{Rails.env}")
-else
-  MONGO_DB = Mongo::Connection.new('localhost', 27017).db("pophealth-#{Rails.env}")
+host = ENV['TEST_DB_HOST'] || 'localhost'
+conn = Mongo::Connection.new(host, 27017)
+
+MONGO_DB = conn["pophealth-#{Rails.env}"]
+
+js_collection = MONGO_DB['system.js']
+
+unless js_collection.find_one('_id' => 'contains')
+  js_collection.save('_id' => 'contains', 
+                     'value' => BSON::Code.new("function( obj, target ) { return obj.indexOf(target) != -1; };"))
 end
 
-QME::MongoHelpers.initialize_javascript_frameworks(MONGO_DB)
