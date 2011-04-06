@@ -540,7 +540,7 @@ input.exportReport {
 .inline-fraction span.denominatorValue { color: #40b3bc; }
 .inline-fraction span.separator { border-top: 1px solid #cccccc; }
 .tableMeasureTitle {
-  width: 255px;
+  width: 225px;
   margin-top: 0.75em;
   padding-left: 25px;
 }
@@ -565,9 +565,16 @@ input.exportReport {
   height: 3em;
 }
 .tableMeasureCtrl .measureStats {
-  width: 150px;
+  width: 205px;
   float: left;
   height: 3em;
+  vertical-align: middle;
+}
+.tableMeasureCtrl .measureStats .measureShortSubtitle {
+  display: inline-block;
+  text-align: right;
+  width: 75px;
+  font-size: 1.0em;
   vertical-align: middle;
 }
 .tableMeasureCtrl .measureStats .measurePopulationPercentage {
