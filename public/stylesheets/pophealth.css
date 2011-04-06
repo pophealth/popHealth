@@ -574,7 +574,7 @@ input.exportReport {
   display: inline-block;
   text-align: right;
   width: 75px;
-  font-size: 1.0em;
+  font-size: 1em;
   vertical-align: middle;
 }
 .tableMeasureCtrl .measureStats .measurePopulationPercentage {
