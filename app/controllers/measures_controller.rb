@@ -56,6 +56,21 @@ class MeasuresController < ApplicationController
        pager.replace(@records)
     end
   end
+  
+  def patient_list
+    measure_id = params[:id] 
+    sub_id = params[:sub_id]
+    cache_name =  "cached_measure_patients_#{measure_id}_#{sub_id}_#{@effective_date}"
+    @records = mongo[cache_name].find({:measure_id => measure_id, :sub_id => sub_id,
+                                       :effective_date => @effective_date})
+    respond_to do |format|
+      format.xml do
+        headers['Content-Disposition'] = 'attachment; filename="excel-export.xls"'
+        headers['Cache-Control'] = ''
+        render :content_type => "application/vnd.ms-excel"
+      end
+    end
+  end
 
   def measure_report
     selected_measures = mongo['selected_measures'].find({:username => user.username}).to_a
