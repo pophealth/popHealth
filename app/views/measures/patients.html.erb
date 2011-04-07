@@ -33,11 +33,6 @@
     popHealth.renderMeasureJSON = function(data) {
         var measure = data;
         $.getJSON("<%= measure_result_url(@definition['id'], @definition['sub_id']) %>",popHealth.drawPctChart);
-        var measureTitle = data.endorser+data.id+" "+data.name;
-        if (data.sub_id)
-          measureTitle+=" - ("+data.sub_id+") "+data.subtitle;
-        $("#measureTitleText").text(measureTitle);
-        $("#measureDescText").text(data.description);
     }
 
     popHealth.reloadTable = function(data){
