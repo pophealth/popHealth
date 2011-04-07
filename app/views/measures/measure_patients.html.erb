@@ -9,8 +9,9 @@
        </tr>
      </thead>
      <tbody>
-     <% @page_results.each do |patient| -%>
+     <% @page_results.each do |patient_container| -%>
        <tr class="antiNumerator">
+         <% patient = patient_container['value'] -%>
          <td><%= patient['last'] %></td>
          <td><%= patient['first'] %></td>
          <td><%= age_from_time(patient['birthdate']) || 'UNK' %></td>

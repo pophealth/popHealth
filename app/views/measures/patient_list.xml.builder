@@ -34,7 +34,8 @@ xml.Workbook({
       end
       
       # Rows
-      @records.each do |record|
+      @records.each do |record_container|
+        record = record_container['value']
         xml.Row do
           xml.Cell do
             xml.Data record['first'], 'ss:Type' => 'String'

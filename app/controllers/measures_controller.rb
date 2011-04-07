@@ -17,7 +17,7 @@ class MeasuresController < ApplicationController
   end
 
   def result
-    @result = @executor.measure_result(params[:id], params[:sub_id], :effective_date=> @effective_date)
+    @result = @executor.measure_result(params[:id], params[:sub_id], 'effective_date' => @effective_date)
     render :json => @result
   end
 
@@ -28,30 +28,33 @@ class MeasuresController < ApplicationController
 
   def show
     @definition = @executor.measure_def(params[:id], params[:sub_id])
-    @result = @executor.measure_result(params[:id], params[:sub_id], :effective_date=> @effective_date)
+    @result = @executor.measure_result(params[:id], params[:sub_id], 'effective_date' => @effective_date)
     render 'measure'
   end
 
   def patients
-    @result = @executor.measure_result(params[:id], params[:sub_id], :effective_date=> @effective_date)
+    @result = @executor.measure_result(params[:id], params[:sub_id], 'effective_date' => @effective_date)
     @definition = @executor.measure_def(params[:id], params[:sub_id])
   end
 
   def measure_patients
-    @result = @executor.measure_result(params[:id], params[:sub_id], :effective_date=> @effective_date)
-    type = params[:type] || "denominator"
+    @result = @executor.measure_result(params[:id], params[:sub_id], 'effective_date' => @effective_date)
+    type = if params[:type]
+      "value.#{params[:type]}"
+    else
+       "value.denominator"
+     end
     @limit = (params[:limit] || 20).to_i
     @skip = ((params[:page] || 1).to_i - 1 ) * @limit
     sort = params[:sort] || "_id"
     sort_order = params[:sort_order] || :asc
     measure_id = params[:id] 
     sub_id = params[:sub_id]
-    cache_name =  "cached_measure_patients_#{measure_id}_#{sub_id}_#{@effective_date}"
-    @records = mongo[cache_name].find({:measure_id => measure_id, :sub_id => sub_id,
-                                       :effective_date => @effective_date, type => true}, 
+    @records = mongo['patient_cache'].find({'value.measure_id' => measure_id, 'value.sub_id' => sub_id,
+                                       'value.effective_date' => @effective_date, type => true}, 
                                       {:sort => [sort, sort_order], :skip => @skip, :limit => @limit}).to_a
-    @total =  mongo[cache_name].find({:measure_id => measure_id, :sub_id => sub_id,
-                                      :effective_date => @effective_date, type => true}).count
+    @total =  mongo['patient_cache'].find({'value.measure_id' => measure_id, 'value.sub_id' => sub_id,
+                                      'value.effective_date' => @effective_date, type => true}).count
     @page_results = WillPaginate::Collection.create((params[:page] || 1), @limit, @total) do |pager|
        pager.replace(@records)
     end
@@ -60,9 +63,8 @@ class MeasuresController < ApplicationController
   def patient_list
     measure_id = params[:id] 
     sub_id = params[:sub_id]
-    cache_name =  "cached_measure_patients_#{measure_id}_#{sub_id}_#{@effective_date}"
-    @records = mongo[cache_name].find({:measure_id => measure_id, :sub_id => sub_id,
-                                       :effective_date => @effective_date})
+    @records = mongo['patient_cache'].find({'value.measure_id' => measure_id, 'value.sub_id' => sub_id,
+                                            'value.effective_date' => @effective_date})
     respond_to do |format|
       format.xml do
         headers['Content-Disposition'] = 'attachment; filename="excel-export.xls"'
@@ -99,10 +101,10 @@ class MeasuresController < ApplicationController
     measure = Measure.add_measure(user.username, params[:id])
     results = {:patient_count => mongo['records'].count}
     if measure['subs'].empty?
-      results[measure['id']] = @executor.measure_result(params[:id], nil, :effective_date=> @effective_date)
+      results[measure['id']] = @executor.measure_result(params[:id], nil, 'effective_date' => @effective_date)
     else
       measure['subs'].each do |sub_id|
-        results[measure['id'] + sub_id] = @executor.measure_result(params[:id], sub_id, :effective_date=> @effective_date)
+        results[measure['id'] + sub_id] = @executor.measure_result(params[:id], sub_id, 'effective_date' => @effective_date)
       end
     end
     render :partial => 'measure_stats', :locals => {:measure => measure, :results => results}
@@ -122,7 +124,7 @@ class MeasuresController < ApplicationController
   end
 
   def extract_result(id, sub_id, effective_date)
-    result = @executor.measure_result(id, sub_id, :effective_date=> effective_date)
+    result = @executor.measure_result(id, sub_id, 'effective_date' => effective_date)
     {
       :id=>id,
       :sub_id=>sub_id,
