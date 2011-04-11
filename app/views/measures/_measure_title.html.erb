@@ -1,8 +1,13 @@
 <div class="measureDetailTable">
 	<%= content_for :export_links %>
+	<% measureTitle = "#{@definition['endorser']}#{@definition['id']} #{@definition['name']}" %>
+	<% if @definition['sub_id'] %>
+  <%   measureTitle = "#{measureTitle} - (#{@definition['sub_id']}) #{@definition['subtitle']}" %>
+  <% end %>
+
 	<dl>
     <dt style="line-height:2.5em">Measure Name:</dt>
-    <dd><h1 id="measureTitleText"></h1></dd>
+    <dd><h1 id="measureTitleText"><%= measureTitle %></h1></dd>
   </dl>
   <dl>
     <dt>Effective Date:</dt>
@@ -13,8 +18,8 @@
   <dl>
     <dt>Description:</dt>
      <dd>
-       <span id="measureDescText"></span>
+       <span id="measureDescText"><%= @definition['description'] %></span>
      </dd>
   </dl>
   <div class="clear"></div>
- </div><!-- end #measureDetailTable -->
+</div><!-- end #measureDetailTable -->
