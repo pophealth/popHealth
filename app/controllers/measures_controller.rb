@@ -99,7 +99,7 @@ class MeasuresController < ApplicationController
 
   def select
     measure = Measure.add_measure(user.username, params[:id])
-    results = {:patient_count => mongo['records'].count}
+    results = {'patient_count' => @patient_count}
     if measure['subs'].empty?
       results[measure['id']] = @executor.measure_result(params[:id], nil, 'effective_date' => @effective_date)
     else
@@ -107,6 +107,7 @@ class MeasuresController < ApplicationController
         results[measure['id'] + sub_id] = @executor.measure_result(params[:id], sub_id, 'effective_date' => @effective_date)
       end
     end
+    puts results
     render :partial => 'measure_stats', :locals => {:measure => measure, :results => results}
   end
 

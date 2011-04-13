@@ -40,7 +40,7 @@ describe MeasuresHelper do
   it "should be able to calculate the percentage for a measure" do
     measure_id = '0012'
     sub_id = 'a'
-    results = {'0012a' => {:numerator => 2, :denominator => 3}}
+    results = {'0012a' => {'numerator' => 2, 'denominator' => 3}}
     answer = helper.percentage(measure_id, sub_id, results)
     answer.should == 66
   end

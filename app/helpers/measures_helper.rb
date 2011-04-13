@@ -31,7 +31,7 @@ module MeasuresHelper
   
   def percentage(measure_id, sub_id, results)
     real_id_or_default(measure_id, sub_id, results, 0) do |result|
-      raw_percentage(result[:numerator], result[:denominator])
+      raw_percentage(result['numerator'], result['denominator'])
     end
   end
   
@@ -45,13 +45,13 @@ module MeasuresHelper
     
   def numerator_width(measure_id, sub_id, results)
     real_id_or_default(measure_id, sub_id, results, '33%') do |result|
-      "#{((result[:numerator] / results[:patient_count].to_f) * 100).to_i}%"
+      "#{((result['numerator'] / results['patient_count'].to_f) * 100).to_i}%"
     end
   end
   
   def denominator_width(measure_id, sub_id, results)
     real_id_or_default(measure_id, sub_id, results, '33%') do |result|
-      "#{(((result[:denominator] - result[:numerator])/ results[:patient_count].to_f) * 100).to_i}%"
+      "#{(((result['denominator'] - result['numerator'])/ results['patient_count'].to_f) * 100).to_i}%"
     end
   end
 
