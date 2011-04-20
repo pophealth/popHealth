@@ -34,7 +34,22 @@ describe MeasuresController do
     end
   end
   
-end
-
+  describe "GET 'measure_report'" do
+    it "should be successful" do
+      @mock_user.stub(:registry_name) {'registry'}
+      @mock_user.stub(:registry_id) {'1234'}
+      @mock_user.stub(:npi) {'456'}
+      @mock_user.stub(:tin) {'789'}
+      controller.stub(:extract_result) do |id, sub_id, effective_date|
+        { :id => id, :sub_id => sub_id, :population => 5,
+          :denominator => 4, :numerator => 2,
+          :exclusions => 0
+        }
+      end
+      get :measure_report, :format => :xml
+      response.should be_success
+    end
+  end
   
+end
   
