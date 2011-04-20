@@ -129,10 +129,10 @@ class MeasuresController < ApplicationController
     {
       :id=>id,
       :sub_id=>sub_id,
-      :population=>result[:population],
-      :denominator=>result[:denominator],
-      :numerator=>result[:numerator],
-      :exclusions=>result[:exclusions]
+      :population=>result['population'],
+      :denominator=>result['denominator'],
+      :numerator=>result['numerator'],
+      :exclusions=>result['exclusions']
     }
   end
 end
