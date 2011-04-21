@@ -3,7 +3,7 @@ require 'spec_helper'
 describe MeasuresController do
   
   def mock_user
-    @mock_user ||= mock_model('Users', :username => "andy")
+    @mock_user ||= mock_model('Users', :username => "andy", :effective_date => nil)
   end
   
   def login
