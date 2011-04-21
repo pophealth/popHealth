@@ -75,12 +75,24 @@
     }
 
     popHealth.exportReport = function() { window.location.href="/measures/report.xml"; };
+    
+    popHealth.changeMeasurePeriod = function() {
+      var effective_date = $('#measurementPeriodEndDate').val();
+      var period = {"effective_date": effective_date};
+      $.post("/measures/period", period, function(data) {
+        window.location.href="/measures";
+      }); 
+    };
 
     $(document).ready(function() {
       popHealth.makeMeasureListExpandable();
       popHealth.makeMeasuresCheckable();
       popHealth.populateMeasureStats();
       $('#btnExportReport').click(popHealth.exportReport);
+      $('#measurementPeriodEndDate').calendricalDate({
+        usa: true
+      });
+      $('#btnMeasurementPeriodChange').click(popHealth.changeMeasurePeriod);
     });
   </script>
 <% end -%>
@@ -137,7 +149,9 @@
         <dl>
           <dt>Reporting Period:</dt>
           <dd>
-            <span id="measurementPeriodStartDate">07/01/2010 - 09/31/2010</span>
+            <input type="text" id="measurementPeriodStartDate" disabled="disabled" value="<%= Time.at(@period_start).strftime("%m/%d/%Y") %>"> - 
+            <input type="text" id="measurementPeriodEndDate" value="<%= Time.at(@effective_date).strftime("%m/%d/%Y") %>">
+            <input type="button" id="btnMeasurementPeriodChange" value="Recalculate">
           </dd>
         </dl>
         <dl>

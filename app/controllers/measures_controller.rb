@@ -20,6 +20,17 @@ class MeasuresController < ApplicationController
     @result = @executor.measure_result(params[:id], params[:sub_id], 'effective_date' => @effective_date)
     render :json => @result
   end
+  
+  def period
+    period_end = params[:effective_date]
+    month, day, year = period_end.split('/')
+    @effective_date = Time.local(year.to_i, month.to_i, day.to_i).to_i
+    @period_start = MeasuresController.three_months_prior(@effective_date)
+    user.effective_date = @effective_date
+    user.save
+    render :nothing, :status=>200
+#     redirect_to :action=>'index', :status=>303
+  end
 
   def definition
     @definition = @executor.measure_def(params[:id], params[:sub_id])
@@ -117,11 +128,16 @@ class MeasuresController < ApplicationController
   end
 
   private
+  
+  def self.three_months_prior(date)
+    Time.at(date - 3 * 30 * 24 * 60 * 60)
+  end
 
   def set_up_environment
     @executor = QME::MapReduce::Executor.new(mongo)
     @patient_count = mongo['records'].count
-    @effective_date = Time.gm(2010, 12, 31).to_i
+    @effective_date = user.effective_date || Time.gm(2010, 12, 31).to_i
+    @period_start = MeasuresController.three_months_prior(@effective_date)
   end
 
   def extract_result(id, sub_id, effective_date)
