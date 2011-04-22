@@ -478,9 +478,10 @@ input.recalculate {
   text-transform: uppercase;
 }
 input.measurementPeriodEndDate {
-  font-size: 0.8em;
+  font-size: 1em;
   font-style: inherit;
   font-weight: inherit;
+  font-family: inherit;
 }
 .measureDetailTable {
   padding: 0;

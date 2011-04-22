@@ -157,7 +157,7 @@
           <dt>Reporting Period:</dt>
           <dd>
             <span id="measurementPeriodStartDate"><%= Time.at(@period_start).strftime("%m/%d/%Y") %></span> - 
-            <input type="text" class="measurementPeriodEndDate" id="measurementPeriodEndDate" size="11" value="<%= Time.at(@effective_date).strftime("%m/%d/%Y") %>">
+            <input type="text" class="measurementPeriodEndDate" id="measurementPeriodEndDate" size="6" value="<%= Time.at(@effective_date).strftime("%m/%d/%Y") %>">
             <input type="button" class="recalculate" id="btnMeasurementPeriodChange" value="Recalculate">
           </dd>
         </dl>
