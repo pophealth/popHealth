@@ -45,6 +45,36 @@
       });
     };
 
+    popHealth.updateStat = function(data, graphDiv) {
+      var percent = data.denominator > 0 ? roundNumber(data.numerator/data.denominator*100,0) : 0;
+      var numeratorWidth = (data.numerator/<%= @patient_count %>).toFixed(2)*100;
+      var denominatorWidth = data.denominator > 0 ? roundNumber((data.denominator - data.numerator)/<%= @patient_count -%>*100,0) : 0;
+      graphDiv.find(".numeratorValue").text(data.numerator);
+      graphDiv.find(".denominatorValue").text(data.denominator);
+      graphDiv.find(".measurePopulationPercentage").text(percent + "%");
+      graphDiv.find(".tableBarNumerator").css("width", numeratorWidth + "%");
+      graphDiv.find(".tableBarDenominator").css("width", denominatorWidth + "%");
+    };
+    
+    popHealth.pollStat = function(resultUrl, graphDiv) {
+      var resultUrlWithUUID = null;
+      $.getJSON(resultUrl, function(data) {
+        if (data.uuid == undefined) {
+          popHealth.updateStat(data, graphDiv)
+        } else {
+          graphDiv.find(".measurePopulationPercentage").text(data.status);
+          if (resultUrl.indexOf('uuid') == -1) {
+            resultUrlWithUUID = resultUrl + '?uuid=' + data.uuid;
+          } else {
+            resultUrlWithUUID = resultUrl;
+          };
+          setTimeout(function() {
+            popHealth.pollStat(resultUrlWithUUID, graphDiv);
+          }, 1000)
+        }
+      });
+    };
+
     popHealth.populateMeasureStats = function() {
       $('.tableMeasureCtrl').each(function(index) {
         // Using attr() instead of data() because jQuery will convert the measure id to number
@@ -60,17 +90,8 @@
         else {
           resultUrl = "/measures/result/" + measureId + "/" + measureSubId;
         }
-
-        $.getJSON(resultUrl, function(data) {
-          var percent = data.denominator > 0 ? roundNumber(data.numerator/data.denominator*100,0) : 0;
-          var numeratorWidth = (data.numerator/<%= @patient_count %>).toFixed(2)*100;
-          var denominatorWidth = data.denominator > 0 ? roundNumber((data.denominator - data.numerator)/<%= @patient_count -%>*100,0) : 0;
-          graphDiv.find(".numeratorValue").text(data.numerator);
-          graphDiv.find(".denominatorValue").text(data.denominator);
-          graphDiv.find(".measurePopulationPercentage").text(percent + "%");
-          graphDiv.find(".tableBarNumerator").css("width", numeratorWidth + "%");
-          graphDiv.find(".tableBarDenominator").css("width", denominatorWidth + "%");
-        });
+        
+        popHealth.pollStat(resultUrl, graphDiv);
       });
     }
 

@@ -17,8 +17,17 @@ class MeasuresController < ApplicationController
   end
 
   def result
-    @result = @quality_report.result
-    render :json => @result
+    if @quality_report.calculated?
+      @result = @quality_report.result
+      render :json => @result
+    else
+      uuid = params[:uuid]
+      unless params[:uuid]
+        uuid = @quality_report.calculate
+      end
+      
+      render :json => @quality_report.status(uuid)
+    end
   end
   
   def period
