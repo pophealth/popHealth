@@ -17,7 +17,7 @@ class MeasuresController < ApplicationController
   end
 
   def result
-    @result = @executor.measure_result(params[:id], params[:sub_id], 'effective_date' => @effective_date)
+    @result = @quality_report.result
     render :json => @result
   end
   
@@ -32,19 +32,19 @@ class MeasuresController < ApplicationController
   end
   
   def definition
-    @definition = @executor.measure_def(params[:id], params[:sub_id])
+    @definition = @measure.definition
     render :json => @definition
   end
 
   def show
-    @definition = @executor.measure_def(params[:id], params[:sub_id])
-    @result = @executor.measure_result(params[:id], params[:sub_id], 'effective_date' => @effective_date)
+    @definition = @measure.definition
+    @result = @quality_report.result
     render 'measure'
   end
 
   def patients
-    @result = @executor.measure_result(params[:id], params[:sub_id], 'effective_date' => @effective_date)
-    @definition = @executor.measure_def(params[:id], params[:sub_id])
+    @definition = @measure.definition
+    @result = @quality_report.result
   end
 
   def measure_patients
@@ -133,7 +133,6 @@ class MeasuresController < ApplicationController
   end
 
   def set_up_environment
-    @executor = QME::MapReduce::Executor.new(mongo)
     @patient_count = mongo['records'].count
     if user && user.effective_date
       @effective_date = user.effective_date
@@ -141,10 +140,16 @@ class MeasuresController < ApplicationController
       @effective_date = Time.gm(2010, 12, 31).to_i
     end
     @period_start = MeasuresController.three_months_prior(@effective_date)
+    
+    if params[:id]
+      @quality_report = QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date)
+      @measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
+    end
   end
 
   def extract_result(id, sub_id, effective_date)
-    result = @executor.measure_result(id, sub_id, 'effective_date' => effective_date)
+    qr = QME::QualityReport.new(id, sub_id, 'effective_date' => effective_date)
+    result = qr.result
     {
       :id=>id,
       :sub_id=>sub_id,
