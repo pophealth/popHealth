@@ -90,7 +90,14 @@
       popHealth.populateMeasureStats();
       $('#btnExportReport').click(popHealth.exportReport);
       $('#measurementPeriodEndDate').calendricalDate({
-        usa: true
+        usa: true,
+        changed: function(selected) {
+          var effective_date = $('#measurementPeriodEndDate').val();
+          $.post("/measures/period", {"effective_date": effective_date}, function(data) {
+            var period = JSON.parse(data);
+            $('#measurementPeriodStartDate').text(period['start']);
+          });
+        }
       });
       $('#btnMeasurementPeriodChange').click(popHealth.changeMeasurePeriod);
     });

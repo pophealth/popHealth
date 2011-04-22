@@ -28,9 +28,9 @@ class MeasuresController < ApplicationController
     @period_start = MeasuresController.three_months_prior(@effective_date)
     user.effective_date = @effective_date
     user.save
-    render :nothing, :status=>200
+    render :period, :status=>200
   end
-
+  
   def definition
     @definition = @executor.measure_def(params[:id], params[:sub_id])
     render :json => @definition

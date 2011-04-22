@@ -363,6 +363,9 @@
                                     ));
                                 }
                             }
+                            if (options.changed) {
+                              options.changed(element.val());
+                            }
                         }
                     }
                 );
