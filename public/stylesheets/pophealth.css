@@ -465,6 +465,23 @@ input.exportReport {
   border-radius: 15px;
   text-transform: uppercase;
 }
+input.recalculate {
+  color: #44b3be;
+  font-size: 1em;
+  background: -moz-linear-gradient(top, #ececec, #e5e5e5);
+  background-color: #f2f2f2;
+  border: 1px solid #afafaf;
+  padding: 6px 8px 5px 8px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  text-transform: uppercase;
+}
+input.measurementPeriodEndDate {
+  font-size: 0.8em;
+  font-style: inherit;
+  font-weight: inherit;
+}
 .measureDetailTable {
   padding: 0;
   float: left;

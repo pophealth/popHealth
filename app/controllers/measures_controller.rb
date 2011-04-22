@@ -29,7 +29,6 @@ class MeasuresController < ApplicationController
     user.effective_date = @effective_date
     user.save
     render :nothing, :status=>200
-#     redirect_to :action=>'index', :status=>303
   end
 
   def definition
@@ -136,7 +135,7 @@ class MeasuresController < ApplicationController
   def set_up_environment
     @executor = QME::MapReduce::Executor.new(mongo)
     @patient_count = mongo['records'].count
-    if user!=nil && user.effective_date!=nil
+    if user && user.effective_date
       @effective_date = user.effective_date
     else
       @effective_date = Time.gm(2010, 12, 31).to_i

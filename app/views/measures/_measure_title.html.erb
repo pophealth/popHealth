@@ -12,7 +12,7 @@
   <dl>
     <dt>Reporting Period:</dt>
     <dd>
-      <span id="measurementPeriodStartDate">07/01/2010 - 09/30/2010</span>
+      <span id="measurementPeriodStartDate"><%= Time.at(@period_start).strftime("%m/%d/%Y") %> - <%= Time.at(@effective_date).strftime("%m/%d/%Y") %></span>
     </dd>
   </dl>
   <dl>

@@ -145,13 +145,13 @@
     <div id="dashboardPeriod">
       <div class="measureDetailTable">
         <h1>Community Health Services</h1>
-        <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
         <dl>
+          <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
           <dt>Reporting Period:</dt>
           <dd>
-            <input type="text" id="measurementPeriodStartDate" disabled="disabled" value="<%= Time.at(@period_start).strftime("%m/%d/%Y") %>"> - 
-            <input type="text" id="measurementPeriodEndDate" value="<%= Time.at(@effective_date).strftime("%m/%d/%Y") %>">
-            <input type="button" id="btnMeasurementPeriodChange" value="Recalculate">
+            <span id="measurementPeriodStartDate"><%= Time.at(@period_start).strftime("%m/%d/%Y") %></span> - 
+            <input type="text" class="measurementPeriodEndDate" id="measurementPeriodEndDate" size="11" value="<%= Time.at(@effective_date).strftime("%m/%d/%Y") %>">
+            <input type="button" class="recalculate" id="btnMeasurementPeriodChange" value="Recalculate">
           </dd>
         </dl>
         <dl>
