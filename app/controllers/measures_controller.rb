@@ -57,7 +57,7 @@ class MeasuresController < ApplicationController
   end
 
   def measure_patients
-    @result = @executor.measure_result(params[:id], params[:sub_id], 'effective_date' => @effective_date)
+    @result = @quality_report.result
     type = if params[:type]
       "value.#{params[:type]}"
     else
