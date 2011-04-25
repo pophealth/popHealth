@@ -120,13 +120,13 @@ class MeasuresController < ApplicationController
     measure = Measure.add_measure(user.username, params[:id])
     results = {'patient_count' => @patient_count}
     if measure['subs'].empty?
-      results[measure['id']] = @executor.measure_result(params[:id], nil, 'effective_date' => @effective_date)
+      results[measure['id']] = @quality_report.result
     else
       measure['subs'].each do |sub_id|
-        results[measure['id'] + sub_id] = @executor.measure_result(params[:id], sub_id, 'effective_date' => @effective_date)
+        qr = QME::QualityReport.new(params[:id], sub_id, 'effective_date' => @effective_date)
+        results[measure['id'] + sub_id] = qr.result
       end
     end
-    puts results
     render :partial => 'measure_stats', :locals => {:measure => measure, :results => results}
   end
 
