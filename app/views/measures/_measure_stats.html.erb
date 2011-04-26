@@ -1,35 +1,36 @@
 <tr id="measure<%= measure['id'] %>">
-  <td><div class="tableMeasureTitle"><span class="vtip" title="<%= measure['description'] %>"><%= measure['name'] %></span></div></td>
   <td>
-      <% subs_iterator(measure['subs']) do |sub_id| -%>
-			<div class="tableMeasureCtrl" data-measure-id="<%= measure['id'] %>" data-measure-sub-id="<%= sub_id %>">
-					<div class="measureStats">
-					<% if (sub_id!=nil) %>
-					<span class="measureShortSubtitle"><%= measure['short_subtitles'][sub_id] %></span>
-					<% else %>
-					<span class="measureShortSubtitle"></span>
-					<% end %>
-					<span style="margin-left:5px;" class="measurePopulationPercentage"><%= percentage(measure['id'], sub_id, results)%>%</span>
-	<span class="paren">(</span><div class="inline-fraction">
-					<span class="numeratorValue"><%= value_or_default(measure['id'], sub_id, results, 'numerator', 0) %></span>
-					<span class="separator"></span>
-					<span class="denominatorValue"><%= value_or_default(measure['id'], sub_id, results, 'denominator', 0) %></span>
-				</div><span class="paren">)</span>
-				<span>  </span>
-		</div>
-		<div class="inline-bar">
-		    	<div class="tableBar">
-    	        	<div class="tableBarNumerator" style="width:<%= numerator_width(measure['id'], sub_id, results)%>"><span></span></div>
-        	    	<div class="tableBarDenominator" style="width:<%= denominator_width(measure['id'], sub_id, results)%>"><span></span></div>
-				</div>
+    <div class="tableMeasureTitle"><span class="vtip" title="<%= measure['description'] %>"><%= measure['name'] %></span></div>
+  </td>
+  <td>
+    <% subs_iterator(measure['subs']) do |sub_id| -%>
+    <div class="tableMeasureCtrl" data-measure-id="<%= measure['id'] %>" data-measure-sub-id="<%= sub_id %>">
+        <div class="measureStats">
+          <% if (sub_id!=nil) %>
+          <span class="measureShortSubtitle"><%= measure['short_subtitles'][sub_id] %></span>
+          <% else %>
+          <span class="measureShortSubtitle"></span>
+          <% end %>
+          <span style="margin-left:5px;" class="measurePopulationPercentage"><%= percentage(measure['id'], sub_id, results)%>%</span>
+          <span class="paren">(</span><div class="inline-fraction">
+          <span class="numeratorValue"><%= value_or_default(measure['id'], sub_id, results, 'numerator', 0) %></span>
+          <span class="separator"></span>
+          <span class="denominatorValue"><%= value_or_default(measure['id'], sub_id, results, 'denominator', 0) %></span>
+        </div><span class="paren">)</span>
+        <span>  </span>
+    </div>
+    <div class="inline-bar">
+      <div class="tableBar">
+        <div class="tableBarNumerator" style="width:<%= numerator_width(measure['id'], sub_id, results)%>"><span></span></div>
+        <div class="tableBarDenominator" style="width:<%= denominator_width(measure['id'], sub_id, results)%>"><span></span></div>
+      </div>
 
-				<div class="links">
-				<%= link_to 'patients', patients_url(measure['id'], sub_id), :class => 'tableEdit'%>
-				<%= link_to 'parameters', measure_url(measure['id'], sub_id), :class => 'tableEdit'%>
-				</div>
-			</div>
-			</div>
-	
-      <% end -%>
+      <div class="links">
+        <%= link_to 'patients', patients_url(measure['id'], sub_id), :class => 'tableEdit'%>
+        <%= link_to 'parameters', measure_url(measure['id'], sub_id), :class => 'tableEdit'%>
+      </div>
+    </div>
+      </div>
+    <% end -%>
   </td>
 </tr>
