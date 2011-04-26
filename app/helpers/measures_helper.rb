@@ -23,16 +23,12 @@ module MeasuresHelper
     end
   end
   
-  def value_or_default(measure_id, sub_id, results, field, default)
-    real_id_or_default(measure_id, sub_id, results, default) do |result|
-      result[field]
-    end
+  def value_or_default(results, field, default)
+    results[field] || default
   end
   
-  def percentage(measure_id, sub_id, results)
-    real_id_or_default(measure_id, sub_id, results, 0) do |result|
-      raw_percentage(result['numerator'], result['denominator'])
-    end
+  def percentage(results)
+    raw_percentage(value_or_default(results, 'numerator', 0), value_or_default(results, 'denominator', 0))
   end
   
   def raw_percentage(numerator, denominator)
@@ -43,15 +39,19 @@ module MeasuresHelper
     end
   end
     
-  def numerator_width(measure_id, sub_id, results)
-    real_id_or_default(measure_id, sub_id, results, '33%') do |result|
-      "#{((result['numerator'] / results['patient_count'].to_f) * 100).to_i}%"
+  def numerator_width(results)
+    if results['numerator']
+      "#{((results['numerator'] / results['patient_count'].to_f) * 100).to_i}%"      
+    else
+      '33%'
     end
   end
   
-  def denominator_width(measure_id, sub_id, results)
-    real_id_or_default(measure_id, sub_id, results, '33%') do |result|
-      "#{(((result['denominator'] - result['numerator'])/ results['patient_count'].to_f) * 100).to_i}%"
+  def denominator_width(results)
+    if results['numerator'] && results['denominator']
+      "#{(((results['denominator'] - results['numerator'])/ results['patient_count'].to_f) * 100).to_i}%"
+    else
+      '33%'
     end
   end
 
@@ -72,19 +72,26 @@ module MeasuresHelper
       nil
     end
   end
-
-  private
   
-  def real_id_or_default(measure_id, sub_id, results, default)
-    real_measure_id = measure_id
-    if sub_id
-      real_measure_id += sub_id
+  def result_hash(measure_id, sub_id, effective_date)
+    qr = QME::QualityReport.new(measure_id, sub_id, 'effective_date' => effective_date)
+    result = {'patient_count' => @patient_count}
+    if qr.calculated?
+      result.merge!(qr.result)
+    else
+      result['uuid'] = qr.calculate
     end
     
-    if results[real_measure_id]
-      yield results[real_measure_id]
-    else
-      default
+    result
+  end
+  
+  def measure_stats_div(measure_id, sub_id, effective_date)
+    results = result_hash(measure_id, sub_id, effective_date)
+    div_options = {:class => 'tableMeasureCtrl', :"data-measure-id" => measure_id}
+    div_options[:"data-measure-sub-id"] = sub_id if sub_id
+    div_options[:"data-calculation-job-uuid"] = results['uuid'] if results['uuid']
+    content_tag(:div, div_options) do
+      yield results
     end
   end
 end

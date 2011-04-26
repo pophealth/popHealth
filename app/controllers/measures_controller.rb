@@ -127,7 +127,7 @@ class MeasuresController < ApplicationController
         results[measure['id'] + sub_id] = qr.result
       end
     end
-    render :partial => 'measure_stats', :locals => {:measure => measure, :results => results}
+    render :partial => 'measure_stats', :locals => {:measure => measure}
   end
 
   def remove

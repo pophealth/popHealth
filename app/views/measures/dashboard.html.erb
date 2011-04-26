@@ -39,6 +39,7 @@
                    } else {
                      $('.measureDetailTable').append($.tmpl($('#categoryTmpl'), {"category": category, "measureRow": data}));
                    };
+                   popHealth.populateMeasureStats();
           })
         }
         $(this).toggleClass('checked');
@@ -57,19 +58,13 @@
     };
     
     popHealth.pollStat = function(resultUrl, graphDiv) {
-      var resultUrlWithUUID = null;
       $.getJSON(resultUrl, function(data) {
         if (data.uuid == undefined) {
           popHealth.updateStat(data, graphDiv)
         } else {
           graphDiv.find(".measurePopulationPercentage").text(data.status);
-          if (resultUrl.indexOf('uuid') == -1) {
-            resultUrlWithUUID = resultUrl + '?uuid=' + data.uuid;
-          } else {
-            resultUrlWithUUID = resultUrl;
-          };
           setTimeout(function() {
-            popHealth.pollStat(resultUrlWithUUID, graphDiv);
+            popHealth.pollStat(resultUrl, graphDiv);
           }, 1000)
         }
       });
@@ -81,17 +76,20 @@
         // which strips the leading zeros.
         var measureId = $(this).attr("data-measure-id");
         var measureSubId = $(this).data("measure-sub-id");
+        var uuid = $(this).data("calculation-job-uuid");
         var resultUrl = null;
         var graphDiv = $(this);
 
-        if(measureSubId.length == 0) {
-          resultUrl = "/measures/result/" + measureId;
-        }
-        else {
-          resultUrl = "/measures/result/" + measureId + "/" + measureSubId;
-        }
+        if (uuid != undefined) {
+          if(measureSubId == undefined) {
+            resultUrl = "/measures/result/" + measureId + '?uuid=' + uuid;
+          }
+          else {
+            resultUrl = "/measures/result/" + measureId + "/" + measureSubId + '?uuid=' + uuid;
+          }
         
-        popHealth.pollStat(resultUrl, graphDiv);
+          popHealth.pollStat(resultUrl, graphDiv);
+        };
       });
     }
 
@@ -198,7 +196,7 @@
           <h3 class="dashboardLabel"><%= category %></h3>
           <table>
             <% measures.each do |measure| -%>
-              <%= render :partial => 'measure_stats', :locals => {:measure => measure, :results => {}} %>
+              <%= render :partial => 'measure_stats', :locals => {:measure => measure} %>
             <% end -%>
           </table>
         <% end -%>
