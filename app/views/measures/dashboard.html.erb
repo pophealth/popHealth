@@ -97,10 +97,18 @@
     
     popHealth.changeMeasurePeriod = function() {
       var effective_date = $('#measurementPeriodEndDate').val();
-      var period = {"effective_date": effective_date};
+      var period = {"effective_date": effective_date, "persist": true};
       $.post("/measures/period", period, function(data) {
         window.location.href="/measures";
       }); 
+    };
+    
+    popHealth.updatePeriodEnd = function(selected) {
+      var effective_date = $('#measurementPeriodEndDate').val();
+      $.post("/measures/period", {"effective_date": effective_date, "persist": false}, function(data) {
+        var period = JSON.parse(data);
+        $('#measurementPeriodStartDate').text(period['start']);
+      });
     };
 
     $(document).ready(function() {
@@ -110,13 +118,7 @@
       $('#btnExportReport').click(popHealth.exportReport);
       $('#measurementPeriodEndDate').calendricalDate({
         usa: true,
-        changed: function(selected) {
-          var effective_date = $('#measurementPeriodEndDate').val();
-          $.post("/measures/period", {"effective_date": effective_date}, function(data) {
-            var period = JSON.parse(data);
-            $('#measurementPeriodStartDate').text(period['start']);
-          });
-        }
+        changed: popHealth.updatePeriodEnd
       });
       $('#btnMeasurementPeriodChange').click(popHealth.changeMeasurePeriod);
     });

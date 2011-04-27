@@ -35,8 +35,10 @@ class MeasuresController < ApplicationController
     month, day, year = period_end.split('/')
     @effective_date = Time.local(year.to_i, month.to_i, day.to_i).to_i
     @period_start = MeasuresController.three_months_prior(@effective_date)
-    user.effective_date = @effective_date
-    user.save
+    if (params[:persist]=="true")
+      user.effective_date = @effective_date
+      user.save
+    end
     render :period, :status=>200
   end
   
