@@ -10,3 +10,4 @@ PopHealth::Application.load_tasks
 
 ENV['DB_NAME'] = "pophealth-#{Rails.env}"
 
+task "resque:setup" => :environment
