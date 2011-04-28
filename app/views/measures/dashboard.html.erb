@@ -63,9 +63,11 @@
           popHealth.updateStat(data, graphDiv)
         } else {
           graphDiv.find(".measurePopulationPercentage").text(data.status);
-          setTimeout(function() {
-            popHealth.pollStat(resultUrl, graphDiv);
-          }, 1000)
+          if (data.status!="failed") {
+            setTimeout(function() {
+              popHealth.pollStat(resultUrl, graphDiv);
+            }, 1000)
+          }
         }
       });
     };
