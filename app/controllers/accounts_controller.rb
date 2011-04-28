@@ -109,7 +109,7 @@ class AccountsController < ApplicationController
       @user.errors.each_pair do |key, value|
         @registration_errors << key.to_s.humanize + ' ' + value.join(' and ')
       end
-      
+      @bundles = mongo['bundles'].find() || []    
       render :new
     end
   end
@@ -122,6 +122,7 @@ class AccountsController < ApplicationController
   #just prepare the user object and render the registration page
   def new
     @user = User.new()
+    @bundles = mongo['bundles'].find() || []
   end
 
   #check to see if the user name already exists
