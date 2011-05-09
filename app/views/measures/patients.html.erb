@@ -33,8 +33,6 @@
     popHealth.renderMeasureJSON = function(data) {
         var measure = data;
         $.getJSON("<%= measure_result_url(@definition['id'], @definition['sub_id']) %>",popHealth.drawPctChart);
-        $("#measureTitleText").text(data.name);
-        $("#measureDescText").text(data.description);
     }
 
     popHealth.reloadTable = function(data){
@@ -93,10 +91,10 @@
     <%= render :partial => 'measure_metrics' %>
       <div class="patientGroupType"><p>Show Patients in:</p>
         <ul>
-          <li class="numerator"><span class="radio"><input type="radio" name="patientGroup" value="1"   id="num"/></span><label for="num">Numerator</label> <span class="count"><%= @result[:numerator]%></span></li>
-          <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="2" id="den" checked="true" /></span><label for="den">Denominator</label> <span class="count"><%= @result[:denominator]%></span> </li>
-          <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="3" id="dnn" /></span><label for="dnn">Outliers</label> <span class="count"><%= @result[:antinumerator]%></span></li>
-          <li class="exclusions"><span class="radio"><input type="radio" name="patientGroup" value="4" id="exc" /></span><label for="exc">Exclusions</label> <span class="count"><%= @result[:exclusions]%></span></li>
+          <li class="numerator"><span class="radio"><input type="radio" name="patientGroup" value="1"   id="num"/></span><label for="num">Numerator</label> <span class="count"><%= @result['numerator']%></span></li>
+          <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="2" id="den" checked="true" /></span><label for="den">Denominator</label> <span class="count"><%= @result['denominator']%></span> </li>
+          <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="3" id="dnn" /></span><label for="dnn">Outliers</label> <span class="count"><%= @result['antinumerator']%></span></li>
+          <li class="exclusions"><span class="radio"><input type="radio" name="patientGroup" value="4" id="exc" /></span><label for="exc">Exclusions</label> <span class="count"><%= @result['exclusions']%></span></li>
         </ul>
         <br style="clear:both"/>
       </div>
@@ -106,6 +104,7 @@
       <br style="clear:left"/>
       <div id="patientTableContainer">
     </div><!-- end patientTableContainer -->
+    <%= link_to 'Export to Excel', patient_list_url(params[:id], params[:sub_id], :format => :xml) %>
     </div>
   </div><!-- end #pageContent -->
 </div>

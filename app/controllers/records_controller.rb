@@ -26,6 +26,7 @@ class RecordsController < ApplicationController
     
     if patient
       mongo['records'] << patient
+      QME::QualityReport.destroy_all
       render :text => 'Patient imported', :status => 201
     end
   end

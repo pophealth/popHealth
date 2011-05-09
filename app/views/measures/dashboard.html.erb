@@ -39,9 +39,36 @@
                    } else {
                      $('.measureDetailTable').append($.tmpl($('#categoryTmpl'), {"category": category, "measureRow": data}));
                    };
+                   popHealth.populateMeasureStats();
           })
         }
         $(this).toggleClass('checked');
+      });
+    };
+
+    popHealth.updateStat = function(data, graphDiv) {
+      var percent = data.denominator > 0 ? roundNumber(data.numerator/data.denominator*100,0) : 0;
+      var numeratorWidth = (data.numerator/<%= @patient_count %>).toFixed(2)*100;
+      var denominatorWidth = data.denominator > 0 ? roundNumber((data.denominator - data.numerator)/<%= @patient_count -%>*100,0) : 0;
+      graphDiv.find(".numeratorValue").text(data.numerator);
+      graphDiv.find(".denominatorValue").text(data.denominator);
+      graphDiv.find(".measurePopulationPercentage").text(percent + "%");
+      graphDiv.find(".tableBarNumerator").css("width", numeratorWidth + "%");
+      graphDiv.find(".tableBarDenominator").css("width", denominatorWidth + "%");
+    };
+    
+    popHealth.pollStat = function(resultUrl, graphDiv) {
+      $.getJSON(resultUrl, function(data) {
+        if (data.uuid == undefined) {
+          popHealth.updateStat(data, graphDiv)
+        } else {
+          graphDiv.find(".measurePopulationPercentage").text(data.status);
+          if (data.status!="failed") {
+            setTimeout(function() {
+              popHealth.pollStat(resultUrl, graphDiv);
+            }, 1000)
+          }
+        }
       });
     };
 
@@ -51,36 +78,51 @@
         // which strips the leading zeros.
         var measureId = $(this).attr("data-measure-id");
         var measureSubId = $(this).data("measure-sub-id");
+        var uuid = $(this).data("calculation-job-uuid");
         var resultUrl = null;
         var graphDiv = $(this);
 
-        if(measureSubId.length == 0) {
-          resultUrl = "/measures/result/" + measureId;
-        }
-        else {
-          resultUrl = "/measures/result/" + measureId + "/" + measureSubId;
-        }
-
-        $.getJSON(resultUrl, function(data) {
-          var percent = data.denominator > 0 ? roundNumber(data.numerator/data.denominator*100,0) : 0;
-          var numeratorWidth = (data.numerator/<%= @patient_count %>).toFixed(2)*100;
-          var denominatorWidth = data.denominator > 0 ? roundNumber((data.denominator - data.numerator)/<%= @patient_count -%>*100,0) : 0;
-          graphDiv.find(".numeratorValue").text(data.numerator);
-          graphDiv.find(".denominatorValue").text(data.denominator);
-          graphDiv.find(".measurePopulationPercentage").text(percent + "%");
-          graphDiv.find(".tableBarNumerator").css("width", numeratorWidth + "%");
-          graphDiv.find(".tableBarDenominator").css("width", denominatorWidth + "%");
-        });
+        if (uuid != undefined) {
+          if(measureSubId == undefined) {
+            resultUrl = "/measures/result/" + measureId + '?uuid=' + uuid;
+          }
+          else {
+            resultUrl = "/measures/result/" + measureId + "/" + measureSubId + '?uuid=' + uuid;
+          }
+        
+          popHealth.pollStat(resultUrl, graphDiv);
+        };
       });
     }
 
     popHealth.exportReport = function() { window.location.href="/measures/report.xml"; };
+    
+    popHealth.changeMeasurePeriod = function() {
+      var effective_date = $('#measurementPeriodEndDate').val();
+      var period = {"effective_date": effective_date, "persist": true};
+      $.post("/measures/period", period, function(data) {
+        window.location.href="/measures";
+      }); 
+    };
+    
+    popHealth.updatePeriodEnd = function(selected) {
+      var effective_date = $('#measurementPeriodEndDate').val();
+      $.post("/measures/period", {"effective_date": effective_date, "persist": false}, function(data) {
+        var period = JSON.parse(data);
+        $('#measurementPeriodStartDate').text(period['start']);
+      });
+    };
 
     $(document).ready(function() {
       popHealth.makeMeasureListExpandable();
       popHealth.makeMeasuresCheckable();
       popHealth.populateMeasureStats();
       $('#btnExportReport').click(popHealth.exportReport);
+      $('#measurementPeriodEndDate').calendricalDate({
+        usa: true,
+        changed: popHealth.updatePeriodEnd
+      });
+      $('#btnMeasurementPeriodChange').click(popHealth.changeMeasurePeriod);
     });
   </script>
 <% end -%>
@@ -133,11 +175,13 @@
     <div id="dashboardPeriod">
       <div class="measureDetailTable">
         <h1>Community Health Services</h1>
-        <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
         <dl>
+          <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
           <dt>Reporting Period:</dt>
           <dd>
-            <span id="measurementPeriodStartDate">07/01/2010 - 09/31/2010</span>
+            <span id="measurementPeriodStartDate"><%= Time.at(@period_start).strftime("%m/%d/%Y") %></span> - 
+            <input type="text" class="measurementPeriodEndDate" id="measurementPeriodEndDate" size="6" value="<%= Time.at(@effective_date).strftime("%m/%d/%Y") %>">
+            <input type="button" class="recalculate" id="btnMeasurementPeriodChange" value="Recalculate">
           </dd>
         </dl>
         <dl>
@@ -156,7 +200,7 @@
           <h3 class="dashboardLabel"><%= category %></h3>
           <table>
             <% measures.each do |measure| -%>
-              <%= render :partial => 'measure_stats', :locals => {:measure => measure, :results => {}} %>
+              <%= render :partial => 'measure_stats', :locals => {:measure => measure} %>
             <% end -%>
           </table>
         <% end -%>

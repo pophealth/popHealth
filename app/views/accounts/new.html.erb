@@ -65,36 +65,11 @@
           <%= f.text_field :tin %>
         </li>
       </ul>
-      <p>Performance measures and related data specifications (the "Measures") are copyrighted by
-           the noted quality measure providers as indicated in the applicable Measure.  Coding
-           vocabularies are owned by their copyright owners.  By using the Measures, a user
-           ("User") agrees to these Terms of Use.  Measures are not clinical guidelines and do not
-           establish a standard of medical care and quality measure providers are not responsible
-           for any use of or reliance on the Measures.</p>
-      <p>
-         <strong>THE MEASURES AND SPECIFICATIONS ARE PROVIDED "AS IS" WITHOUT ANY WARRANTY OF
-           ANY KIND, AND ANY AND ALL IMPLIED WARRANTIES ARE HEREBY DISCLAIMED, INCLUDING ANY
-           WARRANTY OF NON-INFRINGEMENT, ACCURACY, MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-           PURPOSE.  NO QUALITY MEASURE PROVIDER, NOR ANY OF THEIR TRUSTEES, DIRECTORS, MEMBERS,
-           AFFILIATES, OFFICERS, EMPLOYEES, SUCCESSORS AND/OR ASSIGNS WILL BE LIABLE TO YOU FOR
-           ANY DIRECT, INDIRECT, SPECIAL, EXEMPLARY, INCIDENTAL, PUNITIVE, AND/OR CONSEQUENTIAL
-           DAMAGE OF ANY KIND, IN CONTRACT, TORT OR OTHERWISE, IN CONNECTION WITH THE USE OF THE
-           POPHEALTH TOOL OR THE MEASURES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH LOSS OR DAMAGE.
-         </strong>
-           The Measures are licensed to a User for the limited purpose of using, reproducing and
-           distributing the Measures with the popHealth Tool as delivered to User, without any
-           modification, for commercial and noncommercial uses, but such uses are only permitted
-           if the copies of the Measures contain this complete Copyright, Disclaimer and Terms
-           of Use.  Users of the Measures may not alter, enhance, or otherwise modify the Measures.</p>
-           
-      <p><strong>NOT A CONTRIBUTION</strong> - The Measures, including specifications and coding,
-           as used in the popHealth Tool, are not a contribution under the Apache license. Coding
-           in the Measures is provided for convenience only and necessary licenses for use should
-           be obtained from the copyright owners. Current Procedural Terminology (CPT<span class="reg">&reg;</span>) &copy;
-           2004-2010 American Medical Association. LOINC<span class="reg">&reg;</span> &copy; 2004 Regenstrief Institute,
-           Inc. SNOMED Clinical Terms<span class="reg">&reg;</span> (SNOMED CT<span class="reg">&reg;</span>) &copy; 2004-2010 International Health
-           Terminology Standards Development Organization.</p>
-           
+
+      <% @bundles.each do |bundle| %>
+      <%= raw bundle["license"] %>
+      <% end %>
+
       <div id="regcheckbox">
           <%= check_box_tag :agree_license %>
           <label for="agree_license">I agree to the above Terms and Conditions of use</label>

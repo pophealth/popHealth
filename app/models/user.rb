@@ -21,7 +21,7 @@ class User < MongoBase
   add_delegate :validation_key, :protect
   add_delegate :validated, :protect
   add_delegate :_id
-
+  add_delegate :effective_date
 
   validates_presence_of :first_name, :last_name
   validates :email, :presence => true, 

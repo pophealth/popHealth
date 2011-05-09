@@ -15,4 +15,5 @@ doc
 .yardoc
 Thumbs.db
 .bundle
+.bundle/config
 vendor

@@ -4,8 +4,10 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 require 'rspec/core/rake_task'
+require 'resque/tasks'
 
 PopHealth::Application.load_tasks
 
 ENV['DB_NAME'] = "pophealth-#{Rails.env}"
 
+task "resque:setup" => :environment

@@ -25,6 +25,19 @@ The Quality Measure engine relies on a MongoDB [MongoDB](http://www.mongodb.org/
 
     http://www.mongodb.org/display/DOCS/Quickstart
 
+It also relies on [Redis](http://redis.io/) for background jobs via [Resque](https://github.com/defunkt/resque). To install Redis, please refer to:
+
+    http://redis.io/download
+
+You can also find information on Redis at the [Resque homepage](https://github.com/defunkt/resque). Resque is used by this project to calculate quality measures in  background jobs. We also use [resque-status](https://github.com/quirkey/resque-status). Please consult the resque-status instructions for working with the resque-web application if you would like to use it to monitor status.
+
+Running Resque Workers
+----------------------
+
+popHealth will kick off background jobs with Resque. For these jobs to to actually get performed, you need to be running resque workers. This can be done with the following:
+
+    QUEUE=* bundle exec rake resque:work
+
 JRuby and CCR Support
 ---------------------
 

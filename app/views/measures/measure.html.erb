@@ -21,8 +21,6 @@
     popHealth.renderMeasureJSON = function(data) {
         var measure = data;
         $.getJSON("<%= measure_result_url(@definition['id'], @definition['sub_id']) %>",popHealth.drawPctChart);
-        $("#measureTitleText").text(data.name);
-        $("#measureDescText").text(data.description);
         var elemParent;
         var addParamItems = function(obj,elemParent,container) {
           var items = obj['and'] || obj['or'];

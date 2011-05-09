@@ -225,7 +225,7 @@ a {
 }
 .exclusionTab {
   font-size: 0.9em;
-  background: url(../images/bkgExclusionsTab.png) 100% 50% no-repeat;
+  background: url(../images/pgTabExclusions.png) 100% 50% no-repeat;
   width: 120px;
   padding: 5px 20px 1px 5px;
   color: #646464;
@@ -465,6 +465,24 @@ input.exportReport {
   border-radius: 15px;
   text-transform: uppercase;
 }
+input.recalculate {
+  color: #44b3be;
+  font-size: 1em;
+  background: -moz-linear-gradient(top, #ececec, #e5e5e5);
+  background-color: #f2f2f2;
+  border: 1px solid #afafaf;
+  padding: 6px 8px 5px 8px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  text-transform: uppercase;
+}
+input.measurementPeriodEndDate {
+  font-size: 1em;
+  font-style: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+}
 .measureDetailTable {
   padding: 0;
   float: left;
@@ -540,7 +558,7 @@ input.exportReport {
 .inline-fraction span.denominatorValue { color: #40b3bc; }
 .inline-fraction span.separator { border-top: 1px solid #cccccc; }
 .tableMeasureTitle {
-  width: 255px;
+  width: 225px;
   margin-top: 0.75em;
   padding-left: 25px;
 }
@@ -565,9 +583,16 @@ input.exportReport {
   height: 3em;
 }
 .tableMeasureCtrl .measureStats {
-  width: 150px;
+  width: 205px;
   float: left;
   height: 3em;
+  vertical-align: middle;
+}
+.tableMeasureCtrl .measureStats .measureShortSubtitle {
+  display: inline-block;
+  text-align: right;
+  width: 75px;
+  font-size: 1em;
   vertical-align: middle;
 }
 .tableMeasureCtrl .measureStats .measurePopulationPercentage {

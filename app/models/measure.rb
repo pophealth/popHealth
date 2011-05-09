@@ -8,8 +8,12 @@ class Measure < MongoBase
     mongo['measures'].group(:key => :category,
                             :initial => {:measures => []},
                             :reduce =>
-                            'function(obj,prev) { 
-                                  if (contains(prev.measures, obj.id) == false) {
+                            'function(obj,prev) {
+                                  var measureIds = [];
+                                  for (var i = 0; i < prev.measures.length; i++) {
+                                    measureIds.push(prev.measures[i].id)
+                                  }
+                                  if (contains(measureIds, obj.id) == false) {
                                     prev.measures.push({"id": obj.id, "name": obj.name});
                                   }
                              };')
@@ -24,8 +28,12 @@ class Measure < MongoBase
                             :cond => {:category => {"$nin" => ['Core', 'Core Alternate']}},
                             :initial => {:measures => []},
                             :reduce =>
-                            'function(obj,prev) { 
-                                  if (contains(prev.measures, obj.id) == false) {
+                            'function(obj,prev) {
+                                  var measureIds = [];
+                                  for (var i = 0; i < prev.measures.length; i++) {
+                                    measureIds.push(prev.measures[i].id)
+                                  }
+                                  if (contains(measureIds, obj.id) == false) {
                                     prev.measures.push({"id": obj.id, "name": obj.name});
                                   }
                              };')
