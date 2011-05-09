@@ -12,7 +12,7 @@ gem 'rubyzip'
 
 gem "will_paginate", "~> 3.0.pre2"
 gem 'warden'
-gem 'rails_warden'
+gem 'rails_warden', '0.5.2'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'json', :platforms => :jruby
 gem 'bson_ext', :platforms => :mri
