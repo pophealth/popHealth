@@ -21,7 +21,7 @@ Then run bundler to grab all of the necessary gems:
 
     bundle install
 
-The Quality Measure engine relies on a MongoDB [MongoDB](http://www.mongodb.org/) running a minimum of version 1.6.* or higher.  To get and install Mongo refer to :
+The Quality Measure engine relies on a MongoDB [MongoDB](http://www.mongodb.org/) running a minimum of version 1.8.* or higher.  To get and install Mongo refer to :
 
     http://www.mongodb.org/display/DOCS/Quickstart
 
