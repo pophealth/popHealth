@@ -16,6 +16,7 @@ gem 'rails_warden', '0.5.2'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'json', :platforms => :jruby
 gem 'bson_ext', :platforms => :mri
+gem 'foreman'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
