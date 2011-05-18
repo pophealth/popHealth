@@ -7,7 +7,6 @@ class AccountsController < ApplicationController
 
   def login
     if logged_in?
-      Atna.log(user.username, :login)
       redirect_to "/"
     end
   end
