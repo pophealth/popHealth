@@ -59,6 +59,7 @@ describe AccountsController do
       end
       
       controller.stub(:logged_in?) {@user}
+      controller.stub(:user) {@user}
       post :login, :username => 'unverified_guy', :password => 'password'
       response.should redirect_to '/'
     end
@@ -77,6 +78,7 @@ describe AccountsController do
       end
       controller.stub(:errors) {mock('errors').should_receive(:add)}
       controller.stub(:logged_in?) {@user}
+      controller.stub(:user) {@user}
       post :login, :username => 'unverified_guy', :password => 'password'
     end
     

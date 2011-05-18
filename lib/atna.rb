@@ -1,4 +1,5 @@
 require 'syslog'
+require 'builder'
 
 # Class for logging messages to syslog using the XML format defined in
 # RFC3881. This allows for the support of IHE ATNA Record Audit

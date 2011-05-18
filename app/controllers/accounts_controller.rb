@@ -7,6 +7,7 @@ class AccountsController < ApplicationController
 
   def login
     if logged_in?
+      Atna.log(user.username, :login)
       redirect_to "/"
     end
   end
@@ -115,6 +116,7 @@ class AccountsController < ApplicationController
   end
 
   def log_out
+    Atna.log(user.username, :logout)
     logout
     redirect_to '/'
   end
