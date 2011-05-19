@@ -33,8 +33,8 @@ class MeasuresController < ApplicationController
     @effective_date = Time.local(year.to_i, month.to_i, day.to_i).to_i
     @period_start = MeasuresController.three_months_prior(@effective_date)
     if (params[:persist]=="true")
-      user.effective_date = @effective_date
-      user.save
+      current_user.effective_date = @effective_date
+      current_user.save!
     end
     render :period, :status=>200
   end
@@ -117,12 +117,12 @@ class MeasuresController < ApplicationController
   end
 
   def select
-    measure = Measure.add_measure(user.username, params[:id])
+    measure = Measure.add_measure(current_user.username, params[:id])
     render :partial => 'measure_stats', :locals => {:measure => measure}
   end
 
   def remove
-    Measure.remove_measure(user.username, params[:id])
+    Measure.remove_measure(current_user.username, params[:id])
     render :text => 'Removed'
   end
 
