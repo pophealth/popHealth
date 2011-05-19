@@ -1,5 +1,7 @@
 PopHealth::Application.routes.draw do
 
+  devise_for :users, :controllers => {:registrations => "registrations"}
+
   match 'measures', :to => 'measures#index', :as => :dashboard, :via => :get
   match 'measures/show/:id(/:sub_id)', :to => 'measures#show', :as => :measure, :via => :get
   match 'measures/result/:id(/:sub_id)', :to => 'measures#result', :as => :measure_result, :via => :get
@@ -13,18 +15,6 @@ PopHealth::Application.routes.draw do
   match 'measures/period', :to=>'measures#period', :as => :period, :via=> :post
 
   match 'records', :to => 'records#create', :via => :post
-
-  resources :accounts, :except => [:index, :destroy, :show] do
-    collection do
-      post 'login'
-      get  'log_out'
-      get  'register'
-      get  'verify'
-      get  'forgot_password'
-      post 'reset_password'
-      get  'password_reset_login'
-    end
-  end
 
   root :to => 'measures#index'
   

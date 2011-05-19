@@ -129,7 +129,7 @@
         noconfirm: 10000,
         sessionAlive: false,
         alive_url: '/',
-        redirect_url: '<%= log_out_accounts_url %>',
+        redirect_url: '<%= destroy_user_session_path %>',
         logout_url: '/'
       });
     });
@@ -144,7 +144,7 @@
       <li>measure dashboard</li>
       </ul>
       <div id="logOut">
-        Welcome, <%= self.user.first_name.to_s %> <span class="sep">|</span> <a href="http://projectpophealth.org/faq.html">help</a> <span class="sep">|</span> <%= link_to 'account', edit_account_url(user) %> <span class="sep">|</span> <%= link_to 'logout', log_out_accounts_url, 'class' => 'log' %>
+        Welcome, <%= current_user.first_name.to_s %> <span class="sep">|</span> <a href="http://projectpophealth.org/faq.html">help</a> <span class="sep">|</span> <%= link_to 'account', edit_user_registration_path(current_user) %> <span class="sep">|</span> <%= link_to 'logout', destroy_user_session_path, 'class' => 'log' %>
       </div>
     </div><!-- end #breadcrumbBox -->
   </div><!-- end #header -->

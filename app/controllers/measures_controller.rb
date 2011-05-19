@@ -1,14 +1,11 @@
 class MeasuresController < ApplicationController
-
-  include RailsWarden::Mixins::HelperMethods
-  include RailsWarden::Mixins::ControllerOnlyMethods
   include MeasuresHelper
 
+  before_filter :authenticate_user!
   before_filter :set_up_environment
-  before_filter :authenticate!
 
   def index
-    @selected_measures = mongo['selected_measures'].find({:username => user.username}).to_a #need to call to_a so that it isn't a cursor
+    @selected_measures = mongo['selected_measures'].find({:username => current_user.username}).to_a #need to call to_a so that it isn't a cursor
     @grouped_selected_measures = @selected_measures.group_by {|measure| measure['category']}
     @categories = Measure.non_core_measures
     @core_measures = Measure.core_measures
@@ -96,15 +93,15 @@ class MeasuresController < ApplicationController
   end
 
   def measure_report
-    Atna.log(user.username, :query)
-    selected_measures = mongo['selected_measures'].find({:username => user.username}).to_a
+    Atna.log(current_user.username, :query)
+    selected_measures = mongo['selected_measures'].find({:username => current_user.username}).to_a
     @report = {}
     @report[:start] = Time.at(@effective_date - 3 * 30 * 24 * 60 * 60) # roughly 3 months
     @report[:end] = Time.at(@effective_date)
-    @report[:registry_name] = user.registry_name
-    @report[:registry_id] = user.registry_id
-    @report[:npi] = user.npi
-    @report[:tin] = user.tin
+    @report[:registry_name] = current_user.registry_name
+    @report[:registry_id] = current_user.registry_id
+    @report[:npi] = current_user.npi
+    @report[:tin] = current_user.tin
     @report[:results] = []
     selected_measures.each do |measure|
       subs_iterator(measure['subs']) do |sub_id|
@@ -137,8 +134,8 @@ class MeasuresController < ApplicationController
 
   def set_up_environment
     @patient_count = mongo['records'].count
-    if user && user.effective_date
-      @effective_date = user.effective_date
+    if current_user && current_user.effective_date
+      @effective_date = current_user.effective_date
     else
       @effective_date = Time.gm(2010, 12, 31).to_i
     end
