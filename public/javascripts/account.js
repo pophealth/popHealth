@@ -34,6 +34,6 @@ function submitRegisterform()
 
 function submitResetPasswordinform()
 {
-  document.forgot_password_form.submit();
+   document.forms[0].submit();
 }
 
