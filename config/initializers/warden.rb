@@ -29,11 +29,14 @@ Warden::Strategies.add(:my_strategy) do
     if user
       if EMAIL_VERIFICATION && user.unverified?
         errors.add(:login, "Please check your email to verify this account")
+        Atna.log(params[:username], :login_failure)
         fail!        
       end
+      Atna.log(user.username, :login)
       success!(user)
     else
       errors.add(:login, "Login Failed")
+      Atna.log(params[:username], :login_failure)
       fail!
     end
   end

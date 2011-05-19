@@ -27,6 +27,7 @@ class RecordsController < ApplicationController
     if patient
       mongo['records'] << patient
       QME::QualityReport.destroy_all
+      Atna.log(@user.username, :phi_import)
       render :text => 'Patient imported', :status => 201
     end
   end
@@ -35,7 +36,7 @@ class RecordsController < ApplicationController
 
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|
-      User.authenticate(username, password)
+      @user = User.authenticate(username, password)
     end
   end
 end

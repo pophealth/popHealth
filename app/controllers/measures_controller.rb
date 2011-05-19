@@ -96,6 +96,7 @@ class MeasuresController < ApplicationController
   end
 
   def measure_report
+    Atna.log(user.username, :query)
     selected_measures = mongo['selected_measures'].find({:username => user.username}).to_a
     @report = {}
     @report[:start] = Time.at(@effective_date - 3 * 30 * 24 * 60 * 60) # roughly 3 months

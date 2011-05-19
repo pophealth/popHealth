@@ -75,6 +75,15 @@
       $(".deleteParamIcon").click(popHealth.deleteParam);
       $("#btnSaveNewMeasure").click(popHealth.saveNewMeasure);
       $("#btnReturnToDash").click(popHealth.returnToDash);
+      
+      $(document).idleTimeout({
+        inactivity: 300000,
+        noconfirm: 10000,
+        sessionAlive: false,
+        alive_url: '/',
+        redirect_url: '<%= log_out_accounts_url %>',
+        logout_url: '/'
+      });
     });
 
     function alertDate(e) {

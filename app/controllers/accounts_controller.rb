@@ -115,6 +115,7 @@ class AccountsController < ApplicationController
   end
 
   def log_out
+    Atna.log(user.username, :logout)
     logout
     redirect_to '/'
   end
