@@ -1,17 +1,9 @@
-defaults: &defaults
-  host: localhost
-  # slaves:
-  #   - host: slave1.local
-  #     port: 27018
-  #   - host: slave2.local
-  #     port: 27019
-
 development:
-  <<: *defaults
+  host: localhost
   database: pophealth-development
 
 test:
-  <<: *defaults
+  host: <%= ENV['TEST_DB_HOST'] || 'localhost' %>
   database: pophealth-test
 
 # set these environment variables on your prod server
