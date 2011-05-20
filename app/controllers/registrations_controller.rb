@@ -1,14 +1,17 @@
 class RegistrationsController < Devise::RegistrationsController
+  # Need bundle info to display the license information
   def new
     @bundles = mongo['bundles'].find() || []
     super
   end
-  
+
   def create
     @bundles = mongo['bundles'].find() || []
     super
   end
-  
+
+  # Lets the account info be updated (like tax id) without changing
+  # the password
   def update
     # Devise use update_with_password instead of update_attributes.
     # This is the only change we make.
