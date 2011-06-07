@@ -1,0 +1,12 @@
+<h1>Logs</h1>
+<table>
+  <% @logs.each do |log| -%>
+  <tr>
+    <td><%= log.created_at %></td>
+    <td><%= log.username %></td>
+    <td><%= log.event %></td>
+  </tr>
+  <% end -%>
+</table>
+
+<%= will_paginate @logs %>

@@ -28,6 +28,7 @@ class RecordsController < ApplicationController
       mongo['records'] << patient
       QME::QualityReport.destroy_all
       Atna.log(@user.username, :phi_import)
+      Log.create(:username => attempted_login_name, :event => :phi_import)
       render :text => 'Patient imported', :status => 201
     end
   end
