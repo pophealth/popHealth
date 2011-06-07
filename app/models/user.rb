@@ -21,6 +21,8 @@ class User
   field :agree_license, :type => Boolean
 
   field :effective_date, :type => Integer
+  
+  field :admin, :type => Boolean
 
   validates_presence_of :first_name, :last_name
   validates_uniqueness_of :username
