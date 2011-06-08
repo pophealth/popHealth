@@ -1,8 +1,10 @@
 PopHealth::Application.routes.draw do
 
-  get "logs/index"
-
   devise_for :users, :controllers => {:registrations => "registrations"}
+
+  get "admin/users"
+
+  get "logs/index"
 
   match 'measures', :to => 'measures#index', :as => :dashboard, :via => :get
   match 'measures/show/:id(/:sub_id)', :to => 'measures#show', :as => :measure, :via => :get
