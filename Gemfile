@@ -13,7 +13,7 @@ gem 'rubyzip'
 gem "will_paginate", "~> 3.0.pre2"
 gem 'json', :platforms => :jruby
 gem 'bson_ext', :platforms => :mri
-gem "mongoid", "~> 2.0"
+gem "mongoid", "2.0.1"
 gem 'devise'
 gem 'foreman'
 
