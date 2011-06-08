@@ -6,7 +6,32 @@ class AdminController < ApplicationController
     @users = User.all
   end
   
+  def promote
+    toggle_admin_privilidges(params[:username], :promote)
+  end
+  
+  def demote
+    toggle_admin_privilidges(params[:username], :demote)
+  end
+  
   private
+  
+  def toggle_admin_privilidges(username, direction)
+    user = User.first(:conditions => {:username => username})
+    
+    if user
+      if direction == :promote
+        user.update_attribute(:admin, true)
+        render :text => "Yes - <span class=\"demote\" data-username=\"#{username}\">remove admin rights</span>"
+      else
+        user.update_attribute(:admin, false)
+        render :text => "No - <span class=\"promote\" data-username=\"#{username}\">grant admin rights</span>"
+      end
+
+    else
+      render :text => "User not found"
+    end
+  end
   
   def admin_user?
     redirect_to '/' unless current_user.admin?

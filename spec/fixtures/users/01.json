@@ -6,6 +6,6 @@
   "password" : "passw",
   "locked" : false,
   "reset_key" : null,
-  "verified" : false
-  
+  "verified" : false,
+  "admin" : true
 }

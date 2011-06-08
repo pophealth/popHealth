@@ -3,6 +3,8 @@ PopHealth::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   get "admin/users"
+  post "admin/promote"
+  post "admin/demote"
 
   get "logs/index"
 
