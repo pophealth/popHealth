@@ -18,6 +18,18 @@ RSpec.configure do |config|
   config.mock_with :rspec
 end
 
+module LoginHelper
+  def mock_user
+    @mock_user ||= mock_model('Users', :username => "andy", :effective_date => nil, :admin? => true)
+  end
+  
+  def login
+     request.env['warden'] = mock(Warden, :authenticate => mock_user,
+                                          :authenticate! => mock_user,
+                                          :user => mock_user)
+  end
+end
+
 
 def collection_fixtures(*collection_names)
   collection_names.each do |collection|

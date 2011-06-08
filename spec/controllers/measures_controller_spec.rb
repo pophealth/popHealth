@@ -1,16 +1,7 @@
 require 'spec_helper'
 
 describe MeasuresController do
-  
-  def mock_user
-    @mock_user ||= mock_model('Users', :username => "andy", :effective_date => nil)
-  end
-  
-  def login
-     request.env['warden'] = mock(Warden, :authenticate => mock_user,
-                                          :authenticate! => mock_user,
-                                          :user => mock_user)
-  end
+  include LoginHelper
   
   before do
     collection_fixtures 'measures', 'selected_measures', 'records'

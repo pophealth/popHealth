@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe LogsController do
+  include LoginHelper
+
+  before do
+    login
+  end
 
   describe "GET 'index'" do
     it "should be successful" do
