@@ -28,7 +28,7 @@ class RecordsController < ApplicationController
       mongo['records'] << patient
       QME::QualityReport.destroy_all
       Atna.log(@user.username, :phi_import)
-      Log.create(:username => attempted_login_name, :event => :phi_import)
+      Log.create(:username => @user.username, :event => :phi_import, :patient_id => patient['patient_id'])
       render :text => 'Patient imported', :status => 201
     end
   end
@@ -37,7 +37,8 @@ class RecordsController < ApplicationController
 
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|
-      @user = User.authenticate(username, password)
+      @user = User.first(:conditions => {:username => username})
+      @user && @user.valid_password?(password)
     end
   end
 end
