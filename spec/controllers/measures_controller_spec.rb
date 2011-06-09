@@ -39,6 +39,10 @@ describe MeasuresController do
       end
       get :measure_report, :format => :xml
       response.should be_success
+      d = Digest::SHA1.new
+      checksum = d.hexdigest(response.body)
+      l = Log.first(:conditions => {:checksum => checksum})
+      l.username.should == 'andy'
     end
   end
   

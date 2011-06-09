@@ -4,6 +4,8 @@ class MeasuresController < ApplicationController
   before_filter :authenticate_user!
   before_filter :set_up_environment
 
+  after_filter :hash_document, :only => [:measure_report, :patient_list]
+
   def index
     @selected_measures = mongo['selected_measures'].find({:username => current_user.username}).to_a #need to call to_a so that it isn't a cursor
     @grouped_selected_measures = @selected_measures.group_by {|measure| measure['category']}
@@ -127,6 +129,12 @@ class MeasuresController < ApplicationController
   end
 
   private
+  
+  def hash_document
+    d = Digest::SHA1.new
+    checksum = d.hexdigest(response.body)
+    Log.create(:username => current_user.username, :event => :phi_export, :checksum => checksum)
+  end
   
   def self.three_months_prior(date)
     Time.at(date - 3 * 30 * 24 * 60 * 60)
