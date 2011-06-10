@@ -1,3 +1,24 @@
+<% content_for :head do -%>
+  <script type="text/javascript">
+  var popHealth = popHealth || {};
+  
+  popHealth.rangeChanged = function () {
+    var query = $.query
+    if ($('#logStartDate').val().length > 0) {
+      query = query.set('log_start_date', $('#logStartDate').val());
+    }
+    if ($('#logEndDate').val().length > 0) {
+      query = query.set('log_end_date', $('#logEndDate').val());
+    }
+    window.location.search = query.toString();
+  };
+  
+  $(document).ready(function() {
+    $('#logStartDate, #logEndDate').calendricalDateRange({usa: true, changed: popHealth.rangeChanged});
+  });
+  </script>
+<% end -%>
+
 <div id="dashboardContainer">
 <!-- add a comment -->
   <div id="header">
@@ -11,13 +32,24 @@
   </div><!-- end #header -->
   <div id="pageContent">
     <h1>Logs</h1>
+    <table>
+      <tr>
+        <td>Start</td>
+        <td><input type="text" id="logStartDate" size="6" value="<%= params[:log_start_date] %>"/></td>
+      </tr>
+      <tr>
+        <td>End</td>
+        <td><input type="text" id="logEndDate" size="6" value="<%= params[:log_end_date] %>"/></td>
+      </tr>
+    </table>
+
     <table id="patientTable">
       <tr>
-        <th><%= link_to 'Timestamp', :sort => 'created_at', :order => 'desc' %></th>
-        <th><%= link_to 'Username', :sort => 'username', :order => 'desc' %></th>
-        <th><%= link_to 'Event', :sort => 'event', :order => 'desc' %></th>
-        <th><%= link_to 'File SHA1 Hash', :sort => 'checksum', :order => 'desc' %></th>
-        <th><%= link_to 'Patient Id', :sort => 'patient_id', :order => 'desc' %></th>
+        <th><%= link_to 'Timestamp', time_range_params_plus(:sort => 'created_at', :order => 'desc') %></th>
+        <th><%= link_to 'Username', time_range_params_plus(:sort => 'username', :order => 'desc') %></th>
+        <th><%= link_to 'Event', time_range_params_plus(:sort => 'event', :order => 'desc') %></th>
+        <th><%= link_to 'File SHA1 Hash', time_range_params_plus(:sort => 'checksum', :order => 'desc') %></th>
+        <th><%= link_to 'Patient Id', time_range_params_plus(:sort => 'patient_id', :order => 'desc') %></th>
       </tr>
       <% @logs.each do |log| -%>
       <tr>
