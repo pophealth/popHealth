@@ -11,6 +11,13 @@
   <div id="pageContent">
     <h1>Logs</h1>
     <table id="patientTable">
+      <tr>
+        <th><%= link_to 'Timestamp', :sort => 'created_at', :order => 'desc' %></th>
+        <th><%= link_to 'Username', :sort => 'username', :order => 'desc' %></th>
+        <th><%= link_to 'Event', :sort => 'event', :order => 'desc' %></th>
+        <th><%= link_to 'File SHA1 Hash', :sort => 'checksum', :order => 'desc' %></th>
+        <th><%= link_to 'Patient Id', :sort => 'patient_id', :order => 'desc' %></th>
+      </tr>
       <% @logs.each do |log| -%>
       <tr>
         <td><%= log.created_at %></td>
