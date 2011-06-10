@@ -1,0 +1,34 @@
+<div id="dashboardContainer">
+<!-- add a comment -->
+  <div id="header">
+    <div id="breadcrumbBox">
+      <ul id="breadcrumbItems">
+      <li>logs</li>
+      </ul>
+      <%= render :partial => 'layouts/top_nav' %>
+    </div><!-- end #breadcrumbBox -->
+  </div><!-- end #header -->
+  <div id="pageContent">
+    <h1>Logs</h1>
+    <table id="patientTable">
+      <tr>
+        <th><%= link_to 'Timestamp', :sort => 'created_at', :order => 'desc' %></th>
+        <th><%= link_to 'Username', :sort => 'username', :order => 'desc' %></th>
+        <th><%= link_to 'Event', :sort => 'event', :order => 'desc' %></th>
+        <th><%= link_to 'File SHA1 Hash', :sort => 'checksum', :order => 'desc' %></th>
+        <th><%= link_to 'Patient Id', :sort => 'patient_id', :order => 'desc' %></th>
+      </tr>
+      <% @logs.each do |log| -%>
+      <tr>
+        <td><%= log.created_at %></td>
+        <td><%= log.username %></td>
+        <td><%= log.event %></td>
+        <td><%= log.checksum %></td>
+        <td><%= log.patient_id %></td>
+      </tr>
+      <% end -%>
+    </table>
+
+    <%= will_paginate @logs %>
+  </div>
+</div>

@@ -13,7 +13,7 @@ function submitKeyPress(e)
 
   if (keynum == 13)
   {
-    document.login_form.submit();
+    submitLoginform();
     return false;
   }
   else
@@ -24,16 +24,16 @@ function submitKeyPress(e)
 
 function submitLoginform()
 {
-   document.login_form.submit();
+   document.forms[0].submit();
 }
 
 function submitRegisterform()
 {
-   document.register_form.submit();
+   document.forms[0].submit();
 }
 
 function submitResetPasswordinform()
 {
-  document.forgot_password_form.submit();
+   document.forms[0].submit();
 }
 
