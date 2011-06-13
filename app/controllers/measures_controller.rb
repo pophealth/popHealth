@@ -133,7 +133,7 @@ class MeasuresController < ApplicationController
   def hash_document
     d = Digest::SHA1.new
     checksum = d.hexdigest(response.body)
-    Log.create(:username => current_user.username, :event => :phi_export, :checksum => checksum)
+    Log.create(:username => current_user.username, :event => 'Document Exported', :checksum => checksum)
   end
   
   def self.three_months_prior(date)
