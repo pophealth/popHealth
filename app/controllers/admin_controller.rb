@@ -14,6 +14,16 @@ class AdminController < ApplicationController
     toggle_admin_privilidges(params[:username], :demote)
   end
   
+  def approve
+    user = User.first(:conditions => {:username => params[:username]})
+    if user
+      user.update_attribute(:approved, true)
+      render :text => "true"
+    else
+      render :text => "User not found"
+    end
+  end
+  
   private
   
   def toggle_admin_privilidges(username, direction)

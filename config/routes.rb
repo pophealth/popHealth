@@ -5,6 +5,7 @@ PopHealth::Application.routes.draw do
   get "admin/users"
   post "admin/promote"
   post "admin/demote"
+  post "admin/approve"
 
   get "logs/index"
 
