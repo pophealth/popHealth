@@ -28,11 +28,20 @@
       });
     };
     
+    popHealth.removeUser = function() {
+      var username = $(this).data("username");
+      var parentTd = $(this).parent();
+      $.post('<%= admin_destroy_path %>', {'username': username}, function(data) {
+        parentTd.html(data);
+      });
+    };
+    
     $(document).ready(function() {
       
       $('.promote').click(popHealth.promoteUser);
       $('.demote').click(popHealth.demoteUser);
       $('.approve').click(popHealth.approveUser);
+      $('.remove').click(popHealth.removeUser);
       $(document).idleTimeout({
         inactivity: 300000,
         noconfirm: 10000,
@@ -85,7 +94,9 @@
           <span class="approve" data-username="<%= user.username %>">approve</span>
           <% end -%>
         </td>
-        <td></td>
+        <td>
+          <span class="remove" data-username="<%= user.username %>">remove</span>
+        </td>
       </tr>
       <% end -%>
     </table>
