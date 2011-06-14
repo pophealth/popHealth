@@ -9,7 +9,7 @@ class RecordsController < ApplicationController
     doc.root.add_namespace_definition('cda', 'urn:hl7-org:v3')
     patient = nil
     root_element_name = doc.root.name
-    
+
     if root_element_name == 'ClinicalDocument'
       patient = QME::Importer::PatientImporter.instance.parse_c32(doc)
     elsif root_element_name == 'ContinuityOfCareRecord'
@@ -23,7 +23,7 @@ class RecordsController < ApplicationController
     else
       render :text => 'Unknown XML Format', :status => 400
     end
-    
+
     if patient
       mongo['records'] << patient
       QME::QualityReport.destroy_all
@@ -41,4 +41,5 @@ class RecordsController < ApplicationController
       @user && @user.valid_password?(password)
     end
   end
+
 end
