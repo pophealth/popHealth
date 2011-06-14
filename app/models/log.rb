@@ -3,7 +3,7 @@ class Log
   include Mongoid::Timestamps
   
   field :username, :type => String
-  field :event, :type => Symbol
+  field :event, :type => String
   field :patient_id, :type => String
   field :checksum, :type => String
 end

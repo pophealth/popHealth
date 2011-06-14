@@ -11,5 +11,11 @@ require 'spec_helper'
 #   end
 # end
 describe LogsHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should be able to add the time to the rest of the params" do
+    existing_params = {:page => 4}
+    helper.params[:log_start_date] = 'tomorrow'
+    helper.time_range_params_plus(existing_params)
+    existing_params[:page].should == 4
+    existing_params[:log_start_date].should == 'tomorrow'
+  end
 end
