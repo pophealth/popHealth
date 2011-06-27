@@ -4,7 +4,7 @@ class RecordsController < ApplicationController
   before_filter :authenticate
 
   def create
-    xml_file = params[:content].tempfile.read
+    xml_file = request.body
     doc = Nokogiri::XML(xml_file)
     doc.root.add_namespace_definition('cda', 'urn:hl7-org:v3')
     patient = nil
