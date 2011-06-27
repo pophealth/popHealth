@@ -27,7 +27,8 @@ class User
   validates_uniqueness_of :username
   validates_uniqueness_of :email
 
-  validates_acceptance_of :agree_license
+  #validates_acceptance_of :agree_license
+  validates :agree_license, :presence => true
 
   validates :email, :presence => true,
                     :length => {:minimum => 3, :maximum => 254},
