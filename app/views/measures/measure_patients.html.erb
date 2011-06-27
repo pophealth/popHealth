@@ -1,6 +1,7 @@
  <table id="patientTable">
     <thead>
        <tr>
+         <th name="last">Patient ID</th>
          <th name="last">Last</th>
          <th name="first">First</th>
          <th name="birthdate">Age</th>
@@ -12,10 +13,11 @@
      <% @page_results.each do |patient_container| -%>
        <tr class="antiNumerator">
          <% patient = patient_container['value'] -%>
+         <td><%= patient['patient_id'] || 'UNK' %></td>
          <td><%= patient['last'] %></td>
          <td><%= patient['first'] %></td>
          <td><%= age_from_time(patient['birthdate']) || 'UNK' %></td>
-         <td><%= dob(patient['birthdate'])  || 'UNK' %></td>
+         <td><%= dob(patient['birthdate']) || 'UNK' %></td>
          <td><%= patient["gender"] || "UNK" %></td>
        </tr>
      <% end -%>

@@ -71,20 +71,32 @@ class MeasuresController < ApplicationController
     measure_id = params[:id] 
     sub_id = params[:sub_id]
     @records = mongo['patient_cache'].find({'value.measure_id' => measure_id, 'value.sub_id' => sub_id,
-                                       'value.effective_date' => @effective_date, type => true}, 
+                                       'value.effective_date' => @effective_date, type => true},
                                       {:sort => [sort, sort_order], :skip => @skip, :limit => @limit}).to_a
     @total =  mongo['patient_cache'].find({'value.measure_id' => measure_id, 'value.sub_id' => sub_id,
                                       'value.effective_date' => @effective_date, type => true}).count
     @page_results = WillPaginate::Collection.create((params[:page] || 1), @limit, @total) do |pager|
        pager.replace(@records)
     end
+    # log the patient_id of each of the patients that this user has viewed
+    @page_results.each do |patient_container|
+      Log.create(:username =>   current_user.username,
+                 :event =>      'patient record viewed',
+                 :patient_id => (patient_container['value'])['patient_id'])
+    end
   end
-  
+
   def patient_list
     measure_id = params[:id] 
     sub_id = params[:sub_id]
     @records = mongo['patient_cache'].find({'value.measure_id' => measure_id, 'value.sub_id' => sub_id,
                                             'value.effective_date' => @effective_date})
+    # log the patient_id of each of the patients that this user has viewed
+    @records.each do |patient_container|
+      Log.create(:username =>   current_user.username,
+                 :event =>      'patient record viewed',
+                 :patient_id => (patient_container['value'])['patient_id'])
+    end
     respond_to do |format|
       format.xml do
         headers['Content-Disposition'] = 'attachment; filename="excel-export.xls"'
@@ -129,13 +141,13 @@ class MeasuresController < ApplicationController
   end
 
   private
-  
+
   def hash_document
     d = Digest::SHA1.new
     checksum = d.hexdigest(response.body)
-    Log.create(:username => current_user.username, :event => 'Document Exported', :checksum => checksum)
+    Log.create(:username => current_user.username, :event => 'document exported', :checksum => checksum)
   end
-  
+
   def self.three_months_prior(date)
     Time.at(date - 3 * 30 * 24 * 60 * 60)
   end
@@ -148,11 +160,11 @@ class MeasuresController < ApplicationController
       @effective_date = Time.gm(2010, 12, 31).to_i
     end
     @period_start = MeasuresController.three_months_prior(@effective_date)
-    
     if params[:id]
       @quality_report = QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date)
       @measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
     end
+
   end
 
   def extract_result(id, sub_id, effective_date)
@@ -167,4 +179,5 @@ class MeasuresController < ApplicationController
       :exclusions=>result['exclusions']
     }
   end
+
 end
