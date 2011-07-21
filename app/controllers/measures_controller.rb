@@ -90,7 +90,7 @@ class MeasuresController < ApplicationController
     measure_id = params[:id] 
     sub_id = params[:sub_id]
     @records = mongo['patient_cache'].find({'value.measure_id' => measure_id, 'value.sub_id' => sub_id,
-                                            'value.effective_date' => @effective_date})
+                                            'value.effective_date' => @effective_date}).to_a
     # log the patient_id of each of the patients that this user has viewed
     @records.each do |patient_container|
       Log.create(:username =>   current_user.username,
