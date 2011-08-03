@@ -11,14 +11,14 @@ if RUBY_PLATFORM =~ /java/ && File.exists?(Rails.root+ 'resources/ccr/jars/ccr-i
     require jar_file
   end
   
-  import javax.xml.bind.JAXBContext
-  import java.io.InputStream
-  import org.ohd.pophealth.ccr.importer.RecordCreator
-  import org.ohd.pophealth.ccr.importer.Vocabulary
-  import org.ohd.pophealth.json.MeasureReader
-  import org.ohd.pophealth.evaluator.QualityMeasureEvaluator
-  import java.io.FileInputStream
-  import java.util.ArrayList
+  java_import javax.xml.bind.JAXBContext
+  java_import java.io.InputStream
+  java_import org.ohd.pophealth.ccr.importer.RecordCreator
+  java_import org.ohd.pophealth.ccr.importer.Vocabulary
+  java_import org.ohd.pophealth.json.MeasureReader
+  java_import org.ohd.pophealth.evaluator.QualityMeasureEvaluator
+  java_import java.io.FileInputStream
+  java_import java.util.ArrayList
   
   require 'ccr_importer'
   
