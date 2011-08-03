@@ -1,7 +1,7 @@
 <% content_for :head do -%>
   <script type="text/javascript">
     var popHealth = popHealth || {};
-    
+
     popHealth.promoteUser = function() {
       var username = $(this).data("username");
       var parentTd = $(this).parent();
@@ -10,7 +10,7 @@
         parentTd.find('.demote').click(popHealth.demoteUser);
       });
     };
-    
+
     popHealth.demoteUser = function() {
       var username = $(this).data("username");
       var parentTd = $(this).parent();
@@ -19,7 +19,7 @@
         parentTd.find('.promote').click(popHealth.promoteUser);
       });
     };
-    
+
     popHealth.approveUser = function() {
       var username = $(this).data("username");
       var parentTd = $(this).parent();
@@ -27,7 +27,7 @@
         parentTd.html(data);
       });
     };
-    
+
     popHealth.removeUser = function() {
       var username = $(this).data("username");
       var parentTd = $(this).parent();
@@ -35,9 +35,8 @@
         parentTd.html(data);
       });
     };
-    
+
     $(document).ready(function() {
-      
       $('.promote').click(popHealth.promoteUser);
       $('.demote').click(popHealth.demoteUser);
       $('.approve').click(popHealth.approveUser);
@@ -48,7 +47,7 @@
         sessionAlive: false,
         alive_url: '/',
         redirect_url: '<%= destroy_user_session_path %>',
-        logout_url: '/'
+        logout_url: '/logout.html'
       });
     });
   </script>
@@ -71,7 +70,7 @@
         <th>First Name</th>
         <th>Last Name</th>
         <th>Username</th>
-        <th>Admin</th>
+        <th>Admininstrator</th>
         <th>Approved</th>
         <th></th>
       </tr>

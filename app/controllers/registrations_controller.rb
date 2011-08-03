@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+
   # Need bundle info to display the license information
   def new
     @bundles = mongo['bundles'].find() || []
@@ -25,10 +26,11 @@ class RegistrationsController < Devise::RegistrationsController
       render_with_scope :edit
     end
   end
-  
+
   protected
-  
+
   def after_inactive_sign_up_path_for(resource)
     '/approval_needed.html'
   end
+
 end

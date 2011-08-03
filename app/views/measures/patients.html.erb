@@ -64,16 +64,16 @@
       $("#measurementPeriodEndDate").val(new Date().format("mm/dd/yyyy"));
       $("#btnSaveNewMeasure").click(popHealth.saveNewMeasure);
       $("#btnReturnToDash").click(popHealth.returnToDash);
-      
+
       $(document).idleTimeout({
         inactivity: 300000,
         noconfirm: 10000,
         sessionAlive: false,
         alive_url: '/',
         redirect_url: '<%= destroy_user_session_path %>',
-        logout_url: '/'
+        logout_url: '/logout.html'
       });
-      
+
       $('input[name=patientGroup]').change(function() {
         //$('#patientTableContainer').patient_table.displayNumerator();
         if(this.id == "num"){

@@ -4,7 +4,7 @@ class RecordsController < ApplicationController
   before_filter :authenticate
 
   def create
-    xml_file = params[:content].tempfile.read
+    xml_file = request.body
     doc = Nokogiri::XML(xml_file)
     doc.root.add_namespace_definition('cda', 'urn:hl7-org:v3')
     patient = nil
@@ -28,7 +28,7 @@ class RecordsController < ApplicationController
       mongo['records'] << patient
       QME::QualityReport.destroy_all
       Atna.log(@user.username, :phi_import)
-      Log.create(:username => @user.username, :event => 'Patient Record Imported', :patient_id => patient['patient_id'])
+      Log.create(:username => @user.username, :event => 'patient record imported', :patient_id => patient['patient_id'])
       render :text => 'Patient imported', :status => 201
     end
   end
