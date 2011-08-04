@@ -82,7 +82,7 @@ class MeasuresController < ApplicationController
     @page_results.each do |patient_container|
       Log.create(:username =>   current_user.username,
                  :event =>      'patient record viewed',
-                 :patient_id => (patient_container['value'])['patient_id'])
+                 :patient_id => (patient_container['value'])['medical_record_id'])
     end
   end
 
@@ -95,7 +95,7 @@ class MeasuresController < ApplicationController
     @records.each do |patient_container|
       Log.create(:username =>   current_user.username,
                  :event =>      'patient record viewed',
-                 :patient_id => (patient_container['value'])['patient_id'])
+                 :patient_id => (patient_container['value'])['medical_record_id'])
     end
     respond_to do |format|
       format.xml do
