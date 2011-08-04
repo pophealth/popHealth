@@ -4,12 +4,12 @@ class RecordsController < ApplicationController
   before_filter :authenticate
 
   def create
-    xml_file = params[:content].tempfile.read
+    xml_file = request.body
     doc = Nokogiri::XML(xml_file)
     doc.root.add_namespace_definition('cda', 'urn:hl7-org:v3')
     patient = nil
     root_element_name = doc.root.name
-    
+
     if root_element_name == 'ClinicalDocument'
       patient = QME::Importer::PatientImporter.instance.parse_c32(doc)
     elsif root_element_name == 'ContinuityOfCareRecord'
@@ -23,10 +23,12 @@ class RecordsController < ApplicationController
     else
       render :text => 'Unknown XML Format', :status => 400
     end
-    
+
     if patient
       mongo['records'] << patient
       QME::QualityReport.destroy_all
+      Atna.log(@user.username, :phi_import)
+      Log.create(:username => @user.username, :event => 'patient record imported', :patient_id => patient['patient_id'])
       render :text => 'Patient imported', :status => 201
     end
   end
@@ -35,7 +37,9 @@ class RecordsController < ApplicationController
 
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|
-      User.authenticate(username, password)
+      @user = User.first(:conditions => {:username => username})
+      @user && @user.valid_password?(password)
     end
   end
+
 end

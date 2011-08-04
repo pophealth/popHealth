@@ -1,0 +1,103 @@
+<% content_for :head do -%>
+  <script type="text/javascript">
+    var popHealth = popHealth || {};
+
+    popHealth.promoteUser = function() {
+      var username = $(this).data("username");
+      var parentTd = $(this).parent();
+      $.post('<%= admin_promote_path %>', {'username': username}, function(data) {
+        parentTd.html(data);
+        parentTd.find('.demote').click(popHealth.demoteUser);
+      });
+    };
+
+    popHealth.demoteUser = function() {
+      var username = $(this).data("username");
+      var parentTd = $(this).parent();
+      $.post('<%= admin_demote_path %>', {'username': username}, function(data) {
+        parentTd.html(data);
+        parentTd.find('.promote').click(popHealth.promoteUser);
+      });
+    };
+
+    popHealth.approveUser = function() {
+      var username = $(this).data("username");
+      var parentTd = $(this).parent();
+      $.post('<%= admin_approve_path %>', {'username': username}, function(data) {
+        parentTd.html(data);
+      });
+    };
+
+    popHealth.removeUser = function() {
+      var username = $(this).data("username");
+      var parentTd = $(this).parent();
+      $.post('<%= admin_destroy_path %>', {'username': username}, function(data) {
+        parentTd.html(data);
+      });
+    };
+
+    $(document).ready(function() {
+      $('.promote').click(popHealth.promoteUser);
+      $('.demote').click(popHealth.demoteUser);
+      $('.approve').click(popHealth.approveUser);
+      $('.remove').click(popHealth.removeUser);
+      $(document).idleTimeout({
+        inactivity: 300000,
+        noconfirm: 10000,
+        sessionAlive: false,
+        alive_url: '/',
+        redirect_url: '<%= destroy_user_session_path %>',
+        logout_url: '/logout.html'
+      });
+    });
+  </script>
+<% end -%>
+<div id="dashboardContainer">
+<!-- add a comment -->
+  <div id="header">
+    <div id="breadcrumbBox">
+      <ul id="breadcrumbItems">
+        <li><a href="<%= dashboard_url %>">measure dashboard</a> <span class="sep">&raquo;</span></li>
+        <li>users</li>
+      </ul>
+      <%= render :partial => 'layouts/top_nav' %>
+    </div><!-- end #breadcrumbBox -->
+  </div><!-- end #header -->
+  <div id="pageContent">
+    <h1>Users</h1>
+    <table id="patientTable">
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+        <th>Admininstrator</th>
+        <th>Approved</th>
+        <th></th>
+      </tr>
+      <% @users.each do |user| -%>
+      <tr>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.username %></td>
+        <td>
+          <% if user.admin? -%>
+          Yes - <span class="demote" data-username="<%= user.username %>">remove admin rights</span>
+          <% else -%>
+          No - <span class="promote" data-username="<%= user.username %>">grant admin rights</span>
+          <% end -%>
+        </td>
+        <td>
+          <% if user.approved? -%>
+          true
+          <% else -%>
+          <span class="approve" data-username="<%= user.username %>">approve</span>
+          <% end -%>
+        </td>
+        <td>
+          <span class="remove" data-username="<%= user.username %>">remove</span>
+        </td>
+      </tr>
+      <% end -%>
+    </table>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 <% content_for :head do %>
   <script type="text/javascript">
-    function llog(x) {window.console.log(x)}    
+    function llog(x) {window.console.log(x)}
     var popHealth = popHealth || {};
     popHealth.drawPctChart = function(data) {
         var elem = "#mcp";
@@ -75,6 +75,15 @@
       $(".deleteParamIcon").click(popHealth.deleteParam);
       $("#btnSaveNewMeasure").click(popHealth.saveNewMeasure);
       $("#btnReturnToDash").click(popHealth.returnToDash);
+      
+      $(document).idleTimeout({
+        inactivity: 300000,
+        noconfirm: 10000,
+        sessionAlive: false,
+        alive_url: '/',
+        redirect_url: '<%= destroy_user_session_path %>',
+        logout_url: '/logout.html'
+      });
     });
 
     function alertDate(e) {

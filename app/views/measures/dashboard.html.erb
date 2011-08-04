@@ -123,6 +123,14 @@
         changed: popHealth.updatePeriodEnd
       });
       $('#btnMeasurementPeriodChange').click(popHealth.changeMeasurePeriod);
+      $(document).idleTimeout({
+        inactivity: 300000,
+        noconfirm: 10000,
+        sessionAlive: false,
+        alive_url: '/',
+        redirect_url: '<%= destroy_user_session_path %>',
+        logout_url: '/logout.html'
+      });
     });
   </script>
 <% end -%>
@@ -134,9 +142,7 @@
       <ul id="breadcrumbItems">
       <li>measure dashboard</li>
       </ul>
-      <div id="logOut">
-        Welcome, <%= self.user.first_name.to_s %> <span class="sep">|</span> <a href="http://projectpophealth.org/faq.html">help</a> <span class="sep">|</span> <%= link_to 'account', edit_account_url(user) %> <span class="sep">|</span> <%= link_to 'logout', log_out_accounts_url, 'class' => 'log' %>
-      </div>
+      <%= render :partial => 'layouts/top_nav' %>
     </div><!-- end #breadcrumbBox -->
   </div><!-- end #header -->
   <div id="pageContent">
@@ -174,7 +180,7 @@
     </div><!-- end #providerReports -->
     <div id="dashboardPeriod">
       <div class="measureDetailTable">
-        <h1>Community Health Services</h1>
+        <h1><%= current_user.company.to_s %></h1>
         <dl>
           <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
           <dt>Reporting Period:</dt>

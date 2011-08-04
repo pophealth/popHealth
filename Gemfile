@@ -1,4 +1,4 @@
-source 'http://gemcutter.org'
+source :rubygems
 
 gem 'rails', '3.0.7'
 
@@ -6,16 +6,16 @@ group :test, :development do
   gem "rspec-rails", "~> 2.5.0"
 end
 
-gem 'quality-measure-engine', '0.8.0'
+gem 'quality-measure-engine', '1.0.1'
 gem 'nokogiri'
 gem 'rubyzip'
 
 gem "will_paginate", "~> 3.0.pre2"
-gem 'warden'
-gem 'rails_warden', '0.5.2'
-gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'json', :platforms => :jruby
 gem 'bson_ext', :platforms => :mri
+gem "mongoid", "2.0.1"
+gem 'devise'
+gem 'foreman'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
