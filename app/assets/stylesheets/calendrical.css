@@ -1,0 +1,70 @@
+.calendricalDatePopup {
+  background: white;
+  z-index: 1;
+  border: solid 1px #999999;
+  padding: 5px;
+  text-align: center;
+  width: 160px; }
+  .calendricalDatePopup table {
+    border-collapse: collapse;
+    width: 160px; }
+    .calendricalDatePopup table .monthCell {
+      padding: 2px 0; }
+      .calendricalDatePopup table .monthCell a {
+        display: block;
+        float: left;
+        line-height: 20px; }
+      .calendricalDatePopup table .monthCell .prevMonth, .calendricalDatePopup table .monthCell .nextMonth {
+        width: 24px; }
+      .calendricalDatePopup table .monthCell .monthName {
+        width: 110px; }
+    .calendricalDatePopup table a {
+      text-decoration: none; }
+    .calendricalDatePopup table th {
+      text-align: center; }
+    .calendricalDatePopup table td {
+      text-align: center;
+      font-size: 12px;
+      padding: 0; }
+      .calendricalDatePopup table td a {
+        display: block;
+        color: black;
+        padding: 2px 4px; }
+        .calendricalDatePopup table td a:hover {
+          background: #ccccff;
+          border: none;
+          padding: 2px 4px; }
+      .calendricalDatePopup table td.today a {
+        background: #eeeebb; }
+      .calendricalDatePopup table td.selected a {
+        background: #ccccff; }
+      .calendricalDatePopup table td.today_selected a {
+        background: #eeeebb;
+        border: solid 1px #dddd66;
+        padding: 1px 2px; }
+      .calendricalDatePopup table td.nonMonth a {
+        color: #999999; }
+
+.calendricalTimePopup {
+  background: white;
+  border: solid 1px #999999;
+  width: 110px;
+  height: 130px;
+  overflow: auto; }
+  .calendricalTimePopup ul {
+    margin: 0;
+    padding: 0; }
+    .calendricalTimePopup ul li {
+      list-style: none;
+      margin: 0; }
+      .calendricalTimePopup ul li a, .calendricalTimePopup ul li a:visited {
+        text-indent: 10px;
+        padding: 4px;
+        display: block;
+        color: black;
+        text-decoration: none; }
+      .calendricalTimePopup ul li a:hover, .calendricalTimePopup ul li.selected a {
+        background: #ccccff; }
+
+.calendricalEndTimePopup {
+  width: 160px; }

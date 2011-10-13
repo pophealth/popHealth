@@ -3,13 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <title>popHealth : An Open Source Quality Measure Reference Implementation</title>
-  <link rel="shortcut icon" href="/images/favicon.ico"/>
+  <link rel="shortcut icon" href="/assets/favicon.ico"/>
   <%# stylesheet_link_tag :all %>
+  
   <%= stylesheet_link_tag 'pophealth.css' %>
   <%= stylesheet_link_tag 'calendrical.css' %>
   <%= stylesheet_link_tag 'vtip.css' %>
   <%= stylesheet_link_tag 'jquery-ui-1.8.13.custom.css' %>
-  <%= javascript_include_tag :defaults %>
+  
+  <%= javascript_include_tag 'jquery-1.4.4.js' %>
   <%= javascript_include_tag 'jquery.easing.1.3.js' %>
   <%= javascript_include_tag 'jquery.calendrical.js' %>
   <%= javascript_include_tag 'jquery.query.js' %>
@@ -18,6 +20,7 @@
   <%= javascript_include_tag 'vtip-min.js' %>
   <%= javascript_include_tag 'jquery-ui-1.8.13.custom.min.js' %>
   <%= javascript_include_tag 'jquery-idleTimeout.js' %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tag %>
   <%= yield :head %>
 </head>
