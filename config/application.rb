@@ -49,6 +49,9 @@ module PopHealth
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    paths.app.views << "app/views/devise"
+    # add devise views
+    config.paths["app/views/devise"]
+    
+    require 'will_paginate/array'
   end
 end

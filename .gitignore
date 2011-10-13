@@ -2,6 +2,7 @@
 *.sqlite3
 public/clinical_documents
 config/database.yml
+coverage.data
 coverage
 public/laika
 *.DS_Store

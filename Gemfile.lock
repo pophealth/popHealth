@@ -72,6 +72,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    minitest (2.6.1)
     mongo (1.4.0)
       bson (= 1.4.0)
     mongoid (2.3.1)
@@ -194,6 +195,7 @@ DEPENDENCIES
   factory_girl
   foreman
   json
+  minitest
   mongoid
   nokogiri
   quality-measure-engine (= 1.0.1)
@@ -203,4 +205,4 @@ DEPENDENCIES
   sass-rails (~> 3.1.0)
   turn
   uglifier
-  will_paginate (~> 3.0.pre2)
+  will_paginate

@@ -1,3 +1,7 @@
+require 'cover_me'
+at_exit do
+  CoverMe.complete!
+end
 ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'

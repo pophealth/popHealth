@@ -6,7 +6,7 @@ gem 'quality-measure-engine', '1.0.1'
 gem 'nokogiri'
 gem 'rubyzip'
 
-gem "will_paginate", "~> 3.0.pre2"
+gem "will_paginate"
 gem 'json', :platforms => :jruby
 gem 'bson_ext', :platforms => :mri
 gem "mongoid"
@@ -28,6 +28,7 @@ group :test, :develop do
   gem 'turn', :require => false
   gem 'cover_me', '>= 1.0.0.rc6'
   gem 'factory_girl'
+  gem 'minitest'
 end
 
 #gem 'jquery-rails'
