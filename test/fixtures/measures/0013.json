@@ -1,0 +1,158 @@
+{
+    "id" : "0013",
+    "name" : "Hypertension: Blood Pressure Measurement",
+    "description" : "Patients more than 18 years old who have a diagnosis of hypertension seen in at least two office visits, with blood pressure recorded.",
+    "category" : "Core",
+    "steward" : "AMA",
+    "parameters" : {
+        "effective_date" : {
+            "name" : "Effective end date for measure",
+            "type" : "number",
+            "format" : "utc-sec" 
+        } 
+    },
+    "patient" : {
+        "birthdate" : {
+            "description" : "Date of birth",
+            "critical" : true,
+            "type" : "number",
+            "format" : "utc-sec",
+            "codes" : [
+                {
+                    "set" : "HL7",
+                    "version" : "3.0",
+                    "values" : [
+                        "00110" 
+                    ] 
+                } 
+            ] 
+        } 
+    },
+    "measure" : {
+      "encounter_outpatient": {
+        "name": "Date of outpatient encounter",
+        "standard_category": "encounter",
+        "type":"array",
+        "items": {
+          "type": "number",
+          "format": "utc-sec"
+        },
+        "codes": [
+          {
+            "set": "CPT",
+            "version": "2010",
+            "values": ["99201", "99202", "99203", "99204", "99205", "99212", "99213", "99214", "99215", "99241", "99242", "99243", "99244", "99245", "99324", "99325", "99326", "99327", "99328", "99334", "99335", "99336", "99337", "99341", "99342", "99343", "99344", "99345", "99347", "99348", "99349", "99350"]
+          }
+        ]
+      },
+      "encounter_nursing_facility": {
+        "name": "Date of nursing facility encounter",
+        "standard_category": "encounter",
+        "type":"array",
+        "items": {
+          "type": "number",
+          "format": "utc-sec"
+        },
+        "codes": [
+          {
+            "set": "CPT",
+            "version": "2010",
+            "values": ["99304", "99305", "99306", "99307", "99308", "99309", "99310"]
+          }
+        ]
+      },
+      "hypertension": {
+        "name": "Hypertension",
+        "standard_category": "diagnosis_condition_problem",
+        "type":"array",
+        "items": {
+          "type": "number",
+          "format": "utc-sec"
+        },
+        "codes": [
+          {
+            "set": "ICD-9-CM",
+            "version": "2009",
+            "values": ["401.0", "401.1", "401.9", "402.00", "402.01", "402.10", "402.11", "402.90", "402.91", "403.00", "403.01", "403.10", "403.11", "403.90", "403.91", "404.00", "404.01", "404.02", "404.03", "404.10", "404.11", "404.12", "404.13", "404.90", "404.91", "404.92", "404.93"]
+          },
+          {
+            "set": "ICD-10-CM",
+            "version": "2010",
+            "values": ["I10", "I11", "I13", "I13.0", "I13.10", "I13.2"]
+          },
+          {
+            "set": "SNOMED-CT",
+            "version": "07/2009",
+            "values": ["10562009", "10725009", "111438007", "1201005", "123799005", "123800009", "14973001", "15394000", "15938005", "16147005", "169465000", "18416000", "193003", "194774006", "194783001", "194785008", "194788005", "194791005", "194793008", "19769006", "198941007", "198942000", "198944004", "198945003", "198946002", "198947006", "198949009", "198951008", "198952001", "198953006", "198954000", "198956003", "198958002", "198959005", "198965005", "198966006", "198967002", "198968007", "198997005", "198999008", "199000005", "199002002", "199003007", "199005000", "199007008", "199008003", "206596003", "23130000", "23717007", "237279007", "237281009", "237282002", "23786008", "24042004", "26078007", "276789009", "28119000", "288250001", "29259002", "307632004", "308551004", "31407004", "31992008", "32916005", "34694006", "35303009", "367390009", "371125006", "37618003", "38481006", "39018007", "39727004", "397748008", "398254007", "41114007", "427889009", "428575007", "429198000", "429457004", "46481004", "46764007", "48146000", "48194001", "48552006", "49220004", "50490005", "52698002", "56218007", "57684003", "59621000", "59720008", "59997006", "62275004", "63287004", "65402008", "65443008", "65518004", "67359005", "70272006", "71874008", "72022006", "73030000", "73410007", "74451002", "78544004", "78808002", "78975002", "81626002", "8218002", "84094009", "86041002", "86234004", "8762007", "89242004", "9901000"]
+          }
+        ]
+      },
+      "diastolic_blood_pressure": {
+        "name": "Diastolic Blood Pressure",
+        "standard_category": "physical_exam",
+        "type":"array",
+        "items": {
+          "type": "number",
+          "format": "utc-sec"
+        },
+        "codes": [
+          {
+            "set": "SNOMED-CT",
+            "version": "07/2009",
+            "values": ["163031004", "174255007", "23154005", "251073000", "271650006", "314451001", "314452008", "314453003", "314454009", "314455005", "314456006", "314457002", "314458007", "314459004", "314460009", "314461008", "314462001", "314465004", "315613000", "400975005", "407555005", "407557002", "42689008", "53813002"]
+          }
+        ]
+      },
+      "systolic_blood_pressure": {
+        "name": "Systolic Blood Pressure",
+        "standard_category": "physical_exam",
+        "type":"array",
+        "items": {
+          "type": "number",
+          "format": "utc-sec"
+        },
+        "codes": [
+          {
+            "set": "SNOMED-CT",
+            "version": "07/2009",
+            "values": ["12929001", "163030003", "251070002", "251071003", "271649006", "314438006", "314439003", "314440001", "314441002", "314442009", "314443004", "314444005", "314445006", "314446007", "314447003", "314448008", "314449000", "314464000", "315612005", "399304008", "400974009", "407554009", "407556006", "72313002", "81010002"]
+          }
+        ]
+      }
+    },
+    "population" : {
+        "and" : [
+            {
+                "category" : "Patient Characteristic",
+                "title" : "Age >= 18" 
+            },
+            {
+                "category" : "Diagnosis Active",
+                "title" : "Hypertension" 
+            },
+            {
+                "category" : "Encounter",
+                "title" : "2 or more outpatient or nursing facility encounters" 
+            } 
+        ] 
+    },
+    "denominator" : {
+        
+    },
+    "numerator" : {
+        "and" : [
+            {
+                "category" : "Physical Exam Finding",
+                "title" : "Systolic blood pressure" 
+            },
+            {
+                "category" : "Physical Exam Finding",
+                "title" : "Diastolic blood pressure" 
+            } 
+        ] 
+    },
+    "exclusions" : {
+        
+    },
+    "map_fn" : "function () {\n  var patient = this;\n  var measure = patient.measures[\"0013\"];\n  if (measure==null)\n    measure={};\n\n  var year = 365*24*60*60;\n  var effective_date = <%= effective_date %>;\n  var period_start = effective_date - year;\n  var latest_birthdate = effective_date - 18*year;\n  \n  var population = function() {\n    correct_age = patient.birthdate <= latest_birthdate;\n    hypertension = inRange(measure.hypertension, period_start, effective_date);\n    encounter_outpatient = inRange(measure.encounter_outpatient, period_start, effective_date);\n    encounter_nursing = inRange(measure.encounter_nursing_facility, period_start, effective_date);\n    return (correct_age && hypertension && ((encounter_outpatient+encounter_nursing)>=2));\n  }\n  \n  var denominator = function() {\n    return true;\n  }\n  \n  var numerator = function() {\n    systolic = inRange(measure.systolic_blood_pressure, period_start, effective_date);\n    diastolic = inRange(measure.diastolic_blood_pressure, period_start, effective_date);\n    return (systolic && diastolic);\n  }\n  \n  var exclusion = function() {\n    return false;\n  }\n\n  map(patient, population, denominator, numerator, exclusion);\n};" 
+}

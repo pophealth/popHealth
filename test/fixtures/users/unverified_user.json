@@ -1,0 +1,11 @@
+{
+  "username":"unverified_guy",
+  "email":"unverified_guy@test.org",
+  "first_name":"Unverified",
+  "last_name":"Guy",
+  "password" : "$2a$10$6jwjca94YN4cLxzRJ27u5.L7UcnDSnGvchq8BxX.UQRlWdeU5EmGy",
+  "locked" : false,
+  "reset_key" : null,
+  "verified" : false,
+  "validation_key": "12345"
+}

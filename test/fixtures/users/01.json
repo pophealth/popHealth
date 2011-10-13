@@ -1,0 +1,11 @@
+{
+  "username":"test@test.org",
+  "email":"test@test.org",
+  "first_name":"Bill",
+  "last_name":"Test",
+  "password" : "passw",
+  "locked" : false,
+  "reset_key" : null,
+  "verified" : false,
+  "admin" : true
+}

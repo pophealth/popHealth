@@ -1,6 +1,8 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
+# locked to 1.3.3 to resolve annoying warning 'already initialized constant WFKV_'
+gem 'rack' , '1.3.3'
 
 gem 'quality-measure-engine', '1.0.1'
 gem 'nokogiri'
@@ -26,7 +28,7 @@ group :test, :develop do
   gem "rspec-rails"
   # Pretty printed test output
   gem 'turn', :require => false
-  gem 'cover_me', '>= 1.0.0.rc6'
+  gem 'cover_me'
   gem 'factory_girl'
   gem 'minitest'
 end

@@ -1,0 +1,187 @@
+{
+    "id" : "0032",
+    "name" : "Cervical Cancer Screening",
+    "description" : "Women from 21 to 64 years old who received one or more Pap tests.",
+    "category" : "Women's Health",
+    "steward" : "NCQA",
+    "parameters" : {
+        "effective_date" : {
+            "description" : "Effective end date for measure",
+            "type" : "number",
+            "format" : "utc-sec" 
+        } 
+    },
+    "patient" : {
+        "birthdate" : {
+            "description" : "Date of birth",
+            "critical" : true,
+            "type" : "number",
+            "format" : "utc-sec",
+            "codes" : [
+                {
+                    "set" : "HL7",
+                    "version" : "3.0",
+                    "values" : [
+                        "00110" 
+                    ] 
+                } 
+            ] 
+        } 
+    },
+    "measure" : {
+      "encounter_outpatient":
+      {
+        "description": "Dates of outpatient encounters",
+        "standard_category": "encounter",
+        "type":"array",
+        "items":
+        {
+          "type": "number",
+          "format": "utc-sec"
+        },
+        "codes":
+        [
+          {
+            "set": "CPT",
+            "version": "06/2009",
+            "values": ["99201", "99202", "99203", "99204", "99205", "99211", "99212", "99213", "99214", "99215", "99217", "99218",
+                       "99219", "99220", "99241", "99242", "99243", "99244", "99245", "99341", "99342", "99343", "99344", "99345",
+                       "99347", "99348", "99349", "99350", "99384", "99385", "99386", "99387", "99394", "99395", "99396", "99397",
+                       "99401", "99402", "99403", "99404", "99411", "99412", "99420", "99429", "99455", "99456"]
+          },
+          {
+            "set": "ICD-9-CM",
+            "version": "06/2009",
+            "values": ["V70.0", "V70.3", "V70.5", "V70.6", "V70.8", "V70.9"]
+          }
+        ]
+      },
+      "encounter_obgyn":
+      {
+        "description": "Dates of ObGyn encounters",
+        "standard_category": "encounter",
+        "type":"array",
+        "items":
+        {
+          "type": "number",
+          "format": "utc-sec"
+        },
+        "codes":
+        [
+          {
+            "set": "ICD-9-CM",
+            "version": "06/2009",
+            "values": ["V24", "V25", "V26", "V27", "V28", "V45.5", "V61.5", "V61.6", "V61.7", "V69.2", "V72.3", "V72.4"]
+          }
+        ]
+      },
+      "pap_test":
+      {
+        "description": "Dates of PAP tests",
+        "standard_category": "laboratory_test",
+        "type":"array",
+        "items":
+        {
+          "type": "number",
+          "format": "utc-sec"
+        },
+        "codes":
+        [
+          {
+            "set": "CPT",
+            "version": "06/2009",
+            "values": ["88141", "88142", "88143", "88147", "88148", "88150", "88152", "88153", "88154", "88155", "88164", "88165",
+                       "88166", "88167", "88174", "88175"]
+          },
+          {
+            "set": "HCPCS",
+            "version": "06/2009",
+            "values": ["G0123", "G0124", "G0141", "G0143", "G0144", "G0145", "G0147", "G0148", "P3000", "P3001", "Q0091"]
+          },
+          {
+            "set": "ICD-10-CM",
+            "version": "06/2009",
+            "values": ["Z12.4", "Z12.72"]
+          },
+          {
+            "set": "ICD-9-CM",
+            "version": "06/2009",
+            "values": ["91.46", "V72.32"]
+          },
+          {
+            "set": "LOINC",
+            "version": "06/2009",
+            "values": ["10524-7", "18500-9", "19762-4", "19764-0", "19765-7", "19766-5", "19774-9", "33717-0", "47527-7", "47528-5"]
+          },
+          {
+            "set": "SNOMED-CT",
+            "version": "07/2009",
+            "values": ["439958008", "440615002", "440623000"]
+          }
+        ]
+      },
+      "hysterectomy":
+      {
+        "description": "Date of hysterectomy",
+        "standard_category": "procedure",
+        "type":"array",
+        "items":
+        {
+          "type": "number",
+          "format": "utc-sec"
+        },
+        "codes":
+        [
+          {
+            "set": "CPT",
+            "version": "06/2009",
+            "values": ["51925", "56308", "58150", "58152", "58200", "58210", "58240", "58260", "58262", "58263", "58267", "58270",
+                       "58275", "58280", "58285", "58290", "58291", "58292", "58293", "58294", "58550", "58552", "58553", "58554",
+                       "58570", "58571", "58572", "58573", "58951", "58953", "58954", "58956", "59135"]
+          },
+          {
+            "set": "ICD-9-CM",
+            "version": "06/2009",
+            "values": ["618.5", "68.4", "68.41",  "68.49",  "68.5",   "68.51", "68.59", "68.6", "68.61", "68.69", "68.7", "68.71",
+                       "68.79", "68.8", "V67.01", "V76.47", "V88.01", "V88.03"]
+          },
+          {
+            "set": "ICD-10-CM",
+            "version": "06/2009",
+            "values": ["N81.81", "Z12.72", "Z90.71", "Z90.710", "Z90.7112"]
+          },
+          {
+            "set": "SNOMED-CT",
+            "version": "07/2009",
+            "values": ["116140006", "116142003", "116143008", "116144002", "236886002", "236888001", "236891001", "27950001",
+                       "307771009", "31545000",  "35955002",  "361222003", "361223008", "414575003", "59750000",  "79095000",
+                       "86477000",  "88144003"]
+          }
+        ]
+      }
+    },
+    "population" : {
+        "category" : "Patient Characteristic",
+        "title" : "Age between 23 and 63" 
+    },
+    "denominator" : {
+        "and" : [
+            {
+                "category" : "Encounter",
+                "title" : "Outpatient or ObGyn within 2 years" 
+            },
+            {
+                "category" : "Procedure Performed",
+                "title" : "No Hysterectomy" 
+            } 
+        ] 
+    },
+    "numerator" : {
+        "category" : "Laboratory test result",
+        "title" : "Pap test within 3 years" 
+    },
+    "exclusions" : {
+        
+    },
+    "map_fn" : "function () {\n  var patient = this;\n  var measure = patient.measures[\"0032\"];\n  if (measure==null)\n    measure={};\n\n  var year = 365*24*60*60;\n  var effective_date = <%= effective_date %>;\n  var earliest_birthdate = effective_date - 64*year;\n  var latest_birthdate = effective_date - 23*year;\n  var earliest_encounter = effective_date - 2*year;\n  var earliest_pap = effective_date - 3*year;\n  \n  var population = function() {\n    return inRange(patient.birthdate, earliest_birthdate, latest_birthdate);\n  }\n  \n  var denominator = function() {\n    outpatient_encounter = inRange(measure.encounter_outpatient, earliest_encounter, effective_date);\n    obgyn_encounter = inRange(measure.encounter_obgyn, earliest_encounter, effective_date);\n    no_hysterectomy = (measure.hysterectomy==null || measure.hysterectomy>=effective_date);\n    return ((outpatient_encounter || obgyn_encounter) && no_hysterectomy);\n  }\n  \n  var numerator = function() {\n    return inRange(measure.pap_test, earliest_pap, effective_date);\n  }\n  \n  var exclusion = function() {\n    return false;\n  }\n  \n  map(patient, population, denominator, numerator, exclusion);\n};" 
+}
