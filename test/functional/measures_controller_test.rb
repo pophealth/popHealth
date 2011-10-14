@@ -6,7 +6,7 @@ class MeasuresControllerTest < ActionController::TestCase
   setup do
     dump_database
     collection_fixtures 'measures', 'selected_measures', 'records'
-    @user = Factory(:user)
+    @user = Factory(:user_w_selected_measures)
     sign_in @user
   end
   
@@ -16,14 +16,12 @@ class MeasuresControllerTest < ActionController::TestCase
     assert_not_nil assigns(:definition)
   end
   
-  # test "GET 'index'" do
-  #   it "should be successful" do
-  #     get :index
-  #     response.should be_success
-  #     assigns(:patient_count).should == 2
-  #     assigns(:grouped_selected_measures).should have_key("Women's Health")
-  #   end
-  # end
+  test "GET 'index'" do
+    get :index
+    assert_response :success
+    assert_equal 2, assigns(:patient_count)
+    assert assigns(:grouped_selected_measures).keys.include?("Women's Health")
+  end
   # 
   # test "GET 'measure_report'" do
   #   it "should be successful" do

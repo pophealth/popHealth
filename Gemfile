@@ -14,7 +14,7 @@ gem 'bson_ext', :platforms => :mri
 gem "mongoid"
 gem 'devise'
 gem 'foreman'
-
+gem 'pry'
 
 # Gems used only for assets and not required
 # in production environments by default.

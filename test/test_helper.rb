@@ -15,6 +15,8 @@ class ActiveSupport::TestCase
 
   def dump_database
     User.all.each {|x| x.destroy}
+    db = Mongoid::Config.master
+    db['selected_measures'].remove({})
   end
 
   def collection_fixtures(*collection_names)
