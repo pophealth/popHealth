@@ -72,10 +72,13 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    metaclass (0.0.1)
     method_source (0.6.5)
       ruby_parser (>= 2.0.5)
     mime-types (1.16)
     minitest (2.6.1)
+    mocha (0.10.0)
+      metaclass (~> 0.0.1)
     mongo (1.4.0)
       bson (= 1.4.0)
     mongoid (2.3.1)
@@ -208,6 +211,7 @@ DEPENDENCIES
   foreman
   json
   minitest
+  mocha
   mongoid
   nokogiri
   pry

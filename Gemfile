@@ -31,6 +31,7 @@ group :test, :develop do
   gem 'cover_me'
   gem 'factory_girl'
   gem 'minitest'
+  gem 'mocha'
 end
 
 #gem 'jquery-rails'

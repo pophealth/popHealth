@@ -7,7 +7,7 @@ class MeasuresController < ApplicationController
   after_filter :hash_document, :only => [:measure_report, :patient_list]
 
   def index
-    @selected_measures = mongo['selected_measures'].find({:username => current_user.username}).to_a #need to call to_a so that it isn't a cursor
+    @selected_measures = current_user.selected_measures
     @grouped_selected_measures = @selected_measures.group_by {|measure| measure['category']}
     @categories = Measure.non_core_measures
     @core_measures = Measure.core_measures

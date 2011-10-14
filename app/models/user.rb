@@ -46,6 +46,13 @@ class User
     end
   end
 
+  # =============
+  # = Accessors =
+  # =============
+  def selected_measures
+    MONGO_DB['selected_measures'].find({:username => username}).to_a #need to call to_a so that it isn't a cursor
+  end
+
   # ==========
   # = FINDERS =
   # ==========
