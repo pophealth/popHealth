@@ -1,0 +1,6 @@
+class Patient < MongoBase
+
+
+
+
+end

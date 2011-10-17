@@ -23,6 +23,9 @@ PopHealth::Application.routes.draw do
   match 'measures/period', :to=>'measures#period', :as => :period, :via=> :post
 
   match 'records', :to => 'records#create', :via => :post
+  
+  match 'patients', :to => 'patients#index', :via => :get
+  match 'patients/show/:id', :to => 'patients#show', :as => :patient, :via => :get
 
   root :to => 'measures#index'
   
