@@ -10,9 +10,7 @@ class PatientsController < ApplicationController
   
   def show
     patient_id = params[:id]
-    @records = mongo['patient_cache'].find({'value.patient_id' => BSON::ObjectId(patient_id)}).to_a #,
-#                                      {:sort => [sort, sort_order], :skip => @skip, :limit => @limit}).to_a
-#raise (@records.first.inspect)
+    @patient = Patient.find(BSON::ObjectId(patient_id))
     render 'patient'
   end
   
