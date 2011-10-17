@@ -1,1 +1,7 @@
-hello patient <%= @records.first['value']['first'] + ' ' + @records.first['value']['last']%>
+
+<div id="container">
+  <%= render :partial => 'header', :locals => {:patient => @records.first['value']} %>
+  <div>
+    hello patient <%= @records.first['value']['first'] + ' ' + @records.first['value']['last']%>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div id="header">
+  <div id="breadcrumbBox">
+    <ul id="breadcrumbItems">
+      <li><a href="<%= dashboard_url %>">patient dashboard</a> <span class="sep">&raquo;</span></li>
+      <li><a href="#"><%= patient['first'] + ' ' + patient['last']%></a></li>
+    </ul>
+    <%= render :partial => 'layouts/top_nav' %>
+  </div><!-- end #breadcrumbBox -->
+</div><!-- end #header -->
