@@ -10,6 +10,4 @@ $.fn['PctChart'] = function(options){
 		}
 	
 		return {show:_show}
-	}
-
-})(jQuery);
+	};

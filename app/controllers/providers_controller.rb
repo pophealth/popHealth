@@ -14,6 +14,7 @@ class ProvidersController < ApplicationController
   end
   
   def edit
+    render partial: 'edit_profile'    
   end
   
   def update
@@ -22,7 +23,7 @@ class ProvidersController < ApplicationController
   end
   
   def merge_list
-   
+    render partial: 'merge_form'
   end
   
   def merge
