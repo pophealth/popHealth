@@ -7,7 +7,7 @@ class MeasuresController < ApplicationController
   after_filter :hash_document, :only => [:measure_report, :patient_list]
 
   def index
-    @selected_measures = mongo['selected_measures'].find({:username => current_user.username}).to_a #need to call to_a so that it isn't a cursor
+    @selected_measures = current_user.selected_measures
     @grouped_selected_measures = @selected_measures.group_by {|measure| measure['category']}
     @categories = Measure.non_core_measures
     @core_measures = Measure.core_measures
@@ -114,8 +114,8 @@ class MeasuresController < ApplicationController
     @report[:end] = Time.at(@effective_date)
     @report[:registry_name] = current_user.registry_name
     @report[:registry_id] = current_user.registry_id
-    @report[:npi] = current_user.npi
-    @report[:tin] = current_user.tin
+    # @report[:npi] = current_user.npi
+    # @report[:tin] = current_user.tin
     @report[:results] = []
     selected_measures.each do |measure|
       subs_iterator(measure['subs']) do |sub_id|

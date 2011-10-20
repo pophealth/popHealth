@@ -1,0 +1,40 @@
+/* Variables */
+$grey1: #f8f8f8;
+$grey2: #f0f0f0;
+$blue:  #e7e7ff;
+$green: #f0fff0;
+
+ul#provider_list {
+  float:left;
+  width:10%;
+  list-style-type: none;
+  height:97%;
+  font-family: inherit;
+/*  font-size:1em;*/
+  overflow: scroll;
+}
+
+ul#provider_list li {
+  padding: 5% 20%;
+  border-bottom: 1px solid #ccc;
+  background: #F4F4F4;
+  background: -moz-linear-gradient(top, $grey1, $grey2);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $grey1), color-stop(100%, $grey2));
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$grey1', endColorstr='$grey2',GradientType=0 ); /* IE6-9 */
+}
+
+ul#provider_list li:hover {
+  background: #ebf1f6; /* Old browsers */
+  background: -moz-linear-gradient(top, $blue, $green);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $blue), color-stop(100%, $green));
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$blue', endColorstr='$green',GradientType=0 ); /* IE6-9 */
+}
+
+div#content {
+  padding:5px;
+  float:left;
+}
+
+div#content form li {
+  list-style-type: none;
+}

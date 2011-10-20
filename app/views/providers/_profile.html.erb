@@ -1,0 +1,26 @@
+<h2><%= @provider.full_name %></h2>
+
+<h4><%= @provider.specialty_name %></h4>
+<h4><%= @provider.organization %></h4>
+<br>
+<%= button_to "edit", edit_provider_path(@provider), :remote => true, :method => :get %>
+<%= button_to "merge", merge_list_provider_path(@provider), :remote => true, :method => :get %>
+
+
+<script type="text/javascript" charset="utf-8">
+  
+</script>
+<div id="merge_form">
+</div>
+<br><br>
+
+
+
+<dl>
+  <dt>NPI:</dt>
+  <dd><%= @provider.npi%></dd>
+  <dt>Tax ID:</dt>
+  <dd><%= @provider.tin%></dd>
+  <dt>Phone:</dt>
+  <dd><%= @provider.phone %></dd>
+</dl>

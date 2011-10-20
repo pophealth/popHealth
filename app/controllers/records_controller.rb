@@ -7,30 +7,37 @@ class RecordsController < ApplicationController
     xml_file = request.body
     doc = Nokogiri::XML(xml_file)
     doc.root.add_namespace_definition('cda', 'urn:hl7-org:v3')
-    patient = nil
+    providers = []
     root_element_name = doc.root.name
 
     if root_element_name == 'ClinicalDocument'
-      patient = QME::Importer::PatientImporter.instance.parse_c32(doc)
+      patient_data = QME::Importer::PatientImporter.instance.parse_c32(doc)
+      providers = QME::Importer::ProviderImporter.instance.extract_providers(doc)
     elsif root_element_name == 'ContinuityOfCareRecord'
       if RUBY_PLATFORM =~ /java/
         ccr_importer = CCRImporter.instance
         patient_raw_json = ccr_importer.create_patient(xml_file)
-        patient = JSON.parse(patient_raw_json)
+        patient_data = JSON.parse(patient_raw_json)
       else
-        render :text => 'CCR Support is currently disabled', :status => 500
+        render :text => 'CCR Support is currently disabled', :status => 500 and return
       end
     else
-      render :text => 'Unknown XML Format', :status => 400
+      render :text => 'Unknown XML Format', :status => 400 and return
     end
 
-    if patient
-      mongo['records'] << patient
-      QME::QualityReport.destroy_all
-      Atna.log(@user.username, :phi_import)
-      Log.create(:username => @user.username, :event => 'patient record imported', :patient_id => patient['patient_id'])
-      render :text => 'Patient imported', :status => 201
+    @record = Record.create!(patient_data)
+    
+    providers.each do |pv| 
+      provider = Provider.merge_or_build(pv)
+      provider.records << @record
+      provider.save
     end
+    
+    QME::QualityReport.destroy_all
+    Atna.log(@user.username, :phi_import)
+    Log.create(:username => @user.username, :event => 'patient record imported', :patient_id => @record.patient_id)
+
+    render :text => 'Patient imported', :status => 201
   end
 
   private

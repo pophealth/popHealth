@@ -5,6 +5,7 @@
   <% if current_user.admin? -%>
   <%= link_to 'admin', admin_users_path %> <span class="sep">|</span>
   <% end -%>
+  <%= link_to "providers", providers_path %> <span class="sep">|</span>
   <%= link_to 'logs', logs_index_path %> <span class="sep">|</span>
   <%= link_to 'logout', destroy_user_session_path, 'class' => 'log' %>
 </div>

@@ -6,10 +6,10 @@ PopHealth::Application.routes.draw do
   post "admin/promote"
   post "admin/demote"
   post "admin/approve"
-  post "admin/destroy"
+  post "admin/disable"
 
   get "logs/index"
-
+  
   match 'measures', :to => 'measures#index', :as => :dashboard, :via => :get
   match 'measures/show/:id(/:sub_id)', :to => 'measures#show', :as => :measure, :via => :get
   match 'measures/result/:id(/:sub_id)', :to => 'measures#result', :as => :measure_result, :via => :get
@@ -25,6 +25,13 @@ PopHealth::Application.routes.draw do
   match 'records', :to => 'records#create', :via => :post
 
   root :to => 'measures#index'
+  
+  resources :providers do
+    member do
+      get :merge_list
+      put :merge
+    end
+  end
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -75,7 +82,7 @@ PopHealth::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => "welcome#index"
+  # root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 

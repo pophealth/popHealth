@@ -1,26 +1,41 @@
-source :rubygems
+source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem 'rails', '3.1.0'
+# locked to 1.3.3 to resolve annoying warning 'already initialized constant WFKV_'
+gem 'rack' , '1.3.3'
 
-group :test, :development do
-  gem "rspec-rails", "~> 2.5.0"
-end
-
-gem 'quality-measure-engine', '1.0.1'
+gem 'quality-measure-engine', '1.0.2', :path => "../quality-measure-engine"
 gem 'nokogiri'
 gem 'rubyzip'
 
-gem "will_paginate", "~> 3.0.pre2"
+gem "will_paginate"
 gem 'json', :platforms => :jruby
 gem 'bson_ext', :platforms => :mri
-gem "mongoid", "2.0.1"
+gem "mongoid"
 gem 'devise'
 gem 'foreman'
+gem 'pry'
+gem "formtastic"
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails', "  ~> 3.1.0"
+  gem 'coffee-rails', "~> 3.1.0"
+  gem 'uglifier'
+end
 
-#gem 'sqlite3-ruby', :require => 'sqlite3'
+group :test, :develop do
+  gem "rspec-rails"
+  # Pretty printed test output
+  gem 'turn', :require => false
+  gem 'cover_me'
+  gem 'factory_girl'
+  gem 'minitest'
+  gem 'mocha'
+end
+
+gem 'jquery-rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -29,17 +44,5 @@ gem 'foreman'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug'
+# gem 'ruby-debug19', :require => 'ruby-debug'
 
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
