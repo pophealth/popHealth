@@ -1,0 +1,5 @@
+<ul id="provider_list">
+  <% @providers.each do |provider| %>
+  <%= link_to raw("<li>#{provider.full_name}</li>"), provider_path(provider), remote: true %>
+  <% end %>
+</ul>

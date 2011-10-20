@@ -13,10 +13,20 @@ class ActiveSupport::TestCase
 
   def dump_database
     User.all.each {|x| x.destroy}
+    Provider.all.each { |pr| pr.destroy }
     db = Mongoid::Config.master
     db['measures'].remove({})
     db['selected_measures'].remove({})
     db['records'].remove({})
+  end
+
+  def raw_post(action, body, parameters = nil, session = nil, flash = nil)
+    @request.env['RAW_POST_DATA'] = body
+    post(action, parameters, session, flash)
+  end
+  
+  def basic_signin(user)
+     @request.env['HTTP_AUTHORIZATION'] = "Basic #{ActiveSupport::Base64.encode64("#{user.username}:#{user.password}")}"
   end
 
   def collection_fixtures(*collection_names)

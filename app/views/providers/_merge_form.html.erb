@@ -1,0 +1,4 @@
+<%= form_tag merge_provider_path(@provider, :format => :js), :method => :put do %>
+  <%= select_tag :other_provider_id, options_from_collection_for_select(@provider.merge_eligible.alphabetical, :id, :full_name)%>
+  <%= submit_tag "Merge"%>
+<% end %>

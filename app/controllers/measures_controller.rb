@@ -114,8 +114,8 @@ class MeasuresController < ApplicationController
     @report[:end] = Time.at(@effective_date)
     @report[:registry_name] = current_user.registry_name
     @report[:registry_id] = current_user.registry_id
-    @report[:npi] = current_user.npi
-    @report[:tin] = current_user.tin
+    # @report[:npi] = current_user.npi
+    # @report[:tin] = current_user.tin
     @report[:results] = []
     selected_measures.each do |measure|
       subs_iterator(measure['subs']) do |sub_id|

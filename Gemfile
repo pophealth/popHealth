@@ -4,7 +4,7 @@ gem 'rails', '3.1.0'
 # locked to 1.3.3 to resolve annoying warning 'already initialized constant WFKV_'
 gem 'rack' , '1.3.3'
 
-gem 'quality-measure-engine', '1.0.1'
+gem 'quality-measure-engine', '1.0.2', :path => "../quality-measure-engine"
 gem 'nokogiri'
 gem 'rubyzip'
 
@@ -15,6 +15,7 @@ gem "mongoid"
 gem 'devise'
 gem 'foreman'
 gem 'pry'
+gem "formtastic"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -34,7 +35,7 @@ group :test, :develop do
   gem 'mocha'
 end
 
-#gem 'jquery-rails'
+gem 'jquery-rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'
