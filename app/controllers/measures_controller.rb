@@ -2,6 +2,7 @@ class MeasuresController < ApplicationController
   include MeasuresHelper
 
   before_filter :authenticate_user!
+  before_filter :validate_authorization!
   before_filter :set_up_environment
 
   after_filter :hash_document, :only => [:measure_report, :patient_list]
@@ -178,6 +179,10 @@ class MeasuresController < ApplicationController
       :numerator=>result['numerator'],
       :exclusions=>result['exclusions']
     }
+  end
+
+  def validate_authorization!
+    authorize! :read, Measure
   end
 
 end

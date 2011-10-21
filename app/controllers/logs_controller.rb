@@ -1,5 +1,7 @@
 class LogsController < ApplicationController
+  
   before_filter :authenticate_user!
+  before_filter :validate_authorization!
   
   # All attributes of the Log class are valid to sort on except ones that start with an underscore.
   VALID_SORTABLE_COLUMNS = Log.fields.keys.reject {|k| k[0] == '_'}
@@ -46,4 +48,9 @@ class LogsController < ApplicationController
       nil
     end
   end
+  
+  def validate_authorization!
+    authorize! :read, Log
+  end
+  
 end

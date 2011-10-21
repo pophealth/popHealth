@@ -46,6 +46,7 @@ GEM
     bson (1.4.0)
     bson_ext (1.4.0)
     builder (3.0.0)
+    cancan (1.6.5)
     coderay (1.0.0)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
@@ -215,6 +216,7 @@ PLATFORMS
 
 DEPENDENCIES
   bson_ext
+  cancan
   coffee-rails (~> 3.1.0)
   cover_me
   devise

@@ -1,10 +1,11 @@
 require 'test_helper'
+include Devise::TestHelpers
 
 class ProvidersControllerTest < ActionController::TestCase
   
   setup do
     @user = Factory(:user)
-    basic_signin(@user)
+    sign_in @user
   end
   
   test "index" do

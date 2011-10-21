@@ -19,7 +19,7 @@
         <h3 style="text-transform: uppercase;">Results</h3>
         <% @patient.results.each do |element| -%>
           <div class="patientResult">
-            <%= "#{element['description']}: #{element['value']['scalar']} #{element['value']['units']}" %>
+            <%= element['description'] %> : <%= element['value'] ? "#{element['value']['scalar']} #{element['value']['units']}" : 'no value' %>
           </div>
         <% end -%>
       </div>

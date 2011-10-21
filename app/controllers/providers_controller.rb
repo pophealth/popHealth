@@ -1,7 +1,10 @@
 class ProvidersController < ApplicationController
   
+  # load resource must be before authorize resource
+  load_resource exclude: %w{index}
+  authorize_resource
+  before_filter :authenticate_user!
   before_filter :provider_list
-  before_filter :get_provider, :except => :index
   
   def index
   end
@@ -38,10 +41,6 @@ class ProvidersController < ApplicationController
   
   def provider_list
     @providers = Provider.alphabetical unless request.xhr?
-  end
-  
-  def get_provider
-    @provider = Provider.find(params[:id])
   end
 
 end
