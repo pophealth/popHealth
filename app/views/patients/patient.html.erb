@@ -1,0 +1,36 @@
+
+<div id="container">
+  <%= render :partial => 'header', :locals => {:patient => @patient} %>
+  <div style= "padding-top: 20px;">
+    <div id="patientDashLeft" style="width:400px; float:left;">
+      <span id="patientLastName" style="font-size: 150%; text-transform: uppercase;"><%= @patient.last %></span><br/>
+      <%= @patient.first %>
+      <br/><br/>
+      <div>
+        <div class="patientDatum">
+          <label style="text-transform: uppercase;">Sex</label><span style="position:relative; left: 20px;"><%= @patient.gender %></span>
+        </div>
+        <div class="patientDatum" "text-transform: uppercase;">
+          <label>DOB</label><span style="position:relative; left: 20px;"><%= Time.at(@patient.birthdate).strftime("%d.%b.%Y") %></span>
+        </div>
+    </div>
+    <div id="patientDashRight" style="width:400px; float:left;">
+      <div class="patientContentCategory" style="margin: 20px;">
+        <h3 style="text-transform: uppercase;">Results</h3>
+        <% @patient.results.each do |element| -%>
+          <div class="patientResult">
+            <%= "#{element['description']}: #{element['value']['scalar']} #{element['value']['units']}" %>
+          </div>
+        <% end -%>
+      </div>
+      <div class="patientContentCategory" style="margin: 20px;">
+        <h3 style="text-transform: uppercase;">Vitals</h3>
+        <% @patient.vital_signs.each do |element| -%>
+          <div class="patientResult">
+            <%= element['description'] %><%= ": #{element['value']['scalar']} #{element['value']['units']}" if element['value']%>
+          </div>
+        <% end -%>
+      </div>
+    </div>
+  </div>
+</div>
