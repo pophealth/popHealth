@@ -11,13 +11,14 @@ class Provider
   field :organization, type: String
   
   validates_uniqueness_of :npi, allow_blank: true
-  has_and_belongs_to_many :records, inverse_of: :providers
   
   scope :alphabetical, order_by([:family_name, :asc], [:given_name, :asc])
   scope :with_npi, where(:npi.ne => nil).or(:npi.ne => "")
   scope :without_npi, any_of({npi: nil}, {npi: ""})
   scope :can_merge_with, ->(prov) { prov.npi.blank? ? all_except(prov) : all_except(prov).without_npi }
   scope :all_except, ->(prov) { where(:_id.ne => prov.id) }
+  
+  has_many :provider_performances
   
   Specialties = {"100000000X" => "Behavioral Health and Social Service Providers",
                  "110000000X" => "Chiropractic Providers",

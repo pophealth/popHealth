@@ -8,6 +8,9 @@ class Record
   field :gender, type: String
   field :measures, type: Hash
   
-  has_and_belongs_to_many :providers, inverse_of: :records
+  embeds_many :provider_performances
+  
+  has_many :provider_performances
+
   
 end
