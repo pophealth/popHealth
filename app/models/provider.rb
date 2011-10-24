@@ -19,6 +19,7 @@ class Provider
   scope :all_except, ->(prov) { where(:_id.ne => prov.id) }
   
   has_many :provider_performances
+  belongs_to :team
   
   Specialties = {"100000000X" => "Behavioral Health and Social Service Providers",
                  "110000000X" => "Chiropractic Providers",
