@@ -1,5 +1,6 @@
 require 'factory_girl'
 require File.expand_path(File.dirname(__FILE__) + '/factory_hash')
+require File.expand_path(File.dirname(__FILE__) + '/factory_utils')
 
 # ==========
 # = USERS =
@@ -47,4 +48,23 @@ Factory.define(:provider) do |pv|
   pv.sequence(:npi) { |n| 9238429384 + n }
   pv.organization "General Hospital"
   pv.specialty "200000000X"
+end
+
+Factory.define(:record) do |r|
+  r.first { %w(Robert Jane Steve Claire Joe Liana Edmund Emily Kevin Amanda Gino Michelle Dylan Jake Jessica Duane Jamie Leon Elizabeth George).sample }
+  r.last { %w(Smith Jones Burns Simpsons Jackson Hurt Marshall Roy Adam Miller Ellis Myers Weber Martin Edwards Kelly Campbell Darling Clark Schwartz Calloway Schmidt Sterling Cooper Draper Pryce Formby).sample }
+  r.patient_id { (0...10).map{ ('0'..'9').to_a[rand(10)] }.join.to_s }
+  r.birthdate { between(Time.gm(1970, 1, 1), Time.gm(2010, 9, 1)) }
+  r.gender { %w(M F).sample }
+  r.measures {}
+end
+
+Factory.define(:provider_performance) do |pp|
+  pp.after_build do |pp| 
+    pp.record_id = Factory(:record).id unless pp.record_id
+    record = pp.record
+    pp.start_date = between(record.birthdate, Time.gm(2010, 10, 1)) unless pp.start_date
+    pp.end_date = between(pp.start_date, Time.gm(2010, 12, 31)) unless pp.start_date
+    pp.provider_id = Factory(:provider).id unless pp.provider_id
+  end
 end

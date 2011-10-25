@@ -5,5 +5,6 @@
   <%= f.input :phone, :as => "phone" %>
   <%= f.input :tin %>
   <%= f.input :npi %>
+  <%= f.input :team, :as => "select", :collection => Team.alphabetical.map { |t| [t.name, t.id]}%>
   <%= f.buttons %>
 <% end %>

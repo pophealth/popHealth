@@ -15,7 +15,8 @@ class User
   field :company_url, type: String
   field :registry_id, type: String
   field :registry_name, type: String
-
+  field :npi, :type => String
+  field :tin, :type => String
   field :agree_license, type: Boolean
   field :effective_date, type: Integer
   field :admin, type: Boolean

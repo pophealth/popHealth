@@ -5,8 +5,6 @@ class RecordsControllerTest < ActionController::TestCase
   
   setup do
     dump_database
-    Record.all.each { |r| r.destroy }
-    Provider.all.each { |pr| pr.destroy }
     @user = Factory(:user)
     basic_signin(@user)
     @body = File.new("test/fixtures/patient_provider_fragment.xml").read
@@ -22,16 +20,19 @@ class RecordsControllerTest < ActionController::TestCase
     assert_response(201)
     assert_not_nil assigns(:record)
     
-    
     created_record = Record.find(:first)
     
     # test creation
     assert_not_nil created_record
     assert_equal 2, Provider.count
+    assert_equal 2, ProviderPerformance.count
     
     # test relationship
-    Provider.all.each { |pv| assert_not_nil pv.records.first }
-    assert_equal 2, created_record.providers.size
+    ProviderPerformance.all.each do |pp|  
+      assert_not_nil pp.record
+      assert_not_nil pp.provider
+    end
+    assert_equal 2, created_record.provider_performances.size
   end
   
 end

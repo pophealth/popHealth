@@ -50,7 +50,8 @@ module PopHealth
     config.assets.version = '1.0'
 
     # add devise views
-    config.paths["app/views/devise"]
+#    config.paths["app/views/devise"]
+    config.paths["app/views"] << "app/views/devise"
     
     require 'will_paginate/array'
   end

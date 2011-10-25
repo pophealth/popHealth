@@ -28,10 +28,12 @@ class RecordsController < ApplicationController
 
     @record = Record.create!(patient_data)
     
-    providers.each do |pv| 
+    providers.each do |pv|
+      performance = ProviderPerformance.new(start_date: pv.delete(:start), end_date: pv.delete(:end), record: @record)
       provider = Provider.merge_or_build(pv)
-      provider.records << @record
       provider.save
+      performance.provider = provider
+      performance.save
     end
     
     QME::QualityReport.destroy_all

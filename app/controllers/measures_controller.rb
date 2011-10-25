@@ -30,6 +30,10 @@ class MeasuresController < ApplicationController
     end
   end
   
+  ##
+  # Updates the displayed measure period
+  # Expects :effective_date as a parameter
+  ##
   def period
     period_end = params[:effective_date]
     month, day, year = period_end.split('/')
@@ -132,12 +136,12 @@ class MeasuresController < ApplicationController
   end
 
   def select
-    measure = Measure.add_measure(current_user.username, params[:id])
+    measure = SelectedMeasure.add_measure(current_user.username, params[:id], params[:filters])
     render :partial => 'measure_stats', :locals => {:measure => measure}
   end
 
   def remove
-    Measure.remove_measure(current_user.username, params[:id])
+    SelectedMeasure.remove_measure(current_user.username, params[:id])
     render :text => 'Removed'
   end
 

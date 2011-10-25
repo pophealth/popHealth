@@ -8,6 +8,9 @@ class Record
   field :gender, type: String
   field :measures, type: Hash
   
-  has_and_belongs_to_many :providers, inverse_of: :records
+  embeds_many :provider_performances
+  
+  scope :with_provider, where(:provider_performances.ne => nil).or(:provider_proformances.ne => [])
+  scope :without_provider, any_of({provider_performances: nil}, {provider_performances: []})
   
 end

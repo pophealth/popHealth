@@ -13,6 +13,9 @@
       });
     };
 
+    /* 
+      Handles the logic to toggle the selected measure checkbox on and off
+    */
     popHealth.makeMeasuresCheckable = function() {
       $('.measureItemList li').click(function(){
         var measureId = $(this).attr("data-measure-id");
@@ -32,7 +35,7 @@
           })
         }
         else {
-          $.post('/measures/select/' + measureId,
+          $.post('/measures/select/' + measureId, {'filters': {'gender' : 'M'}}, 
                  function(data) {
                    if (categoryLabel.length != 0) {
                      categoryLabel.next('table').children().first().append(data);

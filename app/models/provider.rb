@@ -11,13 +11,14 @@ class Provider
   field :organization, type: String
   
   validates_uniqueness_of :npi, allow_blank: true
-  has_and_belongs_to_many :records, inverse_of: :providers
   
   scope :alphabetical, order_by([:family_name, :asc], [:given_name, :asc])
   scope :with_npi, where(:npi.ne => nil).or(:npi.ne => "")
   scope :without_npi, any_of({npi: nil}, {npi: ""})
   scope :can_merge_with, ->(prov) { prov.npi.blank? ? all_except(prov) : all_except(prov).without_npi }
   scope :all_except, ->(prov) { where(:_id.ne => prov.id) }
+  
+  belongs_to :team
   
   Specialties = {"100000000X" => "Behavioral Health and Social Service Providers",
                  "110000000X" => "Chiropractic Providers",
@@ -77,5 +78,13 @@ class Provider
   def merge_provider!(provider)
     merge_provider(provider)
     save!
+  end
+  
+  def records(effective_date = nil) 
+    records = Record.where("provider_performances.provider_id" => self.id)
+    if (effective_date)
+      records = records.and("provider_performances.start_date" => {"$lt" => effective_date}).and('$or' => [{'provider_performances.end_date' => nil}, 'provider_performances.end_date' => {'$gt' => effective_date}]) 
+    end
+    return records
   end
 end
