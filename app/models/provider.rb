@@ -80,10 +80,10 @@ class Provider
     save!
   end
   
-  def records(effective_date = nil) 
-    records = Record.where("provider_performances.provider_id" => self.id)
+  def records(effective_date = nil)
+    records = Record.by_provider(self)
     if (effective_date)
-      records = records.and("provider_performances.start_date" => {"$lt" => effective_date}).and('$or' => [{'provider_performances.end_date' => nil}, 'provider_performances.end_date' => {'$gt' => effective_date}]) 
+      records = records.provider_performance_between(effective_date)
     end
     return records
   end

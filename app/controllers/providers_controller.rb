@@ -37,6 +37,10 @@ class ProvidersController < ApplicationController
    redirect_to :action => :show
   end
   
+  def measures
+    
+  end
+  
   private
   
   def provider_list
