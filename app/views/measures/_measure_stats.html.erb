@@ -4,7 +4,7 @@
   </td>
   <td>
     <% subs_iterator(measure['subs']) do |sub_id| -%>
-    <%= measure_stats_div(measure['id'], sub_id, @effective_date) do |results| %>
+    <%= measure_stats_div(measure['id'], sub_id, @effective_date, measure['filters']) do |results| %>
       <div class="measureStats">
         <% if (sub_id!=nil) %>
         <span class="measureShortSubtitle"><%= measure['short_subtitles'][sub_id] %></span>

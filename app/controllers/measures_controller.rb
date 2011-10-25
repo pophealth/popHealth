@@ -158,15 +158,19 @@ class MeasuresController < ApplicationController
   end
 
   def set_up_environment
+    
+    @fake_selected_provider = Provider.alphabetical.first.id
+    
     @patient_count = mongo['records'].count
     if current_user && current_user.effective_date
       @effective_date = current_user.effective_date
     else
       @effective_date = Time.gm(2010, 12, 31).to_i
     end
+    @filters = params[:filters]
     @period_start = MeasuresController.three_months_prior(@effective_date)
     if params[:id]
-      @quality_report = QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date)
+      @quality_report = QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => @filters)
       @measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
     end
 

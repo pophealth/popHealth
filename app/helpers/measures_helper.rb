@@ -73,8 +73,8 @@ module MeasuresHelper
     end
   end
   
-  def result_hash(measure_id, sub_id, effective_date)
-    qr = QME::QualityReport.new(measure_id, sub_id, 'effective_date' => effective_date)
+  def result_hash(measure_id, sub_id, effective_date, filters)
+    qr = QME::QualityReport.new(measure_id, sub_id, 'effective_date' => effective_date, 'filters' => filters)
     result = {'patient_count' => @patient_count}
     if qr.calculated?
       result.merge!(qr.result)
@@ -85,8 +85,8 @@ module MeasuresHelper
     result
   end
   
-  def measure_stats_div(measure_id, sub_id, effective_date)
-    results = result_hash(measure_id, sub_id, effective_date)
+  def measure_stats_div(measure_id, sub_id, effective_date, filters)
+    results = result_hash(measure_id, sub_id, effective_date, filters)
     div_options = {:class => 'tableMeasureCtrl', :"data-measure-id" => measure_id}
     div_options[:"data-measure-sub-id"] = sub_id if sub_id
     div_options[:"data-calculation-job-uuid"] = results['uuid'] if results['uuid']
