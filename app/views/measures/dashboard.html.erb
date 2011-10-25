@@ -3,7 +3,7 @@
     var popHealth = popHealth || {};
 
     popHealth.makeMeasureListExpandable = function() {
-      $('#measureClassList li label').click(function(){
+      $('.measureClassList li label').click(function(){
         $(this).toggleClass('open');
         if ($(this).hasClass('open')) {
           $(this).siblings('div.measureItemList').slideDown();
@@ -126,6 +126,8 @@
         changed: popHealth.updatePeriodEnd
       });
       $('#btnMeasurementPeriodChange').click(popHealth.changeMeasurePeriod);
+      
+      <% unless Rails.env.development? %>
       $(document).idleTimeout({
         inactivity: 300000,
         noconfirm: 10000,
@@ -134,6 +136,7 @@
         redirect_url: '<%= destroy_user_session_path %>',
         logout_url: '/logout.html'
       });
+      <% end %>
     });
   </script>
 <% end -%>
@@ -167,7 +170,7 @@
       </div>
       <p class="note">Additional Measures <em>(select 3)</em></p>
       <div class="measureList">
-        <ul id="measureClassList">
+        <ul class="measureClassList">
         <% @categories.each do |category| -%>
           <li><label><%= category['category'] %></label>
             <div class="measureItemList" style="display:none">

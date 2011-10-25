@@ -1,0 +1,83 @@
+<%= render :partial => "header"%>
+    <div id="pageContent">
+      <div id="providerReports">
+        <h1>
+          Providers
+        </h1>
+        <p class="note">
+           Core Measures <em>(select 3)</em>
+         </p>
+         <div class="measureList">
+           <div class="measureItemList">
+             <ul>
+               <% @core_measures.each do |measure| -%>
+               <li>
+                 <%= measure['name'] %>
+               </li><% end %><% @core_alt_measures.each do |measure| -%>
+               <li>
+                 <span class="note">**</span><%= measure['name'] %>
+               </li><% end %>
+             </ul>
+             <p class="note">
+               <em>** core alternate measures</em>
+             </p>
+           </div>
+         </div>
+         <p class="note">
+           Additional Measures <em>(select 3)</em>
+         </p>
+         <div class="measureList">
+           <ul class="measureClassList">
+             <% @categories.each do |category| -%>
+             <li>
+               <label><%= category['category'] %></label>
+               <div class="measureItemList" style="display:none">
+                 <ul>
+                   <% category['measures'].each do |measure| -%>
+                   <li>
+                     <%= measure['name'] %>
+                   </li><% end -%>
+                 </ul>
+               </div><% end -%>
+             </li>
+           </ul>
+         </div><!-- end #measureList -->
+         <p class="note">
+           Teams
+         </p>
+         <div class="measureList">
+           <ul class="measureClassList">
+             <% @teams.each do |team| %>
+             <li>
+               <label><%= team.name%></label>
+               <div class="measureItemList" style="display:none">
+                 <ul>
+                   <% team.providers.each do |pv| %>
+                   <li>
+                     <%= pv.full_name %>
+                   </li><% end %>
+                 </ul>
+               </div>
+             </li><% end %>
+           </ul>
+         </div>
+      </div>
+      <div>
+        <div id="aggregate">
+          <span class="measurePopulationPercentage">13%</span>
+          <%= render :partial => "shared/fraction", locals: {numerator: 13, denominator: 100} %>
+        </div>
+        <div id="providerList"></div>
+      </div>
+    </div>
+    <script type="text/javascript" charset="utf-8">
+
+    $(function() {
+      $(".measureClassList li label").click(function() {
+        $(this).toggleClass('open');
+        $(this).siblings("div.measureItemList").toggle("blind")
+      });
+    });
+
+    </script>
+

@@ -1,7 +1,7 @@
 class ProvidersController < ApplicationController
   
   # load resource must be before authorize resource
-  load_resource exclude: %w{index}
+  load_resource except: %w{index}
   authorize_resource
   before_filter :authenticate_user!
   before_filter :provider_list
@@ -38,7 +38,10 @@ class ProvidersController < ApplicationController
   end
   
   def measures
-    
+    @teams = Team.alphabetical
+    @categories = Measure.non_core_measures
+    @core_measures = Measure.core_measures
+    @core_alt_measures = Measure.core_alternate_measures
   end
   
   private

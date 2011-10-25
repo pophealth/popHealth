@@ -34,6 +34,9 @@ PopHealth::Application.routes.draw do
       get :merge_list
       put :merge
     end
+    collection do
+      get :measures
+    end
   end
   
   resources :teams

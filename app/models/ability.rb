@@ -27,6 +27,7 @@ class Ability
       can :read, Measure
       can :read, Patient
       can :manage, Provider
+      can :manage, Team
     end
 
   end
