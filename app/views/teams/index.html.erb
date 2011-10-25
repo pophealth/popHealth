@@ -1,7 +1,7 @@
 <ol>
-  <% @team.each do |team| %>
-    <li><%= @team.name%></li>
+  <% @teams.each do |team| %>
+    <li><%= link_to team.name, edit_team_path(team) %></li>
   <% end %>
 </ol>
-
+<%= @team.name %>
 <%= link_to "create team", new_team_path%>

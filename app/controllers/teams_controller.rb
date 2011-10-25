@@ -1,8 +1,11 @@
 class TeamsController < ApplicationController
-  before_filter :find_model, :only => [:update, :destroy]
+
+  load_resource except: %w{index}
+  authorize_resource
+  before_filter :authenticate_user!
   
   def index
-    @team = Team.alphabetical
+    @teams = Team.alphabetical
   end
   
   def new
@@ -19,7 +22,7 @@ class TeamsController < ApplicationController
   end
   
   def update
-    @team.update_attributess(params[:team])
+    @team.update_attributes(params[:team])
     redirect_to :action => "index"
   end
   
