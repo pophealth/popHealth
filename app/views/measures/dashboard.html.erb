@@ -35,7 +35,7 @@
           })
         }
         else {
-          $.post('/measures/select/' + measureId, {'filters': {'gender' : 'M'}}, 
+          $.post('/measures/select/' + measureId, 
                  function(data) {
                    if (categoryLabel.length != 0) {
                      categoryLabel.next('table').children().first().append(data);
