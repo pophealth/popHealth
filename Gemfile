@@ -18,6 +18,9 @@ gem 'pry'
 gem 'formtastic'
 gem 'cancan'
 
+# Windows doesn't have syslog, so need a gem to log to EventLog instead
+gem 'win32-eventlog', :platforms => [:mswin, :mingw]
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
