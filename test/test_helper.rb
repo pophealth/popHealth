@@ -15,7 +15,6 @@ class ActiveSupport::TestCase
     User.all.each {|x| x.destroy}
     Provider.all.each { |pr| pr.destroy }
     Record.all.each { |r| r.destroy }
-    ProviderPerformance.all.each { |pp| pp.destroy }
     db = Mongoid::Config.master
     db['measures'].remove({})
     db['selected_measures'].remove({})

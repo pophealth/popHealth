@@ -1,29 +1,42 @@
 require 'mongo'
 require 'json'
+require 'factory_girl'
 
-provider_template_dir = ENV['PROVIDER_TEMPLATE_DIR'] || File.join('fixtures', 'patient_templates')
 db_name = ENV['DB_NAME'] || 'test'
-loader = QME::Database::Loader.new(db_name)
 
 namespace :provider do
 
   desc 'Generate n (default 10) random provider records and save them in the database'
-  task :random, [:n] => ['mongo:drop_records'] do |t, args|
+  task :random, :n do |t, args|
+    
+    FactoryGirl.find_definitions
+    
     n = args.n.to_i>0 ? args.n.to_i : 10
     
-    templates = []
-    Dir.glob(File.join(patient_template_dir, '*.json.erb')).each do |file|
-      templates << File.read(file)
-    end
-    
-    if templates.length<1
-      puts "No provider templates in #{provider_template_dir}"
-      return
-    end
-    
     n.times do
-      
+      Factory(:provider)
     end
+    
+    providers = Provider.all
+    
+    Record.all.each do |record|
+      if (record.provider_performances.empty?)
+        provider_performance = Factory.build(:provider_performance, provider_id: Provider.all.sample.id) if record.provider_performances.empty?
+        record.provider_performances << provider_performance
+      end
+    end
+  end
+
+  desc 'Dump all providers and provider performance information'
+  task :destroy_all do |t, args|
+    
+    Record.all.each do |record|
+      record.provider_performances = [] unless record.provider_performances.empty?
+      record.save!
+    end
+    
+    Provider.all.each { |pr| pr.destroy }
+    
   end
     
 end

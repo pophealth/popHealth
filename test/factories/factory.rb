@@ -45,7 +45,7 @@ Factory.define(:provider) do |pv|
   pv.family_name { %w(Smith Jones Burns Simpsons Jackson Hurt Marshall Roy Adam Miller Ellis Myers Weber Martin Edwards Kelly Campbell Darling Clark Schwartz Calloway Schmidt Sterling Cooper Draper Pryce Formby).sample }
   pv.sequence(:phone) { |n| 15555555555 + n }
   pv.sequence(:tin) { |n| 123456789 + n  }
-  pv.sequence(:npi) { |n| 9238429384 + n }
+  pv.sequence(:npi) { |n| [9238429384, existing_max('providers', 'npi').to_i].max + n }
   pv.organization "General Hospital"
   pv.specialty "200000000X"
 end
@@ -61,10 +61,10 @@ end
 
 Factory.define(:provider_performance) do |pp|
   pp.after_build do |pp| 
-    pp.record_id = Factory(:record).id unless pp.record_id
-    record = pp.record
-    pp.start_date = between(record.birthdate, Time.gm(2010, 10, 1)) unless pp.start_date
-    pp.end_date = between(pp.start_date, Time.gm(2010, 12, 31)) unless pp.start_date
+    pp.start_date = between(Time.gm(1970, 1, 1), Time.gm(2010, 10, 1)) unless pp.start_date
+    if Random.new.rand(1..100) > 90 || pp.end_date
+      pp.end_date = between(pp.start_date, Time.gm(2010, 12, 31)) unless pp.end_date
+    end  
     pp.provider_id = Factory(:provider).id unless pp.provider_id
   end
 end

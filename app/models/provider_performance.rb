@@ -5,6 +5,5 @@ class ProviderPerformance
   field :end_date, type: Integer
   
   belongs_to :provider
-  belongs_to :record
-  
+  embedded_in :record
 end
