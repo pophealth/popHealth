@@ -18,7 +18,7 @@ ul#provider_list li {
   padding: 5% 20%;
   border-bottom: 1px solid #ccc;
   background: #F4F4F4;
-  background: -moz-linear-gradient(top, $grey1, $grey2);
+  background: -moz-linearar-gradient(top, $grey1, $grey2);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $grey1), color-stop(100%, $grey2));
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$grey1', endColorstr='$grey2',GradientType=0 ); /* IE6-9 */
 }
@@ -30,6 +30,10 @@ ul#provider_list li:hover {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$blue', endColorstr='$green',GradientType=0 ); /* IE6-9 */
 }
 
+div#main {
+  padding-left:30px;
+}
+
 div#content {
   padding:5px;
   float:left;
@@ -38,3 +42,42 @@ div#content {
 div#content form li {
   list-style-type: none;
 }
+
+.paren {
+    font-family: Helvetica;
+    font-weight: 100;
+    color: #999999;
+    position: relative;
+    margin-right: 1px;
+    top: 4px; }
+
+div #providerMain { 
+  div#aggregate {
+    margin-left:10px;
+    float:left;
+    border-bottom: 3px solid #999;
+    
+    .paren {
+      font-size: 3em;
+    }
+  }
+  
+  .paren {
+    font-size: 1.5em;
+  }
+  
+  table {
+    font-size:18px;
+    
+    th {
+      padding-left:15px;
+      color: #adadad;
+      text-transform:capitalize;
+    }
+    td {
+      padding:10px 60px;
+    }
+  }
+}
+
+

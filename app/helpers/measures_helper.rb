@@ -39,21 +39,23 @@ module MeasuresHelper
     end
   end
     
-  def numerator_width(results)
-    if results['numerator']
-      "#{((results['numerator'] / results['patient_count'].to_f) * 100).to_i}%"      
-    else
-      '33%'
-    end
-  end
-  
-  def denominator_width(results)
-    if results['numerator'] && results['denominator']
-      "#{(((results['denominator'] - results['numerator'])/ results['patient_count'].to_f) * 100).to_i}%"
-    else
-      '33%'
-    end
-  end
+  # def numerator_width(results)
+  #     # raise results['numerator'].inspect
+  #     if results['numerator']
+  #       raise results.inspect
+  #       "#{((results['numerator'] / results['patient_count'].to_f) * 100).to_i}%"      
+  #     else
+  #       '33%'
+  #     end
+  #   end
+  #   
+  #   def denominator_width(results)
+  #     if results['numerator'] && results['denominator']
+  #       "#{(((results['denominator'] - results['numerator'])/ results['patient_count'].to_f) * 100).to_i}%"
+  #     else
+  #       '33%'
+  #     end
+  #   end
 
   def dob(time)
     if time

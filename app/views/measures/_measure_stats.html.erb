@@ -12,18 +12,11 @@
         <span class="measureShortSubtitle"></span>
         <% end %>
         <span style="margin-left:5px;" class="measurePopulationPercentage"><%= percentage(results)%>%</span>
-        <span class="paren">(</span>
-        <div class="inline-fraction">
-          <span class="numeratorValue"><%= value_or_default(results, 'numerator', 0) %></span>
-          <span class="separator"></span>
-          <span class="denominatorValue"><%= value_or_default(results, 'denominator', 0) %></span>
-        </div><span class="paren">)</span>
+        <%= render :partial => "shared/fraction", locals: {numerator: value_or_default(results, 'numerator', 0), denominator: value_or_default(results, 'denominator', 0)}%>
       </div>
       <div class="inline-bar">
-        <div class="tableBar">
-          <div class="tableBarNumerator" style="width:<%= numerator_width(results)%>"><span></span></div>
-          <div class="tableBarDenominator" style="width:<%= denominator_width(results)%>"><span></span></div>
-        </div>
+        <%# raise results.inspect %>
+        <%= render :partial => "shared/table_bar", locals: {numerator: results['numerator'], denominator: results['denominator'], patient_count: results['population']}%>
         <div class="links">
           <%= link_to 'patients', patients_url(measure['id'], sub_id), :class => 'tableEdit'%>
           <%= link_to 'parameters', measure_url(measure['id'], sub_id), :class => 'tableEdit'%>

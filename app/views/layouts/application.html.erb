@@ -11,6 +11,22 @@
   
   <%= csrf_meta_tag %>
   <%= yield :head %>
+  <% unless Rails.env.development? %>
+  <script type="text/javascript" charset="utf-8">
+
+    $(function() {
+      $(document).idleTimeout({
+         inactivity: 300000,
+         noconfirm: 10000,
+         sessionAlive: false,
+         alive_url: '/',
+         redirect_url: '<%= destroy_user_session_path %>',
+         logout_url: '/logout.html'
+       });
+    });
+
+  </script>
+  <% end %>
 </head>
 <body>
 

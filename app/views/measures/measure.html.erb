@@ -76,14 +76,6 @@
       $("#btnSaveNewMeasure").click(popHealth.saveNewMeasure);
       $("#btnReturnToDash").click(popHealth.returnToDash);
       
-      $(document).idleTimeout({
-        inactivity: 300000,
-        noconfirm: 10000,
-        sessionAlive: false,
-        alive_url: '/',
-        redirect_url: '<%= destroy_user_session_path %>',
-        logout_url: '/logout.html'
-      });
     });
 
     function alertDate(e) {
@@ -110,8 +102,8 @@
 <div id="container">
   <%= render :partial => 'header', :locals => {:definition => @definition} %>
   <div>
-    <%= render :partial => 'measure_metrics' %>
-    <%= render :partial => 'measure_title'%>
+    <%= render :partial => 'shared/measure_metrics', locals: {numerator: @result['numerator'], denominator: @result['denominator']} %>
+    <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
     <div id="measureEditContainer">
       <div id="exclusionPanel" style="display:none;">
         <div id="exclusionMeasureItems"></div>

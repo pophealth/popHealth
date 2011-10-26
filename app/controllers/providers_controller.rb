@@ -4,7 +4,7 @@ class ProvidersController < ApplicationController
   load_resource except: %w{index}
   authorize_resource
   before_filter :authenticate_user!
-  before_filter :provider_list
+  before_filter :provider_list, except: 'measure'
   
   def index
   end
@@ -37,14 +37,19 @@ class ProvidersController < ApplicationController
    redirect_to :action => :show
   end
   
-  def measure
-    @teams = Team.alphabetical
-    @selected_providers = {}
-    Provider.alphabetical.each {|provider| @selected_providers[provider.id] = provider}
-    @measure_id = params[:measure_id]
-    @sub_id = params[:sub_id]
-    calculate_measure_for_selected(@measure_id, @sub_id, @selected_providers)
+  def measure  
+    @selected_providers = Provider.selected_or_all(params[:selected_provider_ids]).alphabetical
+    @definition = QME::QualityMeasure.new(params[:measure_id], params[:sub_id]).definition
+
+    calculate_measure_for_selected(@definition["id"], @definition['sub_id'], @selected_providers)
     
+    respond_to do |wants|
+      wants.html { @teams = Team.alphabetical }
+
+      wants.json do
+        
+      end
+    end
   end
   
   private
@@ -55,13 +60,10 @@ class ProvidersController < ApplicationController
 
   def calculate_measure_for_selected(measure_id, sub_id, selected_providers)
     
-    if current_user && current_user.effective_date
-      @effective_date = current_user.effective_date
-    else
-      @effective_date = Time.gm(2010, 12, 31).to_i
-    end
-
-    @provider_ids = selected_providers.keys.map {|k| k.to_s}
+    @effective_date = current_user.effective_date
+    @period_start = 3.months.ago(Time.at(@effective_date)) # TODO need to dry this up with MeasuresController @SS
+    
+    @provider_ids = selected_providers.map(&:id)
     @provider_job_uuids = {}
     
     calculate_measure(measure_id, sub_id, @provider_ids)
@@ -70,10 +72,10 @@ class ProvidersController < ApplicationController
     end
   end
   
-  def calculate_measure(measure_id, sub_id, provider_ids) 
-    quality_report = QME::QualityReport.new(measure_id, sub_id, 'effective_date' => @effective_date, 'filters' => {'providers' => provider_ids})
-    measure = QME::QualityMeasure.new(measure_id, sub_id)
-    @provider_job_uuids[provider_ids] = quality_report.calculate unless quality_report.calculated?
+  def calculate_measure(measure_id, sub_id, provider_ids)
+    @quality_report = QME::QualityReport.new(measure_id, sub_id, 'effective_date' => @effective_date, 'filters' => {'providers' => provider_ids})
+    @measure = QME::QualityMeasure.new(measure_id, sub_id)
+    @provider_job_uuids[provider_ids] = @quality_report.calculate unless @quality_report.calculated?
   end
   
 

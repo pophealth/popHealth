@@ -65,15 +65,6 @@
       $("#btnSaveNewMeasure").click(popHealth.saveNewMeasure);
       $("#btnReturnToDash").click(popHealth.returnToDash);
 
-      $(document).idleTimeout({
-        inactivity: 300000,
-        noconfirm: 10000,
-        sessionAlive: false,
-        alive_url: '/',
-        redirect_url: '<%= destroy_user_session_path %>',
-        logout_url: '/logout.html'
-      });
-
       $('input[name=patientGroup]').change(function() {
         //$('#patientTableContainer').patient_table.displayNumerator();
         if(this.id == "num"){
@@ -98,7 +89,7 @@
   <%= render :partial => 'header', :locals => {:definition => @definition} %>
   <div id="pageContent">
     <div id="patientMetrics">
-    <%= render :partial => 'measure_metrics' %>
+    <%= render :partial => 'shared/measure_metrics', locals: {numerator: @result['numerator'], denominator: @result['denominator']} %>
       <div class="patientGroupType"><p>Show Patients in:</p>
         <ul>
           <li class="numerator"><span class="radio"><input type="radio" name="patientGroup" value="1"   id="num"/></span><label for="num">Numerator</label> <span class="count"><%= @result['numerator']%></span></li>
@@ -110,7 +101,7 @@
       </div>
     </div><!-- end #patientMetrics -->
     <div id="dashboardPeriod" >
-      <%= render :partial => 'measure_title'%>
+      <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
       <br style="clear:left"/>
       <div id="patientTableContainer">
     </div><!-- end patientTableContainer -->

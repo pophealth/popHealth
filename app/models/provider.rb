@@ -17,7 +17,8 @@ class Provider
   scope :without_npi, any_of({npi: nil}, {npi: ""})
   scope :can_merge_with, ->(prov) { prov.npi.blank? ? all_except(prov) : all_except(prov).without_npi }
   scope :all_except, ->(prov) { where(:_id.ne => prov.id) }
-  
+  scope :selected, ->(provider_ids) { any_in(:_id => provider_ids)}
+  scope :selected_or_all, ->(provider_ids) { provider_ids.nil? || provider_ids.empty? ? Provider.all : Provider.selected(provider_ids) }
   belongs_to :team
   
   Specialties = {"100000000X" => "Behavioral Health and Social Service Providers",

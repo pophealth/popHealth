@@ -15,7 +15,7 @@
           <div class="measureItemList" style="display:none">
             <ul>
               <% team.providers.each do |pv| %>
-              <li class="<%= (@selected_providers[pv.id]) ? 'checked' : ''%>">
+              <li class="<%= checked(@selected_providers, pv)%>">
                 <%= pv.full_name %>
               </li><% end %>
             </ul>
@@ -24,28 +24,22 @@
       </ul>
     </div>
   </div>
-  <div>
+  <div id="providerMain">
     <div id="aggregate">
-      
-      
-      
-      <span class="measurePopulationPercentage">13%</span>
-      <%= render :partial => "shared/fraction", locals: {numerator: 13, denominator: 100} %>
-      <br/>
-      
-      <% @provider_ids.each do |provider_id| 
-        uuid = @provider_job_uuids[[provider_id]] %>
-        <%= quality_report_status(uuid) if uuid %> || 
-      <% end %>
-      <% @provider_job_uuids.each do |key, value| %>
-         <%= "#{key} =>  #{value}"%> @ 
-         <%= quality_report_status(value) %> || 
-         <%= result_hash(@measure_id, @sub_id, @effective_date, {'providers' => key}) %><br/><br/>
-      <% end %>
-      
-      
-    </div>
-    <div id="providerList"></div>
+      <%= render :partial => 'shared/measure_metrics', locals: {numerator: 60, denominator: 100} %>
+      <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
+    </div><br>
+    <table border="0" cellspacing="5" cellpadding="5" >
+      <tr><th colspan="4">Individual Provider Statistics</th></tr>
+          <% @selected_providers.each do |pv| %>
+            <tr>
+              <td><div class="measureProviderPopulationPercentage">60%</div></td>
+              <td><%= pv.full_name %></td>
+              <td><%= render :partial => "shared/fraction", locals: {numerator: 60, denominator: 100} %></td>
+              <td><%= render :partial => "shared/table_bar", locals: {numerator: 60, denominator:100, patient_count: 334}%></td>
+            <tr>
+          <% end %>
+    </table>
   </div>
 </div>
 
@@ -72,21 +66,16 @@ popHealth.makeMeasuresCheckable = function() {
   });
 };
 
+popHealth.pollJSON = function() {
+  $.getJSON('ajax/test.json', function(data) {
+    $("providerList")
+  });
+};
+
 
 $(document).ready(function() {
   popHealth.makeProviderListExpandable();
   popHealth.makeMeasuresCheckable();
-  
-  <% unless Rails.env.development? %>
-  $(document).idleTimeout({
-    inactivity: 300000,
-    noconfirm: 10000,
-    sessionAlive: false,
-    alive_url: '/',
-    redirect_url: '<%= destroy_user_session_path %>',
-    logout_url: '/logout.html'
-  });
-  <% end %>
 });
 
 </script>

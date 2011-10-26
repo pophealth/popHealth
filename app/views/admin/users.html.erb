@@ -69,14 +69,6 @@
     $('.approve').click(popHealth.approveUser);
     $('.enable').click(popHealth.disableUser);
     $('.disable').click(popHealth.enableUser);
-    $(document).idleTimeout({
-      inactivity: 300000,
-      noconfirm: 10000,
-      sessionAlive: false,
-      alive_url: '/',
-      redirect_url: '<%= destroy_user_session_path %>',
-      logout_url: '/'
-    });
   });
 </script>
 <% end -%>
