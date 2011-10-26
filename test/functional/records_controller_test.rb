@@ -25,12 +25,14 @@ class RecordsControllerTest < ActionController::TestCase
     # test creation
     assert_not_nil created_record
     assert_equal 2, Provider.count
-    assert_equal 2, ProviderPerformance.count
+    assert_equal 2, Record.with_provider.map {|record| record.provider_performances.count}.sum
     
     # test relationship
-    ProviderPerformance.all.each do |pp|  
-      assert_not_nil pp.record
-      assert_not_nil pp.provider
+    Record.with_provider.map do |record|
+      record.provider_performances.each do |pp|
+        assert_not_nil pp.record
+        assert_not_nil pp.provider
+      end
     end
     assert_equal 2, created_record.provider_performances.size
   end

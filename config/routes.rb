@@ -35,7 +35,7 @@ PopHealth::Application.routes.draw do
       put :merge
     end
     collection do
-      get :measures
+      get :measure
     end
   end
   

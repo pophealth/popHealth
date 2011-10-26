@@ -35,6 +35,7 @@
           })
         }
         else {
+//          $.post('/measures/select/' + measureId, {'filters': {'providers' : ['<%=@fake_selected_provider %>']}}, 
           $.post('/measures/select/' + measureId, 
                  function(data) {
                    if (categoryLabel.length != 0) {
@@ -87,9 +88,11 @@
 
         if (uuid != undefined) {
           if(measureSubId == undefined) {
+//            resultUrl = "/measures/result/" + measureId + '?uuid=' + uuid + '&filters[providers]=<%= @fake_selected_provider %>';
             resultUrl = "/measures/result/" + measureId + '?uuid=' + uuid;
           }
           else {
+//            resultUrl = "/measures/result/" + measureId + "/" + measureSubId + '?uuid=' + uuid + '&filters[providers]=<%= @fake_selected_provider %>';
             resultUrl = "/measures/result/" + measureId + "/" + measureSubId + '?uuid=' + uuid;
           }
         

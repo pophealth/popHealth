@@ -37,11 +37,14 @@ class ProvidersController < ApplicationController
    redirect_to :action => :show
   end
   
-  def measures
+  def measure
     @teams = Team.alphabetical
-    @categories = Measure.non_core_measures
-    @core_measures = Measure.core_measures
-    @core_alt_measures = Measure.core_alternate_measures
+    @selected_providers = {}
+    Provider.alphabetical.each {|provider| @selected_providers[provider.id] = provider}
+    @measure_id = params[:measure_id]
+    @sub_id = params[:sub_id]
+    calculate_measure_for_selected(@measure_id, @sub_id, @selected_providers)
+    
   end
   
   private
@@ -49,5 +52,29 @@ class ProvidersController < ApplicationController
   def provider_list
     @providers = Provider.alphabetical unless request.xhr?
   end
+
+  def calculate_measure_for_selected(measure_id, sub_id, selected_providers)
+    
+    if current_user && current_user.effective_date
+      @effective_date = current_user.effective_date
+    else
+      @effective_date = Time.gm(2010, 12, 31).to_i
+    end
+
+    @provider_ids = selected_providers.keys.map {|k| k.to_s}
+    @provider_job_uuids = {}
+    
+    calculate_measure(measure_id, sub_id, @provider_ids)
+    @provider_ids.each do |provider_id| 
+      calculate_measure(measure_id, sub_id, [provider_id])
+    end
+  end
+  
+  def calculate_measure(measure_id, sub_id, provider_ids) 
+    quality_report = QME::QualityReport.new(measure_id, sub_id, 'effective_date' => @effective_date, 'filters' => {'providers' => provider_ids})
+    measure = QME::QualityMeasure.new(measure_id, sub_id)
+    @provider_job_uuids[provider_ids] = quality_report.calculate unless quality_report.calculated?
+  end
+  
 
 end
