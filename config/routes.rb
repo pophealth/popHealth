@@ -28,16 +28,13 @@ PopHealth::Application.routes.draw do
   match 'patients/show/:id', :to => 'patients#show'
 
   match 'providers/measure/:measure_id(:sub_id)', :to => "providers#measure", :as => :providers_measure, :via => :get 
-
+  
   root :to => 'measures#index'
   
   resources :providers do
     member do
       get :merge_list
       put :merge
-    end
-    collection do
-      get :measure
     end
   end
   

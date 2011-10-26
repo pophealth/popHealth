@@ -38,7 +38,7 @@ class MeasuresController < ApplicationController
     period_end = params[:effective_date]
     month, day, year = period_end.split('/')
     @effective_date = Time.local(year.to_i, month.to_i, day.to_i).to_i
-    @period_start = MeasuresController.three_months_prior(@effective_date)
+    @period_start = calc_start(@effective_date)
     if (params[:persist]=="true")
       current_user.effective_date = @effective_date
       current_user.save!
@@ -168,7 +168,6 @@ class MeasuresController < ApplicationController
       @effective_date = Time.gm(2010, 12, 31).to_i
     end
     @filters = params[:filters]
-    @period_start = MeasuresController.three_months_prior(@effective_date)
     if params[:id]
       @quality_report = QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => @filters)
       @measure = QME::QualityMeasure.new(params[:id], params[:sub_id])

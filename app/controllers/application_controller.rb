@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   layout :layout_by_resource
-
+  before_filter :set_effective_date
+  
   # lock it down!
   check_authorization :unless => :devise_controller?
   
@@ -26,5 +27,18 @@ class ApplicationController < ActionController::Base
 
   def mongo
     MONGO_DB
+  end
+  
+  def set_effective_date
+    if current_user && current_user.effective_date
+      @effective_date = current_user.effective_date
+    else
+      @effective_date = Time.gm(2010, 12, 31).to_i
+    end
+    @period_start = calc_start(@effective_date)
+  end
+  
+  def calc_start(date)
+    3.months.ago(Time.at(date))
   end
 end

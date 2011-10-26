@@ -67,8 +67,12 @@ popHealth.makeMeasuresCheckable = function() {
 };
 
 popHealth.pollJSON = function() {
-  $.getJSON('ajax/test.json', function(data) {
-    $("providerList")
+  $.getJSON("<%= providers_measure_path(measure_id: @definition['id'], sub_id: @definition['sub_id'], format: 'json')%>", function(data) {
+    alert(data.aggregate.measure_id);
+    if(data.aggregateJob != null || data.provider_jobs != null)
+    setTimeout(function() {
+      popHealth.pollJSON();
+    }, 1000);
   });
 };
 
@@ -76,6 +80,8 @@ popHealth.pollJSON = function() {
 $(document).ready(function() {
   popHealth.makeProviderListExpandable();
   popHealth.makeMeasuresCheckable();
+  popHealth.pollJSON();
+  
 });
 
 </script>
