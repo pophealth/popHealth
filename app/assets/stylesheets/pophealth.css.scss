@@ -473,7 +473,7 @@ a {
       background: url("../assets/checked.png") 0 10% no-repeat; } }
   a {
     padding: 0 0 0 10px;
-    color: #44b3be; }
+    color: $dashboardText; }
   a:hover {
     text-decoration: none;
     color: #368f98; } }
@@ -681,7 +681,7 @@ input.measurementPeriodEndDate {
     color: $link_separator_color; }
   a {
     padding: 0 5px 0 5px;
-    color: #44b3be; }
+    color: $dashboardText; }
   a:hover {
     text-decoration: none;
     color: #368f98; } }
@@ -696,13 +696,16 @@ input.measurementPeriodEndDate {
      .tableBarDenominator {
        @extend .tableBarVal;
        float: left;
-       padding: 0 2px 0 1px;
+      padding:0px;
        background-color: $denominator; }
      .tableBarNumerator {
        @extend .tableBarVal;
        float: left;
+       padding:0px;
        background-color: $numerator; }
-
+a.tableEdit {
+  color:$dashboardText;
+}
 #exportLinks {
   float: right;
   text-align: right;

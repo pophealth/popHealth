@@ -60,23 +60,41 @@ div #providerMain {
     .paren {
       font-size: 3em;
     }
+    
+    .links {
+      padding-left:5px;
+      font-size:1.25em;
+      margin-bottom:3px;
+    }
+    
+    #measurePopulationPercentage {
+      font-weight:bold;
+    }
   }
   
   .paren {
     font-size: 1.5em;
   }
   
-  table {
-    font-size:18px;
+  table#providerTable {
+
     
     th {
+      font-size:1em;
+      padding-top:5px;
       padding-left:15px;
       color: #adadad;
       text-transform:capitalize;
     }
     td {
+      font-size:1.25em;
       padding:10px 60px;
     }
+    
+    .measureProviderPopulationPercentage {
+      font-weight:bold;
+    }
+
   }
 }
 

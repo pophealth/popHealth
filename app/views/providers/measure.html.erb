@@ -30,14 +30,18 @@
       <%= render :partial => 'shared/measure_metrics', locals: {numerator: 0, denominator: 0} %>
       </span>
       <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
-    </div><br>
+      <div class="links">
+        <%= link_to 'parameters', measure_url(@definition['id'], @definition['sub_id']), :class => 'tableEdit'%> | 
+        <%= link_to 'patients', patients_url(@definition['id'], @definition['sub_id']), :class => 'tableEdit'%>
+      </div>
+    </div>
     <table id="providerTable" border="0" cellspacing="5" cellpadding="5" >
-      <tr><th colspan="4">Individual Provider Statistics</th></tr>
+      <tr><th colspan="4">INDIVIDUAL PROVIDER STATISTICS</th></tr>
       <tbody>
           <% @selected_providers.each do |pv| %>
             <tr class="provider" data-provider="<%=pv.id%>">
               <td class="percent"><div class="measureProviderPopulationPercentage"></div></td>
-              <td class="nme"><%= pv.full_name %></td>
+              <td class="name"><%= pv.family_name.upcase %>, <%= pv.given_name %></td>
               <td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
               <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0}%></td>
             </tr>
@@ -75,7 +79,7 @@ popHealth.updateProvider = function(row, num, den, pop) {
 
 popHealth.setPercent = function(selector, num, den) {
   var percent = den != 0 ? (num / den) * 100 : 0;
-  selector.html(percent.toString().substring(0,4) + "%");
+  selector.html(Math.floor(percent).toString() + "%");
 };
 
 popHealth.setFraction = function(selector, num, den) {
@@ -90,6 +94,7 @@ popHealth.setBarChart = function(selector, num, den, pop) {
     numerator_width = (num / pop) * 100;
     denominator_width = ((den - num) / pop) * 100;
   }
+
   selector.children("div.tableBarNumerator").animate({width: numerator_width.toString() + "%"});
   selector.children("div.tableBarDenominator").animate({width: denominator_width.toString() + "%"});
 };
