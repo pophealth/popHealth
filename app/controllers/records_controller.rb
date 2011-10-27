@@ -1,7 +1,7 @@
 class RecordsController < ApplicationController
 
   skip_authorization_check
-  skip_before_filter :verify_authenticity_token
+  skip_before_filter :verify_authenticity_token, :set_effective_date
   before_filter :authenticate
 
   def create

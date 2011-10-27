@@ -159,8 +159,6 @@ class MeasuresController < ApplicationController
 
   def set_up_environment
     
-    @fake_selected_provider = Provider.alphabetical.first.id
-    
     @patient_count = mongo['records'].count
     if current_user && current_user.effective_date
       @effective_date = current_user.effective_date
