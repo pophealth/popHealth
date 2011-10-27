@@ -51,5 +51,5 @@ class RecordsController < ApplicationController
       @user && @user.valid_password?(password)
     end
   end
-
+  
 end

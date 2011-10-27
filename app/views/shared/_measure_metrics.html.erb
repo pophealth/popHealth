@@ -1,5 +1,5 @@
 <div id="measureMetrics" style="width:285px;float:left;padding:15px 0 0 15px;margin-bottom:20px">
-  <div id="measurePopulationPercentage"><%= raw_percentage(numerator, denominator) %>%</div>
+  <div id="measurePopulationPercentage"><%= display_raw_percentage(numerator, denominator) %></div>
   <%= render :partial => "shared/fraction", locals: {numerator: numerator, denominator: denominator}%>
 </div>
 <!--    <br style="clear:left"/> -->

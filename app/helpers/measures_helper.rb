@@ -31,7 +31,17 @@ module MeasuresHelper
     raw_percentage(value_or_default(results, 'numerator', 0), value_or_default(results, 'denominator', 0))
   end
   
+  def display_raw_percentage(numerator, denominator)
+    output = raw_percentage(numerator, denominator)
+    if output
+      "#{output}%"
+    else
+      return  image_tag "loading.gif"
+    end
+  end
+  
   def raw_percentage(numerator, denominator)
+    return unless denominator
     if denominator > 0
       ((numerator / denominator.to_f) * 100).to_i
     else
