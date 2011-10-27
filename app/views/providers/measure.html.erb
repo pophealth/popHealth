@@ -14,7 +14,7 @@
           <label><%= team.name%></label>
           <div class="measureItemList" style="display:none">
             <ul>
-              <% team.providers.each do |pv| %>
+              <% team.providers.alphabetical.each do |pv| %>
               <li data-provider="<%=pv.id%>" class="<%= checked(@selected_providers, pv)%>">
                 <%= pv.full_name %>
               </li><% end %>
@@ -26,18 +26,20 @@
   </div>
   <div id="providerMain">
     <div id="aggregate">
+      <span id="aggregateData">
       <%= render :partial => 'shared/measure_metrics', locals: {numerator: 0, denominator: 0} %>
+      </span>
       <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
     </div><br>
     <table id="providerTable" border="0" cellspacing="5" cellpadding="5" >
       <tr><th colspan="4">Individual Provider Statistics</th></tr>
       <tbody>
           <% @selected_providers.each do |pv| %>
-            <tr  data-provider="<%=pv.id%>">
-              <td><div class="measureProviderPopulationPercentage">0%</div></td>
-              <td><%= pv.full_name %></td>
-              <td><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
-              <td><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0}%></td>
+            <tr class="provider" data-provider="<%=pv.id%>">
+              <td class="percent"><div class="measureProviderPopulationPercentage"></div></td>
+              <td class="nme"><%= pv.full_name %></td>
+              <td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
+              <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0}%></td>
             </tr>
           <% end %>
       </tbody>
@@ -50,32 +52,67 @@
 
 var popHealth = popHealth || {};
 
-popHealth.updateAggregate = function(num, den) {
-  var percent = 0
-  if (den != 0) {
-    percent = (aggregate.numerator / aggregate.denominator);
-  }
-  $("div#measurePopulationPercentage").html(percent.toString() + "%");
+popHealth.updateAggregate = function(num, den) {  
+  popHealth.setPercent($("#aggregate #measurePopulationPercentage"), num, den);
+  popHealth.setFraction($("#aggregate"), num, den);
 };
 
-popHealth.updateProvider = function(provider, num, den, pop) {
-  $("table#providerTable tbody").
+popHealth.updateProviders = function(providers) {
+  $("table#providerTable tr.provider").each(function() {
+    var providerId = $(this).data('provider');
+    var provider = providers[providerId];
+    if (provider != null) {
+      popHealth.updateProvider(this, provider.numerator, provider.denominator, provider.population);
+    }
+  });
+};
+
+popHealth.updateProvider = function(row, num, den, pop) {
+  popHealth.setPercent($(row).find("td.percent .measureProviderPopulationPercentage"), num, den);
+  popHealth.setFraction($(row).children("td.fraction"), num, den);
+  popHealth.setBarChart($(row).find("td.barChart div.tableBar"), num, den, pop);
+};
+
+popHealth.setPercent = function(selector, num, den) {
+  var percent = den != 0 ? (num / den) * 100 : 0;
+  selector.html(percent.toString().substring(0,4) + "%");
+};
+
+popHealth.setFraction = function(selector, num, den) {
+  selector.find(".numeratorValue").html(num);
+  selector.find(".denominatorValue").html(den);
+};
+
+popHealth.setBarChart = function(selector, num, den, pop) {
+  var numerator_width = 0;
+  var denominator_width = 0;
+  if (pop != 0 && den != 0) {
+    numerator_width = (num / pop) * 100;
+    denominator_width = ((den - num) / pop) * 100;
+  }
+  selector.children("div.tableBarNumerator").animate({width: numerator_width.toString() + "%"});
+  selector.children("div.tableBarDenominator").animate({width: denominator_width.toString() + "%"});
 };
 
 popHealth.makeProviderListExpandable = function() {
   $('.measureClassList li label').click(function(){
     $(this).toggleClass('open');
-    $(this).siblings("div.measureItemList").toggle("blind")
+    $(this).siblings("div.measureItemList").toggle("blind");
   });
-  $('.measureClassList li label').toggleClass('open')
-  $('.measureClassList li label').siblings("div.measureItemList").toggle("blind")
+  $('.measureClassList li label').toggleClass('open');
+  $('.measureClassList li label').siblings("div.measureItemList").toggle("blind");
 };
 
 popHealth.makeMeasuresCheckable = function() {
+
   $('.measureItemList li').click(function(){
+    var providerRow = $("table#providerTable tr.provider[data-provider='" + $(this).data('provider') +"']");
     if ($(this).hasClass('checked')) {
+      providerRow.fadeOut('fast');
     } else {
+      providerRow.fadeIn('fast');
     }
+   
     $(this).toggleClass('checked');
   });
 };
@@ -87,13 +124,7 @@ popHealth.pollJSON = function() {
       popHealth.updateAggregate(data.aggregate.numerator, data.aggregate.denominator);
     }
     
-    $.each(data.providers, function() {
-      $.each(this, function(k, v) {
-        if(v != null) {
-          popHealth.
-        }
-      });
-    });
+    popHealth.updateProviders(data.providers);
     
     if(!data.complete)
     setTimeout(function() {

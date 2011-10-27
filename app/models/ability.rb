@@ -25,7 +25,7 @@ class Ability
     elsif user.id
       can :read, Log
       can :read, Measure
-      can :read, Patient
+      can :read, Record
       can :manage, Provider
       can :manage, Team
     end
