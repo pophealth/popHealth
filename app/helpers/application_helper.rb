@@ -5,18 +5,18 @@ module ApplicationHelper
   end
   
   def numerator_width(numerator, patient_count)
-    if numerator
+    if numerator && !patient_count.zero?
       "#{((numerator / patient_count.to_f) * 100).to_i}%"      
     else
-      '33%'
+      '0%'
     end
   end
   
   def denominator_width(numerator, denominator, patient_count)
-    if numerator && denominator
+    if numerator && denominator && !patient_count.zero?
       "#{(((denominator - numerator)/ patient_count.to_f) * 100).to_i}%"
     else
-      '33%'
+      '0%'
     end
   end
 end

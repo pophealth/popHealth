@@ -18,9 +18,9 @@
       var numeratorWidth = (data.numerator/<%= @patient_count %>).toFixed(2)*100;
       var denominatorWidth = data.denominator > 0 ? ((data.denominator - data.numerator)/<%= @patient_count %>).toFixed(2)*100 : 0;
       
-      $(elem).find("#numeratorValue").text(data.numerator);
-      $(elem).find("#denominatorValue").text(data.denominator);
-      $(elem).find("#measurePopulationPercentage").text(percent + "%");
+      $(elem).find(".numeratorValue").text(data.numerator);
+      $(elem).find(".denominatorValue").text(data.denominator);
+      $(elem).find(".measurePopulationPercentage").text(percent + "%");
       
       $(elem).find(".barNumerator").css("width", numeratorWidth + "%");
       $(elem).find(".barDenominator").css("width", denominatorWidth + "%");

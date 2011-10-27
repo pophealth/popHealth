@@ -48,8 +48,8 @@ class ProvidersController < ApplicationController
       end
 
       wants.json do
-        provider_job_result = @provider_job_uuids.empty? ? nil : @provider_job_uuids
-        render json: {aggregate: @aggregate_quality_report.result, providers: @provider_reports, aggregate_job: @aggregate_quality_report_uuid, provider_jobs: provider_job_result}.to_json
+        complete = @provider_job_uuids.empty? && @aggregate_quality_report_uuid.nil?
+        render json: {aggregate: @aggregate_quality_report.result, providers: @provider_reports, aggregate_job: @aggregate_quality_report_uuid, provider_jobs: @provider_job_uuids, :complete => complete}.to_json
       end
     end
   end

@@ -15,7 +15,7 @@
           <div class="measureItemList" style="display:none">
             <ul>
               <% team.providers.each do |pv| %>
-              <li class="<%= checked(@selected_providers, pv)%>">
+              <li data-provider="<%=pv.id%>" class="<%= checked(@selected_providers, pv)%>">
                 <%= pv.full_name %>
               </li><% end %>
             </ul>
@@ -26,19 +26,21 @@
   </div>
   <div id="providerMain">
     <div id="aggregate">
-      <%= render :partial => 'shared/measure_metrics', locals: {numerator: 60, denominator: 100} %>
+      <%= render :partial => 'shared/measure_metrics', locals: {numerator: 0, denominator: 0} %>
       <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
     </div><br>
-    <table border="0" cellspacing="5" cellpadding="5" >
+    <table id="providerTable" border="0" cellspacing="5" cellpadding="5" >
       <tr><th colspan="4">Individual Provider Statistics</th></tr>
+      <tbody>
           <% @selected_providers.each do |pv| %>
-            <tr>
-              <td><div class="measureProviderPopulationPercentage">60%</div></td>
+            <tr  data-provider="<%=pv.id%>">
+              <td><div class="measureProviderPopulationPercentage">0%</div></td>
               <td><%= pv.full_name %></td>
-              <td><%= render :partial => "shared/fraction", locals: {numerator: 60, denominator: 100} %></td>
-              <td><%= render :partial => "shared/table_bar", locals: {numerator: 60, denominator:100, patient_count: 334}%></td>
-            <tr>
+              <td><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
+              <td><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0}%></td>
+            </tr>
           <% end %>
+      </tbody>
     </table>
   </div>
 </div>
@@ -47,6 +49,18 @@
 <script type="text/javascript" charset="utf-8">
 
 var popHealth = popHealth || {};
+
+popHealth.updateAggregate = function(num, den) {
+  var percent = 0
+  if (den != 0) {
+    percent = (aggregate.numerator / aggregate.denominator);
+  }
+  $("div#measurePopulationPercentage").html(percent.toString() + "%");
+};
+
+popHealth.updateProvider = function(provider, num, den, pop) {
+  $("table#providerTable tbody").
+};
 
 popHealth.makeProviderListExpandable = function() {
   $('.measureClassList li label').click(function(){
@@ -68,8 +82,20 @@ popHealth.makeMeasuresCheckable = function() {
 
 popHealth.pollJSON = function() {
   $.getJSON("<%= providers_measure_path(measure_id: @definition['id'], sub_id: @definition['sub_id'], format: 'json')%>", function(data) {
-    alert(data.aggregate.measure_id);
-    if(data.aggregateJob != null || data.provider_jobs != null)
+    
+    if(data.aggregate != null) {
+      popHealth.updateAggregate(data.aggregate.numerator, data.aggregate.denominator);
+    }
+    
+    $.each(data.providers, function() {
+      $.each(this, function(k, v) {
+        if(v != null) {
+          popHealth.
+        }
+      });
+    });
+    
+    if(!data.complete)
     setTimeout(function() {
       popHealth.pollJSON();
     }, 1000);
