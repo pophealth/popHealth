@@ -26,10 +26,10 @@
   </div>
   <div id="providerMain">
     <div id="aggregate">
-      <span id="aggregateData">
+      <%= image_tag "loading_bar.gif", :id => "loadingAggregate", :style => "display:none" %>
       <%= render :partial => 'shared/measure_metrics', locals: {numerator: nil, denominator: nil} %>
-      </span>
-      <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
+   
+      <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%><br>
       <div class="links">
         <%= link_to 'parameters', measure_url(@definition['id'], @definition['sub_id']), :class => 'tableEdit'%> | 
         <%= link_to 'patients', patients_url(@definition['id'], @definition['sub_id']), :class => 'tableEdit'%>
@@ -58,7 +58,7 @@ var popHealth = popHealth || {};
 
 popHealth.updateAggregate = function(num, den) {  
   popHealth.setPercent($("#aggregate #measurePopulationPercentage"), num, den);
-  popHealth.setFraction($("#aggregate"), num, den);
+  popHealth.setFraction($("#aggregate div.inline-fraction"), num, den);
 };
 
 popHealth.updateProviders = function(providers) {
@@ -117,24 +117,36 @@ popHealth.makeMeasuresCheckable = function() {
     } else {
       providerRow.fadeIn('fast');
     }
-   
+    
     $(this).toggleClass('checked');
+    popHealth.pollProviders();
   });
 };
 
-popHealth.pollJSON = function() {
-  $.getJSON("<%= providers_measure_path(measure_id: @definition['id'], sub_id: @definition['sub_id'], format: 'json')%>", function(data) {
+
+popHealth.pollProviders = function() {
+  var providerIds = $(".measureItemList li.checked").map(function() { return $(this).data("provider");});
+  var params = {'selected_provider_ids[]': $.makeArray(providerIds)};
+  
+  $('div#measureMetrics').fadeTo('fast', 0.25, function() { $("#loadingAggregate").show(); });
+  $.getJSON("<%= providers_measure_path(measure_id: @definition['id'], sub_id: @definition['sub_id'], format: 'json')%>", params, function(data) {
     
     if(data.aggregate != null) {
       popHealth.updateAggregate(data.aggregate.numerator, data.aggregate.denominator);
+      
+      $("#loadingAggregate").hide();
+      if($("div#measureMetrics").css("opacity") < 0.3) {
+        $('div#measureMetrics').fadeTo('fast', 1.0, function() {  });
+      }
+      
     }
     
     popHealth.updateProviders(data.providers);
     
     if(!data.complete)
     setTimeout(function() {
-      popHealth.pollJSON();
-    }, 1000);
+      popHealth.pollProviders();
+    }, 3000);
   });
 };
 
@@ -142,7 +154,7 @@ popHealth.pollJSON = function() {
 $(document).ready(function() {
   popHealth.makeProviderListExpandable();
   popHealth.makeMeasuresCheckable();
-  popHealth.pollJSON();
+  popHealth.pollProviders();
   
 });
 
