@@ -10,7 +10,7 @@ class FactoryHash < Hash
     end
   end
   def save!
-    Mongoid.master[@collection] << self
+    Mongoid.master[@collection].insert(self, {safe: true})
   end
   def destroy
     Mongoid.master[@collection].remove({:_id => id})

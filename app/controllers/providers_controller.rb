@@ -6,9 +6,6 @@ class ProvidersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :provider_list, except: 'measure'
   
-  def index
-  end
-  
   def show
     respond_to do |wants|
       wants.html

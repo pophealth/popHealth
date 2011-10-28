@@ -19,6 +19,8 @@ class ActiveSupport::TestCase
     db['measures'].remove({})
     db['selected_measures'].remove({})
     db['records'].remove({})
+    db['patient_cache'].remove({})
+    db['query_cache'].remove({})
   end
 
   def raw_post(action, body, parameters = nil, session = nil, flash = nil)
@@ -53,6 +55,15 @@ class ActiveSupport::TestCase
   def assert_false(value) 
     assert !value
   end
+  
+  def assert_query_results_equal(factory_result, result)
+    
+    factory_result.each do |key, value|
+      assert_equal value, result[key] unless key == '_id'
+    end
+    
+  end
+  
   
 end
 

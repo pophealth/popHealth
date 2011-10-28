@@ -33,7 +33,7 @@ group :test, :develop do
   gem 'cover_me'
   gem 'factory_girl'
   gem 'minitest'
-  gem 'mocha'
+  gem 'mocha', require: false
 end
 
 gem 'jquery-rails'

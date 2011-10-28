@@ -39,7 +39,7 @@ Factory.define :selected_measure, :class => FactoryHash do |u|
   u.after_build {|event| event.collection('selected_measures')}
 end
 
-Factory.define(:provider) do |pv|
+Factory.define :provider do |pv|
   pv.title "Dr."
   pv.given_name { %w(Robert Jane Steve Claire Joe Liana Edmund Emily Kevin Amanda Gino Michelle Dylan Jake Jessica Duane Jamie Leon Elizabeth George).sample }
   pv.family_name { %w(Smith Jones Burns Simpsons Jackson Hurt Marshall Roy Adam Miller Ellis Myers Weber Martin Edwards Kelly Campbell Darling Clark Schwartz Calloway Schmidt Sterling Cooper Draper Pryce Formby).sample }
@@ -50,7 +50,7 @@ Factory.define(:provider) do |pv|
   pv.specialty "200000000X"
 end
 
-Factory.define(:record) do |r|
+Factory.define :record do |r|
   r.first { %w(Robert Jane Steve Claire Joe Liana Edmund Emily Kevin Amanda Gino Michelle Dylan Jake Jessica Duane Jamie Leon Elizabeth George).sample }
   r.last { %w(Smith Jones Burns Simpsons Jackson Hurt Marshall Roy Adam Miller Ellis Myers Weber Martin Edwards Kelly Campbell Darling Clark Schwartz Calloway Schmidt Sterling Cooper Draper Pryce Formby).sample }
   r.patient_id { (0...10).map{ ('0'..'9').to_a[rand(10)] }.join.to_s }
@@ -59,7 +59,7 @@ Factory.define(:record) do |r|
   r.measures {}
 end
 
-Factory.define(:provider_performance) do |pp|
+Factory.define :provider_performance do |pp|
   pp.after_build do |pp| 
     pp.start_date = between(Time.gm(1970, 1, 1), Time.gm(2010, 10, 1)) unless pp.start_date
     if Random.new.rand(1..100) > 90 || pp.end_date
@@ -67,4 +67,27 @@ Factory.define(:provider_performance) do |pp|
     end  
     pp.provider_id = Factory(:provider).id unless pp.provider_id
   end
+end
+
+Factory.define :base_query_cache, :class => FactoryHash do |qc|
+  qc.measure_id "measure_id"
+  qc.sub_id nil
+  qc.effective_date Time.now.to_i
+  qc.test_id nil
+  qc.filters nil
+  qc.population 0
+  qc.denominator 0
+  qc.numerator 0
+  qc.antinumerator 0
+  qc.exclusions 0 
+  qc.after_build {|event| QME::QualityReport.normalize_filters(event.filters)}
+  qc.after_build {|event| event.collection('query_cache')}
+end
+
+Factory.define :query_cache, parent: :base_query_cache do |qc|
+  qc.effective_date User::DEFAULT_EFFECTIVE_DATE.to_i
+  qc.population 20
+  qc.denominator 15
+  qc.numerator 10
+  qc.antinumerator 5
 end

@@ -4,6 +4,8 @@ class User
 
   include Mongoid::Document
   
+  DEFAULT_EFFECTIVE_DATE = Time.gm(2010, 12, 31)
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:username]
 

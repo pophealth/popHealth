@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
     if current_user && current_user.effective_date
       @effective_date = current_user.effective_date
     else
-      @effective_date = Time.gm(2010, 12, 31).to_i
+      @effective_date = User::DEFAULT_EFFECTIVE_DATE.to_i
     end
     @period_start = calc_start(@effective_date)
   end
