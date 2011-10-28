@@ -29,7 +29,7 @@
       <span id="aggregateData">
       <%= render :partial => 'shared/measure_metrics', locals: {numerator: nil, denominator: nil} %>
       </span>
-      <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
+      <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%><br>
       <div class="links">
         <%= link_to 'parameters', measure_url(@definition['id'], @definition['sub_id']), :class => 'tableEdit'%> | 
         <%= link_to 'patients', patients_url(@definition['id'], @definition['sub_id']), :class => 'tableEdit'%>
