@@ -133,7 +133,7 @@ popHealth.pollProviders = function() {
     
     if(data.aggregate != null) {
       popHealth.updateAggregate(data.aggregate.numerator, data.aggregate.denominator);
-      console.log($("div#measureMetrics").css("opacity"));
+      
       $("#loadingAggregate").hide();
       if($("div#measureMetrics").css("opacity") < 0.3) {
         $('div#measureMetrics').fadeTo('fast', 1.0, function() {  });
