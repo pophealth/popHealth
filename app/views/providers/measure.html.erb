@@ -119,18 +119,28 @@ popHealth.makeMeasuresCheckable = function() {
     }
     
     $(this).toggleClass('checked');
+    popHealth.isPollRequestActive = true;
     popHealth.pollProviders();
   });
 };
 
+popHealth.isPollRequestActive = false;
+
+popHealth.markLoading = function() {
+  if (popHealth.isPollRequestActive) {
+    $('div#measureMetrics').fadeTo('fast', 0.25, function() { if (popHealth.isPollRequestActive) $("#loadingAggregate").show(); else $('div#measureMetrics').fadeTo('fast', 1.0, function() {  }); });
+  } 
+};
 
 popHealth.pollProviders = function() {
   var providerIds = $(".measureItemList li.checked").map(function() { return $(this).data("provider");});
   var params = {'selected_provider_ids[]': $.makeArray(providerIds)};
+
+  setTimeout(popHealth.markLoading, 500);
   
-  $('div#measureMetrics').fadeTo('fast', 0.25, function() { $("#loadingAggregate").show(); });
   $.getJSON("<%= providers_measure_path(measure_id: @definition['id'], sub_id: @definition['sub_id'], format: 'json')%>", params, function(data) {
-    
+    if(data.complete) popHealth.isPollRequestActive = false;
+
     if(data.aggregate != null) {
       popHealth.updateAggregate(data.aggregate.numerator, data.aggregate.denominator);
       
@@ -143,10 +153,11 @@ popHealth.pollProviders = function() {
     
     popHealth.updateProviders(data.providers);
     
-    if(!data.complete)
-    setTimeout(function() {
-      popHealth.pollProviders();
-    }, 3000);
+    if(!data.complete) {
+      setTimeout(function() {
+        popHealth.pollProviders();
+      }, 3000);
+    }
   });
 };
 
