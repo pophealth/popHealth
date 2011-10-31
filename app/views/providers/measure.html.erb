@@ -136,7 +136,7 @@ popHealth.pollProviders = function() {
   var providerIds = $(".measureItemList li.checked").map(function() { return $(this).data("provider");});
   var params = {'selected_provider_ids[]': $.makeArray(providerIds)};
 
-  setTimeout(popHealth.markLoading, 500);
+  setTimeout(popHealth.markLoading, 300);
   
   $.getJSON("<%= providers_measure_path(measure_id: @definition['id'], sub_id: @definition['sub_id'], format: 'json')%>", params, function(data) {
     if(data.complete) popHealth.isPollRequestActive = false;
