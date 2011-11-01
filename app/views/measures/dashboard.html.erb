@@ -191,6 +191,10 @@
       <div class="measureDetailTable">
         <h1><%= current_user.company.to_s %></h1>
         <dl>
+          <dt>Practice:</dt>
+          <dd class="practiceName"><h1>Fort Defiance Health</h1></dd>
+        </dl>
+        <dl>
           <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
           <dt>Reporting Period:</dt>
           <dd>
@@ -200,8 +204,12 @@
           </dd>
         </dl>
         <dl>
-          <dt>Reporting Patients: </dt>
+          <dt># of Patients: </dt>
           <dd><%= @patient_count %></dd>
+        </dl>
+        <dl>
+          <dt># of Providers: </dt>
+          <dd>45</dd>
         </dl>
         <div class="clear"></div>
         <div class="legend">

@@ -550,6 +550,25 @@ input.measurementPeriodEndDate {
     display: table-cell;
     h1 {
       padding-left: 0; } }
+  dd.practiceName {text-transform: uppercase;}
+  div.dashboardTabs {
+    color: $dashboardLabel;
+    clear: left;
+    padding-left: $measureDetailTable-padding;
+    padding-bottom: 0px;
+    border-bottom: 3px solid $borderColor; 
+    span{
+      text-transform: lowercase;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 3px;
+      border-left: 1px solid $borderColor;
+      border-right: 1px solid $borderColor;
+      border-top: 1px solid $borderColor;
+      margin-right: 2px;}
+    span.active {
+      font-weight: bold;color: white;
+      background-color: #40B3BC;}}
   h3.dashboardLabel {
     color: $dashboardLabel;
     clear: left;
