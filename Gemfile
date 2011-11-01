@@ -5,6 +5,7 @@ gem 'rails', '3.1.0'
 gem 'rack' , '1.3.3'
 
 gem 'quality-measure-engine', :path => '../quality-measure-engine/'
+#gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'develop'
 gem 'nokogiri'
 gem 'rubyzip'
 
