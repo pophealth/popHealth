@@ -1,13 +1,17 @@
 <tr id="measure<%= measure['id'] %>">
   <td>
-    <div class="tableMeasureTitle"><span class="vtip" title="<%= measure['description'] %>"><%= measure['name'] %></span></div>
+    <div class="tableMeasureTitle">
+      <span class="vtip" title="<%= measure['description'] %>">
+        <%= link_to measure['name'], providers_measure_path(measure['id'], measure['subs'].empty? ? nil : measure['subs'].first ) %>
+      </span>
+    </div>
   </td>
   <td>
     <% subs_iterator(measure['subs']) do |sub_id| -%>
     <%= measure_stats_div(measure['id'], sub_id, @effective_date, measure['filters']) do |results| %>
       <div class="measureStats">
         <% if (sub_id!=nil) %>
-        <span class="measureShortSubtitle"><%= measure['short_subtitles'][sub_id] %></span>
+        <span class="measureShortSubtitle"><%= link_to measure['short_subtitles'][sub_id], providers_measure_path(measure['id'], sub_id )%></span>
         <% else %>
         <span class="measureShortSubtitle"></span>
         <% end %>

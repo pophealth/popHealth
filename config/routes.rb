@@ -27,7 +27,7 @@ PopHealth::Application.routes.draw do
   match 'patients', :to => 'patients#index', :via => :get
   match 'patients/show/:id', :to => 'patients#show'
 
-  match 'providers/measure/:measure_id(:sub_id)', :to => "providers#measure", :as => :providers_measure, :via => :get 
+  match 'providers/measure/:measure_id(/:sub_id)', :to => "providers#measure", :as => :providers_measure, :via => :get 
   
   root :to => 'measures#index'
   
