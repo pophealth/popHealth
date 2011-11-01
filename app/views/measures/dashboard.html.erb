@@ -67,7 +67,7 @@
       var denominatorWidth = data.denominator > 0 ? roundNumber((data.denominator - data.numerator)/<%= @patient_count -%>*100,0) : 0;
       graphDiv.find(".numeratorValue").text(data.numerator);
       graphDiv.find(".denominatorValue").text(data.denominator);
-      graphDiv.find(".measurePopulationPercentage").text(percent + "%");
+      graphDiv.find(".measureProviderPopulationPercentage").text(percent + "%");
       graphDiv.find(".tableBarNumerator").css("width", numeratorWidth + "%");
       graphDiv.find(".tableBarDenominator").css("width", denominatorWidth + "%");
     };
@@ -77,7 +77,7 @@
         if (data.uuid == undefined) {
           popHealth.updateStat(data, graphDiv)
         } else {
-          graphDiv.find(".measurePopulationPercentage").text(data.status);
+          graphDiv.find(".measureProviderPopulationPercentage").text(data.status);
           if (data.status!="failed") {
             setTimeout(function() {
               popHealth.pollStat(resultUrl, graphDiv);

@@ -1,6 +1,8 @@
 <% subs_iterator(measure['subs']) do |sub_id| -%>
   <tr id="measure<%= measure['id'] %>">
-    <td class="percent"><div class="measureProviderPopulationPercentage"><%= image_tag "loading.gif", :style => "margin-top:12px"%></div></td>
+<%= measure_stats_div(measure['id'], sub_id, @effective_date, measure['filters']) do |results| %>
+    <td class="percent"><div class="measureProviderPopulationPercentage"><%= percentage(results)%>%</div></td>
+<% end -%>
     <td>
       <div class="tableMeasureTitle">
         <span class="vtip" title="<%= measure['description'] %>"><%= measure['name'] %></span>
