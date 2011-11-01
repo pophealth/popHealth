@@ -3,10 +3,12 @@
 <% end %>
 <div id="header">
     <div id="breadcrumbBox">
+      <% if (@definition) %>
       <ul id="breadcrumbItems">
         <li><a href="<%= dashboard_url %>">measure dashboard</a> <span class="sep">&raquo;</span></li>
         <li><%= @definition['name'] %></li>
       </ul>
+      <% end %>
       
      <%= render :partial => "/layouts/top_nav"%>
     </div>
