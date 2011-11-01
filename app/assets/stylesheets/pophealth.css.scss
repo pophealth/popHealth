@@ -607,6 +607,11 @@ input.measurementPeriodEndDate {
   span.separator {
     border-top: 1px solid #cccccc; } }
 
+.measureProviderPopulationPercentage {
+  width: 225px;
+  margin-top: 0.25em;
+  margin-left: $measureDetailTable-padding; }
+    
 .tableMeasureTitle {
   width: 225px;
   margin-top: 0.75em;
@@ -636,7 +641,7 @@ input.measurementPeriodEndDate {
   clear: left;
   height: 3em;
   .measureStats {
-    width: 205px;
+    width: 85px;
     float: left;
     height: 3em;
     vertical-align: middle;
