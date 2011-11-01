@@ -420,7 +420,13 @@ a {
     padding: 0 0 0 10px;
     margin: 5px 0 15px 0;
     color: $dashboardLabel;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    label {
+      cursor: pointer;
+      padding-left: 15px;
+      background: url("../assets/liClosed.png") 0 35% no-repeat; }
+    label.open {
+      background: url("../assets/liOpen.png") 0 35% no-repeat; }    }
   em {
     font-style: italic;
     text-transform: none; }
@@ -461,6 +467,18 @@ a {
     ul {
       margin: 5px; }
     list-style: none;
+    li {
+      padding: 0 5px 10px 25px;
+      background: url("../assets/unchecked.png") 0 10% no-repeat;
+      font-size: 0.9em;
+      cursor: pointer;
+      .note {
+        margin: 0 3px 0 0;
+        font-size: 0.9em; } }
+    li.checked {
+      background: url("../assets/checked.png") 0 10% no-repeat; } }
+  .providerReports {
+    ul {margin: 5px; }
     li {
       padding: 0 5px 10px 25px;
       background: url("../assets/unchecked.png") 0 10% no-repeat;
@@ -550,6 +568,25 @@ input.measurementPeriodEndDate {
     display: table-cell;
     h1 {
       padding-left: 0; } }
+  dd.practiceName {text-transform: uppercase;}
+  div.dashboardTabs {
+    color: $dashboardLabel;
+    clear: left;
+    padding-left: $measureDetailTable-padding;
+    padding-bottom: 0px;
+    border-bottom: 3px solid $borderColor; 
+    span{
+      text-transform: lowercase;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 3px;
+      border-left: 1px solid $borderColor;
+      border-right: 1px solid $borderColor;
+      border-top: 1px solid $borderColor;
+      margin-right: 2px;}
+    span.active {
+      font-weight: bold;color: white;
+      background-color: #40B3BC;}}
   h3.dashboardLabel {
     color: $dashboardLabel;
     clear: left;
@@ -607,6 +644,11 @@ input.measurementPeriodEndDate {
   span.separator {
     border-top: 1px solid #cccccc; } }
 
+.measureProviderPopulationPercentage {
+  width: 225px;
+  margin-top: 0.25em;
+  margin-left: $measureDetailTable-padding; }
+    
 .tableMeasureTitle {
   width: 225px;
   margin-top: 0.75em;
@@ -636,7 +678,7 @@ input.measurementPeriodEndDate {
   clear: left;
   height: 3em;
   .measureStats {
-    width: 205px;
+    width: 85px;
     float: left;
     height: 3em;
     vertical-align: middle;

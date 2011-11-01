@@ -12,6 +12,17 @@
         }
       });
     };
+    
+    popHealth.makeProviderListExpandable = function() {
+      $('.listContainer .note').click(function(){
+        $(this).children('label').toggleClass('open');
+        if ($(this).children('label').hasClass('open')) {
+          $(this).siblings('div.measureList').slideDown();
+        } else {
+          $(this).siblings('div.measureList').slideUp();
+        }
+      });
+    };
 
     /* 
       Handles the logic to toggle the selected measure checkbox on and off
@@ -56,7 +67,7 @@
       var denominatorWidth = data.denominator > 0 ? roundNumber((data.denominator - data.numerator)/<%= @patient_count -%>*100,0) : 0;
       graphDiv.find(".numeratorValue").text(data.numerator);
       graphDiv.find(".denominatorValue").text(data.denominator);
-      graphDiv.find(".measurePopulationPercentage").text(percent + "%");
+      graphDiv.find(".measureProviderPopulationPercentage").text(percent + "%");
       graphDiv.find(".tableBarNumerator").css("width", numeratorWidth + "%");
       graphDiv.find(".tableBarDenominator").css("width", denominatorWidth + "%");
     };
@@ -66,7 +77,7 @@
         if (data.uuid == undefined) {
           popHealth.updateStat(data, graphDiv)
         } else {
-          graphDiv.find(".measurePopulationPercentage").text(data.status);
+          graphDiv.find(".measureProviderPopulationPercentage").text(data.status);
           if (data.status!="failed") {
             setTimeout(function() {
               popHealth.pollStat(resultUrl, graphDiv);
@@ -121,6 +132,7 @@
 
     $(document).ready(function() {
       popHealth.makeMeasureListExpandable();
+      popHealth.makeProviderListExpandable();
       popHealth.makeMeasuresCheckable();
       popHealth.populateMeasureStats();
       $('#btnExportReport').click(popHealth.exportReport);
@@ -156,40 +168,51 @@
   </div><!-- end #header -->
   <div id="pageContent">
     <div id="providerReports">
-      <h1>Reporting</h1>
-      <p class="note">Core Measures <em>(select 3)</em></p>
-      <div class="measureList">
-      <div class="measureItemList">
-         <ul>
-         <% @core_measures.each do |measure| -%>
-           <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core"><%= measure['name'] %></li>
-         <% end %>
-         <% @core_alt_measures.each do |measure| -%>
-           <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core Alternate"><span class="note">**</span><%= measure['name'] %></li>
-         <% end %>
-         </ul>
-      <p class="note"><em>** core alternate measures</em></p>
+      <h1>Filters</h1>
+      <div class="listContainer">
+        <p class="note"><label>Providers</label></p>
       </div>
+      <div class="listContainer">
+        <p class="note"><label class="open">Core Measures <em>(select 3)</em></label></p>
+        <div class="measureList">
+          <div class="measureItemList">
+           <ul>
+           <% @core_measures.each do |measure| -%>
+             <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core"><%= measure['name'] %></li>
+           <% end %>
+           <% @core_alt_measures.each do |measure| -%>
+             <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core Alternate"><span class="note">**</span><%= measure['name'] %></li>
+           <% end %>
+           </ul>
+            <p class="note"><em>** core alternate measures</em></p>
+          </div>
+        </div>
       </div>
-      <p class="note">Additional Measures <em>(select 3)</em></p>
-      <div class="measureList">
-        <ul class="measureClassList">
-        <% @categories.each do |category| -%>
-          <li><label><%= category['category'] %></label>
-            <div class="measureItemList" style="display:none">
-              <ul>
-              <% category['measures'].each do |measure| -%>
-                <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="<%= category['category'] %>"><%= measure['name'] %></li>
-              <% end -%>
-              </ul>
-            </div>
-        <% end -%>
-        </ul>
-      </div><!-- end #measureList -->
+      <div class="listContainer">
+        <p class="note"><label class="open">Additional Measures <em>(select 3)</em></label></p>
+        <div class="measureList">
+          <ul class="measureClassList">
+          <% @categories.each do |category| -%>
+            <li><label><%= category['category'] %></label>
+              <div class="measureItemList" style="display:none">
+                <ul>
+                <% category['measures'].each do |measure| -%>
+                  <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="<%= category['category'] %>"><%= measure['name'] %></li>
+                <% end -%>
+                </ul>
+              </div>
+          <% end -%>
+          </ul>
+        </div><!-- end #measureList -->
+      </div><!-- end #listContainer -->
     </div><!-- end #providerReports -->
     <div id="dashboardPeriod">
       <div class="measureDetailTable">
         <h1><%= current_user.company.to_s %></h1>
+        <dl>
+          <dt>Practice:</dt>
+          <dd class="practiceName"><h1>Fort Defiance Health</h1></dd>
+        </dl>
         <dl>
           <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
           <dt>Reporting Period:</dt>
@@ -200,10 +223,18 @@
           </dd>
         </dl>
         <dl>
-          <dt>Reporting Patients: </dt>
+          <dt># of Patients: </dt>
           <dd><%= @patient_count %></dd>
         </dl>
+        <dl>
+          <dt># of Providers: </dt>
+          <dd>45</dd>
+        </dl>
         <div class="clear"></div>
+        <div class="dashboardTabs">
+          <span class="dashboardTab active">Measures</span>
+          <span class="dashboardTab">Comparison</span>
+        </div>
         <div class="legend">
           <div class="numerator"></div><span>numerator</span>
           <div class="denominator"></div><span>denominator</span>
