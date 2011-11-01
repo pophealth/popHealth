@@ -12,6 +12,17 @@
         }
       });
     };
+    
+    popHealth.makeProviderListExpandable = function() {
+      $('.listContainer .note').click(function(){
+        $(this).children('label').toggleClass('open');
+        if ($(this).children('label').hasClass('open')) {
+          $(this).siblings('div.measureList').slideDown();
+        } else {
+          $(this).siblings('div.measureList').slideUp();
+        }
+      });
+    };
 
     /* 
       Handles the logic to toggle the selected measure checkbox on and off
@@ -121,6 +132,7 @@
 
     $(document).ready(function() {
       popHealth.makeMeasureListExpandable();
+      popHealth.makeProviderListExpandable();
       popHealth.makeMeasuresCheckable();
       popHealth.populateMeasureStats();
       $('#btnExportReport').click(popHealth.exportReport);
@@ -156,36 +168,43 @@
   </div><!-- end #header -->
   <div id="pageContent">
     <div id="providerReports">
-      <h1>Reporting</h1>
-      <p class="note">Core Measures <em>(select 3)</em></p>
-      <div class="measureList">
-      <div class="measureItemList">
-         <ul>
-         <% @core_measures.each do |measure| -%>
-           <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core"><%= measure['name'] %></li>
-         <% end %>
-         <% @core_alt_measures.each do |measure| -%>
-           <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core Alternate"><span class="note">**</span><%= measure['name'] %></li>
-         <% end %>
-         </ul>
-      <p class="note"><em>** core alternate measures</em></p>
+      <h1>Filters</h1>
+      <div class="listContainer">
+        <p class="note"><label>Providers</label></p>
       </div>
+      <div class="listContainer">
+        <p class="note"><label class="open">Core Measures <em>(select 3)</em></label></p>
+        <div class="measureList">
+          <div class="measureItemList">
+           <ul>
+           <% @core_measures.each do |measure| -%>
+             <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core"><%= measure['name'] %></li>
+           <% end %>
+           <% @core_alt_measures.each do |measure| -%>
+             <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="Core Alternate"><span class="note">**</span><%= measure['name'] %></li>
+           <% end %>
+           </ul>
+            <p class="note"><em>** core alternate measures</em></p>
+          </div>
+        </div>
       </div>
-      <p class="note">Additional Measures <em>(select 3)</em></p>
-      <div class="measureList">
-        <ul class="measureClassList">
-        <% @categories.each do |category| -%>
-          <li><label><%= category['category'] %></label>
-            <div class="measureItemList" style="display:none">
-              <ul>
-              <% category['measures'].each do |measure| -%>
-                <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="<%= category['category'] %>"><%= measure['name'] %></li>
-              <% end -%>
-              </ul>
-            </div>
-        <% end -%>
-        </ul>
-      </div><!-- end #measureList -->
+      <div class="listContainer">
+        <p class="note"><label class="open">Additional Measures <em>(select 3)</em></label></p>
+        <div class="measureList">
+          <ul class="measureClassList">
+          <% @categories.each do |category| -%>
+            <li><label><%= category['category'] %></label>
+              <div class="measureItemList" style="display:none">
+                <ul>
+                <% category['measures'].each do |measure| -%>
+                  <li class="<%= measure_selected(measure['id'], @selected_measures)%>" data-measure-id="<%= measure['id'] %>" data-category="<%= category['category'] %>"><%= measure['name'] %></li>
+                <% end -%>
+                </ul>
+              </div>
+          <% end -%>
+          </ul>
+        </div><!-- end #measureList -->
+      </div><!-- end #listContainer -->
     </div><!-- end #providerReports -->
     <div id="dashboardPeriod">
       <div class="measureDetailTable">
