@@ -149,3 +149,4 @@ DEPENDENCIES
   rspec-rails (~> 2.5.0)
   rubyzip
   will_paginate (~> 3.0.pre2)
+  win32-eventlog

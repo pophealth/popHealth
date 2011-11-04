@@ -17,6 +17,9 @@ gem "mongoid", "2.0.1"
 gem 'devise'
 gem 'foreman'
 
+# Windows doesn't have syslog, so need a gem to log to EventLog instead
+gem 'win32-eventlog', :platforms => [:mswin, :mingw]
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
