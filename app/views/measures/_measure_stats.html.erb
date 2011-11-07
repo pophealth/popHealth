@@ -5,9 +5,9 @@
 <% end -%>
     <td>
       <div class="tableMeasureTitle">
-        <span class="vtip" title="<%= measure['description'] %>"><%= measure['name'] %></span>
+        <span class="vtip" title="<%= measure['description'] %>"><%= link_to measure['name'], providers_measure_path(measure['id'], sub_id )%></span>
         <% if (sub_id!=nil) %>
-          <span class="measureShortSubtitle"><%= measure['short_subtitles'][sub_id] %></span>
+          <span class="measureShortSubtitle"><%= link_to measure['short_subtitles'][sub_id], providers_measure_path(measure['id'], sub_id )%></span>
         <% else %>
           <span class="measureShortSubtitle"></span>
         <% end %>

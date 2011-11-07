@@ -1,4 +1,4 @@
-require 'syslog'
+require 'rbconfig' # So we can determine host os.
 require 'builder'
 
 # Class for logging messages to syslog using the XML format defined in
@@ -12,8 +12,8 @@ class Atna
 
   # Write a message to syslog in RFC3881 format
   def self.log(username, event)
-    with_syslog do |sl|
-      sl.notice(generate_xml(username, event))
+    self.with_logger do |log|
+      log.notice(generate_xml(username, event))
     end
   end
 
@@ -37,10 +37,12 @@ class Atna
 
   private
 
-  def self.with_syslog
-    s = Syslog.open('popHealth', Syslog::LOG_PID | Syslog::LOG_CONS, Syslog::LOG_AUTH)
-    yield s
-    s.close
+  if !((RbConfig::CONFIG['host_os'] =~ /mswin|mingw/).nil?)
+    require 'eventloglogger'
+    extend EventlogLogger
+  else
+    require 'sysloglogger'
+    extend SyslogLogger
   end
 
   def self.outcome_for_event(event)
@@ -52,3 +54,4 @@ class Atna
   end
 
 end
+
