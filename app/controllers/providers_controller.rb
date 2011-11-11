@@ -36,12 +36,14 @@ class ProvidersController < ApplicationController
   
   def measure
     @selected_providers = Provider.selected_or_all(params[:selected_provider_ids]).alphabetical
+    @selected_races = (params[:selected_race_ids] && !params[:selected_race_ids].empty?) ? Race.selected(params[:selected_race_ids]).ordered : []
     @definition = QME::QualityMeasure.new(params[:measure_id], params[:sub_id]).definition
-    calculate_measure_for_selected(@definition["id"], @definition['sub_id'], @selected_providers)
+    calculate_measure_for_selected(@definition["id"], @definition['sub_id'], @selected_providers, @selected_races)
 
     respond_to do |wants|
       wants.html do 
         @teams = Team.alphabetical
+        @races = Race.ordered
       end
 
       wants.json do
@@ -57,20 +59,20 @@ class ProvidersController < ApplicationController
     @providers = Provider.alphabetical unless request.xhr?
   end
 
-  def calculate_measure_for_selected(measure_id, sub_id, selected_providers)
+  def calculate_measure_for_selected(measure_id, sub_id, selected_providers, selected_races)
     @provider_job_uuids = {}
-    @aggregate_quality_report = calculate_measure(measure_id, sub_id, selected_providers)
+    @aggregate_quality_report = calculate_measure(measure_id, sub_id, selected_providers, selected_races)
     @aggregate_quality_report_uuid = @aggregate_quality_report.calculate unless @aggregate_quality_report.calculated?
     @provider_reports = {}
     selected_providers.each do |provider| 
-      report = calculate_measure(measure_id, sub_id, [provider])
+      report = calculate_measure(measure_id, sub_id, [provider], selected_races)
       @provider_job_uuids[provider.id] = report.calculate unless report.calculated?
       @provider_reports[provider.id] = report.result
     end
   end
   
-  def calculate_measure(measure_id, sub_id, providers)
-    QME::QualityReport.new(measure_id, sub_id, 'effective_date' => @effective_date, 'filters' => {'providers' => providers.map { |pv| pv.id.to_s }})
+  def calculate_measure(measure_id, sub_id, providers, races)
+    QME::QualityReport.new(measure_id, sub_id, 'effective_date' => @effective_date, 'filters' => {'providers' => providers.map { |pv| pv.id.to_s }, 'races'=>races.map {|value| value.flatten(:race)}.flatten, 'ethnicities'=>races.map {|value| value.flatten(:ethnicity)}.flatten})
   end
   
 

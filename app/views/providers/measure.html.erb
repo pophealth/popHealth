@@ -13,15 +13,31 @@
         <li>
           <label><%= team.name%></label>
           <div class="measureItemList" style="display:none">
-            <ul>
+            <ul class="providers">
               <% team.providers.alphabetical.each do |pv| %>
-              <li data-provider="<%=pv.id%>" class="<%= checked(@selected_providers, pv)%>">
+              <li data-provider="<%=pv.id%>" class="<%= checked(@selected_providers, pv)%> provider">
                 <%= pv.full_name %>
               </li><% end %>
             </ul>
           </div>
         </li><% end %>
       </ul>
+      
+      <ul class="measureClassList">
+        <li>
+          <label>Race and Ethnicity</label>
+          <div class="measureItemList" style="display:none">
+            <ul class="races">
+              <% @races.each do |race| %>
+                <li data-race="<%=race.id%>" class="">
+                  <%= race.name %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      
     </div>
   </div>
   <div id="providerMain">
@@ -133,8 +149,9 @@ popHealth.markLoading = function() {
 };
 
 popHealth.pollProviders = function() {
-  var providerIds = $(".measureItemList li.checked").map(function() { return $(this).data("provider");});
-  var params = {'selected_provider_ids[]': $.makeArray(providerIds)};
+  var providerIds = $(".measureItemList ul.providers li.checked").map(function() { return $(this).data("provider");});
+  var raceIds = $(".measureItemList ul.races li.checked").map(function() { return $(this).data("race");});
+  var params = {'selected_provider_ids[]': $.makeArray(providerIds), 'selected_race_ids[]': $.makeArray(raceIds)};
 
   setTimeout(popHealth.markLoading, 300);
   
