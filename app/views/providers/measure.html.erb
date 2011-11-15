@@ -37,6 +37,21 @@
           </div>
         </li>
       </ul>
+
+      <ul class="measureClassList">
+        <li>
+          <label>Gender</label>
+          <div class="measureItemList" style="display:none">
+            <ul class="genders">
+              <% @genders.each do |gender| %>
+                <li data-gender="<%=gender[:key]%>" class="">
+                  <%= gender[:name] %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </li>
+      </ul>
       
     </div>
   </div>
@@ -151,7 +166,8 @@ popHealth.markLoading = function() {
 popHealth.pollProviders = function() {
   var providerIds = $(".measureItemList ul.providers li.checked").map(function() { return $(this).data("provider");});
   var raceIds = $(".measureItemList ul.races li.checked").map(function() { return $(this).data("race");});
-  var params = {'selected_provider_ids[]': $.makeArray(providerIds), 'selected_race_ids[]': $.makeArray(raceIds)};
+  var genders = $(".measureItemList ul.genders li.checked").map(function() { return $(this).data("gender");});
+  var params = {'selected_provider_ids[]': $.makeArray(providerIds), 'selected_race_ids[]': $.makeArray(raceIds), 'selected_genders[]': $.makeArray(genders)};
 
   setTimeout(popHealth.markLoading, 300);
   
