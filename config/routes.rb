@@ -11,7 +11,8 @@ PopHealth::Application.routes.draw do
   get "logs/index"
   
   match 'measures', :to => 'measures#index', :as => :dashboard, :via => :get
-  match 'measures/show/:id(/:sub_id)', :to => 'measures#show', :as => :measure, :via => :get
+  match "measure/:id(/:sub_id)/providers", :to => "measures#providers", :via => :get
+  match 'measure/:id(/:sub_id)', :to => 'measures#show', :as => :measure, :via => :get
   match 'measures/result/:id(/:sub_id)', :to => 'measures#result', :as => :measure_result, :via => :get
   match 'measures/definition/:id(/:sub_id)', :to => 'measures#definition', :as => :measure_definition, :via => :get
   match 'measures/patients/:id(/:sub_id)', :to => 'measures#patients', :as => :patients, :via => :get
@@ -30,6 +31,10 @@ PopHealth::Application.routes.draw do
   match 'providers/measure/:measure_id(/:sub_id)', :to => "providers#measure", :as => :providers_measure, :via => :get 
   
   root :to => 'measures#index'
+  
+  resources :measures do
+    member { get :providers }
+  end
   
   resources :providers do
     member do

@@ -1,0 +1,96 @@
+<% content_for :head do %>
+<script type="text/javascript" charset="utf-8">
+</script>
+<% end -%>
+
+<div id="dashboardContainer">
+<!-- add a comment -->
+  <div id="header">
+    <div id="breadcrumbBox">
+      <ul id="breadcrumbItems">
+      <li>measure dashboard</li>
+      </ul>
+      <%= render :partial => 'layouts/top_nav' %>
+    </div><!-- end #breadcrumbBox -->
+  </div><!-- end #header -->
+  <div id="pageContent">
+    <div id="providerReports">
+      <h1>Filters</h1>
+      <div class="listContainer">
+        <p class="note"><label>Providers</label></p>
+      </div>
+      <div class="listContainer">
+        <p class="note"><label class="open">Core Measures <em>(select 3)</em></label></p>
+        <div class="measureList">
+          <div class="measureItemList expandableList">
+           <ul>
+           <% @core_measures.each do |measure| -%>
+             <li data-measure-id="<%= measure['id'] %>" data-category="Core"><%= measure['name'] %></li>
+           <% end %>
+           <% @core_alt_measures.each do |measure| -%>
+             <li data-category="Core Alternate"><span class="note">**</span><%= measure['name'] %></li>
+           <% end %>
+           </ul>
+            <p class="note"><em>** core alternate measures</em></p>
+          </div>
+        </div>
+      </div>
+      <div class="listContainer">
+        <p class="note"><label class="open">Additional Measures <em>(select 3)</em></label></p>
+        <div class="measureList">
+          <ul class="measureClassList">
+          <% @categories.each do |category| -%>
+            <li><label><%= category['category'] %></label>
+              <div class="measureItemList expandableList" style="display:none">
+                <ul>
+                <% category['measures'].each do |measure| -%>
+                  <li data-measure-id="<%= measure['id'] %>" data-category="<%= category['category'] %>"><%= measure['name'] %></li>
+                <% end -%>
+                </ul>
+              </div>
+          <% end -%>
+          </ul>
+        </div><!-- end #measureList -->
+      </div><!-- end #listContainer -->
+    </div><!-- end #providerReports -->
+    <div id="dashboardPeriod">
+      <div class="measureDetailTable">
+        <h1><%= current_user.company.to_s %></h1>
+        <dl>
+          <dt>Practice:</dt>
+          <dd class="practiceName"><h1>Fort Defiance Health</h1></dd>
+        </dl>
+        <dl>
+          <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
+          <dt>Reporting Period:</dt>
+          <dd>
+            <span id="measurementPeriodStartDate"><%= Time.at(@period_start).strftime("%m/%d/%Y") %></span> - 
+            <input type="text" class="measurementPeriodEndDate" id="measurementPeriodEndDate" size="6" value="<%= Time.at(@effective_date).strftime("%m/%d/%Y") %>">
+            <input type="button" class="recalculate" id="btnMeasurementPeriodChange" value="Recalculate">
+          </dd>
+        </dl>
+        <dl>
+          <dt># of Patients: </dt>
+          <dd><%= @patient_count %></dd>
+        </dl>
+        <dl>
+          <dt># of Providers: </dt>
+          <dd>45</dd>
+        </dl>
+        <div class="clear"></div>
+        <div class="dashboardTabs">
+          <span class="dashboardTab active">Measures</span>
+          <span class="dashboardTab">Comparison</span>
+        </div>
+        <div class="legend">
+          <div class="numerator"></div><span>numerator</span>
+          <div class="denominator"></div><span>denominator</span>
+          <div class="patients"></div><span>reporting patients</span>
+          <div class="exclusions"></div><span>exclusions</span>
+        </div>
+        <br/>
+      </div><!-- end #measureDetailTable -->
+			
+    </div><!-- end #dashboardPeriod -->
+  </div><!-- end #pageContent -->
+</div><!-- end #container -->

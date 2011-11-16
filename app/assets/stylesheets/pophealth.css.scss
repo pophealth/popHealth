@@ -440,7 +440,7 @@ a {
   h1 {
     padding: 10px 0 0px 10px;
     font-size: 1.4em; }
-  .measureList {
+  .groupList {
     background-color: $paramList;
     color: $measureList;
     margin: 5px 0;
@@ -460,7 +460,7 @@ a {
         background: url("../assets/liClosed.png") 0 35% no-repeat; }
       label.open {
         background: url("../assets/liOpen.png") 0 35% no-repeat; } } }
-  .measureItemList {
+  .expandableList {
     color: black;
     line-height: 1.2;
     font-size: 1.1em;

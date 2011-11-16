@@ -55,6 +55,11 @@ class Provider
     Provider.can_merge_with(self).alphabetical
   end
   
+  def to_json(options={})
+    super(options)
+  end
+  
+  
   def self.merge_or_build(attributes)
     if attributes[:npi]
       provider = Provider.find(:first, :attributes => {:npi => attributes[:npi]})

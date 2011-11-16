@@ -38,7 +38,7 @@ class ProvidersController < ApplicationController
     @selected_providers = Provider.selected_or_all(params[:selected_provider_ids]).alphabetical
     @definition = QME::QualityMeasure.new(params[:measure_id], params[:sub_id]).definition
     calculate_measure_for_selected(@definition["id"], @definition['sub_id'], @selected_providers)
-
+    
     respond_to do |wants|
       wants.html do 
         @teams = Team.alphabetical

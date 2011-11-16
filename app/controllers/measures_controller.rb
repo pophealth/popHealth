@@ -3,59 +3,85 @@ class MeasuresController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :validate_authorization!
-  before_filter :set_up_environment
-
-  after_filter :hash_document, :only => [:measure_report, :patient_list]
+  before_filter :get_measure
+  before_filter :set_up_environment, :except => :providers
+  
+  after_filter :hash_document, :only => :report
 
   def index
-    @selected_measures = current_user.selected_measures
-    @grouped_selected_measures = @selected_measures.group_by {|measure| measure['category']}
+    # @selected_measures = current_user.selected_measures
+    # @grouped_selected_measures = @selected_measures.group_by {|measure| measure['category']}
     @categories = Measure.non_core_measures
     @core_measures = Measure.core_measures
     @core_alt_measures = Measure.core_alternate_measures
-    render 'dashboard'
   end
-
-  def result
-    if @quality_report.calculated?
-      @result = @quality_report.result
-      render :json => @result
-    else
-      uuid = params[:uuid]
-      unless params[:uuid]
-        uuid = @quality_report.calculate
+  
+  def show
+    respond_to do |wants|
+      wants.html {}
+      wants.json do
+        render :json => @quality_report.result
       end
-      
-      render :json => @quality_report.status(uuid)
     end
   end
+  
+  def providers
+    respond_to do |wants|
+      wants.html do
+        @providers = Provider.alphabetical
+        @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
+      end
+      
+      wants.json do
+        providerIds = params[:provider] || []
+        providers = Provider.not_in(id: providerIds)
+        results = providers.map do |pv|
+          job = QME::QualityReport.new(@definition['id'], @definition['sub_id'], 'effective_date' => @effective_date, 'filters' => {'providers' => [pv.id.to_s]})
+          # binding.pry
+          job.calculate unless job.calculated?
+          job.result
+        end
+
+        render :json => results
+      end
+    end
+
+  end
+
+  # def result
+  #   if @quality_report.calculated?
+  #     @result = @quality_report.result
+  #     render :json => @result
+  #   else
+  #     uuid = params[:uuid]
+  #     unless params[:uuid]
+  #       uuid = @quality_report.calculate
+  #     end
+  #     
+  #     render :json => @quality_report.status(uuid)
+  #   end
+  # end
   
   ##
   # Updates the displayed measure period
   # Expects :effective_date as a parameter
   ##
-  def period
-    period_end = params[:effective_date]
-    month, day, year = period_end.split('/')
-    @effective_date = Time.local(year.to_i, month.to_i, day.to_i).to_i
-    @period_start = calc_start(@effective_date)
-    if (params[:persist]=="true")
-      current_user.effective_date = @effective_date
-      current_user.save!
-    end
-    render :period, :status=>200
-  end
+  # def period
+  #   period_end = params[:effective_date]
+  #   month, day, year = period_end.split('/')
+  #   @effective_date = Time.local(year.to_i, month.to_i, day.to_i).to_i
+  #   @period_start = calc_start(@effective_date)
+  #   if (params[:persist]=="true")
+  #     current_user.effective_date = @effective_date
+  #     current_user.save!
+  #   end
+  #   render :period, :status=>200
+  # end
   
-  def definition
-    @definition = @measure.definition
-    render :json => @definition
-  end
-
-  def show
-    @definition = @measure.definition
-    @result = @quality_report.result
-    render 'measure'
-  end
+  # def definition
+  #   @definition = @measure.definition
+  #   render :json => @definition
+  # end
 
   def patients
     @definition = @measure.definition
@@ -91,27 +117,27 @@ class MeasuresController < ApplicationController
     end
   end
 
-  def patient_list
-    measure_id = params[:id] 
-    sub_id = params[:sub_id]
-    @records = mongo['patient_cache'].find({'value.measure_id' => measure_id, 'value.sub_id' => sub_id,
-                                            'value.effective_date' => @effective_date}).to_a
-    # log the patient_id of each of the patients that this user has viewed
-    @records.each do |patient_container|
-      Log.create(:username =>   current_user.username,
-                 :event =>      'patient record viewed',
-                 :patient_id => (patient_container['value'])['medical_record_id'])
-    end
-    respond_to do |format|
-      format.xml do
-        headers['Content-Disposition'] = 'attachment; filename="excel-export.xls"'
-        headers['Cache-Control'] = ''
-        render :content_type => "application/vnd.ms-excel"
-      end
-    end
-  end
+  # def patient_list
+  #   measure_id = params[:id] 
+  #   sub_id = params[:sub_id]
+  #   @records = mongo['patient_cache'].find({'value.measure_id' => measure_id, 'value.sub_id' => sub_id,
+  #                                           'value.effective_date' => @effective_date}).to_a
+  #   # log the patient_id of each of the patients that this user has viewed
+  #   @records.each do |patient_container|
+  #     Log.create(:username =>   current_user.username,
+  #                :event =>      'patient record viewed',
+  #                :patient_id => (patient_container['value'])['medical_record_id'])
+  #   end
+  #   respond_to do |format|
+  #     format.xml do
+  #       headers['Content-Disposition'] = 'attachment; filename="excel-export.xls"'
+  #       headers['Cache-Control'] = ''
+  #       render :content_type => "application/vnd.ms-excel"
+  #     end
+  #   end
+  # end
 
-  def measure_report
+  def report
     Atna.log(current_user.username, :query)
     selected_measures = mongo['selected_measures'].find({:username => current_user.username}).to_a
     @report = {}
@@ -135,42 +161,34 @@ class MeasuresController < ApplicationController
     end
   end
 
-  def select
-    measure = SelectedMeasure.add_measure(current_user.username, params[:id], params[:filters])
-    render :partial => 'measure_stats', :locals => {:measure => measure}
-  end
-
-  def remove
-    SelectedMeasure.remove_measure(current_user.username, params[:id])
-    render :text => 'Removed'
-  end
+  # def select
+  #   measure = SelectedMeasure.add_measure(current_user.username, params[:id], params[:filters])
+  #   render :partial => 'measure_stats', :locals => {:measure => measure}
+  # end
+  # 
+  # def remove
+  #   SelectedMeasure.remove_measure(current_user.username, params[:id])
+  #   render :text => 'Removed'
+  # end
 
   private
 
-  def hash_document
-    d = Digest::SHA1.new
-    checksum = d.hexdigest(response.body)
-    Log.create(:username => current_user.username, :event => 'document exported', :checksum => checksum)
-  end
-
-  def self.three_months_prior(date)
-    Time.at(date - 3 * 30 * 24 * 60 * 60)
-  end
-
   def set_up_environment
-    
     @patient_count = mongo['records'].count
-    if current_user && current_user.effective_date
-      @effective_date = current_user.effective_date
-    else
-      @effective_date = Time.gm(2010, 12, 31).to_i
-    end
-    @filters = params[:filters]
     if params[:id]
+      @filters = {"providers" => params[:provider]}
+      # @filters = {}
       @quality_report = QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => @filters)
-      @measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
+      @quality_report.calculate unless @quality_report.calculated?
     end
-
+  end
+  
+  def get_measure
+    if params[:id]
+      @measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
+      @definition = @measure.definition
+      raise "Unable to find measure #{params[:id]}#{params[:sub_id]}" unless @measure
+    end
   end
 
   def extract_result(id, sub_id, effective_date)
