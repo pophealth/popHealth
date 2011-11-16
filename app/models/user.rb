@@ -69,16 +69,16 @@ class User
   # =============
 
   def grant_admin
-    update_attribute(:admin => true)
-    update_attribute(:approved => true)
+    update_attribute(:admin, true)
+    update_attribute(:approved, true)
   end
 
   def approve
-    update_attribute(:approved => true)
+    update_attribute(:approved, true)
   end
 
   def revoke_admin
-    update_attribute(:admin => false)
+    update_attribute(:admin, false)
   end
 
 end
