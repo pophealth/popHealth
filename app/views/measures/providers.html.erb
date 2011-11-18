@@ -9,7 +9,6 @@
     </p>
     <div class="groupList">
       <ul>
-				
         <% @providers_by_team.each do |team_name, providers| %>
         <li>
           <label><%= team_name%></label>
@@ -22,6 +21,25 @@
             </ul>
           </div>
         </li><% end %>
+      </ul>
+    </div>
+   <p class="note">
+      Demographics
+    </p>
+    <div class="groupList">
+      <ul>
+        <li>
+          <label>Races</label>
+          <div class="filterItemList expandableList" style="display:none">
+            <ul>
+               <% @races.each do |race| %>
+              <li data-filter-type="race" data-filter-value="<%=race.id%>" class="checked">
+                <%= race.name %>
+              </li>
+							<% end %>
+            </ul>
+          </div>
+        </li>
       </ul>
     </div>
   </div>
@@ -56,7 +74,6 @@
 
 <script type="text/javascript" charset="utf-8">
 
-Page.onFilterChange = Providers.onFilterChange();
 Page.onLoad = function() {Providers.onLoad(currentMeasure, subMeasure)};
 
 </script>

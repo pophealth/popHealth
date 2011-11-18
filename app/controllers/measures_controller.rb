@@ -14,12 +14,14 @@ class MeasuresController < ApplicationController
     @categories = Measure.non_core_measures
     @core_measures = Measure.core_measures
     @core_alt_measures = Measure.core_alternate_measures
+    @all_measures = Measure.all
   end
   
   def show
     respond_to do |wants|
       wants.html {}
       wants.json do
+        SelectedMeasure.add_measure(current_user.username, params[:id])
         render :json => @quality_report.result
       end
     end
@@ -29,15 +31,18 @@ class MeasuresController < ApplicationController
     respond_to do |wants|
       wants.html do
         @providers = Provider.alphabetical
+        @races = Race.ordered
         @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
       end
       
       wants.json do
         providerIds = params[:provider] || []
+        racesEthnicities = params[:races] ? Race.selected(params[:races]).all : []
         providers = Provider.not_in(id: providerIds)
+        races = racesEthnicities.map {|value| value.flatten(:race)}.flatten, 
+        ethnicities = racesEthnicities.map {|value| value.flatten(:ethnicity)}.flatten
         results = providers.map do |pv|
-          job = QME::QualityReport.new(@definition['id'], @definition['sub_id'], 'effective_date' => @effective_date, 'filters' => {'providers' => [pv.id.to_s]})
-          # binding.pry
+          job = QME::QualityReport.new(@definition['id'], @definition['sub_id'], 'effective_date' => @effective_date, 'filters' => {'providers' => [pv.id.to_s], 'races' => races, 'ethnicities' => ethnicities})
           job.calculate unless job.calculated?
           job.result
         end
@@ -46,6 +51,11 @@ class MeasuresController < ApplicationController
       end
     end
 
+  end
+  
+  def remove
+    SelectedMeasure.remove_measure(current_user.username, params[:id])
+    render :text => 'Removed'
   end
 
   # def result
@@ -117,25 +127,25 @@ class MeasuresController < ApplicationController
     end
   end
 
-  # def patient_list
-  #   measure_id = params[:id] 
-  #   sub_id = params[:sub_id]
-  #   @records = mongo['patient_cache'].find({'value.measure_id' => measure_id, 'value.sub_id' => sub_id,
-  #                                           'value.effective_date' => @effective_date}).to_a
-  #   # log the patient_id of each of the patients that this user has viewed
-  #   @records.each do |patient_container|
-  #     Log.create(:username =>   current_user.username,
-  #                :event =>      'patient record viewed',
-  #                :patient_id => (patient_container['value'])['medical_record_id'])
-  #   end
-  #   respond_to do |format|
-  #     format.xml do
-  #       headers['Content-Disposition'] = 'attachment; filename="excel-export.xls"'
-  #       headers['Cache-Control'] = ''
-  #       render :content_type => "application/vnd.ms-excel"
-  #     end
-  #   end
-  # end
+  def patient_list
+    measure_id = params[:id] 
+    sub_id = params[:sub_id]
+    @records = mongo['patient_cache'].find({'value.measure_id' => measure_id, 'value.sub_id' => sub_id,
+                                            'value.effective_date' => @effective_date}).to_a
+    # log the patient_id of each of the patients that this user has viewed
+    @records.each do |patient_container|
+      Log.create(:username =>   current_user.username,
+                 :event =>      'patient record viewed',
+                 :patient_id => (patient_container['value'])['medical_record_id'])
+    end
+    respond_to do |format|
+      format.xml do
+        headers['Content-Disposition'] = 'attachment; filename="excel-export.xls"'
+        headers['Cache-Control'] = ''
+        render :content_type => "application/vnd.ms-excel"
+      end
+    end
+  end
 
   def report
     Atna.log(current_user.username, :query)
@@ -179,7 +189,11 @@ class MeasuresController < ApplicationController
       @filters = {"providers" => params[:provider]}
       # @filters = {}
       @quality_report = QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => @filters)
-      @quality_report.calculate unless @quality_report.calculated?
+      if @quality_report.calculated?
+        @result = @quality_report.result
+      else
+        @quality_report.calculate
+      end
     end
   end
   

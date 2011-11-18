@@ -13,10 +13,9 @@ class SelectedMeasure < MongoBase
   # from the measure collection
   # @param [String] measure_id the id of the measure to select
   # @param [String] username name of the user who this selected measure will belong
-  # @param [Hash] filters to apply to the users included in measure calculation
   # @return [Hash] representing the added measure. nil if the measure is already selected or if the
   #                measure id provided does not match any measures
-  def self.add_measure(username, measure_id, filters)
+  def self.add_measure(username, measure_id)
     if mongo['selected_measures'].find_one(:id => measure_id, :username => username)
       return nil
     else
@@ -30,7 +29,6 @@ class SelectedMeasure < MongoBase
           selected_measure_doc['name'] = measure['name']
           selected_measure_doc['category'] = measure['category']
           selected_measure_doc['description'] = measure['description']
-          selected_measure_doc['filters'] = filters
           if measure['sub_id']
             selected_measure_doc['subs'] << measure['sub_id']
             selected_measure_doc['short_subtitles'][measure['sub_id']] = measure['short_subtitle']

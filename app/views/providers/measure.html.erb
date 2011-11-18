@@ -1,0 +1,192 @@
+<%= render :partial => "header"%>
+<div id="pageContent">
+  <div id="providerReports">
+    <h1>
+      Providers
+    </h1>
+    <p class="note">
+      Teams
+    </p>
+    <div class="measureList">
+      <ul class="measureClassList">
+        <% @teams.each do |team| %>
+        <li>
+          <label><%= team.name%></label>
+          <div class="measureItemList" style="display:none">
+            <ul class="providers">
+              <% team.providers.alphabetical.each do |pv| %>
+              <li data-provider="<%=pv.id%>" class="<%= checked(@selected_providers, pv)%> provider">
+                <%= pv.full_name %>
+              </li><% end %>
+            </ul>
+          </div>
+        </li><% end %>
+      </ul>
+      
+      <ul class="measureClassList">
+        <li>
+          <label>Race and Ethnicity</label>
+          <div class="measureItemList" style="display:none">
+            <ul class="races">
+              <% @races.each do |race| %>
+                <li data-race="<%=race.id%>" class="">
+                  <%= race.name %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      
+    </div>
+  </div>
+  <div id="providerMain">
+    <div id="aggregate">
+      <%= image_tag "loading_bar.gif", :id => "loadingAggregate", :style => "display:none" %>
+      <%= render :partial => 'shared/measure_metrics', locals: {numerator: nil, denominator: nil} %>
+   
+      <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%><br>
+      <div class="links">
+        <%= link_to 'parameters', measure_url(@definition['id'], @definition['sub_id']), :class => 'tableEdit'%> | 
+        <%= link_to 'patients', patients_url(@definition['id'], @definition['sub_id']), :class => 'tableEdit'%>
+      </div>
+    </div>
+    <table id="providerTable" border="0" cellspacing="5" cellpadding="5" >
+      <tr><th colspan="4">INDIVIDUAL PROVIDER STATISTICS</th></tr>
+      <tbody>
+          <% @selected_providers.each do |pv| %>
+            <tr class="provider" data-provider="<%=pv.id%>">
+              <td class="percent"><div class="measureProviderPopulationPercentage"><%= image_tag "loading.gif", :style => "margin-top:12px"%></div></td>
+              <td class="name"><%= pv.family_name.upcase %>, <%= pv.given_name %></td>
+              <td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
+              <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0}%></td>
+            </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<% content_for :head do %>
+<script type="text/javascript" charset="utf-8">
+
+var popHealth = popHealth || {};
+
+popHealth.updateAggregate = function(num, den) {  
+  popHealth.setPercent($("#aggregate #measurePopulationPercentage"), num, den);
+  popHealth.setFraction($("#aggregate div.inline-fraction"), num, den);
+};
+
+popHealth.updateProviders = function(providers) {
+  $("table#providerTable tr.provider").each(function() {
+    var providerId = $(this).data('provider');
+    var provider = providers[providerId];
+    if (provider != null) {
+      popHealth.updateProvider(this, provider.numerator, provider.denominator, provider.population);
+    }
+  });
+};
+
+popHealth.updateProvider = function(row, num, den, pop) {
+  popHealth.setPercent($(row).find("td.percent .measureProviderPopulationPercentage"), num, den);
+  popHealth.setFraction($(row).children("td.fraction"), num, den);
+  popHealth.setBarChart($(row).find("td.barChart div.tableBar"), num, den, pop);
+};
+
+popHealth.setPercent = function(selector, num, den) {
+  var percent = den != 0 ? (num / den) * 100 : 0;
+  selector.html(Math.floor(percent).toString() + "%");
+};
+
+popHealth.setFraction = function(selector, num, den) {
+  selector.find(".numeratorValue").html(num);
+  selector.find(".denominatorValue").html(den);
+};
+
+popHealth.setBarChart = function(selector, num, den, pop) {
+  var numerator_width = 0;
+  var denominator_width = 0;
+  if (pop != 0 && den != 0) {
+    numerator_width = (num / pop) * 100;
+    denominator_width = ((den - num) / pop) * 100;
+  }
+
+  selector.children("div.tableBarNumerator").animate({width: numerator_width.toString() + "%"});
+  selector.children("div.tableBarDenominator").animate({width: denominator_width.toString() + "%"});
+};
+
+popHealth.makeProviderListExpandable = function() {
+  $('.measureClassList li label').click(function(){
+    $(this).toggleClass('open');
+    $(this).siblings("div.measureItemList").toggle("blind");
+  });
+  $('.measureClassList li label').toggleClass('open');
+  $('.measureClassList li label').siblings("div.measureItemList").toggle("blind");
+};
+
+popHealth.makeMeasuresCheckable = function() {
+
+  $('.measureItemList li').click(function(){
+    var providerRow = $("table#providerTable tr.provider[data-provider='" + $(this).data('provider') +"']");
+    if ($(this).hasClass('checked')) {
+      providerRow.fadeOut('fast');
+    } else {
+      providerRow.fadeIn('fast');
+    }
+    
+    $(this).toggleClass('checked');
+    popHealth.isPollRequestActive = true;
+    popHealth.pollProviders();
+  });
+};
+
+popHealth.isPollRequestActive = false;
+
+popHealth.markLoading = function() {
+  if (popHealth.isPollRequestActive) {
+    $('div#measureMetrics').fadeTo('fast', 0.25, function() { if (popHealth.isPollRequestActive) $("#loadingAggregate").show(); else $('div#measureMetrics').fadeTo('fast', 1.0, function() {  }); });
+  } 
+};
+
+popHealth.pollProviders = function() {
+  var providerIds = $(".measureItemList ul.providers li.checked").map(function() { return $(this).data("provider");});
+  var raceIds = $(".measureItemList ul.races li.checked").map(function() { return $(this).data("race");});
+  var params = {'selected_provider_ids[]': $.makeArray(providerIds), 'selected_race_ids[]': $.makeArray(raceIds)};
+
+  setTimeout(popHealth.markLoading, 300);
+  
+  $.getJSON("<%= providers_measure_path(measure_id: @definition['id'], sub_id: @definition['sub_id'], format: 'json')%>", params, function(data) {
+    if(data.complete) popHealth.isPollRequestActive = false;
+
+    if(data.aggregate != null) {
+      popHealth.updateAggregate(data.aggregate.numerator, data.aggregate.denominator);
+      
+      $("#loadingAggregate").hide();
+      if($("div#measureMetrics").css("opacity") < 0.3) {
+        $('div#measureMetrics').fadeTo('fast', 1.0, function() {  });
+      }
+      
+    }
+    
+    popHealth.updateProviders(data.providers);
+    
+    if(!data.complete) {
+      setTimeout(function() {
+        popHealth.pollProviders();
+      }, 3000);
+    }
+  });
+};
+
+
+$(document).ready(function() {
+  popHealth.makeProviderListExpandable();
+  popHealth.makeMeasuresCheckable();
+  popHealth.pollProviders();
+  
+});
+
+</script>
+<% end -%>
+
+

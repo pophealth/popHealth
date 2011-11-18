@@ -1,5 +1,7 @@
 <% content_for :head do %>
 <script type="text/javascript" charset="utf-8">
+	Page.onLoad = Dashboard.onLoad;
+	
 </script>
 <% end -%>
 
@@ -14,45 +16,49 @@
     </div><!-- end #breadcrumbBox -->
   </div><!-- end #header -->
   <div id="pageContent">
-    <div id="providerReports">
-      <h1>Filters</h1>
-      <div class="listContainer">
-        <p class="note"><label>Providers</label></p>
-      </div>
-      <div class="listContainer">
-        <p class="note"><label class="open">Core Measures <em>(select 3)</em></label></p>
-        <div class="measureList">
-          <div class="measureItemList expandableList">
-           <ul>
-           <% @core_measures.each do |measure| -%>
-             <li data-measure-id="<%= measure['id'] %>" data-category="Core"><%= measure['name'] %></li>
-           <% end %>
-           <% @core_alt_measures.each do |measure| -%>
-             <li data-category="Core Alternate"><span class="note">**</span><%= measure['name'] %></li>
-           <% end %>
-           </ul>
-            <p class="note"><em>** core alternate measures</em></p>
-          </div>
-        </div>
-      </div>
-      <div class="listContainer">
-        <p class="note"><label class="open">Additional Measures <em>(select 3)</em></label></p>
-        <div class="measureList">
-          <ul class="measureClassList">
-          <% @categories.each do |category| -%>
-            <li><label><%= category['category'] %></label>
-              <div class="measureItemList expandableList" style="display:none">
-                <ul>
-                <% category['measures'].each do |measure| -%>
-                  <li data-measure-id="<%= measure['id'] %>" data-category="<%= category['category'] %>"><%= measure['name'] %></li>
-                <% end -%>
-                </ul>
-              </div>
-          <% end -%>
-          </ul>
-        </div><!-- end #measureList -->
-      </div><!-- end #listContainer -->
-    </div><!-- end #providerReports -->
+ 		<div id="providerReports">
+    <!-- <h1>Filters</h1> -->
+	  <div class="groupList">
+	  	<ul>
+				<li>
+					<label class="open">Core Measures</label>
+					<div class="measureItemList expandableList">
+						<ul>
+							<% @core_measures.each do |measure| -%>
+				       <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-category="Core"><%= measure['name'] %></li>
+				     <% end %>
+				     <% @core_alt_measures.each do |measure| -%>
+				       <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-category="Core Alternate"><span class="note">**</span><%= measure['name'] %></li>
+				     <% end %>
+						</ul>
+						<p class="note"><em>** core alternate measures</em></p>
+					</div>
+				</li>
+			</ul>
+	  </div>
+		<div class="groupList">
+	  	<ul>
+				<li>
+					<label class="open">Alternate Measures</label>
+					<div class="expandableList">
+				
+						<% @categories.each do |category| %>
+							<div class="groupList">
+								<label><%= category['category'] %></label>
+								<div style="display:none" class="measureItemList expandableList">
+									<ul>
+									 <% category['measures'].each do |measure| -%>
+					           <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-category="<%= category['category'] %>"><%= measure['name'] %></li>
+					         <% end -%>
+								</div>
+							</div>
+						<% end %>
+						
+					</div>
+				</li>
+			</ul>
+		</div>
+   </div><!-- end #providerReports --> 
     <div id="dashboardPeriod">
       <div class="measureDetailTable">
         <h1><%= current_user.company.to_s %></h1>
@@ -89,8 +95,17 @@
           <div class="exclusions"></div><span>exclusions</span>
         </div>
         <br/>
-      </div><!-- end #measureDetailTable -->
-			
+      </div><!-- end #measureDetailTable --><br><br>
+			<table class="measureTable" style="float:left">
+			<% @all_measures.each do |measure| %>
+				<tr style="<%=display_row(measure['id'], current_user.selected_measures)%>" data-measure="<%=measure['id']%>" class="measure">
+				  <td class="percent"><div class="measureProviderPopulationPercentage"><%= image_tag "loading.gif", :style => "margin-top:12px"%></div></td>
+				  <td class="name"><%= measure['id'] %>: <%= measure['name'] %><%= measure['sub_id']%></td>
+				  <td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
+				  <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0}%></td>
+				</tr>
+			<% end %>
+			</table>
     </div><!-- end #dashboardPeriod -->
   </div><!-- end #pageContent -->
 </div><!-- end #container -->

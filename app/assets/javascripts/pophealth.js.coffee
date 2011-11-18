@@ -6,17 +6,16 @@ class @QualityReport
 		base = "/measure/#{@measure}"
 		if @sub_id? then "#{base}/#{@sub_id}" else base
 	fetch: (extraParams, callback) ->
-		unless @result?
-			params = $.extend({}, @filters, extraParams)
-			$.getJSON this.url(), $.extend({}, @filters, params), (data) -> 
-				callback(data)
+		params = $.extend({}, @filters, extraParams)
+		$.getJSON this.url(), $.extend({}, @filters, params), (data) -> 
+			callback(data)
 	poll: (params, callback) ->
 		ref = this
 		this.fetch params, (data) ->
 			if data?
 				callback(data)
 			else
-				setTimeout (-> ref.poll(params, callback)), 4000
+				setTimeout (-> ref.poll(params, callback)), 2000
 
 @Page = {
 	onMeasureSelect: (measure_id) ->
@@ -33,7 +32,7 @@ class @QualityReport
 
 @ActiveFilters = {
 	all: ->
-		ActiveFilters.findFilters(".filterItemList li:not(.checked)")
+		ActiveFilters.findFilters(".filterItemList li.checked")
 	providers: ->
 		ActiveFilters.findFilters(".filterItemList li.checked[data-filter-type='provider']")
 	nonProvider: ->
@@ -56,7 +55,7 @@ class @QualityReport
 		selector.find(".denominatorValue").html(data.denominator)
 	
 	percent: (selector, data) -> 
-		percent = if data.denominator == 0 then data.denominator else  (data.numerator / data.denominator)
+		percent = if data.denominator == 0 then data.denominator else  (data.numerator / data.denominator) * 100
 		selector.html("#{Math.floor(percent)}%")
 	
 	barChart: (selector, data) ->
@@ -70,9 +69,9 @@ class @QualityReport
 }
 
 makeListsExpandable = ->
-	$(".groupList li label").click ->
+	$(".groupList label").click ->
 		$(this).toggleClass("open")
-		$(this).siblings("div.expandableList").toggle("blind")
+		$(this).siblings(".expandableList").toggle("blind")
 
 makeMeasureListClickable = ->
 	$(".measureItemList ul li").click ->
@@ -81,9 +80,9 @@ makeMeasureListClickable = ->
 		if $(this).hasClass("checked") 
 			Page.onMeasureSelect(measure)
 			qr = new QualityReport(measure)
-			qr.poll(-> Page.onReportComplete(qr))
+			qr.poll({}, Page.onReportComplete)
 		else
-			Page.onMeasureRemoved(measure)
+			Page.onMeasureRemove(measure)
 
 makeFilterListsClickable = ->
 	$(".filterItemList ul li").click ->

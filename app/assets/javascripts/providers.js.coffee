@@ -10,7 +10,7 @@
 	updateProviders: (current_measure, sub_id) ->
 		$("li[data-filter-type='provider']").each (i, el) ->
 			pr = new ProvidersReport(current_measure, sub_id)
-			pr.poll ActiveFilters.providers, (results) ->
+			pr.poll {}, (results) ->
 						$(results).each (i, result) ->
 							providerId = result.filters.providers[0]
 							row = Providers.row(providerId)
@@ -26,6 +26,7 @@
 			else
 			Providers.updatePage(current_measure, sub_id)
 	onLoad: (current_measure, sub_id) ->
+		Page.onFilterChange = Providers.onFilterChange(current_measure, sub_id);
 		Providers.updatePage(current_measure, sub_id)
 	updatePage: (current_measure, sub_id) ->
 		Providers.updateProviders(current_measure, sub_id)
