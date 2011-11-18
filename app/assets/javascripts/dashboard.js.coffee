@@ -15,4 +15,9 @@
 		Page.onMeasureSelect = (measure) -> Dashboard.fadeIn(measure)
 		Page.onMeasureRemove = (measure) -> Dashboard.fadeOut(measure)
 		Page.onReportComplete = (result) -> Dashboard.calculateMeasure(result)
+		$("div.measureItemList ul li.checked").each (i, m) ->
+			measureId = $(m).attr("data-measure-id")
+			qr = new QualityReport(measureId)
+			qr.poll {}, (result) ->
+				Dashboard.calculateMeasure(result)
 }

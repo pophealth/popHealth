@@ -8,7 +8,6 @@
 			$("div#measureMetrics").fadeTo "fast", 1.0, ->
 				@isPollRequestActive = false
 	updateProviders: (current_measure, sub_id) ->
-		$("li[data-filter-type='provider']").each (i, el) ->
 			pr = new ProvidersReport(current_measure, sub_id)
 			pr.poll {}, (results) ->
 						$(results).each (i, result) ->
