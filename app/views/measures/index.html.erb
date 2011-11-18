@@ -1,0 +1,111 @@
+<% content_for :head do %>
+<script type="text/javascript" charset="utf-8">
+	Page.onLoad = Dashboard.onLoad;
+	
+</script>
+<% end -%>
+
+<div id="dashboardContainer">
+<!-- add a comment -->
+  <div id="header">
+    <div id="breadcrumbBox">
+      <ul id="breadcrumbItems">
+      <li>measure dashboard</li>
+      </ul>
+      <%= render :partial => 'layouts/top_nav' %>
+    </div><!-- end #breadcrumbBox -->
+  </div><!-- end #header -->
+  <div id="pageContent">
+ 		<div id="providerReports">
+    <!-- <h1>Filters</h1> -->
+	  <div class="groupList">
+	  	<ul>
+				<li>
+					<label class="open">Core Measures</label>
+					<div class="measureItemList expandableList">
+						<ul>
+							<% @core_measures.each do |measure| -%>
+				       <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-category="Core"><%= measure['name'] %></li>
+				     <% end %>
+				     <% @core_alt_measures.each do |measure| -%>
+				       <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-category="Core Alternate"><span class="note">**</span><%= measure['name'] %></li>
+				     <% end %>
+						</ul>
+						<p class="note"><em>** core alternate measures</em></p>
+					</div>
+				</li>
+			</ul>
+	  </div>
+		<div class="groupList">
+	  	<ul>
+				<li>
+					<label class="open">Alternate Measures</label>
+					<div class="expandableList">
+				
+						<% @categories.each do |category| %>
+							<div class="groupList">
+								<label><%= category['category'] %></label>
+								<div style="display:none" class="measureItemList expandableList">
+									<ul>
+									 <% category['measures'].each do |measure| -%>
+					           <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-category="<%= category['category'] %>"><%= measure['name'] %></li>
+					         <% end -%>
+								</div>
+							</div>
+						<% end %>
+						
+					</div>
+				</li>
+			</ul>
+		</div>
+   </div><!-- end #providerReports --> 
+    <div id="dashboardPeriod">
+      <div class="measureDetailTable">
+        <h1><%= current_user.company.to_s %></h1>
+        <dl>
+          <dt>Practice:</dt>
+          <dd class="practiceName"><h1>Fort Defiance Health</h1></dd>
+        </dl>
+        <dl>
+          <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
+          <dt>Reporting Period:</dt>
+          <dd>
+            <span id="measurementPeriodStartDate"><%= Time.at(@period_start).strftime("%m/%d/%Y") %></span> - 
+            <input type="text" class="measurementPeriodEndDate" id="measurementPeriodEndDate" size="6" value="<%= Time.at(@effective_date).strftime("%m/%d/%Y") %>">
+            <input type="button" class="recalculate" id="btnMeasurementPeriodChange" value="Recalculate">
+          </dd>
+        </dl>
+        <dl>
+          <dt># of Patients: </dt>
+          <dd><%= @patient_count %></dd>
+        </dl>
+        <dl>
+          <dt># of Providers: </dt>
+          <dd>45</dd>
+        </dl>
+        <div class="clear"></div>
+        <div class="dashboardTabs">
+          <span class="dashboardTab active">Measures</span>
+          <span class="dashboardTab">Comparison</span>
+        </div>
+        <div class="legend">
+          <div class="numerator"></div><span>numerator</span>
+          <div class="denominator"></div><span>denominator</span>
+          <div class="patients"></div><span>reporting patients</span>
+          <div class="exclusions"></div><span>exclusions</span>
+        </div>
+        <br/>
+      </div><!-- end #measureDetailTable --><br><br>
+			<table class="measureTable" style="float:left">
+			<% @all_measures.each do |measure| %>
+				<tr style="<%=display_row(measure['id'], current_user.selected_measures)%>" data-measure="<%=measure['id']%>" class="measure">
+				  <td class="percent"><div class="measureProviderPopulationPercentage"><%= image_tag "loading.gif", :style => "margin-top:12px"%></div></td>
+				  <td class="name"><%= measure['id'] %>: <%= measure['name'] %><%= measure['sub_id']%></td>
+				  <td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
+				  <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0}%></td>
+				</tr>
+			<% end %>
+			</table>
+    </div><!-- end #dashboardPeriod -->
+  </div><!-- end #pageContent -->
+</div><!-- end #container -->

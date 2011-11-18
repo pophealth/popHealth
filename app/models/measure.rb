@@ -1,5 +1,20 @@
 class Measure < MongoBase
-
+  
+  def self.all
+    mongo['measures'].group(:key => [:id, :name],
+                            :initial => {:measures => []},
+                            :reduce =>
+                            'function(obj,prev) {
+                                  var measureIds = [];
+                                  for (var i = 0; i < prev.measures.length; i++) {
+                                    measureIds.push(prev.measures[i].id)
+                                  }
+                                  if (contains(measureIds, obj.id) == false) {
+                                    prev.measures.push({"id": obj.id, "name": obj.name});
+                                  }
+                             };')
+  end
+  
   # Finds all measures by category
   # @return Array - This returns an Array of Hashes. Each Hash will have a category property for
   #         the name of the category. It will also have a measures property which will be

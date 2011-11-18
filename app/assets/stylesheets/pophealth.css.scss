@@ -440,7 +440,7 @@ a {
   h1 {
     padding: 10px 0 0px 10px;
     font-size: 1.4em; }
-  .measureList {
+  .groupList {
     background-color: $paramList;
     color: $measureList;
     margin: 5px 0;
@@ -460,7 +460,7 @@ a {
         background: url("../assets/liClosed.png") 0 35% no-repeat; }
       label.open {
         background: url("../assets/liOpen.png") 0 35% no-repeat; } } }
-  .measureItemList {
+  .expandableList {
     color: black;
     line-height: 1.2;
     font-size: 1.1em;
@@ -548,7 +548,7 @@ input.measurementPeriodEndDate {
 .measureDetailTable {
   padding: 0;
   float: left;
-  width: 700px;
+  width: 945px;
   h1 {
     font-size: 1.5em;
     padding-left: $measureDetailTable-padding; }
@@ -841,3 +841,30 @@ a.tableEdit {
     text-transform: uppercase; }
   td {
     padding: 2px 15px 2px 5px; } }
+
+table.measureTable {
+	
+	font-size:20px;
+	
+	td.percent {
+		padding: 5px 15px;
+	}
+	
+	td.name {
+		width:500px;
+		padding:15px;
+		font-weight: lighter;
+	}
+	
+	td.fraction {
+		padding-left:15px;
+		padding-right:35px;
+	}
+	
+	td.barChart {
+		.tableBar {
+			height:20px;
+			width:200px;
+		}
+	}
+}

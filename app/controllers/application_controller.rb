@@ -12,6 +12,12 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(resource_or_scope)
     '/logout.html'
   end
+  
+  def hash_document
+    d = Digest::SHA1.new
+    checksum = d.hexdigest(response.body)
+    Log.create(:username => current_user.username, :event => 'document exported', :checksum => checksum)
+  end
 
   def layout_by_resource
     if devise_controller?

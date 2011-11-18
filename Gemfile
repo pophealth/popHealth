@@ -5,7 +5,7 @@ gem 'rails', '3.1.0'
 gem 'rack' , '1.3.3'
 
 gem 'quality-measure-engine', :path => '../quality-measure-engine/'
-#gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'develop'
+# gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'develop'
 gem 'nokogiri'
 gem 'rubyzip'
 
@@ -34,13 +34,13 @@ group :assets do
 end
 
 group :test, :develop do
-  gem "rspec-rails"
+  # gem "rspec-rails"
   # Pretty printed test output
   gem 'turn', :require => false
   gem 'cover_me'
   gem 'factory_girl'
   gem 'minitest'
-  gem 'mocha', require: false
+  gem 'mocha', :require => false
 end
 
 gem 'jquery-rails'

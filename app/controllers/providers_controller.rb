@@ -40,7 +40,6 @@ class ProvidersController < ApplicationController
     @selected_genders = (params[:selected_genders] && !params[:selected_genders].empty?) ? params[:selected_genders] : []
     @definition = QME::QualityMeasure.new(params[:measure_id], params[:sub_id]).definition
     calculate_measure_for_selected(@definition["id"], @definition['sub_id'], providers: @selected_providers, races: @selected_races, genders: @selected_genders)
-
     respond_to do |wants|
       wants.html do 
         @teams = Team.alphabetical

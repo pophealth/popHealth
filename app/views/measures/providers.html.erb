@@ -1,0 +1,82 @@
+<%= render :partial => "header", locals: {definition: @definition}%>
+<div id="pageContent">
+  <div id="providerReports">
+    <h1>
+      Providers
+    </h1>
+    <p class="note">
+      Teams
+    </p>
+    <div class="groupList">
+      <ul>
+        <% @providers_by_team.each do |team_name, providers| %>
+        <li>
+          <label><%= team_name%></label>
+          <div class="filterItemList expandableList" style="display:none">
+            <ul>
+              <% providers.each do |pv| %>
+              <li data-filter-type="provider" data-filter-value="<%=pv.id%>" class="checked">
+                <%= pv.full_name %>
+              </li><% end %>
+            </ul>
+          </div>
+        </li><% end %>
+      </ul>
+    </div>
+   <p class="note">
+      Demographics
+    </p>
+    <div class="groupList">
+      <ul>
+        <li>
+          <label>Races</label>
+          <div class="filterItemList expandableList" style="display:none">
+            <ul>
+               <% @races.each do |race| %>
+              <li data-filter-type="race" data-filter-value="<%=race.id%>" class="checked">
+                <%= race.name %>
+              </li>
+							<% end %>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div id="providerMain">
+    <div id="aggregate">
+      <%= image_tag "loading_bar.gif", :id => "loadingAggregate", :style => "display:none" %>
+      <%= render :partial => 'shared/measure_metrics', locals: {numerator: nil, denominator: nil} %>
+   
+      <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%><br>
+      <div class="links">
+        <%= link_to 'parameters', measure_url(@definition['id'], @definition['sub_id']), :class => 'tableEdit'%> | 
+        <%= link_to 'patients', patients_url(@definition['id'], @definition['sub_id']), :class => 'tableEdit'%>
+      </div>
+    </div><br>
+    <table id="providerTable" border="0" cellspacing="5" cellpadding="5" >
+      <tr><th colspan="4">INDIVIDUAL PROVIDER STATISTICS</th></tr>
+      <tbody>
+          <% @providers.each do |pv| %>
+            <tr class="provider" data-provider="<%=pv.id%>">
+              <td class="percent"><div class="measureProviderPopulationPercentage"><%= image_tag "loading.gif", :style => "margin-top:12px"%></div></td>
+              <td class="name"><%= pv.family_name.upcase %>, <%= pv.given_name %></td>
+              <td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
+              <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0}%></td>
+            </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<% content_for :head do %>
+
+<script type="text/javascript" charset="utf-8">
+
+Page.onLoad = function() {Providers.onLoad(currentMeasure, subMeasure)};
+
+</script>
+<% end -%>
+
+
