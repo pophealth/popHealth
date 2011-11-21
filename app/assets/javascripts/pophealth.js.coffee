@@ -12,7 +12,6 @@ class @QualityReport
 	poll: (params, callback) ->
 		ref = this
 		this.fetch params, (response) ->
-			console.log(response)
 			if response.complete
 				callback(response.result)
 			else
@@ -83,7 +82,6 @@ makeMeasureListClickable = ->
 			sub_ids = [null] 
 		if $(this).hasClass("checked")
 			Page.onMeasureSelect(measure)
-			console.log(sub_ids)
 			$.each sub_ids, (i, sub) ->
 				qr = new QualityReport(measure, sub)
 				qr.poll({}, Page.onReportComplete)

@@ -21,6 +21,7 @@ class MeasuresController < ApplicationController
     respond_to do |wants|
       wants.html {}
       wants.json do
+        providerIds = params[:provider] || []
         SelectedMeasure.add_measure(current_user.username, params[:id])
         
         if params[:sub_id]
@@ -31,7 +32,7 @@ class MeasuresController < ApplicationController
         
         result = measures.inject({uuids: [], results: []}) do |memo, sub|
           
-          report = QME::QualityReport.new(params['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => {})
+          report = QME::QualityReport.new(params['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => {'providers' => providerIds})
           if report.calculated?
             memo[:results] << report.result
           else
