@@ -2,21 +2,22 @@
 	updateAggregate: (current_measure, sub_id) ->
 		Providers.isLoading()
 		qr = new QualityReport(current_measure, sub_id)
-		qr.poll {}, (result) ->
+		qr.poll {}, (results) ->
+			result = results[0]
 			Render.percent $("#aggregate #measurePopulationPercentage"), result
 			Render.fraction $("#aggregate div.inline-fraction"), result
 			$("div#measureMetrics").fadeTo "fast", 1.0, ->
 				@isPollRequestActive = false
 	updateProviders: (current_measure, sub_id) ->
-		$("li[data-filter-type='provider']").each (i, el) ->
 			pr = new ProvidersReport(current_measure, sub_id)
 			pr.poll {}, (results) ->
 						$(results).each (i, result) ->
-							providerId = result.filters.providers[0]
-							row = Providers.row(providerId)
-							Render.percent $(row).find(".measureProviderPopulationPercentage"), result
-							Render.fraction row, result
-							Render.barChart row, result
+							if result?
+								providerId = result.filters.providers[0]
+								row = Providers.row(providerId)
+								Render.percent $(row).find(".measureProviderPopulationPercentage"), result
+								Render.fraction row, result
+								Render.barChart row, result
 	row: (id) ->
 		$ "#providerTable tr[data-provider='" + id + "']"
 	onFilterChange: (current_measure, sub_id) ->

@@ -11,11 +11,11 @@ class @QualityReport
 			callback(data)
 	poll: (params, callback) ->
 		ref = this
-		this.fetch params, (data) ->
-			if data?
-				callback(data)
+		this.fetch params, (response) ->
+			if response.complete
+				callback(response.result)
 			else
-				setTimeout (-> ref.poll(params, callback)), 2000
+				setTimeout (-> ref.poll(params, callback)), 3000
 
 @Page = {
 	onMeasureSelect: (measure_id) ->
@@ -77,12 +77,17 @@ makeMeasureListClickable = ->
 	$(".measureItemList ul li").click ->
 		$(this).toggleClass("checked")
 		measure = $(this).attr("data-measure-id")
-		if $(this).hasClass("checked") 
+		sub_ids = $(this).data("sub-measures").split(",")
+		if sub_ids.length != 0
+			sub_ids = [null] 
+		if $(this).hasClass("checked")
 			Page.onMeasureSelect(measure)
-			qr = new QualityReport(measure)
-			qr.poll({}, Page.onReportComplete)
+			$.each sub_ids, (i, sub) ->
+				qr = new QualityReport(measure, sub)
+				qr.poll({}, Page.onReportComplete)
 		else
 			Page.onMeasureRemove(measure)
+
 
 makeFilterListsClickable = ->
 	$(".filterItemList ul li").click ->

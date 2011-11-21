@@ -1,18 +1,11 @@
 class Measure < MongoBase
   
-  def self.all
-    mongo['measures'].group(:key => [:id, :name],
-                            :initial => {:measures => []},
-                            :reduce =>
-                            'function(obj,prev) {
-                                  var measureIds = [];
-                                  for (var i = 0; i < prev.measures.length; i++) {
-                                    measureIds.push(prev.measures[i].id)
-                                  }
-                                  if (contains(measureIds, obj.id) == false) {
-                                    prev.measures.push({"id": obj.id, "name": obj.name});
-                                  }
-                             };')
+  def self.sub_measures(measure_id)
+    mongo['measures'].find("id" => measure_id)
+  end
+  
+  def self.get(id, sub_id)
+    mongo['measures'].find({'id' => id, 'sub_id' => sub_id})
   end
   
   # Finds all measures by category
@@ -79,8 +72,14 @@ class Measure < MongoBase
   #         property which will be an array of sub ids.
   def self.all_by_measure
     mongo['measures'].group(:key => [:id, :name],
-                            :initial => {:subs => []},
-                            :reduce => 'function(obj,prev) {if (obj.sub_id != null) {prev.subs.push(obj.sub_id);}}')
+                            :initial => {:subs => [], 'short_subtitles' => {}},
+                            :reduce => 'function(obj,prev) {
+                                          if (obj.sub_id != null) {
+                                            prev.subs.push(obj.sub_id);
+                                            prev.short_subtitles[obj.sub_id] = obj.short_subtitle
+                                          }
+                                          
+                                        }')
   end
 
   # Adds a measure to the selected_measure collection. It copies some of the measure information

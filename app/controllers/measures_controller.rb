@@ -4,7 +4,7 @@ class MeasuresController < ApplicationController
   before_filter :authenticate_user!
   before_filter :validate_authorization!
   before_filter :get_measure
-  before_filter :set_up_environment, :except => :providers
+  before_filter :set_up_environment, :except => [:providers, :show]
   
   after_filter :hash_document, :only => :report
 
@@ -14,15 +14,34 @@ class MeasuresController < ApplicationController
     @categories = Measure.non_core_measures
     @core_measures = Measure.core_measures
     @core_alt_measures = Measure.core_alternate_measures
-    @all_measures = Measure.all
+    @all_measures = Measure.all_by_measure
   end
   
   def show
     respond_to do |wants|
       wants.html {}
       wants.json do
+        providerIds = params[:provider] || []
         SelectedMeasure.add_measure(current_user.username, params[:id])
-        render :json => @quality_report.result
+        
+        if params[:sub_id]
+          measures = Measure.get(params[:id], params[:sub_id])
+        else
+          measures = Measure.sub_measures(params[:id])
+        end
+        
+        result = measures.inject({uuids: [], results: []}) do |memo, sub|
+          
+          report = QME::QualityReport.new(params['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => {'providers' => providerIds})
+          if report.calculated?
+            memo[:results] << report.result
+          else
+            memo[:uuids] << report.calculate
+          end
+          memo
+        end
+        
+        render :json => {complete: result[:uuids].empty?, result: result[:results] }
       end
     end
   end
@@ -38,19 +57,22 @@ class MeasuresController < ApplicationController
       wants.json do
         providerIds = params[:provider] || []
         racesEthnicities = params[:races] ? Race.selected(params[:races]).all : []
-        providers = Provider.not_in(id: providerIds)
         races = racesEthnicities.map {|value| value.flatten(:race)}.flatten, 
         ethnicities = racesEthnicities.map {|value| value.flatten(:ethnicity)}.flatten
-        results = providers.map do |pv|
-          job = QME::QualityReport.new(@definition['id'], @definition['sub_id'], 'effective_date' => @effective_date, 'filters' => {'providers' => [pv.id.to_s], 'races' => races, 'ethnicities' => ethnicities})
-          job.calculate unless job.calculated?
-          job.result
+        
+        result = providerIds.inject({uuids: [], results: []}) do |memo, pvId|
+          report = QME::QualityReport.new(@definition['id'], @definition['sub_id'], 'effective_date' => @effective_date, 'filters' => {'providers' => [pvId], 'races' => races, 'ethnicities' => ethnicities})
+          if report.calculated?
+            memo[:results] << report.result
+          else
+            memo[:uuids] << report.calculate
+          end
+          memo
         end
 
-        render :json => results
+        render :json => {complete: result[:uuids].empty?, result: result[:results] }
       end
     end
-
   end
   
   def remove
@@ -221,5 +243,5 @@ class MeasuresController < ApplicationController
   def validate_authorization!
     authorize! :read, Measure
   end
-
+  
 end

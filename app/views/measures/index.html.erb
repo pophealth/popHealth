@@ -25,7 +25,7 @@
 					<div class="measureItemList expandableList">
 						<ul>
 							<% @core_measures.each do |measure| -%>
-				       <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-category="Core"><%= measure['name'] %></li>
+				       <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-sub-measures="<%=measure['subs'].join(',')%>" data-category="Core"><%= measure['name'] %></li>
 				     <% end %>
 				     <% @core_alt_measures.each do |measure| -%>
 				       <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-category="Core Alternate"><span class="note">**</span><%= measure['name'] %></li>
@@ -98,12 +98,24 @@
       </div><!-- end #measureDetailTable --><br><br>
 			<table class="measureTable" style="float:left">
 			<% @all_measures.each do |measure| %>
-				<tr style="<%=display_row(measure['id'], current_user.selected_measures)%>" data-measure="<%=measure['id']%>" class="measure">
-				  <td class="percent"><div class="measureProviderPopulationPercentage"><%= image_tag "loading.gif", :style => "margin-top:12px"%></div></td>
-				  <td class="name"><%= measure['id'] %>: <%= measure['name'] %><%= measure['sub_id']%></td>
-				  <td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
-				  <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0}%></td>
-				</tr>
+				<% subs_iterator(measure['subs']) do |sub| %>
+					<tr style="<%=display_row(measure['id'], current_user.selected_measures)%>" data-measure="<%=measure['id']%>" data-measure-sub="<%= sub %>" class="measure">
+					  <td class="percent"><div class="measureProviderPopulationPercentage"><%= image_tag "loading.gif", :style => "margin-top:12px"%></div></td>
+						<% if sub.nil? || sub == 'a' %>
+							<td class="name"><%= measure['id'] %>: <%= measure['name'] %></td>
+						<% else %>
+							<td class="name" />
+						<% end %>
+						
+						<% if sub %>
+							<td class="subtitle"><%= measure['short_subtitles'][sub]%></td>
+						<% else %>
+							<td class="subtitle" />
+					  <% end %>
+						<td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
+					  <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0}%></td>
+					</tr>
+				<% end %>
 			<% end %>
 			</table>
     </div><!-- end #dashboardPeriod -->
