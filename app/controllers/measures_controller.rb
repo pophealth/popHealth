@@ -24,13 +24,13 @@ class MeasuresController < ApplicationController
         SelectedMeasure.add_measure(current_user.username, params[:id])
         
         if params[:sub_id]
-          measures = [QME::QualityMeasure.new(params[:id], params[:sub_id])]
+          measures = Measure.get(params[:id], params[:sub_id])
         else
           measures = Measure.sub_measures(params[:id])
         end
         
         result = measures.inject({uuids: [], results: []}) do |memo, sub|
-        
+          
           report = QME::QualityReport.new(params['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => {})
           if report.calculated?
             memo[:results] << report.result

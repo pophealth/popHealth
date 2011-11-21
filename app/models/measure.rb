@@ -4,6 +4,10 @@ class Measure < MongoBase
     mongo['measures'].find("id" => measure_id)
   end
   
+  def self.get(id, sub_id)
+    mongo['measures'].find({'id' => id, 'sub_id' => sub_id})
+  end
+  
   # Finds all measures by category
   # @return Array - This returns an Array of Hashes. Each Hash will have a category property for
   #         the name of the category. It will also have a measures property which will be
