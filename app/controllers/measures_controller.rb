@@ -3,7 +3,6 @@ class MeasuresController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :validate_authorization!
-  before_filter :get_measure
   before_filter :set_up_environment, :except => [:providers, :show]
   
   after_filter :hash_document, :only => :report
@@ -22,6 +21,7 @@ class MeasuresController < ApplicationController
       wants.html {}
       wants.json do
         providerIds = params[:provider] || []
+        
         SelectedMeasure.add_measure(current_user.username, params[:id])
         
         if params[:sub_id]
@@ -79,42 +79,7 @@ class MeasuresController < ApplicationController
     SelectedMeasure.remove_measure(current_user.username, params[:id])
     render :text => 'Removed'
   end
-
-  # def result
-  #   if @quality_report.calculated?
-  #     @result = @quality_report.result
-  #     render :json => @result
-  #   else
-  #     uuid = params[:uuid]
-  #     unless params[:uuid]
-  #       uuid = @quality_report.calculate
-  #     end
-  #     
-  #     render :json => @quality_report.status(uuid)
-  #   end
-  # end
   
-  ##
-  # Updates the displayed measure period
-  # Expects :effective_date as a parameter
-  ##
-  # def period
-  #   period_end = params[:effective_date]
-  #   month, day, year = period_end.split('/')
-  #   @effective_date = Time.local(year.to_i, month.to_i, day.to_i).to_i
-  #   @period_start = calc_start(@effective_date)
-  #   if (params[:persist]=="true")
-  #     current_user.effective_date = @effective_date
-  #     current_user.save!
-  #   end
-  #   render :period, :status=>200
-  # end
-  
-  # def definition
-  #   @definition = @measure.definition
-  #   render :json => @definition
-  # end
-
   def patients
     @definition = @measure.definition
     @result = @quality_report.result
@@ -193,21 +158,14 @@ class MeasuresController < ApplicationController
     end
   end
 
-  # def select
-  #   measure = SelectedMeasure.add_measure(current_user.username, params[:id], params[:filters])
-  #   render :partial => 'measure_stats', :locals => {:measure => measure}
-  # end
-  # 
-  # def remove
-  #   SelectedMeasure.remove_measure(current_user.username, params[:id])
-  #   render :text => 'Removed'
-  # end
-
   private
 
   def set_up_environment
     @patient_count = mongo['records'].count
     if params[:id]
+      @measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
+      @definition = @measure.definition
+      raise "Unable to find measure #{params[:id]}#{params[:sub_id]}" unless @measure
       @filters = {"providers" => params[:provider]}
       # @filters = {}
       @quality_report = QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => @filters)
@@ -216,14 +174,6 @@ class MeasuresController < ApplicationController
       else
         @quality_report.calculate
       end
-    end
-  end
-  
-  def get_measure
-    if params[:id]
-      @measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
-      @definition = @measure.definition
-      raise "Unable to find measure #{params[:id]}#{params[:sub_id]}" unless @measure
     end
   end
 

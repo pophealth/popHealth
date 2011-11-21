@@ -48,7 +48,7 @@
 								<div style="display:none" class="measureItemList expandableList">
 									<ul>
 									 <% category['measures'].each do |measure| -%>
-					           <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-sub-measures="<%=measure['subs'].join(',')%>" data-category="<%= category['category'] %>"><%= measure['name'] %></li>
+					           <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-sub-measures="<%=measure['subs'].join(',') if measure['subs']%>" data-category="<%= category['category'] %>"><%= measure['name'] %></li>
 					         <% end -%>
 								</div>
 							</div>
