@@ -1,13 +1,15 @@
 @Providers = {
 	updateAggregate: (current_measure, sub_id) ->
+		@isPollRequestActive = true
 		Providers.isLoading()
 		qr = new QualityReport(current_measure, sub_id)
+		ref = this
 		qr.poll {}, (results) ->
 			result = results[0]
 			Render.percent $("#aggregate #measurePopulationPercentage"), result
 			Render.fraction $("#aggregate div.inline-fraction"), result
-			$("div#measureMetrics").fadeTo "fast", 1.0, ->
-				@isPollRequestActive = false
+			ref.isPollRequestActive = false
+			Providers.isLoading()
 	updateProviders: (current_measure, sub_id) ->
 			pr = new ProvidersReport(current_measure, sub_id)
 			pr.poll {}, (results) ->
@@ -33,12 +35,14 @@
 		Providers.updateProviders(current_measure, sub_id)
 		Providers.updateAggregate(current_measure, sub_id)
 	isLoading: ->
+		console.log(@isPollRequestActive)
 		if @isPollRequestActive
 			$("div#measureMetrics").fadeTo "fast", 0.25, ->
-				if isPollRequestActive
-					$("#loadingAggregate").show()
-				else
-				$("div#measureMetrics").fadeTo "fast", 1.0, ->
+			$("#loadingAggregate").show()
+		else
+			$("#loadingAggregate").hide()
+			$("div#measureMetrics").fadeTo "fast", 1.0, ->
+			
 }
 
 class @ProvidersReport extends QualityReport
