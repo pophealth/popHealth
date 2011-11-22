@@ -3,13 +3,12 @@ class MeasuresController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :validate_authorization!
-  before_filter :set_up_environment, :except => [:providers, :show]
-  
+  before_filter :build_filters
+  before_filter :set_up_environment
+  before_filter :generate_report, :only => [:patients, :measure_patients]
   after_filter :hash_document, :only => :report
-
+  
   def index
-    # @selected_measures = current_user.selected_measures
-    # @grouped_selected_measures = @selected_measures.group_by {|measure| measure['category']}
     @categories = Measure.non_core_measures
     @core_measures = Measure.core_measures
     @core_alt_measures = Measure.core_alternate_measures
@@ -20,28 +19,11 @@ class MeasuresController < ApplicationController
     respond_to do |wants|
       wants.html {}
       wants.json do
-        providerIds = params[:provider] || []
-        
         SelectedMeasure.add_measure(current_user.username, params[:id])
-        
-        if params[:sub_id]
-          measures = Measure.get(params[:id], params[:sub_id])
-        else
-          measures = Measure.sub_measures(params[:id])
+        measures = params[:sub_id] ? Measure.get(params[:id], params[:sub_id]) : Measure.sub_measures(params[:id])
+        render_measure_response(measures, params[:jobs]) do |sub|
+          QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters)
         end
-        
-        result = measures.inject({uuids: [], results: []}) do |memo, sub|
-          
-          report = QME::QualityReport.new(params['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => {'providers' => providerIds})
-          if report.calculated?
-            memo[:results] << report.result
-          else
-            memo[:uuids] << report.calculate
-          end
-          memo
-        end
-        
-        render :json => {complete: result[:uuids].empty?, result: result[:results] }
       end
     end
   end
@@ -55,22 +37,12 @@ class MeasuresController < ApplicationController
       end
       
       wants.json do
-        providerIds = params[:provider] || []
-        racesEthnicities = params[:races] ? Race.selected(params[:races]).all : []
-        races = racesEthnicities.map {|value| value.flatten(:race)}.flatten, 
-        ethnicities = racesEthnicities.map {|value| value.flatten(:ethnicity)}.flatten
         
-        result = providerIds.inject({uuids: [], results: []}) do |memo, pvId|
-          report = QME::QualityReport.new(@definition['id'], @definition['sub_id'], 'effective_date' => @effective_date, 'filters' => {'providers' => [pvId], 'races' => races, 'ethnicities' => ethnicities})
-          if report.calculated?
-            memo[:results] << report.result
-          else
-            memo[:uuids] << report.calculate
-          end
-          memo
-        end
+        providerIds = params[:provider].empty? ?  Provider.all.map { |pv| pv.id.to_s } : @filters.delete('providers')
 
-        render :json => {complete: result[:uuids].empty?, result: result[:results] }
+        render_measure_response(providerIds, params[:jobs]) do |pvId|
+          QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => @filters.merge('providers' => [pvId]))
+        end
       end
     end
   end
@@ -81,12 +53,9 @@ class MeasuresController < ApplicationController
   end
   
   def patients
-    @definition = @measure.definition
-    @result = @quality_report.result
   end
 
   def measure_patients
-    @result = @quality_report.result
     type = if params[:type]
       "value.#{params[:type]}"
     else
@@ -159,22 +128,48 @@ class MeasuresController < ApplicationController
   end
 
   private
-
+  
   def set_up_environment
     @patient_count = mongo['records'].count
     if params[:id]
-      @measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
-      @definition = @measure.definition
-      raise "Unable to find measure #{params[:id]}#{params[:sub_id]}" unless @measure
-      @filters = {"providers" => params[:provider]}
-      # @filters = {}
-      @quality_report = QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => @filters)
-      if @quality_report.calculated?
-        @result = @quality_report.result
-      else
-        @quality_report.calculate
-      end
+      measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
+      render(:file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404) unless measure
+      @definition = measure.definition
     end
+  end
+  
+  def generate_report
+    @quality_report = QME::QualityReport.new(@definition['id'], @definition['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters)
+    if @quality_report.calculated?
+      @result = @quality_report.result
+    else
+      @quality_report.calculate
+    end
+  end
+  
+  def render_measure_response(collection, uuids)
+    result = collection.inject({jobs: {}, result: []}) do |memo, var|
+      report = yield(var)
+      if report.calculated?
+        memo[:result] << report.result
+      else
+        key = "#{report.instance_variable_get(:@measure_id)}#{report.instance_variable_get(:@sub_id)}"
+        memo[:jobs][key] = report.calculate if uuids.nil? || uuids[key].nil?
+      end
+      
+      memo
+    end
+
+    render :json => result.merge(:complete => result[:jobs].empty?)
+  end
+  
+  def build_filters
+    providers = params[:provider] || []
+    racesEthnicities = params[:races] ? Race.selected(params[:races]).all : []
+    races = racesEthnicities.map {|value| value.flatten(:race)}.flatten, 
+    ethnicities = racesEthnicities.map {|value| value.flatten(:ethnicity)}.flatten
+    
+    @filters = {'providers' => providers, 'races' => races, 'ethnicities' => ethnicities}
   end
 
   def extract_result(id, sub_id, effective_date)
