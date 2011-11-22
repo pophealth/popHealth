@@ -1,5 +1,7 @@
-PATH
-  remote: ../quality-measure-engine/
+GIT
+  remote: http://github.com/pophealth/quality-measure-engine.git
+  revision: 263b7256404f8aece090402e3df14421d31370a6
+  branch: develop
   specs:
     quality-measure-engine (1.0.2)
       mongo (~> 1.3)
