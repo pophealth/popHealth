@@ -28,7 +28,7 @@
 				       <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-sub-measures="<%=measure['subs'].join(',')%>" data-category="Core"><%= measure['name'] %></li>
 				     <% end %>
 				     <% @core_alt_measures.each do |measure| -%>
-				       <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-category="Core Alternate"><span class="note">**</span><%= measure['name'] %></li>
+				       <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-sub-measures="<%=measure['subs'].join(',')%>" data-category="Core Alternate"><span class="note">**</span><%= measure['name'] %></li>
 				     <% end %>
 						</ul>
 						<p class="note"><em>** core alternate measures</em></p>
@@ -48,7 +48,7 @@
 								<div style="display:none" class="measureItemList expandableList">
 									<ul>
 									 <% category['measures'].each do |measure| -%>
-					           <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-category="<%= category['category'] %>"><%= measure['name'] %></li>
+					           <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-sub-measures="<%=measure['subs'].join(',') if measure['subs']%>" data-category="<%= category['category'] %>"><%= measure['name'] %></li>
 					         <% end -%>
 								</div>
 							</div>

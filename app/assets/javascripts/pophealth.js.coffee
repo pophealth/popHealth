@@ -12,10 +12,11 @@ class @QualityReport
 	poll: (params, callback) ->
 		ref = this
 		this.fetch params, (response) ->
+			uuids = response.uuids
 			if response.complete
 				callback(response.result)
 			else
-				setTimeout (-> ref.poll(params, callback)), 3000
+				setTimeout (-> ref.poll({uuids: uuids}, callback)), 3000
 
 @Page = {
 	onMeasureSelect: (measure_id) ->
