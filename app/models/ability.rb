@@ -22,11 +22,15 @@ class Ability
 
     if user.admin?
       can :manage, :all
-    elsif user.id
-      can :read, Log
+    elsif user.staff_role?
       can :read, Measure
       can :read, Record
       can :manage, Provider
+      can :manage, Team
+    elsif user.id
+      can :read, Measure
+      can :read, Record
+      can :read, Provider, npi: user.npi
       can :manage, Team
     end
 

@@ -68,10 +68,18 @@
         </dl>
         <dl>
           <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
+          <ul id="generate-menu" class="ui-menu ui-widget ui-widget-content ui-corner-all dialog-menu" role="listbox" aria-activedescendant="ui-active-menuitem">
+            <li class="ui-menu-item" role="menuitem" data-type="provider">
+              <a class="ui-corner-all" href="#" tabindex="-1">Provider Report</a>
+            </li>
+            <li class="ui-menu-item" role="menuitem" data-type="summary">
+              <a class="ui-corner-all" href="#" tabindex="-1">Practice Report</a>
+            </li>
+          </ul>
           <dt>Reporting Period:</dt>
           <dd>
             <span id="measurementPeriodStartDate"><%= Time.at(@period_start).strftime("%m/%d/%Y") %></span> - 
-            <input type="text" class="measurementPeriodEndDate" id="measurementPeriodEndDate" size="6" value="<%= Time.at(@effective_date).strftime("%m/%d/%Y") %>">
+            <input type="text" class="measurementPeriodEndDate" id="measurementPeriodEndDate" size="8" value="<%= Time.at(@effective_date).strftime("%m/%d/%Y") %>">
             <input type="button" class="recalculate" id="btnMeasurementPeriodChange" value="Recalculate">
           </dd>
         </dl>
@@ -81,7 +89,7 @@
         </dl>
         <dl>
           <dt># of Providers: </dt>
-          <dd>45</dd>
+          <dd><%= Provider.all.count %> </dd>
         </dl>
         <div class="clear"></div>
         <div class="dashboardTabs">

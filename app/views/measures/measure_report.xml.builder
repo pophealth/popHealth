@@ -14,19 +14,20 @@ xml.submission(
   end
 
   xml.registry do
-    xml.tag! :'registry-name', @report[:registry_name]
+    xml.tag! :'registry-name', @report[:registry_name] 
     xml.tag! :'registry-id', @report[:registry_id]
     xml.tag! :'submission-method', "A"
   end
 
   xml.tag! :'measure-group', "ID" => "X" do
+    @report[:provider_reports].each do |provider_report|
     xml.provider do
-      xml.npi(@report[:npi])
-      xml.tin(@report[:tin])
+      xml.npi(provider_report[:npi])
+      xml.tin(provider_report[:tin])
       xml.tag! :'waiver-signed', "Y"
-      xml.tag! :'encounter-from-date', @report[:start].strftime("%m-%d-%Y")
-      xml.tag! :'encounter-to-date', @report[:end].strftime("%m-%d-%Y")
-      @report[:results].each do |result|
+      xml.tag! :'encounter-from-date', provider_report[:start].strftime("%m-%d-%Y")
+      xml.tag! :'encounter-to-date', provider_report[:end].strftime("%m-%d-%Y")
+      provider_report[:results].each do |result|
         xml.tag! :'pqri-measure' do
           xml.tag! :'pqri-measure-number', result[:id]+result[:sub_id].to_s
           xml.tag! :'collection-method', 'A'
@@ -38,6 +39,7 @@ xml.submission(
           xml.tag! :'performance-rate', "%.2f" % (100.0 * result[:numerator] / (result[:denominator]))
         end
       end
+    end
     end
   end
 end

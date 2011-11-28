@@ -100,7 +100,7 @@ body {
 a {
   color: black;
   text-decoration: none; }
-
+  
 #header {
   background: #f4f4f4;
   background: -moz-linear-gradient(top, #f8f8f8, #f0f0f0);
@@ -516,6 +516,7 @@ a {
 
 input.exportReport {
   float: right;
+  cursor: pointer;
   color: $dashboardText;
   font-size: 1em;
   background: -moz-linear-gradient(top, #ececec, #e5e5e5);
@@ -529,6 +530,7 @@ input.exportReport {
 
 input.recalculate {
   color: $dashboardText;
+  cursor: pointer;
   font-size: 1em;
   background: -moz-linear-gradient(top, #ececec, #e5e5e5);
   background-color: #f2f2f2;
@@ -867,4 +869,13 @@ table.measureTable {
 			width:200px;
 		}
 	}
+}
+
+.dialog-menu {
+  display: none;
+}
+.dialog-menuwindow {
+  .ui-dialog-titlebar {
+    display: none;
+  }
 }

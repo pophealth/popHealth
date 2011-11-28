@@ -1,0 +1,22 @@
+defaults: &defaults
+  idle_timeout_enabled: true
+  idle_timeout: 300000
+  idle_timeout_noconfirm: 10000
+  default_user_staff_role: true
+  default_user_approved: true
+  logout_enabled: true
+  edit_account_enabled: true
+  
+development:
+  <<: *defaults
+  idle_timeout_enabled: false
+  default_user_staff_role: false
+  
+test:
+  <<: *defaults
+  
+production:
+  <<: *defaults
+  default_user_staff_role: false
+  default_user_approved: false
+  

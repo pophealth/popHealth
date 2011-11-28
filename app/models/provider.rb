@@ -15,6 +15,7 @@ class Provider
   scope :alphabetical, order_by([:family_name, :asc], [:given_name, :asc])
   scope :with_npi, where(:npi.ne => nil).or(:npi.ne => "")
   scope :without_npi, any_of({npi: nil}, {npi: ""})
+  scope :by_npi, ->(npi) { where(npi: npi) }
   scope :can_merge_with, ->(prov) { prov.npi.blank? ? all_except(prov) : all_except(prov).without_npi }
   scope :all_except, ->(prov) { where(:_id.ne => prov.id) }
   scope :selected, ->(provider_ids) { any_in(:_id => provider_ids)}
@@ -93,4 +94,5 @@ class Provider
     end
     return records
   end
+  
 end

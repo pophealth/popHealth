@@ -28,7 +28,7 @@ class MeasuresController < ApplicationController
     end
   end
   
-  def providers
+  def providers    
     respond_to do |wants|
       wants.html do
         @providers = Provider.alphabetical
@@ -103,22 +103,29 @@ class MeasuresController < ApplicationController
     end
   end
 
-  def report
+  def measure_report
     Atna.log(current_user.username, :query)
     selected_measures = mongo['selected_measures'].find({:username => current_user.username}).to_a
+    
     @report = {}
-    @report[:start] = Time.at(@effective_date - 3 * 30 * 24 * 60 * 60) # roughly 3 months
-    @report[:end] = Time.at(@effective_date)
     @report[:registry_name] = current_user.registry_name
     @report[:registry_id] = current_user.registry_id
-    # @report[:npi] = current_user.npi
-    # @report[:tin] = current_user.tin
-    @report[:results] = []
-    selected_measures.each do |measure|
-      subs_iterator(measure['subs']) do |sub_id|
-        @report[:results] << extract_result(measure['id'], sub_id, @effective_date)
+    @report[:provider_reports] = []
+    
+    case params[:type]
+    when 'summary'
+      selected_measures.each do |measure|
+        subs_iterator(measure['subs']) do |sub_id|
+          report[:results] << extract_result(measure['id'], sub_id, @effective_date)
+        end
       end
+    when 'provider'
+      Provider.all.each do |provider|
+        @report[:provider_reports] << provider_report(provider, selected_measures)
+      end
+      @report[:provider_reports] << provider_report(nil, selected_measures)
     end
+
     respond_to do |format|
       format.xml do
         response.headers['Content-Disposition']='attachment;filename=quality.xml';
@@ -126,8 +133,30 @@ class MeasuresController < ApplicationController
       end
     end
   end
+  
+  def period
+    month, day, year = params[:effective_date].split('/')
+    set_effective_date(Time.local(year.to_i, month.to_i, day.to_i).to_i, params[:persist]=="true")
+    render :period, :status=>200
+  end
 
   private
+  
+  def provider_report(provider, selected_measures)
+    report = {}
+    report[:start] = Time.at(@period_start)
+    report[:end] = Time.at(@effective_date)
+    report[:npi] = provider ? provider.npi : '' 
+    report[:tin] = provider ? provider.tin : ''
+    report[:results] = []
+    
+    selected_measures.each do |measure|
+      subs_iterator(measure['subs']) do |sub_id|
+        report[:results] << extract_result(measure['id'], sub_id, @effective_date, [provider ? provider.id.to_s : nil])
+      end
+    end
+    report
+  end
   
   def set_up_environment
     @patient_count = mongo['records'].count
@@ -148,13 +177,14 @@ class MeasuresController < ApplicationController
   end
   
   def render_measure_response(collection, uuids)
-    result = collection.inject({jobs: {}, result: []}) do |memo, var|
+    result = collection.inject({jobs: {}, result: [], job_statuses: {}}) do |memo, var|
       report = yield(var)
       if report.calculated?
         memo[:result] << report.result
       else
         key = "#{report.instance_variable_get(:@measure_id)}#{report.instance_variable_get(:@sub_id)}"
-        memo[:jobs][key] = report.calculate if uuids.nil? || uuids[key].nil?
+        memo[:jobs][key] = (uuids.nil? || uuids[key].nil?) ? report.calculate : uuids[key]
+        memo[:job_statuses][key] = report.status(memo[:jobs][key])['status']
       end
       
       memo
@@ -172,8 +202,13 @@ class MeasuresController < ApplicationController
     @filters = {'providers' => providers, 'races' => races, 'ethnicities' => ethnicities}
   end
 
-  def extract_result(id, sub_id, effective_date)
-    qr = QME::QualityReport.new(id, sub_id, 'effective_date' => effective_date)
+  def extract_result(id, sub_id, effective_date, providers=nil)
+    if (providers)
+      qr = QME::QualityReport.new(id, sub_id, 'effective_date' => effective_date, 'filters' => {'providers' => providers})
+    else
+      qr = QME::QualityReport.new(id, sub_id, 'effective_date' => effective_date)
+    end
+    qr.calculate(false) unless qr.calculated?
     result = qr.result
     {
       :id=>id,
@@ -188,5 +223,21 @@ class MeasuresController < ApplicationController
   def validate_authorization!
     authorize! :read, Measure
   end
+  
+  # def authorize_instance_variables
+  #   instance_variable_names.each do |variable|
+  #     values = instance_variable_get(variable)
+  #     if (values.is_a? Mongoid::Criteria or values.is_a? Array)
+  #       values.each do |value|
+  #         if (value.is_a? Provider)
+  #           authorize! :read, value
+  #         end
+  #       end
+  #     end
+  #     if (values.is_a? Provider)
+  #       authorize! :read, values
+  #     end
+  #   end
+  # end
   
 end

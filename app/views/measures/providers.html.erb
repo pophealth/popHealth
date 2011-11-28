@@ -32,11 +32,11 @@
           <label>Races</label>
           <div class="filterItemList expandableList" style="display:none">
             <ul>
-               <% @races.each do |race| %>
+              <% @races.each do |race| %>
               <li data-filter-type="race" data-filter-value="<%=race.id%>" class="checked">
                 <%= race.name %>
               </li>
-							<% end %>
+              <% end %>
             </ul>
           </div>
         </li>
