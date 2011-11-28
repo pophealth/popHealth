@@ -194,12 +194,19 @@ class MeasuresController < ApplicationController
   end
   
   def build_filters
-    providers = params[:provider] || []
-    racesEthnicities = params[:races] ? Race.selected(params[:races]).all : []
-    races = racesEthnicities.map {|value| value.flatten(:race)}.flatten, 
-    ethnicities = racesEthnicities.map {|value| value.flatten(:ethnicity)}.flatten
+    if request.xhr?
+      providers = params[:provider] || []
+      racesEthnicities = params[:races] ? Race.selected(params[:races]).all : []
+      races = racesEthnicities.map {|value| value.flatten(:race)}.flatten, 
+      ethnicities = racesEthnicities.map {|value| value.flatten(:ethnicity)}.flatten
     
-    @filters = {'providers' => providers, 'races' => races, 'ethnicities' => ethnicities}
+      @filters = {'providers' => providers, 'races' => races, 'ethnicities' => ethnicities}
+    else
+      @providers = Provider.alphabetical
+      @races = Race.ordered
+      @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
+    end
+
   end
 
   def extract_result(id, sub_id, effective_date, providers=nil)

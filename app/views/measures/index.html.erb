@@ -17,7 +17,6 @@
   </div><!-- end #header -->
   <div id="pageContent">
  		<div id="providerReports">
-    <!-- <h1>Filters</h1> -->
 	  <div class="groupList">
 	  	<ul>
 				<li>
@@ -58,6 +57,44 @@
 				</li>
 			</ul>
 		</div>
+    <p class="note">
+      Providers
+    </p>
+    <div class="groupList">
+      <ul>
+        <% @providers_by_team.each do |team_name, providers| %>
+        <li>
+          <label><%= team_name%></label>
+          <div class="filterItemList expandableList" style="display:none">
+            <ul>
+              <% providers.each do |pv| %>
+              <li data-filter-type="provider" data-filter-value="<%=pv.id%>" class="checked">
+                <%= pv.full_name %>
+              </li><% end %>
+            </ul>
+          </div>
+        </li><% end %>
+      </ul>
+    </div>
+   <p class="note">
+      Demographics
+    </p>
+    <div class="groupList">
+      <ul>
+        <li>
+          <label>Races</label>
+          <div class="filterItemList expandableList" style="display:none">
+            <ul>
+               <% @races.each do |race| %>
+              <li data-filter-type="race" data-filter-value="<%=race.id%>" class="checked">
+                <%= race.name %>
+              </li>
+							<% end %>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
    </div><!-- end #providerReports --> 
     <div id="dashboardPeriod">
       <div class="measureDetailTable">
