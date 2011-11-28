@@ -113,17 +113,13 @@ class MeasuresController < ApplicationController
     @report[:provider_reports] = []
     
     case params[:type]
-    when 'summary'
-      selected_measures.each do |measure|
-        subs_iterator(measure['subs']) do |sub_id|
-          report[:results] << extract_result(measure['id'], sub_id, @effective_date)
-        end
-      end
+    when 'practice'
+      @report[:provider_reports] << generate_xml_report(nil, selected_measures, false)
     when 'provider'
       Provider.all.each do |provider|
-        @report[:provider_reports] << provider_report(provider, selected_measures)
+        @report[:provider_reports] << generate_xml_report(provider, selected_measures)
       end
-      @report[:provider_reports] << provider_report(nil, selected_measures)
+      @report[:provider_reports] << generate_xml_report(nil, selected_measures)
     end
 
     respond_to do |format|
@@ -141,8 +137,8 @@ class MeasuresController < ApplicationController
   end
 
   private
-  
-  def provider_report(provider, selected_measures)
+
+  def generate_xml_report(provider, selected_measures, provider_report=true)
     report = {}
     report[:start] = Time.at(@period_start)
     report[:end] = Time.at(@effective_date)
@@ -152,11 +148,30 @@ class MeasuresController < ApplicationController
     
     selected_measures.each do |measure|
       subs_iterator(measure['subs']) do |sub_id|
-        report[:results] << extract_result(measure['id'], sub_id, @effective_date, [provider ? provider.id.to_s : nil])
+        report[:results] << extract_result(measure['id'], sub_id, @effective_date, (provider_report) ? [provider ? provider.id.to_s : nil] : nil)
       end
     end
     report
   end
+  
+  def extract_result(id, sub_id, effective_date, providers=nil)
+    if (providers)
+      qr = QME::QualityReport.new(id, sub_id, 'effective_date' => effective_date, 'filters' => {'providers' => providers})
+    else
+      qr = QME::QualityReport.new(id, sub_id, 'effective_date' => effective_date)
+    end
+    qr.calculate(false) unless qr.calculated?
+    result = qr.result
+    {
+      :id=>id,
+      :sub_id=>sub_id,
+      :population=>result['population'],
+      :denominator=>result['denominator'],
+      :numerator=>result['numerator'],
+      :exclusions=>result['exclusions']
+    }
+  end
+  
   
   def set_up_environment
     @patient_count = mongo['records'].count
@@ -207,24 +222,6 @@ class MeasuresController < ApplicationController
       @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
     end
 
-  end
-
-  def extract_result(id, sub_id, effective_date, providers=nil)
-    if (providers)
-      qr = QME::QualityReport.new(id, sub_id, 'effective_date' => effective_date, 'filters' => {'providers' => providers})
-    else
-      qr = QME::QualityReport.new(id, sub_id, 'effective_date' => effective_date)
-    end
-    qr.calculate(false) unless qr.calculated?
-    result = qr.result
-    {
-      :id=>id,
-      :sub_id=>sub_id,
-      :population=>result['population'],
-      :denominator=>result['denominator'],
-      :numerator=>result['numerator'],
-      :exclusions=>result['exclusions']
-    }
   end
 
   def validate_authorization!
