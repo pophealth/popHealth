@@ -17,7 +17,7 @@ class AdminController < ApplicationController
   end
 
   def disable
-    user = User.find_by_username(params[:username]);
+    user = User.by_username(params[:username]);
     disabled = params[:disabled].to_i == 1
     if user
       user.update_attribute(:disabled, disabled)
@@ -44,7 +44,7 @@ class AdminController < ApplicationController
   private
 
   def toggle_admin_privilidges(username, direction)
-    user = User.find_by_username username
+    user = User.by_username username
 
     if user
       if direction == :promote

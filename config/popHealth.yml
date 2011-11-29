@@ -23,6 +23,7 @@ development:
   
 test:
   <<: *defaults
+  default_user_approved: false
   
 production:
   <<: *defaults

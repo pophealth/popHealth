@@ -64,13 +64,15 @@ class User
   def selected_measures
     MONGO_DB['selected_measures'].find({:username => username}).to_a #need to call to_a so that it isn't a cursor
   end
-
-  # ==========
-  # = FINDERS =
-  # ==========
-
-  def self.find_by_username(username)
-    User.first(:conditions => {:username => username})
+  
+  # ===========
+  # = Finders =
+  # ===========
+  def self.by_username(username)
+    where(username: username).first
+  end
+  def self.by_email(email)
+    where(email: email).first
   end
 
   # =============

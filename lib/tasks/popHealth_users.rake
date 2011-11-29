@@ -61,10 +61,10 @@ namespace :pophealth do
         raise 'must pass USER_ID or EMAIL' unless env['USER_ID'] || env['EMAIL']
         case
           when env.key?('USER_ID')
-            user = User.find_by_username env['USER_ID']
+            user = User.by_username env['USER_ID']
             raise 'There is no such user with username: ' + env['USER_ID'] unless user
           when env.key?('EMAIL')
-            user = User.find_by_email env['EMAIL']
+            user = User.by_email env['EMAIL']
             raise 'There is no such user with email: ' + env['EMAIL'] unless user
         end
         user
