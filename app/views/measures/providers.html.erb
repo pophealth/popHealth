@@ -40,6 +40,18 @@
             </ul>
           </div>
         </li>
+        <li>
+          <label>Genders</label>
+          <div class="filterItemList expandableList" style="display:none">
+            <ul>
+               <% @genders.each do |gender| %>
+              <li data-filter-type="gender" data-filter-value="<%=gender[:id]%>" class="checked">
+                <%= gender[:name] %>
+              </li>
+							<% end %>
+            </ul>
+          </div>
+        </li>
       </ul>
     </div>
   </div>

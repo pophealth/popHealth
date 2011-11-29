@@ -214,11 +214,13 @@ class MeasuresController < ApplicationController
       racesEthnicities = params[:race] ? Race.selected(params[:race]).all : []
       races = racesEthnicities.map {|value| value.flatten(:race)}.flatten
       ethnicities = racesEthnicities.map {|value| value.flatten(:ethnicity)}.flatten
+      genders = params[:gender] ? params[:gender] : []
 
-      @filters = {'providers' => providers, 'races' => races, 'ethnicities' => ethnicities}
+      @filters = {'providers' => providers, 'races' => races, 'ethnicities' => ethnicities, genders: genders}
     else
       @providers = Provider.alphabetical
       @races = Race.ordered
+      @genders = [{name: 'Male', id: 'M'}, {name: 'Female', id: 'F'}]
       @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
     end
 
