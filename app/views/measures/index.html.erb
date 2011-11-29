@@ -101,7 +101,7 @@
         <h1><%= current_user.company.to_s %></h1>
         <dl>
           <dt>Practice:</dt>
-          <dd class="practiceName"><h1>Fort Defiance Health</h1></dd>
+          <dd class="practiceName"><h1><%=APP_CONFIG['practice_name']%></h1></dd>
         </dl>
         <dl>
           <input type="button" class="exportReport" value="Export Report" id="btnExportReport">

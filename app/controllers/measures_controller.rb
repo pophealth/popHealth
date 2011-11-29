@@ -212,9 +212,9 @@ class MeasuresController < ApplicationController
     if request.xhr?
       providers = params[:provider] || []
       racesEthnicities = params[:races] ? Race.selected(params[:races]).all : []
-      races = racesEthnicities.map {|value| value.flatten(:race)}.flatten, 
+      races = racesEthnicities.map {|value| value.flatten(:race)}.flatten
       ethnicities = racesEthnicities.map {|value| value.flatten(:ethnicity)}.flatten
-    
+
       @filters = {'providers' => providers, 'races' => races, 'ethnicities' => ethnicities}
     else
       @providers = Provider.alphabetical

@@ -13,6 +13,8 @@ defaults: &defaults
   edit_account_enabled: true
   # should new accounts be creatable, and should a user be able to edit their account
   allow_user_update: true
+  # title of the practice
+  practice_name: 'General Hospital'
   
 development:
   <<: *defaults
