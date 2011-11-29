@@ -211,7 +211,7 @@ class MeasuresController < ApplicationController
   def build_filters
     if request.xhr?
       providers = params[:provider] || []
-      racesEthnicities = params[:races] ? Race.selected(params[:races]).all : []
+      racesEthnicities = params[:race] ? Race.selected(params[:race]).all : []
       races = racesEthnicities.map {|value| value.flatten(:race)}.flatten
       ethnicities = racesEthnicities.map {|value| value.flatten(:ethnicity)}.flatten
 
