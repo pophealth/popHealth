@@ -6,7 +6,7 @@ class MeasuresController < ApplicationController
   before_filter :build_filters
   before_filter :set_up_environment
   before_filter :generate_report, :only => [:patients, :measure_patients]
-  after_filter :hash_document, :only => :report
+  after_filter :hash_document, :only => :measure_report
   
   def index
     @categories = Measure.non_core_measures
