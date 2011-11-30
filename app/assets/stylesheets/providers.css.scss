@@ -48,14 +48,15 @@ div#content form li {
     font-weight: 100;
     color: #999999;
     position: relative;
-    margin-right: 1px;
+//    margin-right: 1px;
     top: 4px; }
 
 div #providerMain { 
+	border-bottom: 3px solid #999;
   div#aggregate {
     margin-left:10px;
     float:left;
-    border-bottom: 3px solid #999;
+    
     
     .paren {
       font-size: 3em;
@@ -79,24 +80,41 @@ div #providerMain {
   
   table#providerTable {
     float:left;
-    
-    th {
-      font-size:1em;
-      padding-top:5px;
-      padding-left:15px;
-      color: #adadad;
-      text-transform:capitalize;
-    }
-    td {
-      font-size:1.25em;
-      padding:10px 60px;
-    }
-    
-    .measureProviderPopulationPercentage {
-      font-weight:bold;
-    }
+		margin-left:50px;
+		font-size:20px;
 
-  }
+		td {
+			height:60px;
+			padding:5px 10px;
+			vertical-align:bottom;
+		}
+
+		td.percent {
+			font-size:24px;
+			width:50px;
+			padding-right:15px;
+		}
+
+		td.name {
+			text-decoration: underline;
+			width:250px;
+			vertical-align:top;
+			font-weight: lighter;
+			padding-right:125px;
+		}
+
+		td.fraction {
+			padding-right:25px;
+		}
+
+		td.barChart {
+			vertical-align:middle;
+			.tableBar {
+				height:20px;
+				width:200px;
+			}
+		}
+	}
 }
 
 img#loadingAggregate {

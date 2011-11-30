@@ -161,9 +161,9 @@
 			<% @all_measures.each do |measure| %>
 				<% subs_iterator(measure['subs']) do |sub| %>
 					<tr style="<%=display_row(measure['id'], current_user.selected_measures)%>" data-measure="<%=measure['id']%>" data-measure-sub="<%= sub %>" class="measure">
-					  <td class="percent"><div class="measureProviderPopulationPercentage"><%= image_tag "loading.gif", :style => "margin-top:12px"%></div></td>
+					  
 						<% if sub.nil? || sub == 'a' %>
-							<td class="name"><%= (can? :manage, :providers) ? link_to("#{measure['id']}: #{measure['name']}", "#{measure_path(measure['id'], sub)}/providers") : "#{measure['id']}: #{measure['name']}" %></td>
+							<td class="name"><%= (can? :manage, :providers) ? link_to(measure['name'], "#{measure_path(measure['id'], sub)}/providers") : "#{measure['id']}: #{measure['name']}" %></td>
 						<% else %>
 							<td class="name" />
 						<% end %>
@@ -173,6 +173,7 @@
 						<% else %>
 							<td class="subtitle" />
 					  <% end %>
+						<td class="percent"><div class="measureProviderPopulationPercentage"><%= image_tag "loading.gif", :style => "margin-top:12px"%></div></td>
 						<td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
 					  <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0}%></td>
 					</tr>
