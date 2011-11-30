@@ -21,6 +21,13 @@ class MeasuresController < ApplicationController
       wants.json do
         SelectedMeasure.add_measure(current_user.username, params[:id])
         measures = params[:sub_id] ? Measure.get(params[:id], params[:sub_id]) : Measure.sub_measures(params[:id])
+        
+        if !can?(:manage, :providers) || params[:npi]
+          npi = current_user.npi ? current_user.npi : params[:npi]
+          @provider = Provider.first(conditons: {npi: npi})
+          @filters['providers'] = [@provider.id]
+        end
+        
         render_measure_response(measures, params[:jobs]) do |sub|
           QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters)
         end
@@ -194,6 +201,7 @@ class MeasuresController < ApplicationController
   def render_measure_response(collection, uuids)
     result = collection.inject({jobs: {}, result: [], job_statuses: {}}) do |memo, var|
       report = yield(var)
+ 
       if report.calculated?
         memo[:result] << report.result
       else
