@@ -22,19 +22,13 @@ class MeasuresController < ApplicationController
         SelectedMeasure.add_measure(current_user.username, params[:id])
         measures = params[:sub_id] ? Measure.get(params[:id], params[:sub_id]) : Measure.sub_measures(params[:id])
         
-        if !can?(:manage, :providers) || params[:npi]
-          if params[:npi] && !can?(:manage, :providers)
-            #trying to access other provider's data
-          elsif params[:npi]
-          elsif current_user.npi
-          end
-          
-          npi = current_user.npi ? current_user.npi : params[:npi]
+        
+        if !can?(:read, :providers) || params[:npi]
+          npi = params[:npi] ? params[:npi] : current_user.npi
           @provider = Provider.first(conditons: {npi: npi})
+          authorize! :read, @provider
           @filters['providers'] = [@provider.id]
         end
-        
-
         
         render_measure_response(measures, params[:jobs]) do |sub|
           QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters)
