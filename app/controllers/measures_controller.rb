@@ -211,12 +211,12 @@ class MeasuresController < ApplicationController
   def build_filters
     if request.xhr?
       providers = params[:provider] || []
-      racesEthnicities = params[:race] ? Race.selected(params[:race]).all : []
-      races = racesEthnicities.map {|value| value.flatten(:race)}.flatten
-      ethnicities = racesEthnicities.map {|value| value.flatten(:ethnicity)}.flatten
+      races = params[:race] ? Race.selected(params[:race]).all : []
+      races_ethnicities = []
+      races.each {|race| races_ethnicities << {race: race.flatten(:race), ethnicity: race.flatten(:ethnicity)}}
       genders = params[:gender] ? params[:gender] : []
 
-      @filters = {'providers' => providers, 'races' => races, 'ethnicities' => ethnicities, genders: genders}
+      @filters = {'providers' => providers, 'races_ethnicities' => races_ethnicities, genders: genders}
     else
       @providers = Provider.alphabetical
       @races = Race.ordered

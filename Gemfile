@@ -43,6 +43,10 @@ group :test, :develop do
   gem 'mocha', :require => false
 end
 
+group :production do
+  gem 'therubyracer'
+end
+
 gem 'jquery-rails'
 
 # Use unicorn as the web server
