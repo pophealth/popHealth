@@ -37,4 +37,22 @@ class RecordsControllerTest < ActionController::TestCase
     assert_equal 2, created_record.provider_performances.size
   end
   
+  test "replace existing record" do
+    # create one record
+    raw_post(:create, @body)
+    assert_response(201)
+    assert_not_nil assigns(:record)
+    created_records = Record.all().to_a
+    assert_equal 1, created_records.size
+    assert_equal 'PatientID', created_records[0].patient_id
+
+    # re-upload the same record again and make sure it overwrites the existing one
+    raw_post(:create, @body)
+    assert_response(201)
+    assert_not_nil assigns(:record)
+    created_records = Record.all().to_a
+    assert_equal 1, created_records.size
+    assert_equal 'PatientID', created_records[0].patient_id
+  end
+  
 end

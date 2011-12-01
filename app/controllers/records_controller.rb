@@ -26,7 +26,7 @@ class RecordsController < ApplicationController
       render :text => 'Unknown XML Format', :status => 400 and return
     end
 
-    @record = Record.create!(patient_data)
+    @record = Record.update_or_create(patient_data)
     
     providers.each do |pv|
       performance = ProviderPerformance.new(start_date: pv.delete(:start), end_date: pv.delete(:end), record: @record)

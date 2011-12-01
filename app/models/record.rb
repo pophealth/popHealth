@@ -13,6 +13,16 @@ class Record
   scope :with_provider, where(:provider_performances.ne => nil).or(:provider_proformances.ne => [])
   scope :without_provider, any_of({provider_performances: nil}, {provider_performances: []})
   scope :by_provider, ->(prov) { where("provider_performances.provider_id" => prov.id) }
+  scope :by_patient_id, ->(id) { where(:patient_id => id) }
   scope :provider_performance_between, ->(effective_date) { where("provider_performances.start_date" => {"$lt" => effective_date}).and('$or' => [{'provider_performances.end_date' => nil}, 'provider_performances.end_date' => {'$gt' => effective_date}]) }
 
+  def self.update_or_create(data)
+    existing = Record.by_patient_id(data['patient_id']).first
+    if existing
+      existing.update_attributes!(data)
+      existing
+    else
+      Record.create!(data)
+    end
+  end
 end
