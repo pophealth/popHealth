@@ -8,6 +8,7 @@ class RecordsControllerTest < ActionController::TestCase
     @user = Factory(:user)
     basic_signin(@user)
     @body = File.new("test/fixtures/patient_provider_fragment.xml").read
+    @body2 = File.new("test/fixtures/patient_sample.xml").read
   end
   
   test "send junk xml" do
@@ -45,14 +46,16 @@ class RecordsControllerTest < ActionController::TestCase
     created_records = Record.all().to_a
     assert_equal 1, created_records.size
     assert_equal 'PatientID', created_records[0].patient_id
+    assert_equal 'FirstName', created_records[0].first
 
     # re-upload the same record again and make sure it overwrites the existing one
-    raw_post(:create, @body)
+    raw_post(:create, @body2)
     assert_response(201)
     assert_not_nil assigns(:record)
     created_records = Record.all().to_a
     assert_equal 1, created_records.size
     assert_equal 'PatientID', created_records[0].patient_id
+    assert_equal 'Fred', created_records[0].first
   end
   
 end
