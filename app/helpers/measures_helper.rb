@@ -16,11 +16,15 @@ module MeasuresHelper
   # Checks a measure id to see if it is in the Array returned
   # be getting the selected_measure collection
   def measure_selected(measure_id, selected_measures)
-    if selected_measures.any? {|measure| measure['id'] == measure_id}
-      'checked'
-    else
-      nil
-    end
+    is_selected?(measure_id, selected_measures) ? 'checked' : nil
+  end
+  
+  def display_row(measure_id, selected_measures)
+    is_selected?(measure_id, selected_measures) ? "" : "display:none"
+  end
+  
+  def is_selected?(measure_id, selected_measures)
+    selected_measures.any? {|measure| measure['id'] == measure_id}
   end
   
   def value_or_default(results, field, default)

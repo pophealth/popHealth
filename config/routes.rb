@@ -11,16 +11,19 @@ PopHealth::Application.routes.draw do
   get "logs/index"
   
   match 'measures', :to => 'measures#index', :as => :dashboard, :via => :get
-  match 'measures/show/:id(/:sub_id)', :to => 'measures#show', :as => :measure, :via => :get
+  match "measure/:id(/:sub_id)/providers", :to => "measures#providers", :via => :get
+  match 'measure/:id(/:sub_id)', :to => 'measures#show', :as => :measure, :via => :get
   match 'measures/result/:id(/:sub_id)', :to => 'measures#result', :as => :measure_result, :via => :get
   match 'measures/definition/:id(/:sub_id)', :to => 'measures#definition', :as => :measure_definition, :via => :get
   match 'measures/patients/:id(/:sub_id)', :to => 'measures#patients', :as => :patients, :via => :get
   match 'measures/select/:id', :to => 'measures#select', :as => :select, :via => :post
-  match 'measures/remove/:id', :to => 'measures#remove', :as => :remove, :via => :post
+  match 'measure/:id/remove', :to => 'measures#remove', :as => :remove, :via => :post
   match 'measures/measure_patients/:id(/:sub_id)', :to=>'measures#measure_patients', :as => :measure_patients, :via=> :get
-  match 'measures/report', :to=>'measures#measure_report', :as => :measure_report, :via=> :get
+  match 'measures/measure_report', :to=>'measures#measure_report', :as => :measure_report, :via=> :get
   match 'measures/patient_list/:id(/:sub_id)', :to=>'measures#patient_list', :as => :patient_list, :via=> :get
   match 'measures/period', :to=>'measures#period', :as => :period, :via=> :post
+  
+  match 'provider/:npi', :to => "measures#index", :as => :provider_dashboard, :via => :get
   
   match 'records', :to => 'records#create', :via => :post
   
@@ -30,6 +33,10 @@ PopHealth::Application.routes.draw do
   match 'providers/measure/:measure_id(/:sub_id)', :to => "providers#measure", :as => :providers_measure, :via => :get 
   
   root :to => 'measures#index'
+  
+  resources :measures do
+    member { get :providers }
+  end
   
   resources :providers do
     member do

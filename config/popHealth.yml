@@ -1,0 +1,32 @@
+defaults: &defaults
+  # idle timeout settings
+  idle_timeout_enabled: true
+  idle_timeout: 300000
+  idle_timeout_noconfirm: 10000
+  # user should have the staff role by default when created (this allows users to see data accross all providers)
+  default_user_staff_role: true
+  # user should be approved by default when created
+  default_user_approved: true
+  # display logout link
+  logout_enabled: true
+  # should the account link be displayed in the header
+  edit_account_enabled: true
+  # should new accounts be creatable, and should a user be able to edit their account
+  allow_user_update: true
+  # title of the practice
+  practice_name: 'General Hospital'
+  
+development:
+  <<: *defaults
+  idle_timeout_enabled: false
+  default_user_staff_role: false
+  
+test:
+  <<: *defaults
+  default_user_approved: false
+  
+production:
+  <<: *defaults
+  default_user_staff_role: false
+  default_user_approved: false
+  

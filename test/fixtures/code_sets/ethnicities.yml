@@ -1,0 +1,214 @@
+hispanic_or_latino:
+  name: Hispanic Or Latino
+  code: 2135-2
+  hierarchy: E1
+
+spaniard:
+  name: Spaniard
+  code: 2137-8
+  hierarchy: E1.01
+
+andalusian:
+  name: Andalusian
+  code: 2138-6
+  hierarchy: E1.01.001
+
+asturian:
+  name: Asturian
+  code: 2139-4
+  hierarchy: E1.01.002
+
+castillian:
+  name: Castillian
+  code: 2140-2
+  hierarchy: E1.01.003
+
+catalonian:
+  name: Catalonian
+  code: 2141-0
+  hierarchy: E1.01.004
+
+belearic_islander:
+  name: Belearic Islander
+  code: 2142-8
+  hierarchy: E1.01.005
+
+gallego:
+  name: Gallego
+  code: 2143-6
+  hierarchy: E1.01.006
+
+valencian:
+  name: Valencian
+  code: 2144-4
+  hierarchy: E1.01.007
+
+canarian:
+  name: Canarian
+  code: 2145-1
+  hierarchy: E1.01.008
+
+spanish_basque:
+  name: Spanish Basque
+  code: 2146-9
+  hierarchy: E1.01.009
+
+mexican:
+  name: Mexican
+  code: 2148-5
+  hierarchy: E1.02
+
+mexican_american:
+  name: Mexican American
+  code: 2149-3
+  hierarchy: E1.02.001
+
+mexicano:
+  name: Mexicano
+  code: 2150-1
+  hierarchy: E1.02.002
+
+chicano:
+  name: Chicano
+  code: 2151-9
+  hierarchy: E1.02.003
+
+la_raza:
+  name: La Raza
+  code: 2152-7
+  hierarchy: E1.02.004
+
+mexican_american_indian:
+  name: Mexican American Indian
+  code: 2153-5
+  hierarchy: E1.02.005
+
+central_american:
+  name: Central American
+  code: 2155-0
+  hierarchy: E1.03
+
+costa_rican:
+  name: Costa Rican
+  code: 2156-8
+  hierarchy: E1.03.001
+
+guatemalan:
+  name: Guatemalan
+  code: 2157-6
+  hierarchy: E1.03.002
+
+honduran:
+  name: Honduran
+  code: 2158-4
+  hierarchy: E1.03.003
+
+nicaraguan:
+  name: Nicaraguan
+  code: 2159-2
+  hierarchy: E1.03.004
+
+panamanian:
+  name: Panamanian
+  code: 2160-0
+  hierarchy: E1.03.005
+
+salvadoran:
+  name: Salvadoran
+  code: 2161-8
+  hierarchy: E1.03.006
+
+central_american_indian:
+  name: Central American Indian
+  code: 2162-6
+  hierarchy: E1.03.007
+
+canal_zone:
+  name: Canal Zone
+  code: 2163-4
+  hierarchy: E1.03.008
+
+south_american:
+  name: South American
+  code: 2165-9
+  hierarchy: E1.04
+
+argentinean:
+  name: Argentinean
+  code: 2166-7
+  hierarchy: E1.04.001
+
+bolivian:
+  name: Bolivian
+  code: 2167-5
+  hierarchy: E1.04.002
+
+chilean:
+  name: Chilean
+  code: 2168-3
+  hierarchy: E1.04.003
+
+colombian:
+  name: Colombian
+  code: 2169-1
+  hierarchy: E1.04.004
+
+ecuadorian:
+  name: Ecuadorian
+  code: 2170-9
+  hierarchy: E1.04.005
+
+paraguayan:
+  name: Paraguayan
+  code: 2171-7
+  hierarchy: E1.04.006
+
+peruvian:
+  name: Peruvian
+  code: 2172-5
+  hierarchy: E1.04.007
+
+uruguayan:
+  name: Uruguayan
+  code: 2173-3
+  hierarchy: E1.04.008
+
+venezuelan:
+  name: Venezuelan
+  code: 2174-1
+  hierarchy: E1.04.009
+
+south_american_indian:
+  name: South American Indian
+  code: 2175-8
+  hierarchy: E1.04.010
+
+criollo:
+  name: Criollo
+  code: 2176-6
+  hierarchy: E1.04.011
+
+latin_american:
+  name: Latin American
+  code: 2178-2
+  hierarchy: E1.05
+
+puerto_rican:
+  name: Puerto Rican
+  code: 2180-8
+  hierarchy: E1.06
+
+cuban:
+  name: Cuban
+  code: 2182-4
+  hierarchy: E1.07
+
+dominican:
+  name: Dominican
+  code: 2184-0
+  hierarchy: E1.08
+
+not_hispanic_or_latino:
+  name: Not Hispanic Or Latino
+  code: 2186-5
+  hierarchy: E2

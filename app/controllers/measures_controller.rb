@@ -3,67 +3,87 @@ class MeasuresController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :validate_authorization!
+  before_filter :build_filters
   before_filter :set_up_environment
-
-  after_filter :hash_document, :only => [:measure_report, :patient_list]
-
+  before_filter :generate_report, :only => [:patients, :measure_patients]
+  after_filter :hash_document, :only => :measure_report
+  
   def index
-    @selected_measures = current_user.selected_measures
-    @grouped_selected_measures = @selected_measures.group_by {|measure| measure['category']}
     @categories = Measure.non_core_measures
     @core_measures = Measure.core_measures
     @core_alt_measures = Measure.core_alternate_measures
-    render 'dashboard'
-  end
-
-  def result
-    if @quality_report.calculated?
-      @result = @quality_report.result
-      render :json => @result
-    else
-      uuid = params[:uuid]
-      unless params[:uuid]
-        uuid = @quality_report.calculate
-      end
-      
-      render :json => @quality_report.status(uuid)
-    end
+    @all_measures = Measure.all_by_measure
   end
   
-  ##
-  # Updates the displayed measure period
-  # Expects :effective_date as a parameter
-  ##
-  def period
-    period_end = params[:effective_date]
-    month, day, year = period_end.split('/')
-    @effective_date = Time.local(year.to_i, month.to_i, day.to_i).to_i
-    @period_start = calc_start(@effective_date)
-    if (params[:persist]=="true")
-      current_user.effective_date = @effective_date
-      current_user.save!
+  def show
+    respond_to do |wants|
+      wants.html do
+        generate_report
+        @result = @quality_report.result
+      end
+      wants.json do
+        SelectedMeasure.add_measure(current_user.username, params[:id])
+        measures = params[:sub_id] ? Measure.get(params[:id], params[:sub_id]) : Measure.sub_measures(params[:id])
+        
+        
+        if !can?(:read, :providers) || params[:npi]
+          npi = params[:npi] ? params[:npi] : current_user.npi
+          @provider = Provider.first(conditons: {npi: npi})
+          authorize! :read, @provider
+          @filters['providers'] = [@provider.id]
+        end
+        
+        render_measure_response(measures, params[:jobs]) do |sub|
+          QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters)
+        end
+      end
     end
-    render :period, :status=>200
   end
   
   def definition
-    @definition = @measure.definition
     render :json => @definition
   end
-
-  def show
-    @definition = @measure.definition
-    @result = @quality_report.result
-    render 'measure'
+  def result
+    
+    uuid = generate_report(params[:uuid])
+    
+    if (@result)
+      render :json => @result
+    else
+      render :json => @quality_report.status(uuid)
+    end
+    
   end
+  
+  
+  def providers    
+    respond_to do |wants|
+      wants.html do
+        @providers = Provider.alphabetical
+        @races = Race.ordered
+        @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
+      end
+      
+      wants.json do
+        
+        providerIds = params[:provider].empty? ?  Provider.all.map { |pv| pv.id.to_s } : @filters.delete('providers')
 
+        render_measure_response(providerIds, params[:jobs]) do |pvId|
+          QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => @filters.merge('providers' => [pvId]))
+        end
+      end
+    end
+  end
+  
+  def remove
+    SelectedMeasure.remove_measure(current_user.username, params[:id])
+    render :text => 'Removed'
+  end
+  
   def patients
-    @definition = @measure.definition
-    @result = @quality_report.result
   end
 
   def measure_patients
-    @result = @quality_report.result
     type = if params[:type]
       "value.#{params[:type]}"
     else
@@ -114,19 +134,22 @@ class MeasuresController < ApplicationController
   def measure_report
     Atna.log(current_user.username, :query)
     selected_measures = mongo['selected_measures'].find({:username => current_user.username}).to_a
+    
     @report = {}
-    @report[:start] = Time.at(@effective_date - 3 * 30 * 24 * 60 * 60) # roughly 3 months
-    @report[:end] = Time.at(@effective_date)
     @report[:registry_name] = current_user.registry_name
     @report[:registry_id] = current_user.registry_id
-    # @report[:npi] = current_user.npi
-    # @report[:tin] = current_user.tin
-    @report[:results] = []
-    selected_measures.each do |measure|
-      subs_iterator(measure['subs']) do |sub_id|
-        @report[:results] << extract_result(measure['id'], sub_id, @effective_date)
+    @report[:provider_reports] = []
+    
+    case params[:type]
+    when 'practice'
+      @report[:provider_reports] << generate_xml_report(nil, selected_measures, false)
+    when 'provider'
+      Provider.all.each do |provider|
+        @report[:provider_reports] << generate_xml_report(provider, selected_measures)
       end
+      @report[:provider_reports] << generate_xml_report(nil, selected_measures)
     end
+
     respond_to do |format|
       format.xml do
         response.headers['Content-Disposition']='attachment;filename=quality.xml';
@@ -134,47 +157,38 @@ class MeasuresController < ApplicationController
       end
     end
   end
-
-  def select
-    measure = SelectedMeasure.add_measure(current_user.username, params[:id], params[:filters])
-    render :partial => 'measure_stats', :locals => {:measure => measure}
-  end
-
-  def remove
-    SelectedMeasure.remove_measure(current_user.username, params[:id])
-    render :text => 'Removed'
+  
+  def period
+    month, day, year = params[:effective_date].split('/')
+    set_effective_date(Time.local(year.to_i, month.to_i, day.to_i).to_i, params[:persist]=="true")
+    render :period, :status=>200
   end
 
   private
 
-  def hash_document
-    d = Digest::SHA1.new
-    checksum = d.hexdigest(response.body)
-    Log.create(:username => current_user.username, :event => 'document exported', :checksum => checksum)
-  end
-
-  def self.three_months_prior(date)
-    Time.at(date - 3 * 30 * 24 * 60 * 60)
-  end
-
-  def set_up_environment
+  def generate_xml_report(provider, selected_measures, provider_report=true)
+    report = {}
+    report[:start] = Time.at(@period_start)
+    report[:end] = Time.at(@effective_date)
+    report[:npi] = provider ? provider.npi : '' 
+    report[:tin] = provider ? provider.tin : ''
+    report[:results] = []
     
-    @patient_count = mongo['records'].count
-    if current_user && current_user.effective_date
-      @effective_date = current_user.effective_date
-    else
-      @effective_date = Time.gm(2010, 12, 31).to_i
+    selected_measures.each do |measure|
+      subs_iterator(measure['subs']) do |sub_id|
+        report[:results] << extract_result(measure['id'], sub_id, @effective_date, (provider_report) ? [provider ? provider.id.to_s : nil] : nil)
+      end
     end
-    @filters = params[:filters]
-    if params[:id]
-      @quality_report = QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => @filters)
-      @measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
-    end
-
+    report
   end
-
-  def extract_result(id, sub_id, effective_date)
-    qr = QME::QualityReport.new(id, sub_id, 'effective_date' => effective_date)
+  
+  def extract_result(id, sub_id, effective_date, providers=nil)
+    if (providers)
+      qr = QME::QualityReport.new(id, sub_id, 'effective_date' => effective_date, 'filters' => {'providers' => providers})
+    else
+      qr = QME::QualityReport.new(id, sub_id, 'effective_date' => effective_date)
+    end
+    qr.calculate(false) unless qr.calculated?
     result = qr.result
     {
       :id=>id,
@@ -185,9 +199,83 @@ class MeasuresController < ApplicationController
       :exclusions=>result['exclusions']
     }
   end
+  
+  
+  def set_up_environment
+    @patient_count = mongo['records'].count
+    if params[:id]
+      measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
+      render(:file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404) unless measure
+      @definition = measure.definition
+    end
+  end
+  
+  def generate_report(uuid = nil)
+    @quality_report = QME::QualityReport.new(@definition['id'], @definition['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters)
+    if @quality_report.calculated?
+      @result = @quality_report.result
+    else
+      unless uuid
+        uuid = @quality_report.calculate
+      end
+    end
+    return uuid
+  end
+  
+  def render_measure_response(collection, uuids)
+    result = collection.inject({jobs: {}, result: [], job_statuses: {}}) do |memo, var|
+      report = yield(var)
+ 
+      if report.calculated?
+        memo[:result] << report.result
+      else
+        key = "#{report.instance_variable_get(:@measure_id)}#{report.instance_variable_get(:@sub_id)}"
+        memo[:jobs][key] = (uuids.nil? || uuids[key].nil?) ? report.calculate : uuids[key]
+        memo[:job_statuses][key] = report.status(memo[:jobs][key])['status']
+      end
+      
+      memo
+    end
+
+    render :json => result.merge(:complete => result[:jobs].empty?)
+  end
+  
+  def build_filters
+    if request.xhr?
+      providers = params[:provider] || []
+      races = params[:race] ? Race.selected(params[:race]).all : []
+      races_ethnicities = []
+      races.each {|race| races_ethnicities << {race: race.flatten(:race), ethnicity: race.flatten(:ethnicity)}}
+      genders = params[:gender] ? params[:gender] : []
+
+      @filters = {'providers' => providers, 'races_ethnicities' => races_ethnicities, genders: genders}
+    else
+      @providers = Provider.alphabetical
+      @races = Race.ordered
+      @genders = [{name: 'Male', id: 'M'}, {name: 'Female', id: 'F'}]
+      @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
+    end
+
+  end
 
   def validate_authorization!
     authorize! :read, Measure
   end
-
+  
+  # def authorize_instance_variables
+  #   instance_variable_names.each do |variable|
+  #     values = instance_variable_get(variable)
+  #     if (values.is_a? Mongoid::Criteria or values.is_a? Array)
+  #       values.each do |value|
+  #         if (value.is_a? Provider)
+  #           authorize! :read, value
+  #         end
+  #       end
+  #     end
+  #     if (values.is_a? Provider)
+  #       authorize! :read, values
+  #     end
+  #   end
+  # end
+  
 end

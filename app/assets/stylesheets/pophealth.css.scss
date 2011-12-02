@@ -100,7 +100,7 @@ body {
 a {
   color: black;
   text-decoration: none; }
-
+  
 #header {
   background: #f4f4f4;
   background: -moz-linear-gradient(top, #f8f8f8, #f0f0f0);
@@ -420,7 +420,13 @@ a {
     padding: 0 0 0 10px;
     margin: 5px 0 15px 0;
     color: $dashboardLabel;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    label {
+      cursor: pointer;
+      padding-left: 15px;
+      background: url("../assets/liClosed.png") 0 35% no-repeat; }
+    label.open {
+      background: url("../assets/liOpen.png") 0 35% no-repeat; }    }
   em {
     font-style: italic;
     text-transform: none; }
@@ -434,7 +440,7 @@ a {
   h1 {
     padding: 10px 0 0px 10px;
     font-size: 1.4em; }
-  .measureList {
+  .groupList {
     background-color: $paramList;
     color: $measureList;
     margin: 5px 0;
@@ -454,13 +460,25 @@ a {
         background: url("../assets/liClosed.png") 0 35% no-repeat; }
       label.open {
         background: url("../assets/liOpen.png") 0 35% no-repeat; } } }
-  .measureItemList {
+  .expandableList {
     color: black;
     line-height: 1.2;
     font-size: 1.1em;
     ul {
       margin: 5px; }
     list-style: none;
+    li {
+      padding: 0 5px 10px 25px;
+      background: url("../assets/unchecked.png") 0 10% no-repeat;
+      font-size: 0.9em;
+      cursor: pointer;
+      .note {
+        margin: 0 3px 0 0;
+        font-size: 0.9em; } }
+    li.checked {
+      background: url("../assets/checked.png") 0 10% no-repeat; } }
+  .providerReports {
+    ul {margin: 5px; }
     li {
       padding: 0 5px 10px 25px;
       background: url("../assets/unchecked.png") 0 10% no-repeat;
@@ -498,6 +516,7 @@ a {
 
 input.exportReport {
   float: right;
+  cursor: pointer;
   color: $dashboardText;
   font-size: 1em;
   background: -moz-linear-gradient(top, #ececec, #e5e5e5);
@@ -511,6 +530,7 @@ input.exportReport {
 
 input.recalculate {
   color: $dashboardText;
+  cursor: pointer;
   font-size: 1em;
   background: -moz-linear-gradient(top, #ececec, #e5e5e5);
   background-color: #f2f2f2;
@@ -530,7 +550,7 @@ input.measurementPeriodEndDate {
 .measureDetailTable {
   padding: 0;
   float: left;
-  width: 700px;
+  width: 1024px;
   h1 {
     font-size: 1.5em;
     padding-left: $measureDetailTable-padding; }
@@ -550,6 +570,25 @@ input.measurementPeriodEndDate {
     display: table-cell;
     h1 {
       padding-left: 0; } }
+  dd.practiceName {text-transform: uppercase;}
+  div.dashboardTabs {
+    color: $dashboardLabel;
+    clear: left;
+    padding-left: $measureDetailTable-padding;
+    padding-bottom: 0px;
+    border-bottom: 3px solid $borderColor; 
+    span{
+      text-transform: lowercase;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 3px;
+      border-left: 1px solid $borderColor;
+      border-right: 1px solid $borderColor;
+      border-top: 1px solid $borderColor;
+      margin-right: 2px;}
+    span.active {
+      font-weight: bold;color: white;
+      background-color: #40B3BC;}}
   h3.dashboardLabel {
     color: $dashboardLabel;
     clear: left;
@@ -599,7 +638,7 @@ input.measurementPeriodEndDate {
   line-height: 1.2em;
   span {
     display: block;
-    margin-right: 2px; }
+    margin-right: 5px; }
   span.numeratorValue {
     color: $numerator; }
   span.denominatorValue {
@@ -607,6 +646,13 @@ input.measurementPeriodEndDate {
   span.separator {
     border-top: 1px solid #cccccc; } }
 
+.measureProviderPopulationPercentage {
+//  width: 225px;
+//  margin-top: 0.25em;
+//  margin-left: $measureDetailTable-padding; 
+	font-weight:bold;
+}
+    
 .tableMeasureTitle {
   width: 225px;
   margin-top: 0.75em;
@@ -636,7 +682,7 @@ input.measurementPeriodEndDate {
   clear: left;
   height: 3em;
   .measureStats {
-    width: 205px;
+    width: 85px;
     float: left;
     height: 3em;
     vertical-align: middle;
@@ -735,7 +781,7 @@ a.tableEdit {
 }
 
 .measureProviderPopulationPercentage {
-  @include popPercentage(60px, 24px, 64px, 100px, 15px);
+
 }
 
 #patientMetrics {
@@ -792,6 +838,7 @@ a.tableEdit {
 #patientTable {
   margin: 20px 20px 20px 50px;
   width: 100%;
+		
   th {
     padding: 2px 5px;
     color: $dashboardLabel;
@@ -799,3 +846,51 @@ a.tableEdit {
     text-transform: uppercase; }
   td {
     padding: 2px 15px 2px 5px; } }
+
+table.measureTable {
+	
+	font-size:20px;
+	
+	td {
+		height:60px;
+		padding:5px 10px;
+		vertical-align:bottom;
+	}
+	
+	td.percent {
+		font-size:24px;
+		width:50px;
+	}
+	
+	td.subtitle {
+		font-weight: lighter;
+	}
+	
+	td.name {
+		text-decoration: underline;
+		width:450px;
+		vertical-align:top;
+		font-weight: lighter;
+		padding-right:100px;
+	}
+	
+	td.fraction {
+	}
+	
+	td.barChart {
+		vertical-align:middle;
+		.tableBar {
+			height:20px;
+			width:200px;
+		}
+	}
+}
+
+.dialog-menu {
+  display: none;
+}
+.dialog-menuwindow {
+  .ui-dialog-titlebar {
+    display: none;
+  }
+}

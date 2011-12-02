@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta http-equiv="content-script-type" content="text/javascript">
+	
   <title>popHealth : An Open Source Quality Measure Reference Implementation</title>
   <link rel="shortcut icon" href="/favicon.ico"/>
   <%# stylesheet_link_tag :all %>
@@ -11,13 +15,13 @@
   
   <%= csrf_meta_tag %>
   <%= yield :head %>
-  <% unless Rails.env.development? %>
+  <% if APP_CONFIG['idle_timeout_enabled'] %>
   <script type="text/javascript" charset="utf-8">
 
     $(function() {
       $(document).idleTimeout({
-         inactivity: 300000,
-         noconfirm: 10000,
+         inactivity: APP_CONFIG['idle_timeout'],
+         noconfirm: APP_CONFIG['idle_timeout_noconfirm'],
          sessionAlive: false,
          alive_url: '/',
          redirect_url: '<%= destroy_user_session_path %>',
@@ -27,6 +31,13 @@
 
   </script>
   <% end %>
+
+	<% if @definition %>
+	<script type="text/javascript" charset="utf-8">
+		currentMeasure = "<%= @definition['id'] %>"
+		subMeasure = "<%= @definition['sub_id'] %>"
+	</script>
+	<% end %>
 </head>
 <body>
 
