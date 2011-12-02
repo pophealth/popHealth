@@ -17,7 +17,10 @@ class MeasuresController < ApplicationController
   
   def show
     respond_to do |wants|
-      wants.html {}
+      wants.html do
+        generate_report
+        @result = @quality_report.result
+      end
       wants.json do
         SelectedMeasure.add_measure(current_user.username, params[:id])
         measures = params[:sub_id] ? Measure.get(params[:id], params[:sub_id]) : Measure.sub_measures(params[:id])
@@ -36,6 +39,22 @@ class MeasuresController < ApplicationController
       end
     end
   end
+  
+  def definition
+    render :json => @definition
+  end
+  def result
+    
+    uuid = generate_report(params[:uuid])
+    
+    if (@result)
+      render :json => @result
+    else
+      render :json => @quality_report.status(uuid)
+    end
+    
+  end
+  
   
   def providers    
     respond_to do |wants|
@@ -191,13 +210,16 @@ class MeasuresController < ApplicationController
     end
   end
   
-  def generate_report
+  def generate_report(uuid = nil)
     @quality_report = QME::QualityReport.new(@definition['id'], @definition['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters)
     if @quality_report.calculated?
       @result = @quality_report.result
     else
-      @quality_report.calculate
+      unless uuid
+        uuid = @quality_report.calculate
+      end
     end
+    return uuid
   end
   
   def render_measure_response(collection, uuids)
