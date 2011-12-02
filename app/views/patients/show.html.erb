@@ -1,21 +1,172 @@
 
 <div id="container">
   <%= render :partial => 'header', :locals => {:patient => @patient} %>
-  <div style= "padding-top: 20px;">
-    <div id="patientDashLeft" style="width:400px; float:left;">
-      <span id="patientLastName" style="font-size: 150%; text-transform: uppercase;"><%= @patient.last %></span><br/>
+  <div id="patientMeasures">
+    <table>
+      <tbody>
+        <tr class="rot">
+          <th>NQF #</div></th>
+          <th><div>NUM</div></th>          
+          <th><div>DEN</div></th> 
+          <th>OUT</th>             
+        </tr>
+        <tr>
+          <td>0001</td>
+          <td class="g"><img src="assets/greendot.png" alt="greendot" /></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>
+        <tr>
+          <td>0002</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>
+        <tr>
+          <td>0004(a)</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>
+        <tr>
+          <td>0004(b)</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>
+        <tr>
+          <td>0012</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>
+        <tr>
+          <td>0013</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>
+        <tr>
+          <td>0014</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>
+        <tr>
+          <td>0018</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>
+        <tr>
+          <td>0024(a)</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>
+        <tr>
+          <td>0024(b)</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>
+        <tr>
+          <td>0024(c)</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>
+        <tr>
+          <td>0024(d)</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>        
+        <tr>
+          <td>0024(e)</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>        
+        <tr>
+          <td>0024(f)</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>        
+        <tr>
+          <td>0024(g)</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>        
+        <tr>
+          <td>0024(h)</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>        
+        <tr>
+          <td>0024(i)</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>        
+        <tr>
+          <td>0027(a)</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>        
+        <tr>
+          <td>0027(b)</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>
+        <tr>
+          <td>0028(a)</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>        
+        <tr>
+          <td>0028(b)</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>        
+        <tr>
+          <td>0031</td>
+          <td class="g"></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>
+        <tr>
+          <td>0031</td>
+          <td class="g"><img /images/greendot.png/></td>
+          <td class="b"></td>
+          <td class="r"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="patientGroupType">
+    <div id="patientDashLeft">
+      <span id="patientLastName"><%= @patient.last %>,</span><br/>
       <%= @patient.first %>
       <br/><br/>
       <div>
         <div class="patientDatum">
-          <label style="text-transform: uppercase;">Sex</label><span style="position:relative; left: 20px;"><%= @patient.gender %></span>
+          <label>Sex</label><span><%= @patient.gender %></span>
         </div>
         <div class="patientDatum" "text-transform: uppercase;">
-          <label>DOB</label><span style="position:relative; left: 20px;"><%= Time.at(@patient.birthdate).strftime("%d.%b.%Y") %></span>
+          <label>DOB</label><span><%= Time.at(@patient.birthdate).strftime("%d.%b.%Y") %></span>
         </div>
-    </div>
-    <div id="patientDashRight" style="width:400px; float:left;">
-      <div class="patientContentCategory" style="margin: 20px;">
+    <div id="patientDashRight">
+      <div class="patientContentCategory">
         <h3 style="text-transform: uppercase;">Results</h3>
         <% @patient.results.each do |element| -%>
           <div class="patientResult">
@@ -23,7 +174,7 @@
           </div>
         <% end -%>
       </div>
-      <div class="patientContentCategory" style="margin: 20px;">
+      <div class="patientContentCategory">
         <h3 style="text-transform: uppercase;">Vitals</h3>
         <% @patient.vital_signs.each do |element| -%>
           <div class="patientResult">
