@@ -48,7 +48,7 @@ class RecordsControllerTest < ActionController::TestCase
     assert_equal 'PatientID', created_records[0].patient_id
     assert_equal 'FirstName', created_records[0].first
 
-    # re-upload the same record again and make sure it overwrites the existing one
+    # re-upload another record with the same patient_id and make sure it overwrites the existing one
     raw_post(:create, @body2)
     assert_response(201)
     assert_not_nil assigns(:record)

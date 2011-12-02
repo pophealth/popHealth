@@ -36,7 +36,7 @@ class RecordsController < ApplicationController
       performance.save
     end
     
-    QME::QualityReport.destroy_all
+    QME::QualityReport.update_patient_results(@record.patient_id)
     Atna.log(@user.username, :phi_import)
     Log.create(:username => @user.username, :event => 'patient record imported', :patient_id => @record.patient_id)
 
