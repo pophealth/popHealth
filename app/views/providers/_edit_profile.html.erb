@@ -1,4 +1,4 @@
-<%= semantic_remote_form_for @provider do |f| %>
+<%= semantic_form_for @provider do |f| %>
   <%= f.inputs :title, :given_name, :family_name %>
   <%= f.input :specialty, :as => "select", :collection => Provider::Specialties.map { |k,v| [v, k]}  %>
   <%= f.input :organization %>

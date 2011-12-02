@@ -6,7 +6,7 @@ class LogsControllerTest < ActionController::TestCase
   setup do
     dump_database
     
-    @user = Factory(:user)
+    @user = Factory(:user, admin: true)
     sign_in @user
 
   end

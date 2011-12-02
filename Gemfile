@@ -36,11 +36,17 @@ end
 group :test, :develop do
   # gem "rspec-rails"
   # Pretty printed test output
+  gem "unicorn"
   gem 'turn', :require => false
   gem 'cover_me'
   gem 'factory_girl'
   gem 'minitest'
   gem 'mocha', :require => false
+
+end
+
+group :production do
+  gem 'therubyracer'
 end
 
 gem 'jquery-rails'

@@ -26,7 +26,7 @@ class RecordsController < ApplicationController
       render :text => 'Unknown XML Format', :status => 400 and return
     end
 
-    @record = Record.create!(patient_data)
+    @record = Record.update_or_create(patient_data)
     
     providers.each do |pv|
       performance = ProviderPerformance.new(start_date: pv.delete(:start), end_date: pv.delete(:end), record: @record)
@@ -36,7 +36,7 @@ class RecordsController < ApplicationController
       performance.save
     end
     
-    QME::QualityReport.destroy_all
+    QME::QualityReport.update_patient_results(@record.patient_id)
     Atna.log(@user.username, :phi_import)
     Log.create(:username => @user.username, :event => 'patient record imported', :patient_id => @record.patient_id)
 

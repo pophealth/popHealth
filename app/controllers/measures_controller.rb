@@ -6,7 +6,7 @@ class MeasuresController < ApplicationController
   before_filter :build_filters
   before_filter :set_up_environment
   before_filter :generate_report, :only => [:patients, :measure_patients]
-  after_filter :hash_document, :only => :report
+  after_filter :hash_document, :only => :measure_report
   
   def index
     @categories = Measure.non_core_measures
@@ -17,16 +17,44 @@ class MeasuresController < ApplicationController
   
   def show
     respond_to do |wants|
-      wants.html {}
+      wants.html do
+        generate_report
+        @result = @quality_report.result
+      end
       wants.json do
         SelectedMeasure.add_measure(current_user.username, params[:id])
         measures = params[:sub_id] ? Measure.get(params[:id], params[:sub_id]) : Measure.sub_measures(params[:id])
+        
+        
+        if !can?(:read, :providers) || params[:npi]
+          npi = params[:npi] ? params[:npi] : current_user.npi
+          @provider = Provider.first(conditons: {npi: npi})
+          authorize! :read, @provider
+          @filters['providers'] = [@provider.id]
+        end
+        
         render_measure_response(measures, params[:jobs]) do |sub|
           QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters)
         end
       end
     end
   end
+  
+  def definition
+    render :json => @definition
+  end
+  def result
+    
+    uuid = generate_report(params[:uuid])
+    
+    if (@result)
+      render :json => @result
+    else
+      render :json => @quality_report.status(uuid)
+    end
+    
+  end
+  
   
   def providers    
     respond_to do |wants|
@@ -182,18 +210,22 @@ class MeasuresController < ApplicationController
     end
   end
   
-  def generate_report
+  def generate_report(uuid = nil)
     @quality_report = QME::QualityReport.new(@definition['id'], @definition['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters)
     if @quality_report.calculated?
       @result = @quality_report.result
     else
-      @quality_report.calculate
+      unless uuid
+        uuid = @quality_report.calculate
+      end
     end
+    return uuid
   end
   
   def render_measure_response(collection, uuids)
     result = collection.inject({jobs: {}, result: [], job_statuses: {}}) do |memo, var|
       report = yield(var)
+ 
       if report.calculated?
         memo[:result] << report.result
       else
@@ -211,14 +243,16 @@ class MeasuresController < ApplicationController
   def build_filters
     if request.xhr?
       providers = params[:provider] || []
-      racesEthnicities = params[:races] ? Race.selected(params[:races]).all : []
-      races = racesEthnicities.map {|value| value.flatten(:race)}.flatten
-      ethnicities = racesEthnicities.map {|value| value.flatten(:ethnicity)}.flatten
+      races = params[:race] ? Race.selected(params[:race]).all : []
+      races_ethnicities = []
+      races.each {|race| races_ethnicities << {race: race.flatten(:race), ethnicity: race.flatten(:ethnicity)}}
+      genders = params[:gender] ? params[:gender] : []
 
-      @filters = {'providers' => providers, 'races' => races, 'ethnicities' => ethnicities}
+      @filters = {'providers' => providers, 'races_ethnicities' => races_ethnicities, genders: genders}
     else
       @providers = Provider.alphabetical
       @races = Race.ordered
+      @genders = [{name: 'Male', id: 'M'}, {name: 'Female', id: 'F'}]
       @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
     end
 

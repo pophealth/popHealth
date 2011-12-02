@@ -551,7 +551,7 @@ input.measurementPeriodEndDate {
 .measureDetailTable {
   padding: 0;
   float: left;
-  width: 945px;
+  width: 1024px;
   h1 {
     font-size: 1.5em;
     padding-left: $measureDetailTable-padding; }
@@ -639,7 +639,7 @@ input.measurementPeriodEndDate {
   line-height: 1.2em;
   span {
     display: block;
-    margin-right: 2px; }
+    margin-right: 5px; }
   span.numeratorValue {
     color: $numerator; }
   span.denominatorValue {
@@ -648,9 +648,11 @@ input.measurementPeriodEndDate {
     border-top: 1px solid #cccccc; } }
 
 .measureProviderPopulationPercentage {
-  width: 225px;
-  margin-top: 0.25em;
-  margin-left: $measureDetailTable-padding; }
+//  width: 225px;
+//  margin-top: 0.25em;
+//  margin-left: $measureDetailTable-padding; 
+	font-weight:bold;
+}
     
 .tableMeasureTitle {
   width: 225px;
@@ -780,7 +782,7 @@ a.tableEdit {
 }
 
 .measureProviderPopulationPercentage {
-  @include popPercentage(60px, 24px, 64px, 100px, 15px);
+
 }
 
 #patientMetrics {
@@ -837,6 +839,7 @@ a.tableEdit {
 #patientTable {
   margin: 20px 20px 20px 50px;
   width: 100%;
+		
   th {
     padding: 2px 5px;
     color: $dashboardLabel;
@@ -849,22 +852,34 @@ table.measureTable {
 	
 	font-size:20px;
 	
-	td.percent {
-		padding: 5px 15px;
+	td {
+		height:60px;
+		padding:5px 10px;
+		vertical-align:bottom;
 	}
 	
-	td.name {
-		width:500px;
-		padding:15px;
+	td.percent {
+		font-size:24px;
+		width:50px;
+	}
+	
+	td.subtitle {
 		font-weight: lighter;
 	}
 	
+	td.name {
+		text-decoration: underline;
+		width:450px;
+		vertical-align:top;
+		font-weight: lighter;
+		padding-right:100px;
+	}
+	
 	td.fraction {
-		padding-left:15px;
-		padding-right:35px;
 	}
 	
 	td.barChart {
+		vertical-align:middle;
 		.tableBar {
 			height:20px;
 			width:200px;

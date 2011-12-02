@@ -57,6 +57,7 @@
 				</li>
 			</ul>
 		</div>
+    <% if (can? :manage, :providers)%>
     <p class="note">
       Providers
     </p>
@@ -76,6 +77,7 @@
         </li><% end %>
       </ul>
     </div>
+    <% end %>
    <p class="note">
       Demographics
     </p>
@@ -88,6 +90,18 @@
                <% @races.each do |race| %>
               <li data-filter-type="race" data-filter-value="<%=race.id%>" class="checked">
                 <%= race.name %>
+              </li>
+							<% end %>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <label>Genders</label>
+          <div class="filterItemList expandableList" style="display:none">
+            <ul>
+               <% @genders.each do |gender| %>
+              <li data-filter-type="gender" data-filter-value="<%=gender[:id]%>" class="checked">
+                <%= gender[:name] %>
               </li>
 							<% end %>
             </ul>
@@ -109,9 +123,11 @@
             <li class="ui-menu-item" role="menuitem" data-type="provider">
               <a class="ui-corner-all" href="#" tabindex="-1">Provider Report</a>
             </li>
+            <% if (can? :manage, :providers)%>
             <li class="ui-menu-item" role="menuitem" data-type="practice">
               <a class="ui-corner-all" href="#" tabindex="-1">Practice Report</a>
             </li>
+            <% end %>
           </ul>
           <dt>Reporting Period:</dt>
           <dd>
@@ -145,18 +161,19 @@
 			<% @all_measures.each do |measure| %>
 				<% subs_iterator(measure['subs']) do |sub| %>
 					<tr style="<%=display_row(measure['id'], current_user.selected_measures)%>" data-measure="<%=measure['id']%>" data-measure-sub="<%= sub %>" class="measure">
-					  <td class="percent"><div class="measureProviderPopulationPercentage"><%= image_tag "loading.gif", :style => "margin-top:12px"%></div></td>
+					  
 						<% if sub.nil? || sub == 'a' %>
-							<td class="name"><%= measure['id'] %>: <%= measure['name'] %></td>
+							<td class="name"><%= (can? :manage, :providers) ? link_to(measure['name'], "#{measure_path(measure['id'], sub)}/providers") : "#{measure['id']}: #{measure['name']}" %></td>
 						<% else %>
 							<td class="name" />
 						<% end %>
 						
 						<% if sub %>
-							<td class="subtitle"><%= measure['short_subtitles'][sub]%></td>
+							<td class="subtitle"><%= (can? :manage, :providers) ? link_to("#{measure['short_subtitles'][sub]}", "#{measure_path(measure['id'], sub)}/providers") : "#{measure['short_subtitles'][sub]}" %></td>
 						<% else %>
 							<td class="subtitle" />
 					  <% end %>
+						<td class="percent"><div class="measureProviderPopulationPercentage"><%= image_tag "loading.gif", :style => "margin-top:12px"%></div></td>
 						<td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
 					  <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0}%></td>
 					</tr>
