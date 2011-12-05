@@ -1,7 +1,7 @@
 @import "mixins";
 
 
-dl {
+dl.patient {
   color: #888888;
   display: table-cell;
   text-transform: uppercase;
@@ -32,7 +32,7 @@ dl {
   table {
   	margin-top: -50px;
   	padding: 20px;
-	  border-collapse:collapse;
+	border-collapse:collapse;
     float:left;
     width:245px;
     margin: 20px;
@@ -99,7 +99,6 @@ h3 {
 
 #patientResults {
   padding: 15px 10px 5px 10px;
-  margin-top: -773px;
   margin-left: 287px;
 
   .lowerborder {
@@ -118,18 +117,25 @@ h3 {
 }
 
 #patientName {
-	
- 	#patientLastName {
-  	font-size: 1.5em;
-    text-transform: uppercase;
+	#patientLastName {
+		font-size: 1.5em;
+		text-transform: uppercase;
+		width: 400px;
 	}
 
 	#patientFirstName {
-  	font-size: 1.2em;
-  }
+		font-size: 1.2em;
+		width: 400px;
+	}
+	#effectivedate {
+		width: 400px;
+	}
+
+
 
 #patientBasicInfo {
-  margin-left: 600px;
+  margin-left: 500px;
+  float: left;
 
   th {
   	width: 40px;
@@ -137,6 +143,10 @@ h3 {
   }
 }
 
+table {
+  width: 400px;
+  
+}
 .patientDatum {
 	height: 125px;
 	color: $graytext;
@@ -159,9 +169,8 @@ h3 {
   }
 	
 	table.providerInfo {
-		margin-left: 600px; 
+		margin-left: 500px; 
 		width: 400px;
-		margin-top: -100px;
 		height: 100%;
   }
 
@@ -169,9 +178,7 @@ div.sectionHeadingbar {
 	width: 400px;
 	height: 1.5em;
 	border: 1px solid #ccc;
-
 }
-
 
 table.patientGraphtable {
 	width: 400px;
@@ -181,12 +188,14 @@ table.patientGraphtable {
 	}
 }
 
-div.rightside {
-	margin-left: 600px;
-	margin-top: -240px;
+.secondColumn {
+	margin-left: 500px;
+  float: left;
+
 }
 
 table #vaccines {
 		width: 1200px;
 		margin-top: 40px;
+  
 }
