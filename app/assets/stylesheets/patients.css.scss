@@ -1,19 +1,25 @@
 @import "mixins";
 
 
-dl.patient {
-  color: #888888;
-  display: table-cell;
-  text-transform: uppercase;
-  width: 160px;
-
-  dt {
-  	text-transform: lowercase;
-  	display: inline;
-  }
-  dd {
-  	display: inline;
-    }
+.expandableList {
+    color: black;
+    line-height: 1.2;
+    font-size: 1.1em;
+    
+    ul {
+      margin: 5px; 
+      }
+      
+    list-style: none;
+    li {
+      padding: 0 5px 10px 25px;
+      background: url("../assets/unchecked.png") 0 10% no-repeat;
+      font-size: 0.9em;
+      cursor: pointer;
+      .note {
+        margin: 0 3px 0 0;
+        font-size: 0.9em; 
+        } 
 }
 
 
