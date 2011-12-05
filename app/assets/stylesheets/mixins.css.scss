@@ -1,0 +1,13 @@
+$accountBkgColor: #fafafa;
+$inputBkgColor: #fafafa;
+$borderColor: #dddddd;
+$errorMsgColor: #f50000;
+$graytext: #999999;
+$orange: #EDA039;
+
+
+@mixin rounded($radius: 7px) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
