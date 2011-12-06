@@ -11,17 +11,19 @@
 			ref.isPollRequestActive = false
 			Providers.isLoading()
 	updateProviders: (current_measure, sub_id) ->
-			pr = new ProvidersReport(current_measure, sub_id)
-			pr.poll {}, (results) ->
-						$(results).each (i, result) ->
-							if result?
-								providerId = result.filters.providers[0]
-								row = Providers.row(providerId)
-								Render.percent $(row).find(".measureProviderPopulationPercentage"), result
-								Render.fraction row, result
-								Render.barChart row.find("div.tableBar"), result
-								console.log(row)
-								row.fadeTo("fast", 1.0)
+		$(".measureProviderPopulationPercentage").html("<img src='/assets/loading.gif'/>")
+		$(".numeratorValue").html('0')
+		$(".denominatorValue").html('0')
+		pr = new ProvidersReport(current_measure, sub_id)
+		pr.poll {}, (results) ->
+					$(results).each (i, result) ->
+						if result?
+							providerId = result.filters.providers[0]
+							row = Providers.row(providerId)
+							Render.percent $(row).find(".measureProviderPopulationPercentage"), result
+							Render.fraction row, result
+							Render.barChart row.find("div.tableBar"), result
+							row.fadeTo("fast", 1.0)
 	row: (id) ->
 		$ "#providerTable tr[data-provider='" + id + "']"
 	onFilterChange: (current_measure, sub_id) ->
