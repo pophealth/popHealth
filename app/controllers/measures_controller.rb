@@ -246,13 +246,12 @@ class MeasuresController < ApplicationController
       providers = params[:provider] || []
       races = params[:race] ? Race.selected(params[:race]).all : []
       ethnicities = params[:ethnicity] ? Ethnicity.selected(params[:ethnicity]).all : []
-      races_ethnicities = [{race: (races.map {|race| race.codes}).flatten, ethnicity: (ethnicities.map {|ethnicity| ethnicity.codes}).flatten}]
       genders = params[:gender] ? params[:gender] : []
-
-      @filters = {'providers' => providers, 'races_ethnicities' => races_ethnicities, genders: genders}
+      
+      @filters = {'providers' => providers, 'races'=>(races.map {|race| race.codes}).flatten, 'ethnicities'=>(ethnicities.map {|ethnicity| ethnicity.codes}).flatten, 'genders' => genders}
       
       if @selected_provider
-        @filters['providers'] = [@selected_provider.id]
+        @filters['providers'] = [@selected_provider.id.to_s]
       elsif !can?(:read, :providers)
         @filters['providers'] = [nil]
       end
