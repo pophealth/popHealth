@@ -87,7 +87,7 @@ class Provider
     save!
   end
   
-  def records(effective_date)
+  def records(effective_date=nil)
     Record.by_provider(self, effective_date)
   end
   

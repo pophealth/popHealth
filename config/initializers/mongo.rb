@@ -20,12 +20,3 @@ module QME
   end
 end
 
-# insert races
-
-(
-fixture_json = JSON.parse(File.read(File.join(Rails.root, 'test', 'fixtures', 'code_sets', 'raceandethnicity.json')))
-fixture_json.each do |document|
-  MONGO_DB['races'].save(document)
-end
-) if MONGO_DB['races'].count == 0
-
