@@ -13,9 +13,7 @@ class @QualityReport
 		ref = this
 		this.fetch params, (response) ->
 			pollParams = $.extend(params, {jobs: response.jobs})
-			console.log("complete?")
 			if response.complete
-				console.log(response)
 				callback(response.result)
 			else
 				setTimeout (-> ref.poll(pollParams, callback)), 3000
@@ -67,8 +65,8 @@ class @QualityReport
 		if data.population != 0 && data.denominator != 0
 			numerator_width = (data.numerator / data.population) * 100
 			denominator_width = ((data.denominator - data.numerator) / data.population) * 100
-			selector.children("div.tableBarNumerator").animate(width: "#{numerator_width}%")
-			selector.children("div.tableBarDenominator").animate(width: "#{denominator_width}%")
+		selector.children("div.tableBarNumerator").animate(width: "#{numerator_width}%")
+		selector.children("div.tableBarDenominator").animate(width: "#{denominator_width}%")
 }
 
 makeListsExpandable = ->

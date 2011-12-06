@@ -19,7 +19,9 @@
 								row = Providers.row(providerId)
 								Render.percent $(row).find(".measureProviderPopulationPercentage"), result
 								Render.fraction row, result
-								Render.barChart row, result
+								Render.barChart row.find("div.tableBar"), result
+								console.log(row)
+								row.fadeTo("fast", 1.0)
 	row: (id) ->
 		$ "#providerTable tr[data-provider='" + id + "']"
 	onFilterChange: (current_measure, sub_id) ->
@@ -27,15 +29,19 @@
 			if $(li).data("filter-type") is "provider"
 				Providers.row($(li).data("filter-value")).fadeToggle "fast"
 			else
+			Providers.fadeOut();
 			Providers.updatePage(current_measure, sub_id)
+	fadeOut: ->
+		$("#providerTable tr").fadeTo("fast", 0.5)
 	onLoad: (current_measure, sub_id) ->
 		Page.onFilterChange = Providers.onFilterChange(current_measure, sub_id);
+		Providers.fadeOut();
 		Providers.updatePage(current_measure, sub_id)
+		
 	updatePage: (current_measure, sub_id) ->
 		Providers.updateProviders(current_measure, sub_id)
 		Providers.updateAggregate(current_measure, sub_id)
 	isLoading: ->
-		console.log(@isPollRequestActive)
 		if @isPollRequestActive
 			$("div#measureMetrics").fadeTo "fast", 0.25, ->
 			$("#loadingAggregate").show()
