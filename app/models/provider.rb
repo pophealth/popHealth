@@ -87,12 +87,8 @@ class Provider
     save!
   end
   
-  def records(effective_date = nil)
-    records = Record.by_provider(self)
-    if (effective_date)
-      records = records.provider_performance_between(effective_date)
-    end
-    return records
+  def records(effective_date)
+    Record.by_provider(self, effective_date)
   end
   
 end
