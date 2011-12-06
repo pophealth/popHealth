@@ -1,27 +1,54 @@
 @import "mixins";
 
 
-.expandableList {
-    color: black;
-    line-height: 1.2;
-    font-size: 1.1em;
+.patientList {
+  color: black;
+  line-height: 1.2;
+  font-size: 1.1em;
+  list-style: none;
+
+ul {
+    margin: 5px; 
+  }
+  li {
+    padding: 0 5px 10px 25px;
+    font-size: 0.9em;
+    cursor: pointer;
+    background: url("../assets/reddot.png") 0 10% no-repeat;    
     
-    ul {
-      margin: 5px; 
-      }
-      
-    list-style: none;
-    li {
-      padding: 0 5px 10px 25px;
-      background: url("../assets/unchecked.png") 0 10% no-repeat;
-      font-size: 0.9em;
-      cursor: pointer;
-      .note {
-        margin: 0 3px 0 0;
-        font-size: 0.9em; 
-        } 
+    .note {
+      margin: 0 3px 0 0;
+      font-size: 0.9em; 
+    }
+  }
 }
 
+.numeratorList {
+  color: black;
+  line-height: 1.2;
+  font-size: 1.1em;
+  list-style: none;
+
+ul {
+    margin: 5px; 
+}
+  li {
+    padding: 0 5px 10px 25px;
+    margin-left: 10px;
+    font-size: 0.9em;
+    cursor: pointer;
+    background: url("../assets/greendot.png") 0 10% no-repeat;
+    
+    .note {
+      margin: 0 3px 0 0;
+      font-size: 0.9em; 
+    }    
+  }
+}
+
+div.sectionHeadingbar {
+  
+}
 
 #patientMeasures {
   padding-top: 20px;
@@ -122,25 +149,29 @@ h3 {
   }
 }
 
+.main {
+  margin-left: 320px;
+  margin-top: -575px;
+}
 #patientName {
 	#patientLastName {
 		font-size: 1.5em;
 		text-transform: uppercase;
-		width: 400px;
+		width: 320px;
 	}
 
 	#patientFirstName {
 		font-size: 1.2em;
-		width: 400px;
+		width: 320px;
 	}
 	#effectivedate {
-		width: 400px;
+		width: 320px;
 	}
 
 
 
 #patientBasicInfo {
-  margin-left: 500px;
+  margin-left: 360px;
   float: left;
 
   th {
@@ -150,7 +181,7 @@ h3 {
 }
 
 table {
-  width: 400px;
+  width: 320px;
   
 }
 .patientDatum {
@@ -170,24 +201,28 @@ table {
   }
 
   table.patientDemo {
-  	width: 400px;
-  	height: 100%;
+  	width: 320px;
+  	height: 125px;
   }
 	
 	table.providerInfo {
-		margin-left: 500px; 
-		width: 400px;
-		height: 100%;
+		margin-left: 360px; 
+		width: 320px;
+		height: 125px
   }
 
 div.sectionHeadingbar {
-	width: 400px;
+	width: 320px;
 	height: 1.5em;
 	border: 1px solid #ccc;
+  padding: 0 5px;
+  margin: 10px 0;
+
 }
 
+
 table.patientGraphtable {
-	width: 400px;
+	width: 360px;
 	
 	td {
 		padding: 0 5px;
@@ -195,8 +230,9 @@ table.patientGraphtable {
 }
 
 .secondColumn {
-	margin-left: 500px;
+	margin-left: 360px;
   float: left;
+  margin-top: -283px;
 
 }
 
