@@ -197,7 +197,7 @@
 						<% else %>
 							<td class="subtitle" />
 					  <% end %>
-						<td class="percent"><div class="measureProviderPopulationPercentage"><%= image_tag "loading.gif", :style => "margin-top:12px"%></div></td>
+						<td class="percent"><div class="measureProviderPopulationPercentage"></div></td>
 						<td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
 					  <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0}%></td>
 					</tr>

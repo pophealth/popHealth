@@ -13,9 +13,7 @@ class @QualityReport
 		ref = this
 		this.fetch params, (response) ->
 			pollParams = $.extend(params, {jobs: response.jobs})
-			console.log("complete?")
 			if response.complete
-				console.log(response)
 				callback(response.result)
 			else
 				setTimeout (-> ref.poll(pollParams, callback)), 3000

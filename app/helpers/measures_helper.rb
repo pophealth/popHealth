@@ -39,8 +39,6 @@ module MeasuresHelper
     output = raw_percentage(numerator, denominator)
     if output
       "#{output}%"
-    else
-      return  image_tag "loading.gif"
     end
   end
   
