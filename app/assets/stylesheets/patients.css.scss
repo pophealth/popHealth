@@ -1,5 +1,17 @@
 @import "mixins";
 
+#patientcontainer,  {
+  font-size: 0.9em;
+  height: 100%; 
+  position: relative;
+  }
+
+#dashboardPatient {
+  position: absolute;
+  top: 35px;
+  left: 300px;
+  padding: 20px;
+}
 
 .patientList {
   color: black;
@@ -150,8 +162,7 @@ h3 {
 }
 
 .main {
-  margin-left: 320px;
-  margin-top: -575px;
+
 }
 #patientName {
 	#patientLastName {
@@ -191,7 +202,7 @@ table {
 }
   	
   table {  
-  	color: $graytext;
+  	color: black;
     
     th {
     }

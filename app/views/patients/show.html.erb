@@ -1,5 +1,5 @@
 
-<div id="container">
+<div id="patientcontainer">
   <%= render :partial => 'header', :locals => {:patient => @patient} %>
   
   <div id="providerReports">
@@ -52,8 +52,8 @@
       <ul>
     </div>
   </div>
-  <div id="dashboardPeriod" class="main">
-    <div id="patientName" class="lowerborder">
+  <div id="dashboardPatient" class="main">
+    <div id="patientName">
       <p id="patientLastName"><%= @patient.last %>,</p>
       <p id="patientFirstName"><%= @patient.first %></p>
       <p>effective date:</p>
