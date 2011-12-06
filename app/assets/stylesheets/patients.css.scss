@@ -136,8 +136,8 @@ div.sectionHeadingbar {
 				}
 
 h3 {
-	text-transform: uppercase;
-	color: #888888;
+  text-transform: uppercase;
+	color: black;
 	font-weight: 500;
 }
 
@@ -162,7 +162,7 @@ h3 {
 }
 
 .main {
-  padding: 20px;
+  padding: 0 20px;
 }
 #patientName {
 	#patientLastName {
@@ -192,9 +192,10 @@ h3 {
   }
 }
 
-table {
-  width: 320px;
-  
+table.medGraph {
+  min-width: 320px;
+
+
 }
 .patientDatum {
 	height: 125px;
@@ -227,15 +228,15 @@ table {
 div.sectionHeadingbar {
 	width: 320px;
 	height: 1.5em;
-	border: 1px solid #ccc;
-  padding: 0 5px;
+  padding: 5px 10px 0 10px;
   margin: 10px 0;
+  background-image: url(/assets/lines.png);
 
 }
 
 div.lowerborder {
-  border-top: 2px solid #CCCCCC;
-  border-bottom: 2px solid #CCCCCC;
+  border-top: 3px solid $grayborder;
+  border-bottom: 3px solid $grayborder;
   margin: 5px 0;
   padding: 10px 0;
 
@@ -252,7 +253,7 @@ table.patientGraphtable {
 .secondColumn {
 	margin-left: 360px;
   float: left;
-  margin-top: -283px;
+  margin-top: -292px;
 
 }
 

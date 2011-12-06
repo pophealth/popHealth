@@ -3,6 +3,7 @@
   <%= render :partial => 'header', :locals => {:patient => @patient} %>
   <div id="pageContent">
     <div id="providerReports">
+      <div class="groupList">
         <label class="open">OUTLIERS</label>
           <div>
             <ul class="patientList">
@@ -49,9 +50,10 @@
             </div>
           </li>
         <ul>
+      </div>
     </div>
-    <div id="dashboardPeriod" class="main">
-      <div id="patientName">
+    <div id="dashboardPeriod">
+      <div id="patientName" class="main">
         <p id="patientLastName"><%= @patient.last %>,</p>
         <p id="patientFirstName"><%= @patient.first %></p>
         <p>effective date:</p>
@@ -71,7 +73,7 @@
       </div>
         
       <div class="lowerborder">
-        <table "patientDemo">
+        <table class="patientDemo main">
           <tbody>
             <tr>
               <th>race</th>
@@ -111,7 +113,7 @@
           </tbody>
         </table>
       </div>
-      <div id="patientRecords">
+      <div id="patientRecords" class="main">
         <div class="sectionHeadingbar"><h3>ALLERGIES</h3></div>
           <p>penicillin</p>      
         <div class="sectionHeadingbar"><h3>PHYSICAL EXAM FINDINGS</h3></div>
@@ -215,7 +217,7 @@
             </table>
           </div>
         </div>
-        <div id="vaccines">
+        <div id="vaccines" class="main">
           <div class="sectionHeadingbar"><h3>VACCINES</h3></div>
             <table>
               <tbody>

@@ -1,8 +1,8 @@
-/* Variables */
-$grey1: #f8f8f8;
-$grey2: #f0f0f0;
-$blue:  #e7e7ff;
-$green: #f0fff0;
+@import "mixins";
+
+
+
+
 
 ul#provider_list {
   float:left;
@@ -52,7 +52,7 @@ div#content form li {
     top: 4px; }
 
 div #providerMain { 
-	border-bottom: 3px solid #999;
+	border-bottom: 3px solid $grayborder;
   div#aggregate {
     margin-left:10px;
     float:left;
