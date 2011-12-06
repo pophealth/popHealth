@@ -173,6 +173,7 @@ h3 {
 #patientBasicInfo {
   margin-left: 360px;
   float: left;
+  margin-top: -50px;
 
   th {
   	width: 40px;
@@ -208,7 +209,8 @@ table {
 	table.providerInfo {
 		margin-left: 360px; 
 		width: 320px;
-		height: 125px
+		height: 125px;
+    margin-top: -120px;
   }
 
 div.sectionHeadingbar {
@@ -220,6 +222,11 @@ div.sectionHeadingbar {
 
 }
 
+div.lowerborder {
+  margin-top: 2px solid #CCCCCC;
+  margin-bottom: 2px solid #CCCCCC
+
+}
 
 table.patientGraphtable {
 	width: 360px;
@@ -236,8 +243,13 @@ table.patientGraphtable {
 
 }
 
-table #vaccines {
+#vaccines {
 		width: 1200px;
 		margin-top: 40px;
+
+    table {
+      width: 360px;
+    }
+
   
 }
