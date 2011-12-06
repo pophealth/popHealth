@@ -162,7 +162,7 @@ h3 {
 }
 
 .main {
-
+  padding: 20px;
 }
 #patientName {
 	#patientLastName {
@@ -234,8 +234,10 @@ div.sectionHeadingbar {
 }
 
 div.lowerborder {
-  margin-top: 2px solid #CCCCCC;
-  margin-bottom: 2px solid #CCCCCC
+  border-top: 2px solid #CCCCCC;
+  border-bottom: 2px solid #CCCCCC;
+  margin: 5px 0;
+  padding: 10px 0;
 
 }
 
