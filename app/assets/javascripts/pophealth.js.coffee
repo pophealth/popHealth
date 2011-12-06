@@ -20,15 +20,10 @@ class @QualityReport
 
 @Page = {
 	onMeasureSelect: (measure_id) ->
-		console.log("OnMeasureSelect placeholder")
 	onMeasureRemove: (measure_id) ->
-		console.log("OnMeasureRemove placeholder")
 	onFilterChange: (qr, li) ->
-		console.log("OnFilterChange placeholder")
 	onReportComplete: (qr) ->
-		console.log("OnReportComplete placeholder")
 	onLoad: ->
-		console.log("onLoad placeholder")
 }
 
 @ActiveFilters = {

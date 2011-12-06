@@ -1,19 +1,21 @@
 <% content_for :head do -%>
 <script type="text/javascript">
-    var popHealth = popHealth || {};
+  var popHealth = popHealth || {};
 
-    popHealth.promoteUser = function() {
+  popHealth.promoteUser = function() {
     var username = $(this).data("username");
+    var role = $(this).data("role");
     var parentTd = $(this).parent();
-    $.post('<%= admin_promote_path %>', {'username': username}, function(data) {
+    $.post('<%= admin_promote_path %>', {'username': username, 'role': role}, function(data) {
       parentTd.html(data);
-        parentTd.find('.demote').click(popHealth.demoteUser);
+      parentTd.find('.demote').click(popHealth.demoteUser);
     });
     return false;
   };
 
-    popHealth.demoteUser = function() {
+  popHealth.demoteUser = function() {
     var username = $(this).data("username");
+    var role = $(this).data("role");
     var parentTd = $(this).parent();
 
     if (username == '<%= current_user.username %>') {
@@ -23,9 +25,9 @@
       if (!response) return;
     }
 
-    $.post('<%= admin_demote_path %>', {'username': username}, function(data) {
+    $.post('<%= admin_demote_path %>', {'username': username, 'role': role}, function(data) {
       parentTd.html(data);
-        parentTd.find('.promote').click(popHealth.promoteUser);
+      parentTd.find('.promote').click(popHealth.promoteUser);
     });
     return false;
   };
@@ -62,6 +64,13 @@
       else parentTd.find('.enable').click(popHealth.disableUser);
     });
   };
+  popHealth.changeNpi = function() {
+    var username = $(this).data("username");
+    var npi = $(this).val();
+    $.post('<%= admin_update_npi_path %>', {'username': username, 'npi': npi}, function(data) {
+    });
+    
+  };
 
   $(document).ready(function() {
     $('.promote').click(popHealth.promoteUser);
@@ -69,6 +78,7 @@
     $('.approve').click(popHealth.approveUser);
     $('.enable').click(popHealth.disableUser);
     $('.disable').click(popHealth.enableUser);
+    $('.npi_select').change(popHealth.changeNpi);
   });
 </script>
 <% end -%>
@@ -90,7 +100,9 @@
     <th>First Name</th>
     <th>Last Name</th>
     <th>Username</th>
+    <th>provider</th>
     <th>Administrator</th>
+    <th>Staff Role</th>
     <th>Approved</th>
     <th>Status</th>
   </tr>
@@ -100,10 +112,25 @@
     <td><%= user.last_name %></td>
     <td><%= user.username %></td>
     <td>
+      <select class="npi_select" data-username="<%= user.username %>" name="user[npi]">
+        <option value="-1">&nbsp;</option>
+        <% Provider.all.alphabetical.each do |provider| %>
+          <option value="<%= provider.npi %>" <%= (user.npi == provider.npi) ? "selected=\"selected\"" : ""%>><%= provider.full_name%></option>
+        <% end%>
+      </select>
+    </td>
+    <td>
       <% if user.admin? -%>
-      Yes - <a href="#" class="demote" data-username="<%= user.username %>">remove admin rights</a>
+      Yes - <a href="#" class="demote" data-role="admin" data-username="<%= user.username %>">revoke</a>
       <% else -%>
-      No - <a href="#" class="promote" data-username="<%= user.username %>">grant admin rights</a>
+      No - <a href="#" class="promote" data-role="admin" data-username="<%= user.username %>">grant</a>
+      <% end -%>
+    </td>
+    <td>
+      <% if user.staff_role? -%>
+      Yes - <a href="#" class="demote" data-role="staff_role" data-username="<%= user.username %>">revoke</a>
+      <% else -%>
+      No - <a href="#" class="promote" data-role="staff_role" data-username="<%= user.username %>">grant</a>
       <% end -%>
     </td>
     <td>
