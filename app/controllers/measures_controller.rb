@@ -53,6 +53,7 @@ class MeasuresController < ApplicationController
       wants.html do
         @providers = Provider.alphabetical
         @races = Race.ordered
+        @ethnicities = Ethnicity.ordered
         @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
       end
       
@@ -244,8 +245,8 @@ class MeasuresController < ApplicationController
     if request.xhr?
       providers = params[:provider] || []
       races = params[:race] ? Race.selected(params[:race]).all : []
-      races_ethnicities = []
-      races.each {|race| races_ethnicities << {race: race.flatten(:race), ethnicity: race.flatten(:ethnicity)}}
+      ethnicities = params[:ethnicity] ? Ethnicity.selected(params[:ethnicity]).all : []
+      races_ethnicities = [{race: (races.map {|race| race.codes}).flatten, ethnicity: (ethnicities.map {|ethnicity| ethnicity.codes}).flatten}]
       genders = params[:gender] ? params[:gender] : []
 
       @filters = {'providers' => providers, 'races_ethnicities' => races_ethnicities, genders: genders}
@@ -264,6 +265,7 @@ class MeasuresController < ApplicationController
       end
       
       @races = Race.ordered
+      @ethnicities = Ethnicity.ordered
       @genders = [{name: 'Male', id: 'M'}, {name: 'Female', id: 'F'}]
       
     end

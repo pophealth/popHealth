@@ -106,6 +106,18 @@
           </div>
         </li>
         <li>
+          <label>Ethnicities</label>
+          <div class="filterItemList expandableList" style="display:none">
+            <ul>
+               <% @ethnicities.each do |ethnicity| %>
+              <li data-filter-type="ethnicity" data-filter-value="<%=ethnicity.id%>" class="checked">
+                <%= ethnicity.name %>
+              </li>
+							<% end %>
+            </ul>
+          </div>
+        </li>
+        <li>
           <label>Genders</label>
           <div class="filterItemList expandableList" style="display:none">
             <ul>
