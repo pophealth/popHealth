@@ -57,7 +57,17 @@
 				</li>
 			</ul>
 		</div>
-    <% if (can? :manage, :providers)%>
+    <% if @selected_provider %>
+    <div class="groupList" style="display: none;">
+      <div class="filterItemList expandableList">
+        <ul>
+          <li data-filter-type="provider" data-filter-value="<%=@selected_provider.id%>" class="checked">
+            <%= @selected_provider.full_name %>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <% elsif can?(:manage, :providers) && @providers_by_team%>
     <p class="note">
       Providers
     </p>
@@ -96,6 +106,18 @@
           </div>
         </li>
         <li>
+          <label>Ethnicities</label>
+          <div class="filterItemList expandableList" style="display:none">
+            <ul>
+               <% @ethnicities.each do |ethnicity| %>
+              <li data-filter-type="ethnicity" data-filter-value="<%=ethnicity.id%>" class="checked">
+                <%= ethnicity.name %>
+              </li>
+							<% end %>
+            </ul>
+          </div>
+        </li>
+        <li>
           <label>Genders</label>
           <div class="filterItemList expandableList" style="display:none">
             <ul>
@@ -112,38 +134,52 @@
    </div><!-- end #providerReports --> 
     <div id="dashboardPeriod">
       <div class="measureDetailTable">
-        <h1><%= current_user.company.to_s %></h1>
+        
+        <% if (@selected_provider) %>
+          <dl>
+            <dt>Provider:</dt>
+            <dd class="practiceName"><h1><%=@selected_provider.full_name%></h1></dd>
+          </dl>
+        <% else %>
+          <h1><%= current_user.company.to_s %></h1>
+          <dl>
+            <dt>Practice:</dt>
+            <dd class="practiceName"><h1><%=APP_CONFIG['practice_name']%></h1></dd>
+          </dl>
+        <% end %>
+        
         <dl>
-          <dt>Practice:</dt>
-          <dd class="practiceName"><h1><%=APP_CONFIG['practice_name']%></h1></dd>
-        </dl>
-        <dl>
-          <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
-          <ul id="generate-menu" class="ui-menu ui-widget ui-widget-content ui-corner-all dialog-menu" role="listbox" aria-activedescendant="ui-active-menuitem">
-            <li class="ui-menu-item" role="menuitem" data-type="provider">
-              <a class="ui-corner-all" href="#" tabindex="-1">Provider Report</a>
-            </li>
-            <% if (can? :manage, :providers)%>
-            <li class="ui-menu-item" role="menuitem" data-type="practice">
-              <a class="ui-corner-all" href="#" tabindex="-1">Practice Report</a>
-            </li>
-            <% end %>
-          </ul>
+          <% if (@selected_provider || !can?(:manage, :providers)) %>
+            <input type="button" class="exportReport" value="Export Report" id="btnExportReportSingle">
+          <% else %>
+            <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
+            <ul id="generate-menu" class="ui-menu ui-widget ui-widget-content ui-corner-all dialog-menu" role="listbox" aria-activedescendant="ui-active-menuitem">
+              <li class="ui-menu-item" role="menuitem" data-type="provider">
+                <a class="ui-corner-all" href="#" tabindex="-1">Provider Report</a>
+              </li>
+              <li class="ui-menu-item" role="menuitem" data-type="practice">
+                <a class="ui-corner-all" href="#" tabindex="-1">Practice Report</a>
+              </li>
+            </ul>
+          <% end %>
+          
           <dt>Reporting Period:</dt>
           <dd>
             <span id="measurementPeriodStartDate"><%= Time.at(@period_start).strftime("%m/%d/%Y") %></span> - 
             <input type="text" class="measurementPeriodEndDate" id="measurementPeriodEndDate" size="8" value="<%= Time.at(@effective_date).strftime("%m/%d/%Y") %>">
-            <input type="button" class="recalculate" id="btnMeasurementPeriodChange" value="Recalculate">
+            <input type="button" class="recalculate" id="btnMeasurementPeriodChange" value="Recalculate" <% if (@selected_provider) %> data-npi="<%=@selected_provider.npi%>" <% end %> >
           </dd>
         </dl>
         <dl>
           <dt># of Patients: </dt>
           <dd><%= @patient_count %></dd>
         </dl>
-        <dl>
-          <dt># of Providers: </dt>
-          <dd><%= Provider.all.count %> </dd>
-        </dl>
+        <% unless (@selected_provider) %>
+          <dl>
+            <dt># of Providers: </dt>
+            <dd><%= Provider.all.count %> </dd>
+          </dl>
+        <% end %>
         <div class="clear"></div>
         <div class="dashboardTabs">
           <span class="dashboardTab active">Measures</span>

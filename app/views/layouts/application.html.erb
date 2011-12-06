@@ -20,8 +20,8 @@
 
     $(function() {
       $(document).idleTimeout({
-         inactivity: APP_CONFIG['idle_timeout'],
-         noconfirm: APP_CONFIG['idle_timeout_noconfirm'],
+         inactivity: <%=APP_CONFIG['idle_timeout']%>,
+         noconfirm: <%=APP_CONFIG['idle_timeout_noconfirm']%>,
          sessionAlive: false,
          alive_url: '/',
          redirect_url: '<%= destroy_user_session_path %>',

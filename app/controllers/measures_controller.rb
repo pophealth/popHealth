@@ -25,14 +25,6 @@ class MeasuresController < ApplicationController
         SelectedMeasure.add_measure(current_user.username, params[:id])
         measures = params[:sub_id] ? Measure.get(params[:id], params[:sub_id]) : Measure.sub_measures(params[:id])
         
-        
-        if !can?(:read, :providers) || params[:npi]
-          npi = params[:npi] ? params[:npi] : current_user.npi
-          @provider = Provider.first(conditons: {npi: npi})
-          authorize! :read, @provider
-          @filters['providers'] = [@provider.id]
-        end
-        
         render_measure_response(measures, params[:jobs]) do |sub|
           QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters)
         end
@@ -61,6 +53,7 @@ class MeasuresController < ApplicationController
       wants.html do
         @providers = Provider.alphabetical
         @races = Race.ordered
+        @ethnicities = Ethnicity.ordered
         @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
       end
       
@@ -144,10 +137,11 @@ class MeasuresController < ApplicationController
     when 'practice'
       @report[:provider_reports] << generate_xml_report(nil, selected_measures, false)
     when 'provider'
-      Provider.all.each do |provider|
+      providers = Provider.selected_or_all(params[:provider])
+      providers.each do |provider|
         @report[:provider_reports] << generate_xml_report(provider, selected_measures)
       end
-      @report[:provider_reports] << generate_xml_report(nil, selected_measures)
+      @report[:provider_reports] << generate_xml_report(nil, selected_measures) if (providers.size > 1)
     end
 
     respond_to do |format|
@@ -202,7 +196,7 @@ class MeasuresController < ApplicationController
   
   
   def set_up_environment
-    @patient_count = mongo['records'].count
+    @patient_count = (@selected_provider) ? @selected_provider.records(@effective_date).count : mongo['records'].count
     if params[:id]
       measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
       render(:file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404) unless measure
@@ -241,19 +235,39 @@ class MeasuresController < ApplicationController
   end
   
   def build_filters
+    
+    if !can?(:read, :providers) || params[:npi]
+      npi = params[:npi] ? params[:npi] : current_user.npi
+      @selected_provider = Provider.first(conditions: {npi: npi})
+      authorize! :read, @selected_provider
+    end
+    
     if request.xhr?
       providers = params[:provider] || []
       races = params[:race] ? Race.selected(params[:race]).all : []
-      races_ethnicities = []
-      races.each {|race| races_ethnicities << {race: race.flatten(:race), ethnicity: race.flatten(:ethnicity)}}
+      ethnicities = params[:ethnicity] ? Ethnicity.selected(params[:ethnicity]).all : []
+      races_ethnicities = [{race: (races.map {|race| race.codes}).flatten, ethnicity: (ethnicities.map {|ethnicity| ethnicity.codes}).flatten}]
       genders = params[:gender] ? params[:gender] : []
 
       @filters = {'providers' => providers, 'races_ethnicities' => races_ethnicities, genders: genders}
+      
+      if @selected_provider
+        @filters['providers'] = [@selected_provider.id]
+      elsif !can?(:read, :providers)
+        @filters['providers'] = [nil]
+      end
+      
     else
-      @providers = Provider.alphabetical
+      
+      if can?(:read, :providers)
+        @providers = Provider.alphabetical
+        @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
+      end
+      
       @races = Race.ordered
+      @ethnicities = Ethnicity.ordered
       @genders = [{name: 'Male', id: 'M'}, {name: 'Female', id: 'F'}]
-      @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
+      
     end
 
   end

@@ -72,7 +72,7 @@
           <% @providers.each do |pv| %>
             <tr class="provider" data-provider="<%=pv.id%>">
               
-              <td class="name"><%= pv.family_name.upcase %>, <%= pv.given_name %></td>
+              <td class="name"> <%= link_to "#{pv.family_name.upcase} , #{pv.given_name}", "#{measures_url}?npi=#{pv.npi}" %></td>
 <td class="percent"><div class="measureProviderPopulationPercentage"><%= image_tag "loading.gif", :style => "margin-top:12px"%></div></td>
               <td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
               <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0}%></td>
