@@ -23,7 +23,7 @@
 			measureId = $(m).attr("data-measure-id")
 			qr = new QualityReport(measureId)
 			Dashboard.measureRows(measureId).fadeTo("fast", 0.5)
-			qr.poll {}, (result) ->
+			qr.poll Page.params, (result) ->
 				Dashboard.calculateMeasure(result)
 	onLoad: ->
 		Page.onMeasureSelect = (measure) -> Dashboard.fadeIn(measure)

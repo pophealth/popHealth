@@ -1,7 +1,9 @@
 <% content_for :head do %>
 <script type="text/javascript" charset="utf-8">
+  <% if @selected_provider %>
+    Page.params['npi'] = '<%=@selected_provider.npi%>'
+  <% end %>
 	Page.onLoad = Dashboard.onLoad;
-	
 </script>
 <% end -%>
 
@@ -202,7 +204,7 @@
 					  <% end %>
 						<td class="percent"><div class="measureProviderPopulationPercentage"></div></td>
 						<td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
-					  <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0}%></td>
+					  <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0, exclusions: 0}%></td>
             <td class="link"><a href="#">parameters</a><br><a href="#">patients</a></td>
 					</tr>
 				<% end %>
