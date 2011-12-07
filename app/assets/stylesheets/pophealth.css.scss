@@ -7,7 +7,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
   font-style: inherit;
   font-size: 100%;
   font-family: inherit;
-  vertical-align: baseline; }
+  vertical-align: middle; }
 
 article, aside, dialog, figure, footer, header, hgroup, nav, section {
   display: block; }
@@ -410,7 +410,7 @@ a {
   width: 285px;
   background-color: $providerReports;
   height: 100%;
-  vertical-align: top;
+  vertical-align: middle;
   color: black;
   padding: 0 5px 0 10px;
   border-right: 1px solid $borderColor;
@@ -625,16 +625,16 @@ input.measurementPeriodEndDate {
       font-size: 0.9em; }
     td {
       padding: 15px 0px 10px 0px;
-      vertical-align: top; }
+      vertical-align: middle; }
     tr {
-      vertical-align: top; } }
+      vertical-align: middle; } }
   table:last-child {
     padding: 0 0 80px 0; } }
 
 .inline-fraction {
   display: inline-block;
   position: relative;
-  vertical-align: middle;
+  vertical-align: bottom;
   text-align: center;
   line-height: 1.2em;
   span {
@@ -794,7 +794,7 @@ a.tableEdit {
 #patientMetrics {
   display: block;
   display: table-cell;
-  vertical-align: top;
+  vertical-align: middle;
   width: 285px;
   background-color: #f2f2f2;
   color: black;
@@ -861,13 +861,15 @@ table.measureTable {
 	td {
 		height:60px;
 		padding:5px 10px;
-		vertical-align:bottom;
-    min-width: 60px;
+		vertical-align:middle;
+    min-width: 80px;
 	}
 	
 	td.percent {
-		font-size:2em;
+		font-size:28px;
 		width:50px;
+    vertical-align:bottom;
+    padding: 0 20px;
 	}
 	
 	td.subtitle {
@@ -877,16 +879,20 @@ table.measureTable {
 	td.name {
 		text-decoration: underline;
 		width:450px;
-		vertical-align:top;
+		vertical-align:bottom;
 		font-weight: lighter;
-		padding-right:20px;
+    padding: 0 20px;
+    padding-bottom:10px;
+
 	}
 	
 	td.fraction {
+    padding-top: 10px;
 	}
 	
 	td.barChart {
 		vertical-align:middle;
+    padding: 0 10px;
 		.tableBar {
 			height:20px;
 			width:200px;
