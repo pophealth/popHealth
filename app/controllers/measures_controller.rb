@@ -31,7 +31,10 @@ class MeasuresController < ApplicationController
         measures = params[:sub_id] ? Measure.get(params[:id], params[:sub_id]) : Measure.sub_measures(params[:id])
         
         render_measure_response(measures, params[:jobs]) do |sub|
-          QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters)
+          {
+            report: QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters),
+            patient_count: @patient_count
+          }
         end
       end
     end
@@ -67,7 +70,11 @@ class MeasuresController < ApplicationController
         providerIds = params[:provider].empty? ?  Provider.all.map { |pv| pv.id.to_s } : @filters.delete('providers')
 
         render_measure_response(providerIds, params[:jobs]) do |pvId|
-          QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => @filters.merge('providers' => [pvId]))
+          {
+            report: QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => @filters.merge('providers' => [pvId])),
+            patient_count: @patient_count
+#            patient_count: Provider.find(pvId).records(@effective_data).count
+          }
         end
       end
     end
@@ -223,10 +230,12 @@ class MeasuresController < ApplicationController
   
   def render_measure_response(collection, uuids)
     result = collection.inject({jobs: {}, result: [], job_statuses: {}}) do |memo, var|
-      report = yield(var)
+      data = yield(var)
+      report = data[:report]
+      patient_count = data[:patient_count]
  
       if report.calculated?
-        memo[:result] << report.result.merge({'patient_count'=>@patient_count})
+        memo[:result] << report.result.merge({'patient_count'=>patient_count})
       else
         key = "#{report.instance_variable_get(:@measure_id)}#{report.instance_variable_get(:@sub_id)}"
         memo[:jobs][key] = (uuids.nil? || uuids[key].nil?) ? report.calculate : uuids[key]
