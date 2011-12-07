@@ -54,6 +54,8 @@ div#content form li {
     top: 4px; }
 
 div #providerMain { 
+  position: relative;
+
   div#aggregate {
     padding-left:10px;
     float:left;
@@ -63,11 +65,14 @@ div #providerMain {
       font-size: 3.5em;
     }
     
+
     .links {
-      float:left;
       padding-left:5px;
       font-size: 0.9em;
       margin-bottom:3px;
+      position: absolute;
+      bottom: 0px;
+      left: 25px;
     }
     
     #measurePopulationPercentage {
