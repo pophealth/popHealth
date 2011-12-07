@@ -97,10 +97,17 @@ body {
 #container, #dashboardContainer {
   font-size: 0.9em;
   height: 100%; }
+  
+  table td {
+      font-weight: 500;
+      font-size: 1em;
+  }
 
-a {
+a, {
   color: black;
-  text-decoration: none; }
+  text-decoration: none; 
+  font-weight: 500;
+  }
   
 #header {
   background: #f4f4f4;
