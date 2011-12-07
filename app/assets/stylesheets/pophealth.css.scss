@@ -62,6 +62,7 @@ $exclusions: #eda039;
 $link_separator_color: #999999;
 
 $measureDetailTable-padding: 25px;
+  
 
 $borderColor: #cccccc;
 $eligibilityParamGroup: #a4d9dd;
@@ -559,11 +560,16 @@ input.measurementPeriodEndDate {
   padding: 0;
   float: left;
   width: 1024px;
+
   h1 {
     font-size: 1.5em;
     padding-left: $measureDetailTable-padding; }
   h3.dashboardLabel {
     text-transform: uppercase; }
+
+  dl, dd, span {
+    vertical-align: middle;
+  }
   dl {
     display: block;
     clear: left;
@@ -805,7 +811,7 @@ a.tableEdit {
 #patientMetrics {
   display: block;
   display: table-cell;
-  vertical-align: middle;
+  vertical-align: top;
   width: 285px;
   background-color: #f2f2f2;
   color: black;
@@ -899,6 +905,11 @@ table.measureTable {
 	
 	td.fraction {
     padding-top: 10px;
+
+    .inline-fraction {
+      padding-top: 9px;
+      padding-bottom: 0;
+    }
 	}
 	
 	td.barChart {

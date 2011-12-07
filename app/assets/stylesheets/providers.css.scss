@@ -137,6 +137,11 @@ div #providerMain {
 			padding-right:25px;
       min-width: 80px;
       padding-top: 10px;
+
+      .inline-fraction {
+        padding-bottom:0;
+        padding-top: 9px;
+      }
 		}
 
 		td.barChart {
