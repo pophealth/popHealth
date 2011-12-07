@@ -652,6 +652,7 @@ input.measurementPeriodEndDate {
 //  margin-top: 0.25em;
 //  margin-left: $measureDetailTable-padding; 
 	font-weight:bold;
+  font-size: 1em;
 }
     
 .tableMeasureTitle {
@@ -772,7 +773,7 @@ a.tableEdit {
     position: relative;
     top: 8px; }
   .inline-fraction {
-    font-size: 1.9em;
+    font-size: 1.6em;
     line-height: 1.2em;
     .separator {
       padding-bottom: 3px; } } }
@@ -849,8 +850,8 @@ a.tableEdit {
     padding: 2px 15px 2px 5px; } }
 
 table.measureTable {
-	
-	font-size:20px;
+	padding-left: 20px;
+	font-size: 1em;
 	
 	td {
 		height:60px;
@@ -860,7 +861,7 @@ table.measureTable {
 	}
 	
 	td.percent {
-		font-size:24px;
+		font-size:2em;
 		width:50px;
 	}
 	
@@ -873,7 +874,7 @@ table.measureTable {
 		width:450px;
 		vertical-align:top;
 		font-weight: lighter;
-		padding-right:100px;
+		padding-right:20px;
 	}
 	
 	td.fraction {

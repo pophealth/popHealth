@@ -10,6 +10,10 @@ $grey2: #f0f0f0;
 $blue:  #e7e7ff;
 $green: #f0fff0;
 
+$largefont: 24px;
+$mediumfont: 18px;
+$regularfont: 14px;
+
 
 @mixin rounded($radius: 7px) {
   border-radius: $radius;
