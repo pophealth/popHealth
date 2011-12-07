@@ -1,20 +1,13 @@
 <% content_for :head do %>
 <script type="text/javascript" charset="utf-8">
+  <% if @selected_provider %>
+    Page.params['npi'] = '<%=@selected_provider.npi%>'
+  <% end %>
 	Page.onLoad = Dashboard.onLoad;
-	
 </script>
 <% end -%>
 
-<div id="dashboardContainer">
-<!-- add a comment -->
-  <div id="header">
-    <div id="breadcrumbBox">
-      <ul id="breadcrumbItems">
-      <li>measure dashboard</li>
-      </ul>
-      <%= render :partial => 'layouts/top_nav' %>
-    </div><!-- end #breadcrumbBox -->
-  </div><!-- end #header -->
+  
   <div id="pageContent">
  		<div id="providerReports">
 	  <div class="groupList">
@@ -211,11 +204,11 @@
 					  <% end %>
 						<td class="percent"><div class="measureProviderPopulationPercentage"></div></td>
 						<td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
-					  <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0}%></td>
+					  <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0, exclusions: 0}%></td>
+            <td class="link"><a href="#">parameters</a><br><a href="#">patients</a></td>
 					</tr>
 				<% end %>
 			<% end %>
 			</table>
     </div><!-- end #dashboardPeriod -->
   </div><!-- end #pageContent -->
-</div><!-- end #container -->

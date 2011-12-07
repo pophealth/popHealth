@@ -1,7 +1,11 @@
+require 'breadcrumbs'
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  include Breadcrumbs
   layout :layout_by_resource
   before_filter :set_effective_date
+  
+  add_breadcrumb APP_CONFIG['practice_name'], :root_url
   
   # lock it down!
   check_authorization :unless => :devise_controller?

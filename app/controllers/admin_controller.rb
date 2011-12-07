@@ -2,7 +2,7 @@ class AdminController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :validate_authorization!
-#  add_breadcrumb 'admin', :admin_users_path
+  add_breadcrumb 'admin', :admin_users_path
 
   def users
     @users = User.all.ordered_by_username

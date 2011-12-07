@@ -751,6 +751,11 @@ input.measurementPeriodEndDate {
        float: left;
        padding:0px;
        background-color: $numerator; }
+     .tableBarExclusion {
+       @extend .tableBarVal;
+       float: left;
+       padding:0px;
+       background-color: $exclusions; }
 a.tableEdit {
   color:$dashboardText;
 }

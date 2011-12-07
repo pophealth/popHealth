@@ -3,7 +3,10 @@ class PatientsController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :validate_authorization!
+  before_filter :load_patient, :only => :show
   after_filter :hash_document, :only => :list
+  
+  add_breadcrumb_dynamic(:patient, only: %w{show}) {|patient| {title: "#{patient.last}, #{patient.first}", url: "/patients/show/#{patient.id}"}}
   
   def index
 
@@ -32,9 +35,14 @@ class PatientsController < ApplicationController
   end
 
   def show
+  end
+  
+  private
+  
+  def load_patient
     @patient = Record.find(params[:id])
   end
-
+  
   def validate_authorization!
     authorize! :read, Record
   end

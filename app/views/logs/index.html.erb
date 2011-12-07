@@ -19,18 +19,7 @@
   </script>
 <% end -%>
 
-<div id="dashboardContainer">
-<!-- add a comment -->
-  <div id="header">
-    <div id="breadcrumbBox">
-      <ul id="breadcrumbItems">
-      <li><a href="<%= dashboard_url %>">measure dashboard</a> <span class="sep">&raquo;</span></li>
-      <li>logs</li>
-      </ul>
-      <%= render :partial => 'layouts/top_nav' %>
-    </div><!-- end #breadcrumbBox -->
-  </div><!-- end #header -->
-  <div id="pageContent">
+<div id="pageContent">
     <h1>Logs</h1>
     <table>
       <tr>
@@ -63,5 +52,4 @@
     </table>
 
     <%= will_paginate @logs %>
-  </div>
-</div>
+</div> <!-- pageContent -->

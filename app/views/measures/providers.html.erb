@@ -1,4 +1,3 @@
-<%= render :partial => "header", locals: {definition: @definition}%>
 <div id="pageContent">
   <div id="providerReports">
     <h1>
@@ -90,11 +89,9 @@
             <tr class="provider" data-provider="<%=pv.id%>">
               
               <td class="name"> <%= link_to "#{pv.family_name.upcase} , #{pv.given_name}", "#{measures_url}?npi=#{pv.npi}" %></td>
-<td class="percent"><div class="measureProviderPopulationPercentage"></div></td>
+              <td class="percent"><div class="measureProviderPopulationPercentage"></div></td>
               <td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
-              <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0}%></td>
-              <td class="link"><a href "http://localhost:3000/measure/">parameters</a><br><a href "http://localhost:3000/patients/">patients</a>
-              </td>
+              <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0, exclusions: 0}%></td>
             </tr>
           <% end %>
       </tbody>
