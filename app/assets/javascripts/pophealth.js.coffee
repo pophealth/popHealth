@@ -57,9 +57,9 @@ class @QualityReport
 	barChart: (selector, data) ->
 		numerator_width = 0
 		denominator_width = 0
-		if data.population != 0 && data.denominator != 0
-			numerator_width = (data.numerator / data.population) * 100
-			denominator_width = ((data.denominator - data.numerator) / data.population) * 100
+		if data.patient_count != 0 && data.denominator != 0
+			numerator_width = (data.numerator / data.patient_count) * 100
+			denominator_width = ((data.denominator - data.numerator) / data.patient_count) * 100
 		selector.children("div.tableBarNumerator").animate(width: "#{numerator_width}%")
 		selector.children("div.tableBarDenominator").animate(width: "#{denominator_width}%")
 }

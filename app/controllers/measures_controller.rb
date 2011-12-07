@@ -226,7 +226,7 @@ class MeasuresController < ApplicationController
       report = yield(var)
  
       if report.calculated?
-        memo[:result] << report.result
+        memo[:result] << report.result.merge({'patient_count'=>@patient_count})
       else
         key = "#{report.instance_variable_get(:@measure_id)}#{report.instance_variable_get(:@sub_id)}"
         memo[:jobs][key] = (uuids.nil? || uuids[key].nil?) ? report.calculate : uuids[key]
