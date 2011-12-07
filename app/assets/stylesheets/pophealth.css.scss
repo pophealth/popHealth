@@ -772,12 +772,15 @@ a.tableEdit {
     color: #33aace; } }
 
 #measureMetrics {
+  min-width: 250px;
   .paren {
     font-size: 3em;
     color: #999999;
     position: relative;
     top: 8px; }
   .inline-fraction {
+    vertical-align: bottom;
+    padding-bottom: 1em;
     font-size: 1.6em;
     line-height: 1.2em;
     .separator {
