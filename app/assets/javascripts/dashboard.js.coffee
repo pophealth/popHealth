@@ -10,12 +10,15 @@
 		return $("tr.measure[data-measure='#{measure}'][data-measure-sub='#{sub_id || ''}']")
 	measureRows: (measure) ->
 		return $("tr.measure[data-measure='#{measure}']")
-	fadeIn: (measure) ->  
+	fadeIn: (measure) -> 
 		Dashboard.measureRows(measure).fadeTo("fast", 0.5)
 	fadeOut: (measure) -> 
 		Dashboard.measureRows(measure).fadeOut("fast")
 		$.post("/measure/#{measure}/remove", {})
 	calculateSelected: ->
+		$(".measureProviderPopulationPercentage").html("<img src='/assets/loading.gif'/>")
+		$(".numeratorValue").html('0')
+		$(".denominatorValue").html('0')
 		$("div.measureItemList ul li.checked").each (i, m) ->
 			measureId = $(m).attr("data-measure-id")
 			qr = new QualityReport(measureId)

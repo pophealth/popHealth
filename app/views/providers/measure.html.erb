@@ -71,7 +71,11 @@
       <tbody>
           <% @selected_providers.each do |pv| %>
             <tr class="provider" data-provider="<%=pv.id%>">
+<<<<<<< HEAD
               <td class="name"><%= pv.family_name.upcase %>, <%= pv.given_name %></td>
+=======
+              <td class="percent"><div class="measureProviderPopulationPercentage"></div></td>
+>>>>>>> 40a940fe4f4b5f4e9a2134fbe2007df7395495fd
               <td class="name"><%= pv.family_name.upcase %>, <%= pv.given_name %></td>
               <td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
               <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0}%></td>

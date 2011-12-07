@@ -92,21 +92,24 @@ div #providerMain {
 		td {
 			height:60px;
 			padding:5px 10px;
-			vertical-align:bottom;
+			vertical-align:middle;
 		}
     td.link {
       a {
       verticle-align:middle;
-        min-width: 60px;
+        min-width: 80px;
         color: #44B3BE;
         font-weight: normal;
       }
     }
 
 		td.percent {
-			font-size: 2em;
+			font-size: 28px;
 			width:50px;
 			padding-right:15px;
+      vertical-align: bottom;
+      padding: 0 10px;
+      min-width: 80px;
 
       div.measureProviderPopulationPercentage {
         color: black;
@@ -124,18 +127,22 @@ div #providerMain {
 		td.name {
 			text-decoration: underline;
 			width:250px;
-			vertical-align:middle;
+			vertical-align:bottom;
 			font-weight: lighter;
 			padding-right:20px;
+      padding-bottom: 10px;
 		}
 
 		td.fraction {
 			padding-right:25px;
-      min-width: 60px;
+      min-width: 80px;
+      padding-top: 10px;
 		}
 
 		td.barChart {
 			vertical-align:middle;
+      padding: 0 10px;
+
 			.tableBar {
 				height:20px;
 				width:200px;

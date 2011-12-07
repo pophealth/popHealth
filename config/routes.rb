@@ -7,6 +7,7 @@ PopHealth::Application.routes.draw do
   post "admin/demote"
   post "admin/approve"
   post "admin/disable"
+  post "admin/update_npi"
 
   get "logs/index"
   

@@ -19,7 +19,7 @@ defaults: &defaults
 development:
   <<: *defaults
   idle_timeout_enabled: false
-  default_user_staff_role: false
+  default_user_staff_role: true
   
 test:
   <<: *defaults
@@ -29,4 +29,3 @@ production:
   <<: *defaults
   default_user_staff_role: false
   default_user_approved: false
-  
