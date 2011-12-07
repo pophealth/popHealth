@@ -85,8 +85,6 @@
   </script>
 <% end %>
 
-<div id="container">
-  <%= render :partial => 'header', :locals => {:definition => @definition} %>
   <div id="pageContent">
     <div id="patientMetrics">
     <%= render :partial => 'shared/measure_metrics', locals: {numerator: @result['numerator'], denominator: @result['denominator']} %>
@@ -108,4 +106,3 @@
     <%= link_to 'Export to Excel', patient_list_url(params[:id], params[:sub_id], :format => :xml) %>
     </div>
   </div><!-- end #pageContent -->
-</div>

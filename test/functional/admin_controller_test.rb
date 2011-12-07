@@ -37,7 +37,7 @@ class AdminControllerTest < ActionController::TestCase
   test "promote user should make user admin" do
     sign_in @admin
     assert !@user.admin?
-    post :promote, username: @user.username
+    post :promote, username: @user.username, role: 'admin'
     @user = User.find(@user.id)
     assert @user.admin?
     assert_response :success
@@ -46,7 +46,7 @@ class AdminControllerTest < ActionController::TestCase
   test "demote user should make user not admin" do
     sign_in @admin
     assert @admin2.admin?
-    post :demote, username: @admin2.username
+    post :demote, username: @admin2.username, role: 'admin'
     @admin2 = User.find(@admin2.id)
     assert !@admin2.admin?
     assert_response :success
@@ -55,7 +55,7 @@ class AdminControllerTest < ActionController::TestCase
   test "should not be able to promote if not admin" do
     sign_in @user
     assert !@user.admin?
-    post :promote, username: @user.username
+    post :promote, username: @user.username, role: 'admin'
     @user = User.find(@user.id)
     assert !@user.admin?
     assert_response :redirect
@@ -64,7 +64,7 @@ class AdminControllerTest < ActionController::TestCase
   test "should not be able to demote if not admin" do
     sign_in @user
     assert @admin2.admin?
-    post :demote, username: @admin2.username
+    post :demote, username: @admin2.username, role: 'admin'
     @admin2 = User.find(@admin2.id)
     assert @admin2.admin?
     assert_response :redirect
@@ -137,7 +137,7 @@ class AdminControllerTest < ActionController::TestCase
 
   test "promote invalid user should not freak out" do
     sign_in @admin
-    post :promote, username: "crapusername"
+    post :promote, username: "crapusername", role: 'admin'
     assert_response :success
   end
 

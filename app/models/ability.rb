@@ -32,7 +32,6 @@ class Ability
       cannot :manage, User unless APP_CONFIG['allow_user_update']
     elsif user.id
       can :read, Measure
-      can :read, Record
       can :read, Provider, npi: user.npi
       can :manage, Team
       can :manage, User, id: user.id

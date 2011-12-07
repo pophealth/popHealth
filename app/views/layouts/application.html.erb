@@ -41,7 +41,14 @@
 </head>
 <body>
 
-<%= yield %>
+<div id="dashboardContainer">
+  <% unless request.xhr?%>
+    <%= render :partial => 'shared/header' %>
+  <% end %>
+
+  <%= yield %>
+
+</div><!-- end #container -->
 
 </body>
 </html>

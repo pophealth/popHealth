@@ -8,6 +8,11 @@ class MeasuresController < ApplicationController
   before_filter :generate_report, :only => [:patients, :measure_patients]
   after_filter :hash_document, :only => :measure_report
   
+  add_breadcrumb_dynamic(:selected_provider, only: %w{index}) {|provider| {title: (provider ? provider.full_name : nil), url: '/'}}
+  add_breadcrumb_dynamic(:definition, only: %w{providers show patients}) {|measure| {title: "#{measure['name']}" + (measure['subtitle'] ? " - #{measure['subtitle']}" : ''), url: "/measure/#{measure['id']}"+(measure['subid'] ? "/#{measure['sub_id']}" : '')+"/providers"}}
+  add_breadcrumb 'parameters', '', only: %w{show}
+  add_breadcrumb 'patients', '', only: %w{patients}
+  
   def index
     @categories = Measure.non_core_measures
     @core_measures = Measure.core_measures

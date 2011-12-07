@@ -99,8 +99,6 @@
   </script>
 <% end %>
 
-<div id="container">
-  <%= render :partial => 'header', :locals => {:definition => @definition} %>
   <div>
     <%= render :partial => 'shared/measure_metrics', locals: {numerator: @result['numerator'], denominator: @result['denominator']} %>
     <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
@@ -130,4 +128,3 @@
       </div><!-- end #outcomeMeasures -->
     </div><!-- end measureEditContainer -->
   </div>
-</div>
