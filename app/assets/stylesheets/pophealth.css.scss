@@ -7,7 +7,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
   font-style: inherit;
   font-size: 100%;
   font-family: inherit;
-  vertical-align: middle; }
+  vertical-align: top; }
 
 article, aside, dialog, figure, footer, header, hgroup, nav, section {
   display: block; }
@@ -634,8 +634,9 @@ input.measurementPeriodEndDate {
 .inline-fraction {
   display: inline-block;
   position: relative;
-  vertical-align: bottom;
+  vertical-align: middle;
   text-align: center;
+   padding-bottom: 1.4em;
   line-height: 1.2em;
   span {
     display: block;
@@ -779,8 +780,8 @@ a.tableEdit {
     position: relative;
     top: 8px; }
   .inline-fraction {
-    vertical-align: bottom;
-    padding-bottom: 1em;
+    vertical-align: middle;
+    padding-bottom: 1.4em;
     font-size: 1.6em;
     line-height: 1.2em;
     .separator {
