@@ -7,7 +7,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
   font-style: inherit;
   font-size: 100%;
   font-family: inherit;
-  vertical-align: middle; }
+  vertical-align: top; }
 
 article, aside, dialog, figure, footer, header, hgroup, nav, section {
   display: block; }
@@ -62,6 +62,7 @@ $exclusions: #eda039;
 $link_separator_color: #999999;
 
 $measureDetailTable-padding: 25px;
+  
 
 $borderColor: #cccccc;
 $eligibilityParamGroup: #a4d9dd;
@@ -97,10 +98,17 @@ body {
 #container, #dashboardContainer {
   font-size: 0.9em;
   height: 100%; }
+  
+  table td {
+      font-weight: 500;
+      font-size: 1em;
+  }
 
-a {
+a, {
   color: black;
-  text-decoration: none; }
+  text-decoration: none; 
+  font-weight: 500;
+  }
   
 #header {
   background: #f4f4f4;
@@ -551,12 +559,17 @@ input.measurementPeriodEndDate {
 .measureDetailTable {
   padding: 0;
   float: left;
-  width: 1024px;
+  width: 100%;
+
   h1 {
     font-size: 1.5em;
     padding-left: $measureDetailTable-padding; }
   h3.dashboardLabel {
     text-transform: uppercase; }
+
+  dl, dd, span {
+    vertical-align: middle;
+  }
   dl {
     display: block;
     clear: left;
@@ -634,8 +647,9 @@ input.measurementPeriodEndDate {
 .inline-fraction {
   display: inline-block;
   position: relative;
-  vertical-align: bottom;
+  vertical-align: middle;
   text-align: center;
+   padding-bottom: 1.4em;
   line-height: 1.2em;
   span {
     display: block;
@@ -779,8 +793,8 @@ a.tableEdit {
     position: relative;
     top: 8px; }
   .inline-fraction {
-    vertical-align: bottom;
-    padding-bottom: 1em;
+    vertical-align: middle;
+    padding-bottom: 1.4em;
     font-size: 1.6em;
     line-height: 1.2em;
     .separator {
@@ -892,6 +906,11 @@ table.measureTable {
 	
 	td.fraction {
     padding-top: 10px;
+
+    .inline-fraction {
+      padding-top: 9px;
+      padding-bottom: 0;
+    }
 	}
 	
 	td.barChart {
