@@ -257,12 +257,17 @@ class MeasuresController < ApplicationController
     end
     
     if request.xhr?
-      providers = params[:provider] || []
-      races = params[:race] ? Race.selected(params[:race]).all : []
-      ethnicities = params[:ethnicity] ? Ethnicity.selected(params[:ethnicity]).all : []
-      genders = params[:gender] ? params[:gender] : []
+      providers = params[:provider] || nil
+      races = params[:race] ? Race.selected(params[:race]).all : nil
+      ethnicities = params[:ethnicity] ? Ethnicity.selected(params[:ethnicity]).all : nil
+      genders = params[:gender] ? params[:gender] : nil
       
-      @filters = {'providers' => providers, 'races'=>(races.map {|race| race.codes}).flatten, 'ethnicities'=>(ethnicities.map {|ethnicity| ethnicity.codes}).flatten, 'genders' => genders}
+      @filters = {}
+      @filters.merge!({'providers' => providers}) if providers
+      @filters.merge!({'races'=>(races.map {|race| race.codes}).flatten}) if races
+      @filters.merge!({'ethnicities'=>(ethnicities.map {|ethnicity| ethnicity.codes}).flatten}) if ethnicities
+      @filters.merge!({'genders' => genders}) if genders
+      @filters = nil if @filters.empty?
       
       if @selected_provider
         @filters['providers'] = [@selected_provider.id.to_s]
