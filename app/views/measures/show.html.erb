@@ -1,0 +1,133 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+    function llog(x) {}
+    var popHealth = popHealth || {};
+    popHealth.drawPctChart = function(data) {
+        data = data[0]
+        var elem = "#measureMetrics";
+        var percent = data.denominator > 0 ? Math.floor((data.numerator/data.denominator)*100) : 0;
+        var numeratorWidth = (data.numerator/<%= @patient_count -%>).toFixed(2)*100;
+        var denominatorWidth = data.denominator > 0 ? ((data.denominator - data.numerator)/<%= @patient_count -%>).toFixed(2)*100 : 0;
+        $(elem).find(".numeratorValue").text(data.numerator);
+        $(elem).find(".denominatorValue").text(data.denominator);
+        $(elem).find("#measurePopulationPercentage").text(percent + "%");
+        $("#eligibleCount").text(data.denominator);
+        $("#outcomeCount").text(data.numerator);
+        $("#exclusionCount").text(data.exclusions);
+    }
+
+    popHealth.renderMeasureJSON = function(data) {
+        var measure = data;
+        var elemParent;
+        var addParamItems = function(obj,elemParent,container) {
+          var items = obj['and'] || obj['or'];
+          if ($.isArray(items)) {
+            var conjunction = obj['and'] ? 'and' : 'or';
+            // add the grouping container
+            if (!container) {elemParent = $("#ph_tmpl_paramGroup").tmpl({}).appendTo(elemParent).find(".paramItem:last");}
+              $.each(items,function(i,node) {
+                addParamItems(node,elemParent);
+                if (i < items.length-1) {
+                  $(elemParent).append("<span class='"+conjunction+"'>"+conjunction+"</span>");
+                }
+              });
+            } else {
+              // we dont have a nested measure clause, add the item to the bottom of the list
+              if (!elemParent.hasClass("paramItem")) {
+                elemParent = $("#ph_tmpl_paramGroup").tmpl({}).appendTo(elemParent).find(".paramItem:last");
+              }
+              $("#ph_tmpl_paramItem").tmpl(obj).appendTo(elemParent);
+            }
+        } // end addParamItems
+
+        if (data.population) {
+          elemParent = $("#ph_tmpl_paramGroup").tmpl({}).appendTo("#eligibilityMeasureItems").find(".paramItem:last");
+          addParamItems(data.population,elemParent,elemParent);
+          elemParent.parent().addClass("population");
+        }
+
+        if (!$.isEmptyObject(data.denominator)) {
+          $("#eligibilityMeasureItems").append("<span class='and'>and</span>");
+          addParamItems(data.denominator,$("#eligibilityMeasureItems"));
+        }
+
+        if (data.numerator) {
+          addParamItems(data.numerator,$("#outcomeMeasureItems"));
+        }
+
+        if ('exclusions' in data && !$.isEmptyObject(data['exclusions'])) {
+          addParamItems(data.exclusions,$("#exclusionMeasureItems"));
+          $("#exclusionMeasureItems").hide();
+          $("#exclusionPanel").show();
+        }
+     }
+
+    $(document).ready(function() {
+      //$.getJSON("json/bp.json",popHealth.renderMeasureJSON);
+      $.getJSON("<%= measure_definition_url(@definition['id'], @definition['sub_id']) %>",popHealth.renderMeasureJSON);
+      
+      var qr = new QualityReport('<%=@definition['id']%>', '<%=@definition['sub_id']%>');
+      var params = {}
+      <% if (@selected_provider) %> params['npi'] = '<%= @selected_provider.npi %>';<%end%>
+      qr.poll(params, popHealth.drawPctChart);
+      
+      $("#exclusionPanel h3").click(function() {
+        $("#exclusionMeasureItems").slideToggle('slow');
+      });
+      $("#measurementPeriodEndDate").val(new Date().format("mm/dd/yyyy"));
+      $(".deleteParamIcon").click(popHealth.deleteParam);
+      $("#btnSaveNewMeasure").click(popHealth.saveNewMeasure);
+      $("#btnReturnToDash").click(popHealth.returnToDash);
+      
+    });
+
+    function alertDate(e) {
+      alert("you changed me");
+    }
+  </script>
+  <script type="text/html" id="ph_tmpl_paramItem">
+    <div>
+      <!-- ${percentage=Math.round(Math.random()*100,2)} -->
+      {{if category}}<label>${category}</label>{{/if}}
+      ${title}
+    </div>
+  </script>
+  <script type="text/html" id="ph_tmpl_paramGroupContainer">
+    <div class="paramGroupContainer">
+    </div>
+  </script>
+  <script type="text/html" id="ph_tmpl_paramGroup">
+    <div class="paramGroup"><div class="paramItem">
+    </div></div>
+  </script>
+<% end %>
+
+  <div>
+    <%= render :partial => 'shared/measure_metrics', locals: {numerator: (@result ? @result['numerator'] : 0), denominator: (@result ? @result['denominator'] : 0)} %>
+    <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
+    <div id="measureEditContainer">
+      <div id="exclusionPanel" style="display:none;">
+        <div id="exclusionMeasureItems"></div>
+        <h3>exclusions <em>(<span id="exclusionCount">0</span>)</em></h3>
+      </div>
+      <div id="eligibilityMeasures">
+        <h3>denominator <em>(<span id="eligibleCount">0</span>)</em></h3>
+        <div class="measureBox">
+          <div id="eligibilityMeasureItems">
+          </div><!-- end #eligibilityMeasureItems -->
+        </div><!-- end measureBox -->
+      </div><!-- end #eligibilityMeasures -->
+      <div id="outcomeMeasures">
+        <h3>numerator <em>(<span id="outcomeCount">0</span>)</em></h3>
+        <div class="measureBox">
+          <div id="outcomeExclusionMarker" class="exclusionTab" style="display:none">
+            0 Exclusions
+          </div>
+          <div id="outcomeMeasureItems">
+          </div>
+          <div id="xexclusionMeasureItems">
+          </div>
+        </div><!-- end measureBox -->
+      </div><!-- end #outcomeMeasures -->
+    </div><!-- end measureEditContainer -->
+  </div>

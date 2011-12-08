@@ -2,6 +2,7 @@
 *.sqlite3
 public/clinical_documents
 config/database.yml
+coverage.data
 coverage
 public/laika
 *.DS_Store
@@ -17,3 +18,4 @@ Thumbs.db
 .bundle
 .bundle/config
 vendor
+dump.rdb

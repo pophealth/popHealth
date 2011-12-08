@@ -1,0 +1,203 @@
+<% content_for :head do %>
+<script type="text/javascript" charset="utf-8">
+  <% if @selected_provider %>
+    Page.params['npi'] = '<%=@selected_provider.npi%>'
+  <% end %>
+	Page.onLoad = Dashboard.onLoad;
+</script>
+<% end -%>
+
+  
+  <div id="pageContent">
+ 		<div id="providerReports">
+	  <div class="groupList">
+	  	<ul>
+				<li>
+					<label class="open">Core Measures</label>
+					<div class="measureItemList expandableList">
+						<ul>
+							<% @core_measures.each do |measure| -%>
+				       <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-sub-measures="<%=measure['subs'].join(',')%>" data-category="Core"><%= measure['name'] %></li>
+				     <% end %>
+				     <% @core_alt_measures.each do |measure| -%>
+				       <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-sub-measures="<%=measure['subs'].join(',')%>" data-category="Core Alternate"><span class="note">**</span><%= measure['name'] %></li>
+				     <% end %>
+						</ul>
+						<p class="note"><em>** core alternate measures</em></p>
+					</div>
+				</li>
+			</ul>
+	  </div>
+		<div class="groupList">
+	  	<ul>
+				<li>
+					<label class="open">Alternate Measures</label>
+					<div class="expandableList">
+				
+						<% @categories.each do |category| %>
+							<div class="groupList">
+								<label><%= category['category'] %></label>
+								<div style="display:none" class="measureItemList expandableList">
+									<ul>
+									 <% category['measures'].each do |measure| -%>
+					           <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-sub-measures="<%=measure['subs'].join(',') if measure['subs']%>" data-category="<%= category['category'] %>"><%= measure['name'] %></li>
+					         <% end -%>
+								</div>
+							</div>
+						<% end %>
+						
+					</div>
+				</li>
+			</ul>
+		</div>
+    <% if @selected_provider %>
+    <div class="groupList" style="display: none;">
+      <div class="filterItemList expandableList">
+        <ul>
+          <li data-filter-type="provider" data-filter-value="<%=@selected_provider.id%>" class="checked">
+            <%= @selected_provider.full_name %>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <% elsif can?(:manage, :providers) && @providers_by_team%>
+    <p class="note">
+      Providers
+    </p>
+    <div class="groupList">
+      <ul>
+        <% @providers_by_team.each do |team_name, providers| %>
+        <li>
+          <label><%= team_name%></label>
+
+          <div class="filterItemList expandableList" style="display:none">
+            <ul>
+						<li class="selectAll checked">All</li>
+              <% providers.each do |pv| %>
+              <li style="display:none" data-filter-type="provider" data-filter-value="<%=pv.id%>" class="checked">
+                <%= pv.full_name %>
+              </li><% end %>
+            </ul>
+          </div>
+        </li><% end %>
+      </ul>
+    </div>
+    <% end %>
+   <p class="note">
+      Demographics
+    </p>
+    <div class="groupList">
+      <ul>
+        <li>
+          <label>Races</label>
+          <div class="filterItemList expandableList" style="display:none">
+            <ul>
+							 <li class="selectAll checked">All</li>
+               <% @races.each do |race| %>
+              <li style="display:none" data-filter-type="race" data-filter-value="<%=race.id%>" class="checked">
+                <%= race.name %>
+              </li>
+							<% end %>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <label>Ethnicities</label>
+          <div class="filterItemList expandableList" style="display:none">
+            <ul>
+							 <li class="selectAll checked">All</li>
+               <% @ethnicities.each do |ethnicity| %>
+              <li style="display:none" data-filter-type="ethnicity" data-filter-value="<%=ethnicity.id%>" class="checked">
+                <%= ethnicity.name %>
+              </li>
+							<% end %>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <label>Genders</label>
+          <div class="filterItemList expandableList" style="display:none">
+            <ul>
+							 <li class="selectAll checked">All</li>
+               <% @genders.each do |gender| %>
+              <li style="display:none" data-filter-type="gender" data-filter-value="<%=gender[:id]%>" class="checked">
+                <%= gender[:name] %>
+              </li>
+							<% end %>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+   </div><!-- end #providerReports --> 
+    <div id="dashboardPeriod">
+      <div class="measureDetailTable">
+        
+        <% if (@selected_provider) %>
+          <dl>
+            <dt>Provider:</dt>
+            <dd class="practiceName"><h1><%=@selected_provider.full_name%></h1></dd>
+          </dl>
+        <% else %>
+          <h1><%= current_user.company.to_s %></h1>
+          <dl>
+            <dt>Practice:</dt>
+            <dd class="practiceName"><h1><%=APP_CONFIG['practice_name']%></h1></dd>
+          </dl>
+        <% end %>
+        
+        <dl>
+          <% if (@selected_provider || !can?(:manage, :providers)) %>
+            <input type="button" class="exportReport" value="Export Report" id="btnExportReportSingle">
+          <% else %>
+            <input type="button" class="exportReport" value="Export Report" id="btnExportReport">
+            <ul id="generate-menu" class="ui-menu ui-widget ui-widget-content ui-corner-all dialog-menu" role="listbox" aria-activedescendant="ui-active-menuitem">
+              <li class="ui-menu-item" role="menuitem" data-type="provider">
+                <a class="ui-corner-all" href="#" tabindex="-1">Provider Report</a>
+              </li>
+              <li class="ui-menu-item" role="menuitem" data-type="practice">
+                <a class="ui-corner-all" href="#" tabindex="-1">Practice Report</a>
+              </li>
+            </ul>
+          <% end %>
+          
+          <dt>Reporting Period:</dt>
+          <dd>
+            <span id="measurementPeriodStartDate"><%= Time.at(@period_start).strftime("%m/%d/%Y") %></span> - 
+            <input type="text" class="measurementPeriodEndDate" id="measurementPeriodEndDate" size="8" value="<%= Time.at(@effective_date).strftime("%m/%d/%Y") %>">
+            <input type="button" class="recalculate" id="btnMeasurementPeriodChange" value="Recalculate" <% if (@selected_provider) %> data-npi="<%=@selected_provider.npi%>" <% end %> >
+          </dd>
+        </dl>
+        <dl>
+          <dt># of Patients: </dt>
+          <dd><%= @patient_count %></dd>
+        </dl>
+        <% unless (@selected_provider) %>
+          <dl>
+            <dt># of Providers: </dt>
+            <dd><%= Provider.all.count %> </dd>
+          </dl>
+        <% end %>
+        <div class="clear"></div>
+        <div class="dashboardTabs">
+          <span class="dashboardTab active">Measures</span>
+          <span class="dashboardTab">Comparison</span>
+        </div>
+        <div class="legend">
+          <div class="numerator"></div><span>numerator</span>
+          <div class="denominator"></div><span>denominator</span>
+          <div class="patients"></div><span>reporting patients</span>
+          <div class="exclusions"></div><span>exclusions</span>
+        </div>
+        <br/>
+      </div><!-- end #measureDetailTable --><br><br>
+			<table class="measureTable" style="float:left">
+				<tr class="headerRow"><td colspan="6">Core Measures</td></tr>
+				<%= render :partial => "measure", :collection => @core_measures %>
+				<tr class="headerRow"><td colspan="6">Core Alternate Measures</td></tr>
+				<%= render :partial => "measure", :collection => @core_alt_measures %>
+				<tr class="headerRow"><td colspan="6">Alternate Measures</td></tr>
+				<%= render :partial => "measure", :collection => @alt_measures %>
+			</table>
+    </div><!-- end #dashboardPeriod -->
+  </div><!-- end #pageContent -->

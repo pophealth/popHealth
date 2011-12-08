@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Forbidden (403)</title>
+  <style type="text/css">
+    body { background-color: #fff; color: #666; text-align: left; font-family: arial, sans-serif; }
+    div.dialog {
+      width: 25em;
+      padding: 0 4em;
+      margin: 4em auto 0 auto;
+      border: 1px solid #ccc;
+      border-right-color: #999;
+      border-bottom-color: #999;
+    }
+    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+    div.dialog ul li {
+      padding: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- This file lives in public/403.html -->
+  <div class="dialog">
+    <h1>Your user account does not have access to the requested resource.</h1>
+    <ul>
+      <li>You may have mistyped the address or your user permissions may not have been set up correctly.</li>
+      <li>If you just logged in and got this page, you likely either need the 'staff_role' added to your account, or you need to have an NPI assigned to your account to access one provider's data</li>
+      <li>If you are trying to access an administration page, you will need the 'admin' role added to your account</li>
+      <li>If you are trying to access data for another provider, you will need the 'staff_role' or 'admin' role added to your account</li>
+    </ul>
+    <a href="/users/sign_out">Click here to logout</a>
+  </div>
+</body>
+</html>

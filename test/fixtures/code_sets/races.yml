@@ -1,0 +1,4604 @@
+american_indian_or_alaska_native:
+  name: American Indian Or Alaska Native
+  code: 1002-5
+  hierarchy: R1
+
+american_indian:
+  name: American Indian
+  code: 1004-1
+  hierarchy: R1.01
+
+abenaki:
+  name: Abenaki
+  code: 1006-6
+  hierarchy: R1.01.001
+
+algonquian:
+  name: Algonquian
+  code: 1008-2
+  hierarchy: R1.01.002
+
+apache:
+  name: Apache
+  code: 1010-8
+  hierarchy: R1.01.003
+
+chiricahua:
+  name: Chiricahua
+  code: 1011-6
+  hierarchy: R1.01.003.001
+
+fort_sill_apache:
+  name: Fort Sill Apache
+  code: 1012-4
+  hierarchy: R1.01.003.002
+
+jicarilla_apache:
+  name: Jicarilla Apache
+  code: 1013-2
+  hierarchy: R1.01.003.003
+
+lipan_apache:
+  name: Lipan Apache
+  code: 1014-0
+  hierarchy: R1.01.003.004
+
+mescalero_apache:
+  name: Mescalero Apache
+  code: 1015-7
+  hierarchy: R1.01.003.005
+
+oklahoma_apache:
+  name: Oklahoma Apache
+  code: 1016-5
+  hierarchy: R1.01.003.006
+
+payson_apache:
+  name: Payson Apache
+  code: 1017-3
+  hierarchy: R1.01.003.007
+
+san_carlos_apache:
+  name: San Carlos Apache
+  code: 1018-1
+  hierarchy: R1.01.003.008
+
+white_mountain_apache:
+  name: White Mountain Apache
+  code: 1019-9
+  hierarchy: R1.01.003.009
+
+arapaho:
+  name: Arapaho
+  code: 1021-5
+  hierarchy: R1.01.004
+
+northern_arapaho:
+  name: Northern Arapaho
+  code: 1022-3
+  hierarchy: R1.01.004.001
+
+southern_arapaho:
+  name: Southern Arapaho
+  code: 1023-1
+  hierarchy: R1.01.004.002
+
+wind_river_arapaho:
+  name: Wind River Arapaho
+  code: 1024-9
+  hierarchy: R1.01.004.003
+
+arikara:
+  name: Arikara
+  code: 1026-4
+  hierarchy: R1.01.005
+
+assiniboine:
+  name: Assiniboine
+  code: 1028-0
+  hierarchy: R1.01.006
+
+assiniboine_sioux:
+  name: Assiniboine Sioux
+  code: 1030-6
+  hierarchy: R1.01.007
+
+fort_peck_assiniboine_sioux:
+  name: Fort Peck Assiniboine Sioux
+  code: 1031-4
+  hierarchy: R1.01.007.001
+
+bannock:
+  name: Bannock
+  code: 1033-0
+  hierarchy: R1.01.008
+
+blackfeet:
+  name: Blackfeet
+  code: 1035-5
+  hierarchy: R1.01.009
+
+brotherton:
+  name: Brotherton
+  code: 1037-1
+  hierarchy: R1.01.010
+
+burt_lake_band:
+  name: Burt Lake Band
+  code: 1039-7
+  hierarchy: R1.01.011
+
+caddo:
+  name: Caddo
+  code: 1041-3
+  hierarchy: R1.01.012
+
+oklahoma_cado:
+  name: Oklahoma Cado
+  code: 1042-1
+  hierarchy: R1.01.012.001
+
+cahuilla:
+  name: Cahuilla
+  code: 1044-7
+  hierarchy: R1.01.013
+
+agua_caliente_cahuilla:
+  name: Agua Caliente Cahuilla
+  code: 1045-4
+  hierarchy: R1.01.013.001
+
+augustine:
+  name: Augustine
+  code: 1046-2
+  hierarchy: R1.01.013.002
+
+cabazon:
+  name: Cabazon
+  code: 1047-0
+  hierarchy: R1.01.013.003
+
+los_coyotes:
+  name: Los Coyotes
+  code: 1048-8
+  hierarchy: R1.01.013.004
+
+morongo:
+  name: Morongo
+  code: 1049-6
+  hierarchy: R1.01.013.005
+
+santa_rosa_cahuilla:
+  name: Santa Rosa Cahuilla
+  code: 1050-4
+  hierarchy: R1.01.013.006
+
+torres-martinez:
+  name: Torres-martinez
+  code: 1051-2
+  hierarchy: R1.01.013.007
+
+california_tribes:
+  name: California Tribes
+  code: 1053-8
+  hierarchy: R1.01.014
+
+cahto:
+  name: Cahto
+  code: 1054-6
+  hierarchy: R1.01.014.001
+
+chimariko:
+  name: Chimariko
+  code: 1055-3
+  hierarchy: R1.01.014.002
+
+coast_miwok:
+  name: Coast Miwok
+  code: 1056-1
+  hierarchy: R1.01.014.003
+
+digger:
+  name: Digger
+  code: 1057-9
+  hierarchy: R1.01.014.004
+
+kawaiisu:
+  name: Kawaiisu
+  code: 1058-7
+  hierarchy: R1.01.014.005
+
+kern_river:
+  name: Kern River
+  code: 1059-5
+  hierarchy: R1.01.014.006
+
+mattole:
+  name: Mattole
+  code: 1060-3
+  hierarchy: R1.01.014.007
+
+red_wood:
+  name: Red Wood
+  code: 1061-1
+  hierarchy: R1.01.014.008
+
+santa_rosa:
+  name: Santa Rosa
+  code: 1062-9
+  hierarchy: R1.01.014.009
+
+takelma:
+  name: Takelma
+  code: 1063-7
+  hierarchy: R1.01.014.010
+
+wappo:
+  name: Wappo
+  code: 1064-5
+  hierarchy: R1.01.014.011
+
+yana:
+  name: Yana
+  code: 1065-2
+  hierarchy: R1.01.014.012
+
+yuki:
+  name: Yuki
+  code: 1066-0
+  hierarchy: R1.01.014.013
+
+canadian_and_latin_american_indian:
+  name: Canadian And Latin American Indian
+  code: 1068-6
+  hierarchy: R1.01.015
+
+canadian_indian:
+  name: Canadian Indian
+  code: 1069-4
+  hierarchy: R1.01.015.001
+
+central_american_indian:
+  name: Central American Indian
+  code: 1070-2
+  hierarchy: R1.01.015.002
+
+french_american_indian:
+  name: French American Indian
+  code: 1071-0
+  hierarchy: R1.01.015.003
+
+mexican_american_indian:
+  name: Mexican American Indian
+  code: 1072-8
+  hierarchy: R1.01.015.004
+
+south_american_indian:
+  name: South American Indian
+  code: 1073-6
+  hierarchy: R1.01.015.005
+
+spanish_american_indian:
+  name: Spanish American Indian
+  code: 1074-4
+  hierarchy: R1.01.015.006
+
+catawba:
+  name: Catawba
+  code: 1076-9
+  hierarchy: R1.01.016
+
+cayuse:
+  name: Cayuse
+  code: 1078-5
+  hierarchy: R1.01.017
+
+chehalis:
+  name: Chehalis
+  code: 1080-1
+  hierarchy: R1.01.018
+
+chemakuan:
+  name: Chemakuan
+  code: 1082-7
+  hierarchy: R1.01.019
+
+hoh:
+  name: Hoh
+  code: 1083-5
+  hierarchy: R1.01.019.001
+
+quileute:
+  name: Quileute
+  code: 1084-3
+  hierarchy: R1.01.019.002
+
+chemehuevi:
+  name: Chemehuevi
+  code: 1086-8
+  hierarchy: R1.01.020
+
+cherokee:
+  name: Cherokee
+  code: 1088-4
+  hierarchy: R1.01.021
+
+cherokee_alabama:
+  name: Cherokee Alabama
+  code: 1089-2
+  hierarchy: R1.01.021.001
+
+cherokees_of_northeast_alabama:
+  name: Cherokees Of Northeast Alabama
+  code: 1090-0
+  hierarchy: R1.01.021.002
+
+cherokees_of_southeast_alabama:
+  name: Cherokees Of Southeast Alabama
+  code: 1091-8
+  hierarchy: R1.01.021.003
+
+eastern_cherokee:
+  name: Eastern Cherokee
+  code: 1092-6
+  hierarchy: R1.01.021.004
+
+echota_cherokee:
+  name: Echota Cherokee
+  code: 1093-4
+  hierarchy: R1.01.021.005
+
+etowah_cherokee:
+  name: Etowah Cherokee
+  code: 1094-2
+  hierarchy: R1.01.021.006
+
+northern_cherokee:
+  name: Northern Cherokee
+  code: 1095-9
+  hierarchy: R1.01.021.007
+
+tuscola:
+  name: Tuscola
+  code: 1096-7
+  hierarchy: R1.01.021.008
+
+united_keetowah_band_of_cherokee:
+  name: United Keetowah Band Of Cherokee
+  code: 1097-5
+  hierarchy: R1.01.021.009
+
+western_cherokee:
+  name: Western Cherokee
+  code: 1098-3
+  hierarchy: R1.01.021.010
+
+cherokee_shawnee:
+  name: Cherokee Shawnee
+  code: 1100-7
+  hierarchy: R1.01.022
+
+cheyenne:
+  name: Cheyenne
+  code: 1102-3
+  hierarchy: R1.01.023
+
+northern_cheyenne:
+  name: Northern Cheyenne
+  code: 1103-1
+  hierarchy: R1.01.023.001
+
+southern_cheyenne:
+  name: Southern Cheyenne
+  code: 1104-9
+  hierarchy: R1.01.023.002
+
+cheyenne-arapaho:
+  name: Cheyenne-arapaho
+  code: 1106-4
+  hierarchy: R1.01.024
+
+chickahominy:
+  name: Chickahominy
+  code: 1108-0
+  hierarchy: R1.01.025
+
+eastern_chickahominy:
+  name: Eastern Chickahominy
+  code: 1109-8
+  hierarchy: R1.01.025.001
+
+western_chickahominy:
+  name: Western Chickahominy
+  code: 1110-6
+  hierarchy: R1.01.025.002
+
+chickasaw:
+  name: Chickasaw
+  code: 1112-2
+  hierarchy: R1.01.026
+
+chinook:
+  name: Chinook
+  code: 1114-8
+  hierarchy: R1.01.027
+
+clatsop:
+  name: Clatsop
+  code: 1115-5
+  hierarchy: R1.01.027.001
+
+columbia_river_chinook:
+  name: Columbia River Chinook
+  code: 1116-3
+  hierarchy: R1.01.027.002
+
+kathlamet:
+  name: Kathlamet
+  code: 1117-1
+  hierarchy: R1.01.027.003
+
+upper_chinook:
+  name: Upper Chinook
+  code: 1118-9
+  hierarchy: R1.01.027.004
+
+wakiakum_chinook:
+  name: Wakiakum Chinook
+  code: 1119-7
+  hierarchy: R1.01.027.005
+
+willapa_chinook:
+  name: Willapa Chinook
+  code: 1120-5
+  hierarchy: R1.01.027.006
+
+wishram:
+  name: Wishram
+  code: 1121-3
+  hierarchy: R1.01.027.007
+
+chippewa:
+  name: Chippewa
+  code: 1123-9
+  hierarchy: R1.01.028
+
+bad_river:
+  name: Bad River
+  code: 1124-7
+  hierarchy: R1.01.028.001
+
+bay_mills_chippewa:
+  name: Bay Mills Chippewa
+  code: 1125-4
+  hierarchy: R1.01.028.002
+
+bois_forte:
+  name: Bois Forte
+  code: 1126-2
+  hierarchy: R1.01.028.003
+
+burt_lake_chippewa:
+  name: Burt Lake Chippewa
+  code: 1127-0
+  hierarchy: R1.01.028.004
+
+fond_du_lac:
+  name: Fond Du Lac
+  code: 1128-8
+  hierarchy: R1.01.028.005
+
+grand_portage:
+  name: Grand Portage
+  code: 1129-6
+  hierarchy: R1.01.028.006
+
+grand_traverse_band_of_ottawa/chippewa:
+  name: Grand Traverse Band Of Ottawa/chippewa
+  code: 1130-4
+  hierarchy: R1.01.028.007
+
+keweenaw:
+  name: Keweenaw
+  code: 1131-2
+  hierarchy: R1.01.028.008
+
+lac_courte_oreilles:
+  name: Lac Courte Oreilles
+  code: 1132-0
+  hierarchy: R1.01.028.009
+
+lac_du_flambeau:
+  name: Lac Du Flambeau
+  code: 1133-8
+  hierarchy: R1.01.028.010
+
+lac_vieux_desert_chippewa:
+  name: Lac Vieux Desert Chippewa
+  code: 1134-6
+  hierarchy: R1.01.028.011
+
+lake_superior:
+  name: Lake Superior
+  code: 1135-3
+  hierarchy: R1.01.028.012
+
+leech_lake:
+  name: Leech Lake
+  code: 1136-1
+  hierarchy: R1.01.028.013
+
+little_shell_chippewa:
+  name: Little Shell Chippewa
+  code: 1137-9
+  hierarchy: R1.01.028.014
+
+mille_lacs:
+  name: Mille Lacs
+  code: 1138-7
+  hierarchy: R1.01.028.015
+
+minnesota_chippewa:
+  name: Minnesota Chippewa
+  code: 1139-5
+  hierarchy: R1.01.028.016
+
+ontonagon:
+  name: Ontonagon
+  code: 1140-3
+  hierarchy: R1.01.028.017
+
+red_cliff_chippewa:
+  name: Red Cliff Chippewa
+  code: 1141-1
+  hierarchy: R1.01.028.018
+
+red_lake_chippewa:
+  name: Red Lake Chippewa
+  code: 1142-9
+  hierarchy: R1.01.028.019
+
+saginaw_chippewa:
+  name: Saginaw Chippewa
+  code: 1143-7
+  hierarchy: R1.01.028.020
+
+st._croix_chippewa:
+  name: St. Croix Chippewa
+  code: 1144-5
+  hierarchy: R1.01.028.021
+
+sault_ste._marie_chippewa:
+  name: Sault Ste. Marie Chippewa
+  code: 1145-2
+  hierarchy: R1.01.028.022
+
+sokoagon_chippewa:
+  name: Sokoagon Chippewa
+  code: 1146-0
+  hierarchy: R1.01.028.023
+
+turtle_mountain:
+  name: Turtle Mountain
+  code: 1147-8
+  hierarchy: R1.01.028.024
+
+white_earth:
+  name: White Earth
+  code: 1148-6
+  hierarchy: R1.01.028.025
+
+chippewa_cree:
+  name: Chippewa Cree
+  code: 1150-2
+  hierarchy: R1.01.029
+
+rocky_boys_chippewa_cree:
+  name: Rocky Boy's Chippewa Cree
+  code: 1151-0
+  hierarchy: R1.01.029.001
+
+chitimacha:
+  name: Chitimacha
+  code: 1153-6
+  hierarchy: R1.01.030
+
+choctaw:
+  name: Choctaw
+  code: 1155-1
+  hierarchy: R1.01.031
+
+clifton_choctaw:
+  name: Clifton Choctaw
+  code: 1156-9
+  hierarchy: R1.01.031.001
+
+jena_choctaw:
+  name: Jena Choctaw
+  code: 1157-7
+  hierarchy: R1.01.031.002
+
+mississippi_choctaw:
+  name: Mississippi Choctaw
+  code: 1158-5
+  hierarchy: R1.01.031.003
+
+mowa_band_of_choctaw:
+  name: Mowa Band Of Choctaw
+  code: 1159-3
+  hierarchy: R1.01.031.004
+
+oklahoma_choctaw:
+  name: Oklahoma Choctaw
+  code: 1160-1
+  hierarchy: R1.01.031.005
+
+chumash:
+  name: Chumash
+  code: 1162-7
+  hierarchy: R1.01.032
+
+santa_ynez:
+  name: Santa Ynez
+  code: 1163-5
+  hierarchy: R1.01.032.001
+
+clear_lake:
+  name: Clear Lake
+  code: 1165-0
+  hierarchy: R1.01.033
+
+coeur_dalene:
+  name: Coeur D'alene
+  code: 1167-6
+  hierarchy: R1.01.034
+
+coharie:
+  name: Coharie
+  code: 1169-2
+  hierarchy: R1.01.035
+
+colorado_river:
+  name: Colorado River
+  code: 1171-8
+  hierarchy: R1.01.036
+
+colville:
+  name: Colville
+  code: 1173-4
+  hierarchy: R1.01.037
+
+comanche:
+  name: Comanche
+  code: 1175-9
+  hierarchy: R1.01.038
+
+oklahoma_comanche:
+  name: Oklahoma Comanche
+  code: 1176-7
+  hierarchy: R1.01.038.001
+
+coos_lower_umpqua_siuslaw:
+  name: Coos Lower Umpqua Siuslaw
+  code: 1178-3
+  hierarchy: R1.01.039
+
+coos:
+  name: Coos
+  code: 1180-9
+  hierarchy: R1.01.040
+
+coquilles:
+  name: Coquilles
+  code: 1182-5
+  hierarchy: R1.01.041
+
+costanoan:
+  name: Costanoan
+  code: 1184-1
+  hierarchy: R1.01.042
+
+coushatta:
+  name: Coushatta
+  code: 1186-6
+  hierarchy: R1.01.043
+
+alabama_coushatta:
+  name: Alabama Coushatta
+  code: 1187-4
+  hierarchy: R1.01.043.001
+
+cowlitz:
+  name: Cowlitz
+  code: 1189-0
+  hierarchy: R1.01.044
+
+cree:
+  name: Cree
+  code: 1191-6
+  hierarchy: R1.01.045
+
+creek:
+  name: Creek
+  code: 1193-2
+  hierarchy: R1.01.046
+
+alabama_creek:
+  name: Alabama Creek
+  code: 1194-0
+  hierarchy: R1.01.046.001
+
+alabama_quassarte:
+  name: Alabama Quassarte
+  code: 1195-7
+  hierarchy: R1.01.046.002
+
+eastern_creek:
+  name: Eastern Creek
+  code: 1196-5
+  hierarchy: R1.01.046.003
+
+eastern_muscogee:
+  name: Eastern Muscogee
+  code: 1197-3
+  hierarchy: R1.01.046.004
+
+kialegee:
+  name: Kialegee
+  code: 1198-1
+  hierarchy: R1.01.046.005
+
+lower_muscogee:
+  name: Lower Muscogee
+  code: 1199-9
+  hierarchy: R1.01.046.006
+
+machis_lower_creek_indian:
+  name: Machis Lower Creek Indian
+  code: 1200-5
+  hierarchy: R1.01.046.007
+
+poarch_band:
+  name: Poarch Band
+  code: 1201-3
+  hierarchy: R1.01.046.008
+
+principal_creek_indian_nation:
+  name: Principal Creek Indian Nation
+  code: 1202-1
+  hierarchy: R1.01.046.009
+
+star_clan_of_muscogee_creeks:
+  name: Star Clan Of Muscogee Creeks
+  code: 1203-9
+  hierarchy: R1.01.046.010
+
+thlopthlocco:
+  name: Thlopthlocco
+  code: 1204-7
+  hierarchy: R1.01.046.011
+
+tuckabachee:
+  name: Tuckabachee
+  code: 1205-4
+  hierarchy: R1.01.046.012
+
+croatan:
+  name: Croatan
+  code: 1207-0
+  hierarchy: R1.01.047
+
+crow:
+  name: Crow
+  code: 1209-6
+  hierarchy: R1.01.048
+
+cupeno:
+  name: Cupeno
+  code: 1211-2
+  hierarchy: R1.01.049
+
+agua_caliente:
+  name: Agua Caliente
+  code: 1212-0
+  hierarchy: R1.01.049.001
+
+delaware:
+  name: Delaware
+  code: 1214-6
+  hierarchy: R1.01.050
+
+eastern_delaware:
+  name: Eastern Delaware
+  code: 1215-3
+  hierarchy: R1.01.050.001
+
+lenni-lenape:
+  name: Lenni-lenape
+  code: 1216-1
+  hierarchy: R1.01.050.002
+
+munsee:
+  name: Munsee
+  code: 1217-9
+  hierarchy: R1.01.050.003
+
+oklahoma_delaware:
+  name: Oklahoma Delaware
+  code: 1218-7
+  hierarchy: R1.01.050.004
+
+rampough_mountain:
+  name: Rampough Mountain
+  code: 1219-5
+  hierarchy: R1.01.050.005
+
+sand_hill:
+  name: Sand Hill
+  code: 1220-3
+  hierarchy: R1.01.050.006
+
+diegueno:
+  name: Diegueno
+  code: 1222-9
+  hierarchy: R1.01.051
+
+campo:
+  name: Campo
+  code: 1223-7
+  hierarchy: R1.01.051.001
+
+capitan_grande:
+  name: Capitan Grande
+  code: 1224-5
+  hierarchy: R1.01.051.002
+
+cuyapaipe:
+  name: Cuyapaipe
+  code: 1225-2
+  hierarchy: R1.01.051.003
+
+la_posta:
+  name: La Posta
+  code: 1226-0
+  hierarchy: R1.01.051.004
+
+manzanita:
+  name: Manzanita
+  code: 1227-8
+  hierarchy: R1.01.051.005
+
+mesa_grande:
+  name: Mesa Grande
+  code: 1228-6
+  hierarchy: R1.01.051.006
+
+san_pasqual:
+  name: San Pasqual
+  code: 1229-4
+  hierarchy: R1.01.051.007
+
+santa_ysabel:
+  name: Santa Ysabel
+  code: 1230-2
+  hierarchy: R1.01.051.008
+
+sycuan:
+  name: Sycuan
+  code: 1231-0
+  hierarchy: R1.01.051.009
+
+eastern_tribes:
+  name: Eastern Tribes
+  code: 1233-6
+  hierarchy: R1.01.052
+
+attacapa:
+  name: Attacapa
+  code: 1234-4
+  hierarchy: R1.01.052.001
+
+biloxi:
+  name: Biloxi
+  code: 1235-1
+  hierarchy: R1.01.052.002
+
+georgetown:
+  name: Georgetown
+  code: 1236-9
+  hierarchy: R1.01.052.003
+
+moor:
+  name: Moor
+  code: 1237-7
+  hierarchy: R1.01.052.004
+
+nansemond:
+  name: Nansemond
+  code: 1238-5
+  hierarchy: R1.01.052.005
+
+natchez:
+  name: Natchez
+  code: 1239-3
+  hierarchy: R1.01.052.006
+
+nausu_waiwash:
+  name: Nausu Waiwash
+  code: 1240-1
+  hierarchy: R1.01.052.007
+
+nipmuc:
+  name: Nipmuc
+  code: 1241-9
+  hierarchy: R1.01.052.008
+
+paugussett:
+  name: Paugussett
+  code: 1242-7
+  hierarchy: R1.01.052.009
+
+pocomoke_acohonock:
+  name: Pocomoke Acohonock
+  code: 1243-5
+  hierarchy: R1.01.052.010
+
+southeastern_indians:
+  name: Southeastern Indians
+  code: 1244-3
+  hierarchy: R1.01.052.011
+
+susquehanock:
+  name: Susquehanock
+  code: 1245-0
+  hierarchy: R1.01.052.012
+
+tunica_biloxi:
+  name: Tunica Biloxi
+  code: 1246-8
+  hierarchy: R1.01.052.013
+
+waccamaw-siousan:
+  name: Waccamaw-siousan
+  code: 1247-6
+  hierarchy: R1.01.052.014
+
+wicomico:
+  name: Wicomico
+  code: 1248-4
+  hierarchy: R1.01.052.015
+
+esselen:
+  name: Esselen
+  code: 1250-0
+  hierarchy: R1.01.053
+
+fort_belknap:
+  name: Fort Belknap
+  code: 1252-6
+  hierarchy: R1.01.054
+
+fort_berthold:
+  name: Fort Berthold
+  code: 1254-2
+  hierarchy: R1.01.055
+
+fort_mcdowell:
+  name: Fort Mcdowell
+  code: 1256-7
+  hierarchy: R1.01.056
+
+fort_hall:
+  name: Fort Hall
+  code: 1258-3
+  hierarchy: R1.01.057
+
+gabrieleno:
+  name: Gabrieleno
+  code: 1260-9
+  hierarchy: R1.01.058
+
+grand_ronde:
+  name: Grand Ronde
+  code: 1262-5
+  hierarchy: R1.01.059
+
+gros_ventres:
+  name: Gros Ventres
+  code: 1264-1
+  hierarchy: R1.01.060
+
+atsina:
+  name: Atsina
+  code: 1265-8
+  hierarchy: R1.01.060.001
+
+haliwa:
+  name: Haliwa
+  code: 1267-4
+  hierarchy: R1.01.061
+
+hidatsa:
+  name: Hidatsa
+  code: 1269-0
+  hierarchy: R1.01.062
+
+hoopa:
+  name: Hoopa
+  code: 1271-6
+  hierarchy: R1.01.063
+
+trinity:
+  name: Trinity
+  code: 1272-4
+  hierarchy: R1.01.063.001
+
+whilkut:
+  name: Whilkut
+  code: 1273-2
+  hierarchy: R1.01.063.002
+
+hoopa_extension:
+  name: Hoopa Extension
+  code: 1275-7
+  hierarchy: R1.01.064
+
+houma:
+  name: Houma
+  code: 1277-3
+  hierarchy: R1.01.065
+
+inaja-cosmit:
+  name: Inaja-cosmit
+  code: 1279-9
+  hierarchy: R1.01.066
+
+iowa:
+  name: Iowa
+  code: 1281-5
+  hierarchy: R1.01.067
+
+iowa_of_kansas-nebraska:
+  name: Iowa Of Kansas-nebraska
+  code: 1282-3
+  hierarchy: R1.01.067.001
+
+iowa_of_oklahoma:
+  name: Iowa Of Oklahoma
+  code: 1283-1
+  hierarchy: R1.01.067.002
+
+iroquois:
+  name: Iroquois
+  code: 1285-6
+  hierarchy: R1.01.068
+
+cayuga:
+  name: Cayuga
+  code: 1286-4
+  hierarchy: R1.01.068.001
+
+mohawk:
+  name: Mohawk
+  code: 1287-2
+  hierarchy: R1.01.068.002
+
+oneida:
+  name: Oneida
+  code: 1288-0
+  hierarchy: R1.01.068.003
+
+onondaga:
+  name: Onondaga
+  code: 1289-8
+  hierarchy: R1.01.068.004
+
+seneca:
+  name: Seneca
+  code: 1290-6
+  hierarchy: R1.01.068.005
+
+seneca_nation:
+  name: Seneca Nation
+  code: 1291-4
+  hierarchy: R1.01.068.006
+
+seneca-cayuga:
+  name: Seneca-cayuga
+  code: 1292-2
+  hierarchy: R1.01.068.007
+
+tonawanda_seneca:
+  name: Tonawanda Seneca
+  code: 1293-0
+  hierarchy: R1.01.068.008
+
+tuscarora:
+  name: Tuscarora
+  code: 1294-8
+  hierarchy: R1.01.068.009
+
+wyandotte:
+  name: Wyandotte
+  code: 1295-5
+  hierarchy: R1.01.068.010
+
+juaneno:
+  name: Juaneno
+  code: 1297-1
+  hierarchy: R1.01.069
+
+kalispel:
+  name: Kalispel
+  code: 1299-7
+  hierarchy: R1.01.070
+
+karuk:
+  name: Karuk
+  code: 1301-1
+  hierarchy: R1.01.071
+
+kaw:
+  name: Kaw
+  code: 1303-7
+  hierarchy: R1.01.072
+
+kickapoo:
+  name: Kickapoo
+  code: 1305-2
+  hierarchy: R1.01.073
+
+oklahoma_kickapoo:
+  name: Oklahoma Kickapoo
+  code: 1306-0
+  hierarchy: R1.01.073.001
+
+texas_kickapoo:
+  name: Texas Kickapoo
+  code: 1307-8
+  hierarchy: R1.01.073.002
+
+kiowa:
+  name: Kiowa
+  code: 1309-4
+  hierarchy: R1.01.074
+
+oklahoma_kiowa:
+  name: Oklahoma Kiowa
+  code: 1310-2
+  hierarchy: R1.01.074.001
+
+klallam:
+  name: Klallam
+  code: 1312-8
+  hierarchy: R1.01.075
+
+jamestown:
+  name: Jamestown
+  code: 1313-6
+  hierarchy: R1.01.075.001
+
+lower_elwha:
+  name: Lower Elwha
+  code: 1314-4
+  hierarchy: R1.01.075.002
+
+port_gamble_klallam:
+  name: Port Gamble Klallam
+  code: 1315-1
+  hierarchy: R1.01.075.003
+
+klamath:
+  name: Klamath
+  code: 1317-7
+  hierarchy: R1.01.076
+
+konkow:
+  name: Konkow
+  code: 1319-3
+  hierarchy: R1.01.077
+
+kootenai:
+  name: Kootenai
+  code: 1321-9
+  hierarchy: R1.01.078
+
+lassik:
+  name: Lassik
+  code: 1323-5
+  hierarchy: R1.01.079
+
+long_island:
+  name: Long Island
+  code: 1325-0
+  hierarchy: R1.01.080
+
+matinecock:
+  name: Matinecock
+  code: 1326-8
+  hierarchy: R1.01.080.001
+
+montauk:
+  name: Montauk
+  code: 1327-6
+  hierarchy: R1.01.080.002
+
+poospatuck:
+  name: Poospatuck
+  code: 1328-4
+  hierarchy: R1.01.080.003
+
+setauket:
+  name: Setauket
+  code: 1329-2
+  hierarchy: R1.01.080.004
+
+luiseno:
+  name: Luiseno
+  code: 1331-8
+  hierarchy: R1.01.081
+
+la_jolla:
+  name: La Jolla
+  code: 1332-6
+  hierarchy: R1.01.081.001
+
+pala:
+  name: Pala
+  code: 1333-4
+  hierarchy: R1.01.081.002
+
+pauma:
+  name: Pauma
+  code: 1334-2
+  hierarchy: R1.01.081.003
+
+pechanga:
+  name: Pechanga
+  code: 1335-9
+  hierarchy: R1.01.081.004
+
+soboba:
+  name: Soboba
+  code: 1336-7
+  hierarchy: R1.01.081.005
+
+twenty-nine_palms:
+  name: Twenty-nine Palms
+  code: 1337-5
+  hierarchy: R1.01.081.006
+
+temecula:
+  name: Temecula
+  code: 1338-3
+  hierarchy: R1.01.081.007
+
+lumbee:
+  name: Lumbee
+  code: 1340-9
+  hierarchy: R1.01.082
+
+lummi:
+  name: Lummi
+  code: 1342-5
+  hierarchy: R1.01.083
+
+maidu:
+  name: Maidu
+  code: 1344-1
+  hierarchy: R1.01.084
+
+mountain_maidu:
+  name: Mountain Maidu
+  code: 1345-8
+  hierarchy: R1.01.084.001
+
+nishinam:
+  name: Nishinam
+  code: 1346-6
+  hierarchy: R1.01.084.002
+
+makah:
+  name: Makah
+  code: 1348-2
+  hierarchy: R1.01.085
+
+maliseet:
+  name: Maliseet
+  code: 1350-8
+  hierarchy: R1.01.086
+
+mandan:
+  name: Mandan
+  code: 1352-4
+  hierarchy: R1.01.087
+
+mattaponi:
+  name: Mattaponi
+  code: 1354-0
+  hierarchy: R1.01.088
+
+menominee:
+  name: Menominee
+  code: 1356-5
+  hierarchy: R1.01.089
+
+miami:
+  name: Miami
+  code: 1358-1
+  hierarchy: R1.01.090
+
+illinois_miami:
+  name: Illinois Miami
+  code: 1359-9
+  hierarchy: R1.01.090.001
+
+indiana_miami:
+  name: Indiana Miami
+  code: 1360-7
+  hierarchy: R1.01.090.002
+
+oklahoma_miami:
+  name: Oklahoma Miami
+  code: 1361-5
+  hierarchy: R1.01.090.003
+
+miccosukee:
+  name: Miccosukee
+  code: 1363-1
+  hierarchy: R1.01.091
+
+micmac:
+  name: Micmac
+  code: 1365-6
+  hierarchy: R1.01.092
+
+aroostook:
+  name: Aroostook
+  code: 1366-4
+  hierarchy: R1.01.092.001
+
+mission_indians:
+  name: Mission Indians
+  code: 1368-0
+  hierarchy: R1.01.093
+
+miwok:
+  name: Miwok
+  code: 1370-6
+  hierarchy: R1.01.094
+
+modoc:
+  name: Modoc
+  code: 1372-2
+  hierarchy: R1.01.095
+
+mohegan:
+  name: Mohegan
+  code: 1374-8
+  hierarchy: R1.01.096
+
+mono:
+  name: Mono
+  code: 1376-3
+  hierarchy: R1.01.097
+
+nanticoke:
+  name: Nanticoke
+  code: 1378-9
+  hierarchy: R1.01.098
+
+narragansett:
+  name: Narragansett
+  code: 1380-5
+  hierarchy: R1.01.099
+
+navajo:
+  name: Navajo
+  code: 1382-1
+  hierarchy: R1.01.100
+
+alamo_navajo:
+  name: Alamo Navajo
+  code: 1383-9
+  hierarchy: R1.01.100.001
+
+canoncito_navajo:
+  name: Canoncito Navajo
+  code: 1384-7
+  hierarchy: R1.01.100.002
+
+ramah_navajo:
+  name: Ramah Navajo
+  code: 1385-4
+  hierarchy: R1.01.100.003
+
+nez_perce:
+  name: Nez Perce
+  code: 1387-0
+  hierarchy: R1.01.101
+
+nomalaki:
+  name: Nomalaki
+  code: 1389-6
+  hierarchy: R1.01.102
+
+northwest_tribes:
+  name: Northwest Tribes
+  code: 1391-2
+  hierarchy: R1.01.103
+
+alsea:
+  name: Alsea
+  code: 1392-0
+  hierarchy: R1.01.103.001
+
+celilo:
+  name: Celilo
+  code: 1393-8
+  hierarchy: R1.01.103.002
+
+columbia:
+  name: Columbia
+  code: 1394-6
+  hierarchy: R1.01.103.003
+
+kalapuya:
+  name: Kalapuya
+  code: 1395-3
+  hierarchy: R1.01.103.004
+
+molala:
+  name: Molala
+  code: 1396-1
+  hierarchy: R1.01.103.005
+
+talakamish:
+  name: Talakamish
+  code: 1397-9
+  hierarchy: R1.01.103.006
+
+tenino:
+  name: Tenino
+  code: 1398-7
+  hierarchy: R1.01.103.007
+
+tillamook:
+  name: Tillamook
+  code: 1399-5
+  hierarchy: R1.01.103.008
+
+wenatchee:
+  name: Wenatchee
+  code: 1400-1
+  hierarchy: R1.01.103.009
+
+yahooskin:
+  name: Yahooskin
+  code: 1401-9
+  hierarchy: R1.01.103.010
+
+omaha:
+  name: Omaha
+  code: 1403-5
+  hierarchy: R1.01.104
+
+oregon_athabaskan:
+  name: Oregon Athabaskan
+  code: 1405-0
+  hierarchy: R1.01.105
+
+osage:
+  name: Osage
+  code: 1407-6
+  hierarchy: R1.01.106
+
+otoe-missouria:
+  name: Otoe-missouria
+  code: 1409-2
+  hierarchy: R1.01.107
+
+ottawa:
+  name: Ottawa
+  code: 1411-8
+  hierarchy: R1.01.108
+
+burt_lake_ottawa:
+  name: Burt Lake Ottawa
+  code: 1412-6
+  hierarchy: R1.01.108.001
+
+michigan_ottawa:
+  name: Michigan Ottawa
+  code: 1413-4
+  hierarchy: R1.01.108.002
+
+oklahoma_ottawa:
+  name: Oklahoma Ottawa
+  code: 1414-2
+  hierarchy: R1.01.108.003
+
+paiute:
+  name: Paiute
+  code: 1416-7
+  hierarchy: R1.01.109
+
+bishop:
+  name: Bishop
+  code: 1417-5
+  hierarchy: R1.01.109.001
+
+bridgeport:
+  name: Bridgeport
+  code: 1418-3
+  hierarchy: R1.01.109.002
+
+burns_paiute:
+  name: Burns Paiute
+  code: 1419-1
+  hierarchy: R1.01.109.003
+
+cedarville:
+  name: Cedarville
+  code: 1420-9
+  hierarchy: R1.01.109.004
+
+fort_bidwell:
+  name: Fort Bidwell
+  code: 1421-7
+  hierarchy: R1.01.109.005
+
+fort_independence:
+  name: Fort Independence
+  code: 1422-5
+  hierarchy: R1.01.109.006
+
+kaibab:
+  name: Kaibab
+  code: 1423-3
+  hierarchy: R1.01.109.007
+
+las_vegas:
+  name: Las Vegas
+  code: 1424-1
+  hierarchy: R1.01.109.008
+
+lone_pine:
+  name: Lone Pine
+  code: 1425-8
+  hierarchy: R1.01.109.009
+
+lovelock:
+  name: Lovelock
+  code: 1426-6
+  hierarchy: R1.01.109.010
+
+malheur_paiute:
+  name: Malheur Paiute
+  code: 1427-4
+  hierarchy: R1.01.109.011
+
+moapa:
+  name: Moapa
+  code: 1428-2
+  hierarchy: R1.01.109.012
+
+northern_paiute:
+  name: Northern Paiute
+  code: 1429-0
+  hierarchy: R1.01.109.013
+
+owens_valley:
+  name: Owens Valley
+  code: 1430-8
+  hierarchy: R1.01.109.014
+
+pyramid_lake:
+  name: Pyramid Lake
+  code: 1431-6
+  hierarchy: R1.01.109.015
+
+san_juan_southern_paiute:
+  name: San Juan Southern Paiute
+  code: 1432-4
+  hierarchy: R1.01.109.016
+
+southern_paiute:
+  name: Southern Paiute
+  code: 1433-2
+  hierarchy: R1.01.109.017
+
+summit_lake:
+  name: Summit Lake
+  code: 1434-0
+  hierarchy: R1.01.109.018
+
+utu_utu_gwaitu_paiute:
+  name: Utu Utu Gwaitu Paiute
+  code: 1435-7
+  hierarchy: R1.01.109.019
+
+walker_river:
+  name: Walker River
+  code: 1436-5
+  hierarchy: R1.01.109.020
+
+yerington_paiute:
+  name: Yerington Paiute
+  code: 1437-3
+  hierarchy: R1.01.109.021
+
+pamunkey:
+  name: Pamunkey
+  code: 1439-9
+  hierarchy: R1.01.110
+
+passamaquoddy:
+  name: Passamaquoddy
+  code: 1441-5
+  hierarchy: R1.01.111
+
+indian_township:
+  name: Indian Township
+  code: 1442-3
+  hierarchy: R1.01.111.001
+
+pleasant_point_passamaquoddy:
+  name: Pleasant Point Passamaquoddy
+  code: 1443-1
+  hierarchy: R1.01.111.002
+
+pawnee:
+  name: Pawnee
+  code: 1445-6
+  hierarchy: R1.01.112
+
+oklahoma_pawnee:
+  name: Oklahoma Pawnee
+  code: 1446-4
+  hierarchy: R1.01.112.001
+
+penobscot:
+  name: Penobscot
+  code: 1448-0
+  hierarchy: R1.01.113
+
+peoria:
+  name: Peoria
+  code: 1450-6
+  hierarchy: R1.01.114
+
+oklahoma_peoria:
+  name: Oklahoma Peoria
+  code: 1451-4
+  hierarchy: R1.01.114.001
+
+pequot:
+  name: Pequot
+  code: 1453-0
+  hierarchy: R1.01.115
+
+marshantucket_pequot:
+  name: Marshantucket Pequot
+  code: 1454-8
+  hierarchy: R1.01.115.001
+
+pima:
+  name: Pima
+  code: 1456-3
+  hierarchy: R1.01.116
+
+gila_river_pima-maricopa:
+  name: Gila River Pima-maricopa
+  code: 1457-1
+  hierarchy: R1.01.116.001
+
+salt_river_pima-maricopa:
+  name: Salt River Pima-maricopa
+  code: 1458-9
+  hierarchy: R1.01.116.002
+
+piscataway:
+  name: Piscataway
+  code: 1460-5
+  hierarchy: R1.01.117
+
+pit_river:
+  name: Pit River
+  code: 1462-1
+  hierarchy: R1.01.118
+
+pomo:
+  name: Pomo
+  code: 1464-7
+  hierarchy: R1.01.119
+
+central_pomo:
+  name: Central Pomo
+  code: 1465-4
+  hierarchy: R1.01.119.001
+
+dry_creek:
+  name: Dry Creek
+  code: 1466-2
+  hierarchy: R1.01.119.002
+
+eastern_pomo:
+  name: Eastern Pomo
+  code: 1467-0
+  hierarchy: R1.01.119.003
+
+kashia:
+  name: Kashia
+  code: 1468-8
+  hierarchy: R1.01.119.004
+
+northern_pomo:
+  name: Northern Pomo
+  code: 1469-6
+  hierarchy: R1.01.119.005
+
+scotts_valley:
+  name: Scotts Valley
+  code: 1470-4
+  hierarchy: R1.01.119.006
+
+stonyford:
+  name: Stonyford
+  code: 1471-2
+  hierarchy: R1.01.119.007
+
+sulphur_bank:
+  name: Sulphur Bank
+  code: 1472-0
+  hierarchy: R1.01.119.008
+
+ponca:
+  name: Ponca
+  code: 1474-6
+  hierarchy: R1.01.120
+
+nebraska_ponca:
+  name: Nebraska Ponca
+  code: 1475-3
+  hierarchy: R1.01.120.001
+
+oklahoma_ponca:
+  name: Oklahoma Ponca
+  code: 1476-1
+  hierarchy: R1.01.120.002
+
+potawatomi:
+  name: Potawatomi
+  code: 1478-7
+  hierarchy: R1.01.121
+
+citizen_band_potawatomi:
+  name: Citizen Band Potawatomi
+  code: 1479-5
+  hierarchy: R1.01.121.001
+
+forest_county:
+  name: Forest County
+  code: 1480-3
+  hierarchy: R1.01.121.002
+
+hannahville:
+  name: Hannahville
+  code: 1481-1
+  hierarchy: R1.01.121.003
+
+huron_potawatomi:
+  name: Huron Potawatomi
+  code: 1482-9
+  hierarchy: R1.01.121.004
+
+pokagon_potawatomi:
+  name: Pokagon Potawatomi
+  code: 1483-7
+  hierarchy: R1.01.121.005
+
+prairie_band:
+  name: Prairie Band
+  code: 1484-5
+  hierarchy: R1.01.121.006
+
+wisconsin_potawatomi:
+  name: Wisconsin Potawatomi
+  code: 1485-2
+  hierarchy: R1.01.121.007
+
+powhatan:
+  name: Powhatan
+  code: 1487-8
+  hierarchy: R1.01.122
+
+pueblo:
+  name: Pueblo
+  code: 1489-4
+  hierarchy: R1.01.123
+
+acoma:
+  name: Acoma
+  code: 1490-2
+  hierarchy: R1.01.123.001
+
+arizona_tewa:
+  name: Arizona Tewa
+  code: 1491-0
+  hierarchy: R1.01.123.002
+
+cochiti:
+  name: Cochiti
+  code: 1492-8
+  hierarchy: R1.01.123.003
+
+hopi:
+  name: Hopi
+  code: 1493-6
+  hierarchy: R1.01.123.004
+
+isleta:
+  name: Isleta
+  code: 1494-4
+  hierarchy: R1.01.123.005
+
+jemez:
+  name: Jemez
+  code: 1495-1
+  hierarchy: R1.01.123.006
+
+keres:
+  name: Keres
+  code: 1496-9
+  hierarchy: R1.01.123.007
+
+laguna:
+  name: Laguna
+  code: 1497-7
+  hierarchy: R1.01.123.008
+
+nambe:
+  name: Nambe
+  code: 1498-5
+  hierarchy: R1.01.123.009
+
+picuris:
+  name: Picuris
+  code: 1499-3
+  hierarchy: R1.01.123.010
+
+piro:
+  name: Piro
+  code: 1500-8
+  hierarchy: R1.01.123.011
+
+pojoaque:
+  name: Pojoaque
+  code: 1501-6
+  hierarchy: R1.01.123.012
+
+san_felipe:
+  name: San Felipe
+  code: 1502-4
+  hierarchy: R1.01.123.013
+
+san_ildefonso:
+  name: San Ildefonso
+  code: 1503-2
+  hierarchy: R1.01.123.014
+
+san_juan_pueblo:
+  name: San Juan Pueblo
+  code: 1504-0
+  hierarchy: R1.01.123.015
+
+san_juan_de:
+  name: San Juan De
+  code: 1505-7
+  hierarchy: R1.01.123.016
+
+san_juan:
+  name: San Juan
+  code: 1506-5
+  hierarchy: R1.01.123.017
+
+sandia:
+  name: Sandia
+  code: 1507-3
+  hierarchy: R1.01.123.018
+
+santa_ana:
+  name: Santa Ana
+  code: 1508-1
+  hierarchy: R1.01.123.019
+
+santa_clara:
+  name: Santa Clara
+  code: 1509-9
+  hierarchy: R1.01.123.020
+
+santo_domingo:
+  name: Santo Domingo
+  code: 1510-7
+  hierarchy: R1.01.123.021
+
+taos:
+  name: Taos
+  code: 1511-5
+  hierarchy: R1.01.123.022
+
+tesuque:
+  name: Tesuque
+  code: 1512-3
+  hierarchy: R1.01.123.023
+
+tewa:
+  name: Tewa
+  code: 1513-1
+  hierarchy: R1.01.123.024
+
+tigua:
+  name: Tigua
+  code: 1514-9
+  hierarchy: R1.01.123.025
+
+zia:
+  name: Zia
+  code: 1515-6
+  hierarchy: R1.01.123.026
+
+zuni:
+  name: Zuni
+  code: 1516-4
+  hierarchy: R1.01.123.027
+
+puget_sound_salish:
+  name: Puget Sound Salish
+  code: 1518-0
+  hierarchy: R1.01.124
+
+duwamish:
+  name: Duwamish
+  code: 1519-8
+  hierarchy: R1.01.124.001
+
+kikiallus:
+  name: Kikiallus
+  code: 1520-6
+  hierarchy: R1.01.124.002
+
+lower_skagit:
+  name: Lower Skagit
+  code: 1521-4
+  hierarchy: R1.01.124.003
+
+muckleshoot:
+  name: Muckleshoot
+  code: 1522-2
+  hierarchy: R1.01.124.004
+
+nisqually:
+  name: Nisqually
+  code: 1523-0
+  hierarchy: R1.01.124.005
+
+nooksack:
+  name: Nooksack
+  code: 1524-8
+  hierarchy: R1.01.124.006
+
+port_madison:
+  name: Port Madison
+  code: 1525-5
+  hierarchy: R1.01.124.007
+
+puyallup:
+  name: Puyallup
+  code: 1526-3
+  hierarchy: R1.01.124.008
+
+samish:
+  name: Samish
+  code: 1527-1
+  hierarchy: R1.01.124.009
+
+sauk-suiattle:
+  name: Sauk-suiattle
+  code: 1528-9
+  hierarchy: R1.01.124.010
+
+skokomish:
+  name: Skokomish
+  code: 1529-7
+  hierarchy: R1.01.124.011
+
+skykomish:
+  name: Skykomish
+  code: 1530-5
+  hierarchy: R1.01.124.012
+
+snohomish:
+  name: Snohomish
+  code: 1531-3
+  hierarchy: R1.01.124.013
+
+snoqualmie:
+  name: Snoqualmie
+  code: 1532-1
+  hierarchy: R1.01.124.014
+
+squaxin_island:
+  name: Squaxin Island
+  code: 1533-9
+  hierarchy: R1.01.124.015
+
+steilacoom:
+  name: Steilacoom
+  code: 1534-7
+  hierarchy: R1.01.124.016
+
+stillaguamish:
+  name: Stillaguamish
+  code: 1535-4
+  hierarchy: R1.01.124.017
+
+suquamish:
+  name: Suquamish
+  code: 1536-2
+  hierarchy: R1.01.124.018
+
+swinomish:
+  name: Swinomish
+  code: 1537-0
+  hierarchy: R1.01.124.019
+
+tulalip:
+  name: Tulalip
+  code: 1538-8
+  hierarchy: R1.01.124.020
+
+upper_skagit:
+  name: Upper Skagit
+  code: 1539-6
+  hierarchy: R1.01.124.021
+
+quapaw:
+  name: Quapaw
+  code: 1541-2
+  hierarchy: R1.01.125
+
+quinault:
+  name: Quinault
+  code: 1543-8
+  hierarchy: R1.01.126
+
+rappahannock:
+  name: Rappahannock
+  code: 1545-3
+  hierarchy: R1.01.127
+
+reno-sparks:
+  name: Reno-sparks
+  code: 1547-9
+  hierarchy: R1.01.128
+
+round_valley:
+  name: Round Valley
+  code: 1549-5
+  hierarchy: R1.01.129
+
+sac_and_fox:
+  name: Sac And Fox
+  code: 1551-1
+  hierarchy: R1.01.130
+
+iowa_sac_and_fox:
+  name: Iowa Sac And Fox
+  code: 1552-9
+  hierarchy: R1.01.130.001
+
+missouri_sac_and_fox:
+  name: Missouri Sac And Fox
+  code: 1553-7
+  hierarchy: R1.01.130.002
+
+oklahoma_sac_and_fox:
+  name: Oklahoma Sac And Fox
+  code: 1554-5
+  hierarchy: R1.01.130.003
+
+salinan:
+  name: Salinan
+  code: 1556-0
+  hierarchy: R1.01.131
+
+salish:
+  name: Salish
+  code: 1558-6
+  hierarchy: R1.01.132
+
+salish_and_kootenai:
+  name: Salish And Kootenai
+  code: 1560-2
+  hierarchy: R1.01.133
+
+schaghticoke:
+  name: Schaghticoke
+  code: 1562-8
+  hierarchy: R1.01.134
+
+scott_valley:
+  name: Scott Valley
+  code: 1564-4
+  hierarchy: R1.01.135
+
+seminole:
+  name: Seminole
+  code: 1566-9
+  hierarchy: R1.01.136
+
+big_cypress:
+  name: Big Cypress
+  code: 1567-7
+  hierarchy: R1.01.136.001
+
+brighton:
+  name: Brighton
+  code: 1568-5
+  hierarchy: R1.01.136.002
+
+florida_seminole:
+  name: Florida Seminole
+  code: 1569-3
+  hierarchy: R1.01.136.003
+
+hollywood_seminole:
+  name: Hollywood Seminole
+  code: 1570-1
+  hierarchy: R1.01.136.004
+
+oklahoma_seminole:
+  name: Oklahoma Seminole
+  code: 1571-9
+  hierarchy: R1.01.136.005
+
+serrano:
+  name: Serrano
+  code: 1573-5
+  hierarchy: R1.01.137
+
+san_manual:
+  name: San Manual
+  code: 1574-3
+  hierarchy: R1.01.137.001
+
+shasta:
+  name: Shasta
+  code: 1576-8
+  hierarchy: R1.01.138
+
+shawnee:
+  name: Shawnee
+  code: 1578-4
+  hierarchy: R1.01.139
+
+absentee_shawnee:
+  name: Absentee Shawnee
+  code: 1579-2
+  hierarchy: R1.01.139.001
+
+eastern_shawnee:
+  name: Eastern Shawnee
+  code: 1580-0
+  hierarchy: R1.01.139.002
+
+shinnecock:
+  name: Shinnecock
+  code: 1582-6
+  hierarchy: R1.01.140
+
+shoalwater_bay:
+  name: Shoalwater Bay
+  code: 1584-2
+  hierarchy: R1.01.141
+
+shoshone:
+  name: Shoshone
+  code: 1586-7
+  hierarchy: R1.01.142
+
+battle_mountain:
+  name: Battle Mountain
+  code: 1587-5
+  hierarchy: R1.01.142.001
+
+duckwater:
+  name: Duckwater
+  code: 1588-3
+  hierarchy: R1.01.142.002
+
+elko:
+  name: Elko
+  code: 1589-1
+  hierarchy: R1.01.142.003
+
+ely:
+  name: Ely
+  code: 1590-9
+  hierarchy: R1.01.142.004
+
+goshute:
+  name: Goshute
+  code: 1591-7
+  hierarchy: R1.01.142.005
+
+panamint:
+  name: Panamint
+  code: 1592-5
+  hierarchy: R1.01.142.006
+
+ruby_valley:
+  name: Ruby Valley
+  code: 1593-3
+  hierarchy: R1.01.142.007
+
+skull_valley:
+  name: Skull Valley
+  code: 1594-1
+  hierarchy: R1.01.142.008
+
+south_fork_shoshone:
+  name: South Fork Shoshone
+  code: 1595-8
+  hierarchy: R1.01.142.009
+
+te-moak_western_shoshone:
+  name: Te-moak Western Shoshone
+  code: 1596-6
+  hierarchy: R1.01.142.010
+
+timbi-sha_shoshone:
+  name: Timbi-sha Shoshone
+  code: 1597-4
+  hierarchy: R1.01.142.011
+
+washakie:
+  name: Washakie
+  code: 1598-2
+  hierarchy: R1.01.142.012
+
+wind_river_shoshone:
+  name: Wind River Shoshone
+  code: 1599-0
+  hierarchy: R1.01.142.013
+
+yomba:
+  name: Yomba
+  code: 1600-6
+  hierarchy: R1.01.142.014
+
+shoshone_paiute:
+  name: Shoshone Paiute
+  code: 1602-2
+  hierarchy: R1.01.143
+
+duck_valley:
+  name: Duck Valley
+  code: 1603-0
+  hierarchy: R1.01.143.001
+
+fallon:
+  name: Fallon
+  code: 1604-8
+  hierarchy: R1.01.143.002
+
+fort_mcdermitt:
+  name: Fort Mcdermitt
+  code: 1605-5
+  hierarchy: R1.01.143.003
+
+siletz:
+  name: Siletz
+  code: 1607-1
+  hierarchy: R1.01.144
+
+sioux:
+  name: Sioux
+  code: 1609-7
+  hierarchy: R1.01.145
+
+blackfoot_sioux:
+  name: Blackfoot Sioux
+  code: 1610-5
+  hierarchy: R1.01.145.001
+
+brule_sioux:
+  name: Brule Sioux
+  code: 1611-3
+  hierarchy: R1.01.145.002
+
+cheyenne_river_sioux:
+  name: Cheyenne River Sioux
+  code: 1612-1
+  hierarchy: R1.01.145.003
+
+crow_creek_sioux:
+  name: Crow Creek Sioux
+  code: 1613-9
+  hierarchy: R1.01.145.004
+
+dakota_sioux:
+  name: Dakota Sioux
+  code: 1614-7
+  hierarchy: R1.01.145.005
+
+flandreau_santee:
+  name: Flandreau Santee
+  code: 1615-4
+  hierarchy: R1.01.145.006
+
+fort_peck:
+  name: Fort Peck
+  code: 1616-2
+  hierarchy: R1.01.145.007
+
+lake_traverse_sioux:
+  name: Lake Traverse Sioux
+  code: 1617-0
+  hierarchy: R1.01.145.008
+
+lower_brule_sioux:
+  name: Lower Brule Sioux
+  code: 1618-8
+  hierarchy: R1.01.145.009
+
+lower_sioux:
+  name: Lower Sioux
+  code: 1619-6
+  hierarchy: R1.01.145.010
+
+mdewakanton_sioux:
+  name: Mdewakanton Sioux
+  code: 1620-4
+  hierarchy: R1.01.145.011
+
+miniconjou:
+  name: Miniconjou
+  code: 1621-2
+  hierarchy: R1.01.145.012
+
+oglala_sioux:
+  name: Oglala Sioux
+  code: 1622-0
+  hierarchy: R1.01.145.013
+
+pine_ridge_sioux:
+  name: Pine Ridge Sioux
+  code: 1623-8
+  hierarchy: R1.01.145.014
+
+pipestone_sioux:
+  name: Pipestone Sioux
+  code: 1624-6
+  hierarchy: R1.01.145.015
+
+prairie_island_sioux:
+  name: Prairie Island Sioux
+  code: 1625-3
+  hierarchy: R1.01.145.016
+
+prior_lake_sioux:
+  name: Prior Lake Sioux
+  code: 1626-1
+  hierarchy: R1.01.145.017
+
+rosebud_sioux:
+  name: Rosebud Sioux
+  code: 1627-9
+  hierarchy: R1.01.145.018
+
+sans_arc_sioux:
+  name: Sans Arc Sioux
+  code: 1628-7
+  hierarchy: R1.01.145.019
+
+santee_sioux:
+  name: Santee Sioux
+  code: 1629-5
+  hierarchy: R1.01.145.020
+
+sisseton-wahpeton:
+  name: Sisseton-wahpeton
+  code: 1630-3
+  hierarchy: R1.01.145.021
+
+sisseton_sioux:
+  name: Sisseton Sioux
+  code: 1631-1
+  hierarchy: R1.01.145.022
+
+spirit_lake_sioux:
+  name: Spirit Lake Sioux
+  code: 1632-9
+  hierarchy: R1.01.145.023
+
+standing_rock_sioux:
+  name: Standing Rock Sioux
+  code: 1633-7
+  hierarchy: R1.01.145.024
+
+teton_sioux:
+  name: Teton Sioux
+  code: 1634-5
+  hierarchy: R1.01.145.025
+
+two_kettle_sioux:
+  name: Two Kettle Sioux
+  code: 1635-2
+  hierarchy: R1.01.145.026
+
+upper_sioux:
+  name: Upper Sioux
+  code: 1636-0
+  hierarchy: R1.01.145.027
+
+wahpekute_sioux:
+  name: Wahpekute Sioux
+  code: 1637-8
+  hierarchy: R1.01.145.028
+
+wahpeton_sioux:
+  name: Wahpeton Sioux
+  code: 1638-6
+  hierarchy: R1.01.145.029
+
+wazhaza_sioux:
+  name: Wazhaza Sioux
+  code: 1639-4
+  hierarchy: R1.01.145.030
+
+yankton_sioux:
+  name: Yankton Sioux
+  code: 1640-2
+  hierarchy: R1.01.145.031
+
+yanktonai_sioux:
+  name: Yanktonai Sioux
+  code: 1641-0
+  hierarchy: R1.01.145.032
+
+siuslaw:
+  name: Siuslaw
+  code: 1643-6
+  hierarchy: R1.01.146
+
+spokane:
+  name: Spokane
+  code: 1645-1
+  hierarchy: R1.01.147
+
+stewart:
+  name: Stewart
+  code: 1647-7
+  hierarchy: R1.01.148
+
+stockbridge:
+  name: Stockbridge
+  code: 1649-3
+  hierarchy: R1.01.149
+
+susanville:
+  name: Susanville
+  code: 1651-9
+  hierarchy: R1.01.150
+
+tohono_oodham:
+  name: Tohono O'odham
+  code: 1653-5
+  hierarchy: R1.01.151
+
+ak-chin:
+  name: Ak-chin
+  code: 1654-3
+  hierarchy: R1.01.151.001
+
+gila_bend:
+  name: Gila Bend
+  code: 1655-0
+  hierarchy: R1.01.151.002
+
+san_xavier:
+  name: San Xavier
+  code: 1656-8
+  hierarchy: R1.01.151.003
+
+sells:
+  name: Sells
+  code: 1657-6
+  hierarchy: R1.01.151.004
+
+tolowa:
+  name: Tolowa
+  code: 1659-2
+  hierarchy: R1.01.152
+
+tonkawa:
+  name: Tonkawa
+  code: 1661-8
+  hierarchy: R1.01.153
+
+tygh:
+  name: Tygh
+  code: 1663-4
+  hierarchy: R1.01.154
+
+umatilla:
+  name: Umatilla
+  code: 1665-9
+  hierarchy: R1.01.155
+
+umpqua:
+  name: Umpqua
+  code: 1667-5
+  hierarchy: R1.01.156
+
+cow_creek_umpqua:
+  name: Cow Creek Umpqua
+  code: 1668-3
+  hierarchy: R1.01.156.001
+
+ute:
+  name: Ute
+  code: 1670-9
+  hierarchy: R1.01.157
+
+allen_canyon:
+  name: Allen Canyon
+  code: 1671-7
+  hierarchy: R1.01.157.001
+
+uintah_ute:
+  name: Uintah Ute
+  code: 1672-5
+  hierarchy: R1.01.157.002
+
+ute_mountain_ute:
+  name: Ute Mountain Ute
+  code: 1673-3
+  hierarchy: R1.01.157.003
+
+wailaki:
+  name: Wailaki
+  code: 1675-8
+  hierarchy: R1.01.158
+
+walla-walla:
+  name: Walla-walla
+  code: 1677-4
+  hierarchy: R1.01.159
+
+wampanoag:
+  name: Wampanoag
+  code: 1679-0
+  hierarchy: R1.01.160
+
+gay_head_wampanoag:
+  name: Gay Head Wampanoag
+  code: 1680-8
+  hierarchy: R1.01.160.001
+
+mashpee_wampanoag:
+  name: Mashpee Wampanoag
+  code: 1681-6
+  hierarchy: R1.01.160.002
+
+warm_springs:
+  name: Warm Springs
+  code: 1683-2
+  hierarchy: R1.01.161
+
+wascopum:
+  name: Wascopum
+  code: 1685-7
+  hierarchy: R1.01.162
+
+washoe:
+  name: Washoe
+  code: 1687-3
+  hierarchy: R1.01.163
+
+alpine:
+  name: Alpine
+  code: 1688-1
+  hierarchy: R1.01.163.001
+
+carson:
+  name: Carson
+  code: 1689-9
+  hierarchy: R1.01.163.002
+
+dresslerville:
+  name: Dresslerville
+  code: 1690-7
+  hierarchy: R1.01.163.003
+
+wichita:
+  name: Wichita
+  code: 1692-3
+  hierarchy: R1.01.164
+
+wind_river:
+  name: Wind River
+  code: 1694-9
+  hierarchy: R1.01.165
+
+winnebago:
+  name: Winnebago
+  code: 1696-4
+  hierarchy: R1.01.166
+
+ho-chunk:
+  name: Ho-chunk
+  code: 1697-2
+  hierarchy: R1.01.166.001
+
+nebraska_winnebago:
+  name: Nebraska Winnebago
+  code: 1698-0
+  hierarchy: R1.01.166.002
+
+winnemucca:
+  name: Winnemucca
+  code: 1700-4
+  hierarchy: R1.01.167
+
+wintun:
+  name: Wintun
+  code: 1702-0
+  hierarchy: R1.01.168
+
+wiyot:
+  name: Wiyot
+  code: 1704-6
+  hierarchy: R1.01.169
+
+table_bluff:
+  name: Table Bluff
+  code: 1705-3
+  hierarchy: R1.01.169.001
+
+yakama:
+  name: Yakama
+  code: 1707-9
+  hierarchy: R1.01.170
+
+yakama_cowlitz:
+  name: Yakama Cowlitz
+  code: 1709-5
+  hierarchy: R1.01.171
+
+yaqui:
+  name: Yaqui
+  code: 1711-1
+  hierarchy: R1.01.172
+
+barrio_libre:
+  name: Barrio Libre
+  code: 1712-9
+  hierarchy: R1.01.172.001
+
+pascua_yaqui:
+  name: Pascua Yaqui
+  code: 1713-7
+  hierarchy: R1.01.172.002
+
+yavapai_apache:
+  name: Yavapai Apache
+  code: 1715-2
+  hierarchy: R1.01.173
+
+yokuts:
+  name: Yokuts
+  code: 1717-8
+  hierarchy: R1.01.174
+
+chukchansi:
+  name: Chukchansi
+  code: 1718-6
+  hierarchy: R1.01.174.001
+
+tachi:
+  name: Tachi
+  code: 1719-4
+  hierarchy: R1.01.174.002
+
+tule_river:
+  name: Tule River
+  code: 1720-2
+  hierarchy: R1.01.174.003
+
+yuchi:
+  name: Yuchi
+  code: 1722-8
+  hierarchy: R1.01.175
+
+yuman:
+  name: Yuman
+  code: 1724-4
+  hierarchy: R1.01.176
+
+cocopah:
+  name: Cocopah
+  code: 1725-1
+  hierarchy: R1.01.176.001
+
+havasupai:
+  name: Havasupai
+  code: 1726-9
+  hierarchy: R1.01.176.002
+
+hualapai:
+  name: Hualapai
+  code: 1727-7
+  hierarchy: R1.01.176.003
+
+maricopa:
+  name: Maricopa
+  code: 1728-5
+  hierarchy: R1.01.176.004
+
+mohave:
+  name: Mohave
+  code: 1729-3
+  hierarchy: R1.01.176.005
+
+quechan:
+  name: Quechan
+  code: 1730-1
+  hierarchy: R1.01.176.006
+
+yavapai:
+  name: Yavapai
+  code: 1731-9
+  hierarchy: R1.01.176.007
+
+yurok:
+  name: Yurok
+  code: 1732-7
+  hierarchy: R1.01.177
+
+coast_yurok:
+  name: Coast Yurok
+  code: 1733-5
+  hierarchy: R1.01.177.001
+
+alaska_native:
+  name: Alaska Native
+  code: 1735-0
+  hierarchy: R1.02
+
+alaska_indian:
+  name: Alaska Indian
+  code: 1737-6
+  hierarchy: R1.02.001
+
+alaskan_athabascan:
+  name: Alaskan Athabascan
+  code: 1739-2
+  hierarchy: R1.02.001.001
+
+ahtna:
+  name: Ahtna
+  code: 1740-0
+  hierarchy: R1.02.001.001.001
+
+alatna:
+  name: Alatna
+  code: 1741-8
+  hierarchy: R1.02.001.001.002
+
+alexander:
+  name: Alexander
+  code: 1742-6
+  hierarchy: R1.02.001.001.003
+
+allakaket:
+  name: Allakaket
+  code: 1743-4
+  hierarchy: R1.02.001.001.004
+
+alanvik:
+  name: Alanvik
+  code: 1744-2
+  hierarchy: R1.02.001.001.005
+
+anvik:
+  name: Anvik
+  code: 1745-9
+  hierarchy: R1.02.001.001.006
+
+arctic:
+  name: Arctic
+  code: 1746-7
+  hierarchy: R1.02.001.001.007
+
+beaver:
+  name: Beaver
+  code: 1747-5
+  hierarchy: R1.02.001.001.008
+
+birch_creek:
+  name: Birch Creek
+  code: 1748-3
+  hierarchy: R1.02.001.001.009
+
+cantwell:
+  name: Cantwell
+  code: 1749-1
+  hierarchy: R1.02.001.001.010
+
+chalkyitsik:
+  name: Chalkyitsik
+  code: 1750-9
+  hierarchy: R1.02.001.001.011
+
+chickaloon:
+  name: Chickaloon
+  code: 1751-7
+  hierarchy: R1.02.001.001.012
+
+chistochina:
+  name: Chistochina
+  code: 1752-5
+  hierarchy: R1.02.001.001.013
+
+chitina:
+  name: Chitina
+  code: 1753-3
+  hierarchy: R1.02.001.001.014
+
+circle:
+  name: Circle
+  code: 1754-1
+  hierarchy: R1.02.001.001.015
+
+cook_inlet:
+  name: Cook Inlet
+  code: 1755-8
+  hierarchy: R1.02.001.001.016
+
+copper_center:
+  name: Copper Center
+  code: 1756-6
+  hierarchy: R1.02.001.001.017
+
+copper_river:
+  name: Copper River
+  code: 1757-4
+  hierarchy: R1.02.001.001.018
+
+dot_lake:
+  name: Dot Lake
+  code: 1758-2
+  hierarchy: R1.02.001.001.019
+
+doyon:
+  name: Doyon
+  code: 1759-0
+  hierarchy: R1.02.001.001.020
+
+eagle:
+  name: Eagle
+  code: 1760-8
+  hierarchy: R1.02.001.001.021
+
+eklutna:
+  name: Eklutna
+  code: 1761-6
+  hierarchy: R1.02.001.001.022
+
+evansville:
+  name: Evansville
+  code: 1762-4
+  hierarchy: R1.02.001.001.023
+
+fort_yukon:
+  name: Fort Yukon
+  code: 1763-2
+  hierarchy: R1.02.001.001.024
+
+gakona:
+  name: Gakona
+  code: 1764-0
+  hierarchy: R1.02.001.001.025
+
+galena:
+  name: Galena
+  code: 1765-7
+  hierarchy: R1.02.001.001.026
+
+grayling:
+  name: Grayling
+  code: 1766-5
+  hierarchy: R1.02.001.001.027
+
+gulkana:
+  name: Gulkana
+  code: 1767-3
+  hierarchy: R1.02.001.001.028
+
+healy_lake:
+  name: Healy Lake
+  code: 1768-1
+  hierarchy: R1.02.001.001.029
+
+holy_cross:
+  name: Holy Cross
+  code: 1769-9
+  hierarchy: R1.02.001.001.030
+
+hughes:
+  name: Hughes
+  code: 1770-7
+  hierarchy: R1.02.001.001.031
+
+huslia:
+  name: Huslia
+  code: 1771-5
+  hierarchy: R1.02.001.001.032
+
+iliamna:
+  name: Iliamna
+  code: 1772-3
+  hierarchy: R1.02.001.001.033
+
+kaltag:
+  name: Kaltag
+  code: 1773-1
+  hierarchy: R1.02.001.001.034
+
+kluti_kaah:
+  name: Kluti Kaah
+  code: 1774-9
+  hierarchy: R1.02.001.001.035
+
+knik:
+  name: Knik
+  code: 1775-6
+  hierarchy: R1.02.001.001.036
+
+koyukuk:
+  name: Koyukuk
+  code: 1776-4
+  hierarchy: R1.02.001.001.037
+
+lake_minchumina:
+  name: Lake Minchumina
+  code: 1777-2
+  hierarchy: R1.02.001.001.038
+
+lime:
+  name: Lime
+  code: 1778-0
+  hierarchy: R1.02.001.001.039
+
+mcgrath:
+  name: Mcgrath
+  code: 1779-8
+  hierarchy: R1.02.001.001.040
+
+manley_hot_springs:
+  name: Manley Hot Springs
+  code: 1780-6
+  hierarchy: R1.02.001.001.041
+
+mentasta_lake:
+  name: Mentasta Lake
+  code: 1781-4
+  hierarchy: R1.02.001.001.042
+
+minto:
+  name: Minto
+  code: 1782-2
+  hierarchy: R1.02.001.001.043
+
+nenana:
+  name: Nenana
+  code: 1783-0
+  hierarchy: R1.02.001.001.044
+
+nikolai:
+  name: Nikolai
+  code: 1784-8
+  hierarchy: R1.02.001.001.045
+
+ninilchik:
+  name: Ninilchik
+  code: 1785-5
+  hierarchy: R1.02.001.001.046
+
+nondalton:
+  name: Nondalton
+  code: 1786-3
+  hierarchy: R1.02.001.001.047
+
+northway:
+  name: Northway
+  code: 1787-1
+  hierarchy: R1.02.001.001.048
+
+nulato:
+  name: Nulato
+  code: 1788-9
+  hierarchy: R1.02.001.001.049
+
+pedro_bay:
+  name: Pedro Bay
+  code: 1789-7
+  hierarchy: R1.02.001.001.050
+
+rampart:
+  name: Rampart
+  code: 1790-5
+  hierarchy: R1.02.001.001.051
+
+ruby:
+  name: Ruby
+  code: 1791-3
+  hierarchy: R1.02.001.001.052
+
+salamatof:
+  name: Salamatof
+  code: 1792-1
+  hierarchy: R1.02.001.001.053
+
+seldovia:
+  name: Seldovia
+  code: 1793-9
+  hierarchy: R1.02.001.001.054
+
+slana:
+  name: Slana
+  code: 1794-7
+  hierarchy: R1.02.001.001.055
+
+shageluk:
+  name: Shageluk
+  code: 1795-4
+  hierarchy: R1.02.001.001.056
+
+stevens:
+  name: Stevens
+  code: 1796-2
+  hierarchy: R1.02.001.001.057
+
+stony_river:
+  name: Stony River
+  code: 1797-0
+  hierarchy: R1.02.001.001.058
+
+takotna:
+  name: Takotna
+  code: 1798-8
+  hierarchy: R1.02.001.001.059
+
+tanacross:
+  name: Tanacross
+  code: 1799-6
+  hierarchy: R1.02.001.001.060
+
+tanaina:
+  name: Tanaina
+  code: 1800-2
+  hierarchy: R1.02.001.001.061
+
+tanana:
+  name: Tanana
+  code: 1801-0
+  hierarchy: R1.02.001.001.062
+
+tanana_chiefs:
+  name: Tanana Chiefs
+  code: 1802-8
+  hierarchy: R1.02.001.001.063
+
+tazlina:
+  name: Tazlina
+  code: 1803-6
+  hierarchy: R1.02.001.001.064
+
+telida:
+  name: Telida
+  code: 1804-4
+  hierarchy: R1.02.001.001.065
+
+tetlin:
+  name: Tetlin
+  code: 1805-1
+  hierarchy: R1.02.001.001.066
+
+tok:
+  name: Tok
+  code: 1806-9
+  hierarchy: R1.02.001.001.067
+
+tyonek:
+  name: Tyonek
+  code: 1807-7
+  hierarchy: R1.02.001.001.068
+
+venetie:
+  name: Venetie
+  code: 1808-5
+  hierarchy: R1.02.001.001.069
+
+wiseman:
+  name: Wiseman
+  code: 1809-3
+  hierarchy: R1.02.001.001.070
+
+southeast_alaska:
+  name: Southeast Alaska
+  code: 1811-9
+  hierarchy: R1.02.001.002
+
+tlingit-haida:
+  name: Tlingit-haida
+  code: 1813-5
+  hierarchy: R1.02.001.002.001
+
+angoon:
+  name: Angoon
+  code: 1814-3
+  hierarchy: R1.02.001.002.001.001
+
+central_council_of_tlingit_and_haida_tribes:
+  name: Central Council Of Tlingit And Haida Tribes
+  code: 1815-0
+  hierarchy: R1.02.001.002.001.002
+
+chilkat:
+  name: Chilkat
+  code: 1816-8
+  hierarchy: R1.02.001.002.001.003
+
+chilkoot:
+  name: Chilkoot
+  code: 1817-6
+  hierarchy: R1.02.001.002.001.004
+
+craig:
+  name: Craig
+  code: 1818-4
+  hierarchy: R1.02.001.002.001.005
+
+douglas:
+  name: Douglas
+  code: 1819-2
+  hierarchy: R1.02.001.002.001.006
+
+haida:
+  name: Haida
+  code: 1820-0
+  hierarchy: R1.02.001.002.001.007
+
+hoonah:
+  name: Hoonah
+  code: 1821-8
+  hierarchy: R1.02.001.002.001.008
+
+hydaburg:
+  name: Hydaburg
+  code: 1822-6
+  hierarchy: R1.02.001.002.001.009
+
+kake:
+  name: Kake
+  code: 1823-4
+  hierarchy: R1.02.001.002.001.010
+
+kasaan:
+  name: Kasaan
+  code: 1824-2
+  hierarchy: R1.02.001.002.001.011
+
+kenaitze:
+  name: Kenaitze
+  code: 1825-9
+  hierarchy: R1.02.001.002.001.012
+
+ketchikan:
+  name: Ketchikan
+  code: 1826-7
+  hierarchy: R1.02.001.002.001.013
+
+klawock:
+  name: Klawock
+  code: 1827-5
+  hierarchy: R1.02.001.002.001.014
+
+pelican:
+  name: Pelican
+  code: 1828-3
+  hierarchy: R1.02.001.002.001.015
+
+petersburg:
+  name: Petersburg
+  code: 1829-1
+  hierarchy: R1.02.001.002.001.016
+
+saxman:
+  name: Saxman
+  code: 1830-9
+  hierarchy: R1.02.001.002.001.017
+
+sitka:
+  name: Sitka
+  code: 1831-7
+  hierarchy: R1.02.001.002.001.018
+
+tenakee_springs:
+  name: Tenakee Springs
+  code: 1832-5
+  hierarchy: R1.02.001.002.001.019
+
+tlingit:
+  name: Tlingit
+  code: 1833-3
+  hierarchy: R1.02.001.002.001.020
+
+wrangell:
+  name: Wrangell
+  code: 1834-1
+  hierarchy: R1.02.001.002.001.021
+
+yakutat:
+  name: Yakutat
+  code: 1835-8
+  hierarchy: R1.02.001.002.001.022
+
+tsimshian:
+  name: Tsimshian
+  code: 1837-4
+  hierarchy: R1.02.001.002.002
+
+metlakatla:
+  name: Metlakatla
+  code: 1838-2
+  hierarchy: R1.02.001.002.002.001
+
+eskimo:
+  name: Eskimo
+  code: 1840-8
+  hierarchy: R1.02.002
+
+greenland_eskimo:
+  name: Greenland Eskimo
+  code: 1842-4
+  hierarchy: R1.02.002.001
+
+inupiat_eskimo:
+  name: Inupiat Eskimo
+  code: 1844-0
+  hierarchy: R1.02.002.002
+
+ambler:
+  name: Ambler
+  code: 1845-7
+  hierarchy: R1.02.002.002.001
+
+anaktuvuk:
+  name: Anaktuvuk
+  code: 1846-5
+  hierarchy: R1.02.002.002.002
+
+anaktuvuk_pass:
+  name: Anaktuvuk Pass
+  code: 1847-3
+  hierarchy: R1.02.002.002.003
+
+arctic_slope_inupiat:
+  name: Arctic Slope Inupiat
+  code: 1848-1
+  hierarchy: R1.02.002.002.004
+
+arctic_slope_corporation:
+  name: Arctic Slope Corporation
+  code: 1849-9
+  hierarchy: R1.02.002.002.005
+
+atqasuk:
+  name: Atqasuk
+  code: 1850-7
+  hierarchy: R1.02.002.002.006
+
+barrow:
+  name: Barrow
+  code: 1851-5
+  hierarchy: R1.02.002.002.007
+
+bering_straits_inupiat:
+  name: Bering Straits Inupiat
+  code: 1852-3
+  hierarchy: R1.02.002.002.008
+
+brevig_mission:
+  name: Brevig Mission
+  code: 1853-1
+  hierarchy: R1.02.002.002.009
+
+buckland:
+  name: Buckland
+  code: 1854-9
+  hierarchy: R1.02.002.002.010
+
+chinik:
+  name: Chinik
+  code: 1855-6
+  hierarchy: R1.02.002.002.011
+
+council:
+  name: Council
+  code: 1856-4
+  hierarchy: R1.02.002.002.012
+
+deering:
+  name: Deering
+  code: 1857-2
+  hierarchy: R1.02.002.002.013
+
+elim:
+  name: Elim
+  code: 1858-0
+  hierarchy: R1.02.002.002.014
+
+golovin:
+  name: Golovin
+  code: 1859-8
+  hierarchy: R1.02.002.002.015
+
+inalik_diomede:
+  name: Inalik Diomede
+  code: 1860-6
+  hierarchy: R1.02.002.002.016
+
+inupiaq:
+  name: Inupiaq
+  code: 1861-4
+  hierarchy: R1.02.002.002.017
+
+kaktovik:
+  name: Kaktovik
+  code: 1862-2
+  hierarchy: R1.02.002.002.018
+
+kawerak:
+  name: Kawerak
+  code: 1863-0
+  hierarchy: R1.02.002.002.019
+
+kiana:
+  name: Kiana
+  code: 1864-8
+  hierarchy: R1.02.002.002.020
+
+kivalina:
+  name: Kivalina
+  code: 1865-5
+  hierarchy: R1.02.002.002.021
+
+kobuk:
+  name: Kobuk
+  code: 1866-3
+  hierarchy: R1.02.002.002.022
+
+kotzebue:
+  name: Kotzebue
+  code: 1867-1
+  hierarchy: R1.02.002.002.023
+
+koyuk:
+  name: Koyuk
+  code: 1868-9
+  hierarchy: R1.02.002.002.024
+
+kwiguk:
+  name: Kwiguk
+  code: 1869-7
+  hierarchy: R1.02.002.002.025
+
+mauneluk_inupiat:
+  name: Mauneluk Inupiat
+  code: 1870-5
+  hierarchy: R1.02.002.002.026
+
+nana_inupiat:
+  name: Nana Inupiat
+  code: 1871-3
+  hierarchy: R1.02.002.002.027
+
+noatak:
+  name: Noatak
+  code: 1872-1
+  hierarchy: R1.02.002.002.028
+
+nome:
+  name: Nome
+  code: 1873-9
+  hierarchy: R1.02.002.002.029
+
+noorvik:
+  name: Noorvik
+  code: 1874-7
+  hierarchy: R1.02.002.002.030
+
+nuiqsut:
+  name: Nuiqsut
+  code: 1875-4
+  hierarchy: R1.02.002.002.031
+
+point_hope:
+  name: Point Hope
+  code: 1876-2
+  hierarchy: R1.02.002.002.032
+
+point_lay:
+  name: Point Lay
+  code: 1877-0
+  hierarchy: R1.02.002.002.033
+
+selawik:
+  name: Selawik
+  code: 1878-8
+  hierarchy: R1.02.002.002.034
+
+shaktoolik:
+  name: Shaktoolik
+  code: 1879-6
+  hierarchy: R1.02.002.002.035
+
+shishmaref:
+  name: Shishmaref
+  code: 1880-4
+  hierarchy: R1.02.002.002.036
+
+shungnak:
+  name: Shungnak
+  code: 1881-2
+  hierarchy: R1.02.002.002.037
+
+solomon:
+  name: Solomon
+  code: 1882-0
+  hierarchy: R1.02.002.002.038
+
+teller:
+  name: Teller
+  code: 1883-8
+  hierarchy: R1.02.002.002.039
+
+unalakleet:
+  name: Unalakleet
+  code: 1884-6
+  hierarchy: R1.02.002.002.040
+
+wainwright:
+  name: Wainwright
+  code: 1885-3
+  hierarchy: R1.02.002.002.041
+
+wales:
+  name: Wales
+  code: 1886-1
+  hierarchy: R1.02.002.002.042
+
+white_mountain:
+  name: White Mountain
+  code: 1887-9
+  hierarchy: R1.02.002.002.043
+
+white_mountain_inupiat:
+  name: White Mountain Inupiat
+  code: 1888-7
+  hierarchy: R1.02.002.002.044
+
+marys_igloo:
+  name: Mary's Igloo
+  code: 1889-5
+  hierarchy: R1.02.002.002.045
+
+siberian_eskimo:
+  name: Siberian Eskimo
+  code: 1891-1
+  hierarchy: R1.02.002.003
+
+gambell:
+  name: Gambell
+  code: 1892-9
+  hierarchy: R1.02.002.003.001
+
+savoonga:
+  name: Savoonga
+  code: 1893-7
+  hierarchy: R1.02.002.003.002
+
+siberian_yupik:
+  name: Siberian Yupik
+  code: 1894-5
+  hierarchy: R1.02.002.003.003
+
+yupik_eskimo:
+  name: Yupik Eskimo
+  code: 1896-0
+  hierarchy: R1.02.002.004
+
+akiachak:
+  name: Akiachak
+  code: 1897-8
+  hierarchy: R1.02.002.004.001
+
+akiak:
+  name: Akiak
+  code: 1898-6
+  hierarchy: R1.02.002.004.002
+
+alakanuk:
+  name: Alakanuk
+  code: 1899-4
+  hierarchy: R1.02.002.004.003
+
+aleknagik:
+  name: Aleknagik
+  code: 1900-0
+  hierarchy: R1.02.002.004.004
+
+andreafsky:
+  name: Andreafsky
+  code: 1901-8
+  hierarchy: R1.02.002.004.005
+
+aniak:
+  name: Aniak
+  code: 1902-6
+  hierarchy: R1.02.002.004.006
+
+atmautluak:
+  name: Atmautluak
+  code: 1903-4
+  hierarchy: R1.02.002.004.007
+
+bethel:
+  name: Bethel
+  code: 1904-2
+  hierarchy: R1.02.002.004.008
+
+bill_moores_slough:
+  name: Bill Moore's Slough
+  code: 1905-9
+  hierarchy: R1.02.002.004.009
+
+bristol_bay_yupik:
+  name: Bristol Bay Yupik
+  code: 1906-7
+  hierarchy: R1.02.002.004.010
+
+calista_yupik:
+  name: Calista Yupik
+  code: 1907-5
+  hierarchy: R1.02.002.004.011
+
+chefornak:
+  name: Chefornak
+  code: 1908-3
+  hierarchy: R1.02.002.004.012
+
+chevak:
+  name: Chevak
+  code: 1909-1
+  hierarchy: R1.02.002.004.013
+
+chuathbaluk:
+  name: Chuathbaluk
+  code: 1910-9
+  hierarchy: R1.02.002.004.014
+
+clarks_point:
+  name: Clark's Point
+  code: 1911-7
+  hierarchy: R1.02.002.004.015
+
+crooked_creek:
+  name: Crooked Creek
+  code: 1912-5
+  hierarchy: R1.02.002.004.016
+
+dillingham:
+  name: Dillingham
+  code: 1913-3
+  hierarchy: R1.02.002.004.017
+
+eek:
+  name: Eek
+  code: 1914-1
+  hierarchy: R1.02.002.004.018
+
+ekuk:
+  name: Ekuk
+  code: 1915-8
+  hierarchy: R1.02.002.004.019
+
+ekwok:
+  name: Ekwok
+  code: 1916-6
+  hierarchy: R1.02.002.004.020
+
+emmonak:
+  name: Emmonak
+  code: 1917-4
+  hierarchy: R1.02.002.004.021
+
+goodnews_bay:
+  name: Goodnews Bay
+  code: 1918-2
+  hierarchy: R1.02.002.004.022
+
+hooper_bay:
+  name: Hooper Bay
+  code: 1919-0
+  hierarchy: R1.02.002.004.023
+
+iqurmuit_(russian_mission):
+  name: Iqurmuit (russian Mission)
+  code: 1920-8
+  hierarchy: R1.02.002.004.024
+
+kalskag:
+  name: Kalskag
+  code: 1921-6
+  hierarchy: R1.02.002.004.025
+
+kasigluk:
+  name: Kasigluk
+  code: 1922-4
+  hierarchy: R1.02.002.004.026
+
+kipnuk:
+  name: Kipnuk
+  code: 1923-2
+  hierarchy: R1.02.002.004.027
+
+koliganek:
+  name: Koliganek
+  code: 1924-0
+  hierarchy: R1.02.002.004.028
+
+kongiganak:
+  name: Kongiganak
+  code: 1925-7
+  hierarchy: R1.02.002.004.029
+
+kotlik:
+  name: Kotlik
+  code: 1926-5
+  hierarchy: R1.02.002.004.030
+
+kwethluk:
+  name: Kwethluk
+  code: 1927-3
+  hierarchy: R1.02.002.004.031
+
+kwigillingok:
+  name: Kwigillingok
+  code: 1928-1
+  hierarchy: R1.02.002.004.032
+
+levelock:
+  name: Levelock
+  code: 1929-9
+  hierarchy: R1.02.002.004.033
+
+lower_kalskag:
+  name: Lower Kalskag
+  code: 1930-7
+  hierarchy: R1.02.002.004.034
+
+manokotak:
+  name: Manokotak
+  code: 1931-5
+  hierarchy: R1.02.002.004.035
+
+marshall:
+  name: Marshall
+  code: 1932-3
+  hierarchy: R1.02.002.004.036
+
+mekoryuk:
+  name: Mekoryuk
+  code: 1933-1
+  hierarchy: R1.02.002.004.037
+
+mountain_village:
+  name: Mountain Village
+  code: 1934-9
+  hierarchy: R1.02.002.004.038
+
+naknek:
+  name: Naknek
+  code: 1935-6
+  hierarchy: R1.02.002.004.039
+
+napaumute:
+  name: Napaumute
+  code: 1936-4
+  hierarchy: R1.02.002.004.040
+
+napakiak:
+  name: Napakiak
+  code: 1937-2
+  hierarchy: R1.02.002.004.041
+
+napaskiak:
+  name: Napaskiak
+  code: 1938-0
+  hierarchy: R1.02.002.004.042
+
+newhalen:
+  name: Newhalen
+  code: 1939-8
+  hierarchy: R1.02.002.004.043
+
+new_stuyahok:
+  name: New Stuyahok
+  code: 1940-6
+  hierarchy: R1.02.002.004.044
+
+newtok:
+  name: Newtok
+  code: 1941-4
+  hierarchy: R1.02.002.004.045
+
+nightmute:
+  name: Nightmute
+  code: 1942-2
+  hierarchy: R1.02.002.004.046
+
+nunapitchukv:
+  name: Nunapitchukv
+  code: 1943-0
+  hierarchy: R1.02.002.004.047
+
+oscarville:
+  name: Oscarville
+  code: 1944-8
+  hierarchy: R1.02.002.004.048
+
+pilot_station:
+  name: Pilot Station
+  code: 1945-5
+  hierarchy: R1.02.002.004.049
+
+pitkas_point:
+  name: Pitkas Point
+  code: 1946-3
+  hierarchy: R1.02.002.004.050
+
+platinum:
+  name: Platinum
+  code: 1947-1
+  hierarchy: R1.02.002.004.051
+
+portage_creek:
+  name: Portage Creek
+  code: 1948-9
+  hierarchy: R1.02.002.004.052
+
+quinhagak:
+  name: Quinhagak
+  code: 1949-7
+  hierarchy: R1.02.002.004.053
+
+red_devil:
+  name: Red Devil
+  code: 1950-5
+  hierarchy: R1.02.002.004.054
+
+st._michael:
+  name: St. Michael
+  code: 1951-3
+  hierarchy: R1.02.002.004.055
+
+scammon_bay:
+  name: Scammon Bay
+  code: 1952-1
+  hierarchy: R1.02.002.004.056
+
+sheldons_point:
+  name: Sheldon's Point
+  code: 1953-9
+  hierarchy: R1.02.002.004.057
+
+sleetmute:
+  name: Sleetmute
+  code: 1954-7
+  hierarchy: R1.02.002.004.058
+
+stebbins:
+  name: Stebbins
+  code: 1955-4
+  hierarchy: R1.02.002.004.059
+
+togiak:
+  name: Togiak
+  code: 1956-2
+  hierarchy: R1.02.002.004.060
+
+toksook:
+  name: Toksook
+  code: 1957-0
+  hierarchy: R1.02.002.004.061
+
+tulukskak:
+  name: Tulukskak
+  code: 1958-8
+  hierarchy: R1.02.002.004.062
+
+tuntutuliak:
+  name: Tuntutuliak
+  code: 1959-6
+  hierarchy: R1.02.002.004.063
+
+tununak:
+  name: Tununak
+  code: 1960-4
+  hierarchy: R1.02.002.004.064
+
+twin_hills:
+  name: Twin Hills
+  code: 1961-2
+  hierarchy: R1.02.002.004.065
+
+georgetown:
+  name: Georgetown
+  code: 1962-0
+  hierarchy: R1.02.002.004.066
+
+st._marys:
+  name: St. Mary's
+  code: 1963-8
+  hierarchy: R1.02.002.004.067
+
+umkumiate:
+  name: Umkumiate
+  code: 1964-6
+  hierarchy: R1.02.002.004.068
+
+aleut:
+  name: Aleut
+  code: 1966-1
+  hierarchy: R1.02.003
+
+alutiiq_aleut:
+  name: Alutiiq Aleut
+  code: 1968-7
+  hierarchy: R1.02.003.001
+
+tatitlek:
+  name: Tatitlek
+  code: 1969-5
+  hierarchy: R1.02.003.001.001
+
+ugashik:
+  name: Ugashik
+  code: 1970-3
+  hierarchy: R1.02.003.001.002
+
+bristol_bay_aleut:
+  name: Bristol Bay Aleut
+  code: 1972-9
+  hierarchy: R1.02.003.002
+
+chignik:
+  name: Chignik
+  code: 1973-7
+  hierarchy: R1.02.003.002.001
+
+chignik_lake:
+  name: Chignik Lake
+  code: 1974-5
+  hierarchy: R1.02.003.002.002
+
+egegik:
+  name: Egegik
+  code: 1975-2
+  hierarchy: R1.02.003.002.003
+
+igiugig:
+  name: Igiugig
+  code: 1976-0
+  hierarchy: R1.02.003.002.004
+
+ivanof_bay:
+  name: Ivanof Bay
+  code: 1977-8
+  hierarchy: R1.02.003.002.005
+
+king_salmon:
+  name: King Salmon
+  code: 1978-6
+  hierarchy: R1.02.003.002.006
+
+kokhanok:
+  name: Kokhanok
+  code: 1979-4
+  hierarchy: R1.02.003.002.007
+
+perryville:
+  name: Perryville
+  code: 1980-2
+  hierarchy: R1.02.003.002.008
+
+pilot_point:
+  name: Pilot Point
+  code: 1981-0
+  hierarchy: R1.02.003.002.009
+
+port_heiden:
+  name: Port Heiden
+  code: 1982-8
+  hierarchy: R1.02.003.002.010
+
+chugach_aleut:
+  name: Chugach Aleut
+  code: 1984-4
+  hierarchy: R1.02.003.003
+
+chenega:
+  name: Chenega
+  code: 1985-1
+  hierarchy: R1.02.003.003.001
+
+chugach_corporation:
+  name: Chugach Corporation
+  code: 1986-9
+  hierarchy: R1.02.003.003.002
+
+english_bay:
+  name: English Bay
+  code: 1987-7
+  hierarchy: R1.02.003.003.003
+
+port_graham:
+  name: Port Graham
+  code: 1988-5
+  hierarchy: R1.02.003.003.004
+
+eyak:
+  name: Eyak
+  code: 1990-1
+  hierarchy: R1.02.003.004
+
+koniag_aleut:
+  name: Koniag Aleut
+  code: 1992-7
+  hierarchy: R1.02.003.005
+
+akhiok:
+  name: Akhiok
+  code: 1993-5
+  hierarchy: R1.02.003.005.001
+
+agdaagux:
+  name: Agdaagux
+  code: 1994-3
+  hierarchy: R1.02.003.005.002
+
+karluk:
+  name: Karluk
+  code: 1995-0
+  hierarchy: R1.02.003.005.003
+
+kodiak:
+  name: Kodiak
+  code: 1996-8
+  hierarchy: R1.02.003.005.004
+
+larsen_bay:
+  name: Larsen Bay
+  code: 1997-6
+  hierarchy: R1.02.003.005.005
+
+old_harbor:
+  name: Old Harbor
+  code: 1998-4
+  hierarchy: R1.02.003.005.006
+
+ouzinkie:
+  name: Ouzinkie
+  code: 1999-2
+  hierarchy: R1.02.003.005.007
+
+port_lions:
+  name: Port Lions
+  code: 2000-8
+  hierarchy: R1.02.003.005.008
+
+sugpiaq:
+  name: Sugpiaq
+  code: 2002-4
+  hierarchy: R1.02.003.006
+
+suqpigaq:
+  name: Suqpigaq
+  code: 2004-0
+  hierarchy: R1.02.003.007
+
+unangan_aleut:
+  name: Unangan Aleut
+  code: 2006-5
+  hierarchy: R1.02.003.008
+
+akutan:
+  name: Akutan
+  code: 2007-3
+  hierarchy: R1.02.003.008.001
+
+aleut_corporation:
+  name: Aleut Corporation
+  code: 2008-1
+  hierarchy: R1.02.003.008.002
+
+aleutian:
+  name: Aleutian
+  code: 2009-9
+  hierarchy: R1.02.003.008.003
+
+aleutian_islander:
+  name: Aleutian Islander
+  code: 2010-7
+  hierarchy: R1.02.003.008.004
+
+atka:
+  name: Atka
+  code: 2011-5
+  hierarchy: R1.02.003.008.005
+
+belkofski:
+  name: Belkofski
+  code: 2012-3
+  hierarchy: R1.02.003.008.006
+
+chignik_lagoon:
+  name: Chignik Lagoon
+  code: 2013-1
+  hierarchy: R1.02.003.008.007
+
+king_cove:
+  name: King Cove
+  code: 2014-9
+  hierarchy: R1.02.003.008.008
+
+false_pass:
+  name: False Pass
+  code: 2015-6
+  hierarchy: R1.02.003.008.009
+
+nelson_lagoon:
+  name: Nelson Lagoon
+  code: 2016-4
+  hierarchy: R1.02.003.008.010
+
+nikolski:
+  name: Nikolski
+  code: 2017-2
+  hierarchy: R1.02.003.008.011
+
+pauloff_harbor:
+  name: Pauloff Harbor
+  code: 2018-0
+  hierarchy: R1.02.003.008.012
+
+qagan_toyagungin:
+  name: Qagan Toyagungin
+  code: 2019-8
+  hierarchy: R1.02.003.008.013
+
+qawalangin:
+  name: Qawalangin
+  code: 2020-6
+  hierarchy: R1.02.003.008.014
+
+st._george:
+  name: St. George
+  code: 2021-4
+  hierarchy: R1.02.003.008.015
+
+st._paul:
+  name: St. Paul
+  code: 2022-2
+  hierarchy: R1.02.003.008.016
+
+sand_point:
+  name: Sand Point
+  code: 2023-0
+  hierarchy: R1.02.003.008.017
+
+south_naknek:
+  name: South Naknek
+  code: 2024-8
+  hierarchy: R1.02.003.008.018
+
+unalaska:
+  name: Unalaska
+  code: 2025-5
+  hierarchy: R1.02.003.008.019
+
+unga:
+  name: Unga
+  code: 2026-3
+  hierarchy: R1.02.003.008.020
+
+asian:
+  name: Asian
+  code: 2028-9
+  hierarchy: R2
+
+asian_indian:
+  name: Asian Indian
+  code: 2029-7
+  hierarchy: R2.01
+
+bangladeshi:
+  name: Bangladeshi
+  code: 2030-5
+  hierarchy: R2.02
+
+bhutanese:
+  name: Bhutanese
+  code: 2031-3
+  hierarchy: R2.03
+
+burmese:
+  name: Burmese
+  code: 2032-1
+  hierarchy: R2.04
+
+cambodian:
+  name: Cambodian
+  code: 2033-9
+  hierarchy: R2.05
+
+chinese:
+  name: Chinese
+  code: 2034-7
+  hierarchy: R2.06
+
+taiwanese:
+  name: Taiwanese
+  code: 2035-4
+  hierarchy: R2.07
+
+filipino:
+  name: Filipino
+  code: 2036-2
+  hierarchy: R2.08
+
+hmong:
+  name: Hmong
+  code: 2037-0
+  hierarchy: R2.09
+
+indonesian:
+  name: Indonesian
+  code: 2038-8
+  hierarchy: R2.10
+
+japanese:
+  name: Japanese
+  code: 2039-6
+  hierarchy: R2.11
+
+korean:
+  name: Korean
+  code: 2040-4
+  hierarchy: R2.12
+
+laotian:
+  name: Laotian
+  code: 2041-2
+  hierarchy: R2.13
+
+malaysian:
+  name: Malaysian
+  code: 2042-0
+  hierarchy: R2.14
+
+okinawan:
+  name: Okinawan
+  code: 2043-8
+  hierarchy: R2.15
+
+pakistani:
+  name: Pakistani
+  code: 2044-6
+  hierarchy: R2.16
+
+sri_lankan:
+  name: Sri Lankan
+  code: 2045-3
+  hierarchy: R2.17
+
+thai:
+  name: Thai
+  code: 2046-1
+  hierarchy: R2.18
+
+vietnamese:
+  name: Vietnamese
+  code: 2047-9
+  hierarchy: R2.19
+
+iwo_jiman:
+  name: Iwo Jiman
+  code: 2048-7
+  hierarchy: R2.20
+
+maldivian:
+  name: Maldivian
+  code: 2049-5
+  hierarchy: R2.21
+
+nepalese:
+  name: Nepalese
+  code: 2050-3
+  hierarchy: R2.22
+
+singaporean:
+  name: Singaporean
+  code: 2051-1
+  hierarchy: R2.23
+
+madagascar:
+  name: Madagascar
+  code: 2052-9
+  hierarchy: R2.24
+
+black_or_african_american:
+  name: Black Or African American
+  code: 2054-5
+  hierarchy: R3
+
+black:
+  name: Black
+  code: 2056-0
+  hierarchy: R3.01
+
+african_american:
+  name: African American
+  code: 2058-6
+  hierarchy: R3.02
+
+african:
+  name: African
+  code: 2060-2
+  hierarchy: R3.03
+
+botswanan:
+  name: Botswanan
+  code: 2061-0
+  hierarchy: R3.03.001
+
+ethiopian:
+  name: Ethiopian
+  code: 2062-8
+  hierarchy: R3.03.002
+
+liberian:
+  name: Liberian
+  code: 2063-6
+  hierarchy: R3.03.003
+
+namibian:
+  name: Namibian
+  code: 2064-4
+  hierarchy: R3.03.004
+
+nigerian:
+  name: Nigerian
+  code: 2065-1
+  hierarchy: R3.03.005
+
+zairean:
+  name: Zairean
+  code: 2066-9
+  hierarchy: R3.03.006
+
+bahamian:
+  name: Bahamian
+  code: 2067-7
+  hierarchy: R3.04
+
+barbadian:
+  name: Barbadian
+  code: 2068-5
+  hierarchy: R3.05
+
+dominican:
+  name: Dominican
+  code: 2069-3
+  hierarchy: R3.06
+
+dominica_islander:
+  name: Dominica Islander
+  code: 2070-1
+  hierarchy: R3.07
+
+haitian:
+  name: Haitian
+  code: 2071-9
+  hierarchy: R3.08
+
+jamaican:
+  name: Jamaican
+  code: 2072-7
+  hierarchy: R3.09
+
+tobagoan:
+  name: Tobagoan
+  code: 2073-5
+  hierarchy: R3.10
+
+trinidadian:
+  name: Trinidadian
+  code: 2074-3
+  hierarchy: R3.11
+
+west_indian:
+  name: West Indian
+  code: 2075-0
+  hierarchy: R3.12
+
+native_hawaiian_or_other_pacific_islander:
+  name: Native Hawaiian Or Other Pacific Islander
+  code: 2076-8
+  hierarchy: R4
+
+polynesian:
+  name: Polynesian
+  code: 2078-4
+  hierarchy: R4.01
+
+native_hawaiian:
+  name: Native Hawaiian
+  code: 2079-2
+  hierarchy: R4.01.001
+
+samoan:
+  name: Samoan
+  code: 2080-0
+  hierarchy: R4.01.002
+
+tahitian:
+  name: Tahitian
+  code: 2081-8
+  hierarchy: R4.01.003
+
+tongan:
+  name: Tongan
+  code: 2082-6
+  hierarchy: R4.01.004
+
+tokelauan:
+  name: Tokelauan
+  code: 2083-4
+  hierarchy: R4.01.005
+
+micronesian:
+  name: Micronesian
+  code: 2085-9
+  hierarchy: R4.02
+
+guamanian_or_chamorro:
+  name: Guamanian Or Chamorro
+  code: 2086-7
+  hierarchy: R4.02.001
+
+guamanian:
+  name: Guamanian
+  code: 2087-5
+  hierarchy: R4.02.002
+
+chamorro:
+  name: Chamorro
+  code: 2088-3
+  hierarchy: R4.02.003
+
+mariana_islander:
+  name: Mariana Islander
+  code: 2089-1
+  hierarchy: R4.02.004
+
+marshallese:
+  name: Marshallese
+  code: 2090-9
+  hierarchy: R4.02.005
+
+palauan:
+  name: Palauan
+  code: 2091-7
+  hierarchy: R4.02.006
+
+carolinian:
+  name: Carolinian
+  code: 2092-5
+  hierarchy: R4.02.007
+
+kosraean:
+  name: Kosraean
+  code: 2093-3
+  hierarchy: R4.02.008
+
+pohnpeian:
+  name: Pohnpeian
+  code: 2094-1
+  hierarchy: R4.02.009
+
+saipanese:
+  name: Saipanese
+  code: 2095-8
+  hierarchy: R4.02.010
+
+kiribati:
+  name: Kiribati
+  code: 2096-6
+  hierarchy: R4.02.011
+
+chuukese:
+  name: Chuukese
+  code: 2097-4
+  hierarchy: R4.02.012
+
+yapese:
+  name: Yapese
+  code: 2098-2
+  hierarchy: R4.02.013
+
+melanesian:
+  name: Melanesian
+  code: 2100-6
+  hierarchy: R4.03
+
+fijian:
+  name: Fijian
+  code: 2101-4
+  hierarchy: R4.03.001
+
+papua_new_guinean:
+  name: Papua New Guinean
+  code: 2102-2
+  hierarchy: R4.03.002
+
+solomon_islander:
+  name: Solomon Islander
+  code: 2103-0
+  hierarchy: R4.03.003
+
+new_hebrides:
+  name: New Hebrides
+  code: 2104-8
+  hierarchy: R4.03.004
+
+other_pacific_islander:
+  name: Other Pacific Islander
+  code: 2500-7
+  hierarchy: R4.04
+
+white:
+  name: White
+  code: 2106-3
+  hierarchy: R5
+
+european:
+  name: European
+  code: 2108-9
+  hierarchy: R5.01
+
+armenian:
+  name: Armenian
+  code: 2109-7
+  hierarchy: R5.01.001
+
+english:
+  name: English
+  code: 2110-5
+  hierarchy: R5.01.002
+
+french:
+  name: French
+  code: 2111-3
+  hierarchy: R5.01.003
+
+german:
+  name: German
+  code: 2112-1
+  hierarchy: R5.01.004
+
+irish:
+  name: Irish
+  code: 2113-9
+  hierarchy: R5.01.005
+
+italian:
+  name: Italian
+  code: 2114-7
+  hierarchy: R5.01.006
+
+polish:
+  name: Polish
+  code: 2115-4
+  hierarchy: R5.01.007
+
+scottish:
+  name: Scottish
+  code: 2116-2
+  hierarchy: R5.01.008
+
+middle_eastern_or_north_african:
+  name: Middle Eastern Or North African
+  code: 2118-8
+  hierarchy: R5.02
+
+assyrian:
+  name: Assyrian
+  code: 2119-6
+  hierarchy: R5.02.001
+
+egyptian:
+  name: Egyptian
+  code: 2120-4
+  hierarchy: R5.02.002
+
+iranian:
+  name: Iranian
+  code: 2121-2
+  hierarchy: R5.02.003
+
+iraqi:
+  name: Iraqi
+  code: 2122-0
+  hierarchy: R5.02.004
+
+lebanese:
+  name: Lebanese
+  code: 2123-8
+  hierarchy: R5.02.005
+
+palestinian:
+  name: Palestinian
+  code: 2124-6
+  hierarchy: R5.02.006
+
+syrian:
+  name: Syrian
+  code: 2125-3
+  hierarchy: R5.02.007
+
+afghanistani:
+  name: Afghanistani
+  code: 2126-1
+  hierarchy: R5.02.008
+
+israeili:
+  name: Israeili
+  code: 2127-9
+  hierarchy: R5.02.009
+
+arab:
+  name: Arab
+  code: 2129-5
+  hierarchy: R5.03
+
+other_race:
+  name: Other Race
+  code: 2131-1
+  hierarchy: R9

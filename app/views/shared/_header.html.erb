@@ -1,0 +1,13 @@
+<div id="header">
+  <div id="breadcrumbBox">
+    <ul id="breadcrumbItems">
+      <% if @breadcrumbs %>
+        <% @breadcrumbs[0..-2].each do |crumb| %>
+          <li><%= link_to(crumb.title, crumb.url) %> <span class="sep">&raquo;</span></li>
+        <% end %>
+        <li><%= @breadcrumbs.last.title %></li>
+      <% end %>
+    </ul>
+    <%= render :partial => 'shared/top_nav' %>
+  </div><!-- end #breadcrumbBox -->
+</div><!-- end #header -->

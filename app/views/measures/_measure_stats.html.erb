@@ -1,36 +1,34 @@
-<tr id="measure<%= measure['id'] %>">
-  <td>
-    <div class="tableMeasureTitle"><span class="vtip" title="<%= measure['description'] %>"><%= measure['name'] %></span></div>
-  </td>
-  <td>
-    <% subs_iterator(measure['subs']) do |sub_id| -%>
-    <%= measure_stats_div(measure['id'], sub_id, @effective_date) do |results| %>
-      <div class="measureStats">
+<% subs_iterator(measure['subs']) do |sub_id| -%>
+  <tr id="measure<%= measure['id'] %>">
+<%= measure_stats_div(measure['id'], sub_id, @effective_date, measure['filters']) do |results| %>
+    <td class="percent"><div class="measureProviderPopulationPercentage"><%= percentage(results)%>%</div></td>
+<% end -%>
+    <td>
+      <div class="tableMeasureTitle">
+        <span class="vtip" title="<%= measure['description'] %>"><%= link_to measure['name'], providers_measure_path(measure['id'], sub_id )%></span>
         <% if (sub_id!=nil) %>
-        <span class="measureShortSubtitle"><%= measure['short_subtitles'][sub_id] %></span>
+          <span class="measureShortSubtitle"><%= link_to measure['short_subtitles'][sub_id], providers_measure_path(measure['id'], sub_id )%></span>
         <% else %>
-        <span class="measureShortSubtitle"></span>
+          <span class="measureShortSubtitle"></span>
         <% end %>
-        <span style="margin-left:5px;" class="measurePopulationPercentage"><%= percentage(results)%>%</span>
-        <span class="paren">(</span>
-        <div class="inline-fraction">
-          <span class="numeratorValue"><%= value_or_default(results, 'numerator', 0) %></span>
-          <span class="separator"></span>
-          <span class="denominatorValue"><%= value_or_default(results, 'denominator', 0) %></span>
-        </div><span class="paren">)</span>
+        <br/>
+                <div class="links">
+            <%= link_to 'patients', patients_url(measure['id'], sub_id), :class => 'tableEdit'%> | 
+            <%= link_to 'parameters', measure_url(measure['id'], sub_id), :class => 'tableEdit'%>
+          </div>
       </div>
-      <div class="inline-bar">
-        <div class="tableBar">
-          <div class="tableBarNumerator" style="width:<%= numerator_width(results)%>"><span></span></div>
-          <div class="tableBarDenominator" style="width:<%= denominator_width(results)%>"><span></span></div>
+    </td>
+    <td>
+      <%= measure_stats_div(measure['id'], sub_id, @effective_date, measure['filters']) do |results| %>
+        <div class="measureStats">
+          <%= render :partial => "shared/fraction", locals: {numerator: value_or_default(results, 'numerator', 0), denominator: value_or_default(results, 'denominator', 0)}%>
         </div>
-        <div class="links">
-          <%= link_to 'patients', patients_url(measure['id'], sub_id), :class => 'tableEdit'%>
-          <%= link_to 'parameters', measure_url(measure['id'], sub_id), :class => 'tableEdit'%>
+        <div class="inline-bar">
+          <%# raise results.inspect %>
+          <%= render :partial => "shared/table_bar", locals: {numerator: results['numerator'], denominator: results['denominator'], patient_count: results['population'], exclusions: results['exclusions']}%>
         </div>
       </div>
-    </div>
-    <% end
-      end -%>
-  </td>
-</tr>
+      <% end -%>
+    </td>
+  </tr>
+<% end -%>

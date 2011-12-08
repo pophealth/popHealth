@@ -1,0 +1,28 @@
+<h2><%= @provider.full_name %></h2>
+
+<h4><%= @provider.specialty_name %></h4>
+<h4><%= @provider.organization %></h4>
+<br>
+<%= link_to "edit", edit_provider_path(@provider, :format => :html), :remote => true, :method => :get, :id => "edit_provider" %>
+<%= link_to "merge", merge_list_provider_path(@provider, :format => :html), :remote => true, :method => :get, :id => "merge_provider" %>
+
+<br><br>
+
+<dl>
+  <dt>NPI:</dt>
+  <dd><%= @provider.npi%></dd>
+  <dt>Tax ID:</dt>
+  <dd><%= @provider.tin%></dd>
+  <dt>Phone:</dt>
+  <dd><%= @provider.phone %></dd>
+  <dt>Team:</dt>
+  <dd><%= @provider.team.try(:name)%></dd>
+</dl>
+
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $("a#edit_provider").bind("ajax:success", function(event, data){ $("#content").html(data)} );
+    $("a#merge_provider").bind("ajax:success", function(event, data){ $("#merge_provider").replaceWith(data) } );
+  });
+</script>

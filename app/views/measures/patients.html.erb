@@ -1,6 +1,6 @@
 <% content_for :head do %>
   <script type="text/javascript">
-    function llog(x) {window.console.log(x)}
+    function llog(x) {}
 
     var popHealth = popHealth || {};
     var sort = "_id";
@@ -13,33 +13,38 @@
     var sort_ascending = true;
 
     popHealth.drawPctChart = function(data) {
-      var elem = "#mcp";
-      var percent = data.denominator > 0 ? (data.numerator/data.denominator).toFixed(2)*100 : 0;
+      data = data[0]
+      var elem = "#measureMetrics";
+      var percent = data.denominator > 0 ? Math.floor((data.numerator/data.denominator)*100) : 0;
       var numeratorWidth = (data.numerator/<%= @patient_count %>).toFixed(2)*100;
       var denominatorWidth = data.denominator > 0 ? ((data.denominator - data.numerator)/<%= @patient_count %>).toFixed(2)*100 : 0;
       
-      $(elem).find("#numeratorValue").text(data.numerator);
-      $(elem).find("#denominatorValue").text(data.denominator);
-      $(elem).find("#measurePopulationPercentage").text(percent + "%");
+      $(elem).find(".numeratorValue").text(data.numerator);
+      $(elem).find(".denominatorValue").text(data.denominator);
+      $("#measurePopulationPercentage").text(percent + "%");
       
-      $(elem).find(".barNumerator").css("width", numeratorWidth + "%");
-      $(elem).find(".barDenominator").css("width", denominatorWidth + "%");
+      $("#numeratorCount").text(data.numerator);
+      $("#denominatorCount").text(data.denominator);
+      $("#antiNumeratorCount").text(data.antinumerator);
+      $("#exclusionsCount").text(data.exclusions);
       
-      $("#outcomeExclusionMarker").text(data.exceptions + " exclusion" + (data.exceptions = 1 ? "s":""));
-      $("#eligibleCount").text(data.denominator);
-      $("#outcomeCount").text(data.numerator);
+      $('#den').attr("checked","checked");
+      
+      popHealth.reloadTable();
     }
 
     popHealth.renderMeasureJSON = function(data) {
         var measure = data;
-        $.getJSON("<%= measure_result_url(@definition['id'], @definition['sub_id']) %>",popHealth.drawPctChart);
     }
 
     popHealth.reloadTable = function(data){
+      var params = ''
+      <% if (@selected_provider) %> params = '?npi=<%= @selected_provider.npi %>';<%end%>
       var url = "/measures/measure_patients/"+measure_id;
       if (sub_id) {
          url += "/"+sub_id
       }
+      url += params
       $.ajax({ url: url,
                data: {sort:sort, sort_order:(sort_ascending? 'asc' :'desc' ) , offset:offset, limit:limit, type:display_type, effective_date:effective_date },
                type: "GET",
@@ -48,7 +53,7 @@
                  $('#patientTableContainer').html(res);
                },
                error: function(xhr, err) {
-                 alert("need to do something about this");
+                 alert("We encountered an error rendering the popHealth UI.");
                }
              });
     }
@@ -65,15 +70,6 @@
       $("#btnSaveNewMeasure").click(popHealth.saveNewMeasure);
       $("#btnReturnToDash").click(popHealth.returnToDash);
 
-      $(document).idleTimeout({
-        inactivity: 300000,
-        noconfirm: 10000,
-        sessionAlive: false,
-        alive_url: '/',
-        redirect_url: '<%= destroy_user_session_path %>',
-        logout_url: '/logout.html'
-      });
-
       $('input[name=patientGroup]').change(function() {
         //$('#patientTableContainer').patient_table.displayNumerator();
         if(this.id == "num"){
@@ -81,40 +77,44 @@
         } else if(this.id == "den"){
             display_type = "denominator";
         } else if(this.id == "exc"){
-            display_type = "exclusion";
+            display_type = "exclusions";
         } else {
             display_type = "antinumerator";
         }
         popHealth.reloadTable();
       });
-      //$('#patientTableContainer').patientTable({measure_id:'<%=params[:id] %>',sub_id:<%=params[:sub_id] || 'null' %>,effective_date:<%=Time.gm(2010, 9, 19).to_i%>});
-      popHealth.reloadTable();
+      
+      var qr = new QualityReport('<%=@definition['id']%>', '<%=@definition['sub_id']%>');
+      var params = {}
+      <% if (@selected_provider) %> params['npi'] = '<%= @selected_provider.npi %>';<%end%>
+      qr.poll(params, popHealth.drawPctChart);
+      
     });
   var results = <%=@result.to_json.html_safe %>;
   </script>
 <% end %>
 
-<div id="container">
-  <%= render :partial => 'header', :locals => {:definition => @definition} %>
   <div id="pageContent">
     <div id="patientMetrics">
-    <%= render :partial => 'measure_metrics' %>
+      <%= render :partial => 'shared/measure_metrics', locals: {numerator: (@result ? @result['numerator'] : 0), denominator: (@result ? @result['denominator'] : 0)} %>
       <div class="patientGroupType"><p>Show Patients in:</p>
         <ul>
-          <li class="numerator"><span class="radio"><input type="radio" name="patientGroup" value="1"   id="num"/></span><label for="num">Numerator</label> <span class="count"><%= @result['numerator']%></span></li>
-          <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="2" id="den" checked="true" /></span><label for="den">Denominator</label> <span class="count"><%= @result['denominator']%></span> </li>
-          <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="3" id="dnn" /></span><label for="dnn">Outliers</label> <span class="count"><%= @result['antinumerator']%></span></li>
-          <li class="exclusions"><span class="radio"><input type="radio" name="patientGroup" value="4" id="exc" /></span><label for="exc">Exclusions</label> <span class="count"><%= @result['exclusions']%></span></li>
+          <li class="numerator"><span class="radio"><input type="radio" name="patientGroup" value="1"   id="num"/></span><label for="num">Numerator</label> <span class="count" id="numeratorCount"><%= (@result ? @result['numerator'] : 0) %></span></li>
+          <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="2" id="den" checked="true" /></span><label for="den">Denominator</label> <span class="count" id="denominatorCount"><%= (@result ? @result['denominator'] : 0) %></span> </li>
+          <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="3" id="dnn" /></span><label for="dnn">Outliers</label> <span class="count" id="antiNumeratorCount"><%= (@result ? @result['antinumerator'] : 0) %></span></li>
+          <li class="exclusions"><span class="radio"><input type="radio" name="patientGroup" value="4" id="exc" /></span><label for="exc">Exclusions</label> <span class="count" id="exclusionsCount"><%= (@result ? @result['exclusions'] : 0) %></span></li>
         </ul>
         <br style="clear:both"/>
       </div>
     </div><!-- end #patientMetrics -->
     <div id="dashboardPeriod" >
-      <%= render :partial => 'measure_title'%>
+      <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
       <br style="clear:left"/>
       <div id="patientTableContainer">
-    </div><!-- end patientTableContainer -->
+        <div style="padding: 150px;">
+          <img src="/assets/loading_bar.gif"/>
+        </div>
+      </div><!-- end patientTableContainer -->
     <%= link_to 'Export to Excel', patient_list_url(params[:id], params[:sub_id], :format => :xml) %>
     </div>
   </div><!-- end #pageContent -->
-</div>

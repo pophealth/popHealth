@@ -1,0 +1,178 @@
+@import "mixins";
+
+
+
+
+
+ul#provider_list {
+  float:left;
+  width:10%;
+  list-style-type: none;
+  height:97%;
+  font-family: inherit;
+/*  font-size:1em;*/
+  overflow: scroll;
+}
+
+ul#provider_list li {
+  padding: 5% 20%;
+  border-bottom: 1px solid #ccc;
+  background: #F4F4F4;
+  background: -moz-linearar-gradient(top, $grey1, $grey2);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $grey1), color-stop(100%, $grey2));
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$grey1', endColorstr='$grey2',GradientType=0 ); /* IE6-9 */
+}
+
+ul#provider_list li:hover {
+  background: #ebf1f6; /* Old browsers */
+  background: -moz-linear-gradient(top, $blue, $green);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $blue), color-stop(100%, $green));
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$blue', endColorstr='$green',GradientType=0 ); /* IE6-9 */
+}
+
+div#main {
+  padding-left:30px;
+}
+
+div#content {
+  padding:5px;
+  float:left;
+}
+
+div#content form li {
+  list-style-type: none;
+}
+
+.paren {
+    font-family: Helvetica;
+    font-weight: 100;
+    color: #999999;
+    position: relative;
+    font-size: 2em;
+
+//    margin-right: 1px;
+    top: 4px; }
+
+div #providerMain { 
+
+  div#aggregate {
+    padding-left:10px;
+    float:left;
+    border-bottom: 3px solid $grayborder;
+    
+    .paren {
+      font-size: 3.5em;
+    }
+    .clear {
+    height: 2em;
+    }
+    .links {
+      padding-left:10px;
+      font-size: 0.9em;
+      margin-bottom:3px;
+      float: left;
+      width: 100%;
+    }
+    
+    #measurePopulationPercentage {
+      font-weight:bold;
+    }
+  }
+  
+  .paren {
+    font-size: 2em;
+  }
+  
+  table#providerTable {
+    float:left;
+		margin-left:20px;
+		font-size:1em;
+
+    h1 {
+      color: #888888;
+    }
+
+
+		td {
+			height:60px;
+			padding:5px 10px;
+			vertical-align:middle;
+		}
+    td.link {
+      a {
+      verticle-align:middle;
+        min-width: 80px;
+        color: #44B3BE;
+        font-weight: normal;
+      }
+    }
+
+		td.percent {
+			font-size: 28px;
+			width:50px;
+			padding-right:15px;
+      vertical-align: bottom;
+      padding: 0 10px;
+      min-width: 80px;
+
+      div.measureProviderPopulationPercentage {
+        color: black;
+        display: inline-block;
+        font-size: 1em;
+        height: 50px;
+        line-height: 55px;
+        margin-right: 5px;
+        text-align: center;
+        vertical-align: middle;
+        width: 50px;
+      }
+		}
+
+		td.name {
+			text-decoration: underline;
+			width:250px;
+			vertical-align:bottom;
+			font-weight: lighter;
+			padding-right:20px;
+      padding-bottom: 10px;
+		}
+
+		td.fraction {
+			padding-right:25px;
+      min-width: 80px;
+      padding-top: 10px;
+
+      .inline-fraction {
+        padding-bottom:0;
+        padding-top: 9px;
+      }
+		}
+
+		td.barChart {
+			vertical-align:middle;
+      padding: 0 10px;
+
+			.tableBar {
+				height:20px;
+				width:200px;
+			}
+  	}
+	}
+}
+
+img#loadingAggregate {
+  position:absolute;
+  left:375px;
+  top:100px;
+}
+
+td.links {
+  a {
+    color: #44B3BE;
+    font-weight: 500;
+  }
+}
+#measureDetailTitle {
+  max-width: 800px;
+}
+

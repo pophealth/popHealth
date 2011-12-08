@@ -16,11 +16,15 @@ module MeasuresHelper
   # Checks a measure id to see if it is in the Array returned
   # be getting the selected_measure collection
   def measure_selected(measure_id, selected_measures)
-    if selected_measures.any? {|measure| measure['id'] == measure_id}
-      'checked'
-    else
-      nil
-    end
+    is_selected?(measure_id, selected_measures) ? 'checked' : nil
+  end
+  
+  def display_row(measure_id, selected_measures)
+    is_selected?(measure_id, selected_measures) ? "" : "display:none"
+  end
+  
+  def is_selected?(measure_id, selected_measures)
+    selected_measures.any? {|measure| measure['id'] == measure_id}
   end
   
   def value_or_default(results, field, default)
@@ -31,7 +35,15 @@ module MeasuresHelper
     raw_percentage(value_or_default(results, 'numerator', 0), value_or_default(results, 'denominator', 0))
   end
   
+  def display_raw_percentage(numerator, denominator)
+    output = raw_percentage(numerator, denominator)
+    if output
+      "#{output}%"
+    end
+  end
+  
   def raw_percentage(numerator, denominator)
+    return unless denominator
     if denominator > 0
       ((numerator / denominator.to_f) * 100).to_i
     else
@@ -39,21 +51,23 @@ module MeasuresHelper
     end
   end
     
-  def numerator_width(results)
-    if results['numerator']
-      "#{((results['numerator'] / results['patient_count'].to_f) * 100).to_i}%"      
-    else
-      '33%'
-    end
-  end
-  
-  def denominator_width(results)
-    if results['numerator'] && results['denominator']
-      "#{(((results['denominator'] - results['numerator'])/ results['patient_count'].to_f) * 100).to_i}%"
-    else
-      '33%'
-    end
-  end
+  # def numerator_width(results)
+  #     # raise results['numerator'].inspect
+  #     if results['numerator']
+  #       raise results.inspect
+  #       "#{((results['numerator'] / results['patient_count'].to_f) * 100).to_i}%"      
+  #     else
+  #       '33%'
+  #     end
+  #   end
+  #   
+  #   def denominator_width(results)
+  #     if results['numerator'] && results['denominator']
+  #       "#{(((results['denominator'] - results['numerator'])/ results['patient_count'].to_f) * 100).to_i}%"
+  #     else
+  #       '33%'
+  #     end
+  #   end
 
   def dob(time)
     if time
@@ -73,8 +87,8 @@ module MeasuresHelper
     end
   end
   
-  def result_hash(measure_id, sub_id, effective_date)
-    qr = QME::QualityReport.new(measure_id, sub_id, 'effective_date' => effective_date)
+  def result_hash(measure_id, sub_id, effective_date, filters)
+    qr = QME::QualityReport.new(measure_id, sub_id, 'effective_date' => effective_date, 'filters' => filters)
     result = {'patient_count' => @patient_count}
     if qr.calculated?
       result.merge!(qr.result)
@@ -85,8 +99,8 @@ module MeasuresHelper
     result
   end
   
-  def measure_stats_div(measure_id, sub_id, effective_date)
-    results = result_hash(measure_id, sub_id, effective_date)
+  def measure_stats_div(measure_id, sub_id, effective_date, filters)
+    results = result_hash(measure_id, sub_id, effective_date, filters)
     div_options = {:class => 'tableMeasureCtrl', :"data-measure-id" => measure_id}
     div_options[:"data-measure-sub-id"] = sub_id if sub_id
     div_options[:"data-calculation-job-uuid"] = results['uuid'] if results['uuid']
