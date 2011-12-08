@@ -1,0 +1,19 @@
+<% subs_iterator(measure['subs']) do |sub| %>
+	<tr style="<%=display_row(measure['id'], current_user.selected_measures)%>" data-measure="<%=measure['id']%>" data-measure-sub="<%= sub %>" class="measure">
+		<% if sub.nil? || sub == 'a' %>
+			<td class="name"><%= (can? :manage, :providers) ? link_to(raw("<span title='#{measure['description']}' class='vtip'>#{measure['name']}</span>"), "#{measure_path(measure['id'], sub)}/providers") : "#{measure['id']}: #{measure['name']}" %></td>
+		<% else %>
+			<td class="name" />
+		<% end %>
+		
+		<% if sub %>
+			<td class="subtitle"><%= (can? :manage, :providers) ? link_to("#{measure['short_subtitles'][sub]}", "#{measure_path(measure['id'], sub)}/providers") : "#{measure['short_subtitles'][sub]}" %></td>
+		<% else %>
+			<td class="subtitle" />
+	  <% end %>
+		<td class="percent"><div class="measureProviderPopulationPercentage"></div></td>
+		<td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
+	  <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0, exclusions: 0}%></td>
+    <% if (!@selected_provider)%><td class="links"><%= link_to 'parameters', measure_url(measure['id'], sub)%><br><%= link_to 'patients', patients_url(measure['id'], sub)%></td><% end %>
+	</tr>
+<% end %>
