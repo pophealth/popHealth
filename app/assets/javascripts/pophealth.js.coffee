@@ -90,10 +90,15 @@ makeMeasureListClickable = ->
 
 
 makeFilterListsClickable = ->
+	$(".filterItemList .selectAll").click ->
+		$(this).siblings().each (i, el) ->
+			$(el).toggleClass("checked", true)
+			$(el).toggle();
 	$(".filterItemList ul li").click ->
 		$(this).toggleClass("checked")
 		Page.onFilterChange(this)
-		
+
+	
 # Load Page
 $ ->
 	makeMeasureListClickable()

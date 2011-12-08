@@ -486,6 +486,13 @@ a, {
         font-size: 0.9em; } }
     li.checked {
       background: url("../assets/checked.png") 0 10% no-repeat; } }
+	.selectAll {
+//		float:right;
+//		height:16px;
+//		width:20px;
+//		background: url("../assets/checked.png") 0% 0% no-repeat;
+//		padding-left: 18px;
+	}
   .providerReports {
     ul {margin: 5px; }
     li {
@@ -873,8 +880,20 @@ a.tableEdit {
     padding: 2px 15px 2px 5px; } }
 
 table.measureTable {
-	padding-left: 20px;
+//	padding-left: 20px;
 	font-size: 1em;
+	
+	tr.headerRow {
+		td{
+			vertical-align:bottom;
+			font-size: 18px;
+			color:#ddd;
+//			padding:0px;
+			border-bottom: 1px solid #ddd;
+		}
+			height:24px !important;
+
+	}
 	
 	td {
 		height:60px;
