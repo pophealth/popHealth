@@ -27,11 +27,12 @@ module Breadcrumbs
         controller.send(:add_breadcrumb, name, url)
       end
     end
-    def add_breadcrumb_dynamic instance_variable, *args
+    def add_breadcrumb_dynamic instance_variables, *args
       options = args.extract_options!
       before_filter options do |controller|
-        resource = controller.send(:instance_variable_get, "@#{instance_variable}")
-        values = yield(resource)
+        data = {}
+        instance_variables.each {|instance_variable| data[instance_variable] = controller.send(:instance_variable_get, "@#{instance_variable}")}
+        values = yield(data)
         controller.send(:add_breadcrumb, values[:title], values[:url]) if values[:title]
       end
     end

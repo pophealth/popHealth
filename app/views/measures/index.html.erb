@@ -205,7 +205,7 @@
 						<td class="percent"><div class="measureProviderPopulationPercentage"></div></td>
 						<td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
 					  <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0, exclusions: 0}%></td>
-            <% if (!@selected_provider)%><td class="links"><%= link_to 'parameters', measure_url(measure['id'], sub)%><br><%= link_to 'patients', patients_url(measure['id'], sub)%></td><% end %>
+            <td class="links"><%npi_param = (@selected_provider ? "?npi=#{@selected_provider.npi}" : '')%><%= link_to 'parameters', measure_url(measure['id'], sub)+npi_param%><br><%= link_to 'patients', patients_url(measure['id'], sub)+npi_param%></td>
 					</tr>
 				<% end %>
 			<% end %>

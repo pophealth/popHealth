@@ -5,7 +5,7 @@
     popHealth.drawPctChart = function(data) {
         data = data[0]
         var elem = "#measureMetrics";
-        var percent = data.denominator > 0 ? (data.numerator/data.denominator).toFixed(2)*100 : 0;
+        var percent = data.denominator > 0 ? Math.floor((data.numerator/data.denominator)*100) : 0;
         var numeratorWidth = (data.numerator/<%= @patient_count -%>).toFixed(2)*100;
         var denominatorWidth = data.denominator > 0 ? ((data.denominator - data.numerator)/<%= @patient_count -%>).toFixed(2)*100 : 0;
         $(elem).find(".numeratorValue").text(data.numerator);
@@ -67,7 +67,9 @@
       $.getJSON("<%= measure_definition_url(@definition['id'], @definition['sub_id']) %>",popHealth.renderMeasureJSON);
       
       var qr = new QualityReport('<%=@definition['id']%>', '<%=@definition['sub_id']%>');
-      qr.poll({}, popHealth.drawPctChart);
+      var params = {}
+      <% if (@selected_provider) %> params['npi'] = '<%= @selected_provider.npi %>';<%end%>
+      qr.poll(params, popHealth.drawPctChart);
       
       $("#exclusionPanel h3").click(function() {
         $("#exclusionMeasureItems").slideToggle('slow');

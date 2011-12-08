@@ -3,13 +3,13 @@ class MeasuresController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :validate_authorization!
-  before_filter :build_filters
+  before_filter :setup_filters
   before_filter :set_up_environment
-  before_filter :generate_report, :only => [:patients, :measure_patients]
   after_filter :hash_document, :only => :measure_report
   
-  add_breadcrumb_dynamic(:selected_provider, only: %w{index}) {|provider| {title: (provider ? provider.full_name : nil), url: '/'}}
-  add_breadcrumb_dynamic(:definition, only: %w{providers show patients}) {|measure| {title: "#{measure['name']}" + (measure['subtitle'] ? " - #{measure['subtitle']}" : ''), url: "/measure/#{measure['id']}"+(measure['subid'] ? "/#{measure['sub_id']}" : '')+"/providers"}}
+  add_breadcrumb_dynamic([:selected_provider], only: %w{index show patients}) {|data| provider = data[:selected_provider]; {title: (provider ? provider.full_name : nil), url: "/?npi=#{(provider) ? provider.npi : nil}"}}
+  add_breadcrumb_dynamic([:definition], only: %w{providers}) {|data| measure = data[:definition]; {title: "#{measure['endorser']}#{measure['id']}" + (measure['sub_id'] ? "#{measure['sub_id']}" : ''), url: "/measure/#{measure['id']}"+(measure['subid'] ? "/#{measure['sub_id']}" : '')+"/providers"}}
+  add_breadcrumb_dynamic([:definition, :selected_provider], only: %w{show patients}) {|data| measure = data[:definition]; provider = data[:selected_provider]; {title: "#{measure['endorser']}#{measure['id']}" + (measure['sub_id'] ? "#{measure['sub_id']}" : ''), url: "/measure/#{measure['id']}"+(measure['subid'] ? "/#{measure['sub_id']}" : '')+(provider ? "?npi=#{provider.npi}" : "/providers")}}
   add_breadcrumb 'parameters', '', only: %w{show}
   add_breadcrumb 'patients', '', only: %w{patients}
   
@@ -23,6 +23,7 @@ class MeasuresController < ApplicationController
   def show
     respond_to do |wants|
       wants.html do
+        build_filters if (@selected_provider)
         generate_report
         @result = @quality_report.result
       end
@@ -86,6 +87,8 @@ class MeasuresController < ApplicationController
   end
   
   def patients
+    build_filters if (@selected_provider)
+    generate_report
   end
 
   def measure_patients
@@ -93,18 +96,25 @@ class MeasuresController < ApplicationController
       "value.#{params[:type]}"
     else
        "value.denominator"
-     end
+    end
     @limit = (params[:limit] || 20).to_i
     @skip = ((params[:page] || 1).to_i - 1 ) * @limit
     sort = params[:sort] || "_id"
     sort_order = params[:sort_order] || :asc
     measure_id = params[:id] 
     sub_id = params[:sub_id]
-    @records = mongo['patient_cache'].find({'value.measure_id' => measure_id, 'value.sub_id' => sub_id,
-                                       'value.effective_date' => @effective_date, type => true},
-                                      {:sort => [sort, sort_order], :skip => @skip, :limit => @limit}).to_a
-    @total =  mongo['patient_cache'].find({'value.measure_id' => measure_id, 'value.sub_id' => sub_id,
-                                      'value.effective_date' => @effective_date, type => true}).count
+    
+    query = {'value.measure_id' => measure_id, 'value.sub_id' => sub_id, 'value.effective_date' => @effective_date, type => true}
+    
+    if (@selected_provider)
+      result = PatientCache.by_provider(@selected_provider, @effective_date).where(query);
+      @total = result.count;
+      @records = result.order_by([sort, sort_order]).skip(@skip).limit(@limit);
+    else
+      @records = mongo['patient_cache'].find(query, {:sort => [sort, sort_order], :skip => @skip, :limit => @limit}).to_a
+      @total =  mongo['patient_cache'].find(query).count
+    end
+                                      
     @page_results = WillPaginate::Collection.create((params[:page] || 1), @limit, @total) do |pager|
        pager.replace(@records)
     end
@@ -248,7 +258,7 @@ class MeasuresController < ApplicationController
     render :json => result.merge(:complete => result[:jobs].empty?)
   end
   
-  def build_filters
+  def setup_filters
     
     if !can?(:read, :providers) || params[:npi]
       npi = params[:npi] ? params[:npi] : current_user.npi
@@ -257,23 +267,8 @@ class MeasuresController < ApplicationController
     end
     
     if request.xhr?
-      providers = params[:provider] || nil
-      races = params[:race] ? Race.selected(params[:race]).all : nil
-      ethnicities = params[:ethnicity] ? Ethnicity.selected(params[:ethnicity]).all : nil
-      genders = params[:gender] ? params[:gender] : nil
       
-      @filters = {}
-      @filters.merge!({'providers' => providers}) if providers
-      @filters.merge!({'races'=>(races.map {|race| race.codes}).flatten}) if races
-      @filters.merge!({'ethnicities'=>(ethnicities.map {|ethnicity| ethnicity.codes}).flatten}) if ethnicities
-      @filters.merge!({'genders' => genders}) if genders
-      @filters = nil if @filters.empty?
-      
-      if @selected_provider
-        @filters['providers'] = [@selected_provider.id.to_s]
-      elsif !can?(:read, :providers)
-        @filters['providers'] = [nil]
-      end
+      build_filters
       
     else
       
@@ -288,6 +283,29 @@ class MeasuresController < ApplicationController
       
     end
 
+  end
+  
+  def build_filters
+    
+    providers = params[:provider] || nil
+    races = params[:race] ? Race.selected(params[:race]).all : nil
+    ethnicities = params[:ethnicity] ? Ethnicity.selected(params[:ethnicity]).all : nil
+    genders = params[:gender] ? params[:gender] : nil
+    
+    @filters = {}
+    @filters.merge!({'providers' => providers}) if providers
+    @filters.merge!({'races'=>(races.map {|race| race.codes}).flatten}) if races
+    @filters.merge!({'ethnicities'=>(ethnicities.map {|ethnicity| ethnicity.codes}).flatten}) if ethnicities
+    @filters.merge!({'genders' => genders}) if genders
+    
+    if @selected_provider
+      @filters['providers'] = [@selected_provider.id.to_s]
+    else
+      authorize!(:read, :providers)
+    end
+    
+    @filters = nil if @filters.empty?
+    
   end
 
   def validate_authorization!

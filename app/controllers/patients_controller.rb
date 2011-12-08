@@ -6,7 +6,7 @@ class PatientsController < ApplicationController
   before_filter :load_patient, :only => :show
   after_filter :hash_document, :only => :list
   
-  add_breadcrumb_dynamic(:patient, only: %w{show}) {|patient| {title: "#{patient.last}, #{patient.first}", url: "/patients/show/#{patient.id}"}}
+  add_breadcrumb_dynamic([:patient], only: %w{show}) {|data| patient = data[:patient]; {title: "#{patient.last}, #{patient.first}", url: "/patients/show/#{patient.id}"}}
   
   def index
 
