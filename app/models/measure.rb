@@ -42,28 +42,29 @@ class Measure < MongoBase
                                     measureIds.push(prev.measures[i].id)
                                   }
                                   if (contains(measureIds, obj.id) == false) {
-                                    prev.measures.push({"id": obj.id, "name": obj.name});
+                                    prev.measures.push({"id": obj.id, "name": obj.name, "description": obj.description});
                                   }
+                                  
                              };')
   end
   
   # Finds all core measures
   # @return Array - This returns an Array of Hashes. Each Hash will have the name and id of each measure.
   def self.core_measures
-    mongo['measures'].group(:key => [:id, :name], 
+    mongo['measures'].group(:key => [:id, :name, :description], 
                             :cond => {:category => 'Core'},
-                            :initial => {:subs => []},
+                            :initial => {:subs => [], 'short_subtitles' => {}},
                             :reduce => 
-                            'function(obj,prev) {if (obj.sub_id != null) {prev.subs.push(obj.sub_id);}}')
+                            'function(obj,prev) {if (obj.sub_id != null) {prev.subs.push(obj.sub_id); prev.short_subtitles[obj.sub_id] = obj.short_subtitle; }}')
   end
   
   # Finds all core alternate measures
   # @return Array - This returns an Array of Hashes. Each Hash will have the name and id of each measure.
   def self.core_alternate_measures
-    mongo['measures'].group(:key => [:id, :name], 
+    mongo['measures'].group(:key => [:id, :name, :description], 
                             :cond => {:category => 'Core Alternate'},
-                            :initial => {:subs => []},
-                            :reduce => 'function(obj,prev) {if (obj.sub_id != null) {prev.subs.push(obj.sub_id);}}')
+                            :initial => {:subs => [], 'short_subtitles' => {}},
+                            :reduce => 'function(obj,prev) {if (obj.sub_id != null) {prev.subs.push(obj.sub_id); prev.short_subtitles[obj.sub_id] = obj.short_subtitle; }}')
   end
   
   # Finds all measures and groups the sub measures
@@ -80,6 +81,14 @@ class Measure < MongoBase
                                           }
                                           
                                         }')
+  end
+  
+  # 
+  def self.alternate_measures
+    mongo['measures'].group(:key => [:id, :name, :description], 
+                            :cond => {:category => {"$nin" => ['Core', 'Core Alternate']}},
+                            :initial => {:subs => [], 'short_subtitles' => {}},
+                            :reduce => 'function(obj,prev) {if (obj.sub_id != null) {prev.subs.push(obj.sub_id); prev.short_subtitles[obj.sub_id] = obj.short_subtitle; }}')
   end
 
   # Adds a measure to the selected_measure collection. It copies some of the measure information

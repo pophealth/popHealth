@@ -17,7 +17,9 @@ class MeasuresController < ApplicationController
     @categories = Measure.non_core_measures
     @core_measures = Measure.core_measures
     @core_alt_measures = Measure.core_alternate_measures
-    @all_measures = Measure.all_by_measure
+    @alt_measures = Measure.alternate_measures
+    # @all_measures = Measure.all_by_measure
+    # binding.pry
   end
   
   def show

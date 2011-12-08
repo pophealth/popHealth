@@ -13,8 +13,9 @@
           <label><%= team_name%></label>
           <div class="filterItemList expandableList" style="display:none">
             <ul>
+							<li class="selectAll checked">All</li>
               <% providers.each do |pv| %>
-              <li data-filter-type="provider" data-filter-value="<%=pv.id%>" class="checked">
+              <li style="display:none" data-filter-type="provider" data-filter-value="<%=pv.id%>" class="checked">
                 <%= pv.full_name %>
               </li><% end %>
             </ul>
@@ -31,8 +32,9 @@
           <label>Races</label>
           <div class="filterItemList expandableList" style="display:none">
             <ul>
+							<li class="selectAll checked">All</li>
                <% @races.each do |race| %>
-              <li data-filter-type="race" data-filter-value="<%=race.id%>" class="checked">
+              <li style="display:none" data-filter-type="race" data-filter-value="<%=race.id%>" class="checked">
                 <%= race.name %>
               </li>
 							<% end %>
@@ -43,8 +45,9 @@
           <label>Ethnicities</label>
           <div class="filterItemList expandableList" style="display:none">
             <ul>
+							<li class="selectAll checked">All</li>
                <% @ethnicities.each do |ethnicity| %>
-              <li data-filter-type="ethnicity" data-filter-value="<%=ethnicity.id%>" class="checked">
+              <li style="display:none" data-filter-type="ethnicity" data-filter-value="<%=ethnicity.id%>" class="checked">
                 <%= ethnicity.name %>
               </li>
 							<% end %>
@@ -55,8 +58,9 @@
           <label>Genders</label>
           <div class="filterItemList expandableList" style="display:none">
             <ul>
+							<li class="selectAll checked">All</li>
                <% @genders.each do |gender| %>
-              <li data-filter-type="gender" data-filter-value="<%=gender[:id]%>" class="checked">
+              <li style="display:none" data-filter-type="gender" data-filter-value="<%=gender[:id]%>" class="checked">
                 <%= gender[:name] %>
               </li>
 							<% end %>

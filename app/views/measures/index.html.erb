@@ -69,10 +69,12 @@
         <% @providers_by_team.each do |team_name, providers| %>
         <li>
           <label><%= team_name%></label>
+
           <div class="filterItemList expandableList" style="display:none">
             <ul>
+						<li class="selectAll checked">All</li>
               <% providers.each do |pv| %>
-              <li data-filter-type="provider" data-filter-value="<%=pv.id%>" class="checked">
+              <li style="display:none" data-filter-type="provider" data-filter-value="<%=pv.id%>" class="checked">
                 <%= pv.full_name %>
               </li><% end %>
             </ul>
@@ -90,8 +92,9 @@
           <label>Races</label>
           <div class="filterItemList expandableList" style="display:none">
             <ul>
+							 <li class="selectAll checked">All</li>
                <% @races.each do |race| %>
-              <li data-filter-type="race" data-filter-value="<%=race.id%>" class="checked">
+              <li style="display:none" data-filter-type="race" data-filter-value="<%=race.id%>" class="checked">
                 <%= race.name %>
               </li>
 							<% end %>
@@ -102,8 +105,9 @@
           <label>Ethnicities</label>
           <div class="filterItemList expandableList" style="display:none">
             <ul>
+							 <li class="selectAll checked">All</li>
                <% @ethnicities.each do |ethnicity| %>
-              <li data-filter-type="ethnicity" data-filter-value="<%=ethnicity.id%>" class="checked">
+              <li style="display:none" data-filter-type="ethnicity" data-filter-value="<%=ethnicity.id%>" class="checked">
                 <%= ethnicity.name %>
               </li>
 							<% end %>
@@ -114,8 +118,9 @@
           <label>Genders</label>
           <div class="filterItemList expandableList" style="display:none">
             <ul>
+							 <li class="selectAll checked">All</li>
                <% @genders.each do |gender| %>
-              <li data-filter-type="gender" data-filter-value="<%=gender[:id]%>" class="checked">
+              <li style="display:none" data-filter-type="gender" data-filter-value="<%=gender[:id]%>" class="checked">
                 <%= gender[:name] %>
               </li>
 							<% end %>
@@ -187,28 +192,12 @@
         <br/>
       </div><!-- end #measureDetailTable --><br><br>
 			<table class="measureTable" style="float:left">
-			<% @all_measures.each do |measure| %>
-				<% subs_iterator(measure['subs']) do |sub| %>
-					<tr style="<%=display_row(measure['id'], current_user.selected_measures)%>" data-measure="<%=measure['id']%>" data-measure-sub="<%= sub %>" class="measure">
-					  
-						<% if sub.nil? || sub == 'a' %>
-							<td class="name"><%= (can? :manage, :providers) ? link_to(measure['name'], "#{measure_path(measure['id'], sub)}/providers") : "#{measure['id']}: #{measure['name']}" %></td>
-						<% else %>
-							<td class="name" />
-						<% end %>
-						
-						<% if sub %>
-							<td class="subtitle"><%= (can? :manage, :providers) ? link_to("#{measure['short_subtitles'][sub]}", "#{measure_path(measure['id'], sub)}/providers") : "#{measure['short_subtitles'][sub]}" %></td>
-						<% else %>
-							<td class="subtitle" />
-					  <% end %>
-						<td class="percent"><div class="measureProviderPopulationPercentage"></div></td>
-						<td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
-					  <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0, exclusions: 0}%></td>
-            <td class="links"><%npi_param = (@selected_provider ? "?npi=#{@selected_provider.npi}" : '')%><%= link_to 'parameters', measure_url(measure['id'], sub)+npi_param%><br><%= link_to 'patients', patients_url(measure['id'], sub)+npi_param%></td>
-					</tr>
-				<% end %>
-			<% end %>
+				<tr class="headerRow"><td colspan="6">Core Measures</td></tr>
+				<%= render :partial => "measure", :collection => @core_measures %>
+				<tr class="headerRow"><td colspan="6">Core Alternate Measures</td></tr>
+				<%= render :partial => "measure", :collection => @core_alt_measures %>
+				<tr class="headerRow"><td colspan="6">Alternate Measures</td></tr>
+				<%= render :partial => "measure", :collection => @alt_measures %>
 			</table>
     </div><!-- end #dashboardPeriod -->
   </div><!-- end #pageContent -->
