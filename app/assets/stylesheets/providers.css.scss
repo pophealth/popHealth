@@ -1,8 +1,8 @@
-/* Variables */
-$grey1: #f8f8f8;
-$grey2: #f0f0f0;
-$blue:  #e7e7ff;
-$green: #f0fff0;
+@import "mixins";
+
+
+
+
 
 ul#provider_list {
   float:left;
@@ -48,25 +48,30 @@ div#content form li {
     font-weight: 100;
     color: #999999;
     position: relative;
+    font-size: 2em;
+
 //    margin-right: 1px;
     top: 4px; }
 
 div #providerMain { 
-	border-bottom: 3px solid #999;
+
   div#aggregate {
-    margin-left:10px;
+    padding-left:10px;
     float:left;
-    
+    border-bottom: 3px solid $grayborder;
     
     .paren {
-      font-size: 3em;
+      font-size: 3.5em;
     }
-    
+    .clear {
+    height: 2em;
+    }
     .links {
-      float:left;
-      padding-left:5px;
-      font-size:1.25em;
+      padding-left:10px;
+      font-size: 0.9em;
       margin-bottom:3px;
+      float: left;
+      width: 100%;
     }
     
     #measurePopulationPercentage {
@@ -75,45 +80,83 @@ div #providerMain {
   }
   
   .paren {
-    font-size: 1.5em;
+    font-size: 2em;
   }
   
   table#providerTable {
     float:left;
-		margin-left:50px;
-		font-size:20px;
+		margin-left:20px;
+		font-size:1em;
+
+    h1 {
+      color: #888888;
+    }
+
 
 		td {
 			height:60px;
 			padding:5px 10px;
-			vertical-align:bottom;
+			vertical-align:middle;
 		}
+    td.link {
+      a {
+      verticle-align:middle;
+        min-width: 80px;
+        color: #44B3BE;
+        font-weight: normal;
+      }
+    }
 
 		td.percent {
-			font-size:24px;
+			font-size: 28px;
 			width:50px;
 			padding-right:15px;
+      vertical-align: bottom;
+      padding: 0 10px;
+      min-width: 80px;
+
+      div.measureProviderPopulationPercentage {
+        color: black;
+        display: inline-block;
+        font-size: 1em;
+        height: 50px;
+        line-height: 55px;
+        margin-right: 5px;
+        text-align: center;
+        vertical-align: middle;
+        width: 50px;
+      }
 		}
 
 		td.name {
 			text-decoration: underline;
 			width:250px;
-			vertical-align:top;
+			vertical-align:bottom;
 			font-weight: lighter;
-			padding-right:125px;
+			padding-right:20px;
+      padding-bottom: 10px;
 		}
 
 		td.fraction {
 			padding-right:25px;
+      min-width: 80px;
+      padding-top: 10px;
+
+      .inline-fraction {
+        padding-bottom:0;
+        padding-top: 9px;
+      }
 		}
 
 		td.barChart {
 			vertical-align:middle;
+      padding: 0 10px;
+
 			.tableBar {
 				height:20px;
 				width:200px;
 			}
-		}
+  	}
 	}
 }
 
@@ -121,5 +164,15 @@ img#loadingAggregate {
   position:absolute;
   left:375px;
   top:100px;
+}
+
+td.links {
+  a {
+    color: #44B3BE;
+    font-weight: 500;
+  }
+}
+#measureDetailTitle {
+  max-width: 800px;
 }
 

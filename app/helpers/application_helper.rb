@@ -19,4 +19,13 @@ module ApplicationHelper
       '0%'
     end
   end
+  
+  def exclusion_width(exclusion, patient_count)
+    if exclusion && !patient_count.zero?
+      "#{((exclusion / patient_count.to_f) * 100).to_i}%"      
+    else
+      '0%'
+    end
+  end
+  
 end

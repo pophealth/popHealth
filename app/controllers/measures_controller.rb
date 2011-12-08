@@ -8,6 +8,11 @@ class MeasuresController < ApplicationController
   before_filter :generate_report, :only => [:patients, :measure_patients]
   after_filter :hash_document, :only => :measure_report
   
+  add_breadcrumb_dynamic(:selected_provider, only: %w{index}) {|provider| {title: (provider ? provider.full_name : nil), url: '/'}}
+  add_breadcrumb_dynamic(:definition, only: %w{providers show patients}) {|measure| {title: "#{measure['name']}" + (measure['subtitle'] ? " - #{measure['subtitle']}" : ''), url: "/measure/#{measure['id']}"+(measure['subid'] ? "/#{measure['sub_id']}" : '')+"/providers"}}
+  add_breadcrumb 'parameters', '', only: %w{show}
+  add_breadcrumb 'patients', '', only: %w{patients}
+  
   def index
     @categories = Measure.non_core_measures
     @core_measures = Measure.core_measures
@@ -26,7 +31,10 @@ class MeasuresController < ApplicationController
         measures = params[:sub_id] ? Measure.get(params[:id], params[:sub_id]) : Measure.sub_measures(params[:id])
         
         render_measure_response(measures, params[:jobs]) do |sub|
-          QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters)
+          {
+            report: QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters),
+            patient_count: @patient_count
+          }
         end
       end
     end
@@ -62,7 +70,11 @@ class MeasuresController < ApplicationController
         providerIds = params[:provider].empty? ?  Provider.all.map { |pv| pv.id.to_s } : @filters.delete('providers')
 
         render_measure_response(providerIds, params[:jobs]) do |pvId|
-          QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => @filters.merge('providers' => [pvId]))
+          {
+            report: QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => @filters.merge('providers' => [pvId])),
+            patient_count: @patient_count
+#            patient_count: Provider.find(pvId).records(@effective_data).count
+          }
         end
       end
     end
@@ -218,10 +230,12 @@ class MeasuresController < ApplicationController
   
   def render_measure_response(collection, uuids)
     result = collection.inject({jobs: {}, result: [], job_statuses: {}}) do |memo, var|
-      report = yield(var)
+      data = yield(var)
+      report = data[:report]
+      patient_count = data[:patient_count]
  
       if report.calculated?
-        memo[:result] << report.result
+        memo[:result] << report.result.merge({'patient_count'=>patient_count})
       else
         key = "#{report.instance_variable_get(:@measure_id)}#{report.instance_variable_get(:@sub_id)}"
         memo[:jobs][key] = (uuids.nil? || uuids[key].nil?) ? report.calculate : uuids[key]
@@ -243,12 +257,17 @@ class MeasuresController < ApplicationController
     end
     
     if request.xhr?
-      providers = params[:provider] || []
-      races = params[:race] ? Race.selected(params[:race]).all : []
-      ethnicities = params[:ethnicity] ? Ethnicity.selected(params[:ethnicity]).all : []
-      genders = params[:gender] ? params[:gender] : []
+      providers = params[:provider] || nil
+      races = params[:race] ? Race.selected(params[:race]).all : nil
+      ethnicities = params[:ethnicity] ? Ethnicity.selected(params[:ethnicity]).all : nil
+      genders = params[:gender] ? params[:gender] : nil
       
-      @filters = {'providers' => providers, 'races'=>(races.map {|race| race.codes}).flatten, 'ethnicities'=>(ethnicities.map {|ethnicity| ethnicity.codes}).flatten, 'genders' => genders}
+      @filters = {}
+      @filters.merge!({'providers' => providers}) if providers
+      @filters.merge!({'races'=>(races.map {|race| race.codes}).flatten}) if races
+      @filters.merge!({'ethnicities'=>(ethnicities.map {|ethnicity| ethnicity.codes}).flatten}) if ethnicities
+      @filters.merge!({'genders' => genders}) if genders
+      @filters = nil if @filters.empty?
       
       if @selected_provider
         @filters['providers'] = [@selected_provider.id.to_s]

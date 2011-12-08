@@ -1,36 +1,252 @@
 
-<div id="container">
-  <%= render :partial => 'header', :locals => {:patient => @patient} %>
-  <div style= "padding-top: 20px;">
-    <div id="patientDashLeft" style="width:400px; float:left;">
-      <span id="patientLastName" style="font-size: 150%; text-transform: uppercase;"><%= @patient.last %></span><br/>
-      <%= @patient.first %>
-      <br/><br/>
-      <div>
-        <div class="patientDatum">
-          <label style="text-transform: uppercase;">Sex</label><span style="position:relative; left: 20px;"><%= @patient.gender %></span>
-        </div>
-        <div class="patientDatum" "text-transform: uppercase;">
-          <label>DOB</label><span style="position:relative; left: 20px;"><%= Time.at(@patient.birthdate).strftime("%d.%b.%Y") %></span>
-        </div>
-    </div>
-    <div id="patientDashRight" style="width:400px; float:left;">
-      <div class="patientContentCategory" style="margin: 20px;">
-        <h3 style="text-transform: uppercase;">Results</h3>
-        <% @patient.results.each do |element| -%>
-          <div class="patientResult">
-            <%= element['description'] %> : <%= element['value'] ? "#{element['value']['scalar']} #{element['value']['units']}" : 'no value' %>
+  <div id="pageContent">
+    <div id="providerReports">
+      <div class="groupList">
+        <label class="open">OUTLIERS</label>
+          <div>
+            <ul class="patientList">
+              <li>Hypertension BP Measurement</li>
+              <li>Preventative Care & Screening: Tobacco Use and Cessation Intervention</li>
+              <li>Adult Weight Screening & Follow Up</li>
+              <li>Weight Assessment & Couneling for Children & Adolescents</li>
+            </ul>
           </div>
-        <% end -%>
+            <ul>
+              <li>
+              <div class="measureItemList expandableList">
+          </li>
+          <li><label class="open">NUMERATOR</label>
+            <div class="measureItemList">
+              <ul>
+                <li><label>ASTHMA</label>
+                  <ul class="numeratorList">
+                    <li><img/>Asthma Assessment</li>
+                    <li>Use of Appropriate Medication for Asthma</li>
+                    <li>Asthma Pharmacologic Therapy</li>
+                  </ul>
+                <li><label>CANCER</label>
+                </li>
+                <li><label>DIABETES</label>
+                </li>
+                <li><label>HEART CONDITIONS</label>
+                </li>
+                <li><label>HEART CONDITIONS</label>
+                </li>
+                <li><label>WOMEN'S HEALTH</label>
+                </li>
+                <li><label>MISCELLANEOUS</label>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li><label class="open">DENOMINATOR</label>
+            <div class="measureItemList">
+            </div>
+          </li>
+          <li><label class="open">EXCLUSIONS</label>
+            <div class="measureItemList">
+            </div>
+          </li>
+        <ul>
       </div>
-      <div class="patientContentCategory" style="margin: 20px;">
-        <h3 style="text-transform: uppercase;">Vitals</h3>
-        <% @patient.vital_signs.each do |element| -%>
-          <div class="patientResult">
-            <%= element['description'] %><%= ": #{element['value']['scalar']} #{element['value']['units']}" if element['value']%>
+    </div>
+    <div id="dashboardPeriod">
+      <div id="patientName" class="main">
+        <p id="patientLastName"><%= @patient.last %>,</p>
+        <p id="patientFirstName"><%= @patient.first %></p>
+        <p>effective date:</p>
+        <div id="effectiveDate"></div>
+          <table id="patientBasicInfo">
+          <tbody>
+            <tr>
+              <th>DOB</th>
+              <td><%= Time.at(@patient.birthdate).strftime("%d.%b.%Y") %></td>
+            </tr>
+            <tr>
+              <th>sex</th>
+              <td><%= @patient.gender %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+        
+      <div class="lowerborder">
+        <table class="patientDemo main">
+          <tbody>
+            <tr>
+              <th>race</th>
+              <td>white</td>
+            </tr>
+            <tr>
+              <th>ethnicity</th>
+              <td>non-hispanic</td>
+            </tr>
+            <tr>
+              <th>language</th>
+              <td>english</td>
+            </tr>
+            <tr>
+              <th>btype</th>
+              <td>O</td>
+            </tr>
+            <tr>
+              <th>tobacco user</th>
+              <td>no</td>
+            </tr>         
+          </tbody>
+        </table>
+        <table class="providerInfo">
+          <tbody>
+            <tr>
+              <th>health plan</th>
+              <td>Harvard Pilgrim</td>
+            </tr>
+            <tr>
+              <th>policy number</th>
+              <td>XXFJIEWO5</td>
+            </tr>
+            <tr>
+              <th>p.c.p.</th>
+              <td>Dr. Jimi Hendrix</td>
+          </tbody>
+        </table>
+      </div>
+      <div id="patientRecords" class="main">
+        <div class="sectionHeadingbar"><h3>ALLERGIES</h3></div>
+          <p>penicillin</p>      
+        <div class="sectionHeadingbar"><h3>PHYSICAL EXAM FINDINGS</h3></div>
+          <table class="medGraph">
+            <tbody>
+              <tr>
+                <th></th>
+                <th></th>
+                <th>MEASUREMENT</th>
+                <th></th>
+                <th>RANGE</th>
+              </tr>
+              <tr>
+                <th>hgt</th>
+                <td>5'9"</td>
+              </tr>
+              <tr>
+                <th>wgt</th>
+                <td>IMG</td>
+                <td>196</td>
+                <td>lbs</td>
+                <td>170-180</td>
+              </tr>
+              <tr>
+                <th>bmi</th>
+                <td>IMG</td>
+                <td>28</td>
+                <td>kg/m2</td>
+                <td>< 25</td>
+              </tr>
+              <tr>
+                <th>waist circ.</th>
+                <td>IMG</td>
+                <td>38</td>
+                <td>inches</td>
+                <td>< 40</td>
+              </tr>
+              <tr>
+                <th>bp</th>
+                <td>IMG</td>
+                <td>133.93</td>
+                <td>mmHg</td>
+                <td>< 120/80</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        <div class="sectionHeadingbar"><h3>PROCEDURE</h3></div>
+          <h4></h4>
+        <div class="secondColumn">  
+          <div class="sectionHeadingbar"><h3>DIAGNOSIS</h3></div>
+            <h4></h4>
+          <div class="sectionHeadingbar"><h3>MEDICATIONS</h3></div>
+            <h4></h4>
+          <div class="sectionHeadingbar"><h3>LAB RESULTS</h3></div>
+            <table class="medGraph">
+              <tbody>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th>MEASUREMENT</th>
+                  <th></th>
+                  <th>RANGE</th>
+                </tr>
+                <tr>
+                  <th>cholesterol</th>
+                  <td>total <img/></td>
+                  <td>223</td>
+                  <td>mg/dl</td>
+                  <td>100-199</td>
+                </tr>
+                <tr>
+                  <th></th>
+                  <td>LDL <img/></td>
+                  <td>171</td>
+                  <td>mg/dl</td>
+                  <td>40-130</td>
+                </tr>
+                <tr>
+                  <th></th>
+                  <td>HDL <img/></td>
+                  <td>41</td>
+                  <td>mg/dl</td>
+                  <td>40-70</td>
+                </tr>
+                <tr>
+                  <th>triglyceriders</th>
+                  <td><img/></td>
+                  <td>66</td>
+                  <td>mg/dl</td>
+                  <td>70-172</td>
+                </tr>
+                <tr>
+                  <th>glucose</th>
+                  <td>IMG</td>
+                  <td>99</td>
+                  <td>mg/dl</td>
+                  <td>72-137</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        <% end -%>
+        </div>
+        <div id="vaccines" class="main">
+          <div class="sectionHeadingbar"><h3>VACCINES</h3></div>
+            <table>
+              <tbody>
+                <tr>
+                  <th>tetanus</th>
+                  <td><li>1. 03.April.2003<li><li>2. 05.April.2005</li><li>3. INCOMPLETE</li></td>
+                </tr>
+                <tr>
+                  <th>TB</th>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th>MMR</th>
+                  <td><li>INCOMPLETE</li></td>
+                </tr>
+                <tr>
+                  <th>hepatitis A</th>
+                  <td><li>INCOMPLETE</li></td>
+                </tr>
+                <tr>
+                  <th>hepatitis B</th>
+                  <td><li>INCOMPLETE</li></td>
+                </tr>
+                <tr>
+                  <th>diphtheria</th>
+                  <td><li>INCOMPLETE</li></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>

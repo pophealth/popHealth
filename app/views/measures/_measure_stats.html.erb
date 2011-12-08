@@ -25,7 +25,7 @@
         </div>
         <div class="inline-bar">
           <%# raise results.inspect %>
-          <%= render :partial => "shared/table_bar", locals: {numerator: results['numerator'], denominator: results['denominator'], patient_count: results['population']}%>
+          <%= render :partial => "shared/table_bar", locals: {numerator: results['numerator'], denominator: results['denominator'], patient_count: results['population'], exclusions: results['exclusions']}%>
         </div>
       </div>
       <% end -%>

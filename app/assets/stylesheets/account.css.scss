@@ -1,9 +1,5 @@
 @import "button.css";
-
-$accountBkgColor: #fafafa;
-$inputBkgColor: #fafafa;
-$borderColor: #dddddd;
-$errorMsgColor: #f50000;
+@import "mixins";
 
 body.login {
   background-color: $accountBkgColor; }
@@ -120,3 +116,5 @@ ul.register {
     font-size: 100%;
     display: inline;
     cursor: pointer; } }
+
+

@@ -6,6 +6,8 @@ class ProvidersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :provider_list, except: 'measure'
   
+  add_breadcrumb 'providers', :providers_url
+  
   def show
     respond_to do |wants|
       wants.html

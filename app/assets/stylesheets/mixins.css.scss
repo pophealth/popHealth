@@ -1,0 +1,22 @@
+$accountBkgColor: #fafafa;
+$inputBkgColor: #fafafa;
+$borderColor: #dddddd;
+$errorMsgColor: #f50000;
+$graytext: #999999;
+$orange: #EDA039;
+$grayborder: #999999;
+$grey1: #f8f8f8;
+$grey2: #f0f0f0;
+$blue:  #e7e7ff;
+$green: #f0fff0;
+
+$largefont: 24px;
+$mediumfont: 18px;
+$regularfont: 14px;
+
+
+@mixin rounded($radius: 7px) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
