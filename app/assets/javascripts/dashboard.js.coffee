@@ -41,7 +41,7 @@
   exportMenuHasMouse: false
 	exportReport: ->
     position = $(this).offset()
-    dialog = $( "#generate-menu" ).dialog({ position: [position.left+5, position.top + $(this).height() + 10], resizable: false, dialogClass: 'dialog-menuwindow', minWidth: false, minHeight: false, width: 170 }).css('padding', '2px');
+    dialog = $( "#generate-menu" ).dialog({ position: [position.left+5, (position.top + $(this).height() + 10 - $(window).scrollTop())], resizable: false, dialogClass: 'dialog-menuwindow', minWidth: false, minHeight: false, width: 170 }).css('padding', '2px');
     dialog.hover((-> Dashboard.exportMenuHasMouse=false), (-> dialog.dialog('close'); Dashboard.exportMenuHasMouse=true) )
     $('#btnExportReport').hover((->), (-> setTimeout((-> dialog.dialog('close') if (Dashboard.exportMenuHasMouse) ), 600) ) )
     $('.dialog-menu li').click -> 
