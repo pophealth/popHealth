@@ -91,8 +91,11 @@ makeMeasureListClickable = ->
 
 makeFilterListsClickable = ->
 	$(".filterItemList .selectAll").click ->
+		# this runs before the other filterItemList click handler that checks/unchecks
+		# so it's really "unchecked" when it has the class checked and vice versa
+		allSelected = !$(this).hasClass("checked")
 		$(this).siblings().each (i, el) ->
-			$(el).toggleClass("checked", true)
+			$(el).toggleClass("checked", !allSelected)
 			$(el).toggle();
 	$(".filterItemList ul li").click ->
 		$(this).toggleClass("checked")
