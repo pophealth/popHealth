@@ -28,6 +28,12 @@ class @QualityReport
 }
 
 @ActiveFilters = {
+	filterTypes: ->
+		_.reduce($(".filterItemList li"), (memo, filter) ->
+			filterType = $(filter).data("filter-type")
+			memo.push(filterType) unless _.include(memo, filterType) || !filterType?
+			memo
+		, [])
 	all: ->
 		ActiveFilters.findFilters(".filterItemList li.checked")
 	providers: ->
@@ -35,8 +41,7 @@ class @QualityReport
 	nonProvider: ->
 		ActiveFilters.findFilters(".findFilterList li:not([data-filter-type='provider'])")
 	findFilters: (selector) ->
-		filterElements = _.map $(selector), (el) -> 
-			type: $(el).data("filter-type"), value: $(el).data("filter-value")
+		filterElements = _.map $(selector), (el) -> type: $(el).data("filter-type"), value: $(el).data("filter-value")
 		filters = _.reduce filterElements, (memo, filter) ->
 			filter_key = "#{filter.type}\[\]"
 			memo[filter_key] = [] unless memo[filter_key]?
@@ -50,7 +55,6 @@ class @QualityReport
 	fraction: (selector, data) ->
 		selector.find(".numeratorValue").html(data.numerator)
 		selector.find(".denominatorValue").html(data.denominator)
-	
 	percent: (selector, data) -> 
 		percent = if data.denominator == 0 then data.denominator else  (data.numerator / data.denominator) * 100
 		selector.html("#{Math.floor(percent)}%")
@@ -87,19 +91,22 @@ makeMeasureListClickable = ->
 				qr.poll(Page.params, Page.onReportComplete)
 		else
 			Page.onMeasureRemove(measure)
-
-
 makeFilterListsClickable = ->
-	$(".filterItemList .selectAll").click ->
-		# this runs before the other filterItemList click handler that checks/unchecks
-		# so it's really "unchecked" when it has the class checked and vice versa
-		allSelected = !$(this).hasClass("checked")
-		$(this).siblings().each (i, el) ->
-			$(el).toggleClass("checked", !allSelected)
-			$(el).toggle();
+	$(".filterItemList ul li.providerSelectAll").click ->
+		unSelected = $(".filterItemList .providerSelectAll:not(.checked)").length
+		teams = $(".filterItemList .providerSelectAll").length
+		if unSelected == 0
+			$(".filterItemList ul li[data-filter-type='provider']").toggleClass("checked", true)
+		else if unSelected == 1 && $(this).hasClass("unchecked")
+			$(".filterItemList ul li[data-filter-type='provider']").toggleClass("checked", false)
 	$(".filterItemList ul li").click ->
-		$(this).toggleClass("checked")
+		$(this).toggleClass("checked") unless $(this).hasClass("disabled")
+		if $(this).hasClass("selectAll")
+			allSelected = $(this).hasClass("checked")
+			$(this).siblings().toggleClass("disabled", allSelected)
+			$(this).siblings().toggleClass("checked", !allSelected) unless $(this).hasClass("providerSelectAll")
 		Page.onFilterChange(this)
+		
 
 	
 # Load Page

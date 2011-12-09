@@ -477,15 +477,24 @@ a, {
       margin: 5px; }
     list-style: none;
     li {
-      padding: 0 5px 10px 25px;
-      background: url("../assets/unchecked.png") 0 10% no-repeat;
+      padding: 0 5px 10px 35px;
+      background: url("../assets/unchecked.png") 5% 10% no-repeat;
       font-size: 0.9em;
       cursor: pointer;
       .note {
         margin: 0 3px 0 0;
         font-size: 0.9em; } }
+		li.selectAll {
+			padding-left:20px;
+			background-position: 0% 10% !important;
+		}
     li.checked {
-      background: url("../assets/checked.png") 0 10% no-repeat; } }
+      background: url("../assets/checked.png") 5% 10% no-repeat; } 
+		li.disabled {
+			cursor: default;
+			color: gray;
+			background: url("../assets/checked_grayed_out.png") 5% 10% no-repeat;
+		}}
 	.selectAll {
 //		float:right;
 //		height:16px;
