@@ -46,7 +46,9 @@ group :test, :develop do
 end
 
 group :production do
-  gem 'therubyracer'
+  # Is there an easy way to say "all platforms except :mswin, :mingw" without
+  # explicitly listing all other platforms?
+  gem 'therubyracer', :platforms => [:ruby, :jruby]
 end
 
 gem 'jquery-rails'
