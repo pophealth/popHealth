@@ -22,6 +22,7 @@ gem 'foreman'
 gem 'pry'
 gem 'formtastic'
 gem 'cancan'
+gem 'factory_girl'
 
 # Windows doesn't have syslog, so need a gem to log to EventLog instead
 gem 'win32-eventlog', :platforms => [:mswin, :mingw]
@@ -40,7 +41,6 @@ group :test, :develop do
   gem "unicorn"
   gem 'turn', :require => false
   gem 'cover_me'
-  gem 'factory_girl'
   gem 'minitest'
   gem 'mocha', :require => false
 end
