@@ -38,7 +38,7 @@ end
 group :test, :develop do
   # gem "rspec-rails"
   # Pretty printed test output
-  gem "unicorn", :plagforms => [:ruby, :jruby]
+  gem "unicorn", :platforms => [:ruby, :jruby]
   gem 'turn', :require => false
   gem 'cover_me'
   gem 'minitest'
