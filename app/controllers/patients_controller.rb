@@ -38,7 +38,7 @@ class PatientsController < ApplicationController
   end
   
   def toggle_excluded
-    ManualExclusion.toggle!(params[:id], params[:measure_id], params[:sub_id])
+    ManualExclusion.toggle!(params[:id], params[:measure_id], params[:sub_id], params[:rationale])
     redirect_to :controller => :measures, :action => :patients, :id => params[:measure_id], :sub_id => params[:sub_id]
   end
   
