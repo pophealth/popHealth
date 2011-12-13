@@ -35,6 +35,10 @@ class PatientsController < ApplicationController
   end
 
   def show
+    @outliers = PatientCache.outliers(@patient).all.map do |patient_cache|
+      Measure.get(patient_cache['value']['measure_id'], patient_cache['value']['sub_id']).first
+    end
+    @manual_exclusions = []
   end
   
   private
