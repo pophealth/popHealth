@@ -35,10 +35,15 @@ class PatientsController < ApplicationController
   end
 
   def show
+    @manual_exclusions = ManualExclusion.for_record(@patient).all.map do |exclusion|
+      Measure.get(exclusion.measure_id, exclusion.sub_id).first
+    end
     @outliers = PatientCache.outliers(@patient).all.map do |patient_cache|
       Measure.get(patient_cache['value']['measure_id'], patient_cache['value']['sub_id']).first
     end
-    @manual_exclusions = []
+    @outliers.delete_if do |outlier|
+      @manual_exclusions.find { |exclusion| exclusion['measure_id']==outlier['measure_id'] && exclusion['sub_id']==outlier['sub_id'] }
+    end
   end
   
   def toggle_excluded

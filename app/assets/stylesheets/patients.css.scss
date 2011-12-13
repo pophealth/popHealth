@@ -238,6 +238,13 @@ div.lowerborder {
 
 }
 
+table.patientRecords {
+  td {
+    vertical-align: top;
+    padding: 2px;
+  }
+}
+
 table.patientGraphtable {
 	width: 360px;
 	
@@ -249,7 +256,7 @@ table.patientGraphtable {
 .secondColumn {
 	margin-left: 360px;
   float: left;
-  margin-top: -292px;
+  margin-top: -377px;
 
 }
 

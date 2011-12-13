@@ -8,6 +8,8 @@ class ManualExclusion
   field :medical_record_id, type: String
   field :rationale, type: String
 
+  scope :for_record, ->(patient) {where("medical_record_id" => patient.patient_id)}
+
   def self.toggle!(patient_id, measure_id, sub_id, rationale)
     existing = ManualExclusion.where({:medical_record_id => patient_id}).and({:measure_id => measure_id}).and({:sub_id => sub_id}).first
     if existing

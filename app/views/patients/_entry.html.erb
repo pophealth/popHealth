@@ -1,14 +1,14 @@
-<tr>
-  <td><%= entry.description %></td>
-  <td align="right">
-    <% if entry.value.present? -%>
-      <%= entry.value['scalar']%>
-    <% end -%>
-  </td>
-  <td>
-    <% if entry.value.present? && entry.value['units'].present?-%>
-      <%= entry.value['units'] %>
-    <% end -%>
-  </td>
-  <td><time datetime="<%= display_time(entry.time) %>"><%= display_time(entry.time) %></time></td>
-</tr>
+  <tr>
+    <td><%= entry.description %></td>
+    <td align="right">
+      <% if entry.value.present? -%>
+        <%= entry.value['scalar']%>
+      <% end -%>
+    </td>
+    <td>
+      <% if entry.value.present? && entry.value['units'].present?-%>
+        <%= entry.value['units'] %>
+      <% end -%>
+    </td>
+    <td><time datetime="<%= display_time(entry.time) %>"><%= display_time(entry.time) %></time></td>
+  </tr>
