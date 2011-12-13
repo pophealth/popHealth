@@ -28,13 +28,14 @@
 		$ "#providerTable tr[data-provider='" + id + "']"
 	onFilterChange: (current_measure, sub_id) ->
 		return (li) ->
-			if $(li).data("filter-type") is "provider"
+			if $(li).data("filter-type") is "provider" || $(li).hasClass("providerSelectAll")
 				Providers.row($(li).data("filter-value")).fadeToggle "fast"
+				Providers.updateAggregate(current_measure, sub_id)
 			else
-			Providers.fadeOut();
-			Providers.updatePage(current_measure, sub_id)
+				Providers.fadeOut();
+				Providers.updatePage(current_measure, sub_id)
 	fadeOut: ->
-		$("#providerTable tr").fadeTo("fast", 0.5)
+		$("#providerTable tr:visible").fadeTo("fast", 0.5)
 	onLoad: (current_measure, sub_id) ->
 		Page.onFilterChange = Providers.onFilterChange(current_measure, sub_id);
 		Providers.fadeOut();

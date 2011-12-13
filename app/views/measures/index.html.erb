@@ -54,7 +54,7 @@
     <div class="groupList" style="display: none;">
       <div class="filterItemList expandableList">
         <ul>
-          <li data-filter-type="provider" data-filter-value="<%=@selected_provider.id%>" class="checked">
+          <li data-filter-type="provider"  data-filter-value="<%=@selected_provider.id%>" class="checked">
             <%= @selected_provider.full_name %>
           </li>
         </ul>
@@ -72,9 +72,9 @@
 
           <div class="filterItemList expandableList" style="display:none">
             <ul>
-						<li class="selectAll checked">All</li>
+						<li class="selectAll providerSelectAll checked">All</li>
               <% providers.each do |pv| %>
-              <li style="display:none" data-filter-type="provider" data-filter-value="<%=pv.id%>" class="checked">
+              <li class="disabled" data-filter-type="provider" data-filter-value="<%=pv.id%>">
                 <%= pv.full_name %>
               </li><% end %>
             </ul>
@@ -94,7 +94,7 @@
             <ul>
 							 <li class="selectAll checked">All</li>
                <% @races.each do |race| %>
-              <li style="display:none" data-filter-type="race" data-filter-value="<%=race.id%>" class="checked">
+              <li class="disabled" data-filter-type="race" data-filter-value="<%=race.id%>">
                 <%= race.name %>
               </li>
 							<% end %>
@@ -107,7 +107,7 @@
             <ul>
 							 <li class="selectAll checked">All</li>
                <% @ethnicities.each do |ethnicity| %>
-              <li style="display:none" data-filter-type="ethnicity" data-filter-value="<%=ethnicity.id%>" class="checked">
+              <li class="disabled" data-filter-type="ethnicity" data-filter-value="<%=ethnicity.id%>">
                 <%= ethnicity.name %>
               </li>
 							<% end %>
@@ -120,7 +120,7 @@
             <ul>
 							 <li class="selectAll checked">All</li>
                <% @genders.each do |gender| %>
-              <li style="display:none" data-filter-type="gender" data-filter-value="<%=gender[:id]%>" class="checked">
+              <li class="disabled" data-filter-type="gender" data-filter-value="<%=gender[:id]%>">
                 <%= gender[:name] %>
               </li>
 							<% end %>

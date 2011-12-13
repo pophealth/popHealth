@@ -61,20 +61,16 @@ class MeasuresController < ApplicationController
   
   def providers    
     respond_to do |wants|
-      wants.html do
-        @providers = Provider.alphabetical
-        @races = Race.ordered
-        @ethnicities = Ethnicity.ordered
-        @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
-      end
+      wants.html {}
       
       wants.json do
+        providerIds = params[:provider].blank? ?  Provider.all.map { |pv| pv.id.to_s } : @filters.delete('providers')
         
-        providerIds = params[:provider].empty? ?  Provider.all.map { |pv| pv.id.to_s } : @filters.delete('providers')
-
+        
         render_measure_response(providerIds, params[:jobs]) do |pvId|
-          {
-            report: QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => @filters.merge('providers' => [pvId])),
+          filters = @filters ? @filters.merge('providers' => [pvId]) : {'providers' => [pvId]}
+          { 
+            report: QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => filters),
             patient_count: @patient_count
 #            patient_count: Provider.find(pvId).records(@effective_data).count
           }
