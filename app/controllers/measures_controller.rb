@@ -1,3 +1,4 @@
+require 'ostruct'
 class MeasuresController < ApplicationController
   include MeasuresHelper
 
@@ -273,11 +274,14 @@ class MeasuresController < ApplicationController
       if can?(:read, :providers)
         @providers = Provider.alphabetical
         @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
+        @providers_by_team['Other'] ||= []
+        @providers_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
       end
       
       @races = Race.ordered
       @ethnicities = Ethnicity.ordered
       @genders = [{name: 'Male', id: 'M'}, {name: 'Female', id: 'F'}]
+      @languages = Language.ordered
       
     end
 
@@ -288,12 +292,14 @@ class MeasuresController < ApplicationController
     providers = params[:provider] || nil
     races = params[:race] ? Race.selected(params[:race]).all : nil
     ethnicities = params[:ethnicity] ? Ethnicity.selected(params[:ethnicity]).all : nil
+    languages = params[:language] ? Language.selected(params[:language]).all : nil
     genders = params[:gender] ? params[:gender] : nil
     
     @filters = {}
     @filters.merge!({'providers' => providers}) if providers
     @filters.merge!({'races'=>(races.map {|race| race.codes}).flatten}) if races
     @filters.merge!({'ethnicities'=>(ethnicities.map {|ethnicity| ethnicity.codes}).flatten}) if ethnicities
+    @filters.merge!({'languages'=>(languages.map {|language| language.codes}).flatten}) if languages
     @filters.merge!({'genders' => genders}) if genders
     
     if @selected_provider

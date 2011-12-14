@@ -11,3 +11,10 @@ APP_CONFIG = YAML.load_file(Rails.root.join('config', 'popHealth.yml'))[Rails.en
     MONGO_DB['ethnicities'].save(document)
   end
 ) if MONGO_DB['races'].count == 0 || MONGO_DB['ethnicities'].count == 0
+
+# insert languages
+(
+  JSON.parse(File.read(File.join(Rails.root, 'test', 'fixtures', 'code_sets', 'languages.json'))).each do |document|
+    MONGO_DB['languages'].save(document)
+  end
+) if MONGO_DB['languages'].count == 0
