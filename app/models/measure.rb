@@ -1,5 +1,9 @@
 class Measure < MongoBase
   
+  def self.all
+    mongo['measures'].find()
+  end
+  
   def self.sub_measures(measure_id)
     mongo['measures'].find("id" => measure_id)
   end

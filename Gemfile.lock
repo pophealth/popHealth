@@ -1,7 +1,7 @@
 GIT
   remote: http://github.com/pophealth/quality-measure-engine.git
-  revision: 3e3a9d57690318b8ff318e81456e914d17acb6b8
-  branch: develop
+  revision: 69540e589b4c3884de5f1fa01fffde12fb5df5d2
+  branch: patient_view
   specs:
     quality-measure-engine (1.0.4)
       mongo (~> 1.3)
@@ -177,7 +177,7 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    systemu (2.4.1)
+    systemu (2.4.2)
     term-ansicolor (1.0.7)
     therubyracer (0.9.9)
       libv8 (~> 3.3.10)
