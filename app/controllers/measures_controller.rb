@@ -17,9 +17,7 @@ class MeasuresController < ApplicationController
     @categories = Measure.non_core_measures
     @core_measures = Measure.core_measures
     @core_alt_measures = Measure.core_alternate_measures
-    @alt_measures = Measure.alternate_measures
-    # @all_measures = Measure.all_by_measure
-    # binding.pry
+    @alt_measures = Measure.alternate_measures.group_by { |m| m['category'] }
   end
   
   def show

@@ -7,7 +7,9 @@
 			Render.barChart row.find("div.tableBar"), result
 			Render.fraction row.find("td.fraction"), result
 	measureRow: (measure, sub_id) ->
-		return $("tr.measure[data-measure='#{measure}'][data-measure-sub='#{sub_id || ''}']")
+		selector = "tr.measure[data-measure='#{measure}']"
+		selector += "[data-measure-sub='#{sub_id || ''}']" if sub_id?
+		$(selector)
 	measureRows: (measure) ->
 		return $("tr.measure[data-measure='#{measure}']")
 	fadeIn: (measure) -> 
@@ -26,8 +28,16 @@
 			qr.poll Page.params, (result) ->
 				Dashboard.calculateMeasure(result)
 	onLoad: ->
-		Page.onMeasureSelect = (measure) -> Dashboard.fadeIn(measure)
-		Page.onMeasureRemove = (measure) -> Dashboard.fadeOut(measure)
+		Page.onMeasureSelect = (measure) ->
+			Dashboard.measureRow(measure).prevAll(".headerRow").first().show()
+			Dashboard.fadeIn(measure)
+		Page.onMeasureRemove = (measure) -> 
+			Dashboard.fadeOut(measure)
+			measureRow = Dashboard.measureRow(measure).first()
+			console.log(measureRow.prevUntil(".headerRow", ":not([data-measure='#{measure}']):visible"))
+			console.log(measureRow.nextUntil(".headerRow", ":not([data-measure='#{measure}']):visible"))
+			Dashboard.measureRow(measure).prevAll(".headerRow").first().hide() if measureRow.prevUntil(".headerRow", ":not([data-measure='#{measure}']):visible").length == 0 && measureRow.nextUntil(".headerRow", ":not([data-measure='#{measure}']):visible").length == 0
+			
 		Page.onReportComplete = (result) -> Dashboard.calculateMeasure(result)
 		$('#btnExportReport').click(Dashboard.exportReport);
 		$('#btnExportReportSingle').click(Dashboard.doReportExport);
