@@ -7,6 +7,7 @@
          <th name="birthdate">Age</th>
          <th name="birthdate">DoB</th>
          <th name="gender">Gender</th>
+         <th name="excluded">Status</th>
        </tr>
      </thead>
      <tbody>
@@ -19,6 +20,14 @@
          <td><%= age_from_time(patient['birthdate']) || 'UNK' %></td>
          <td><%= dob(patient['birthdate']) || 'UNK' %></td>
          <td><%= patient["gender"] || "UNK" %></td>
+         <td>
+           <%= patient['manual_exclusion'] ? "Excluded [#{patient['manual_exclusion_rationale']}]" : 'Included' %>
+           <button class="exclude" 
+               data-link="<%= url_for(controller: :patients, action: :toggle_excluded, id: patient['medical_record_id'], measure_id: patient['measure_id'], sub_id: patient['sub_id']) %>"
+               data-title="<%= patient['manual_exclusion'] ? 'Include Patient' : 'Exclude Patient' %>">
+             Change
+           </button>
+         </td>
        </tr>
      <% end -%>
      </tbody>
@@ -26,6 +35,14 @@
 <div>
   <!-- pagination to go here -->
   <%= will_paginate @page_results%>
+</div>
+<div id="dialog-form" title="Exclude Patient">
+	<form>
+	<fieldset>
+		<label for="rationale">Rationale</label>
+		<input type="text" name="rationale" id="rationale" class="text ui-widget-content ui-corner-all" />
+	</fieldset>
+	</form>
 </div>
 
 <script>
@@ -54,6 +71,43 @@ $(".pagination > a").click(function(){
                  alert("fix this");
              }
            });
-return false;
+  return false;
 });
+
+var rationale = $( "#rationale" ),
+  allFields = $( [] ).add( rationale );
+
+$( "#dialog-form" ).dialog({
+  autoOpen: false,
+  height: 175,
+  width: 350,
+  modal: true,
+  buttons: {
+    Update: function() {
+        $.ajaxSetup({async:false});
+        $.post(
+          $(this).data("link"),
+          {rationale: rationale.val()},
+          function(data) {
+            window.location.reload();
+          }
+        );
+        
+        $( this ).dialog( "close" );
+      },
+    Cancel: function() {
+      $( this ).dialog( "close" );
+    }
+  },
+  close: function() {
+    allFields.val( "" );
+  }
+});
+
+$( ".exclude" )
+  .button()
+  .click(function() {
+    $( "#dialog-form" ).data("link", $(this).data("link")).dialog("option", "title", $(this).data().title).dialog("open");
+});
+
 </script>
