@@ -49,7 +49,8 @@ class PatientsController < ApplicationController
   end
   
   def validate_authorization!
-    authorize! :read, Record
+    redirect_to '/403.html'
+#    authorize! :read, Record
   end
 
 end
