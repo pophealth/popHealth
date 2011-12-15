@@ -117,6 +117,6 @@
       <div id="patientTableContainer">
         <div style="padding: 150px;"><img src="/assets/loading_bar.gif"/></div>
       </div><!-- end patientTableContainer -->
-    <%= link_to 'Export to Excel', patient_list_url(params[:id], params[:sub_id], :format => :xml) %>
+    <%= link_to 'Export to Excel', patient_list_url(params[:id], params[:sub_id], :format => :xml) + (@selected_provider ? "?npi=#{@selected_provider.npi}":'') %>
     </div>
   </div><!-- end #pageContent -->

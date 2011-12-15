@@ -20,7 +20,6 @@ class MeasuresController < ApplicationController
     @core_alt_measures = Measure.core_alternate_measures
     @alt_measures = Measure.alternate_measures
     # @all_measures = Measure.all_by_measure
-    # binding.pry
   end
   
   def show
@@ -61,12 +60,13 @@ class MeasuresController < ApplicationController
   
   
   def providers    
+    authorize! :manage, :providers
+    
     respond_to do |wants|
       wants.html {}
       
       wants.json do
         providerIds = params[:provider].blank? ?  Provider.all.map { |pv| pv.id.to_s } : @filters.delete('providers')
-        
         
         render_measure_response(providerIds, params[:jobs]) do |pvId|
           filters = @filters ? @filters.merge('providers' => [pvId]) : {'providers' => [pvId]}
@@ -110,6 +110,7 @@ class MeasuresController < ApplicationController
     if (@selected_provider)
       result = PatientCache.by_provider(@selected_provider, @effective_date).where(query);
     else
+      authorize! :manage, :providers
       result = PatientCache.all.where(query)
     end
     @total = result.count
@@ -129,11 +130,24 @@ class MeasuresController < ApplicationController
     end
   end
 
+  # excel patient list
   def patient_list
     measure_id = params[:id] 
     sub_id = params[:sub_id]
-    @records = mongo['patient_cache'].find({'value.measure_id' => measure_id, 'value.sub_id' => sub_id,
-                                            'value.effective_date' => @effective_date}).to_a
+    
+    query = {'value.measure_id' => measure_id, 'value.sub_id' => sub_id, 'value.effective_date' => @effective_date, 'value.population'=>true}
+
+    if (@selected_provider)
+      result = PatientCache.by_provider(@selected_provider, @effective_date).where(query);
+    else
+      authorize! :manage, :providers
+      result = PatientCache.all.where(query)
+    end
+    @records = result.order_by(["value.medical_record_id", 'desc']);
+    
+    @manual_exclusions = {}
+    ManualExclusion.selected(@records.map {|record| record['value']['medical_record_id']}).map {|exclusion| @manual_exclusions[exclusion.medical_record_id] = exclusion}
+    
     # log the patient_id of each of the patients that this user has viewed
     @records.each do |patient_container|
       Log.create(:username =>   current_user.username,
@@ -160,13 +174,18 @@ class MeasuresController < ApplicationController
     
     case params[:type]
     when 'practice'
+      authorize! :manage, :providers
       @report[:provider_reports] << generate_xml_report(nil, selected_measures, false)
     when 'provider'
       providers = Provider.selected_or_all(params[:provider])
       providers.each do |provider|
+        authorize! :read, provider
         @report[:provider_reports] << generate_xml_report(provider, selected_measures)
       end
-      @report[:provider_reports] << generate_xml_report(nil, selected_measures) if (providers.size > 1)
+      # add patients without a provider
+      if ((can? :manage, :providers) && (providers.size > 1))
+        @report[:provider_reports] << generate_xml_report(nil, selected_measures) 
+      end
     end
 
     respond_to do |format|
@@ -319,21 +338,5 @@ class MeasuresController < ApplicationController
   def validate_authorization!
     authorize! :read, Measure
   end
-  
-  # def authorize_instance_variables
-  #   instance_variable_names.each do |variable|
-  #     values = instance_variable_get(variable)
-  #     if (values.is_a? Mongoid::Criteria or values.is_a? Array)
-  #       values.each do |value|
-  #         if (value.is_a? Provider)
-  #           authorize! :read, value
-  #         end
-  #       end
-  #     end
-  #     if (values.is_a? Provider)
-  #       authorize! :read, values
-  #     end
-  #   end
-  # end
   
 end
