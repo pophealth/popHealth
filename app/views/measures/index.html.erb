@@ -205,12 +205,15 @@
         <br/>
       </div><!-- end #measureDetailTable --><br><br>
 			<table class="measureTable" style="float:left">
-				<tr class="headerRow"><td colspan="6">Core Measures</td></tr>
+				<tr style="<%= display_header(@core_measures, current_user.selected_measures)%>" class="headerRow"><td colspan="6">Core Measures</td></tr>
 				<%= render :partial => "measure", :collection => @core_measures %>
-				<tr class="headerRow"><td colspan="6">Core Alternate Measures</td></tr>
+				<tr style="<%= display_header(@core_alt_measures, current_user.selected_measures)%>" class="headerRow"><td colspan="6">Core Alternate Measures</td></tr>
 				<%= render :partial => "measure", :collection => @core_alt_measures %>
-				<tr class="headerRow"><td colspan="6">Alternate Measures</td></tr>
-				<%= render :partial => "measure", :collection => @alt_measures %>
+				
+				<% @alt_measures.each do |category, measures| %>
+					<tr style="<%= display_header(measures, current_user.selected_measures)%>" class="headerRow"><td colspan="6"><%=category%></td></tr>
+					<%= render :partial => "measure", :collection => measures %>
+				<% end %>
 			</table>
     </div><!-- end #dashboardPeriod -->
   </div><!-- end #pageContent -->

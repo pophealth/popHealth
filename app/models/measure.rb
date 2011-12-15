@@ -85,7 +85,7 @@ class Measure < MongoBase
   
   # 
   def self.alternate_measures
-    mongo['measures'].group(:key => [:id, :name, :description], 
+    mongo['measures'].group(:key => [:id, :name, :description, :category], 
                             :cond => {:category => {"$nin" => ['Core', 'Core Alternate']}},
                             :initial => {:subs => [], 'short_subtitles' => {}},
                             :reduce => 'function(obj,prev) {if (obj.sub_id != null) {prev.subs.push(obj.sub_id); prev.short_subtitles[obj.sub_id] = obj.short_subtitle; }}')
