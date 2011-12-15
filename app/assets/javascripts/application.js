@@ -18,7 +18,7 @@ $(".tableMeasureTitle span").hoverIntent(
            
            $('body').append( '<p id="vtip"><img id="vtipArrow" />' + this.t + '</p>' );
                        
-           $('p#vtip #vtipArrow').attr("src", 'assets/vtip_arrow.png');
+           $('p#vtip #vtipArrow').attr("src", '/assets/vtip_arrow.png');
            $('p#vtip').css("top", this.top+"px").css("left", this.left+"px").fadeIn("slow");
          },
          timeout:600,

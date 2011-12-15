@@ -5,6 +5,7 @@ class Record
   field :last, type: String
   field :patient_id, type: String
   field :birthdate, type: Integer
+  field :patient_id, type: String
   field :gender, type: String
   field :measures, type: Hash
   
@@ -24,6 +25,10 @@ class Record
     else
       Record.create!(data)
     end
+  end
+  
+  def providers
+    provider_performances.map{|pp| pp.provider }
   end
   
   private 

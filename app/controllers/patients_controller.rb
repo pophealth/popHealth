@@ -3,14 +3,10 @@ class PatientsController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :validate_authorization!
-  before_filter :load_patient, :only => :show
+  before_filter :load_patient, :only => [:show, :toggle_excluded]
   after_filter :hash_document, :only => :list
   
   add_breadcrumb_dynamic([:patient], only: %w{show}) {|data| patient = data[:patient]; {title: "#{patient.last}, #{patient.first}", url: "/patients/show/#{patient.id}"}}
-  
-  def index
-
-  end
   
   def list
     measure_id = params[:id] 
@@ -19,6 +15,7 @@ class PatientsController < ApplicationController
                                             'value.effective_date' => @effective_date}).to_a
     # log the patient_id of each of the patients that this user has viewed
     @records.each do |patient_container|
+      authorize! :read, patient_container
       Log.create(:username =>   current_user.username,
                  :event =>      'patient record viewed',
                  :patient_id => (patient_container['value'])['medical_record_id'])
@@ -38,7 +35,7 @@ class PatientsController < ApplicationController
   end
   
   def toggle_excluded
-    ManualExclusion.toggle!(params[:id], params[:measure_id], params[:sub_id], params[:rationale])
+    ManualExclusion.toggle!(@patient, params[:measure_id], params[:sub_id], params[:rationale], current_user)
     redirect_to :controller => :measures, :action => :patients, :id => params[:measure_id], :sub_id => params[:sub_id]
   end
   
@@ -46,11 +43,11 @@ class PatientsController < ApplicationController
   
   def load_patient
     @patient = Record.find(params[:id])
+    authorize! :read, @patient
   end
-  
+
   def validate_authorization!
-    redirect_to '/403.html'
-#    authorize! :read, Record
+    authorize! :read, Record
   end
 
 end

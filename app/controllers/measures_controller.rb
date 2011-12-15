@@ -91,11 +91,7 @@ class MeasuresController < ApplicationController
   end
 
   def measure_patients
-    type = if params[:type]
-      "value.#{params[:type]}"
-    else
-       "value.denominator"
-    end
+    @type = params[:type] || 'denominator'
     @limit = (params[:limit] || 20).to_i
     @skip = ((params[:page] || 1).to_i - 1 ) * @limit
     sort = params[:sort] || "_id"
@@ -103,17 +99,25 @@ class MeasuresController < ApplicationController
     measure_id = params[:id] 
     sub_id = params[:sub_id]
     
-    query = {'value.measure_id' => measure_id, 'value.sub_id' => sub_id, 'value.effective_date' => @effective_date, type => true}
+    query = {'value.measure_id' => measure_id, 'value.sub_id' => sub_id, 'value.effective_date' => @effective_date}
+    
+    if (@type == 'exclusions')
+      query.merge!({'$or'=>[{"value.#{@type}" => true}, {'value.manual_exclusion'=>true}]})
+    else
+      query.merge!({"value.#{@type}" => true, 'value.manual_exclusion'=>{'$ne'=>true}})
+    end
     
     if (@selected_provider)
       result = PatientCache.by_provider(@selected_provider, @effective_date).where(query);
-      @total = result.count;
-      @records = result.order_by([sort, sort_order]).skip(@skip).limit(@limit);
     else
-      @records = mongo['patient_cache'].find(query, {:sort => [sort, sort_order], :skip => @skip, :limit => @limit}).to_a
-      @total =  mongo['patient_cache'].find(query).count
+      result = PatientCache.all.where(query)
     end
-                                      
+    @total = result.count
+    @records = result.order_by(["value.#{sort}", sort_order]).skip(@skip).limit(@limit);
+    
+    @manual_exclusions = {}
+    ManualExclusion.selected(@records.map {|record| record['value']['medical_record_id']}).map {|exclusion| @manual_exclusions[exclusion.medical_record_id] = exclusion} if (@type == 'exclusions')
+    
     @page_results = WillPaginate::Collection.create((params[:page] || 1), @limit, @total) do |pager|
        pager.replace(@records)
     end
