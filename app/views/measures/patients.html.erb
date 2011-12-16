@@ -28,7 +28,7 @@
       $("#antiNumeratorCount").text(data.antinumerator);
       $("#exclusionsCount").text(data.exclusions);
       
-      $('#den').attr("checked","checked");
+      display_type=$('input:radio[name=patientGroup]:checked').data('type')
       
       popHealth.reloadTable();
     }
@@ -62,6 +62,13 @@
       sort = field;
       popHealth.reloadTable();
     }
+    
+    popHealth.poll = function() {
+      var qr = new QualityReport('<%=@definition['id']%>', '<%=@definition['sub_id']%>');
+      var params = {}
+      <% if (@selected_provider) %> params['npi'] = '<%= @selected_provider.npi %>';<%end%>
+      qr.poll(params, popHealth.drawPctChart);
+    }
 
     $(document).ready(function() {
       //$.getJSON("json/bp.json",popHealth.renderMeasureJSON);
@@ -84,10 +91,7 @@
         popHealth.reloadTable();
       });
       
-      var qr = new QualityReport('<%=@definition['id']%>', '<%=@definition['sub_id']%>');
-      var params = {}
-      <% if (@selected_provider) %> params['npi'] = '<%= @selected_provider.npi %>';<%end%>
-      qr.poll(params, popHealth.drawPctChart);
+      popHealth.poll();
       
     });
   var results = <%=@result.to_json.html_safe %>;
@@ -99,10 +103,10 @@
       <%= render :partial => 'shared/measure_metrics', locals: {numerator: (@result ? @result['numerator'] : 0), denominator: (@result ? @result['denominator'] : 0)} %>
       <div class="patientGroupType"><p>Show Patients in:</p>
         <ul>
-          <li class="numerator"><span class="radio"><input type="radio" name="patientGroup" value="1"   id="num"/></span><label for="num">Numerator</label> <span class="count" id="numeratorCount"><%= (@result ? @result['numerator'] : 0) %></span></li>
-          <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="2" id="den" checked="true" /></span><label for="den">Denominator</label> <span class="count" id="denominatorCount"><%= (@result ? @result['denominator'] : 0) %></span> </li>
-          <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="3" id="dnn" /></span><label for="dnn">Outliers</label> <span class="count" id="antiNumeratorCount"><%= (@result ? @result['antinumerator'] : 0) %></span></li>
-          <li class="exclusions"><span class="radio"><input type="radio" name="patientGroup" value="4" id="exc" /></span><label for="exc">Exclusions</label> <span class="count" id="exclusionsCount"><%= (@result ? @result['exclusions'] : 0) %></span></li>
+          <li class="numerator"><span class="radio"><input type="radio" name="patientGroup" value="1"   id="num" data-type="numerator"/></span><label for="num">Numerator</label> <span class="count" id="numeratorCount"><%= (@result ? @result['numerator'] : 0) %></span></li>
+          <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="2" id="den" data-type="denominator" checked="true" /></span><label for="den">Denominator</label> <span class="count" id="denominatorCount"><%= (@result ? @result['denominator'] : 0) %></span> </li>
+          <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="3" id="dnn" data-type="antinumerator"/></span><label for="dnn">Outliers</label> <span class="count" id="antiNumeratorCount"><%= (@result ? @result['antinumerator'] : 0) %></span></li>
+          <li class="exclusions"><span class="radio"><input type="radio" name="patientGroup" value="4" id="exc"  data-type="exclusions"/></span><label for="exc">Exclusions</label> <span class="count" id="exclusionsCount"><%= (@result ? @result['exclusions'] : 0) %></span></li>
         </ul>
         <br style="clear:both"/>
       </div>
@@ -111,10 +115,8 @@
       <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
       <br style="clear:left"/>
       <div id="patientTableContainer">
-        <div style="padding: 150px;">
-          <img src="/assets/loading_bar.gif"/>
-        </div>
+        <div style="padding: 150px;"><img src="/assets/loading_bar.gif"/></div>
       </div><!-- end patientTableContainer -->
-    <%= link_to 'Export to Excel', patient_list_url(params[:id], params[:sub_id], :format => :xml) %>
+    <%= link_to 'Export to Excel', patient_list_url(params[:id], params[:sub_id], :format => :xml) + (@selected_provider ? "?npi=#{@selected_provider.npi}":'') %>
     </div>
   </div><!-- end #pageContent -->

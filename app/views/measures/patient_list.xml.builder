@@ -26,7 +26,7 @@ xml.Workbook({
       
       # Header
       xml.Row do
-        ['First Name', 'Last Name', 'Age', 'Date of Birth', 'Gender', 'Numerator', 'Denominator', 'Exclusion'].each do |column_name|
+        ['First Name', 'Last Name', 'Age', 'Date of Birth', 'Gender', 'Numerator', 'Denominator', 'Exclusion', "Exclusion Rationale"].each do |column_name|
           xml.Cell do
             xml.Data column_name, 'ss:Type' => 'String'
           end          
@@ -52,14 +52,33 @@ xml.Workbook({
           xml.Cell do
             xml.Data record['gender'], 'ss:Type' => 'String'
           end
-          xml.Cell do
-            xml.Data record['numerator'], 'ss:Type' => 'String'
-          end
-          xml.Cell do
-            xml.Data record['denominator'], 'ss:Type' => 'String'
-          end
-          xml.Cell do
-            xml.Data record['exclusion'], 'ss:Type' => 'String'
+          if (record['manual_exclusion'])
+            xml.Cell do
+              xml.Data false, 'ss:Type' => 'String'
+            end
+            xml.Cell do
+              xml.Data false, 'ss:Type' => 'String'
+            end
+            xml.Cell do
+              xml.Data true, 'ss:Type' => 'String'
+            end
+            xml.Cell do
+              exclusion = @manual_exclusions[record['medical_record_id']] if @manual_exclusions[record['medical_record_id']]
+              xml.Data "Manual: #{exclusion.rationale} (excluded by: #{exclusion.user.full_name} on #{exclusion.created_at.strftime("%m/%d/%Y")})", 'ss:Type' => 'String'
+            end
+          else
+            xml.Cell do
+              xml.Data record['numerator'], 'ss:Type' => 'String'
+            end
+            xml.Cell do
+              xml.Data record['denominator'], 'ss:Type' => 'String'
+            end
+            xml.Cell do
+              xml.Data record['exclusions'], 'ss:Type' => 'String'
+            end
+            xml.Cell do
+              xml.Data (record['exclusions'] ? "Automatic" : ''), 'ss:Type' => 'String'
+            end
           end
         end
       end

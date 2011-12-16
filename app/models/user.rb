@@ -67,6 +67,10 @@ class User
     MONGO_DB['selected_measures'].find({:username => username}).to_a #need to call to_a so that it isn't a cursor
   end
   
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+  
   # ===========
   # = Finders =
   # ===========

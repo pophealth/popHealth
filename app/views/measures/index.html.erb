@@ -54,7 +54,7 @@
     <div class="groupList" style="display: none;">
       <div class="filterItemList expandableList">
         <ul>
-          <li data-filter-type="provider" data-filter-value="<%=@selected_provider.id%>" class="checked">
+          <li data-filter-type="provider"  data-filter-value="<%=@selected_provider.id%>" class="checked">
             <%= @selected_provider.full_name %>
           </li>
         </ul>
@@ -72,9 +72,9 @@
 
           <div class="filterItemList expandableList" style="display:none">
             <ul>
-						<li class="selectAll checked">All</li>
+						<li class="selectAll providerSelectAll checked">All</li>
               <% providers.each do |pv| %>
-              <li style="display:none" data-filter-type="provider" data-filter-value="<%=pv.id%>" class="checked">
+              <li class="disabled" data-filter-type="provider" data-filter-value="<%=pv.id%>">
                 <%= pv.full_name %>
               </li><% end %>
             </ul>
@@ -94,7 +94,7 @@
             <ul>
 							 <li class="selectAll checked">All</li>
                <% @races.each do |race| %>
-              <li style="display:none" data-filter-type="race" data-filter-value="<%=race.id%>" class="checked">
+              <li class="disabled" data-filter-type="race" data-filter-value="<%=race.id%>">
                 <%= race.name %>
               </li>
 							<% end %>
@@ -107,7 +107,7 @@
             <ul>
 							 <li class="selectAll checked">All</li>
                <% @ethnicities.each do |ethnicity| %>
-              <li style="display:none" data-filter-type="ethnicity" data-filter-value="<%=ethnicity.id%>" class="checked">
+              <li class="disabled" data-filter-type="ethnicity" data-filter-value="<%=ethnicity.id%>">
                 <%= ethnicity.name %>
               </li>
 							<% end %>
@@ -120,8 +120,21 @@
             <ul>
 							 <li class="selectAll checked">All</li>
                <% @genders.each do |gender| %>
-              <li style="display:none" data-filter-type="gender" data-filter-value="<%=gender[:id]%>" class="checked">
+              <li class="disabled" data-filter-type="gender" data-filter-value="<%=gender[:id]%>">
                 <%= gender[:name] %>
+              </li>
+							<% end %>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <label>Languages</label>
+          <div class="filterItemList expandableList" style="display:none">
+            <ul>
+							 <li class="selectAll checked">All</li>
+               <% @languages.each do |language| %>
+              <li class="disabled" data-filter-type="language" data-filter-value="<%=language.id%>">
+                <%= language.name %>
               </li>
 							<% end %>
             </ul>
@@ -192,12 +205,15 @@
         <br/>
       </div><!-- end #measureDetailTable --><br><br>
 			<table class="measureTable" style="float:left">
-				<tr class="headerRow"><td colspan="6">Core Measures</td></tr>
+				<tr style="<%= display_header(@core_measures, current_user.selected_measures)%>" class="headerRow"><td colspan="6">Core Measures</td></tr>
 				<%= render :partial => "measure", :collection => @core_measures %>
-				<tr class="headerRow"><td colspan="6">Core Alternate Measures</td></tr>
+				<tr style="<%= display_header(@core_alt_measures, current_user.selected_measures)%>" class="headerRow"><td colspan="6">Core Alternate Measures</td></tr>
 				<%= render :partial => "measure", :collection => @core_alt_measures %>
-				<tr class="headerRow"><td colspan="6">Alternate Measures</td></tr>
-				<%= render :partial => "measure", :collection => @alt_measures %>
+				
+				<% @alt_measures.each do |category, measures| %>
+					<tr style="<%= display_header(measures, current_user.selected_measures)%>" class="headerRow"><td colspan="6"><%=category%></td></tr>
+					<%= render :partial => "measure", :collection => measures %>
+				<% end %>
 			</table>
     </div><!-- end #dashboardPeriod -->
   </div><!-- end #pageContent -->
