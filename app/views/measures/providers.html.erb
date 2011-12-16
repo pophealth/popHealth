@@ -67,6 +67,19 @@
             </ul>
           </div>
         </li>
+        <li>
+          <label>Languages</label>
+          <div class="filterItemList expandableList" style="display:none">
+            <ul>
+							 <li class="selectAll checked">All</li>
+               <% @languages.each do |language| %>
+              <li class="disabled" data-filter-type="language" data-filter-value="<%=language.id%>">
+                <%= language.name %>
+              </li>
+							<% end %>
+            </ul>
+          </div>
+        </li>
       </ul>
     </div>
   </div>
