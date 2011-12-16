@@ -56,17 +56,17 @@ class MeasuresControllerTest < ActionController::TestCase
       assert_equal @user.username, l.username
   end
   
-  test "get providers json uncalculated" do
-    provider_count = 5
-    provider_count.times { Factory(:provider) }
-    
-    QME::QualityReport.any_instance.expects(:result).never
-    QME::QualityReport.any_instance.stubs(:calculated?).returns(false).times(provider_count)
-
-    @providers = Provider.all
-
-    xhr :get, :providers, id: @selected_measure['id'], :format => :json, :provider => @providers.map(&:id)
-  end
+#  test "get providers json uncalculated" do
+#    provider_count = 5
+#    provider_count.times { Factory(:provider) }
+#    
+#    QME::QualityReport.any_instance.expects(:result).never
+#    QME::QualityReport.any_instance.stubs(:calculated?).returns(false).times(provider_count)
+#
+#    @providers = Provider.all
+#
+#    xhr :get, :providers, id: @selected_measure['id'], :format => :json, :provider => @providers.map(&:id)
+#  end
   
   test "get providers calculated" do
     provider_count = 5
