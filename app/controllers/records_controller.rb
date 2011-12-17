@@ -1,8 +1,8 @@
 class RecordsController < ApplicationController
 
-  skip_authorization_check
+  before_filter :authenticate_user!
+  before_filter :validate_authorization!
   skip_before_filter :verify_authenticity_token, :set_effective_date
-  before_filter :authenticate
 
   def create
     xml_file = request.body
@@ -37,19 +37,17 @@ class RecordsController < ApplicationController
     end
     
     QME::QualityReport.update_patient_results(@record.patient_id)
-    Atna.log(@user.username, :phi_import)
-    Log.create(:username => @user.username, :event => 'patient record imported', :patient_id => @record.patient_id)
+    Atna.log(current_user.username, :phi_import)
+    Log.create(:username => current_user.username, :event => 'patient record imported', :patient_id => @record.patient_id)
 
     render :text => 'Patient imported', :status => 201
   end
 
   private
-
-  def authenticate
-    authenticate_or_request_with_http_basic do |username, password|
-      @user = User.first(:conditions => {:username => username})
-      @user && @user.valid_password?(password)
-    end
+  
+  def validate_authorization!
+    authorize! :update, Record
   end
+
   
 end
