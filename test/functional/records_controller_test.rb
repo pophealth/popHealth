@@ -5,10 +5,12 @@ class RecordsControllerTest < ActionController::TestCase
   
   setup do
     dump_database
-    @user = Factory(:user)
-    basic_signin(@user)
+    @user = Factory(:admin)
     @body = File.new("test/fixtures/patient_provider_fragment.xml").read
     @body2 = File.new("test/fixtures/patient_sample.xml").read
+    
+    sign_in @user
+    
   end
   
   test "send junk xml" do
