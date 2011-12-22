@@ -12,10 +12,10 @@ GIT
 
 GIT
   remote: https://github.com/projectcypress/health-data-standards.git
-  revision: 307f5d2a342780a29c774a6b38359cd097334798
-  branch: master
+  revision: 849fa7b8fdf2e1cf9f45ea933dc226d1e4ef7ef6
+  branch: develop
   specs:
-    health-data-standards (0.3.0)
+    health-data-standards (0.5.0)
       builder (~> 3.0.0)
       erubis (~> 2.6)
       mongoid (~> 2.3.3)
