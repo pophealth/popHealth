@@ -1,14 +1,26 @@
 GIT
   remote: http://github.com/pophealth/quality-measure-engine.git
-  revision: 8167ecbe057e3e0d63c366df739d4a7376178387
+  revision: aa5b1748fd725d6570511c7d9e8db103759af222
   branch: develop
   specs:
-    quality-measure-engine (1.0.5)
+    quality-measure-engine (1.1.0)
       mongo (~> 1.3)
       nokogiri (~> 1.4.4)
       resque (~> 1.15.0)
       resque-status (~> 0.2.3)
       rubyzip (~> 0.9.4)
+
+GIT
+  remote: https://github.com/projectcypress/health-data-standards.git
+  revision: 307f5d2a342780a29c774a6b38359cd097334798
+  branch: master
+  specs:
+    health-data-standards (0.3.0)
+      builder (~> 3.0.0)
+      erubis (~> 2.6)
+      mongoid (~> 2.3.3)
+      nokogiri (~> 1.4.7)
+      uuid (~> 2.3.4)
 
 GEM
   remote: http://rubygems.org/
@@ -218,6 +230,7 @@ DEPENDENCIES
   factory_girl
   foreman
   formtastic
+  health-data-standards!
   jquery-rails
   json
   minitest

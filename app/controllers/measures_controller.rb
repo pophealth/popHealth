@@ -121,11 +121,11 @@ class MeasuresController < ApplicationController
     @page_results = WillPaginate::Collection.create((params[:page] || 1), @limit, @total) do |pager|
        pager.replace(@records)
     end
-    # log the patient_id of each of the patients that this user has viewed
+    # log the medical_record_number of each of the patients that this user has viewed
     @page_results.each do |patient_container|
       Log.create(:username =>   current_user.username,
                  :event =>      'patient record viewed',
-                 :patient_id => (patient_container['value'])['medical_record_id'])
+                 :medical_record_number => (patient_container['value'])['medical_record_id'])
     end
   end
 
@@ -147,11 +147,11 @@ class MeasuresController < ApplicationController
     @manual_exclusions = {}
     ManualExclusion.selected(@records.map {|record| record['value']['medical_record_id']}).map {|exclusion| @manual_exclusions[exclusion.medical_record_id] = exclusion}
     
-    # log the patient_id of each of the patients that this user has viewed
+    # log the medical_record_number of each of the patients that this user has viewed
     @records.each do |patient_container|
       Log.create(:username =>   current_user.username,
                  :event =>      'patient record viewed',
-                 :patient_id => (patient_container['value'])['medical_record_id'])
+                 :medical_record_number => (patient_container['value'])['medical_record_id'])
     end
     respond_to do |format|
       format.xml do

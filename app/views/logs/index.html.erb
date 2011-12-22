@@ -38,7 +38,7 @@
         <th><%= link_to 'Username', time_range_params_plus(:sort => 'username', :order => 'desc') %></th>
         <th><%= link_to 'Event', time_range_params_plus(:sort => 'event', :order => 'desc') %></th>
         <th><%= link_to 'File SHA1 Hash', time_range_params_plus(:sort => 'checksum', :order => 'desc') %></th>
-        <th><%= link_to 'Patient Id', time_range_params_plus(:sort => 'patient_id', :order => 'desc') %></th>
+        <th><%= link_to 'Patient Id', time_range_params_plus(:sort => 'medical_record_number', :order => 'desc') %></th>
       </tr>
       <% @logs.each do |log| -%>
       <tr>
@@ -46,7 +46,7 @@
         <td><%= log.username %></td>
         <td><%= log.event %></td>
         <td><%= log.checksum %></td>
-        <td><%= log.patient_id %></td>
+        <td><%= log.medical_record_number %></td>
       </tr>
       <% end -%>
     </table>

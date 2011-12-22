@@ -13,19 +13,19 @@ class ManualExclusion
   scope :selected, ->(medical_record_ids) { any_in(:medical_record_id => medical_record_ids)}
 
   def self.toggle!(patient, measure_id, sub_id, rationale, user)
-    existing = ManualExclusion.where({:medical_record_id => patient.patient_id}).and({:measure_id => measure_id}).and({:sub_id => sub_id}).first
+    existing = ManualExclusion.where({:medical_record_id => patient.medical_record_number}).and({:measure_id => measure_id}).and({:sub_id => sub_id}).first
     if existing
-      Log.create(:username => user.username, :event => 'manual exclusion revoked', :description => rationale, :patient_id => patient.patient_id)
+      Log.create(:username => user.username, :event => 'manual exclusion revoked', :description => rationale, :medical_record_number => patient.medical_record_number)
       
       existing.destroy
       MongoBase.mongo.collection('patient_cache').update(
-          {'value.measure_id'=>measure_id, 'value.sub_id'=>sub_id, 'value.medical_record_id'=>patient.patient_id },
+          {'value.measure_id'=>measure_id, 'value.sub_id'=>sub_id, 'value.medical_record_id'=>patient.medical_record_number },
           {'$set'=>{'value.manual_exclusion'=>false}}, :multi=>true)
     else
-      Log.create(:username => user.username, :event => 'manual exclusion envoked', :description => rationale, :patient_id => patient.patient_id)
-      ManualExclusion.create!({:medical_record_id => patient.patient_id, :measure_id => measure_id, :sub_id => sub_id, :rationale => rationale, user: user, created_at: Time.now})
+      Log.create(:username => user.username, :event => 'manual exclusion envoked', :description => rationale, :medical_record_number => patient.medical_record_number)
+      ManualExclusion.create!({:medical_record_id => patient.medical_record_number, :measure_id => measure_id, :sub_id => sub_id, :rationale => rationale, user: user, created_at: Time.now})
       MongoBase.mongo.collection('patient_cache').update(
-          {'value.measure_id'=>measure_id, 'value.sub_id'=>sub_id, 'value.medical_record_id'=>patient.patient_id },
+          {'value.measure_id'=>measure_id, 'value.sub_id'=>sub_id, 'value.medical_record_id'=>patient.medical_record_number },
           {'$set'=>{'value.manual_exclusion'=>true}}, :multi=>true)
     end
     QueryCache.where({:measure_id => measure_id}).and({:sub_id => sub_id}).destroy_all

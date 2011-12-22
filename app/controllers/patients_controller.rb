@@ -13,12 +13,12 @@ class PatientsController < ApplicationController
     sub_id = params[:sub_id]
     @records = mongo['patient_cache'].find({'value.measure_id' => measure_id, 'value.sub_id' => sub_id,
                                             'value.effective_date' => @effective_date}).to_a
-    # log the patient_id of each of the patients that this user has viewed
+    # log the medical_record_number of each of the patients that this user has viewed
     @records.each do |patient_container|
       authorize! :read, patient_container
       Log.create(:username =>   current_user.username,
                  :event =>      'patient record viewed',
-                 :patient_id => (patient_container['value'])['medical_record_id'])
+                 :medical_record_number => (patient_container['value'])['medical_record_id'])
     end
     respond_to do |format|
       format.xml do
