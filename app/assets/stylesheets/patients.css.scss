@@ -158,33 +158,64 @@ h3 {
 }
 
 .main {
-  padding: 0 20px;
+  padding: 0;
 }
+
 #patientName {
-	#patientLastName {
-		font-size: 1.5em;
-		text-transform: uppercase;
-		width: 320px;
-	}
-
-	#patientFirstName {
-		font-size: 1.2em;
-		width: 320px;
-	}
-	#effectivedate {
-		width: 320px;
-	}
-
-
-
-#patientBasicInfo {
-  margin-left: 360px;
-  float: left;
-  margin-top: -50px;
-
-  th {
-  	width: 40px;
+  table, td, th, a {
+    vertical-align: text-bottom;
   }
+  table {
+    width: 100%;
+    vertical-align: bottom;
+    tbody {
+      tr {
+        td {
+          width: 50%;
+          padding-left: 20px;
+
+          table {
+            tr{
+              th a {                
+              }
+              th{
+                width: 30%;
+                a#patientLastName {
+                  font-size: 1.5em;
+                  text-transform: uppercase;
+                }
+                a#patientFirstName {
+                  font-size: 1.2em;
+                  
+                }
+              }
+              td {  
+                font-weight: bold;
+                width: 70%;
+
+                #effectivedate {
+                  padding-left: 0;
+
+                }
+              }
+            }
+
+            table#patientBasicInfo {
+              th {
+                width: 70%;
+
+              }
+              td {
+                font-weight: bold;
+              }
+              th, td {
+                padding-left: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -210,9 +241,37 @@ table.medGraph {
   }
 
   table.patientDemo {
-  	width: 320px;
+  	width: 100%;
   	height: 125px;
-  }
+      td, th, table {
+       vertical-align: top;
+      }
+      td {
+        width: 50%;
+        border-spacing: 10%;
+        padding-left: 20px;
+
+        table {
+          width: 100%;
+          tbody {
+            tr {
+              td, th {
+
+              }
+              th {
+                width: 30%;
+              }    
+              td {
+                width: 70%;
+                font-weight: bold;
+              }
+            }
+          }
+        }
+      }
+    }
+  
+
 	
 	table.providerInfo {
 		margin-left: 360px; 
@@ -239,9 +298,12 @@ div.lowerborder {
 }
 
 table.patientRecords {
+  th {
+    text-transform: uppercase;
+  }
   td {
     vertical-align: top;
-    padding: 2px;
+    padding: 10px;
   }
 }
 

@@ -23,22 +23,35 @@
   </div>
   <div id="dashboardPeriod">
     <div id="patientName" class="main">
-      <p id="patientLastName"><%= @patient.last %>,</p>
-      <p id="patientFirstName"><%= @patient.first %></p>
-      <p>effective date:</p>
-      <div id="effectiveDate"><%= display_time(@effective_date) %></div>
-      <table id="patientBasicInfo">
+      <table>
         <tbody>
           <tr>
-            <th>DOB</th>
             <td>
-              <%= display_time(@patient.birthdate) %>
+              <table>
+                <tbody>
+                  <tr>
+                    <th colspan="2"> <a id="patientLastName"><%= @patient.last %>, </a><a id="patientFirstName"><%= @patient.first %></a></th>
+                  </tr>
+                  <tr>
+                    <th>effective date:</th>
+                    <td id="effectiveDate"><%= display_time(@effective_date) %></td>
+                  </tr>
+                </tbody>
+              </table>
             </td>
-          </tr>
-          <tr>
-            <th>sex</th>
             <td>
-              <%= @patient.gender %>
+              <table id="patientBasicInfo">
+                <tbody>
+                  <tr>
+                    <th>DOB</th>
+                    <td><%= display_time(@patient.birthdate) %></td>
+                  </tr>
+                  <tr>
+                    <th>sex</th>
+                    <td><%= @patient.gender %></td>
+                  </tr>
+                </tbody>
+              </table>
             </td>
           </tr>
         </tbody>
@@ -48,44 +61,54 @@
       <table class="patientDemo main">
         <tbody>
           <tr>
-            <th>race</th>
             <td>
-              <%= Race.from_code(@patient.race['code']).first.name %>
+              <table>
+                <tbody>
+                  <tr>
+                    <th>race</th>
+                    <td>
+                          <%= Race.from_code(@patient.race['code']).first.name %>
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>ethnicity</th>
+                    <td>
+                        <%= Ethnicity.from_code(@patient.ethnicity['code']).first.name %>
+                    </td>
+                    </tr>
+                   <tr>
+                    <th>language</th>
+                    <td>N/A</td>
+                   </tr>
+                   <tr>
+                    <th>btype</th>
+                    <td>N/A</td>
+                   </tr>
+                   <tr>
+                    <th>tobacco user</th>
+                    <td>N/A</td>
+                  </tr>
+                </tbody>
+              </table>
             </td>
-          </tr>
-          <tr>
-            <th>ethnicity</th>
             <td>
-              <%= Ethnicity.from_code(@patient.ethnicity['code']).first.name %>
+              <table>
+                <tbody> 
+                  <tr>
+                    <th>health plan</th>
+                    <td>N/A</td>
+                  </tr>
+                  <tr>
+                    <th>policy number</th>
+                    <td>N/A</td>
+                  </tr>
+                  <tr>
+                    <th>p.c.p.</th>
+                    <td>N/A</td>
+                  </tr>
+                </tbody>
+              </table>
             </td>
-          </tr>
-          <tr>
-            <th>language</th>
-            <td>???</td>
-          </tr>
-          <tr>
-            <th>btype</th>
-            <td>???</td>
-          </tr>
-          <tr>
-            <th>tobacco user</th>
-            <td>???</td>
-          </tr>
-        </tbody>
-      </table>
-      <table class="providerInfo">
-        <tbody>
-          <tr>
-            <th>health plan</th>
-            <td>???</td>
-          </tr>
-          <tr>
-            <th>policy number</th>
-            <td>???</td>
-          </tr>
-          <tr>
-            <th>p.c.p.</th>
-            <td>???</td>
           </tr>
         </tbody>
       </table>
