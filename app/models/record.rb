@@ -6,6 +6,12 @@ class Record
   # ===========================================================
   
   field :measures, type: Hash
+
+  [:allergies, :care_goals, :conditions, :encounters, :immunizations, :medical_equipment,
+   :medications, :procedures, :results, :social_history, :vital_signs].each do |section|
+    embeds_many section, as: :entry_list, class_name: "Entry"
+  end
+  
   embeds_many :provider_performances
   
   scope :with_provider, where(:provider_performances.ne => nil).or(:provider_proformances.ne => [])

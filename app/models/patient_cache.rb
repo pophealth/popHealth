@@ -10,5 +10,6 @@ class PatientCache
   field :gender, type: String
   
   scope :by_provider, ->(provider, effective_date) { where({'value.provider_performances.provider_id' => provider.id, 'value.effective_date'=>effective_date}) }
+  scope :outliers, ->(patient) {where({'value.patient_id'=>patient.id})}
   
 end
