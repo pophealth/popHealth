@@ -78,7 +78,13 @@
                     </tr>
                    <tr>
                     <th>language</th>
-                    <td>N/A</td>
+                    <td>
+                      <% if (@patient.languages)%>
+                        <%= @patient.languages.join(", ")%>
+                      <% else %>
+                        N/A
+                      <% end %>
+                    </td>
                    </tr>
                    <tr>
                     <th>btype</th>
