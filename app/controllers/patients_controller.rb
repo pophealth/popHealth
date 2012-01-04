@@ -35,7 +35,7 @@ class PatientsController < ApplicationController
     @outliers = []
     Measure.all.each do |measure|
       executor = QME::MapReduce::Executor.new(measure['id'], measure['sub_id'], {'effective_date' => @effective_date})
-      result = executor.get_patient_result(@patient.patient_id)
+      result = executor.get_patient_result(@patient.medical_record_number)
       if result['antinumerator']
         @outliers << measure
       end
