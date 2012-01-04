@@ -11,10 +11,8 @@
       <% end -%>
     </td>
     <td>
-      <% if (entry.time) %>
-      <time datetime="<%= display_time(entry.time) %>"><%= display_time(entry.time) %></time>
-      <% else %>
-        NO TIME
+      <% if (entry.time.present?) %>
+        <time datetime="<%= display_time(entry.time) %>"><%= display_time(entry.time) %></time>
       <% end %>
     </td>
   </tr>
