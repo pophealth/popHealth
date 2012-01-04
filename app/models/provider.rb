@@ -63,7 +63,7 @@ class Provider
   
   def self.merge_or_build(attributes)
     if attributes[:npi]
-      provider = Provider.find(:first, :attributes => {:npi => attributes[:npi]})
+      provider = Provider.by_npi(attributes[:npi]).first
     end
     
     if provider
