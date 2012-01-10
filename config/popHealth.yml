@@ -15,7 +15,7 @@ defaults: &defaults
   allow_user_update: true
   # title of the practice
   practice_name: 'General Hospital'
-  
+  disable_provider_filters: true
 development:
   <<: *defaults
   idle_timeout_enabled: false

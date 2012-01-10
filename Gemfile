@@ -10,7 +10,9 @@ gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-d
 gem 'nokogiri'
 gem 'rubyzip'
 
-gem "will_paginate"
+gem "will_paginate" # we need to get rid of this, very inefficient with large data sets and mongoid
+gem "kaminari"
+
 gem 'json', :platforms => :jruby
 # these are all tied to 1.3.1 because bson 1.4.1 was yanked.  To get bundler to be happy we need to force 1.3.1 to cause the downgrade
 gem "mongo", "1.3.1"

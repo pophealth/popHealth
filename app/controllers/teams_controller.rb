@@ -10,20 +10,31 @@ class TeamsController < ApplicationController
   
   def new
     @team = Team.new
+    @providers = Provider.alphabetical
   end
   
   def edit
-    
+    @providers = Provider.alphabetical
   end
   
   def create
-    Team.create(params[:team])
+    @team = Team.create(params[:team])
+    if params[:provider_ids]
+      @providers = Provider.find(params[:provider_ids])
+      @team.providers.concat(@providers)
+    end
+    
     redirect_to :action => "index"
   end
   
   def update
     @team.update_attributes(params[:team])
-    redirect_to :action => "index"
+    if params[:provider_ids]
+       providers = Provider.find(params[:provider_ids])
+      @team.providers.concat providers
+    end
+    @team.save
+    redirect_to :action => "edit"
   end
   
   def destroy

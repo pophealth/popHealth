@@ -9,7 +9,14 @@ class MeasuresController < ApplicationController
   after_filter :hash_document, :only => :measure_report
   
   add_breadcrumb_dynamic([:selected_provider], only: %w{index show patients}) {|data| provider = data[:selected_provider]; {title: (provider ? provider.full_name : nil), url: "/?npi=#{(provider) ? provider.npi : nil}"}}
-  add_breadcrumb_dynamic([:definition], only: %w{providers}) {|data| measure = data[:definition]; {title: "#{measure['endorser']}#{measure['id']}" + (measure['sub_id'] ? "#{measure['sub_id']}" : ''), url: "/measure/#{measure['id']}"+(measure['subid'] ? "/#{measure['sub_id']}" : '')+"/providers"}}
+  add_breadcrumb_dynamic([:definition], only: %w{providers}) do|data| 
+    measure = data[:definition];
+    if measure
+      {title: "#{measure['endorser']}#{measure['id']}" + (measure['sub_id'] ? "#{measure['sub_id']}" : ''), url: "/measure/#{measure['id']}"+(measure['subid'] ? "/#{measure['sub_id']}" : '')+"/providers"}
+    else
+      {}
+    end
+  end
   add_breadcrumb_dynamic([:definition, :selected_provider], only: %w{show patients}) {|data| measure = data[:definition]; provider = data[:selected_provider]; {title: "#{measure['endorser']}#{measure['id']}" + (measure['sub_id'] ? "#{measure['sub_id']}" : ''), url: "/measure/#{measure['id']}"+(measure['subid'] ? "/#{measure['sub_id']}" : '')+(provider ? "?npi=#{provider.npi}" : "/providers")}}
   add_breadcrumb 'parameters', '', only: %w{show}
   add_breadcrumb 'patients', '', only: %w{patients}
@@ -61,10 +68,20 @@ class MeasuresController < ApplicationController
   def providers    
     authorize! :manage, :providers
     
+    
+    
     respond_to do |wants|
       wants.html {}
       
+      wants.js do
+        
+        @providers = Provider.page(params[:page]).per(20).alphabetical
+        @providers = @providers.any_in(team_id: params[:team]) if params[:team]
+        
+      end
+      
       wants.json do
+        
         providerIds = params[:provider].blank? ?  Provider.all.map { |pv| pv.id.to_s } : @filters.delete('providers')
         
         render_measure_response(providerIds, params[:jobs]) do |pvId|
@@ -72,11 +89,13 @@ class MeasuresController < ApplicationController
           { 
             report: QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => filters),
             patient_count: @patient_count
-#            patient_count: Provider.find(pvId).records(@effective_data).count
           }
         end
       end
     end
+    
+    # @time_here2 = Time.now
+    # 
   end
   
   def remove
@@ -264,7 +283,7 @@ class MeasuresController < ApplicationController
       data = yield(var)
       report = data[:report]
       patient_count = data[:patient_count]
- 
+
       if report.calculated?
         memo[:result] << report.result.merge({'patient_count'=>patient_count})
       else
@@ -294,12 +313,18 @@ class MeasuresController < ApplicationController
     else
       
       if can?(:read, :providers)
-        @providers = Provider.alphabetical
-        @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
-        @providers_by_team['Other'] ||= []
-        @providers_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
+        if APP_CONFIG['disable_provider_filters']
+          @teams = Team.alphabetical
+          @page = params[:page]
+          @providers = Provider.alphabetical.page(@page).per(20)
+        else
+          @providers = Provider.alphabetical
+          @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
+          @providers_by_team['Other'] ||= []
+          @providers_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
+        end
       end
-      
+
       @races = Race.ordered
       @ethnicities = Ethnicity.ordered
       @genders = [{name: 'Male', id: 'M'}, {name: 'Female', id: 'F'}]
@@ -310,8 +335,17 @@ class MeasuresController < ApplicationController
   end
   
   def build_filters
+    providers = nil
     
-    providers = params[:provider] || nil
+    if params[:provider]
+      providers = params[:provider]
+    elsif params[:team] && params[:team].size != Team.count
+      providers = Provider.any_in(team_id: params[:team]).map { |pv| pv.id.to_s }
+      
+    else
+      providers = nil
+    end
+
     races = params[:race] ? Race.selected(params[:race]).all : nil
     ethnicities = params[:ethnicity] ? Ethnicity.selected(params[:ethnicity]).all : nil
     languages = params[:language] ? Language.selected(params[:language]).all : nil
