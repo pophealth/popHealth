@@ -29,7 +29,7 @@ class MeasuresController < ApplicationController
         @result = @quality_report.result
       end
       wants.json do
-        SelectedMeasure.add_measure(current_user.username, params[:id])
+#        SelectedMeasure.add_measure(current_user.username, params[:id])
         measures = params[:sub_id] ? Measure.get(params[:id], params[:sub_id]) : Measure.sub_measures(params[:id])
         
         render_measure_response(measures, params[:jobs]) do |sub|
@@ -82,6 +82,11 @@ class MeasuresController < ApplicationController
   def remove
     SelectedMeasure.remove_measure(current_user.username, params[:id])
     render :text => 'Removed'
+  end
+  
+  def select
+    SelectedMeasure.add_measure(current_user.username, params[:id])
+    render :text => 'Select'
   end
   
   def patients
@@ -264,19 +269,24 @@ class MeasuresController < ApplicationController
       data = yield(var)
       report = data[:report]
       patient_count = data[:patient_count]
- 
+
       if report.calculated?
         memo[:result] << report.result.merge({'patient_count'=>patient_count})
       else
-        key = "#{report.instance_variable_get(:@measure_id)}#{report.instance_variable_get(:@sub_id)}"
-        memo[:jobs][key] = (uuids.nil? || uuids[key].nil?) ? report.calculate : uuids[key]
-        memo[:job_statuses][key] = report.status(memo[:jobs][key])['status']
+        measure_id = report.instance_variable_get(:@measure_id)
+        sub_id = report.instance_variable_get(:@sub_id)
+        filters = report.instance_variable_get(:@parameter_values)['filters']
+        key = "#{measure_id}#{sub_id}"
+        uuid = (uuids.nil? || uuids[key].nil?) ? report.calculate : uuids[key]
+        job = {uuid: uuid, status: report.status(uuid)['status'], measure_id: measure_id, sub_id: sub_id, filters: filters}
+        memo[:jobs][key] = job
+        memo[:result] << {job: job}
       end
       
       memo
     end
 
-    render :json => result.merge(:complete => result[:jobs].empty?)
+    render :json => result.merge(:complete => result[:jobs].empty?, :failed => !(result[:jobs].values.keep_if {|job| job[:status] == 'failed'}).empty?)
   end
   
   def setup_filters
