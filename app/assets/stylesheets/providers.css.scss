@@ -1,9 +1,6 @@
 @import "mixins";
 
 
-
-
-
 ul#provider_list {
   float:left;
   width:10%;
@@ -39,19 +36,30 @@ div#content {
   float:left;
 }
 
+#measureTitleText {
+  font-size: 1.5em;
+}
+
 div#content form li {
   list-style-type: none;
 }
 
 .paren {
-    font-family: Helvetica;
-    font-weight: 100;
-    color: #999999;
-    position: relative;
-    font-size: 2em;
+  font-family: Helvetica;
+  font-weight: 100;
+  color: #999999;
+  position: relative;
+  font-size: 2em;
 
-//    margin-right: 1px;
-    top: 4px; }
+//margin-right: 1px;
+  top: 4px; 
+}
+
+table.measureTable {
+  .links, .fraction, .measureProviderPopulationPercentage {
+    vertical-align: top;
+  }
+}
 
 div #providerMain { 
 
@@ -95,8 +103,7 @@ div #providerMain {
 
 		td {
 			height:60px;
-			padding:5px 10px;
-			vertical-align:middle;
+			vertical-align:baseline;
 		}
     td.link {
       a {
@@ -111,7 +118,7 @@ div #providerMain {
 			font-size: 28px;
 			width:50px;
 			padding-right:15px;
-      vertical-align: bottom;
+      vertical-align: baseline;
       padding: 0 10px;
       min-width: 80px;
 
@@ -131,25 +138,18 @@ div #providerMain {
 		td.name {
 			text-decoration: underline;
 			width:250px;
-			vertical-align:bottom;
+			vertical-align:baseline;
 			font-weight: lighter;
 			padding-right:20px;
-      padding-bottom: 10px;
 		}
 
 		td.fraction {
 			padding-right:25px;
       min-width: 80px;
-      padding-top: 10px;
-
-      .inline-fraction {
-        padding-bottom:0;
-        padding-top: 9px;
-      }
 		}
 
 		td.barChart {
-			vertical-align:middle;
+			vertical-align:baseline;
       padding: 0 10px;
 
 			.tableBar {
@@ -172,7 +172,8 @@ td.links {
     font-weight: 500;
   }
 }
-#measureDetailTitle {
-  max-width: 800px;
-}
+
+
+
+
 
