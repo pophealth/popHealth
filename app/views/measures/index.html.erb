@@ -139,7 +139,7 @@
             <dd class="practiceName"><h1><%=@selected_provider.full_name%></h1></dd>
           </dl>
         <% else %>
-          <h1><%= current_user.company.to_s %></h1>
+          <%= content_tag(:h1, current_user.company) unless current_user.company.empty? %>
           <dl>
             <dt>Practice:</dt>
             <dd class="practiceName"><h1><%=APP_CONFIG['practice_name']%></h1></dd>
@@ -190,7 +190,7 @@
           <div class="exclusions"></div><span>exclusions</span>
         </div>
         <br/>
-      </div><!-- end #measureDetailTable --><br><br>
+      </div><!-- end #measureDetailTable -->
 			<table class="measureTable" style="float:left">
 				<tr class="headerRow"><td colspan="6">Core Measures</td></tr>
 				<%= render :partial => "measure", :collection => @core_measures %>

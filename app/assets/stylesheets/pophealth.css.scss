@@ -12,11 +12,6 @@ html {
   }
 }
 
-article, aside, dialog, figure, footer, header, hgroup, nav, section {
-  display: block; 
-}
-
-
 table {
   border-collapse: separate;
   border-spacing: 0; 
@@ -25,12 +20,18 @@ table {
   }
 }
 
-caption, th, td {
-  text-align: left;
-  font-weight: normal; 
+dl {
+  margin-top: 10px;
+  dd {
+    display: table-cell;
+  }
 }
 
-
+th {
+  color: $dashboardLabel;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
 
 blockquote:before, blockquote:after, q:before, q:after {
   content: ""; 
@@ -107,8 +108,8 @@ a, {
 
   ul {
     list-style: none;
-    margin-left: 330px;
-    font-size: 0.9em;
+    margin-left: 320px;
+    font-size: 1em;
     li {
       float: left;
       margin-top: 5px;
@@ -151,6 +152,7 @@ a, {
     color: #368f98; 
   } 
 }
+
 
 #measureTitle {
   padding: 10px 25px;
@@ -205,13 +207,11 @@ a, {
   } 
 }
 
-.measureBox {
-  padding: 10px; }
-
 #measureEditContainer {
   border-top: 1px solid $measureBorderColor;
   clear: left;
   position: relative;
+  padding-left: $main_padding-left;
   span {
     margin: 5px 0;
     padding: 1px 3px;
@@ -309,7 +309,7 @@ a, {
     font-size: 1.5em;
     padding: 5px 20px;
     display: inline-block;
-    margin: 10px 0 0 10px;
+    margin: 10px 0 0 0;
     -moz-border-radius: 20px;
     -webkit-border-radius: 20px;
     border-radius: 20px;
@@ -435,7 +435,7 @@ a, {
  
   div.groupList {
     padding-left: 0;
-    margin-top: 10px;
+    margin-top: $top_heading-padding;
     
     ul {
       li{
@@ -458,26 +458,11 @@ a, {
             }
           }
         }
-        div.measureItemList {
-          ul {
-            margin: 0;
-            li {
-              
-            }
-            p.note {
-              em {
-                
-              }
-            }
-          }
-        }
       }
     }
   }
   p.note {
-      margin: 5px 0 15px 0;
-      color: $dashboardLabel;
-      text-transform: uppercase;
+      margin: 5px 0;
   }
   em {
     font-style: italic;
@@ -491,7 +476,7 @@ a, {
     padding: 0 0 20px 10px;
     font-size: 1em; }
   h1 {
-    padding: 10px 0 0px 10px;
+    padding: 15px 0 0px 0;
     font-size: 1.4em; }
   .groupList {
     background-color: $paramList;
@@ -516,9 +501,9 @@ a, {
   .expandableList {
     color: black;
     line-height: 1.2;
-    font-size: 1.1em;
+    font-size: 1.2em;
     ul {
-      margin: 5px; }
+      margin: 5px 15px; }
     list-style: none;
     li {
       padding: 0 5px 10px 25px;
@@ -558,25 +543,18 @@ a, {
     color: $dashboardText; 
   }
   a:hover {
-    text-decoration: none;
-    color: #368f98; 
+    text-decoration:underline;
   } 
 }
 
-.measureTitleText {
-  h1 {
-    font-size: 1.5em;
-  }
-}
 
-#dashboardPeriod {
+#dashboardPeriod, #dashboardContainer {
   float: left;
   min-width: 720px;
   
   .measureDetailTable {
-  padding: 0;
-  float: left;
-  width: 100%;
+    padding-top: $top_heading-padding;
+    width: 100%;
 
   h1 {
     font-size: 1.5em;
@@ -586,13 +564,8 @@ a, {
     text-transform: uppercase; 
   }
 
-  dl, dd, span {
-    vertical-align: middle;
-  }
   dl {
-    display: block;
-    clear: left;
-    margin-top: 10px;
+    margin-bottom: 10px;
     padding-left: $measureDetailTable-padding; 
   }
   dd {
@@ -600,7 +573,9 @@ a, {
     h1 {
       padding-left: 0; } 
   }
-  dd.practiceName {text-transform: uppercase;}
+  dd.practiceName {
+    
+  }
   div.dashboardTabs {
     color: $dashboardLabel;
     clear: left;
@@ -643,16 +618,18 @@ a, {
     padding-top: 10px;
     vertical-align: baseline;
     
-
     div {
       display: inline-block;
       width: 14px;
       height: 14px;
       margin-right: 7px;
     }
+    .numerator, .denominator, .patients, .exclusions, span {
+      vertical-align: middle;
+    }
+   
     span {
       margin-right: 15px;
-      vertical-align: center;
     }
     .numerator {
       background-color: $numerator; 
@@ -701,7 +678,7 @@ a, {
   input.calendarInput {
     width: 80px;
     position: relative;
-    padding-left: 25px;
+    padding-left: $main_padding-left;
     margin: 0px 0px 5px 0px;
     border: none;
     color: #666666;
@@ -822,7 +799,6 @@ input.measurementPeriodEndDate {
     }
     .paren {
       font-size: 2em;
-      font-family: Helvetica;
       font-weight: 100;
       color: #999999;
       position: relative;
@@ -839,19 +815,20 @@ input.measurementPeriodEndDate {
         }
       }
   .inline-bar {
-    float: left;
     height: 3em;
     vertical-align: middle;
     position: relative;
     top: 0.75em;
   td.links {
-      float: left;
       line-height: 1.2em;
-      vertical-align: top;
+      vertical-align: middle;
+
       a {
         display: block;
-        vertical-align: top;
         font-size: 0.8em; 
+        color: $linkcolor;
+        font-weight: 500;
+
       } 
     } 
   }
@@ -869,8 +846,6 @@ input.measurementPeriodEndDate {
     color: #368f98; } }
 
     .tableBar {
-       float: left;
-       margin-top: 5px;
        margin-right: 15px;
        background-color: $measurePopulationChartBar;
        width: 150px;
@@ -907,6 +882,8 @@ a.tableEdit {
 
 #measureMetrics {
   min-width: 250px;
+  padding-left: $top_heading-padding;
+
   .paren {
     font-size: 3.5em;
     color: #999999;
@@ -927,9 +904,6 @@ a.tableEdit {
   @include popPercentage(120px, 48px, 128px, 200px, 30px);
 }
 
-.measureProviderPopulationPercentage {
-
-}
 
 #patientMetrics {
   display: block;
@@ -984,7 +958,7 @@ a.tableEdit {
   border-top: 1px solid $measureBorderColor; }
 
 #patientTable {
-  margin: 20px 20px 20px 50px;
+  padding: $top_heading-padding $main_padding-right $bottom_heading-padding $main_padding-left;
   width: 100%;
 		
   th {
@@ -996,64 +970,25 @@ a.tableEdit {
     padding: 2px 15px 2px 5px; } }
 
 table.measureTable {
-	font-size: 1em;
-	width: 100%;
-  vertical-align: baseline;
-
-  td, th {
-    vertical-align: baseline;
-  }
 
 	tr.headerRow {
-
+    
 		td{
-			font-size: 18px;
-			color:#ddd;
+			font-size: 1em;
+      text-transform: uppercase;
+			color:#888;
 			border-bottom: 1px solid #ddd;
-			height:24px;
-      padding-left: 20px;
+      padding-left: $main_padding-left;
+      padding-bottom: 5px;
+      margin-bottom: 5px;
     }
-	}
-	
-	td {
-    min-width: 80px;
-	}
-	
-	td.percent {
-		font-size:28px;
-		width:50px;
-    padding: 0 20px;
-	}
-	
-	td.subtitle {
-		font-weight: lighter;
-	}
-	
-	td.name {
-		text-decoration: underline;
-		width:450px;
-		font-weight: lighter;
-    padding: 0 20px;
-    padding-bottom:10px;
-
-	}
-	
-	td.fraction {
-
-    .inline-fraction {
-      padding-bottom: 0;
+	}	
+  tr.measure {
+    
+    td{
+      padding: 10px 0;
     }
-	}
-	
-	td.barChart {
-    padding: 0 10px;
-
-		.tableBar {
-			height:20px;
-			width:200px;
-      padding: 0;
-		}
-	}
+  } 
 }
 
 .dialog-menu {
@@ -1064,3 +999,89 @@ table.measureTable {
     display: none;
   }
 }
+
+table#providerTable  {
+}
+table#providerTable, table.measureTable  {
+    font-size:1em;
+    width: 100%;
+    tr {
+    margin: 10px;
+
+
+    h1 {
+      color: #888888;
+      padding-top: $top_heading-padding;
+    }
+
+
+    td {
+      vertical-align:middle;
+    }
+    td.link {
+      a {
+        min-width: 80px;
+        color: #44B3BE;
+        font-weight: normal;
+      }
+    }
+    td {
+      vertical-align: middle;
+    }
+    td.percent {
+      font-size: 28px;
+      width:50px;
+      padding-right:15px;
+      padding: 0 10px;
+      min-width: 80px;
+  
+
+      div.measureProviderPopulationPercentage {
+        color: black;
+        display: inline-block;
+        position:relative;
+        top: 2px;
+        margin-right: 5px;
+        text-align: center;
+
+        width: 50px;
+      }
+    }
+
+    td.name {
+      text-decoration: underline;
+      width:250px;
+      font-weight: lighter;
+      padding-right:20px;
+    }
+    td.name, th {
+      padding-left:$main_padding-left;
+    }
+    td.fraction, .links {
+      vertical-align: middle;
+    }
+
+    td.fraction {
+      padding-right: $main_padding-right;
+      min-width: 80px;
+
+      .inline-fraction {
+        padding-top: 2px;
+      }
+    }
+
+    td.barChart {
+      padding: 0 10px;
+
+      .tableBar {
+        height:20px;
+        width:200px;
+      }
+    }
+  }
+  }
+
+.ui-button {
+    margin-left: 10px;
+    font-size: 1em;
+  }

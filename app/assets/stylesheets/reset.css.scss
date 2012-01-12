@@ -42,3 +42,11 @@ table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure,
 
 
 
+article, aside, dialog, figure, footer, header, hgroup, nav, section {
+  display: block; 
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal; 
+}

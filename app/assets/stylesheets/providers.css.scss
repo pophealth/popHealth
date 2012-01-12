@@ -55,16 +55,9 @@ div#content form li {
   top: 4px; 
 }
 
-table.measureTable {
-  .links, .fraction, .measureProviderPopulationPercentage {
-    vertical-align: top;
-  }
-}
-
 div #providerMain { 
 
   div#aggregate {
-    padding-left:10px;
     float:left;
     border-bottom: 3px solid $grayborder;
     
@@ -75,7 +68,7 @@ div #providerMain {
     height: 2em;
     }
     .links {
-      padding-left:10px;
+      padding-left:$top_heading-padding;
       font-size: 0.9em;
       margin-bottom:3px;
       float: left;
@@ -90,74 +83,6 @@ div #providerMain {
   .paren {
     font-size: 2em;
   }
-  
-  table#providerTable {
-    float:left;
-		margin-left:20px;
-		font-size:1em;
-
-    h1 {
-      color: #888888;
-    }
-
-
-		td {
-			height:60px;
-			vertical-align:baseline;
-		}
-    td.link {
-      a {
-      vertical-align:middle;
-        min-width: 80px;
-        color: #44B3BE;
-        font-weight: normal;
-      }
-    }
-
-		td.percent {
-			font-size: 28px;
-			width:50px;
-			padding-right:15px;
-      vertical-align: baseline;
-      padding: 0 10px;
-      min-width: 80px;
-
-      div.measureProviderPopulationPercentage {
-        color: black;
-        display: inline-block;
-        font-size: 1em;
-        height: 50px;
-        line-height: 55px;
-        margin-right: 5px;
-        text-align: center;
-        vertical-align: middle;
-        width: 50px;
-      }
-		}
-
-		td.name {
-			text-decoration: underline;
-			width:250px;
-			vertical-align:baseline;
-			font-weight: lighter;
-			padding-right:20px;
-		}
-
-		td.fraction {
-			padding-right:25px;
-      min-width: 80px;
-		}
-
-		td.barChart {
-			vertical-align:baseline;
-      padding: 0 10px;
-
-			.tableBar {
-				height:20px;
-				width:200px;
-			}
-  	}
-	}
 }
 
 img#loadingAggregate {
@@ -166,12 +91,6 @@ img#loadingAggregate {
   top:100px;
 }
 
-td.links {
-  a {
-    color: #44B3BE;
-    font-weight: 500;
-  }
-}
 
 
 

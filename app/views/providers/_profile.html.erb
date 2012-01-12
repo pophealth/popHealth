@@ -6,8 +6,6 @@
 <%= link_to "edit", edit_provider_path(@provider, :format => :html), :remote => true, :method => :get, :id => "edit_provider" %>
 <%= link_to "merge", merge_list_provider_path(@provider, :format => :html), :remote => true, :method => :get, :id => "merge_provider" %>
 
-<br><br>
-
 <dl>
   <dt>NPI:</dt>
   <dd><%= @provider.npi%></dd>
