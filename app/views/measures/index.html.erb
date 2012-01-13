@@ -1,7 +1,7 @@
 <% content_for :head do %>
 <script type="text/javascript" charset="utf-8">
   <% if @selected_provider %>
-    Page.params['npi'] = '<%=@selected_provider.npi%>'
+    Page.npi = '<%=@selected_provider.npi%>'
   <% end %>
 	Page.onLoad = Dashboard.onLoad;
 </script>

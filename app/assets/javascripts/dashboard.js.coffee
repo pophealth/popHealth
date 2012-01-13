@@ -14,19 +14,21 @@
 		return $("tr.measure[data-measure='#{measure}']")
 	fadeIn: (measure) -> 
 		Dashboard.measureRows(measure).fadeTo("fast", 0.5)
+		$.post("/measure/#{measure}/select", {})
 	fadeOut: (measure) -> 
 		Dashboard.measureRows(measure).fadeOut("fast")
 		$.post("/measure/#{measure}/remove", {})
 	calculateSelected: ->
-		$(".measureProviderPopulationPercentage").html("<img src='/assets/loading.gif'/>")
+		$(".measureProviderPopulationPercentage").html("<div><div class='jobLabel'></div><img src='/assets/loading.gif'/></div>")
 		$(".numeratorValue").html('0')
 		$(".denominatorValue").html('0')
 		$("div.measureItemList ul li.checked").each (i, m) ->
 			measureId = $(m).attr("data-measure-id")
 			qr = new QualityReport(measureId)
 			Dashboard.measureRows(measureId).fadeTo("fast", 0.5)
-			qr.poll Page.params, (result) ->
-				Dashboard.calculateMeasure(result)
+			params = {}
+			params['npi'] = Page.npi
+			qr.poll params, Page.onReportComplete
 	onLoad: ->
 		Page.onMeasureSelect = (measure) ->
 			Dashboard.measureRow(measure).prevAll(".headerRow").first().show()
@@ -38,7 +40,17 @@
 			console.log(measureRow.nextUntil(".headerRow", ":not([data-measure='#{measure}']):visible"))
 			Dashboard.measureRow(measure).prevAll(".headerRow").first().hide() if measureRow.prevUntil(".headerRow", ":not([data-measure='#{measure}']):visible").length == 0 && measureRow.nextUntil(".headerRow", ":not([data-measure='#{measure}']):visible").length == 0
 			
-		Page.onReportComplete = (result) -> Dashboard.calculateMeasure(result)
+		Page.onReportComplete = (result, complete) -> 
+			if (complete)
+				Dashboard.calculateMeasure(result)
+			else
+				$.each result, (i, data) ->
+					row = Dashboard.measureRow(data.job.measure_id, data.job.sub_id)
+					if (data.job.status != 'failed')
+						row.find('.jobLabel').text(data.job.status)
+					else
+						row.find('.jobLabel').parent().html(data.job.status)
+				
 		$('#btnExportReport').click(Dashboard.exportReport);
 		$('#btnExportReportSingle').click(Dashboard.doReportExport);
 		$('#btnMeasurementPeriodChange').click(Dashboard.changeMeasurePeriod);

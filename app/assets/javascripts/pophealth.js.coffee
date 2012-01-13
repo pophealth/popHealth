@@ -12,10 +12,14 @@ class @QualityReport
 	poll: (params, callback) ->
 		ref = this
 		this.fetch params, (response) ->
-			pollParams = $.extend(params, {jobs: response.jobs})
-			if response.complete
-				callback(response.result)
-			else
+			uuids={}
+			$.each response.jobs, (i, job) ->
+				sub_id = ''
+				sub_id = job['sub_id'] if job['sub_id']
+				uuids[job['measure_id'] + sub_id] = job['uuid']
+			pollParams = $.extend(params, {jobs: uuids})
+			callback(response.result, response.complete)
+			if (!response.complete && !response.failed)
 				setTimeout (-> ref.poll(pollParams, callback)), 3000
 
 @Page = {
@@ -57,7 +61,7 @@ class @QualityReport
 		selector.find(".numeratorValue").html(data.numerator)
 		selector.find(".denominatorValue").html(data.denominator)
 	percent: (selector, data) -> 
-		percent = if data.denominator == 0 then data.denominator else  (data.numerator / data.denominator) * 100
+		percent = if (data.denominator == 0 || data.denominator == undefined) then 0 else  (data.numerator / data.denominator) * 100
 		selector.html("#{Math.floor(percent)}%")
 	
 	barChart: (selector, data) ->
@@ -89,7 +93,9 @@ makeMeasureListClickable = ->
 			Page.onMeasureSelect(measure)
 			$.each sub_ids, (i, sub) ->
 				qr = new QualityReport(measure, sub)
-				qr.poll(Page.params, Page.onReportComplete)
+				params = {}
+				params['npi'] = Page.npi
+				qr.poll(params, Page.onReportComplete)
 		else
 			Page.onMeasureRemove(measure)
 makeFilterListsClickable = ->
