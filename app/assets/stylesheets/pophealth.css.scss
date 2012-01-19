@@ -447,11 +447,11 @@ a, {
             background: url("../assets/liOpen.png") 0 35% no-repeat;
           }
         }
-        div.expandableList {
+        div.expandableList, #providerReports{
           div.groupList {
             label {
               margin-left: 15px;
-              font-size: 1.2em;
+              font-size: 1em;
             }
             div.measureItemList {
               margin-left: 15px;
