@@ -22,98 +22,59 @@
     </div>
   </div>
   <div id="dashboardPeriod">
-    <div id="patientName" class="main">
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <table>
-                <tbody>
-                  <tr>
-                    <th colspan="2"> <a id="patientLastName"><%= @patient.last %>, </a><a id="patientFirstName"><%= @patient.first %></a></th>
-                  </tr>
-                  <tr>
-                    <th>effective date:</th>
-                    <td id="effectiveDate"><%= display_time(@effective_date) %></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-            <td>
-              <table id="patientBasicInfo">
-                <tbody>
-                  <tr>
-                    <th>DOB</th>
-                    <td><%= display_time(@patient.birthdate) %></td>
-                  </tr>
-                  <tr>
-                    <th>sex</th>
-                    <td><%= @patient.gender %></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div id="patientName" class="main measureDetailTable">
+      <dl>
+        <dt>patient name:</dt>
+        <dd><h1 id="patientLastName"><%= @patient.last %>, <%= @patient.first %></h1></dd>
+      </dl>
+          <dl>
+        <dt>effective date:</dt>
+        <dd  id="effectiveDate"><%= display_time(@effective_date) %></dd>
+      </dl>
     </div>
-    <div class="lowerborder">
+    <div class="lowerborder measureDetailTable">
       <table class="patientDemo main">
         <tbody>
           <tr>
             <td>
-              <table>
-                <tbody>
-                  <tr>
-                    <th>race</th>
-                    <td>
-                          <%= Race.from_code(@patient.race['code']).first.name %>
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>ethnicity</th>
-                    <td>
-                        <%= Ethnicity.from_code(@patient.ethnicity['code']).first.name %>
-                    </td>
-                    </tr>
-                   <tr>
-                    <th>language</th>
-                    <td>
-                      <% if (@patient.languages)%>
-                        <%= @patient.languages.join(", ")%>
-                      <% else %>
-                        N/A
-                      <% end %>
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>btype</th>
-                    <td>N/A</td>
-                   </tr>
-                   <tr>
-                    <th>tobacco user</th>
-                    <td>N/A</td>
-                  </tr>
-                </tbody>
-              </table>
+              <dl>
+                <dt>dob</dt>
+                <dd><%= display_time(@patient.birthdate) %></dd>
+              </dl>
+              <dl>
+                <dt>sex</dt>
+                <dd><%= @patient.gender %></dd>
+              </dl>
+              <dl>
+                <dt>race</dt>
+                <dd><%= Race.from_code(@patient.race['code']).first.name %></dd>
+              </dl>
+              <dl>
+                <dt>ethnicity</dt>
+                <dd><%= Ethnicity.from_code(@patient.ethnicity['code']).first.name %></dd>
+              </dl>
+              <dl>
+                <dt>language</dt>
+                <dd>N/A</dd>
+              </dl>
             </td>
             <td>
-              <table>
-                <tbody> 
-                  <tr>
-                    <th>health plan</th>
-                    <td>N/A</td>
-                  </tr>
-                  <tr>
-                    <th>policy number</th>
-                    <td>N/A</td>
-                  </tr>
-                  <tr>
-                    <th>p.c.p.</th>
-                    <td>N/A</td>
-                  </tr>
-                </tbody>
-              </table>
+              <dl>
+                <dt>tobacco user</dt>
+                <dd>N/A</dd>
+              </dl>
+              <dl>
+                <dt>health plan</dt>
+                <dd>N/A</dd>
+              </dl>
+              <dl>
+                <dt>policy number</dt>
+                <dd>N/A</dd>
+              </dl>
+              <dl>
+                <dt>p.c.p.</dt>
+                <dd>N/A</dd>
+              </dl>
             </td>
           </tr>
         </tbody>
@@ -123,7 +84,7 @@
       <table class="patientRecords">
         <tr>
           <td>
-            <table>
+            <table class="headerRow">
               <%= render :partial => 'section', :object => @patient.allergies, :locals => {:title => 'Allergies'} %>
               <%= render :partial => 'section', :object => @patient.care_goals, :locals => {:title => 'Care Goals'} %>
               <%= render :partial => 'section', :object => @patient.vital_signs, :locals => {:title => 'Vital Signs'} %>
@@ -133,7 +94,7 @@
             </table>
           </td>
           <td>
-            <table>
+            <table class="headerRow"> 
               <%= render :partial => 'section', :object => @patient.procedures, :locals => {:title => 'Procedures'} %>
               <%= render :partial => 'section', :object => @patient.medications, :locals => {:title => 'Medications'} %>
               <%= render :partial => 'section', :object => @patient.social_history, :locals => {:title => 'Social History'} %>
