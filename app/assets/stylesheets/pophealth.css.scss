@@ -498,46 +498,31 @@ a, {
         background: url("../assets/liClosed.png") 0 35% no-repeat; }
       label.open {
         background: url("../assets/liOpen.png") 0 35% no-repeat; } } }
-  .expandableList {
-    color: black;
-    line-height: 1.2;
-    font-size: 1.2em;
-    ul {
-      margin: 5px 15px; }
-    list-style: none;
-    li {
-      padding: 0 5px 10px 25px;
-      background: url("../assets/unchecked.png") 0 0 no-repeat;
-      font-size: 0.9em;
-      cursor: pointer;
-      .note {
-        margin: 0 3px 0 0;
-        font-size: 0.9em; } }
-    li.checked {
-      background: url("../assets/checked.png") 0 0 no-repeat; } }
-	.selectAll {
-//		float:right;
-//		height:16px;
-//		width:20px;
-//		background: url("../assets/checked.png") 0% 0% no-repeat;
-//		padding-left: 18px;
+		  .expandableList, .teamList {
+		    color: black;
+		    line-height: 1.2;
+		    font-size: 1.2em;
+		    ul {
+		      margin: 5px 15px; }
+		    list-style: none;
+		    li {
+		      padding: 0 5px 10px 25px;
+		      background: url("../assets/unchecked.png") 0 0 no-repeat;
+		      font-size: 0.9em;
+		      cursor: pointer;
+		      .note {
+		        margin: 0 3px 0 0;
+		        font-size: 0.9em; } }
+		    li.checked {
+		      background: url("../assets/checked.png") 0 0 no-repeat; } 
+					li.disabled {
+								cursor: default;
+								color: gray;
+								background: url("../assets/checked_grayed_out.png") 0 0 no-repeat;
+							}
 
-    ul {margin: 5px; 
-    }
-    li {
-      padding: 0 5px 10px 25px;
-      background: url("../assets/unchecked.png") 0 10% no-repeat;
-      font-size: 0.9em;
-      cursor: pointer;
-      .note {
-        margin: 0 3px 0 0;
-        font-size: 0.9em; 
-      } 
-    }
-    li.checked {
-      background: url("../assets/checked.png") 0 10% no-repeat; 
-    }
-  }
+		}
+
   a {
     padding: 0 0 0 10px;
     color: $dashboardText; 
@@ -745,6 +730,13 @@ input.measurementPeriodEndDate {
 //  margin-left: $measureDetailTable-padding; 
 	font-weight:bold;
   font-size: 1em;
+  .jobLabel {
+    position:relative;
+    font-size: 11px;
+    top: 25px;
+    left: -6px;
+  }
+  
 }
     
 .tableMeasureTitle {
@@ -1000,8 +992,6 @@ table.measureTable {
   }
 }
 
-table#providerTable  {
-}
 table#providerTable, table.measureTable  {
     font-size:1em;
     width: 100%;

@@ -23,6 +23,14 @@ module MeasuresHelper
     is_selected?(measure_id, selected_measures) ? "" : "display:none"
   end
   
+  def display_header(measures, selected_measures)
+    (measures.map { |m| m['id'] } & selected_measures.map { |m| m['id'] }).empty? ? "display:none" : ""
+  end
+  
+  def display_provider(provider, index, page)
+     ((page - 1) * 10 <= index) && index < (page * 10) ? "" : "display:none"
+  end
+  
   def is_selected?(measure_id, selected_measures)
     selected_measures.any? {|measure| measure['id'] == measure_id}
   end

@@ -31,6 +31,9 @@ class Ability
       can :manage, User, id: user.id
       cannot :manage, User unless APP_CONFIG['allow_user_update']
     elsif user.id
+      can :read, Record do |patient|
+        patient.providers.map(&:npi).include?(user.npi)
+      end
       can :read, Measure
       can :read, Provider, npi: user.npi
       can :manage, Team

@@ -3,26 +3,46 @@
     <h1>
       Providers
     </h1>
-    <p class="note">
-      Teams
-    </p>
-    <div class="groupList">
-      <ul>
+    
+      <% if APP_CONFIG['disable_provider_filters'] %>
+	    <p class="note">
+	      Teams
+	    </p>
+			<div class="filterItemList teamList">
+				<ul>
+					<% @teams.each do |team| %>
+					<li class="checked" data-filter-type="team" data-filter-value="<%= team.id%>">
+						<%= team.name %>
+					</li>
+					<% end %>
+				</ul>						
+			</div>
+			<% else %>
+			<p class="note">
+	      Providers
+	    </p>
+			<div class="groupList">
+			<ul>
         <% @providers_by_team.each do |team_name, providers| %>
         <li>
+					
           <label><%= team_name%></label>
           <div class="filterItemList expandableList" style="display:none">
             <ul>
-							<li class="selectAll checked">All</li>
+							<li class="selectAll providerSelectAll checked">All</li>
               <% providers.each do |pv| %>
-              <li style="display:none" data-filter-type="provider" data-filter-value="<%=pv.id%>" class="checked">
+              <li class="disabled" data-filter-type="provider" data-filter-value="<%=pv.id%>">
                 <%= pv.full_name %>
               </li><% end %>
             </ul>
           </div>
-        </li><% end %>
+					<% end %>
+        </li>
+
       </ul>
-    </div>
+		</div>
+			<% end %>
+    
    <p class="note">
       Demographics
     </p>
@@ -34,7 +54,7 @@
             <ul>
 							<li class="selectAll checked">All</li>
                <% @races.each do |race| %>
-              <li style="display:none" data-filter-type="race" data-filter-value="<%=race.id%>" class="checked">
+              <li class="disabled" data-filter-type="race" data-filter-value="<%=race.id%>">
                 <%= race.name %>
               </li>
 							<% end %>
@@ -47,7 +67,7 @@
             <ul>
 							<li class="selectAll checked">All</li>
                <% @ethnicities.each do |ethnicity| %>
-              <li style="display:none" data-filter-type="ethnicity" data-filter-value="<%=ethnicity.id%>" class="checked">
+              <li class="disabled" data-filter-type="ethnicity" data-filter-value="<%=ethnicity.id%>">
                 <%= ethnicity.name %>
               </li>
 							<% end %>
@@ -60,8 +80,21 @@
             <ul>
 							<li class="selectAll checked">All</li>
                <% @genders.each do |gender| %>
-              <li style="display:none" data-filter-type="gender" data-filter-value="<%=gender[:id]%>" class="checked">
+              <li class="disabled" data-filter-type="gender" data-filter-value="<%=gender[:id]%>">
                 <%= gender[:name] %>
+              </li>
+							<% end %>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <label>Languages</label>
+          <div class="filterItemList expandableList" style="display:none">
+            <ul>
+							 <li class="selectAll checked">All</li>
+               <% @languages.each do |language| %>
+              <li class="disabled" data-filter-type="language" data-filter-value="<%=language.id%>">
+                <%= language.name %>
               </li>
 							<% end %>
             </ul>
@@ -89,20 +122,18 @@
         <h1>INDIVIDUAL PROVIDER STATISTICS</h1>
           </th>
         </tr>
-          <% @providers.each do |pv| %>
-            <tr class="provider" data-provider="<%=pv.id%>">
-              
-              <td class="name"> <%= link_to "#{pv.family_name.upcase} , #{pv.given_name}", "#{measures_url}?npi=#{pv.npi}" %></td>
-              <td class="percent"><div class="measureProviderPopulationPercentage"></div></td>
-              <td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
-              <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0, exclusions: 0}%></td>
-              <!--td class="links"><a href="#">parameters</a><br><a href="#">patients</a></td-->
-            </tr>
-          <% end %>
+				<tr>
+					<%= render :partial => "provider_row", :collection => @providers %>
       </tbody>
     </table>
+		<%= paginate @providers, :remote => true %>
   </div>
 </div>
+
+
+<script id="row" type="text/html" charset="utf-8">
+	
+</script>
 
 <% content_for :head do %>
 

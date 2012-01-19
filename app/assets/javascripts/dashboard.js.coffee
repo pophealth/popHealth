@@ -1,34 +1,59 @@
 @Dashboard = {
 	calculateMeasure: (response) ->
 		$.each response, (i, result) ->
-			row = Dashboard.measureRow(result.measure_id, result.sub_id)
-			row.fadeTo("fast", 1.0)
-			Render.percent row.find("div.measureProviderPopulationPercentage"), result
-			Render.barChart row.find("div.tableBar"), result
-			Render.fraction row.find("td.fraction"), result
+			Dashboard.calculateSingleMeasure(result)
+	calculateSingleMeasure: (result) ->
+		row = Dashboard.measureRow(result.measure_id, result.sub_id)
+		row.fadeTo("fast", 1.0)
+		Render.percent row.find("div.measureProviderPopulationPercentage"), result
+		Render.barChart row.find("div.tableBar"), result
+		Render.fraction row.find("td.fraction"), result
 	measureRow: (measure, sub_id) ->
-		return $("tr.measure[data-measure='#{measure}'][data-measure-sub='#{sub_id || ''}']")
+		selector = "tr.measure[data-measure='#{measure}']"
+		selector += "[data-measure-sub='#{sub_id || ''}']" if sub_id?
+		$(selector)
 	measureRows: (measure) ->
 		return $("tr.measure[data-measure='#{measure}']")
 	fadeIn: (measure) -> 
 		Dashboard.measureRows(measure).fadeTo("fast", 0.5)
+		$.post("/measure/#{measure}/select", {})
 	fadeOut: (measure) -> 
 		Dashboard.measureRows(measure).fadeOut("fast")
 		$.post("/measure/#{measure}/remove", {})
 	calculateSelected: ->
-		$(".measureProviderPopulationPercentage").html("<img src='/assets/loading.gif'/>")
+		$(".measureProviderPopulationPercentage").html("<div><div class='jobLabel'></div><img src='/assets/loading.gif'/></div>")
 		$(".numeratorValue").html('0')
 		$(".denominatorValue").html('0')
 		$("div.measureItemList ul li.checked").each (i, m) ->
 			measureId = $(m).attr("data-measure-id")
 			qr = new QualityReport(measureId)
 			Dashboard.measureRows(measureId).fadeTo("fast", 0.5)
-			qr.poll Page.params, (result) ->
-				Dashboard.calculateMeasure(result)
+			params = {}
+			params['npi'] = Page.npi
+			qr.poll params, Page.onReportComplete
 	onLoad: ->
-		Page.onMeasureSelect = (measure) -> Dashboard.fadeIn(measure)
-		Page.onMeasureRemove = (measure) -> Dashboard.fadeOut(measure)
-		Page.onReportComplete = (result) -> Dashboard.calculateMeasure(result)
+		Page.onMeasureSelect = (measure) ->
+			Dashboard.measureRow(measure).prevAll(".headerRow").first().show()
+			Dashboard.fadeIn(measure)
+		Page.onMeasureRemove = (measure) -> 
+			Dashboard.fadeOut(measure)
+			measureRow = Dashboard.measureRow(measure).first()
+			Dashboard.measureRow(measure).prevAll(".headerRow").first().hide() if measureRow.prevUntil(".headerRow", ":not([data-measure='#{measure}']):visible").length == 0 && measureRow.nextUntil(".headerRow", ":not([data-measure='#{measure}']):visible").length == 0
+			
+		Page.onReportComplete = (result, complete) -> 
+			if (complete)
+				Dashboard.calculateMeasure(result)
+			else
+				$.each result, (i, data) ->
+					if data.job?
+						row = Dashboard.measureRow(data.job.measure_id, data.job.sub_id)
+						if (data.job.status != 'failed')
+							row.find('.jobLabel').text(data.job.status)
+						else
+							row.find('.jobLabel').parent().html(data.job.status)
+					else
+						Dashboard.calculateSingleMeasure(data)
+				
 		$('#btnExportReport').click(Dashboard.exportReport);
 		$('#btnExportReportSingle').click(Dashboard.doReportExport);
 		$('#btnMeasurementPeriodChange').click(Dashboard.changeMeasurePeriod);

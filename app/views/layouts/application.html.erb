@@ -9,9 +9,11 @@
   <title>popHealth : An Open Source Quality Measure Reference Implementation</title>
   <link rel="shortcut icon" href="/favicon.ico"/>
   <%# stylesheet_link_tag :all %>
-  
+
+  <% unless request.xhr?%>
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
+  <%end%>
   
   <%= csrf_meta_tag %>
   <%= yield :head %>

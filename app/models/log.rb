@@ -4,6 +4,7 @@ class Log
   
   field :username, :type => String
   field :event, :type => String
-  field :patient_id, :type => String
+  field :description, :type => String
+  field :medical_record_number, :type => String
   field :checksum, :type => String
 end

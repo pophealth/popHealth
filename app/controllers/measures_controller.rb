@@ -1,3 +1,4 @@
+require 'ostruct'
 class MeasuresController < ApplicationController
   include MeasuresHelper
 
@@ -8,7 +9,14 @@ class MeasuresController < ApplicationController
   after_filter :hash_document, :only => :measure_report
   
   add_breadcrumb_dynamic([:selected_provider], only: %w{index show patients}) {|data| provider = data[:selected_provider]; {title: (provider ? provider.full_name : nil), url: "/?npi=#{(provider) ? provider.npi : nil}"}}
-  add_breadcrumb_dynamic([:definition], only: %w{providers}) {|data| measure = data[:definition]; {title: "#{measure['endorser']}#{measure['id']}" + (measure['sub_id'] ? "#{measure['sub_id']}" : ''), url: "/measure/#{measure['id']}"+(measure['subid'] ? "/#{measure['sub_id']}" : '')+"/providers"}}
+  add_breadcrumb_dynamic([:definition], only: %w{providers}) do|data| 
+    measure = data[:definition];
+    if measure
+      {title: "#{measure['endorser']}#{measure['id']}" + (measure['sub_id'] ? "#{measure['sub_id']}" : ''), url: "/measure/#{measure['id']}"+(measure['subid'] ? "/#{measure['sub_id']}" : '')+"/providers"}
+    else
+      {}
+    end
+  end
   add_breadcrumb_dynamic([:definition, :selected_provider], only: %w{show patients}) {|data| measure = data[:definition]; provider = data[:selected_provider]; {title: "#{measure['endorser']}#{measure['id']}" + (measure['sub_id'] ? "#{measure['sub_id']}" : ''), url: "/measure/#{measure['id']}"+(measure['subid'] ? "/#{measure['sub_id']}" : '')+(provider ? "?npi=#{provider.npi}" : "/providers")}}
   add_breadcrumb 'parameters', '', only: %w{show}
   add_breadcrumb 'patients', '', only: %w{patients}
@@ -17,9 +25,7 @@ class MeasuresController < ApplicationController
     @categories = Measure.non_core_measures
     @core_measures = Measure.core_measures
     @core_alt_measures = Measure.core_alternate_measures
-    @alt_measures = Measure.alternate_measures
-    # @all_measures = Measure.all_by_measure
-    # binding.pry
+    @alt_measures = Measure.alternate_measures.group_by { |m| m['category'] }
   end
   
   def show
@@ -30,7 +36,7 @@ class MeasuresController < ApplicationController
         @result = @quality_report.result
       end
       wants.json do
-        SelectedMeasure.add_measure(current_user.username, params[:id])
+#        SelectedMeasure.add_measure(current_user.username, params[:id])
         measures = params[:sub_id] ? Measure.get(params[:id], params[:sub_id]) : Measure.sub_measures(params[:id])
         
         render_measure_response(measures, params[:jobs]) do |sub|
@@ -60,32 +66,46 @@ class MeasuresController < ApplicationController
   
   
   def providers    
+    authorize! :manage, :providers
+    
+    
+    
     respond_to do |wants|
-      wants.html do
-        @providers = Provider.alphabetical
-        @races = Race.ordered
-        @ethnicities = Ethnicity.ordered
-        @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
+      wants.html {}
+      
+      wants.js do
+        
+        @providers = Provider.page(params[:page]).per(20).alphabetical
+        @providers = @providers.any_in(team_id: params[:team]) if params[:team]
+        
       end
       
       wants.json do
         
-        providerIds = params[:provider].empty? ?  Provider.all.map { |pv| pv.id.to_s } : @filters.delete('providers')
-
+        providerIds = params[:provider].blank? ?  Provider.all.map { |pv| pv.id.to_s } : @filters.delete('providers')
+        
         render_measure_response(providerIds, params[:jobs]) do |pvId|
-          {
-            report: QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => @filters.merge('providers' => [pvId])),
+          filters = @filters ? @filters.merge('providers' => [pvId]) : {'providers' => [pvId]}
+          { 
+            report: QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => filters),
             patient_count: @patient_count
-#            patient_count: Provider.find(pvId).records(@effective_data).count
           }
         end
       end
     end
+    
+    # @time_here2 = Time.now
+    # 
   end
   
   def remove
     SelectedMeasure.remove_measure(current_user.username, params[:id])
     render :text => 'Removed'
+  end
+  
+  def select
+    SelectedMeasure.add_measure(current_user.username, params[:id])
+    render :text => 'Select'
   end
   
   def patients
@@ -94,11 +114,7 @@ class MeasuresController < ApplicationController
   end
 
   def measure_patients
-    type = if params[:type]
-      "value.#{params[:type]}"
-    else
-       "value.denominator"
-    end
+    @type = params[:type] || 'denominator'
     @limit = (params[:limit] || 20).to_i
     @skip = ((params[:page] || 1).to_i - 1 ) * @limit
     sort = params[:sort] || "_id"
@@ -106,38 +122,60 @@ class MeasuresController < ApplicationController
     measure_id = params[:id] 
     sub_id = params[:sub_id]
     
-    query = {'value.measure_id' => measure_id, 'value.sub_id' => sub_id, 'value.effective_date' => @effective_date, type => true}
+    query = {'value.measure_id' => measure_id, 'value.sub_id' => sub_id, 'value.effective_date' => @effective_date}
+    
+    if (@type == 'exclusions')
+      query.merge!({'$or'=>[{"value.#{@type}" => true}, {'value.manual_exclusion'=>true}]})
+    else
+      query.merge!({"value.#{@type}" => true, 'value.manual_exclusion'=>{'$ne'=>true}})
+    end
     
     if (@selected_provider)
       result = PatientCache.by_provider(@selected_provider, @effective_date).where(query);
-      @total = result.count;
-      @records = result.order_by([sort, sort_order]).skip(@skip).limit(@limit);
     else
-      @records = mongo['patient_cache'].find(query, {:sort => [sort, sort_order], :skip => @skip, :limit => @limit}).to_a
-      @total =  mongo['patient_cache'].find(query).count
+      authorize! :manage, :providers
+      result = PatientCache.all.where(query)
     end
-                                      
+    @total = result.count
+    @records = result.order_by(["value.#{sort}", sort_order]).skip(@skip).limit(@limit);
+    
+    @manual_exclusions = {}
+    ManualExclusion.selected(@records.map {|record| record['value']['medical_record_id']}).map {|exclusion| @manual_exclusions[exclusion.medical_record_id] = exclusion} if (@type == 'exclusions')
+    
     @page_results = WillPaginate::Collection.create((params[:page] || 1), @limit, @total) do |pager|
        pager.replace(@records)
     end
-    # log the patient_id of each of the patients that this user has viewed
+    # log the medical_record_number of each of the patients that this user has viewed
     @page_results.each do |patient_container|
       Log.create(:username =>   current_user.username,
                  :event =>      'patient record viewed',
-                 :patient_id => (patient_container['value'])['medical_record_id'])
+                 :medical_record_number => (patient_container['value'])['medical_record_id'])
     end
   end
 
+  # excel patient list
   def patient_list
     measure_id = params[:id] 
     sub_id = params[:sub_id]
-    @records = mongo['patient_cache'].find({'value.measure_id' => measure_id, 'value.sub_id' => sub_id,
-                                            'value.effective_date' => @effective_date}).to_a
-    # log the patient_id of each of the patients that this user has viewed
+    
+    query = {'value.measure_id' => measure_id, 'value.sub_id' => sub_id, 'value.effective_date' => @effective_date, 'value.population'=>true}
+
+    if (@selected_provider)
+      result = PatientCache.by_provider(@selected_provider, @effective_date).where(query);
+    else
+      authorize! :manage, :providers
+      result = PatientCache.all.where(query)
+    end
+    @records = result.order_by(["value.medical_record_id", 'desc']);
+    
+    @manual_exclusions = {}
+    ManualExclusion.selected(@records.map {|record| record['value']['medical_record_id']}).map {|exclusion| @manual_exclusions[exclusion.medical_record_id] = exclusion}
+    
+    # log the medical_record_number of each of the patients that this user has viewed
     @records.each do |patient_container|
       Log.create(:username =>   current_user.username,
                  :event =>      'patient record viewed',
-                 :patient_id => (patient_container['value'])['medical_record_id'])
+                 :medical_record_number => (patient_container['value'])['medical_record_id'])
     end
     respond_to do |format|
       format.xml do
@@ -159,13 +197,18 @@ class MeasuresController < ApplicationController
     
     case params[:type]
     when 'practice'
+      authorize! :manage, :providers
       @report[:provider_reports] << generate_xml_report(nil, selected_measures, false)
     when 'provider'
       providers = Provider.selected_or_all(params[:provider])
       providers.each do |provider|
+        authorize! :read, provider
         @report[:provider_reports] << generate_xml_report(provider, selected_measures)
       end
-      @report[:provider_reports] << generate_xml_report(nil, selected_measures) if (providers.size > 1)
+      # add patients without a provider
+      if ((can? :manage, :providers) && (providers.size > 1))
+        @report[:provider_reports] << generate_xml_report(nil, selected_measures) 
+      end
     end
 
     respond_to do |format|
@@ -245,19 +288,24 @@ class MeasuresController < ApplicationController
       data = yield(var)
       report = data[:report]
       patient_count = data[:patient_count]
- 
+
       if report.calculated?
         memo[:result] << report.result.merge({'patient_count'=>patient_count})
       else
-        key = "#{report.instance_variable_get(:@measure_id)}#{report.instance_variable_get(:@sub_id)}"
-        memo[:jobs][key] = (uuids.nil? || uuids[key].nil?) ? report.calculate : uuids[key]
-        memo[:job_statuses][key] = report.status(memo[:jobs][key])['status']
+        measure_id = report.instance_variable_get(:@measure_id)
+        sub_id = report.instance_variable_get(:@sub_id)
+        filters = report.instance_variable_get(:@parameter_values)['filters']
+        key = "#{measure_id}#{sub_id}"
+        uuid = (uuids.nil? || uuids[key].nil?) ? report.calculate : uuids[key]
+        job = {uuid: uuid, status: report.status(uuid)['status'], measure_id: measure_id, sub_id: sub_id, filters: filters}
+        memo[:jobs][key] = job
+        memo[:result] << {job: job}
       end
       
       memo
     end
 
-    render :json => result.merge(:complete => result[:jobs].empty?)
+    render :json => result.merge(:complete => result[:jobs].empty?, :failed => !(result[:jobs].values.keep_if {|job| job[:status] == 'failed'}).empty?)
   end
   
   def setup_filters
@@ -275,29 +323,49 @@ class MeasuresController < ApplicationController
     else
       
       if can?(:read, :providers)
-        @providers = Provider.alphabetical
-        @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
+        if APP_CONFIG['disable_provider_filters']
+          @teams = Team.alphabetical
+          @page = params[:page]
+          @providers = Provider.alphabetical.page(@page).per(20)
+        else
+          @providers = Provider.alphabetical
+          @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
+          @providers_by_team['Other'] ||= []
+          @providers_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
+        end
       end
-      
+
       @races = Race.ordered
       @ethnicities = Ethnicity.ordered
       @genders = [{name: 'Male', id: 'M'}, {name: 'Female', id: 'F'}]
+      @languages = Language.ordered
       
     end
 
   end
   
   def build_filters
+    providers = nil
     
-    providers = params[:provider] || nil
+    if params[:provider]
+      providers = params[:provider]
+    elsif params[:team] && params[:team].size != Team.count
+      providers = Provider.any_in(team_id: params[:team]).map { |pv| pv.id.to_s }
+      
+    else
+      providers = nil
+    end
+
     races = params[:race] ? Race.selected(params[:race]).all : nil
     ethnicities = params[:ethnicity] ? Ethnicity.selected(params[:ethnicity]).all : nil
+    languages = params[:language] ? Language.selected(params[:language]).all : nil
     genders = params[:gender] ? params[:gender] : nil
     
     @filters = {}
     @filters.merge!({'providers' => providers}) if providers
     @filters.merge!({'races'=>(races.map {|race| race.codes}).flatten}) if races
     @filters.merge!({'ethnicities'=>(ethnicities.map {|ethnicity| ethnicity.codes}).flatten}) if ethnicities
+    @filters.merge!({'languages'=>(languages.map {|language| language.codes}).flatten}) if languages
     @filters.merge!({'genders' => genders}) if genders
     
     if @selected_provider
@@ -313,21 +381,5 @@ class MeasuresController < ApplicationController
   def validate_authorization!
     authorize! :read, Measure
   end
-  
-  # def authorize_instance_variables
-  #   instance_variable_names.each do |variable|
-  #     values = instance_variable_get(variable)
-  #     if (values.is_a? Mongoid::Criteria or values.is_a? Array)
-  #       values.each do |value|
-  #         if (value.is_a? Provider)
-  #           authorize! :read, value
-  #         end
-  #       end
-  #     end
-  #     if (values.is_a? Provider)
-  #       authorize! :read, values
-  #     end
-  #   end
-  # end
   
 end

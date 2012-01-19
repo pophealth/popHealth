@@ -10,5 +10,9 @@
         <%= entry.value['units'] %>
       <% end -%>
     </td>
-    <td><time datetime="<%= display_time(entry.time) %>"><%= display_time(entry.time) %></time></td>
+    <td>
+      <% if (entry.time.present?) %>
+        <time datetime="<%= display_time(entry.time) %>"><%= display_time(entry.time) %></time>
+      <% end %>
+    </td>
   </tr>
