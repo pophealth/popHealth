@@ -1,0 +1,7 @@
+<tr class="provider" data-provider="<%=provider_row.id%>">
+  <td class="name"> <%= link_to "#{provider_row.family_name.upcase} , #{provider_row.given_name}", measures_path(npi: provider_row.npi) %></td>
+  <td class="percent"><div class="measureProviderPopulationPercentage"></div></td>
+  <td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
+  <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0, exclusions: 0}%></td>
+  <!--td class="links"><a href="#">parameters</a><br><a href="#">patients</a></td-->
+</tr>

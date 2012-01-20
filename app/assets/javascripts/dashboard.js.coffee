@@ -1,11 +1,13 @@
 @Dashboard = {
 	calculateMeasure: (response) ->
 		$.each response, (i, result) ->
-			row = Dashboard.measureRow(result.measure_id, result.sub_id)
-			row.fadeTo("fast", 1.0)
-			Render.percent row.find("div.measureProviderPopulationPercentage"), result
-			Render.barChart row.find("div.tableBar"), result
-			Render.fraction row.find("td.fraction"), result
+			Dashboard.calculateSingleMeasure(result)
+	calculateSingleMeasure: (result) ->
+		row = Dashboard.measureRow(result.measure_id, result.sub_id)
+		row.fadeTo("fast", 1.0)
+		Render.percent row.find("div.measureProviderPopulationPercentage"), result
+		Render.barChart row.find("div.tableBar"), result
+		Render.fraction row.find("td.fraction"), result
 	measureRow: (measure, sub_id) ->
 		selector = "tr.measure[data-measure='#{measure}']"
 		selector += "[data-measure-sub='#{sub_id || ''}']" if sub_id?
@@ -36,8 +38,6 @@
 		Page.onMeasureRemove = (measure) -> 
 			Dashboard.fadeOut(measure)
 			measureRow = Dashboard.measureRow(measure).first()
-			console.log(measureRow.prevUntil(".headerRow", ":not([data-measure='#{measure}']):visible"))
-			console.log(measureRow.nextUntil(".headerRow", ":not([data-measure='#{measure}']):visible"))
 			Dashboard.measureRow(measure).prevAll(".headerRow").first().hide() if measureRow.prevUntil(".headerRow", ":not([data-measure='#{measure}']):visible").length == 0 && measureRow.nextUntil(".headerRow", ":not([data-measure='#{measure}']):visible").length == 0
 			
 		Page.onReportComplete = (result, complete) -> 
@@ -45,11 +45,14 @@
 				Dashboard.calculateMeasure(result)
 			else
 				$.each result, (i, data) ->
-					row = Dashboard.measureRow(data.job.measure_id, data.job.sub_id)
-					if (data.job.status != 'failed')
-						row.find('.jobLabel').text(data.job.status)
+					if data.job?
+						row = Dashboard.measureRow(data.job.measure_id, data.job.sub_id)
+						if (data.job.status != 'failed')
+							row.find('.jobLabel').text(data.job.status)
+						else
+							row.find('.jobLabel').parent().html(data.job.status)
 					else
-						row.find('.jobLabel').parent().html(data.job.status)
+						Dashboard.calculateSingleMeasure(data)
 				
 		$('#btnExportReport').click(Dashboard.exportReport);
 		$('#btnExportReportSingle').click(Dashboard.doReportExport);

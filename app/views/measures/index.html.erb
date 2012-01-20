@@ -60,29 +60,49 @@
         </ul>
       </div>
     </div>
-    <% elsif can?(:manage, :providers) && @providers_by_team%>
-    <p class="note">
-      Providers
-    </p>
-    <div class="groupList">
-      <ul>
+    <% elsif can?(:manage, :providers)%>
+		
+      <% if APP_CONFIG['disable_provider_filters'] %>
+	    <p class="note">
+	      Teams
+	    </p>
+			<div class="filterItemList teamList">
+				<ul>
+					<% @teams.each do |team| %>
+					<li class="checked" data-filter-type="team" data-filter-value="<%= team.id%>">
+						<%= team.name %>
+					</li>
+					<% end %>
+				</ul>						
+			</div>
+			<% elsif @providers_by_team %>
+			<p class="note">
+	      Providers
+	    </p>
+			<div class="groupList">
+			<ul>
         <% @providers_by_team.each do |team_name, providers| %>
         <li>
+					
           <label><%= team_name%></label>
-
           <div class="filterItemList expandableList" style="display:none">
             <ul>
-						<li class="selectAll providerSelectAll checked">All</li>
+							<li class="selectAll providerSelectAll checked">All</li>
               <% providers.each do |pv| %>
               <li class="disabled" data-filter-type="provider" data-filter-value="<%=pv.id%>">
                 <%= pv.full_name %>
-              </li><% end %>
+              </li>
+							<% end %>
             </ul>
           </div>
-        </li><% end %>
+				<% end %>
+        </li>
+
       </ul>
-    </div>
-    <% end %>
+		</div>
+		<% end %>
+	<% end %>
+
    <p class="note">
       Demographics
     </p>
@@ -152,7 +172,7 @@
             <dd class="practiceName"><h1><%=@selected_provider.full_name%></h1></dd>
           </dl>
         <% else %>
-          <h1><%= current_user.company.to_s %></h1>
+          <%= content_tag(:h1, current_user.company) unless current_user.company.empty? %>
           <dl>
             <dt>Practice:</dt>
             <dd class="practiceName"><h1><%=APP_CONFIG['practice_name']%></h1></dd>
@@ -203,7 +223,7 @@
           <div class="exclusions"></div><span>exclusions</span>
         </div>
         <br/>
-      </div><!-- end #measureDetailTable --><br><br>
+      </div><!-- end #measureDetailTable -->
 			<table class="measureTable" style="float:left">
 				<tr style="<%= display_header(@core_measures, current_user.selected_measures)%>" class="headerRow"><td colspan="6">Core Measures</td></tr>
 				<%= render :partial => "measure", :collection => @core_measures %>

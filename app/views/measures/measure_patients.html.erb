@@ -107,16 +107,15 @@ $(document).ready(function() {
          <td><%= age_from_time(patient['birthdate']) || 'UNK' %></td>
          <td><%= dob(patient['birthdate']) || 'UNK' %></td>
          <td><%= patient["gender"] || "UNK" %></td>
-         <td>
-           <% if (@type == 'exclusions' and not patient['manual_exclusion']) %>
-             <div style="width: 10px; height: 30px;">&nbsp</div>
-           <% else %>
-             <button class="exclude ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
-                 data-link="<%= url_for(controller: :patients, action: :toggle_excluded, id: patient['patient_id'], measure_id: patient['measure_id'], sub_id: patient['sub_id']) %>"
-                 data-title="<%= patient['manual_exclusion'] ? 'Include Patient' : 'Exclude Patient' %>">
-               <%= patient['manual_exclusion'] ? 'Include' : 'Exclude' %>
-             </button>
-           <% end %>
+
+         <td class="button">
+           <%= patient['manual_exclusion'] ? "Excluded [#{patient['manual_exclusion_rationale']}]" : 'Included' %>
+           <button class="exclude" 
+               data-link="<%= url_for(controller: :patients, action: :toggle_excluded, id: patient['medical_record_id'], measure_id: patient['measure_id'], sub_id: patient['sub_id']) %>"
+               data-title="<%= patient['manual_exclusion'] ? 'Include Patient' : 'Exclude Patient' %>">
+             Change
+           </button>
+
          </td>
          <% if (@type == 'exclusions') %>
            <td>

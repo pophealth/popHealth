@@ -8,6 +8,14 @@ class ProvidersController < ApplicationController
   
   add_breadcrumb 'providers', :providers_url
   
+  def index
+    @providers = Provider.alphabetical.paginate(page: params[:page], per_page: 20)
+    
+    respond_to do |wants|
+      wants.json { render json: @providers.to_json(:only => [:title, :given_name, :family_name, :npi]) }
+    end
+  end
+  
   def show
     respond_to do |wants|
       wants.html

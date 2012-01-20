@@ -22,14 +22,17 @@
 		$(".numeratorValue").html('0')
 		$(".denominatorValue").html('0')
 		pr = new ProvidersReport(current_measure, sub_id)
-		pr.poll {}, Page.onReportComplete
+		provider_ids = _.map $("tr.provider"), (provider) ->
+			return $(provider).data("provider")
+		pr.poll {provider: provider_ids}, Page.onReportComplete
 	row: (id) ->
 		$("#providerTable tr[data-provider='" + id + "']")
 	onFilterChange: (current_measure, sub_id) ->
 		return (li) ->
-			if $(li).data("filter-type") is "provider" || $(li).hasClass("providerSelectAll")
+			if $(li).data("filter-type") is "provider" || $(li).hasClass("providerSelectAll" || $(li).data("filter-type") is "team")
 				Providers.row($(li).data("filter-value")).fadeToggle "fast"
 				Providers.updateAggregate(current_measure, sub_id)
+				
 			else
 				Providers.fadeOut();
 				Providers.updatePage(current_measure, sub_id)
@@ -56,8 +59,7 @@
 					else
 						row.find('.jobLabel').parent().html(data.job.status)
 		Providers.fadeOut();
-		Providers.updatePage(current_measure, sub_id)
-		
+		Providers.updatePage(current_measure, sub_id);
 	updatePage: (current_measure, sub_id) ->
 		Providers.updateProviders(current_measure, sub_id)
 		Providers.updateAggregate(current_measure, sub_id)

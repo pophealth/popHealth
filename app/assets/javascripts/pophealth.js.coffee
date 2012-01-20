@@ -47,9 +47,10 @@ class @QualityReport
 	findFilters: (selector) ->
 		filterElements = _.map $(selector), (el) -> type: $(el).data("filter-type"), value: $(el).data("filter-value")
 		filters = _.reduce filterElements, (memo, filter) ->
-			filter_key = "#{filter.type}\[\]"
-			memo[filter_key] = [] unless memo[filter_key]?
-			memo[filter_key].push(filter.value)
+			if filter.type?
+				filter_key = "#{filter.type}\[\]"
+				memo[filter_key] = [] unless memo[filter_key]?
+				memo[filter_key].push(filter.value)
 			return memo
 		, {}
 		return filters
@@ -98,21 +99,23 @@ makeMeasureListClickable = ->
 		else
 			Page.onMeasureRemove(measure)
 makeFilterListsClickable = ->
-	$(".filterItemList ul li.providerSelectAll").click ->
-		unSelected = $(".filterItemList .providerSelectAll:not(.checked)").length
-		teams = $(".filterItemList .providerSelectAll").length
-		if unSelected == 0
-			$(".filterItemList ul li[data-filter-type='provider']").toggleClass("checked", true)
-		else if unSelected == 1 && $(this).hasClass("unchecked")
-			$(".filterItemList ul li[data-filter-type='provider']").toggleClass("checked", false)
 	$(".filterItemList ul li").click ->
 		$(this).toggleClass("checked") unless $(this).hasClass("disabled")
 		if $(this).hasClass("selectAll")
 			allSelected = $(this).hasClass("checked")
 			$(this).siblings().toggleClass("disabled", allSelected)
 			$(this).siblings().toggleClass("checked", !allSelected) unless $(this).hasClass("providerSelectAll")
+	$(".teamList ul li").click ->
+		$.getScript "#{window.location.pathname}.js?#{$.param(ActiveFilters.all())}", (data, textStatus) ->
+	$(".filterItemList ul li.providerSelectAll").click ->
+		unSelected = $(".filterItemList .providerSelectAll:not(.checked)").length
+		if unSelected > 0
+			$(".filterItemList ul li[data-filter-type='provider']").toggleClass("checked", true)
+		else if unSelected == 0
+			$(".filterItemList ul li[data-filter-type='provider']").toggleClass("checked", false)
+	$(".filterItemList ul li").click ->
 		Page.onFilterChange(this)
-		
+
 
 	
 # Load Page
