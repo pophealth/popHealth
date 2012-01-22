@@ -16,7 +16,6 @@ class RecordImporter
     count=0
     xml_files = Dir.glob(File.join(@source_dir, '*.*'))
     total = xml_files.count
-    start_date = Time.now
     xml_files.each do |file|
       count+=1
 
@@ -42,10 +41,7 @@ class RecordImporter
         FileUtils.cp(file, failed_dir)
       end
 
-      if (count%100==0)
-        puts "imported: #{count} of #{total} - #{Time.now - start_date}" if count%100==0
-        start_date = Time.now
-      end
+      puts "imported: #{count} of #{total} records" if count%100==0
     end
     puts "Complete... Imported #{count} of #{total} patient records"
     
