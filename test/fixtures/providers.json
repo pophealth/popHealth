@@ -1,0 +1,20 @@
+[{
+    "title": "Dr.",
+    "given_name": "Jane",
+    "family_name": "Simpsons",
+    "phone": "15555555556",
+    "tin": "123456790",
+    "npi": "9238429385",
+    "organization": "General Hospital",
+    "specialty": "200000000X"
+},
+{
+    "title": "Dr.",
+    "given_name": "Robert",
+    "family_name": "Marshall",
+    "phone": "15555555557",
+    "tin": "123456791",
+    "npi": "9238429387",
+    "organization": "General Hospital",
+    "specialty": "200000000X"
+}]
