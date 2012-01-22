@@ -198,7 +198,7 @@
           <dd>
             <span id="measurementPeriodStartDate"><%= Time.at(@period_start).strftime("%m/%d/%Y") %></span> - 
             <input type="text" class="measurementPeriodEndDate" id="measurementPeriodEndDate" size="8" value="<%= Time.at(@effective_date).strftime("%m/%d/%Y") %>">
-            <input type="button" class="recalculate" id="btnMeasurementPeriodChange" value="Recalculate" <% if (@selected_provider) %> data-npi="<%=@selected_provider.npi%>" <% end %> >
+            <input type="button" class="recalculate" id="btnMeasurementPeriodChange" value="  " <% if (@selected_provider) %> data-npi="<%=@selected_provider.npi%>" <% end %> >
           </dd>
         </dl>
         <dl>

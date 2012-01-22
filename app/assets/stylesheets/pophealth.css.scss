@@ -7,7 +7,7 @@ html {
   height: 100%;
   font-family: "Myriad Pro", "Frutiger", Helvetica, Arial;
   width: 100%;
-  min-width: 1000px; 
+  width: 1000px; 
   line-height: 1.5;
   }
 }
@@ -100,7 +100,7 @@ a, {
   background: #f4f4f4;
   background: -moz-linear-gradient(top, #f8f8f8, #f0f0f0);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f8f8f8), color-stop(100%, #f0f0f0));
-  width: 100%;
+  width: 1000px;
   
   a:hover {
     text-decoration: underline; 
@@ -108,7 +108,7 @@ a, {
 
   ul {
     list-style: none;
-    margin-left: 320px;
+    margin-left: 265px;
     font-size: 1em;
     li {
       float: left;
@@ -126,7 +126,11 @@ a, {
 
 #pageContent {
   height: 100%;
-  display: table; 
+  display: table;
+  
+  #providerReports {
+    text-transform: capitalize;
+  } 
 }
 
 #breadcrumbBox {
@@ -149,7 +153,7 @@ a, {
   }
   a:hover {
     text-decoration: none;
-    color: #368f98; 
+    color: $linkhover; 
   } 
 }
 
@@ -339,7 +343,7 @@ a, {
     font-size: 1.5em;
     padding: 5px 20px;
     display: inline-block;
-    margin: 10px 0 0 10px;
+    margin: 10px 0 0 0px;
     -moz-border-radius: 20px;
     -webkit-border-radius: 20px;
     border-radius: 20px;
@@ -426,7 +430,8 @@ a, {
 
 #providerReports {
   display: table-cell;
-  width: 285px;
+  min-width: 230px;
+  max-width: 230px;
   background-color: $providerReports;
   height: 100%;
   vertical-align: top;
@@ -501,14 +506,16 @@ a, {
 		  .expandableList, .teamList {
 		    color: black;
 		    line-height: 1.2;
-		    font-size: 1.2em;
-		    ul {
+		    font-size: 17.2833px;
+		    
+        ul {
 		      margin: 5px 15px; }
 		    list-style: none;
-		    li {
+		    
+        li {
 		      padding: 0 5px 10px 25px;
 		      background: url("../assets/unchecked.png") 0 0 no-repeat;
-		      font-size: 0.9em;
+		      font-size: 0.8em;
 		      cursor: pointer;
 		      .note {
 		        margin: 0 3px 0 0;
@@ -535,11 +542,31 @@ a, {
 
 #dashboardPeriod, #dashboardContainer {
   float: left;
-  min-width: 720px;
+  min-width: 750px;
+
+  #pageContent {
+    #dashboardPeriod {
+      patientDemo {
+        table.patientDemo td:last-child {
+          padding-left: 0px;
+          dl {
+            dt {
+              padding-left: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
   
   .measureDetailTable {
     padding-top: $top_heading-padding;
     width: 100%;
+  #dashboardPeriod .measureDetailTable table td, #dashboardContainer .measureDetailTable table td {
+    vertical-align: top;
+    padding: 0;
+  }
+
 
   h1 {
     font-size: 1.5em;
@@ -637,14 +664,14 @@ a, {
       border-bottom: 1px solid $measureBorderColor;
       font-size: 0.9em; }
     td {
-      padding: 15px 0px 10px 0px;
-      vertical-align: middle; }
+      padding: 0;
+      vertical-align: top; }
     tr {
       vertical-align: middle; 
       } 
     }
   table:last-child {
-    padding: 0 0 80px 0;
+    left-padding: 10px;
   } 
 
     dl, dd, span {
@@ -684,7 +711,7 @@ input.exportReport {
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   border-radius: 15px;
-  text-transform: uppercase; }
+  text-transform: lowercase; }
 
 input.recalculate {
   margin-left: 5px;
@@ -695,10 +722,11 @@ input.recalculate {
   background-color: #f2f2f2;
   border: 1px solid #afafaf;
   padding: 6px 8px 5px 8px;
+  width: 31px;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   border-radius: 15px;
-  text-transform: uppercase; }
+  }
 
 input.measurementPeriodEndDate {
   font-size: 1em;
@@ -735,9 +763,19 @@ input.measurementPeriodEndDate {
     font-size: 11px;
     top: 25px;
     left: -6px;
-  }
-  
+  } 
 }
+td.links {
+  line-height: 1.2em;
+  vertical-align: middle;
+
+  a {
+    color: $linkcolor;
+  } 
+  a:hover {
+    color: $linkhover;
+  }
+}   
     
 .tableMeasureTitle {
   width: 225px;
@@ -819,7 +857,6 @@ input.measurementPeriodEndDate {
         display: block;
         font-size: 0.8em; 
         color: $linkcolor;
-        font-weight: 500;
 
       } 
     } 
@@ -873,7 +910,7 @@ a.tableEdit {
     color: #33aace; } }
 
 #measureMetrics {
-  min-width: 250px;
+  min-width: 230px;
   padding-left: $top_heading-padding;
 
   .paren {
@@ -901,7 +938,7 @@ a.tableEdit {
   display: block;
   display: table-cell;
   vertical-align: top;
-  width: 285px;
+  min-width: 230px;
   background-color: #f2f2f2;
   color: black;
   padding: 0;
@@ -919,7 +956,7 @@ a.tableEdit {
         height: 52px;
         list-style: none;
         margin: 15px 0;
-        width: 250px;
+        width: 225px;
         background: url("/assets/pgTabNumerator.png") top left no-repeat;
         padding-right: 5px;
         span {
@@ -959,7 +996,15 @@ a.tableEdit {
     margin-bottom: 20px;
     text-transform: uppercase; }
   td {
-    padding: 2px 15px 2px 5px; } }
+    padding: 2px 15px 2px 5px; 
+    font-size: 1.2em;
+
+  }
+  td:first-child {
+    text-decoration: underline;
+
+  }
+}
 
 table.measureTable {
 
@@ -981,6 +1026,29 @@ table.measureTable {
       padding: 10px 0;
     }
   } 
+}
+
+
+table.patientRecords {
+  th {
+    text-transform: uppercase;
+  }
+  td {
+    vertical-align: top;
+
+
+  }
+  table.headerRow, table.secondRow {
+    td {
+      padding-left: 10px;
+    }
+  }
+  table.headerRow {
+    margin-left: 5px;
+  }
+  table.secondRow {
+    margin-left: 45px;
+  }
 }
 
 .dialog-menu {
@@ -1011,7 +1079,7 @@ table#providerTable, table.measureTable  {
     td.link {
       a {
         min-width: 80px;
-        color: #44B3BE;
+        color: $linkcolor;
         font-weight: normal;
       }
     }
@@ -1072,6 +1140,20 @@ table#providerTable, table.measureTable  {
   }
 
 .ui-button {
-    margin-left: 10px;
+    margin-left: 20px;
     font-size: 1em;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    background-color: #ccc;
+    text-transform: lowercase;
   }
+.ui-button:hover {
+  border: 1px solid #ccc;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  color: $buttoncolor;
+  background: none;
+  background-color: #F2f2f2;
+}
