@@ -54,26 +54,24 @@
                 <dd><%= Ethnicity.from_code(@patient.ethnicity['code']).first.name %></dd>
               </dl>
               <dl>
-                <dt>language</dt>
-                <dd>N/A</dd>
+                <dt>languages</dt>
+                <dd><%= @patient.language_names.join %></dd>
               </dl>
             </td>
             <td>
               <dl>
-                <dt>tobacco user</dt>
-                <dd>N/A</dd>
+                <dt>record number</dt>
+                <dd><%= @patient.medical_record_number %></dd>
               </dl>
               <dl>
-                <dt>health plan</dt>
-                <dd>N/A</dd>
-              </dl>
-              <dl>
-                <dt>policy number</dt>
-                <dd>N/A</dd>
-              </dl>
-              <dl>
-                <dt>p.c.p.</dt>
-                <dd>N/A</dd>
+                <dt>Providers</dt>
+                <dd>
+									<ul>
+									<% @patient.providers.each do |pv| %>
+										<li><%= pv.full_name%></li>
+									<% end %>
+									</ul>
+								</dd>
               </dl>
             </td>
           </tr>

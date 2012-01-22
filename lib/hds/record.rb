@@ -35,6 +35,11 @@ class Record
     provider_performances.map{|pp| pp.provider }
   end
   
+  def language_names
+    lang_codes = languages.map { |l| l.gsub(/\-[A-Z]*$/, "") }
+    Language.ordered.by_code(lang_codes).map(&:name)
+  end
+  
   private 
   
   def self.provider_queries(provider_id, effective_date)

@@ -161,6 +161,7 @@ h3 {
   dl, dt, dd {
     vertical-align: text-bottom;
   }
+
   table {
     width: 100%;
     vertical-align: bottom;
@@ -246,7 +247,11 @@ table.medGraph {
         width: 50%;
         border-spacing: 10%;
         padding-left: 20px;
-
+				
+				dd ul li{
+					list-style-type:none;
+				}
+				
         table {
           width: 100%;
           tbody {
