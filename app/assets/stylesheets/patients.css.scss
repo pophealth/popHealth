@@ -22,11 +22,17 @@
 ul {
     margin: 5px; 
   }
+    h1 {
+    
+        font-size: 1.2em;
+    }
   li {
     padding: 0 5px $main_padding-right 20px;
     font-size: 0.9em;
     cursor: pointer;
     background: url("../assets/reddot.png") no-repeat scroll 0 0 transparent;
+
+    
     
     .note {
       margin: 0 3px 0 0;
@@ -39,6 +45,9 @@ ul {
     #dashboardPeriod .measureDetailTable table:last-child, #dashboardContainer .measureDetailTable table:last-child {
       padding: 0;
     }
+  h1 {
+    font-size: 1.2em;
+    padding-top: 0; 
   }
 }
 
