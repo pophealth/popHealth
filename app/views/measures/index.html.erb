@@ -172,7 +172,7 @@
             <dd class="practiceName"><h1><%=@selected_provider.full_name%></h1></dd>
           </dl>
         <% else %>
-          <%= content_tag(:h1, current_user.company) unless current_user.company.empty? %>
+          <%= content_tag(:h1, current_user.company) unless current_user.company.nil? || current_user.company.empty? %>
           <dl>
             <dt>Practice:</dt>
             <dd class="practiceName"><h1><%=APP_CONFIG['practice_name']%></h1></dd>
