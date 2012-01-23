@@ -109,9 +109,9 @@
       <%= render :partial => 'shared/measure_metrics', locals: {numerator: nil, denominator: nil} %>
    
       <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
-        <div class="links">
-          <%= link_to 'parameters', measure_url(@definition['id'], @definition['sub_id']), :class => 'tableEdit'%> | 
-          <%= link_to 'patients', patients_url(@definition['id'], @definition['sub_id']), :class => 'tableEdit'%>
+        <div class="buttons">
+          <%= button_to 'parameters', measure_url(@definition['id'], @definition['sub_id']), method: 'get', :class => 'tableEdit button'%> 
+          <%= button_to 'patients', patients_url(@definition['id'], @definition['sub_id']), method: 'get', :class => 'tableEdit button'%>
       </div>
     </div><br>
 		

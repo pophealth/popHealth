@@ -61,8 +61,8 @@
    
       <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
       <div class="button">
-        <%= link_to 'parameters', measure_url(@definition['id'], @definition['sub_id']), :class => 'tableEdit'%> | 
-        <%= link_to 'patients', patients_url(@definition['id'], @definition['sub_id']), :class => 'tableEdit'%>
+        <%= button_to 'parameters', measure_url(@definition['id'], @definition['sub_id']), :class => 'tableEdit'%> | 
+        <%= button_to 'patients', patients_url(@definition['id'], @definition['sub_id']), :class => 'tableEdit'%>
       </div>
     </div>
     <table id="providerTable" border="0" cellspacing="5" cellpadding="5" >
