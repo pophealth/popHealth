@@ -1,47 +1,23 @@
 @import "mixins";
 
-
-ul#provider_list {
-  float:left;
-  width:10%;
-  list-style-type: none;
-  height:97%;
-  font-family: inherit;
-/*  font-size:1em;*/
-  overflow: scroll;
-}
-
-ul#provider_list li {
-  padding: 5% 20%;
-  border-bottom: 1px solid #ccc;
-  background: #F4F4F4;
-  background: -moz-linearar-gradient(top, $grey1, $grey2);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $grey1), color-stop(100%, $grey2));
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$grey1', endColorstr='$grey2',GradientType=0 ); /* IE6-9 */
-}
-
-ul#provider_list li:hover {
-  background: #ebf1f6; /* Old browsers */
-  background: -moz-linear-gradient(top, $blue, $green);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $blue), color-stop(100%, $green));
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$blue', endColorstr='$green',GradientType=0 ); /* IE6-9 */
-}
-
-div#main {
-  padding-left:30px;
-}
-
-div#content {
-  padding:5px;
-  float:left;
-}
-
-#measureTitleText {
-  font-size: 1.5em;
-}
-
-div#content form li {
-  list-style-type: none;
+form#providerForm {
+	h2 {
+		color: $graytext;
+		border-bottom: 1px solid $grayborder;
+//		width:500px;
+		margin-bottom:5px;
+	}
+	
+	margin-top: 10px;
+	margin-left:10px;
+	border-bottom: 1px solid $grayborder;
+	label {
+		color: $graytext;
+	}
+	td {
+		padding-right: 25px;
+		padding-bottom: 20px;
+	}
 }
 
 .paren {
@@ -53,6 +29,24 @@ div#content form li {
 
 //margin-right: 1px;
   top: 4px; 
+}
+
+table#providerList {
+	margin-top:10px;
+	margin-left:10px;
+	th {
+		color: $graytext;
+	}
+	
+	td {
+		padding-right:65px;
+	
+		a {
+			color :$linkcolor;
+		}
+	}
+	
+	
 }
 
 div #providerMain { 

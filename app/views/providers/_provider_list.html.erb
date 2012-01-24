@@ -1,5 +1,10 @@
-<ul id="provider_list">
-  <% @providers.each do |provider| %>
-  <%= link_to raw("<li>#{provider.full_name}</li>"), provider_path(provider), remote: true %>
-  <% end %>
-</ul>
+<table id="providerList">
+	<tr>
+		<th>Last Name</th>
+		<th>First Name</th>
+		<th>Team</th>
+		<th>Organization</th>
+		<th />
+	</tr>
+	<%= render partial: 'provider_row', collection: providers%>
+</table>

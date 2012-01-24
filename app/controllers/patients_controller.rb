@@ -53,6 +53,36 @@ class PatientsController < ApplicationController
     redirect_to :controller => :measures, :action => :patients, :id => params[:measure_id], :sub_id => params[:sub_id]
   end
   
+  def manage
+    @unassigned = Record.page(params[:unassigned_page]).per(50).alphabetical.without_provider
+    @provider = Provider.find(params[:provider_id])
+    @records = Record.page(params[:provider_page]).per(25).alphabetical.by_provider(@provider, nil)
+  end
+  
+  def update_all
+    @provider = Provider.find(params[:provider_id])
+    @assigned_records = Record.find(params[:records].keys)
+    
+    @assigned_records.each do |record|
+      
+      dates = params[:records][record.id.to_s]
+      unless dates[:start_date].blank?
+        start_date = Time.parse(dates[:start_date]).to_i
+        end_date = end_date.blank? ? nil : Time.parse(dates[:end_date]).to_i
+        attributes = {start_date: start_date, end_date: end_date}
+        performance = record.provider_performances.detect { |perf| perf.provider_id == @provider.id }
+        binding.pry
+        if performance
+          performance.update_attributes(attributes)
+        else
+          record.provider_performances.create(attributes.merge(provider_id: @provider.id))
+        end
+      end
+    end
+    
+    redirect_to manage_patient_providers_path(@provider)
+  end
+  
   private
   
   def load_patient

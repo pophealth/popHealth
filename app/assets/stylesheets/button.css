@@ -30,3 +30,21 @@ a.whitebutton span {
 .bluebutton:active, .whitebutton.active {
     outline: none; /* hide dotted outline in Firefox */
 }
+
+#btnMeasurementPeriodChange {
+  background: transparent url('../assets/refresh.png') no-repeat scroll top right;
+
+}
+
+.ui-button {
+
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  color: #CCC;
+  background: none;
+}
+
+.ui-corner-all {
+  border-radius: 10px;
+}

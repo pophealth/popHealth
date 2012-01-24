@@ -1,7 +1,7 @@
 <div id="pageContent">
 	<div id="providerReports">
 		<div class="groupList">
-			<label class="open">OUTLIERS</label> 
+			<label class="open"><h2>Outliers</h2></label>
 			<div>
 				<ul class="patientList">
 				  <% @outliers.each do |outlier| %>
@@ -11,7 +11,7 @@
 			</div>
     </div>
 		<div class="groupList">
-			<label class="open">MANUAL EXCLUSIONS</label> 
+			<label class="open"><h2>Manual Exclusions</h2></label> 
 			<div>
 				<ul class="patientList">
 				  <% @manual_exclusions.each do |exclusion| %>
@@ -58,7 +58,7 @@
                 <dd><%= @patient.language_names.join %></dd>
               </dl>
             </td>
-            <td>
+            <td class="DemosecondRow">
               <dl>
                 <dt>record number</dt>
                 <dd><%= @patient.medical_record_number %></dd>
@@ -92,7 +92,7 @@
             </table>
           </td>
           <td>
-            <table class="headerRow"> 
+            <table class="headerRow secondRow"> 
               <%= render :partial => 'section', :object => @patient.procedures, :locals => {:title => 'Procedures'} %>
               <%= render :partial => 'section', :object => @patient.medications, :locals => {:title => 'Medications'} %>
               <%= render :partial => 'section', :object => @patient.social_history, :locals => {:title => 'Social History'} %>

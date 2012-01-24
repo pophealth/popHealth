@@ -41,6 +41,13 @@ PopHealth::Application.routes.draw do
   end
   
   resources :providers do
+    resources :patients do
+      collection do
+        get :manage
+        put :update_all
+      end
+    end
+    
     member do
       get :merge_list
       put :merge
