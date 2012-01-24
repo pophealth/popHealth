@@ -431,7 +431,7 @@ a, {
 #providerReports {
   display: table-cell;
   min-width: 230px;
-  max-width: 230px;
+  max-width: 250px;
   background-color: $providerReports;
   height: 100%;
   vertical-align: top;
@@ -456,7 +456,9 @@ a, {
           div.groupList {
             label {
               margin-left: 15px;
+              margin-bottom: 10px;
               font-size: 1em;
+
             }
             div.measureItemList {
               margin-left: 15px;
@@ -488,7 +490,7 @@ a, {
     color: $measureList;
     margin: 5px 0;
     padding: 0 5px 10px 5px;
-    font-size: 1em;
+    font-size: 1.2em;
     p {
       color: #666666;
       margin: 0 10px 0 0;
@@ -698,6 +700,22 @@ a, {
     background: transparent url("../assets/icnMiniCalendar.png") 0% 50% no-repeat; 
   } 
 }
+div.buttons {
+  input.button {
+    float: left;
+    cursor: pointer;
+    color: $dashboardText;
+    font-size: 1em;
+    background: -moz-linear-gradient(top, #ececec, #e5e5e5);
+    background-color: #f2f2f2;
+    border: 1px solid #afafaf;
+    padding: 6px 8px 5px 8px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    text-transform: lowercase; 
+    margin: 0 0 10px 15px;
+    }}
 
 input.exportReport {
   float: right;
@@ -712,6 +730,7 @@ input.exportReport {
   -webkit-border-radius: 15px;
   border-radius: 15px;
   text-transform: lowercase; }
+
 
 input.recalculate {
   margin-left: 5px;
@@ -732,7 +751,9 @@ input.measurementPeriodEndDate {
   font-size: 1em;
   font-style: inherit;
   font-weight: inherit;
-  font-family: inherit; }
+  font-family: inherit;
+  width: 100px;
+}
 
 
 
@@ -938,7 +959,7 @@ a.tableEdit {
   display: block;
   display: table-cell;
   vertical-align: top;
-  min-width: 230px;
+  min-width: 250px;
   background-color: #f2f2f2;
   color: black;
   padding: 0;
@@ -949,7 +970,7 @@ a.tableEdit {
     p {
       margin-left: 15px;
       clear: both;
-      text-transform: uppercase; }
+    }
     ul {
       float: right;
       li {
@@ -1140,20 +1161,42 @@ table#providerTable, table.measureTable  {
   }
 
 .ui-button {
-    margin-left: 20px;
-    font-size: 1em;
-    border-radius: 15px;
-    -moz-border-radius: 15px;
-    -webkit-border-radius: 15px;
-    background-color: #ccc;
-    text-transform: lowercase;
-  }
+  margin-top: 10px;
+  margin-left: 20px;
+  font-size: 1em;
+  border-radius: 15px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  background-color: #ccc;
+  text-transform: lowercase;
+  height: 30px; 
+  padding: 0;
+}
 .ui-button:hover {
   border: 1px solid #ccc;
 }
 
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default  {
+  padding: 0;
+  height: 30px; 
+
+  span.ui-button-text {
+    padding-top:0;
+  }
+
+}
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
   color: $buttoncolor;
   background: none;
   background-color: #F2f2f2;
+  cursor: pointer;
+  color: $dashboardText;
+  font-size: 1em;
+  background: -moz-linear-gradient(top, #ececec, #e5e5e5);
+  border: 1px solid #afafaf;
+  padding: 3px 2px 5px 2px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  text-transform: lowercase;
 }
