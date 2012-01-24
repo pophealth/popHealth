@@ -1,14 +1,16 @@
 <div id="managePatients">
-	
+	<%= form_tag update_all_provider_patients_path(@provider), {method: 'put'} do %>
 	<h2>Unassigned Patients 	<%= submit_tag "Save", style: "float:right" %></h2>
 	<span id="unassigned">
-		<%= form_tag update_all_provider_patients_path(@provider), {method: 'put'} do %>
+		
 		<div>
 			<%= render partial: 'unassigned', param_name: 'unassigned_page' %>
 		</div>
-		<% end %>
+		
 		<%= paginate @unassigned %>	
 	</span>
+	<% end %>
+	<%= form_tag update_all_provider_patients_path(@provider), {method: 'put'} do %>
 	<span id="providerPatients">
 		<h2><%= @provider.full_name%>'s patients <%= submit_tag "Save", style: "float:right" %></h2>
 		<div>
@@ -16,4 +18,5 @@
 		</div>
 		<%= paginate @records, param_name: 'provider_page' %>
 	</span>
+	<% end %>
 </div>

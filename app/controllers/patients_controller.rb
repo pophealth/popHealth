@@ -62,7 +62,7 @@ class PatientsController < ApplicationController
   def update_all
     @provider = Provider.find(params[:provider_id])
     @assigned_records = Record.find(params[:records].keys)
-    
+
     @assigned_records.each do |record|
       
       dates = params[:records][record.id.to_s]
@@ -71,7 +71,7 @@ class PatientsController < ApplicationController
         end_date = end_date.blank? ? nil : Time.parse(dates[:end_date]).to_i
         attributes = {start_date: start_date, end_date: end_date}
         performance = record.provider_performances.detect { |perf| perf.provider_id == @provider.id }
-        binding.pry
+
         if performance
           performance.update_attributes(attributes)
         else
@@ -80,7 +80,15 @@ class PatientsController < ApplicationController
       end
     end
     
-    redirect_to manage_patient_providers_path(@provider)
+    redirect_to manage_provider_patients_path(@provider)
+  end
+  
+  def destroy
+    @provider = Provider.find(params[:provider_id])
+    @record = Record.find(params[:id])
+    perf = @record.provider_performances.detect { |perf| perf.provider_id == @provider.id  }
+    perf.destroy
+    redirect_to manage_provider_patients_path(@provider)
   end
   
   private
