@@ -12,10 +12,14 @@ class @QualityReport
 	poll: (params, callback) ->
 		ref = this
 		this.fetch params, (response) ->
-			pollParams = $.extend(params, {jobs: response.jobs})
-			if response.complete
-				callback(response.result)
-			else
+			uuids={}
+			$.each response.jobs, (i, job) ->
+				sub_id = ''
+				sub_id = job['sub_id'] if job['sub_id']
+				uuids[job['measure_id'] + sub_id] = job['uuid']
+			pollParams = $.extend(params, {jobs: uuids})
+			callback(response.result, response.complete)
+			if (!response.complete && !response.failed)
 				setTimeout (-> ref.poll(pollParams, callback)), 3000
 
 @Page = {
@@ -43,9 +47,10 @@ class @QualityReport
 	findFilters: (selector) ->
 		filterElements = _.map $(selector), (el) -> type: $(el).data("filter-type"), value: $(el).data("filter-value")
 		filters = _.reduce filterElements, (memo, filter) ->
-			filter_key = "#{filter.type}\[\]"
-			memo[filter_key] = [] unless memo[filter_key]?
-			memo[filter_key].push(filter.value)
+			if filter.type?
+				filter_key = "#{filter.type}\[\]"
+				memo[filter_key] = [] unless memo[filter_key]?
+				memo[filter_key].push(filter.value)
 			return memo
 		, {}
 		return filters
@@ -56,7 +61,7 @@ class @QualityReport
 		selector.find(".numeratorValue").html(data.numerator)
 		selector.find(".denominatorValue").html(data.denominator)
 	percent: (selector, data) -> 
-		percent = if data.denominator == 0 then data.denominator else  (data.numerator / data.denominator) * 100
+		percent = if (data.denominator == 0 || data.denominator == undefined) then 0 else  (data.numerator / data.denominator) * 100
 		selector.html("#{Math.floor(percent)}%")
 	
 	barChart: (selector, data) ->
@@ -88,25 +93,29 @@ makeMeasureListClickable = ->
 			Page.onMeasureSelect(measure)
 			$.each sub_ids, (i, sub) ->
 				qr = new QualityReport(measure, sub)
-				qr.poll(Page.params, Page.onReportComplete)
+				params = {}
+				params['npi'] = Page.npi
+				qr.poll(params, Page.onReportComplete)
 		else
 			Page.onMeasureRemove(measure)
 makeFilterListsClickable = ->
-	$(".filterItemList ul li.providerSelectAll").click ->
-		unSelected = $(".filterItemList .providerSelectAll:not(.checked)").length
-		teams = $(".filterItemList .providerSelectAll").length
-		if unSelected == 0
-			$(".filterItemList ul li[data-filter-type='provider']").toggleClass("checked", true)
-		else if unSelected == 1 && $(this).hasClass("unchecked")
-			$(".filterItemList ul li[data-filter-type='provider']").toggleClass("checked", false)
 	$(".filterItemList ul li").click ->
 		$(this).toggleClass("checked") unless $(this).hasClass("disabled")
 		if $(this).hasClass("selectAll")
 			allSelected = $(this).hasClass("checked")
 			$(this).siblings().toggleClass("disabled", allSelected)
 			$(this).siblings().toggleClass("checked", !allSelected) unless $(this).hasClass("providerSelectAll")
+	$(".teamList ul li").click ->
+		$.getScript "#{window.location.pathname}.js?#{$.param(ActiveFilters.all())}", (data, textStatus) ->
+	$(".filterItemList ul li.providerSelectAll").click ->
+		unSelected = $(".filterItemList .providerSelectAll:not(.checked)").length
+		if unSelected > 0
+			$(".filterItemList ul li[data-filter-type='provider']").toggleClass("checked", true)
+		else if unSelected == 0
+			$(".filterItemList ul li[data-filter-type='provider']").toggleClass("checked", false)
+	$(".filterItemList ul li").click ->
 		Page.onFilterChange(this)
-		
+
 
 	
 # Load Page

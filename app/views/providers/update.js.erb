@@ -1,0 +1,11 @@
+$("#providerList").replaceWith("<%= render_js partial: 'provider_list', object: @providers, as: 'providers' %>");
+$("nav").replaceWith("<%= escape_javascript(paginate(@providers))%>");
+
+row = $("#providerList tr[data-provider='<%= @provider.id %>']");
+
+if (row.length > 0) {
+  row.effect("highlight", {color: "#44B3BE"}, 1000);
+} else{
+	$("#providerTable").effect("highlight", {color: "#44B3BE"}, 1000);
+};
+

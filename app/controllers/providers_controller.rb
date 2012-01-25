@@ -8,6 +8,16 @@ class ProvidersController < ApplicationController
   
   add_breadcrumb 'providers', :providers_url
   
+  def index
+    @providers = Provider.alphabetical.page(params[:page]).per(20)
+    
+    respond_to do |wants|
+      wants.html {}
+      wants.js {}
+      wants.json { render json: @providers.to_json(:only => [:title, :given_name, :family_name, :npi]) }
+    end
+  end
+  
   def show
     respond_to do |wants|
       wants.html
@@ -16,12 +26,19 @@ class ProvidersController < ApplicationController
   end
   
   def edit
-    render partial: 'edit_profile'    
+    @provider = Provider.find(params[:id])
+    respond_to do |wants|
+      wants.js {}
+    end    
   end
   
   def update
     @provider.update_attributes!(params[:provider])
-    render :action => "show"
+    
+    respond_to do |wants|
+      wants.html { render :action => "show" }
+      wants.js { @providers = Provider.alphabetical.page(params[:page]).per(20) }
+    end
   end
   
   def merge_list

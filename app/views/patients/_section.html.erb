@@ -1,0 +1,8 @@
+
+<tbody>
+  <tr>
+    <th colspan="4"><div class="sectionHeadingbar"><%= title %></div></th>
+  </tr>
+  <% if section.length>0 %> <%= render :partial => 'entry', :collection => section %>
+<% end %>
+</tbody>

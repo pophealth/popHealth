@@ -3,13 +3,29 @@
     <h1>
       Providers
     </h1>
-    <p class="note">
-      Teams
-    </p>
-    <div class="groupList">
-      <ul>
+    
+      <% if APP_CONFIG['disable_provider_filters'] %>
+	    <p class="note">
+	      Teams
+	    </p>
+			<div class="filterItemList teamList">
+				<ul>
+					<% @teams.each do |team| %>
+					<li class="checked" data-filter-type="team" data-filter-value="<%= team.id%>">
+						<%= team.name %>
+					</li>
+					<% end %>
+				</ul>						
+			</div>
+			<% else %>
+			<p class="note">
+	      Providers
+	    </p>
+			<div class="groupList">
+			<ul>
         <% @providers_by_team.each do |team_name, providers| %>
         <li>
+					
           <label><%= team_name%></label>
           <div class="filterItemList expandableList" style="display:none">
             <ul>
@@ -20,9 +36,13 @@
               </li><% end %>
             </ul>
           </div>
-        </li><% end %>
+					<% end %>
+        </li>
+
       </ul>
-    </div>
+		</div>
+			<% end %>
+    
    <p class="note">
       Demographics
     </p>
@@ -88,10 +108,10 @@
       <%= image_tag "loading_bar.gif", :id => "loadingAggregate", :style => "display:none" %>
       <%= render :partial => 'shared/measure_metrics', locals: {numerator: nil, denominator: nil} %>
    
-      <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%><br><br><br></br>
-        <div class="links">
-          <%= link_to 'parameters', measure_url(@definition['id'], @definition['sub_id']), :class => 'tableEdit'%> | 
-          <%= link_to 'patients', patients_url(@definition['id'], @definition['sub_id']), :class => 'tableEdit'%>
+      <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
+        <div class="buttons">
+          <%= button_to 'parameters', measure_url(@definition['id'], @definition['sub_id']), method: 'get', :class => 'tableEdit button'%> 
+          <%= button_to 'patients', patients_url(@definition['id'], @definition['sub_id']), method: 'get', :class => 'tableEdit button'%>
       </div>
     </div><br>
 		
@@ -102,20 +122,18 @@
         <h1>INDIVIDUAL PROVIDER STATISTICS</h1>
           </th>
         </tr>
-          <% @providers.each do |pv| %>
-            <tr class="provider" data-provider="<%=pv.id%>">
-              
-              <td class="name"> <%= link_to "#{pv.family_name.upcase} , #{pv.given_name}", "#{measures_url}?npi=#{pv.npi}" %></td>
-              <td class="percent"><div class="measureProviderPopulationPercentage"></div></td>
-              <td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
-              <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0, exclusions: 0}%></td>
-              <!--td class="links"><a href="#">parameters</a><br><a href="#">patients</a></td-->
-            </tr>
-          <% end %>
+				<tr>
+					<%= render :partial => "provider_row", :collection => @providers %>
       </tbody>
     </table>
+		<%= paginate @providers, :remote => true %>
   </div>
 </div>
+
+
+<script id="row" type="text/html" charset="utf-8">
+	
+</script>
 
 <% content_for :head do %>
 

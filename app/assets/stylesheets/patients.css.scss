@@ -1,5 +1,56 @@
 @import "mixins";
 
+#managePatients {
+	width:990px;
+	padding-left:10px;
+	
+	form {
+		margin-bottom: 20px;
+	}
+	
+	nav {
+		text-align:center;
+	}
+	
+	div	{
+		margin-top:5px;
+		max-height:400px;
+		overflow: scroll;
+	}
+	
+	h2 {
+		color: $graytext;
+		text-transform: uppercase;
+		border-bottom: 1px solid $grayborder;
+		padding:5px 0px;
+	}
+	
+	input {
+		border-radius:10px;
+		border: 1px solid $grayborder;
+	}
+	
+	table {
+		font-size:12px;
+		overflow: scroll;
+
+		th {
+			text-align:center;
+		}
+
+		td {
+			font-weight:bold;
+		}
+
+		td, th {
+			padding:5px 30px;
+		}
+
+	}
+}
+
+
+
 #patientcontainer,  {
   font-size: 0.9em;
   height: 100%; 
@@ -16,17 +67,23 @@
 .patientList {
   color: black;
   line-height: 1.2;
-  font-size: 1.1em;
+  font-size: 1.0em;
   list-style: none;
 
 ul {
     margin: 5px; 
   }
+    h1 {
+    
+        font-size: 1.2em;
+    }
   li {
-    padding: 0 5px 10px 25px;
+    padding: 0 5px $main_padding-right 20px;
     font-size: 0.9em;
     cursor: pointer;
-    background: url("../assets/reddot.png") 0 10% no-repeat;    
+    background: url("../assets/reddot.png") no-repeat scroll 0 0 transparent;
+
+    
     
     .note {
       margin: 0 3px 0 0;
@@ -34,7 +91,19 @@ ul {
     }
   }
 }
-
+#dashboardContainer {
+  pageContent {
+    #dashboardPeriod .measureDetailTable table:last-child, #dashboardContainer .measureDetailTable table:last-child {
+      padding: 0;
+    }
+    lablel{
+    h2 {
+      font-size: 1.2em;
+      padding-top: 0;
+    }
+  }
+}
+}
 .numeratorList {
   color: black;
   line-height: 1.2;
@@ -45,7 +114,7 @@ ul {
     margin: 5px; 
 }
   li {
-    padding: 0 5px 10px 25px;
+    padding: 0 5px 10px $main_padding-right;
     margin-left: 10px;
     font-size: 0.9em;
     cursor: pointer;
@@ -58,26 +127,22 @@ ul {
   }
 }
 
-div.sectionHeadingbar {
-  
+#dashboardPeriod .measureDetailTable table td, #dashboardContainer .measureDetailTable table td.DemosecondRow {
+  padding-left: 10px;
 }
-
 #patientMeasures {
   padding-top: 20px;
   display: table-cell;
   vertical-align: middle;
-  width: 285px;
+  width: 320px;
   background-color: #f2f2f2;
   color: black;
-  padding: 0;
   min-height: 100%;
   height: 100%;
   border-right: 1px solid $borderColor;
 
   table {
-  	margin-top: -50px;
   	padding: 20px;
-	border-collapse:collapse;
     float:left;
     width:245px;
     margin: 20px;
@@ -87,9 +152,8 @@ div.sectionHeadingbar {
     }
   	
 	  	th {
-	      font-weight:500;
-		  color:#000;
-		  font-size:0.9em;
+  		  color:#000;
+  		  font-size:0.9em;
 	  	}
 	  
 			tr.rot th {
@@ -162,38 +226,70 @@ h3 {
 }
 
 .main {
-  padding: 0 20px;
+  padding: 0;
 }
+
 #patientName {
-	#patientLastName {
-		font-size: 1.5em;
-		text-transform: uppercase;
-		width: 320px;
-	}
-
-	#patientFirstName {
-		font-size: 1.2em;
-		width: 320px;
-	}
-	#effectivedate {
-		width: 320px;
-	}
-
-
-
-#patientBasicInfo {
-  margin-left: 360px;
-  float: left;
-  margin-top: -50px;
-
-  th {
-  	width: 40px;
+  dl, dt, dd {
+    vertical-align: text-bottom;
   }
+
+  table {
+    width: 100%;
+    vertical-align: bottom;
+    tbody {
+      tr {
+        td {
+          width: 50%;
+          
+
+          table {
+            tr{
+              th a {                
+              }
+              th{
+                width: 30%;
+                a#patientLastName {
+                  font-size: 1.5em;
+                  text-transform: uppercase;
+                }
+                a#patientFirstName {
+                  font-size: 1.2em;
+                  
+                }
+              }
+              td {  
+                font-weight: bold;
+                width: 70%;
+
+                #effectivedate {
+                  padding-left: 0;
+
+                }
+              }
+            }
+
+            table#patientBasicInfo {
+              th {
+                width: 70%;
+
+              }
+              td {
+                font-weight: bold;
+              }
+              th, td {
+                padding-left: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 
 table.medGraph {
-  min-width: 320px;
+  width: 320px;
 
 
 }
@@ -214,9 +310,43 @@ table.medGraph {
   }
 
   table.patientDemo {
-  	width: 320px;
+  	width: 100%;
   	height: 125px;
-  }
+      td, th, table {
+       vertical-align: top;
+       padding: 0;
+      }
+      td {
+        width: 50%;
+        border-spacing: 10%;
+        padding-left: 20px;
+
+				
+				dd ul li{
+					list-style-type:none;
+				}
+
+        table {
+          width: 100%;
+          tbody {
+            tr {
+              td, th {
+
+              }
+              th {
+                width: 30%;
+              }    
+              td {
+                width: 70%;
+                font-weight: bold;
+              }
+            }
+          }
+        }
+      }
+    }
+  
+
 	
 	table.providerInfo {
 		margin-left: 360px; 
@@ -230,7 +360,7 @@ div.sectionHeadingbar {
 	height: 1.5em;
   padding: 5px 10px 0 10px;
   margin: 10px 0;
-  background-image: url(/assets/lines.png);
+  border-bottom: 1px solid $grayborder;
 
 }
 
@@ -241,6 +371,9 @@ div.lowerborder {
   padding: 10px 0;
 
 }
+
+
+
 
 table.patientGraphtable {
 	width: 360px;
@@ -253,12 +386,12 @@ table.patientGraphtable {
 .secondColumn {
 	margin-left: 360px;
   float: left;
-  margin-top: -292px;
+  margin-top: -377px;
 
 }
 
 #vaccines {
-		width: 1200px;
+		width: 964px;
 		margin-top: 40px;
 
     table {

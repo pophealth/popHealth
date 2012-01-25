@@ -1,4 +1,3 @@
-<%= render :partial => "provider_list"%>
-<div id="content">
-  <p>Please select a provider on the left</p>
-</div>
+<%= render partial: 'edit_profile', locals: {provider: Provider.new} %>
+<%= render partial: 'provider_list', locals: {providers: @providers} %>
+<%= paginate @providers %>

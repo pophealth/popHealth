@@ -4,13 +4,15 @@ gem 'rails', '3.1.0'
 # locked to 1.3.3 to resolve annoying warning 'already initialized constant WFKV_'
 gem 'rack' , '1.3.3'
 
-gem 'quality-measure-engine', '1.0.4'
 #gem 'quality-measure-engine', :path => '../quality-measure-engine/'
-#gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'develop'
+gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'develop'
+gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'develop'
 gem 'nokogiri'
 gem 'rubyzip'
 
-gem "will_paginate"
+gem "will_paginate" # we need to get rid of this, very inefficient with large data sets and mongoid
+gem "kaminari"
+
 gem 'json', :platforms => :jruby
 # these are all tied to 1.3.1 because bson 1.4.1 was yanked.  To get bundler to be happy we need to force 1.3.1 to cause the downgrade
 gem "mongo", "1.3.1"

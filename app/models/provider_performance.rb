@@ -6,4 +6,5 @@ class ProviderPerformance
   
   belongs_to :provider
   embedded_in :record
+  
 end

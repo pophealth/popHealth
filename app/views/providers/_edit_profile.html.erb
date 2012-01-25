@@ -1,10 +1,61 @@
-<%= semantic_form_for @provider do |f| %>
-  <%= f.inputs :title, :given_name, :family_name %>
-  <%= f.input :specialty, :as => "select", :collection => Provider::Specialties.map { |k,v| [v, k]}  %>
-  <%= f.input :organization %>
-  <%= f.input :phone, :as => "phone" %>
-  <%= f.input :tin %>
-  <%= f.input :npi %>
-  <%= f.input :team, :as => "select", :collection => Team.alphabetical.map { |t| [t.name, t.id]}%>
-  <%= f.buttons %>
+<%= form_for provider, {html: {id: "providerForm"}, remote: true} do |f| %>
+<h2>
+<% if provider.new_record? %>
+	new
+<% else %>
+  edit
+<% end %>
+provider:
+</h2>
+<table cellspacing="10">
+	<tbody>
+		<tr>
+			<td style="padding-right:10px">
+				<%= f.label :title, "TITLE:" %><br>
+				<%= f.text_field :title, :size => 2 %>
+			</td>
+			<td>
+				<%= f.label :given_name, "FIRST NAME:"%><br>
+				<%= f.text_field :given_name %>
+			</td>
+			<td>
+				<%= f.label "family_name", "LAST NAME:"%><br>
+				<%= f.text_field :family_name %>
+			</td>
+			<td>
+				<%= f.label :npi, "NPI:" %><br>
+				<%= f.text_field :npi, :size => 11 %>
+			</td>
+			<td>
+				<%= f.label :tin, "TAX ID:" %><br>
+				<%= f.text_field :tin, :size => 11 %>
+			</td>
+		</tr>
+
+		<tr>
+		
+			<td colspan="2">
+				<%= f.label :specialty, "select specialty:"%><br>
+				<%= f.select :specialty, specialties, {include_blank: true}, {style: "width:235px"} %>
+			</td>
+			<td>
+				<%= f.label :team_id, "select team:" %><br>
+				<%= f.collection_select :team_id, Team.alphabetical, :id, :name, {include_blank: true}, {style: "width:175px"}%>
+			</td>
+			<td colspan="2">
+				<%= f.label :organization, "organization:" %><br>
+				<%= f.text_field :organization, :size => 34  %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<%= f.label :phone, "phone number:" %><br>
+			<%= f.text_field :phone, type: "tel", :size => 42  %>
+			</td>
+			<td colspan="3"><br>
+				<%= f.submit "save", style: "width:175px" %>
+			</td>
+		</tr>
+	</tbody>
+</table>
 <% end %>
