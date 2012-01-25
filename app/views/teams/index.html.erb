@@ -1,6 +1,4 @@
-<ol>
-  <% @teams.each do |team| %>
-    <li><%= link_to team.name, edit_team_path(team) %></li>
-  <% end %>
-</ol>
-<%= link_to "create team", new_team_path%>
+<table id='teamTable'>
+ <%= render partial: 'team', collection: @teams %>
+</table>
+<%= link_to "new team", new_team_path %>

@@ -3,50 +3,51 @@ class TeamsController < ApplicationController
   load_resource except: %w{index}
   authorize_resource
   before_filter :authenticate_user!
+  before_filter :get_teams
   
   def index
-    @teams = Team.alphabetical
   end
   
   def new
-    @team = Team.new
-    @providers = Provider.alphabetical
   end
   
   def edit
-    @providers = Provider.alphabetical
   end
   
   def create
     @team = Team.create(params[:team])
-    if params[:provider_ids]
-      @providers = Provider.find(params[:provider_ids])
-      @team.providers.concat(@providers)
+
+    respond_to do |wants|
+      wants.html { redirect_to :action => "index" }
+      wants.js { render partial: "update_form"}
     end
     
-    redirect_to :action => "index"
   end
   
   def update
     @team.update_attributes(params[:team])
-    if params[:provider_ids]
-       providers = Provider.find(params[:provider_ids])
-      @team.providers.concat providers
+    @teams = Team.alphabetical
+    
+    respond_to do |wants|
+      wants.html { redirect_to :action => "index" }
+      wants.js { render partial: "update_form"}
     end
-    @team.save
-    redirect_to :action => "edit"
+
   end
   
   def destroy
     @team.destroy
-    redirect_to :action => "index"
+    
+    respond_to do |wants|
+      wants.html { redirect_to :action => "index" }
+      wants.js { render partial: "update_form"}
+    end
   end
-
   
-
   private
-  
-  def find_model
-    @team = Team.find(params[:id])
+
+  def get_teams
+    @teams = Team.alphabetical
   end
+
 end

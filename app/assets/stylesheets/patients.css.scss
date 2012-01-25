@@ -49,6 +49,21 @@
 	}
 }
 
+#teamDialog {
+	
+	ol {
+		list-style-type: none;
+	}
+	
+	td {
+		padding:10px;
+	}
+	
+	a {
+		color: $linkcolor;
+	}
+}
+
 
 
 #patientcontainer,  {

@@ -1,9 +1,4 @@
-<%= semantic_form_for @team do |f| %>
-  <%= f.buttons %>
+<%= semantic_form_for @team, remote: true do |f| %>
   <%= f.inputs :name %>
-	<% @providers.each do |pv| %>
-		<%= check_box_tag "provider_ids[]", pv.id, @team.providers.include?(pv), id: pv.id %>
-		<%= label_tag pv.id, pv.full_name %><br>
-	<% end %>
   <%= f.buttons %>
 <% end %>

@@ -1,0 +1,1 @@
+$(".dialog").html("<%= escape_javascript( link_to 'add team', new_team_path, remote: true ) %>").prepend("<table id='teamTable'><%= render_js partial: 'team', collection: @teams %></table>").dialog({height: 600, width: 800, modal: true, title: "Teams"});
