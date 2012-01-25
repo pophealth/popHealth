@@ -12,13 +12,7 @@ class Record
     embeds_many section, as: :entry_list, class_name: "Entry"
   end
   
-  embeds_many :provider_performances do
-    
-    def by_provider(prov)
-      where(provider_id: prov.id)
-    end
-    
-  end
+  embeds_many :provider_performances
   
   scope :alphabetical, order_by([:last, :asc], [:first, :asc])
   scope :with_provider, where(:provider_performances.ne => nil).or(:provider_proformances.ne => [])
@@ -39,7 +33,7 @@ class Record
   end
   
   def providers
-    provider_performances.map{|pp| pp.provider }
+    provider_performances.map {|pp| pp.provider }
   end
   
   def language_names

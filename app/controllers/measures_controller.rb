@@ -323,12 +323,11 @@ class MeasuresController < ApplicationController
     else
       
       if can?(:read, :providers)
+        @providers = Provider.alphabetical.page(@page).per(20)
         if APP_CONFIG['disable_provider_filters']
           @teams = Team.alphabetical
           @page = params[:page]
-          @providers = Provider.alphabetical.page(@page).per(20)
         else
-          @providers = Provider.alphabetical
           @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
           @providers_by_team['Other'] ||= []
           @providers_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
