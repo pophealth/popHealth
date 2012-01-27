@@ -143,6 +143,7 @@ a, {
   padding: 5px 20px 4px 0;
   text-align: right;
   font-size: 1em;
+  whitespace: nowrap;
   .sep {
     margin: 0 7px 0 5px;
     color: #cccccc;
@@ -787,6 +788,8 @@ input.measurementPeriodEndDate {
     left: -6px;
 
     img {
+      margin-top: 10px;
+      height: 20px;
     }
   } 
 }
@@ -963,7 +966,7 @@ a.tableEdit {
   display: block;
   display: table-cell;
   vertical-align: top;
-  min-width: 250px;
+  min-width: 230px;
   max-width: 250px;
   background-color: #f2f2f2;
   color: black;
@@ -1124,7 +1127,7 @@ table#providerTable, table.measureTable  {
         color: black;
         display: inline-block;
         position:relative;
-        top: 10px;
+        top: 2px;
         margin-right: 5px;
         text-align: center;
 
