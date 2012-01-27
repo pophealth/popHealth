@@ -67,6 +67,7 @@ class MeasuresController < ApplicationController
   
   def providers    
     authorize! :manage, :providers
+
     
     
     
@@ -81,7 +82,7 @@ class MeasuresController < ApplicationController
       end
       
       wants.json do
-        
+
         providerIds = params[:provider].blank? ?  Provider.all.map { |pv| pv.id.to_s } : @filters.delete('providers')
         
         render_measure_response(providerIds, params[:jobs]) do |pvId|

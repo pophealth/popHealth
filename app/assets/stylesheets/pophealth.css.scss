@@ -564,7 +564,7 @@ a, {
   
   .measureDetailTable {
     padding-top: $top_heading-padding;
-    width: 100%;
+  
   #dashboardPeriod .measureDetailTable table td, #dashboardContainer .measureDetailTable table td {
     vertical-align: top;
     padding: 0;
@@ -783,7 +783,7 @@ input.measurementPeriodEndDate {
   .jobLabel {
     position:relative;
     font-size: 11px;
-    top: 25px;
+    top: 30px;
     left: -6px;
   } 
 }
