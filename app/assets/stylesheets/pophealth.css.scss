@@ -931,7 +931,7 @@ a.tableEdit {
     color: #33aace; } }
 
 #measureMetrics {
-  min-width: 230px;
+  min-width: 250px;
   padding-left: $top_heading-padding;
 
   .paren {
@@ -951,7 +951,7 @@ a.tableEdit {
 }
 
 #measurePopulationPercentage {
-  @include popPercentage(120px, 48px, 128px, 200px, 30px);
+  @include popPercentage(120px, 48px, 128px, 200px, 15px);
 }
 
 
