@@ -785,6 +785,9 @@ input.measurementPeriodEndDate {
     font-size: 11px;
     top: 30px;
     left: -6px;
+
+    img {
+    }
   } 
 }
 td.links {
@@ -1121,7 +1124,7 @@ table#providerTable, table.measureTable  {
         color: black;
         display: inline-block;
         position:relative;
-        top: 2px;
+        top: 10px;
         margin-right: 5px;
         text-align: center;
 
