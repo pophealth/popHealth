@@ -1063,6 +1063,7 @@ table.measureTable {
 
 
 table.patientRecords {
+  width: 100%;
   th {
     text-transform: uppercase;
   }
@@ -1075,12 +1076,16 @@ table.patientRecords {
     td {
       padding-left: 10px;
     }
+    th {
+      width: 340px;
+    }
   }
   table.headerRow {
     margin-left: 5px;
   }
   table.secondRow {
-    margin-left: 45px;
+    margin-left: 25px;
+
   }
 }
 
