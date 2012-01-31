@@ -1,3 +1,27 @@
+GIT
+  remote: http://github.com/pophealth/quality-measure-engine.git
+  revision: fbc893dfa74c2ce0dd220885ecad8bad3b2115d4
+  branch: master
+  specs:
+    quality-measure-engine (1.1.0)
+      mongo (~> 1.3)
+      nokogiri (~> 1.4.4)
+      resque (~> 1.15.0)
+      resque-status (~> 0.2.3)
+      rubyzip (~> 0.9.4)
+
+GIT
+  remote: https://github.com/projectcypress/health-data-standards.git
+  revision: 4074157d5a45bd16a0cd7f7fd7cd53ae1e8d1b12
+  branch: master
+  specs:
+    health-data-standards (0.7.0)
+      builder (~> 3.0.0)
+      erubis (~> 2.6)
+      mongoid (~> 2.4.2)
+      nokogiri (~> 1.4.7)
+      uuid (~> 2.3.4)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -65,12 +89,6 @@ GEM
     formtastic (2.0.2)
       rails (~> 3.0)
     hashie (1.2.0)
-    health-data-standards (0.7.0)
-      builder (~> 3.0.0)
-      erubis (~> 2.6)
-      mongoid (~> 2.4.2)
-      nokogiri (~> 1.4.7)
-      uuid (~> 2.3.4)
     hike (1.2.1)
     i18n (0.6.0)
     jquery-rails (1.0.19)
@@ -111,12 +129,6 @@ GEM
       method_source (~> 0.6.7)
       ruby_parser (>= 2.3.1)
       slop (~> 2.1.0)
-    quality-measure-engine (1.1.0)
-      mongo (~> 1.3)
-      nokogiri (~> 1.4.4)
-      resque (~> 1.15.0)
-      resque-status (~> 0.2.3)
-      rubyzip (~> 0.9.4)
     rack (1.3.3)
     rack-cache (1.0.3)
       rack (>= 0.4)
@@ -224,7 +236,7 @@ DEPENDENCIES
   factory_girl
   foreman
   formtastic
-  health-data-standards (= 0.7.0)
+  health-data-standards!
   jquery-rails
   json
   kaminari
@@ -234,7 +246,7 @@ DEPENDENCIES
   mongoid
   nokogiri
   pry
-  quality-measure-engine (= 1.1.0)
+  quality-measure-engine!
   rack (= 1.3.3)
   rails (= 3.1.0)
   rubyzip
