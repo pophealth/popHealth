@@ -39,7 +39,7 @@ class ProvidersControllerTest < ActionController::TestCase
   end
 
   test "edit provider" do
-    get :edit, id: @provider.id
+    get :edit, id: @provider.id, format: :js
     assert_not_nil assigns[:providers]
     assert_response :success
     assert_template 'edit_profile'
