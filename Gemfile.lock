@@ -1,27 +1,3 @@
-GIT
-  remote: http://github.com/pophealth/quality-measure-engine.git
-  revision: 578e6a70c5d6e80417457855b831c3423cd9e837
-  branch: develop
-  specs:
-    quality-measure-engine (1.1.0)
-      mongo (~> 1.3)
-      nokogiri (~> 1.4.4)
-      resque (~> 1.15.0)
-      resque-status (~> 0.2.3)
-      rubyzip (~> 0.9.4)
-
-GIT
-  remote: https://github.com/projectcypress/health-data-standards.git
-  revision: 849fa7b8fdf2e1cf9f45ea933dc226d1e4ef7ef6
-  branch: develop
-  specs:
-    health-data-standards (0.5.0)
-      builder (~> 3.0.0)
-      erubis (~> 2.6)
-      mongoid (~> 2.3.3)
-      nokogiri (~> 1.4.7)
-      uuid (~> 2.3.4)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -89,6 +65,12 @@ GEM
     formtastic (2.0.2)
       rails (~> 3.0)
     hashie (1.2.0)
+    health-data-standards (0.7.0)
+      builder (~> 3.0.0)
+      erubis (~> 2.6)
+      mongoid (~> 2.4.2)
+      nokogiri (~> 1.4.7)
+      uuid (~> 2.3.4)
     hike (1.2.1)
     i18n (0.6.0)
     jquery-rails (1.0.19)
@@ -116,7 +98,7 @@ GEM
       metaclass (~> 0.0.1)
     mongo (1.3.1)
       bson (>= 1.3.1)
-    mongoid (2.3.4)
+    mongoid (2.4.3)
       activemodel (~> 3.1)
       mongo (~> 1.3)
       tzinfo (~> 0.3.22)
@@ -129,6 +111,12 @@ GEM
       method_source (~> 0.6.7)
       ruby_parser (>= 2.3.1)
       slop (~> 2.1.0)
+    quality-measure-engine (1.1.0)
+      mongo (~> 1.3)
+      nokogiri (~> 1.4.4)
+      resque (~> 1.15.0)
+      resque-status (~> 0.2.3)
+      rubyzip (~> 0.9.4)
     rack (1.3.3)
     rack-cache (1.0.3)
       rack (>= 0.4)
@@ -214,9 +202,9 @@ GEM
       kgio (~> 2.4)
       rack
       raindrops (~> 0.6)
-    uuid (2.3.4)
+    uuid (2.3.5)
       macaddr (~> 1.0)
-    vegas (0.1.8)
+    vegas (0.1.11)
       rack (>= 1.0.0)
     warden (1.1.0)
       rack (>= 1.0)
@@ -236,7 +224,7 @@ DEPENDENCIES
   factory_girl
   foreman
   formtastic
-  health-data-standards!
+  health-data-standards (= 0.7.0)
   jquery-rails
   json
   kaminari
@@ -246,7 +234,7 @@ DEPENDENCIES
   mongoid
   nokogiri
   pry
-  quality-measure-engine!
+  quality-measure-engine (= 1.1.0)
   rack (= 1.3.3)
   rails (= 3.1.0)
   rubyzip
