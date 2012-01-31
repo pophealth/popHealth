@@ -18,6 +18,11 @@ form#providerForm {
 		padding-right: 25px;
 		padding-bottom: 20px;
 	}
+	
+	a {
+		font-size:12px;
+		color: $linkcolor;
+	}
 }
 
 .paren {
@@ -39,7 +44,7 @@ table#providerList {
 	}
 	
 	td {
-		padding-right:65px;
+		padding-right:110px;
 	
 		a {
 			color :$linkcolor;
@@ -71,6 +76,9 @@ div #providerMain {
     
     #measurePopulationPercentage {
       font-weight:bold;
+    }
+    #measureDetailTitle {
+      margin-left: 250px;
     }
   }
   

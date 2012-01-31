@@ -40,7 +40,8 @@ provider:
 			</td>
 			<td>
 				<%= f.label :team_id, "select team:" %><br>
-				<%= f.collection_select :team_id, Team.alphabetical, :id, :name, {include_blank: true}, {style: "width:175px"}%>
+				<%= f.collection_select :team_id, Team.alphabetical, :id, :name, {include_blank: true}, {style: "width:175px"}%><br>
+				<%= link_to "edit teams", teams_path, remote: true %>
 			</td>
 			<td colspan="2">
 				<%= f.label :organization, "organization:" %><br>

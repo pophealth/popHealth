@@ -36,6 +36,7 @@ class MeasuresController < ApplicationController
         @result = @quality_report.result
       end
       wants.json do
+
 #        SelectedMeasure.add_measure(current_user.username, params[:id])
         measures = params[:sub_id] ? Measure.get(params[:id], params[:sub_id]) : Measure.sub_measures(params[:id])
         
@@ -53,7 +54,7 @@ class MeasuresController < ApplicationController
     render :json => @definition
   end
   def result
-    
+
     uuid = generate_report(params[:uuid])
     
     if (@result)
@@ -67,6 +68,7 @@ class MeasuresController < ApplicationController
   
   def providers    
     authorize! :manage, :providers
+
     
     
     
@@ -81,7 +83,8 @@ class MeasuresController < ApplicationController
       end
       
       wants.json do
-        
+
+            
         providerIds = params[:provider].blank? ?  Provider.all.map { |pv| pv.id.to_s } : @filters.delete('providers')
         
         render_measure_response(providerIds, params[:jobs]) do |pvId|
@@ -114,6 +117,7 @@ class MeasuresController < ApplicationController
   end
 
   def measure_patients
+
     @type = params[:type] || 'denominator'
     @limit = (params[:limit] || 20).to_i
     @skip = ((params[:page] || 1).to_i - 1 ) * @limit

@@ -143,6 +143,7 @@ a, {
   padding: 5px 20px 4px 0;
   text-align: right;
   font-size: 1em;
+  whitespace: nowrap;
   .sep {
     margin: 0 7px 0 5px;
     color: #cccccc;
@@ -309,6 +310,7 @@ a, {
 #eligibilityMeasures {
   width: 500px;
   display: table-cell;
+  padding-right: 20px;
   h3 {
     font-size: 1.5em;
     padding: 5px 20px;
@@ -446,7 +448,7 @@ a, {
       li{
         label{
           background: url("../assets/liClosed.png") 0 35% no-repeat;  
-          font-size: 1.2em;
+          font-size: 1.1em;
 
           .open {
             background: url("../assets/liOpen.png") 0 35% no-repeat;
@@ -457,7 +459,7 @@ a, {
             label {
               margin-left: 15px;
               margin-bottom: 10px;
-              font-size: 1em;
+              font-size: 19px;
 
             }
             div.measureItemList {
@@ -563,7 +565,7 @@ a, {
   
   .measureDetailTable {
     padding-top: $top_heading-padding;
-    width: 100%;
+  
   #dashboardPeriod .measureDetailTable table td, #dashboardContainer .measureDetailTable table td {
     vertical-align: top;
     padding: 0;
@@ -740,8 +742,9 @@ input.recalculate {
   background: -moz-linear-gradient(top, #ececec, #e5e5e5);
   background-color: #f2f2f2;
   border: 1px solid #afafaf;
-  padding: 6px 8px 5px 8px;
-  width: 31px;
+  padding: 5px 0px 5px 9px;
+  width: 32px;
+  height: 32px;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   border-radius: 15px;
@@ -753,6 +756,9 @@ input.measurementPeriodEndDate {
   font-weight: inherit;
   font-family: inherit;
   width: 100px;
+  padding-top:6px;
+  padding-bottom: 5px;
+
 }
 
 
@@ -782,8 +788,13 @@ input.measurementPeriodEndDate {
   .jobLabel {
     position:relative;
     font-size: 11px;
-    top: 25px;
+    top: 30px;
     left: -6px;
+
+    img {
+      margin-top: 10px;
+      height: 20px;
+    }
   } 
 }
 td.links {
@@ -931,7 +942,7 @@ a.tableEdit {
     color: #33aace; } }
 
 #measureMetrics {
-  min-width: 230px;
+  min-width: 250px;
   padding-left: $top_heading-padding;
 
   .paren {
@@ -951,7 +962,7 @@ a.tableEdit {
 }
 
 #measurePopulationPercentage {
-  @include popPercentage(120px, 48px, 128px, 200px, 30px);
+  @include popPercentage(120px, 48px, 128px, 200px, 15px);
 }
 
 
@@ -959,7 +970,8 @@ a.tableEdit {
   display: block;
   display: table-cell;
   vertical-align: top;
-  min-width: 250px;
+  min-width: 230px;
+  max-width: 250px;
   background-color: #f2f2f2;
   color: black;
   padding: 0;
@@ -1051,6 +1063,7 @@ table.measureTable {
 
 
 table.patientRecords {
+  width: 100%;
   th {
     text-transform: uppercase;
   }
@@ -1063,12 +1076,16 @@ table.patientRecords {
     td {
       padding-left: 10px;
     }
+    th {
+      width: 340px;
+    }
   }
   table.headerRow {
     margin-left: 5px;
   }
   table.secondRow {
-    margin-left: 45px;
+    margin-left: 25px;
+
   }
 }
 
