@@ -1,7 +1,8 @@
 require 'test_helper'
-include Devise::TestHelpers
+
 
 class RecordsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
   
   setup do
     dump_database
@@ -16,6 +17,15 @@ class RecordsControllerTest < ActionController::TestCase
   test "send junk xml" do
     raw_post(:create, "<root>i am random xml that should not work</root>")
     assert_response(400)
+  end
+  
+  test "unauthenticated create" do
+    sign_out @user
+    
+    assert_throws(:warden) do
+      raw_post(:create, @body)
+    end
+
   end
   
   test "create record with providers" do
