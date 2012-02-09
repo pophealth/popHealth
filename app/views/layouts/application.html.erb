@@ -17,7 +17,7 @@
   
   <%= csrf_meta_tag %>
   <%= yield :head %>
-  <% if APP_CONFIG['idle_timeout_enabled']==false %>
+  <% if APP_CONFIG['idle_timeout_enabled'] %>
   <script type="text/javascript" charset="utf-8">
 
     $(function() {
