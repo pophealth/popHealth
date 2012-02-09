@@ -14,7 +14,7 @@ defaults: &defaults
   # should new accounts be creatable, and should a user be able to edit their account
   allow_user_update: true
   # title of the practice
-  practice_name: 'General Hospital'
+  practice_name: 'Beth Israel Deaconess Medical Center'
   disable_provider_filters: false
 development:
   <<: *defaults

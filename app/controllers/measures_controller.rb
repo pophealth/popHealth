@@ -41,8 +41,10 @@ class MeasuresController < ApplicationController
         measures = params[:sub_id] ? Measure.get(params[:id], params[:sub_id]) : Measure.sub_measures(params[:id])
         
         render_measure_response(measures, params[:jobs]) do |sub|
+          report = QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters)
+          @patient_count= (report.calculated?) ? report.result['considered'] : 0 
           {
-            report: QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters),
+            report: report,
             patient_count: @patient_count
           }
         end
@@ -89,8 +91,10 @@ class MeasuresController < ApplicationController
         
         render_measure_response(providerIds, params[:jobs]) do |pvId|
           filters = @filters ? @filters.merge('providers' => [pvId]) : {'providers' => [pvId]}
+          report = QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => filters)
+          @patient_count= (report.calculated?) ? report.result['considered'] : 0 
           { 
-            report: QME::QualityReport.new(params[:id], params[:sub_id], 'effective_date' => @effective_date, 'filters' => filters),
+            report: report,
             patient_count: @patient_count
           }
         end
@@ -138,7 +142,8 @@ class MeasuresController < ApplicationController
       result = PatientCache.by_provider(@selected_provider, @effective_date).where(query);
     else
       authorize! :manage, :providers
-      result = PatientCache.all.where(query)
+      #result = PatientCache.all.where(query)
+      result = PatientCache.all.where({no_patients:true})
     end
     @total = result.count
     @records = result.order_by(["value.#{sort}", sort_order]).skip(@skip).limit(@limit);
@@ -168,7 +173,8 @@ class MeasuresController < ApplicationController
       result = PatientCache.by_provider(@selected_provider, @effective_date).where(query);
     else
       authorize! :manage, :providers
-      result = PatientCache.all.where(query)
+      #result = PatientCache.all.where(query)
+      result = PatientCache.all.where({no_patients:true})
     end
     @records = result.order_by(["value.medical_record_id", 'desc']);
     
@@ -265,9 +271,29 @@ class MeasuresController < ApplicationController
     }
   end
   
+  # faked patient count
+  def get_patient_count
+    provider_patient_counts = {
+      '1234567890'=>1105,
+      '1234567891'=>1992,
+      '1234567892'=>1317,
+      '1234567893'=>1383,
+      '1234567894'=>658,
+      '1234567895'=>998,
+      '1234567896'=>2379,
+      '1234567897'=>1356,
+      '1234567898'=>913,
+      '1234567899'=>3202
+    }
+    @patient_count = 263882
+    if (@selected_provider) 
+      @patient_count=provider_patient_counts[@selected_provider.npi]
+      @patient_count=@patient_count = @selected_provider.records(@effective_date).count if @patient_count.nil?
+    end
+  end
   
   def set_up_environment
-    @patient_count = (@selected_provider) ? @selected_provider.records(@effective_date).count : mongo['records'].count
+    get_patient_count
     if params[:id]
       measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
       render(:file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404) unless measure

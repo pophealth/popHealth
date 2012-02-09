@@ -62,9 +62,9 @@ end
 Factory.define :provider_performance do |pp|
   pp.after_build do |pp| 
     pp.start_date = between(Time.gm(1970, 1, 1), Time.gm(2010, 10, 1)) unless pp.start_date
-    if Random.new.rand(1..100) > 90 || pp.end_date
-      pp.end_date = between(pp.start_date, Time.gm(2010, 12, 31)) unless pp.end_date
-    end  
+#    if Random.new.rand(1..100) > 90 || pp.end_date
+#      pp.end_date = between(pp.start_date, Time.gm(2011, 12, 31)) unless pp.end_date
+#    end  
     pp.provider_id = Factory(:provider).id unless pp.provider_id
   end
 end

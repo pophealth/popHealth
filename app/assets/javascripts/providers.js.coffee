@@ -13,12 +13,12 @@
 				Providers.isLoading()
 			else
 				$.each results, (i, data) ->
-					if (data.job.status == 'failed')
+					if (data.job && data.job.status == 'failed')
 						ref.isPollRequestActive = false
 						Providers.isLoading()
 						$('#measurePopulationPercentage').text('failed')
 	updateProviders: (current_measure, sub_id) ->
-		$(".measureProviderPopulationPercentage").html("<img src='/assets/loading.gif'/><span class='jobLabel'></span>")
+		$(".measureProviderPopulationPercentage").html("<div><div class='jobLabel'></div><img src='/assets/loading.gif'/></div>")
 		$(".numeratorValue").html('0')
 		$(".denominatorValue").html('0')
 		pr = new ProvidersReport(current_measure, sub_id)
@@ -52,12 +52,13 @@
 						row.fadeTo("fast", 1.0)
 			else
 				$.each results, (i, data) ->
-					providerId = data.job.filters.providers[0]
+					providerId = data.job.filters.providers[0] if data.job
 					row = Providers.row(providerId)
-					if (data.job.status != 'failed')
-						row.find('.jobLabel').text(data.job.status)
-					else
-						row.find('.jobLabel').parent().html(data.job.status)
+					if (data.job)
+						if (data.job.status != 'failed')
+							row.find('.jobLabel').text(data.job.status)
+						else
+							row.find('.jobLabel').parent().html(data.job.status)
 		Providers.fadeOut();
 		Providers.updatePage(current_measure, sub_id);
 	updatePage: (current_measure, sub_id) ->
