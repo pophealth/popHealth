@@ -110,8 +110,9 @@ $(document).ready(function() {
 
          <td class="button">
            <%= patient['manual_exclusion'] ? "Excluded [#{patient['manual_exclusion_rationale']}]" : 'Included' %>
+
            <button class="exclude" 
-               data-link="<%= url_for(controller: :patients, action: :toggle_excluded, id: patient['medical_record_id'], measure_id: patient['measure_id'], sub_id: patient['sub_id']) %>"
+               data-link="<%= url_for(controller: :patients, action: :toggle_excluded, id: patient['patient_id'], measure_id: patient['measure_id'], sub_id: patient['sub_id']) %>"
                data-title="<%= patient['manual_exclusion'] ? 'Include Patient' : 'Exclude Patient' %>">
              Change
            </button>

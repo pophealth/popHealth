@@ -1,15 +1,12 @@
 require 'record_importer'
-class RecordsController < ApplicationController
-
-  before_filter :authenticate_user!
-  before_filter :validate_authorization!
-  skip_before_filter :verify_authenticity_token, :set_effective_date
-
+class RecordsController < ActionController::Metal
+  
   def create
-    xml_file = request.body
+
+    current_user = request.env['warden'].authenticate!
     
-    result = RecordImporter.import(xml_file)
-    
+    result = RecordImporter.import(request.body)
+
     if (result[:status] == 'success') 
       @record = result[:record]
       QME::QualityReport.update_patient_results(@record.medical_record_number)
@@ -17,15 +14,9 @@ class RecordsController < ApplicationController
       Log.create(:username => current_user.username, :event => 'patient record imported', :medical_record_number => @record.medical_record_number)
     end
 
-    render :text => result[:message], status: result[:status_code]
-    
+    self.content_type = "text/plain"
+    self.status = result[:status_code]
+    self.response_body = result[:message]
   end
-
-  private
-  
-  def validate_authorization!
-    authorize! :update, Record
-  end
-
   
 end
