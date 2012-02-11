@@ -4,6 +4,30 @@
     Page.npi = '<%=@selected_provider.npi%>'
   <% end %>
 	Page.onLoad = Dashboard.onLoad;
+	
+	<% if @selected_provider && @selected_provider.npi == APP_CONFIG['synthetic_npi'] %>
+  	$(document).ready(function() {
+
+      $( "#dialog-form" ).dialog({
+        autoOpen: false,
+        height: 280,
+        width: 510,
+        modal: true,
+        buttons: {
+          OK: function() {
+            $( this ).dialog( "close" );
+          }
+        },
+        close: function() {
+          rationale.val("");
+        }
+      });
+
+      $( "#dialog-form" ).dialog("open");
+
+    });
+  <% end %>  
+  
 </script>
 <% end -%>
 
@@ -103,6 +127,8 @@
 		<% end %>
 	<% end %>
 
+   <% if @selected_provider && @selected_provider.npi == APP_CONFIG['synthetic_npi'] %>
+
    <p class="note">
       Demographics
     </p>
@@ -162,6 +188,13 @@
         </li>
       </ul>
     </div>
+    
+    <% else %>
+    <p class="note">
+        Filters Disabled
+    </p>
+    
+    <% end %>
    </div><!-- end #providerReports --> 
     <div id="dashboardPeriod">
       <div class="measureDetailTable">
@@ -237,3 +270,7 @@
 			</table>
     </div><!-- end #dashboardPeriod -->
   </div><!-- end #pageContent -->
+
+  <div id="dialog-form" title="Synthetic Patient Data">
+    The patient data for this provider is synthetic.  Synthetic data has been generated for this provider to allow features of popHealth to be displayed without exposing protected health information (PHI).
+  </div>

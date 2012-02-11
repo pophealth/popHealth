@@ -19,4 +19,17 @@ namespace :db do
       MONGO_DB['races'].save(document)
     end
   end
+  
+  desc 'change patient names'
+  task :rename_patients do |t, args|
+    
+    Record.all.each do |record|
+      
+      record.last = "#{record.last}-#{"%04d" % rand(9999)}"
+      
+      record.save!
+    end
+    
+  end
+  
 end

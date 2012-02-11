@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_filter :set_effective_date
   
-  add_breadcrumb APP_CONFIG['practice_name'], :root_url
+  add_breadcrumb APP_CONFIG['practice_name'].scan(/\b\w/)*'', :root_url
   
   # lock it down!
   check_authorization :unless => :devise_controller?

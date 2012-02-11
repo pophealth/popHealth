@@ -1,0 +1,20 @@
+mongorestore -d pophealth-development /Users/aquina/Downloads/dump/pophealth-production/
+
+bundle exec rake provider:deidentify
+
+1043259138 -> 1234567890 Dr. Terrence Carroll-5750
+1083790851 -> 1234567891 Dr. Marilyn Gutierrez-2101
+1265471254 -> 1234567892 Dr. Stella Herrera-6033
+1295992600 -> 1234567893 Dr. Mike Blake-8995
+1588652150 -> 1234567894 Dr. Julio Carpenter-4826
+1659339588 -> 1234567895 Dr. Samuel Colon-3725
+1891733101 -> 1234567896 Dr. Reginald Mcbride-1284
+1932131463 -> 1234567897 Dr. Naomi Norman-6103
+1932148962 -> 1234567898 Dr. Katrina Craig-0233
+1942315908 -> 1234567899 Dr. Marilyn Mcdaniel-2403
+
+bundle exec rake import:patients[/Users/aquina/data/data/updated_patients/]
+
+bundle exec rake provider:random[1,true]
+
+bundle exec rake db:rename_patients

@@ -29,6 +29,7 @@ class ManualExclusion
           {'value.measure_id'=>measure_id, 'value.sub_id'=>sub_id, 'value.medical_record_id'=>patient.medical_record_number },
           {'$set'=>{'value.manual_exclusion'=>true}}, :multi=>true)
     end
-    QueryCache.where({:measure_id => measure_id}).and({:sub_id => sub_id}).destroy_all
+    # DO NOT REMOVE TOP LEVEL RESULTS.  HIMSS ONLY.
+    QueryCache.where({:measure_id => measure_id}).and({:sub_id => sub_id}).and({'filters.providers'=>Provider.by_npi(APP_CONFIG['synthetic_npi']).first.id.to_s}).destroy_all
   end
 end
