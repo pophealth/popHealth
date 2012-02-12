@@ -1,13 +1,4 @@
-{
- "codes" : { "LOINC" : [ "39156-5" ], "SNOMED-CT" : [ "60621009" ] },
- "value" : { "scalar" : "26.850694444444446", "units" : null },
- "time" : 1318651200,
- "status" : "completed",
- "description" : "BMI" 
-}
-
-Weight (lb) / (Height (in) x Height (in)) x 703
-
+require 'json'
 
 s= '[{
  "codes" : { "LOINC" : [ "225" ] },
@@ -26,7 +17,7 @@ s= '[{
 {
  "codes" : { "LOINC" : [ "325" ] },
  "value" : { "scalar" : "130", "units" : null },
- "time" : 1318651200,
+ "time" : 1319651500,
  "status" : "completed",
  "description" : "WEIGHT" 
 },
@@ -35,15 +26,13 @@ s= '[{
  "value" : { "scalar" : "150", "units" : null },
  "time" : 1318651200,
  "status" : "completed",
- "description" : "HEIGHT" 
+ "description" : "WEIGHT" 
 }]'
+
+v = JSON.parse(s)
 
 def calcBMI(vitals) 
   begin
-    bmi_entry = { "codes" => { "LOINC" => [ "39156-5" ], "SNOMED-CT" => [ "60621009" ] },
-     "value" => { "scalar" => "", "units" => nil },
-     "time" => nil, "status" => "completed", "description" => "BMI" 
-    }
 
     height_code = "225"
     weight_code = "325"
@@ -54,8 +43,14 @@ def calcBMI(vitals)
       time = start_of_day(original_time)
     
       by_date[time] ||= {}
-      by_date[time][vital['codes']['LOINC'][0]] = {value: vital['value']['scalar'], unit: vital['value']['unit'], time: original_time}
-    
+      
+      codes = vital['codes']['LOINC']
+      [height_code, weight_code].each do |code|
+        if (codes.include? code) 
+          by_date[time][code] = {value: vital['value']['scalar'], unit: vital['value']['unit'], time: original_time}
+        end
+      end
+      
     end
   
     by_date.each do |date, value|
@@ -64,7 +59,12 @@ def calcBMI(vitals)
         weight = value[weight_code][:value].to_f
       
         bmi = (weight / (height*height) ) * 703
-        entry = bmi_entry.clone
+        binding.pry
+        entry = { "codes" => { "LOINC" => [ "39156-5" ], "SNOMED-CT" => [ "60621009" ] },
+         "value" => { "scalar" => "", "units" => nil },
+         "time" => nil, "status" => "completed", "description" => "BMI" 
+        }
+        
         entry['value']['scalar'] = bmi.to_s
         entry['time']=value[weight_code][:time]
         vitals << entry
