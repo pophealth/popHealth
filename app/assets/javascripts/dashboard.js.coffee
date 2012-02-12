@@ -58,7 +58,6 @@
 		$('#btnExportReportSingle').click(Dashboard.doReportExport);
 		$('#btnMeasurementPeriodChange').click(Dashboard.changeMeasurePeriod);
 		$('#measurementPeriodEndDate').calendricalDate({usa: true, changed: Dashboard.updatePeriodEnd});
-		$('.dialog-menu li a').hover((-> $(this).addClass('ui-state-hover')) , (-> $(this).removeClass('ui-state-hover')))
 		Page.onFilterChange = (li) ->
 			Dashboard.calculateSelected()
 		Dashboard.calculateSelected()

@@ -1,0 +1,52 @@
+<% content_for :head do -%>
+<script type="text/javascript">
+  var popHealth = popHealth || {};
+
+
+  $(document).ready(function() {
+  });
+  
+</script>
+<% end -%>
+
+<div id="pageContent" style="padding:20px;">
+<h1><strong>Patients</strong></h1>
+
+  <table>
+
+    <tr><td>patients loaded: </td>
+      <td>
+        <%= @patient_count%> patients 
+        <%= form_tag("/admin/remove_patients", :method => "delete") do %>
+          <%= submit_tag("Delete Patients") %>
+        <% end %>
+      </td>
+    </tr>  
+    <tr><td colspan="2">&nbsp;</td></tr>  
+
+    <tr><td>cache counts: </td>
+      <td>
+        query cache: <%= @query_cache_count%> <br>
+        patient cache: <%= @patient_cache_count%>
+        
+        <%= form_tag("/admin/remove_caches", :method => "delete") do %>
+          <%= submit_tag("Delete Caches") %>
+        <% end %>
+      </td>
+    </tr>  
+    <tr><td colspan="2">&nbsp;</td></tr>  
+    <tr><td colspan="2">&nbsp;</td></tr>  
+    
+    <tr><td>Upload patient zip file: </td>
+      <td>
+        <%= form_tag("/admin/upload_patients", :method => "put", :multipart=>true) do %>
+          <%= file_field_tag(:file)%>
+          <%= submit_tag("Upload") %>
+        <% end %>
+      </td>
+    </tr>  
+    
+    
+  </table>
+
+</div> <!-- pageContent -->
