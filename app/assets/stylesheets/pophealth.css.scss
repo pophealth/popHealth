@@ -106,19 +106,21 @@ a, {
     text-decoration: underline; 
   }
 
-  ul {
-    list-style: none;
-    margin-left: 265px;
-    font-size: 1em;
-    li {
-      float: left;
-      margin-top: 5px;
-      color: #333333;
-      a {
-        color: $dashboardText;
-      }
-      .sep {
-        margin: 0 5px; 
+  #breadcrumbBox {
+    ul.breadcrumbItems {
+      list-style: none;
+      margin-left: 265px;
+      font-size: 1em;
+      li {
+        float: left;
+        margin-top: 5px;
+        color: #333333;
+        a {
+          color: $dashboardText;
+        }
+        .sep {
+          margin: 0 5px; 
+        }
       }
     }
   }
