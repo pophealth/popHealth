@@ -8,7 +8,7 @@ class MeasuresController < ApplicationController
   before_filter :set_up_environment
   after_filter :hash_document, :only => :measure_report
   
-  add_breadcrumb_dynamic([:selected_provider], only: %w{index show patients}) {|data| provider = data[:selected_provider]; {title: (provider ? provider.full_name : nil), url: "/?npi=#{(provider) ? provider.npi : nil}"}}
+  add_breadcrumb_dynamic([:selected_provider], only: %w{index show patients compare}) {|data| provider = data[:selected_provider]; {title: (provider ? provider.full_name : nil), url: "/?npi=#{(provider) ? provider.npi : nil}"}}
   add_breadcrumb_dynamic([:definition], only: %w{providers}) do|data| 
     measure = data[:definition];
     if measure
@@ -20,8 +20,16 @@ class MeasuresController < ApplicationController
   add_breadcrumb_dynamic([:definition, :selected_provider], only: %w{show patients}) {|data| measure = data[:definition]; provider = data[:selected_provider]; {title: "#{measure['endorser']}#{measure['id']}" + (measure['sub_id'] ? "#{measure['sub_id']}" : ''), url: "/measure/#{measure['id']}"+(measure['subid'] ? "/#{measure['sub_id']}" : '')+(provider ? "?npi=#{provider.npi}" : "/providers")}}
   add_breadcrumb 'parameters', '', only: %w{show}
   add_breadcrumb 'patients', '', only: %w{patients}
+  add_breadcrumb 'compare', '', only: %w{compare}
   
   def index
+    @categories = Measure.non_core_measures
+    @core_measures = Measure.core_measures
+    @core_alt_measures = Measure.core_alternate_measures
+    @alt_measures = Measure.alternate_measures.group_by { |m| m['category'] }
+  end
+
+  def compare
     @categories = Measure.non_core_measures
     @core_measures = Measure.core_measures
     @core_alt_measures = Measure.core_alternate_measures
@@ -37,14 +45,18 @@ class MeasuresController < ApplicationController
       end
       wants.json do
 
-#        SelectedMeasure.add_measure(current_user.username, params[:id])
         measures = params[:sub_id] ? Measure.get(params[:id], params[:sub_id]) : Measure.sub_measures(params[:id])
         
         render_measure_response(measures, params[:jobs]) do |sub|
           report = QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters)
+          compare_report = nil
+          if (params['compare_report'])
+            compare_report = QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters, 'test_id'=>params['compare_report'].to_i)
+          end
           @patient_count= (report.calculated?) ? report.result['considered'] : 0 
           {
             report: report,
+            compare_report: compare_report,
             patient_count: @patient_count
           }
         end
@@ -314,10 +326,15 @@ class MeasuresController < ApplicationController
   end
   
   def render_measure_response(collection, uuids)
-    result = collection.inject({jobs: {}, result: [], job_statuses: {}}) do |memo, var|
+    result = collection.inject({jobs: {}, result: [], compare_result: [], job_statuses: {}}) do |memo, var|
       data = yield(var)
       report = data[:report]
+      compare_report = data[:compare_report]
       patient_count = data[:patient_count]
+      
+      if (compare_report && compare_report.calculated?)
+        memo[:compare_result] << compare_report.result.merge({'patient_count'=>patient_count})
+      end
 
       if report.calculated?
         memo[:result] << report.result.merge({'patient_count'=>patient_count})

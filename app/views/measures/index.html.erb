@@ -246,8 +246,8 @@
         <% end %>
         <div class="clear"></div>
         <div class="dashboardTabs">
-          <span class="dashboardTab active">Measures</span>
-          <span class="dashboardTab">Comparison</span>
+          <span class="dashboardTab active measures">Measures</span>
+          <% if (@selected_provider)%><span class="dashboardTab compare">Comparison</span><% end %>
         </div>
         <div class="legend">
           <div class="numerator"></div><span>numerator</span>
@@ -271,6 +271,6 @@
     </div><!-- end #dashboardPeriod -->
   </div><!-- end #pageContent -->
 
-  <div id="dialog-form" title="Synthetic Patient Data">
+  <div id="dialog-form" title="Synthetic Patient Data" style="display: none">
     The patient data for this provider is synthetic.  Synthetic data has been generated for this provider to allow features of popHealth to be displayed without exposing protected health information (PHI).
   </div>

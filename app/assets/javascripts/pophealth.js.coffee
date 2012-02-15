@@ -18,7 +18,7 @@ class @QualityReport
 				sub_id = job['sub_id'] if job['sub_id']
 				uuids[job['measure_id'] + sub_id] = job['uuid']
 			pollParams = $.extend(params, {jobs: uuids})
-			callback(response.result, response.complete)
+			callback(response.result, response.complete, response.compare_result)
 			if (!response.complete && !response.failed)
 				setTimeout (-> ref.poll(pollParams, callback)), 3000
 
@@ -95,6 +95,7 @@ makeMeasureListClickable = ->
 				qr = new QualityReport(measure, sub)
 				params = {}
 				params['npi'] = Page.npi
+				params['compare_report'] = Page.compare_report if Page.compare_report
 				qr.poll(params, Page.onReportComplete)
 		else
 			Page.onMeasureRemove(measure)
@@ -115,7 +116,12 @@ makeFilterListsClickable = ->
 			$(".filterItemList ul li[data-filter-type='provider']").toggleClass("checked", false)
 	$(".filterItemList ul li").click ->
 		Page.onFilterChange(this)
-
+	npiParam = ''
+	npiParam = '/?npi='+Page.npi if Page.npi
+	$('span.dashboardTab.compare').click ->
+	  window.location.replace('/measures/compare' + npiParam)
+	$('span.dashboardTab.measures').click ->
+	  window.location.replace('/measures' + npiParam)
 
 	
 # Load Page

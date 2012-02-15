@@ -47,7 +47,17 @@ namespace :import do
     exclusions_ind = args.exclusions_index.to_i || 4
     count_ind = args.count_index.to_i || 5
     npi_ind = args.npi_index.to_i
-
+    
+    npi_map = {'1043259138' => '1234567890',
+    '1083790851' => '1234567891',
+    '1265471254' => '1234567892',
+    '1295992600' => '1234567893',
+    '1588652150' => '1234567894',
+    '1659339588' => '1234567895',
+    '1891733101' => '1234567896',
+    '1932131463' => '1234567897',
+    '1932148962' => '1234567898',
+    '1942315908' => '1234567899'}
     
     count = 0
     csv_file.read.each_line do |line|
@@ -67,7 +77,8 @@ namespace :import do
       }
       row["sub_id"] = nil if row["sub_id"].empty?
       if (npi_ind >= 0)
-        row["filters"]  = { "providers" => [ Provider.by_npi(split_line[npi_ind]).first.id.to_s ] }
+        npi = npi_map[split_line[npi_ind]]
+        row["filters"]  = { "providers" => [ Provider.by_npi(npi).first.id.to_s ] }
       end
       row.merge!(base_fields)
       

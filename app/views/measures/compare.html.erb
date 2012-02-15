@@ -1,0 +1,142 @@
+<% content_for :head do %>
+<script type="text/javascript" charset="utf-8">
+  <% if @selected_provider %>
+    Page.npi = '<%=@selected_provider.npi%>'
+    Page.compare_report = 1
+  <% end %>
+  Page.onLoad = Compare.onLoad;
+  
+    $(document).ready(function() {
+
+      $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 100,
+            values: [ Compare.minHighlight, Compare.maxHighlight ],
+            slide: function( event, ui ) {
+              $("#highlight_values").html( ' delta <= ' + ui.values[ 0 ] + "% Green and delta >= " + ui.values[ 1 ] + '% Red ' );
+              $('#green-slide').css('width', ui.values[ 0 ] + '%');
+              $('#red-slide').css('width', (100-ui.values[ 1 ]) + '%');
+              $('#red-slide').css('left', (ui.values[ 1 ]) + '%');
+              Compare.minHighlight = ui.values[ 0 ]
+              Compare.maxHighlight = ui.values[ 1 ]
+            },
+            change: function( event, ui ) {
+              Compare.highlightData();
+            }
+          });
+          
+    });
+  
+</script>
+<% end -%>
+
+  
+  <div id="pageContent">
+    <div id="providerReports">
+    <div class="groupList">
+      <ul>
+        <li>
+          <label class="open">Core Measures</label>
+          <div class="measureItemList expandableList">
+            <ul>
+              <% @core_measures.each do |measure| -%>
+               <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-sub-measures="<%=measure['subs'].join(',')%>" data-category="Core"><%= measure['name'] %></li>
+             <% end %>
+             <% @core_alt_measures.each do |measure| -%>
+               <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-sub-measures="<%=measure['subs'].join(',')%>" data-category="Core Alternate"><span class="note">**</span><%= measure['name'] %></li>
+             <% end %>
+            </ul>
+            <p class="note"><em>** core alternate measures</em></p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="groupList">
+      <ul>
+        <li>
+          <label class="open">Alternate Measures</label>
+          <div class="expandableList">
+        
+            <% @categories.each do |category| %>
+              <div class="groupList">
+                <label><%= category['category'] %></label>
+                <div style="display:none" class="measureItemList expandableList">
+                  <ul>
+                   <% category['measures'].each do |measure| -%>
+                     <li class="<%= measure_selected(measure['id'], current_user.selected_measures) %>" data-measure-id="<%= measure['id'] %>" data-sub-measures="<%=measure['subs'].join(',') if measure['subs']%>" data-category="<%= category['category'] %>"><%= measure['name'] %></li>
+                   <% end -%>
+                </div>
+              </div>
+            <% end %>
+            
+          </div>
+        </li>
+      </ul>
+    </div>
+    </div><!-- end #providerReports --> 
+    <div id="dashboardPeriod">
+      <div class="measureDetailTable">
+        
+        <% if (@selected_provider) %>
+          <dl>
+            <dt>Provider:</dt>
+            <dd class="practiceName"><h1><%=@selected_provider.full_name%></h1></dd>
+          </dl>
+        <% else %>
+          <%= content_tag(:h1, current_user.company) unless current_user.company.nil? || current_user.company.empty? %>
+          <dl>
+            <dt>Practice:</dt>
+            <dd class="practiceName"><h1><%=APP_CONFIG['practice_name']%></h1></dd>
+          </dl>
+        <% end %>
+        
+        <dl>
+          <dt># of Patients: </dt>
+          <dd><%= @patient_count %></dd>
+        </dl>
+        <% unless (@selected_provider) %>
+          <dl>
+            <dt># of Providers: </dt>
+            <dd><%= Provider.all.count %> </dd>
+          </dl>
+        <% end %>
+        <dl>
+          <div style="float: right; color: #BBB; margin-right: 255px; margin-top: 18px;"><input name="highlight_zero" id="highlight_zero" type="checkbox" checked="checked"> Highlight Zeros</div>
+          <label for="amount" style="color: #BBB">Highlight:</label><span id="highlight_values" style="color: #BBB">&nbsp;delta &lt;= 5% Green and delta &gt;= 15% Red </span>
+          <div id="slider-range" style="width: 400px;">
+            <div id="red-slide" class="ui-slider-range ui-widget-header" style="left: 10%; width: 90%; background: #FFE3E3;"></div>
+            <div id="green-slide" class="ui-slider-range ui-widget-header" style="left: 0%; width: 5%; background: #E3FFE3;"></div>
+          </div>
+        </dl>
+        <div class="clear" style="padding: 4px;"></div>
+        <div class="dashboardTabs">
+          <span class="dashboardTab measures">Measures</span>
+          <span class="dashboardTab active compare">Comparison</span>
+        </div>
+        <div style="height: 7px;"></div>
+      </div><!-- end #measureDetailTable -->
+
+      <table class="measureTable" style="float:left">
+        <tr>
+          <th></th>
+          <th></th>
+          <th style="text-align:center; padding: 0 5px">PH Num</th>
+          <th style="text-align:center; padding-left: 0">QDC Num</th>
+          <th style="text-align:center; padding: 0 5px">PH Den</th>
+          <th style="text-align:center; padding-left: 0">QDC Den</th>
+          <th></th>
+        </tr>
+        
+        <tr style="<%= display_header(@core_measures, current_user.selected_measures)%>" class="headerRow"><td colspan="7">Core Measures</td></tr>
+        <%= render :partial => "measure_compare", :collection => @core_measures %>
+        <tr style="<%= display_header(@core_alt_measures, current_user.selected_measures)%>" class="headerRow"><td colspan="7">Core Alternate Measures</td></tr>
+        <%= render :partial => "measure_compare", :collection => @core_alt_measures %>
+        
+        <% @alt_measures.each do |category, measures| %>
+          <tr style="<%= display_header(measures, current_user.selected_measures)%>" class="headerRow"><td colspan="7"><%=category%></td></tr>
+          <%= render :partial => "measure_compare", :collection => measures %>
+        <% end %>
+      </table>
+    </div><!-- end #dashboardPeriod -->
+  </div><!-- end #pageContent -->

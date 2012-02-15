@@ -1,5 +1,7 @@
-<div class="tableBar">
+<% compare ||= false%>
+<div class="tableBar<%= (compare) ? ' compare' : ' phval'%>" style="float: left">
   <div class="tableBarNumerator" style="width:<%= numerator_width(numerator, patient_count)%>"><span></span></div>
   <div class="tableBarDenominator" style="width:<%= denominator_width(numerator, denominator, patient_count)%>"><span></span></div>
   <div class="tableBarExclusion" style="width:<%= exclusion_width(exclusions, patient_count)%>"><span></span></div>
 </div>
+

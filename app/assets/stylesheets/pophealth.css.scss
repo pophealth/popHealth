@@ -621,7 +621,9 @@ a, {
       border-left: $active-tab_border;
       border-right: $active-tab_border;
       border-top: $active-tab_border;
+      cursor: default;
       }
+      cursor: pointer;
     }
   h3.dashboardLabel {
     color: $dashboardLabel;
@@ -1145,6 +1147,28 @@ table#providerTable, table.measureTable  {
         width: 50px;
       }
     }
+    td.compareValue {
+      font-size: 20px;
+      width:35px;
+      padding-right:5px;
+      padding: 0 10px;
+      min-width: 40px;
+      align: center;
+      text-align: center;
+      
+      span.numeratorValue {
+        color: $numerator; }
+      span.denominatorValue {
+        color: $denominator; }
+        
+    }
+    td.redHighlight {
+      background: #FFA0A0;
+    }
+    td.greenHighlight {
+      background: #FFA0A0;
+    }
+    
 
     td.name {
       text-decoration: underline;
@@ -1218,4 +1242,14 @@ table#providerTable, table.measureTable  {
   -webkit-border-radius: 15px;
   border-radius: 15px;
   text-transform: lowercase;
+}
+
+#slider-range {
+  .ui-state-default {
+    height: 12px;
+  }
+}
+
+.ui-slider-range {
+  background: #EEE;
 }

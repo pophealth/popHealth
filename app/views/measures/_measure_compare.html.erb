@@ -1,0 +1,27 @@
+<% subs_iterator(measure_compare['subs']) do |sub| %>
+	<tr style="<%=display_row(measure_compare['id'], current_user.selected_measures)%>" data-measure="<%=measure_compare['id']%>" data-measure-sub="<%= sub %>" class="measure">
+		<% if sub.nil? || sub == 'a' %>
+			<td class="name" style="height: 55px; width:240px;"><%= (can? :manage, :providers) ? link_to(raw("<span title='#{measure_compare['description']}' class='vtip'>#{measure_compare['name']}</span>"), "#{measure_path(measure_compare['id'], sub)}/providers") : "#{measure_compare['id']}: #{measure_compare['name']}" %></td>
+		<% else %>
+			<td class="name" style="height: 55px; width:240px;"/>
+		<% end %>
+		
+		<% if sub %>
+			<td class="subtitle"><%= (can? :manage, :providers) ? link_to("#{measure_compare['short_subtitles'][sub]}", "#{measure_path(measure_compare['id'], sub)}/providers") : "#{measure_compare['short_subtitles'][sub]}" %></td>
+		<% else %>
+			<td class="subtitle" />
+	  <% end %> 
+		<td class="compareValue phval numeratorCompare"><span class="numeratorValue"></span></td>
+		<td class="compareValue compare numeratorCompare"><span class="numeratorValue"></span></div></td>
+		<td class="compareValue phval denominatorCompare"><span class="denominatorValue"></span></div></td>
+		<td class="compareValue compare denominatorCompare"><span class="denominatorValue"></span></div></td>
+	  <td class="barChart">
+	    <div style="padding-bottom:4px;">
+  	    <%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0, exclusions: 0}%> 
+	    </div> <span style="color: #CCC; font-size: 10px;">PH</span>
+	    <div>
+  	    <%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0, exclusions: 0, compare: true}%> 
+	    </div> <span style="color: #CCC; font-size: 10px;">QDC</span>
+	  </td>
+	</tr>
+<% end %>
