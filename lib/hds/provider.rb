@@ -87,9 +87,5 @@ class Provider
     merge_provider(provider)
     save!
   end
-  
-  def records(effective_date=nil)
-    Record.by_provider(self, effective_date)
-  end
-  
+
 end

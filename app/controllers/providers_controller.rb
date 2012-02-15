@@ -25,11 +25,27 @@ class ProvidersController < ApplicationController
     end
   end
   
+  def new
+    @provider = Provider.new
+    respond_to do |wants|
+      wants.js {}
+    end
+  end
+  
   def edit
     @provider = Provider.find(params[:id])
     respond_to do |wants|
       wants.js {}
     end    
+  end
+  
+  def create
+    @provider = Provider.create(params[:provider])
+    @providers = Provider.alphabetical.page(params[:page]).per(20)
+    
+    respond_to do |wants|
+      wants.js {}
+    end
   end
   
   def update

@@ -4,9 +4,10 @@ gem 'rails', '3.1.0'
 # locked to 1.3.3 to resolve annoying warning 'already initialized constant WFKV_'
 gem 'rack' , '1.3.3'
 
-#gem 'quality-measure-engine', :path => '../quality-measure-engine/'
-gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'develop'
-gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'develop'
+
+gem 'quality-measure-engine', :git => 'http://github.com/ssayer/quality-measure-engine.git', :branch => 'master'
+gem 'health-data-standards', :git => 'https://github.com/ssayer/health-data-standards.git', :branch => 'master'
+
 gem 'nokogiri'
 gem 'rubyzip'
 
