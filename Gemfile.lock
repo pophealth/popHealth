@@ -1,7 +1,7 @@
 GIT
-  remote: http://github.com/ssayer/quality-measure-engine.git
-  revision: bc27940b1c9946f3cf70004ad9a54eed80c17483
-  branch: master
+  remote: http://github.com/pophealth/quality-measure-engine.git
+  revision: f61fc443cd77241194eb1f804045d6875e71e1b6
+  branch: develop
   specs:
     quality-measure-engine (1.1.1)
       mongo (~> 1.3)
@@ -11,14 +11,14 @@ GIT
       rubyzip (~> 0.9.4)
 
 GIT
-  remote: https://github.com/ssayer/health-data-standards.git
-  revision: ba8ffa96923c5e531c64a7c1f69ef5c51038516b
-  branch: master
+  remote: https://github.com/projectcypress/health-data-standards.git
+  revision: d34da7f0a594516e3abc801d4b2eaf0fa299b4e8
+  branch: develop
   specs:
-    health-data-standards (0.7.0)
+    health-data-standards (0.7.1)
       builder (~> 3.0.0)
       erubis (~> 2.6)
-      mongoid (~> 2.3.3)
+      mongoid (~> 2.4.2)
       nokogiri (~> 1.4.7)
       uuid (~> 2.3.4)
 
@@ -116,7 +116,7 @@ GEM
       metaclass (~> 0.0.1)
     mongo (1.3.1)
       bson (>= 1.3.1)
-    mongoid (2.3.4)
+    mongoid (2.4.4)
       activemodel (~> 3.1)
       mongo (~> 1.3)
       tzinfo (~> 0.3.22)
