@@ -15,10 +15,12 @@
       <li class="ui-menu-item" role="menuitem" data-type="users">
         <a class="ui-corner-all" tabindex="-1" href="<%=admin_users_path%>">Users</a>
       </li>
-    
+      
+      <% if (APP_CONFIG['patient_management_enabled']) %>
       <li class="ui-menu-item" role="menuitem" data-type="patients">
         <a class="ui-corner-all" tabindex="-1" href="<%=admin_patients_path%>">Patients</a>
       </li>
+      <% end %>
 
       <li class="ui-menu-item" role="menuitem" data-type="logs">
         <a class="ui-corner-all" tabindex="-1" href="<%= logs_index_path%>">Logs</a>

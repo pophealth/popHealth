@@ -30,9 +30,10 @@ class AdminController < ApplicationController
     
     Zip::ZipFile.open(temp_file.path) do |zipfile|
       zipfile.entries.each do |entry|
+        next if entry.directory?
         xml = zipfile.read(entry.name)
         result = RecordImporter.import(xml)
-
+        
         if (result[:status] == 'success') 
           @record = result[:record]
           QME::QualityReport.update_patient_results(@record.medical_record_number)
