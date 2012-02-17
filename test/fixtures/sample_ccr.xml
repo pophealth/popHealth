@@ -155,13 +155,14 @@
     <VitalSigns>
       <Result>
         <CCRDataObjectID>VT0001</CCRDataObjectID>
-        <Test>
+        
         <DateTime>
           <Type>
             <Text>Start date</Text>
           </Type>
           <ExactDateTime>2010-12-15T00:00:00Z</ExactDateTime>
         </DateTime>
+        <Test>
         <Description>
           <Text>Systolic Blood Pressure</Text>
           <Code>
@@ -180,13 +181,14 @@
       </Result>
        <Result>
         <CCRDataObjectID>VT0007</CCRDataObjectID>
-        <Test>
+        
         <DateTime>
           <Type>
             <Text>Start date</Text>
           </Type>
           <ExactDateTime>2010-11-16T00:00:00Z</ExactDateTime>
         </DateTime>
+        <Test>
         <Description>
           <Text>BMI</Text>
           <Code>
