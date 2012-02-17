@@ -8,6 +8,10 @@ PopHealth::Application.routes.draw do
   post "admin/approve"
   post "admin/disable"
   post "admin/update_npi"
+  get "admin/patients"
+  put "admin/upload_patients"
+  delete "admin/remove_patients"
+  delete "admin/remove_caches"
 
   get "logs/index"
   

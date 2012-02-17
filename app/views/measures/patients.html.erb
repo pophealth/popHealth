@@ -14,23 +14,25 @@
 
     popHealth.drawPctChart = function(data) {
       data = data[0]
-      var elem = "#measureMetrics";
-      var percent = data.denominator > 0 ? Math.floor((data.numerator/data.denominator)*100) : 0;
-      var numeratorWidth = (data.numerator/<%= @patient_count %>).toFixed(2)*100;
-      var denominatorWidth = data.denominator > 0 ? ((data.denominator - data.numerator)/<%= @patient_count %>).toFixed(2)*100 : 0;
+      if (!data.job) {
+        var elem = "#measureMetrics";
+        var percent = data.denominator > 0 ? Math.floor((data.numerator/data.denominator)*100) : 0;
+        var numeratorWidth = (data.numerator/<%= @patient_count %>).toFixed(2)*100;
+        var denominatorWidth = data.denominator > 0 ? ((data.denominator - data.numerator)/<%= @patient_count %>).toFixed(2)*100 : 0;
       
-      $(elem).find(".numeratorValue").text(data.numerator);
-      $(elem).find(".denominatorValue").text(data.denominator);
-      $("#measurePopulationPercentage").text(percent + "%");
+        $(elem).find(".numeratorValue").text(data.numerator);
+        $(elem).find(".denominatorValue").text(data.denominator);
+        $("#measurePopulationPercentage").text(percent + "%");
       
-      $("#numeratorCount").text(data.numerator);
-      $("#denominatorCount").text(data.denominator);
-      $("#antiNumeratorCount").text(data.antinumerator);
-      $("#exclusionsCount").text(data.exclusions);
+        $("#numeratorCount").text(data.numerator);
+        $("#denominatorCount").text(data.denominator);
+        $("#antiNumeratorCount").text(data.antinumerator);
+        $("#exclusionsCount").text(data.exclusions);
       
-      display_type=$('input:radio[name=patientGroup]:checked').data('type')
+        display_type=$('input:radio[name=patientGroup]:checked').data('type')
       
-      popHealth.reloadTable();
+        popHealth.reloadTable();
+      }
     }
 
     popHealth.renderMeasureJSON = function(data) {
@@ -38,6 +40,7 @@
     }
 
     popHealth.reloadTable = function(data){
+      $('#patientTableContainer').html("<div style='padding: 150px;'><img src='/assets/loading_bar.gif'/></div>");
       var params = ''
       <% if (@selected_provider) %> params = '?npi=<%= @selected_provider.npi %>';<%end%>
       var url = "/measures/measure_patients/"+measure_id;
@@ -76,6 +79,7 @@
       $("#measurementPeriodEndDate").val(new Date().format("mm/dd/yyyy"));
       $("#btnSaveNewMeasure").click(popHealth.saveNewMeasure);
       $("#btnReturnToDash").click(popHealth.returnToDash);
+      $("#btnExportExcel").click(function() {window.location = '<%= patient_list_url(params[:id], params[:sub_id], :format => :xml) + (@selected_provider ? "?npi=#{@selected_provider.npi}":'') %>'})
 
       $('input[name=patientGroup]').change(function() {
         //$('#patientTableContainer').patient_table.displayNumerator();

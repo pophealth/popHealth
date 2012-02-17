@@ -13,13 +13,17 @@ defaults: &defaults
   edit_account_enabled: true
   # should new accounts be creatable, and should a user be able to edit their account
   allow_user_update: true
+  # add patient management link
+  patient_management_enabled: true
   # title of the practice
   practice_name: 'General Hospital'
   disable_provider_filters: false
+  
 development:
   <<: *defaults
   idle_timeout_enabled: false
   default_user_staff_role: true
+  patient_management_enabled: true
   
 test:
   <<: *defaults

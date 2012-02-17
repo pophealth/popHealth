@@ -2,8 +2,73 @@
   Welcome, <%= current_user.first_name.to_s %>
   <span class="sep">|</span> <a href="http://projectpophealth.org/faq.html">help</a>
   <% if APP_CONFIG['edit_account_enabled']%><span class="sep">|</span> <%= link_to 'account', edit_user_registration_path(current_user) %> <% end %>
-  <% if current_user.admin? %> <span class="sep">|</span> <%= link_to 'admin', admin_users_path %> <% end %>
-  <% if current_user.staff_role? || current_user.admin? %> <span class="sep">|</span> <%= link_to "providers", providers_path %> <% end %>
-  <% if current_user.admin? %><span class="sep">|</span> <%= link_to 'logs', logs_index_path %> <% end %>
+  <% if current_user.staff_role? || current_user.admin? %> <span class="sep">|</span> <a id="manage_link" href="javascript:void(0)">manage</a> <% end %>
   <% if APP_CONFIG['logout_enabled']%><span class="sep">|</span> <%= link_to 'logout', destroy_user_session_path, 'class' => 'log'%> <% end %>
+  
+  <ul id="manage-menu" class="ui-menu ui-widget ui-widget-content ui-corner-all dialog-menu" role="listbox" aria-activedescendant="ui-active-menuitem">
+    <% if current_user.staff_role? || current_user.admin? %>
+    <li class="ui-menu-item" role="menuitem" data-type="providers">
+      <a class="ui-corner-all" tabindex="-1" href="<%=providers_path%>">Providers</a>
+    </li>
+    <% end %>
+    <% if current_user.admin? %>
+      <li class="ui-menu-item" role="menuitem" data-type="users">
+        <a class="ui-corner-all" tabindex="-1" href="<%=admin_users_path%>">Users</a>
+      </li>
+      
+      <% if (APP_CONFIG['patient_management_enabled']) %>
+      <li class="ui-menu-item" role="menuitem" data-type="patients">
+        <a class="ui-corner-all" tabindex="-1" href="<%=admin_patients_path%>">Patients</a>
+      </li>
+      <% end %>
+
+      <li class="ui-menu-item" role="menuitem" data-type="logs">
+        <a class="ui-corner-all" tabindex="-1" href="<%= logs_index_path%>">Logs</a>
+      </li>
+    <% end %>
+    
+  </ul>
+  
+  <script type="text/javascript">
+    var popHealth = popHealth || {};
+  
+    $(document).ready(function() {
+      $('#manage_link').hover(popHealth.manageMenuIn, popHealth.manageMenuOut)
+      $('#manage_link').mousemove(popHealth.manageMenuIn)
+      $('.dialog-menu li a').hover(function() { $(this).addClass('ui-state-hover') } , function() { $(this).removeClass('ui-state-hover')} )
+		});
+		
+    popHealth.manageMenuOut = function(data) {
+    }
+    popHealth.manageMenuIn = function(data) {
+      position = $(this).offset()
+      dialog = $( "#manage-menu" ).dialog({ position: [position.left - 2, (position.top + $(this).height() - $(window).scrollTop())], resizable: false, dialogClass: 'dialog-menuwindow', minWidth: false, minHeight: false, width: 100 }).css('padding', '2px');
+      dialog.hover(popHealth.manageDialogHoverIn, popHealth.manageDialogHoverOut )
+      $(this).hover(function() {}, popHealth.manageMenuHoverOut)
+    }
+    popHealth.manageMenuHasMouse=false;
+    popHealth.manageDialogHoverIn = function() {
+      popHealth.manageMenuHasMouse=true
+    }
+    popHealth.manageDialogHoverOut = function() {
+      popHealth.manageMenuHasMouse=false;
+      popHealth.closeDialog();
+    }
+    popHealth.closeDialog = function() {
+      if (!popHealth.manageMenuHasMouse) {
+        dialog.dialog('close'); 
+        popHealth.manageMenuHasMouse=false;
+      } else {
+        setTimeout(popHealth.closeDialog, 600);
+      }
+    }
+    
+    popHealth.manageMenuHoverOut = function() {
+      setTimeout(popHealth.closeDialog, 600) 
+    }
+		
+    
+  </script>
+  
 </div>
+
