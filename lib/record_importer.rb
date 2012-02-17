@@ -64,6 +64,8 @@ class RecordImporter
     else
       return {status: 'error', message: 'Unknown XML Format', status_code: 400}
     end
+    # shady... but I can't find why I'm getting a serialization issue, and I need to build for himss
+    patient_data = Record.new(JSON.parse(patient_data.to_json))
 
     patient_data.measures = QME::Importer::MeasurePropertiesGenerator.instance.generate_properties(patient_data)
     record = Record.update_or_create(patient_data)

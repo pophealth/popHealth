@@ -7,13 +7,6 @@ class Record
   
   field :measures, type: Hash
 
-  [:allergies, :care_goals, :conditions, :encounters, :immunizations, :medical_equipment,
-   :medications, :procedures, :results, :social_history, :vital_signs].each do |section|
-    embeds_many section, as: :entry_list, class_name: "Entry"
-  end
-  
-  
-  
   scope :alphabetical, order_by([:last, :asc], [:first, :asc])
   scope :with_provider, where(:provider_performances.ne => nil).or(:provider_proformances.ne => [])
   scope :without_provider, any_of({provider_performances: nil}, {provider_performances: []})
@@ -35,13 +28,5 @@ class Record
     Language.ordered.by_code(lang_codes).map(&:name)
   end
   
-  private 
-  
-  def self.provider_queries(provider_id, effective_date)
-   {'$or' => [provider_query(provider_id, effective_date,effective_date), provider_query(provider_id, nil,effective_date), provider_query(provider_id, effective_date,nil)]}
-  end
-  def self.provider_query(provider_id, start_before, end_after)
-    {'provider_performances' => {'$elemMatch' => {'provider_id' => provider_id, 'start_date'=> {'$lt'=>start_before}, 'end_date'=> {'$gt'=>end_after} } }}
-  end
   
 end

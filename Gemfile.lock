@@ -1,9 +1,9 @@
 GIT
   remote: http://github.com/pophealth/quality-measure-engine.git
-  revision: fbc893dfa74c2ce0dd220885ecad8bad3b2115d4
+  revision: 61b053aa33d3e5ea6f543ec0ef3f39ebb51f8642
   branch: master
   specs:
-    quality-measure-engine (1.1.0)
+    quality-measure-engine (1.1.1)
       mongo (~> 1.3)
       nokogiri (~> 1.4.4)
       resque (~> 1.15.0)
@@ -12,10 +12,10 @@ GIT
 
 GIT
   remote: https://github.com/projectcypress/health-data-standards.git
-  revision: 4074157d5a45bd16a0cd7f7fd7cd53ae1e8d1b12
+  revision: 58684834b893cab96ce342995d8fd81207ff36b3
   branch: master
   specs:
-    health-data-standards (0.7.0)
+    health-data-standards (0.7.1)
       builder (~> 3.0.0)
       erubis (~> 2.6)
       mongoid (~> 2.4.2)
