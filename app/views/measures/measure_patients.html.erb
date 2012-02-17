@@ -49,7 +49,13 @@ popHealth.initExclusions = function() {
     modal: true,
     buttons: {
       Update: function() {
+          $( this ).dialog( "close" );
+          
           $('#patientTableContainer').html("<div style='padding: 150px;'><img src='/assets/loading_bar.gif'/></div>");
+          $('.count').html('--');
+          $('.numeratorValue').html('--');
+          $('.denominatorValue').html('--');
+          $('#measurePopulationPercentage').html('--%');
           $.ajaxSetup({async:false});
           $.post(
             $(this).data("link"),
@@ -58,8 +64,6 @@ popHealth.initExclusions = function() {
               popHealth.poll();
             }
           );
-
-          $( this ).dialog( "close" );
         },
       Cancel: function() {
         $( this ).dialog( "close" );
@@ -108,15 +112,16 @@ $(document).ready(function() {
          <td><%= dob(patient['birthdate']) || 'UNK' %></td>
          <td><%= patient["gender"] || "UNK" %></td>
 
-         <td class="button">
-           <%= patient['manual_exclusion'] ? "Excluded [#{patient['manual_exclusion_rationale']}]" : 'Included' %>
-
-           <button class="exclude" 
-               data-link="<%= url_for(controller: :patients, action: :toggle_excluded, id: patient['patient_id'], measure_id: patient['measure_id'], sub_id: patient['sub_id']) %>"
-               data-title="<%= patient['manual_exclusion'] ? 'Include Patient' : 'Exclude Patient' %>">
-             Change
-           </button>
-
+         <td>
+           <% if (@type == 'exclusions' and not patient['manual_exclusion']) %>
+             <div style="width: 10px; height: 30px;">&nbsp</div>
+           <% else %>
+             <button class="exclude ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
+                 data-link="<%= url_for(controller: :patients, action: :toggle_excluded, id: patient['patient_id'], measure_id: patient['measure_id'], sub_id: patient['sub_id']) %>"
+                 data-title="<%= patient['manual_exclusion'] ? 'Include Patient' : 'Exclude Patient' %>">
+               <%= patient['manual_exclusion'] ? 'Include' : 'Exclude' %>
+             </button>
+           <% end %>
          </td>
          <% if (@type == 'exclusions') %>
            <td>

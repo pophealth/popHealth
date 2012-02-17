@@ -47,11 +47,11 @@
               </dl>
               <dl>
                 <dt>race</dt>
-                <dd><%= Race.from_code(@patient.race['code']).first.name %></dd>
+                <dd><%= Race.from_code(@patient.race['code']).first.name if @patient.race %></dd>
               </dl>
               <dl>
                 <dt>ethnicity</dt>
-                <dd><%= Ethnicity.from_code(@patient.ethnicity['code']).first.name %></dd>
+                <dd><%= Ethnicity.from_code(@patient.ethnicity['code']).first.name if @patient.ethnicity %></dd>
               </dl>
               <dl>
                 <dt>languages</dt>
