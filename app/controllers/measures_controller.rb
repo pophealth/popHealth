@@ -370,7 +370,7 @@ class MeasuresController < ApplicationController
     else
       
       if can?(:read, :providers)
-        @providers = Provider.alphabetical.page(@page).per(20)
+        @providers = Provider.page(@page).per(20).alphabetical
         if APP_CONFIG['disable_provider_filters']
           @teams = Team.alphabetical
           @page = params[:page]

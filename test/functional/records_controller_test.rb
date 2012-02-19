@@ -9,7 +9,7 @@ class RecordsControllerTest < ActionController::TestCase
     @user = Factory(:admin)
     @body = File.new("test/fixtures/patient_provider_fragment.xml").read
     @body2 = File.new("test/fixtures/patient_sample.xml").read
-    
+    @ccr_body = File.new("test/fixtures/sample_ccr.xml").read
     sign_in @user
     
   end
@@ -19,16 +19,29 @@ class RecordsControllerTest < ActionController::TestCase
     assert_response(400)
   end
   
-  test "unauthenticated create" do
-    sign_out @user
+  # test "unauthenticated create" do
+  #   sign_out @user
+  #   
+  #   assert_throws(:warden) do
+  #     raw_post(:create, @body)
+  #   end
+  #   
+  #   binding.pry
+  # 
+  # end
+  
+  test "create record ccr with providers" do
+    raw_post(:create, @ccr_body)
+    assert_response(201)
+    assert_not_nil assigns(:record)
     
-    assert_throws(:warden) do
-      raw_post(:create, @body)
-    end
-
+    created_record = Record.find(:first)
+    
+    assert_not_nil created_record
+    assert_equal 1, Provider.count
   end
   
-  test "create record with providers" do
+  test "create record c32 with providers" do
     raw_post(:create, @body)
     assert_response(201)
     assert_not_nil assigns(:record)

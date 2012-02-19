@@ -49,24 +49,23 @@ class RecordImporter
   
   def self.import(xml_data, provider_map = {})
     doc = Nokogiri::XML(xml_data)
-    doc.root.add_namespace_definition('cda', 'urn:hl7-org:v3')
+    
     providers = []
     root_element_name = doc.root.name
-
+    
     if root_element_name == 'ClinicalDocument'
+      doc.root.add_namespace_definition('cda', 'urn:hl7-org:v3')
       patient_data = HealthDataStandards::Import::C32::PatientImporter.instance.parse_c32(doc)
-      providers = QME::Importer::ProviderImporter.instance.extract_providers(doc)
+      providers = HealthDataStandards::Import::C32::ProviderImporter.instance.extract_providers(doc)
     elsif root_element_name == 'ContinuityOfCareRecord'
-      if RUBY_PLATFORM =~ /java/
-        ccr_importer = CCRImporter.instance
-        patient_raw_json = ccr_importer.create_patient(xml_file)
-        patient_data = JSON.parse(patient_raw_json)
-      else
-        return {status: 'error', message: 'CCR Support is currently disabled', status_code: 500}
-      end
+      doc.root.add_namespace_definition('ccr', 'urn:astm-org:CCR')
+      patient_data = HealthDataStandards::Import::CCR::PatientImporter.instance.parse_ccr(doc)
+      providers = HealthDataStandards::Import::CCR::ProviderImporter.instance.extract_providers(doc)
     else
       return {status: 'error', message: 'Unknown XML Format', status_code: 400}
     end
+    # shady... but I can't find why I'm getting a serialization issue, and I need to build for himss
+    patient_data = Record.new(JSON.parse(patient_data.to_json))
 
     patient_data.measures = QME::Importer::MeasurePropertiesGenerator.instance.generate_properties(patient_data)
     record = Record.update_or_create(patient_data)
