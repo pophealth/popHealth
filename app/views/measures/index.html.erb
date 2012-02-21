@@ -127,8 +127,6 @@
 		<% end %>
 	<% end %>
 
-   <% if @selected_provider && @selected_provider.npi == APP_CONFIG['synthetic_npi'] %>
-
    <p class="note">
       Demographics
     </p>
@@ -189,12 +187,6 @@
       </ul>
     </div>
     
-    <% else %>
-    <p class="note">
-        Filters Disabled
-    </p>
-    
-    <% end %>
    </div><!-- end #providerReports --> 
     <div id="dashboardPeriod">
       <div class="measureDetailTable">

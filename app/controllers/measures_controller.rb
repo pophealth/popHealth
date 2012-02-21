@@ -53,7 +53,11 @@ class MeasuresController < ApplicationController
           if (params['compare_report'])
             compare_report = QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters, 'test_id'=>params['compare_report'].to_i)
           end
-          @patient_count= (report.calculated?) ? report.result['considered'] : 0 
+          if @selected_provider
+            @patient_count =  get_patient_count
+          else
+            @patient_count = 263882
+          end
           {
             report: report,
             compare_report: compare_report,
@@ -300,7 +304,7 @@ class MeasuresController < ApplicationController
     @patient_count = 263882
     if (@selected_provider) 
       @patient_count=provider_patient_counts[@selected_provider.npi]
-      @patient_count=@patient_count = @selected_provider.records(@effective_date).count if @patient_count.nil?
+      @patient_count=@selected_provider.records(@effective_date).count if @patient_count.nil?
     end
   end
   

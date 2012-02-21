@@ -106,7 +106,12 @@ $(document).ready(function() {
      <% @page_results.each do |patient_container| -%>
        <tr class="antiNumerator">
          <% patient = patient_container['value'] -%>
-         <td><%= link_to (patient['medical_record_id'] || 'UNK'), url_for(controller: :patients, action: :show, id: patient_container['value']['patient_id']) %></td>         <td><%= patient['last'] %></td>
+         <% if @selected_provider && @selected_provider.npi == APP_CONFIG['synthetic_npi'] %>
+           <td><%= link_to (patient['medical_record_id'] || 'UNK'), url_for(controller: :patients, action: :show, id: patient_container['value']['patient_id']) %></td>
+         <% else %>
+           <td><%= (patient['medical_record_id'] || 'UNK') %></td>
+         <% end %>
+         <td><%= patient['last'] %></td>
          <td><%= patient['first'] %></td>
          <td><%= age_from_time(patient['birthdate']) || 'UNK' %></td>
          <td><%= dob(patient['birthdate']) || 'UNK' %></td>
