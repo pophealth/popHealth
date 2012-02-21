@@ -19,7 +19,7 @@ defaults: &defaults
   practice_name: 'Beth Israel Deaconess Medical Center'
   disable_provider_filters: false
   synthetic_npi: '0123456789'
-  
+
 development:
   <<: *defaults
   idle_timeout_enabled: false
