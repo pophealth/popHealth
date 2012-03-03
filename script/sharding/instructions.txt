@@ -1,0 +1,73 @@
+############################
+### Shard Servers
+############################
+
+# Add/edit mongodb1, mongodb2 conf files
+# on a standard installation nothing should need to change.
+# simply 
+#   copy ./etc/mongodb#.conf to /etc
+#   copy ./etc/init/mongodb#.conf to /etc/init
+#   remove existing mongo conf files
+sudo start mongodb1
+sudo start mongodb2
+
+############################
+### Config Server
+############################
+
+Add/edit mongoconfig/mongos conf files
+# Set mongoconfig hostname in init/mongos.conf
+#   copy ./etc/mongoconfig.conf to /etc
+#   copy ./etc/init/mongos.conf to /etc/init
+#   copy ./etc/init/mongoconfig.conf to /etc/init
+#   remove existing mongo conf files
+
+sudo start mongoconfig
+sudo start mongos
+
+############################
+### Cluster Setup
+############################
+
+# on the config server open mongo console
+
+mongo
+
+# swtich to the admin db
+use admin
+
+# add the shards (replace $HOST and $PORT for each shard server)
+db.runCommand({addshard: $HOST:$PORT})
+
+# verify shards are set up properly
+use config
+# check that all shards are listed
+db.shards.find({}) 
+
+# swtich to pophealth production
+# add index on medical_record_number since that's what we're going to shard on
+use pophealth-production
+db.records.ensureIndex({medical_record_number:1})
+db.patient_cache.ensureIndex({'value.medical_record_id':1})
+
+# switch back to admin db
+# enable sharding on the database, records collection, and patient_cache collection
+use admin
+db.runCommand( { enablesharding : "pophealth-production" } )
+db.runCommand({shardcollection: "pophealth-production.records", key: {medical_record_number: 1}})
+db.runCommand({shardcollection: "pophealth-production.patient_cache", key: {"value.medical_record_id": 1}})
+
+############################
+### Load measures into every shared
+############################
+
+# on the application server cd to measures
+# make sure config/mongoid.yml is using correct database
+# set db_name to correct database
+
+export DB_NAME=pophealth-production
+# for each mongodb instance
+  export TEST_DB_HOST=((mongo host))
+  export TEST_DB_PORT=((mongo port))
+  bundle exec rake mongo:reload_bundle
+
