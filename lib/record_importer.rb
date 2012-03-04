@@ -56,11 +56,19 @@ class RecordImporter
     if root_element_name == 'ClinicalDocument'
       doc.root.add_namespace_definition('cda', 'urn:hl7-org:v3')
       patient_data = HealthDataStandards::Import::C32::PatientImporter.instance.parse_c32(doc)
-      providers = HealthDataStandards::Import::C32::ProviderImporter.instance.extract_providers(doc)
+      begin
+        providers = HealthDataStandards::Import::C32::ProviderImporter.instance.extract_providers(doc)
+      rescue Exception => e
+        STDERR.puts "error extracting providers"
+      end
     elsif root_element_name == 'ContinuityOfCareRecord'
       doc.root.add_namespace_definition('ccr', 'urn:astm-org:CCR')
       patient_data = HealthDataStandards::Import::CCR::PatientImporter.instance.parse_ccr(doc)
-      providers = HealthDataStandards::Import::CCR::ProviderImporter.instance.extract_providers(doc)
+      begin
+        providers = HealthDataStandards::Import::CCR::ProviderImporter.instance.extract_providers(doc)
+      rescue Exception => e
+        STDERR.puts "error extracting providers"
+      end
     else
       return {status: 'error', message: 'Unknown XML Format', status_code: 400}
     end
