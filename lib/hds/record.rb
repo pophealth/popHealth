@@ -24,7 +24,7 @@ class Record
   end
   
   def language_names
-    lang_codes = languages.map { |l| l.gsub(/\-[A-Z]*$/, "") }
+    lang_codes = (languages.nil?) ? [] : languages.map { |l| l.gsub(/\-[A-Z]*$/, "") }
     Language.ordered.by_code(lang_codes).map(&:name)
   end
   
