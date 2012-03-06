@@ -51,7 +51,9 @@ end
 group :production do
   # Is there an easy way to say "all platforms except :mswin, :mingw" without
   # explicitly listing all other platforms?
-  gem 'therubyracer', :platforms => [:ruby, :jruby]
+  # gem 'therubyracer', :platforms => [:ruby, :jruby]
+  # @squarism - yes but you probably won't like it.  Too bad no shorter way.
+  gem 'therubyracer', :platforms => Bundler::Dependency::PLATFORM_MAP.keys.reject{|p| p =~ /mswin|mingw/}
 end
 
 gem 'jquery-rails'
