@@ -7,7 +7,8 @@ gem 'rack' , '1.3.3'
 #gem 'quality-measure-engine', '1.1.1'
 gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'master'
 #gem 'health-data-standards', '0.7.1'
-gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'master'
+# gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'master'
+gem 'health-data-standards', path: "../../hData/health-data-standards"
 gem 'nokogiri'
 gem 'rubyzip'
 

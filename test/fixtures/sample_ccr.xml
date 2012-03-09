@@ -641,6 +641,10 @@
         <Gender>
           <Text>Female</Text>
         </Gender>
+        <IDs>
+          <ID>popHealth</ID>
+          <Type><Text>12345</Text></Type>
+        </IDs>
       </Person>
     </Actor>
     <Actor>

@@ -1,17 +1,6 @@
 class Provider
   include Mongoid::Document
   
-  field :title       , type: String
-  field :given_name  , type: String
-  field :family_name , type: String
-  field :npi         , type: String
-  field :tin         , type: String
-  field :specialty   , type: String
-  field :phone       , type: String
-  field :organization, type: String
-  
-  validates_uniqueness_of :npi, allow_blank: true
-  
   scope :alphabetical, order_by([:family_name, :asc], [:given_name, :asc])
   scope :with_npi, where(:npi.ne => nil).or(:npi.ne => "")
   scope :without_npi, any_of({npi: nil}, {npi: ""})
@@ -20,7 +9,7 @@ class Provider
   scope :all_except, ->(prov) { where(:_id.ne => prov.id) }
   scope :selected, ->(provider_ids) { any_in(:_id => provider_ids)}
   scope :selected_or_all, ->(provider_ids) { provider_ids.nil? || provider_ids.empty? ? Provider.all : Provider.selected(provider_ids) }
-  
+   
   belongs_to :team
   
   Specialties = {"100000000X" => "Behavioral Health and Social Service Providers",
