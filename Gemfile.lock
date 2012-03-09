@@ -1,7 +1,7 @@
 GIT
   remote: http://github.com/pophealth/quality-measure-engine.git
-  revision: a08eff6a56851446bda19d7c8d8ab439820f1f84
-  branch: master
+  revision: aee6088dc62627ed64185e77b5ffd0b5457b8dd1
+  branch: develop
   specs:
     quality-measure-engine (1.1.2)
       mongo (~> 1.3)
@@ -10,8 +10,10 @@ GIT
       resque-status (~> 0.2.3)
       rubyzip (~> 0.9.4)
 
-PATH
-  remote: ../../hData/health-data-standards
+GIT
+  remote: https://github.com/projectcypress/health-data-standards.git
+  revision: 2738c39b7172beff9b1105b0fe2ee2a7a96ee927
+  branch: develop
   specs:
     health-data-standards (0.8.0)
       builder (~> 3.0.0)
@@ -80,7 +82,7 @@ GEM
     erubis (2.7.0)
     execjs (1.3.0)
       multi_json (~> 1.0)
-    factory_girl (2.6.1)
+    factory_girl (2.6.3)
       activesupport (>= 2.3.9)
     foreman (0.40.0)
       term-ansicolor (~> 1.0.7)
