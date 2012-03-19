@@ -63,7 +63,8 @@ class RecordImporter
       end
     elsif root_element_name == 'ContinuityOfCareRecord'
       doc.root.add_namespace_definition('ccr', 'urn:astm-org:CCR')
-      patient_data = HealthDataStandards::Import::CCR::PatientImporter.instance.parse_ccr(doc)
+      patient_id_xpath = "./ccr:IDs/ccr:ID[../ccr:Type/ccr:Text=\"#{APP_CONFIG['ccr_system_name']}\"]"
+      patient_data = HealthDataStandards::Import::CCR::PatientImporter.instance.parse_ccr(doc, patient_id_xpath)
       begin
         providers = HealthDataStandards::Import::CCR::ProviderImporter.instance.extract_providers(doc)
       rescue Exception => e
@@ -75,23 +76,8 @@ class RecordImporter
 
     patient_data.measures = QME::Importer::MeasurePropertiesGenerator.instance.generate_properties(patient_data)
     record = Record.update_or_create(patient_data)
-
-    providers.each do |pv|
-      performance = ProviderPerformance.new(start_date: pv.delete(:start), end_date: pv.delete(:end), record: record)
-      # check to see if we have passed in the provider
-      if (provider_map[pv[:npi]])
-        provider = provider_map[pv[:npi]]
-      else
-        provider = Provider.merge_or_build(pv)
-        provider.save
-      end
-      if (provider)
-        performance.provider = provider
-        performance.save
-      else
-        STDERR.puts "loading provider information failed"
-      end
-    end
+    record.provider_performances = providers
+    record.save
     
     {status: 'success', message: 'patient imported', status_code: 201, record: record}
     

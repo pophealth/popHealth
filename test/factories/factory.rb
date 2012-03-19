@@ -46,8 +46,12 @@ Factory.define :provider do |pv|
   pv.sequence(:phone) { |n| 15555555555 + n }
   pv.sequence(:tin) { |n| 123456789 + n  }
   pv.sequence(:npi) { |n| [9238429384, existing_max('providers', 'npi').to_i].max + n }
-  pv.organization "General Hospital"
+  pv.organization { FactoryGirl.build(:organization)}
   pv.specialty "200000000X"
+end
+
+Factory.define(:organization) do |org|
+  org.name "General Hospital"
 end
 
 Factory.define :record do |r|

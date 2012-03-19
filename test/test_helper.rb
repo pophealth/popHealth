@@ -12,10 +12,10 @@ class ActiveSupport::TestCase
 
 
   def dump_database
-    User.all.each {|x| x.destroy}
-    Provider.all.each { |pr| pr.destroy }
-    Record.all.each { |r| r.destroy }
-    Team.all.each { |t| t.destroy }
+    User.delete_all
+    Provider.delete_all
+    Record.delete_all
+    Team.delete_all
     db = Mongoid::Config.master
     db['measures'].remove({})
     db['selected_measures'].remove({})

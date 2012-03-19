@@ -38,7 +38,7 @@ class RecordsControllerTest < ActionController::TestCase
     created_record = Record.find(:first)
     
     assert_not_nil created_record
-    assert_equal 1, Provider.count
+    assert_equal 1, created_record.providers.count
   end
   
   test "create record c32 with providers" do
@@ -50,7 +50,8 @@ class RecordsControllerTest < ActionController::TestCase
     
     # test creation
     assert_not_nil created_record
-    assert_equal 2, Provider.count
+    # binding.pry
+    assert_equal 2, Record.first.providers.count
     assert_equal 2, Record.with_provider.map {|record| record.provider_performances.count}.sum
     
     # test relationship

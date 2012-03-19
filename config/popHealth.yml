@@ -18,7 +18,7 @@ defaults: &defaults
   # title of the practice
   practice_name: 'General Hospital'
   disable_provider_filters: false
-  
+  ccr_system_name: popHealth
 development:
   <<: *defaults
   idle_timeout_enabled: false
