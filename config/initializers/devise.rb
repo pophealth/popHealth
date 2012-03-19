@@ -131,6 +131,11 @@ Devise.setup do |config|
   # change their passwords.
   config.reset_password_within = 2.hours
 
+  # Turn off apply_schema.  Not available in Devise 2.0
+  config.apply_schema=false
+  
+  config.authentication_keys=[:username]
+
   # ==> Configuration for :encryptable
   # Allow you to use another encryption algorithm besides bcrypt (default). You can use
   # :sha1, :sha512 or encryptors from others authentication tools as :clearance_sha1,

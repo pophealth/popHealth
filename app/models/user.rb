@@ -11,6 +11,35 @@ class User
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:username]
 
+
+   ## Database authenticatable
+   field :encrypted_password, :type => String, :null => false
+
+   ## Recoverable
+   field :reset_password_token,   :type => String
+   field :reset_password_sent_at, :type => Time
+
+   ## Rememberable
+   field :remember_created_at, :type => Time
+
+   ## Trackable
+   field :sign_in_count,      :type => Integer
+   field :current_sign_in_at, :type => Time
+   field :last_sign_in_at,    :type => Time
+   field :current_sign_in_ip, :type => String
+   field :last_sign_in_ip,    :type => String
+
+
+  :remember_created_at
+  :reset_password_token
+  :reset_password_sent_at
+  :sign_in_count
+  :current_sign_in_at
+  :last_sign_in_at
+  :current_sign_in_ip
+  :last_sign_in_ip
+  :effective_date
+
   field :first_name, type: String
   field :last_name, type: String
   field :username, type: String
