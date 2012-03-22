@@ -13,16 +13,16 @@
 			<td><%= record.medical_record_number %></td>
 			<td><%= record.last %></td>
 			<td><%= record.first %></td>
-			<% perfs = record.provider_performances.by_provider(@provider) %>
+			<% perfs = record.provider_performances.select{|pp| pp.provider_id == @provider.id} %>
 			<td>
-				<% perfs.each do |perf| %>
-					<%= text_field_tag "records[#{record.id}][start_date]", Time.at(perf.start_date).strftime("%m/%d/%y") if perf.start_date %>
-				<% end %>
-			</td>
-			<td>
-				<% perfs.each do |perf| %>
-					<%= text_field_tag "records[#{record.id}][end_date]", (perf.end_date ? Time.at(perf.end_date).strftime("%m/%d/%y") : nil) %>
-				<% end %>
+			<% perfs.each do |perf| %>
+				<%= text_field_tag "records[#{record.id}][start_date]", Time.at(perf.start_date).strftime("%m/%d/%y") if perf.start_date %>
+			<% end %>
+		</td>
+		<td>
+			<% perfs.each do |perf| %>
+				<%= text_field_tag "records[#{record.id}][end_date]", (perf.end_date ? Time.at(perf.end_date).strftime("%m/%d/%y") : nil) %>
+			<% end %>
 			</td>
 			<td>
 				<%= link_to "delete", provider_patient_path(@provider, record), :method => :delete, :confirm => "Are you sure you want to disassociate this patient from #{@provider.full_name}" %>
