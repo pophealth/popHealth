@@ -19,6 +19,9 @@ defaults: &defaults
   practice_name: 'General Hospital'
   disable_provider_filters: false
   ccr_system_name: popHealth
+  # force the system to allow HTTP connections
+  force_unsecure_communications: false
+
 development:
   <<: *defaults
   idle_timeout_enabled: false
@@ -28,6 +31,8 @@ development:
 test:
   <<: *defaults
   default_user_approved: false
+  # we do not want to force unsecure when testing
+  force_unsecure_communications: true
   
 production:
   <<: *defaults

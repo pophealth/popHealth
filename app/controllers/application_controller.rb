@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   include Breadcrumbs
   layout :layout_by_resource
   before_filter :set_effective_date
+  before_filter :check_ssl_used
   
   add_breadcrumb APP_CONFIG['practice_name'], :root_url
   
@@ -53,5 +54,11 @@ class ApplicationController < ActionController::Base
   
   def calc_start(date)
     3.months.ago(Time.at(date))
+  end
+  
+  def check_ssl_used
+    unless APP_CONFIG['force_unsecure_communications'] or request.ssl? 
+      redirect_to "#{root_url}no_ssl_warning.html", :alert => "You should be using ssl"
+    end
   end
 end
