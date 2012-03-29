@@ -43,7 +43,7 @@
       $('#patientTableContainer').html("<div style='padding: 150px;'><img src='/assets/loading_bar.gif'/></div>");
       var params = ''
       <% if (@selected_provider) %> params = '?npi=<%= @selected_provider.npi %>';<%end%>
-      var url = "/measures/measure_patients/"+measure_id;
+      var url = "<%= Rails.configuration.relative_url_root %>/measures/measure_patients/"+measure_id;
       if (sub_id) {
          url += "/"+sub_id
       }
