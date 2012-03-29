@@ -4,15 +4,13 @@ include Devise::TestHelpers
 class ProvidersControllerTest < ActionController::TestCase
 
   setup do
-
+  
     dump_database
-
-    @user = Factory(:user)
+    @user = Factory(:admin)
     @provider = Factory(:provider)
     @other_provider = Factory(:provider)
-
+    @selected_measure = @user.selected_measures.first
     collection_fixtures 'measures'
-
     sign_in @user
   end
 
@@ -24,15 +22,27 @@ class ProvidersControllerTest < ActionController::TestCase
 
   test "get show html" do
     get :show, id: @provider.id
-    assert_not_nil assigns[:providers]
     assert_not_nil assigns[:provider]
     assert_template :show
     assert_response :success
   end
+  
+  test "new" do
+    get :new, format: :js
+    assert_response :success
+  end
+  
+  test "create" do
+    
+    provider = Factory.build(:provider)
+    post :create, {provider: {npi: provider.npi, given_name: provider.given_name, family_name: provider.family_name}, format: :js}
+
+    assert_response :success
+    refute_nil Provider.first(conditions: {npi: provider.npi, given_name: provider.given_name, family_name: provider.family_name})
+  end
 
   test "get show js" do
     get :show, id: @provider.id, format: :js
-    assert_not_nil assigns[:providers]
     assert_not_nil assigns[:provider]
     assert_template :show
     assert_response :success
@@ -40,7 +50,6 @@ class ProvidersControllerTest < ActionController::TestCase
 
   test "edit provider" do
     get :edit, id: @provider.id, format: :js
-    assert_not_nil assigns[:providers]
     assert_response :success
     assert_template 'edit_profile'
   end
@@ -53,7 +62,6 @@ class ProvidersControllerTest < ActionController::TestCase
 
   test "get merge list" do
     get :merge_list, id: @provider.id
-    assert_not_nil assigns[:providers]
     assert_response :success
     assert_template 'merge_form'
   end

@@ -35,6 +35,17 @@
       </td>
     </tr>  
     <tr><td colspan="2">&nbsp;</td></tr>  
+    
+    <tr><td>patients loaded: </td>
+      <td>
+        <%= @provider_count%> patients 
+        <%= form_tag("/admin/remove_providers", :method => "delete") do %>
+          <%= submit_tag("Delete Providers") %>
+        <% end %>
+      </td>
+    </tr>  
+    <tr><td colspan="2">&nbsp;</td></tr>
+    
     <tr><td colspan="2">&nbsp;</td></tr>  
     
     <tr><td>Upload patient zip file: </td>

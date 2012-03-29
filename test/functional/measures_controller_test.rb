@@ -33,14 +33,33 @@ class MeasuresControllerTest < ActionController::TestCase
     assert_not_nil assigns(:core_alt_measures)
     assert_not_nil assigns(:alt_measures)
   end
+  
+  test "period" do
+    get :period, effective_date: "12/31/10", format: :js
+    assert_response :success
+  end
+  
+  test "measure report for practice" do
 
-  test "measure_report for provider" do
+    @controller.define_singleton_method(:extract_result) do |id, sub_id, effective_date, providers|
+      { :id => id, :sub_id => sub_id, :population => 5,
+        :denominator => 4, :numerator => 2,
+        :exclusions => 0
+      }
+    end
+
+    get :measure_report, :format => :xml, :type => "practice"
+    assert_response :success
+  end
+
+  test "measure report for provider" do
+      10.times { Factory(:provider)}
       @user.stubs(registry_name: 'registry')
       @user.stubs(registry_id: '1234')
       @user.stubs(npi: '456')
       @user.stubs(tin: '789')
       
-      @controller.define_singleton_method(:extract_result) do |id, sub_id, effective_date|
+      @controller.define_singleton_method(:extract_result) do |id, sub_id, effective_date, providers|
         { :id => id, :sub_id => sub_id, :population => 5,
           :denominator => 4, :numerator => 2,
           :exclusions => 0
@@ -56,17 +75,38 @@ class MeasuresControllerTest < ActionController::TestCase
       assert_equal @user.username, l.username
   end
   
-#  test "get providers json uncalculated" do
-#    provider_count = 5
-#    provider_count.times { Factory(:provider) }
-#    
-#    QME::QualityReport.any_instance.expects(:result).never
-#    QME::QualityReport.any_instance.stubs(:calculated?).returns(false).times(provider_count)
-#
-#    @providers = Provider.all
-#
-#    xhr :get, :providers, id: @selected_measure['id'], :format => :json, :provider => @providers.map(&:id)
-#  end
+  test "view measure page" do
+    QME::QualityReport.any_instance.stubs(:result).returns(@result)
+    get :show, id: @selected_measure['id'], format: :html
+    assert_not_nil assigns(:quality_report)
+    assert_not_nil assigns(:result)
+    assert_response :success
+  end
+  
+  test "get measure report" do
+    get :show, id: @selected_measure['id'], format: :json
+    assert_response :success
+  end
+  
+  test "provider pagination" do
+    provider_count = 5
+    provider_count.times { Factory(:provider) }
+    xhr :get, :providers, id: @selected_measure['id'], format: :js
+    assert_not_nil assigns(:providers)
+    assert_response :success
+  end
+  
+ test "get providers json uncalculated" do
+   provider_count = 5
+   provider_count.times { Factory(:provider) }
+   
+   QME::QualityReport.any_instance.expects(:result).never
+   QME::QualityReport.any_instance.stubs(:calculated?).returns(false).times(provider_count)
+
+   @providers = Provider.all
+
+   xhr :get, :providers, id: @selected_measure['id'], :format => :json, :provider => @providers.map(&:id)
+ end
   
   test "get providers calculated" do
     provider_count = 5
@@ -80,8 +120,14 @@ class MeasuresControllerTest < ActionController::TestCase
     xhr :get, :providers, id: @selected_measure['id'], :format => :json, :provider => @providers.map(&:id)
   end
   
-  def get_measure_report_and_test
-    
+  test "measure patients" do
+    get :measure_patients, id: @selected_measure['id']
+    assert_response :success
+  end
+  
+  test "patient list" do
+    5.times { Factory(:record) }
+    get :patient_list, id: @selected_measure['id'], format: :xml
   end
   
 end

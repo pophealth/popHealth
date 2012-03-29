@@ -241,7 +241,7 @@ class MeasuresController < ApplicationController
     
     selected_measures.each do |measure|
       subs_iterator(measure['subs']) do |sub_id|
-        report[:results] << extract_result(measure['id'], sub_id, @effective_date, (provider_report) ? [provider ? provider.id.to_s : nil] : nil)
+        report[:results] << extract_result(measure['id'], sub_id, @effective_date, ((provider_report) ? [provider ? provider.id.to_s : nil] : nil))
       end
     end
     report

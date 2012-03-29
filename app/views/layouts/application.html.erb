@@ -36,10 +36,15 @@
 
 	<% if @definition %>
 	<script type="text/javascript" charset="utf-8">
-		currentMeasure = "<%= @definition['id'] %>"
-		subMeasure = "<%= @definition['sub_id'] %>"
+		currentMeasure = "<%= @definition['id'] %>";
+		subMeasure = "<%= @definition['sub_id'] %>";
+		
 	</script>
 	<% end %>
+	
+	<script type="text/javascript" charset="utf-8">
+	  rootContext = "<%= Rails.configuration.action_controller.relative_url_root %>";
+	</script>
 </head>
 <body>
   
