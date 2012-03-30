@@ -84,6 +84,8 @@ class MeasuresControllerTest < ActionController::TestCase
   end
   
   test "get measure report" do
+    QME::QualityReport.any_instance.stubs(:result).returns(@result)
+    QME::QualityReport.any_instance.stubs(:calculated?).returns(true)
     get :show, id: @selected_measure['id'], format: :json
     assert_response :success
   end
@@ -102,7 +104,8 @@ class MeasuresControllerTest < ActionController::TestCase
    
    QME::QualityReport.any_instance.expects(:result).never
    QME::QualityReport.any_instance.stubs(:calculated?).returns(false).times(provider_count)
-
+   QME::QualityReport.any_instance.stubs(:calculate).returns("UUID")
+   QME::QualityReport.any_instance.stubs(:status).returns({status: 'working'})
    @providers = Provider.all
 
    xhr :get, :providers, id: @selected_measure['id'], :format => :json, :provider => @providers.map(&:id)

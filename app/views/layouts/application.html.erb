@@ -27,7 +27,7 @@
          sessionAlive: false,
          alive_url: '/',
          redirect_url: '<%= destroy_user_session_path %>',
-         logout_url: '/logout.html'
+         logout_url: '<%=Rails.configuration.relative_url_root%>/logout.html'
        });
     });
 
