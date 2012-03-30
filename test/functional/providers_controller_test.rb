@@ -4,7 +4,6 @@ include Devise::TestHelpers
 class ProvidersControllerTest < ActionController::TestCase
 
   setup do
-
     dump_database
 
     @user = Factory(:user)
@@ -69,6 +68,21 @@ class ProvidersControllerTest < ActionController::TestCase
 
     assert (not Provider.exists? :conditions => {id: @other_provider.id})
     assert_redirected_to provider_url(@provider.id)
+  end
+  
+  test "get index via API" do
+    get :index, {format: :json}
+    json = JSON.parse(response.body)
+    assert_response :success
+    assert_equal(true, json.first.respond_to?(:keys))
+  end
+
+  test "create provider via API" do
+    provider = Factory(:provider)
+    post :create, :data => provider.attributes, :format => :json
+    json = JSON.parse(response.body)
+    assert_response :success
+    assert_equal(true, json.respond_to?(:keys))
   end
 
 end

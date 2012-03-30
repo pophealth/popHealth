@@ -40,11 +40,16 @@ class ProvidersController < ApplicationController
   end
   
   def create
-    @provider = Provider.create(params[:provider])
-    @providers = Provider.alphabetical.page(params[:page]).per(20)
-    
     respond_to do |wants|
-      wants.js {}
+      wants.json {
+        @provider = Provider.create(params[:data])
+        render json: @provider
+      }
+      wants.js { }
+      wants.html { 
+        @provider = Provider.create(params[:provider])
+        @providers = Provider.alphabetical.page(params[:page]).per(20)
+      }
     end
   end
   
