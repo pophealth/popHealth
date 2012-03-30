@@ -47,6 +47,13 @@ group :test, :develop do
   gem 'cover_me'
   gem 'minitest'
   gem 'mocha', :require => false
+  gem 'spork', "~> 0.9.0"
+  gem 'rb-inotify' if RUBY_PLATFORM.downcase.include?("linux")
+  gem 'rb-fsevent', "~> 0.9.0" if RUBY_PLATFORM.downcase.include?("darwin")
+  gem 'guard', "~> 1.0.1"
+  gem 'guard-spork', "~> 0.5.2"
+  gem 'guard-minitest', "~> 0.5.0"
+  gem 'spork-testunit', "~> 0.0.8"
 end
 
 group :production do
