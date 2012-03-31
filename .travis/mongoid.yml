@@ -1,0 +1,22 @@
+# Mongoid Configuration for Travis CI
+# ===================================
+#
+
+defaults: &defaults
+  host: localhost
+  port: 27017
+  username: travis
+  password: travis
+
+development:
+  <<: *defaults
+  database: pophealth-development
+
+test:
+  <<: *defaults
+  database: pophealth-test
+
+production:
+  <<: *defaults
+  database: pophealth-production
+

@@ -1,0 +1,11 @@
+language: ruby
+rvm:
+  - 1.9.2
+script: ./.travis/execute.sh
+
+notifications:
+  email:
+    recipients:
+#      - pophealth-list@mitre.org
+      - andre.quina@gmail.com
+    on_failure: change
