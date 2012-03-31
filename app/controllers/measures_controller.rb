@@ -8,7 +8,7 @@ class MeasuresController < ApplicationController
   before_filter :set_up_environment
   after_filter :hash_document, :only => :measure_report
   
-  add_breadcrumb_dynamic([:selected_provider], only: %w{index show patients}) {|data| provider = data[:selected_provider]; {title: (provider ? provider.full_name : nil), url: "/?npi=#{(provider) ? provider.npi : nil}"}}
+  add_breadcrumb_dynamic([:selected_provider], only: %w{index show patients}) {|data| provider = data[:selected_provider]; {title: (provider ? provider.full_name : nil), url: "#{Rails.configuration.relative_url_root}/?npi=#{(provider) ? provider.npi : nil}"}}
   add_breadcrumb_dynamic([:definition], only: %w{providers}) do|data| 
     measure = data[:definition];
     if measure
