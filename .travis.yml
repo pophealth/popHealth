@@ -9,4 +9,8 @@ notifications:
       - healthcare-ci@googlegroups.com
     on_failure: change
 
-# test 1
+branches: 
+  only:
+    - master
+    - develop
+
