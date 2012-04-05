@@ -6,8 +6,7 @@ script: ./.travis/execute.sh
 notifications:
   email:
     recipients:
-#      - pophealth-list@mitre.org
-      - andre.quina@gmail.com
+      - healthcare-ci@googlegroups.com
     on_failure: change
 
 # test 1
