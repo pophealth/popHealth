@@ -1,7 +1,7 @@
 <% subs_iterator(measure['subs']) do |sub| %>
 	<tr style="<%=display_row(measure['id'], current_user.selected_measures)%>" data-measure="<%=measure['id']%>" data-measure-sub="<%= sub %>" class="measure">
 		<% if sub.nil? || sub == 'a' %>
-			<td class="name"><%= (can? :manage, :providers) ? link_to(raw("<span title='#{measure['description']}' class='vtip'>#{measure['name']}</span>"), "#{measure_path(measure['id'], sub)}/providers") : "#{measure['id']}: #{measure['name']}" %></td>
+			<td class="name"><%= (can? :manage, :providers) ? link_to(raw("<span title='#{measure['description']}' class='vtip'>#{measure['name']}</span>"), "#{measure_path(measure['id'], sub)}/providers") : raw("<span title='#{measure['description']}' class='vtip'>#{measure['id']}: #{measure['name']}</span>") %></td>
 		<% else %>
 			<td class="name" />
 		<% end %>

@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   # Overwriting the sign_out redirect path method
   def after_sign_out_path_for(resource_or_scope)
-    '/logout.html'
+    "#{Rails.configuration.relative_url_root}/logout.html"
   end
   
   def hash_document
