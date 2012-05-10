@@ -7,29 +7,6 @@ class PatientsController < ApplicationController
   after_filter :hash_document, :only => :list
   
   add_breadcrumb_dynamic([:patient], only: %w{show}) {|data| patient = data[:patient]; {title: "#{patient.last}, #{patient.first}", url: "/patients/show/#{patient.id}"}}
-  
-  def list
-    measure_id = params[:id] 
-    sub_id = params[:sub_id]
-    @records = mongo['patient_cache'].find({'value.measure_id' => measure_id, 'value.sub_id' => sub_id,
-                                            'value.effective_date' => @effective_date}).to_a
-    # log the medical_record_number of each of the patients that this user has viewed
-    @records.each do |patient_container|
-      authorize! :read, patient_container
-      Log.create(:username =>   current_user.username,
-                 :event =>      'patient record viewed',
-                 :medical_record_number => (patient_container['value'])['medical_record_id'])
-    end
-    respond_to do |format|
-      format.xml do
-        headers['Content-Disposition'] = 'attachment; filename="excel-export.xls"'
-        headers['Cache-Control'] = ''
-        render :content_type => "application/vnd.ms-excel"
-      end
-      
-      format.html {}
-    end
-  end
 
   def show
     @outliers = []

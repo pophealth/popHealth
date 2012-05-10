@@ -3,7 +3,7 @@ class @QualityReport
 		@sub_id or= null
 		@filters or= ActiveFilters.all()
 	url: -> 
-		base = "/measure/#{@measure}"
+		base = "#{rootContext}/measure/#{@measure}"
 		if @sub_id? then "#{base}/#{@sub_id}" else base
 	fetch: (extraParams, callback) ->
 		params = $.extend({}, @filters, extraParams)

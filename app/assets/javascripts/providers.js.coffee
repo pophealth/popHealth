@@ -18,7 +18,7 @@
 						Providers.isLoading()
 						$('#measurePopulationPercentage').text('failed')
 	updateProviders: (current_measure, sub_id) ->
-		$(".measureProviderPopulationPercentage").html("<div><div class='jobLabel'></div><img src='/assets/loading.gif'/></div>")
+		$(".measureProviderPopulationPercentage").html("<div><div class='jobLabel'></div><img src='#{rootContext}/assets/loading.gif'/></div>")
 		$(".numeratorValue").html('0')
 		$(".denominatorValue").html('0')
 		pr = new ProvidersReport(current_measure, sub_id)

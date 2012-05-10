@@ -12,7 +12,7 @@ popHealth.initSorting = function() {
      else {
        sort_ascending = !sort_ascending;
      }
-     $('#patientTableContainer').html("<div style='padding: 150px;'><img src='/assets/loading_bar.gif'/></div>");
+     $('#patientTableContainer').html("<div style='padding: 150px;'><img src='<%= Rails.configuration.relative_url_root %>/assets/loading_bar.gif'/></div>");
      popHealth.reloadTable();
   });
 }
@@ -51,7 +51,7 @@ popHealth.initExclusions = function() {
       Update: function() {
           $( this ).dialog( "close" );
           
-          $('#patientTableContainer').html("<div style='padding: 150px;'><img src='/assets/loading_bar.gif'/></div>");
+          $('#patientTableContainer').html("<div style='padding: 150px;'><img src='<%= Rails.configuration.relative_url_root%>/assets/loading_bar.gif'/></div>");
           $('.count').html('--');
           $('.numeratorValue').html('--');
           $('.denominatorValue').html('--');
