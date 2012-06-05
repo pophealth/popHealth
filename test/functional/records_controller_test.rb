@@ -41,6 +41,13 @@ class RecordsControllerTest < ActionController::TestCase
     assert_equal 1, created_record.providers.count
   end
   
+  test "create without admin privileges" do
+    sign_out @user
+    sign_in Factory(:user)
+    raw_post(:create, @body)
+    assert_response 403
+  end
+  
   test "create record c32 with providers" do
     raw_post(:create, @body)
     assert_response(201)

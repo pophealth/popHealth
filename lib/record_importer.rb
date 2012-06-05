@@ -55,7 +55,7 @@ class RecordImporter
     
     if root_element_name == 'ClinicalDocument'
       doc.root.add_namespace_definition('cda', 'urn:hl7-org:v3')
-      patient_data = HealthDataStandards::Import::C32::PatientImporter.instance.parse_c32(doc)
+      patient_data = HealthDataStandards::Import::C32::PatientImporter.send(:new, false).parse_c32(doc)
       begin
         providers = HealthDataStandards::Import::C32::ProviderImporter.instance.extract_providers(doc)
       rescue Exception => e

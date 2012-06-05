@@ -16,12 +16,12 @@
 		return $("tr.measure[data-measure='#{measure}']")
 	fadeIn: (measure) -> 
 		Dashboard.measureRows(measure).fadeTo("fast", 0.5)
-		$.post("/measure/#{measure}/select", {})
+		$.post("#{rootContext}/measure/#{measure}/select", {})
 	fadeOut: (measure) -> 
 		Dashboard.measureRows(measure).fadeOut("fast")
-		$.post("/measure/#{measure}/remove", {})
+		$.post("#{rootContext}/measure/#{measure}/remove", {})
 	calculateSelected: ->
-		$(".measureProviderPopulationPercentage").html("<div><div class='jobLabel'></div><img src='/assets/loading.gif'/></div>")
+		$(".measureProviderPopulationPercentage").html("<div><div class='jobLabel'></div><img src='#{rootContext}/assets/loading.gif'/></div>")
 		$(".numeratorValue").html('0')
 		$(".denominatorValue").html('0')
 		$("div.measureItemList ul li.checked").each (i, m) ->
@@ -79,24 +79,23 @@
     providerParams = ''
     if (providers['provider[]'])
       providerParams = "&#{$.param(providers)}"
-    window.location.href="/measures/measure_report.xml?type=#{type}#{providerParams}"
+    window.location.href="#{rootContext}/measures/measure_report.xml?type=#{type}#{providerParams}"
 	  
 	changeMeasurePeriod: ->
     effective_date = $('#measurementPeriodEndDate').val();
     period = {"effective_date": effective_date, "persist": true};
     npi = $(this).data('npi')
-    $.post("/measures/period", {"effective_date": effective_date, "persist": true}, (data) ->
+    $.post("#{rootContext}/measures/period", {"effective_date": effective_date, "persist": true}, (data) ->
       $('#measurementPeriodStartDate').text(data.start)
       npiParam = ''
       npiParam = "?npi=#{npi}" if (npi)
-      window.location.href="/measures"+npiParam
+      window.location.href="#{rootContext}/measures"+npiParam
     , 'json')
         
   updatePeriodEnd: (selected) -> 
     effective_date = $('#measurementPeriodEndDate').val();
-    $.post("/measures/period", {"effective_date": effective_date, "persist": false}, (data) ->
+    $.post("#{rootContext}/measures/period", {"effective_date": effective_date, "persist": false}, (data) ->
       $('#measurementPeriodStartDate').text(data.start)
-#      window.location.href="/measures"
     , 'json')
 
       
