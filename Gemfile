@@ -23,12 +23,12 @@ gem "mongo", "1.3.1"
 gem "bson", "1.3.1"
 gem 'bson_ext',"1.3.1",  :platforms => :mri
 gem "mongoid"
-gem 'devise'
+gem 'devise', "~>2.0.0"
 gem 'foreman'
 gem 'pry'
 gem 'formtastic'
 gem 'cancan'
-gem 'factory_girl'
+gem 'factory_girl', "2.6.3"
 
 # Windows doesn't have syslog, so need a gem to log to EventLog instead
 gem 'win32-eventlog', :platforms => [:mswin, :mingw]
