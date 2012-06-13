@@ -1,3 +1,4 @@
+@report ||= report ||= nil
 xml.instruct!
 xml.submission(
   "type" => "PQRI-REGISTRY", "option" => "PAYMENT", "version" => "3.0",
