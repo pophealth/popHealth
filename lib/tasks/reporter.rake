@@ -1,5 +1,6 @@
 require ::File.expand_path('../../../config/environment',  __FILE__)
 require 'pqri_reporter'
+require 'fileutils'
 
 namespace :pqri do
 
@@ -7,6 +8,7 @@ namespace :pqri do
   task :report, [:effective_date] do |t, args|
     
     raise "You must specify an effective date" unless args.effective_date
+    FileUtils.mkdir_p File.join(".","tmp")
     
     effective_date = args.effective_date.to_i
     period_start = 3.months.ago(Time.at(effective_date)).to_i
