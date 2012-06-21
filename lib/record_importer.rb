@@ -55,7 +55,16 @@ class RecordImporter
     
     if root_element_name == 'ClinicalDocument'
       doc.root.add_namespace_definition('cda', 'urn:hl7-org:v3')
-      patient_data = HealthDataStandards::Import::C32::PatientImporter.send(:new, false).parse_c32(doc)
+
+      if doc.at_xpath("/cda:ClinicalDocument/cda:templateId[@root='2.16.840.1.113883.3.88.11.32.1']")
+        patient_data = HealthDataStandards::Import::C32::PatientImporter.instance.parse_c32(doc)
+      elsif doc.at_xpath("/cda:ClinicalDocument/cda:templateId[@root='2.16.840.1.113883.10.20.22.1.2']")
+        patient_data = HealthDataStandards::Import::CCDA::PatientImporter.instance.parse_ccda(doc)
+      else
+        STDERR.puts("Unable to determinate document template/type of CDA document")
+        return {status: 'error', message: "Document templateId does not identify it as a C32 or CCDA", status_code: 400}
+      end
+      
       begin
         providers = HealthDataStandards::Import::C32::ProviderImporter.instance.extract_providers(doc)
       rescue Exception => e
