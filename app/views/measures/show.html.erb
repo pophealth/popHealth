@@ -31,18 +31,21 @@
                 (
                   subset_operator.type + ' ' +
                   (
-                    (this.high != null) && (this.low != null) ?
-                    (
-                      this.high.value === this.low.value && this.high.inclusive && this.low.inclusive ?
-                      "=" + this.low.value :
-                      ">" + (this.low.inclusive_text()) + " " + this.low.value + " and <" + (this.high.inclusive_text()) + " " + this.high.value
-                    ) :
-                    (
-                      (this.high != null) ?
-                      "<" + (this.high.inclusive_text()) + " " + this.high.value :
-                      (this.low != null) ? ">" + (this.low.inclusive_text()) + " " + this.low.value : ''
-                    )
-                  ) + ' of'
+                    subset_operator.value ? (
+                      (subset_operator.value.high != null) && (subset_operator.value.low != null) ?
+                      (
+                        subset_operator.value.high.value === subset_operator.value.low.value && subset_operator.value.high.inclusive && subset_operator.value.low.inclusive ?
+                        "=" + subset_operator.value.low.value :
+                        ">" + (subset_operator.value.low.inclusive ? '=' : '') + " " + subset_operator.value.low.value + " and <" + (subset_operator.value.high.inclusive ? '=' : '') + " " + subset_operator.value.high.value
+                      ) :
+                      (
+                        (subset_operator.value.high != null) ?
+                        "<" + (subset_operator.value.high.inclusive ? '=' : '') + " " + subset_operator.value.high.value :
+                        (subset_operator.value.low != null) ? ">" + (subset_operator.value.low.inclusive ? '=' : '') + " " + subset_operator.value.low.value : ''
+                      )
+                    ) : ''
+                  ) +
+                  ' of'
                 )
                 + "</span>"
                 );
