@@ -1,22 +1,22 @@
 @import "mixins";
 
 html {
-  height: 100%; 
-  
+  height: 100%;
+
   body {
   height: 100%;
   font-family: "Myriad Pro", "Frutiger", Helvetica, Arial;
   width: 100%;
-  width: 1000px; 
+  width: 1000px;
   line-height: 1.5;
   }
 }
 
 table {
   border-collapse: separate;
-  border-spacing: 0; 
+  border-spacing: 0;
   td, th {
-  vertical-align: baseline; 
+  vertical-align: baseline;
   }
 }
 
@@ -34,15 +34,15 @@ th {
 }
 
 blockquote:before, blockquote:after, q:before, q:after {
-  content: ""; 
+  content: "";
 }
 
 blockquote, q {
-  quotes: "" ""; 
+  quotes: "" "";
 }
 
 a img {
-  border: none; 
+  border: none;
 }
 
 
@@ -51,16 +51,16 @@ a img {
   background-color: $measurePopulationChartBar;
   width: 320px;
   height: 30px;
-  line-height: 1.5em; 
+  line-height: 1.5em;
 }
 
 .barDenominator, .barNumerator {
     height: 100%;
     float: left;
     color: $barValueText;
-    
+
     span {
-      margin: 3px 0 0 5px; 
+      margin: 3px 0 0 5px;
     }
 
    .barNumerator {
@@ -76,7 +76,7 @@ dt {
   display: table-cell;
   width: 160px;
   color: $dashboardLabel;
-  text-transform: uppercase; 
+  text-transform: uppercase;
 }
 
 
@@ -84,7 +84,7 @@ dt {
   font-size: 0.9em;
   height: 100%;
 }
-  
+
 table td {
     font-weight: normal;
     font-size: 1em;
@@ -92,18 +92,18 @@ table td {
 
 a, {
   color: black;
-  text-decoration: none; 
+  text-decoration: none;
   font-weight: 500;
 }
-  
+
 #header {
   background: #f4f4f4;
   background: -moz-linear-gradient(top, #f8f8f8, #f0f0f0);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f8f8f8), color-stop(100%, #f0f0f0));
   width: 1000px;
-  
+
   a:hover {
-    text-decoration: underline; 
+    text-decoration: underline;
   }
 
   #breadcrumbBox {
@@ -119,7 +119,7 @@ a, {
           color: $dashboardText;
         }
         .sep {
-          margin: 0 5px; 
+          margin: 0 5px;
         }
       }
     }
@@ -129,16 +129,16 @@ a, {
 #pageContent {
   height: 100%;
   display: table;
-  
+
   #providerReports {
     text-transform: capitalize;
-  } 
+  }
 }
 
 #breadcrumbBox {
   padding: 1px 0 2px;
   border-bottom: 1px solid $borderColor;
-  background: transparent url("../assets/popHealthMiniLogo.png") 0 10% no-repeat; 
+  background: transparent url("../assets/popHealthMiniLogo.png") 0 10% no-repeat;
 }
 
 #logOut {
@@ -149,15 +149,15 @@ a, {
   .sep {
     margin: 0 7px 0 5px;
     color: #cccccc;
-    text-align: center; 
+    text-align: center;
   }
   a {
-    color: $dashboardText; 
+    color: $dashboardText;
   }
   a:hover {
     text-decoration: none;
-    color: $linkhover; 
-  } 
+    color: $linkhover;
+  }
 }
 
 
@@ -166,16 +166,16 @@ a, {
   color: $measureTitleText;
   h1 {
     font-size: 1.5em;
-    margin: 5px 0 0 0; 
+    margin: 5px 0 0 0;
   }
   h2 {
     font-size: 1em;
     margin-top: 20px;
     span.subconditionsPhrase {
       font-weight: bold;
-      font-style: italic; 
-    } 
-  } 
+      font-style: italic;
+    }
+  }
 }
 
 #measureCtrl {
@@ -184,7 +184,7 @@ a, {
   #mcp {
     font-size: 1.5em;
     line-height: 2em;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
   }
   input {
     background-color: #dddddd;
@@ -193,8 +193,8 @@ a, {
     margin-right: 10px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    border-radius: 5px; 
-  } 
+    border-radius: 5px;
+  }
 }
 
 
@@ -207,11 +207,11 @@ a, {
     border: 1px solid $borderColor;
     color: #666666;
     font-size: 0.9em;
-    background: transparent url("../assets/icnMiniCalendar.png") 98% 50% no-repeat; 
+    background: transparent url("../assets/icnMiniCalendar.png") 98% 50% no-repeat;
   }
   span {
-    margin: 10px; 
-  } 
+    margin: 10px;
+  }
 }
 
 #measureEditContainer {
@@ -225,17 +225,22 @@ a, {
     text-align: center;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
-    border-radius: 10px; 
+    border-radius: 10px;
   }
   span.and {
     display: block;
     width: 3em;
-    background-color: $eligibilityParamGroup; 
+    background-color: $eligibilityParamGroup;
   }
   span.or {
     display: block;
     width: 2em;
-    background-color: #dddddd; 
+    background-color: #dddddd;
+  }
+  span.not {
+    display: block;
+    background-color: red;
+    width: 3.3em;
   }
   .paramGroup {
     margin: 10px 0 10px 0px;
@@ -243,22 +248,22 @@ a, {
     -moz-border-radius: $radius;
     -webkit-border-radius: $radius;
     padding: 2px;
-    display: table; 
+    display: table;
   }
   .paramGroup.population {
     background-color: #cccccc;
     .paramGroup {
       background-color: #cccccc;
       .paramGroup {
-        background-color: #cccccc; 
-      } 
+        background-color: #cccccc;
+      }
     }
     .and {
-      background-color: #dddddd; 
+      background-color: #dddddd;
     }
   }
   .paramGroupToggle {
-    margin: 0 0 0 20px; 
+    margin: 0 0 0 20px;
   }
   .paramItem {
     background-color: white;
@@ -274,7 +279,7 @@ a, {
       margin-left: 5px;
       background-color: $barValueBkg;
       width: 100px;
-      display: inline-block; 
+      display: inline-block;
     }
     .paramBarVal {
       background-color: $barValueColor;
@@ -284,20 +289,20 @@ a, {
       font-size: 0.95em;
       position: relative;
       span {
-        margin-left: 5px; 
+        margin-left: 5px;
       }
       span.short {
         position: relative;
         right: -100%;
-        color: black; 
+        color: black;
       }
     }
     label {
       color: black;
       font-weight: bold;
-      padding-right: 4px; 
+      padding-right: 4px;
     }
-  } 
+  }
 }
 
 .exclusionTab {
@@ -306,7 +311,7 @@ a, {
   width: 120px;
   padding: 5px 20px 1px 5px;
   color: #646464;
-  text-transform: uppercase; 
+  text-transform: uppercase;
 }
 
 #eligibilityMeasures {
@@ -323,8 +328,8 @@ a, {
     border-radius: 20px;
     background-color: $eligibleHdr;
     em {
-      font-style: italic; 
-    } 
+      font-style: italic;
+    }
   }
   .paramGroup {
     background-color: $eligibilityParamGroup;
@@ -334,10 +339,10 @@ a, {
       width: auto;
       .paramGroup {
         margin-left: 10px;
-        background-color: #37696e; 
-      } 
-    } 
-  } 
+        background-color: #37696e;
+      }
+    }
+  }
 }
 
 #outcomeMeasures {
@@ -441,15 +446,15 @@ a, {
   vertical-align: top;
   padding: 0 5px 0 15px;
   border-right: 1px solid $borderColor;
- 
+
   div.groupList {
     padding-left: 0;
     margin-top: $top_heading-padding;
-    
+
     ul {
       li{
         label{
-          background: url("../assets/liClosed.png") 0 35% no-repeat;  
+          background: url("../assets/liClosed.png") 0 35% no-repeat;
           font-size: 1.1em;
 
           .open {
@@ -481,7 +486,7 @@ a, {
   h3.dashboardLabel {
     color: $dashboardLabel;
     padding: 10px 0 0px 10px;
-    font-size: 1em; 
+    font-size: 1em;
     }
   h3.numberPatients {
     padding: 0 0 20px 10px;
@@ -513,11 +518,11 @@ a, {
 		    color: black;
 		    line-height: 1.2;
 		    font-size: 17.2833px;
-		    
+
         ul {
 		      margin: 5px 15px; }
 		    list-style: none;
-		    
+
         li {
 		      padding: 0 5px 10px 25px;
 		      background: url("../assets/unchecked.png") 0 0 no-repeat;
@@ -527,7 +532,7 @@ a, {
 		        margin: 0 3px 0 0;
 		        font-size: 0.9em; } }
 		    li.checked {
-		      background: url("../assets/checked.png") 0 0 no-repeat; } 
+		      background: url("../assets/checked.png") 0 0 no-repeat; }
 					li.disabled {
 								cursor: default;
 								color: gray;
@@ -538,11 +543,11 @@ a, {
 
   a {
     padding: 0 0 0 10px;
-    color: $dashboardText; 
+    color: $dashboardText;
   }
   a:hover {
     text-decoration:underline;
-  } 
+  }
 }
 
 
@@ -564,10 +569,10 @@ a, {
       }
     }
   }
-  
+
   .measureDetailTable {
     padding-top: $top_heading-padding;
-  
+
   #dashboardPeriod .measureDetailTable table td, #dashboardContainer .measureDetailTable table td {
     vertical-align: top;
     padding: 0;
@@ -576,30 +581,30 @@ a, {
 
   h1 {
     font-size: 1.5em;
-    padding-left: $measureDetailTable-padding; 
+    padding-left: $measureDetailTable-padding;
   }
   h3.dashboardLabel {
-    text-transform: uppercase; 
+    text-transform: uppercase;
   }
 
   dl {
     margin-bottom: 10px;
-    padding-left: $measureDetailTable-padding; 
+    padding-left: $measureDetailTable-padding;
   }
   dd {
     display: table-cell;
     h1 {
-      padding-left: 0; } 
+      padding-left: 0; }
   }
   dd.practiceName {
-    
+
   }
   div.dashboardTabs {
     color: $dashboardLabel;
     clear: left;
     padding-left: $measureDetailTable-padding;
     padding-bottom: 0px;
-    border-bottom: 3px solid $borderColor; 
+    border-bottom: 3px solid $borderColor;
     border-radius: $tab-radius;
     span{
       text-transform: lowercase;
@@ -629,13 +634,13 @@ a, {
     padding-left: $measureDetailTable-padding;
     border-bottom: 1px solid $borderColor; }
   p {
-    padding: 20px 0px 5px 5px; 
+    padding: 20px 0px 5px 5px;
   }
   div.legend {
     padding-left: $measureDetailTable-padding;
     padding-top: 10px;
     vertical-align: baseline;
-    
+
     div {
       display: inline-block;
       width: 14px;
@@ -645,22 +650,22 @@ a, {
     .numerator, .denominator, .patients, .exclusions, span {
       vertical-align: middle;
     }
-   
+
     span {
       margin-right: 15px;
     }
     .numerator {
-      background-color: $numerator; 
+      background-color: $numerator;
     }
     .denominator {
-      background-color: $denominator; 
+      background-color: $denominator;
     }
     .patients {
-      background-color: $patients; 
+      background-color: $patients;
     }
     .exclusions {
       background-color: $exclusions;
-      } 
+      }
     }
   table {
     width: 100%;
@@ -673,12 +678,12 @@ a, {
       padding: 0;
       vertical-align: top; }
     tr {
-      vertical-align: middle; 
-      } 
+      vertical-align: middle;
+      }
     }
   table:last-child {
     left-padding: 10px;
-  } 
+  }
 
     dl, dd, span {
       vertical-align: baseline;
@@ -687,11 +692,11 @@ a, {
       margin-right: 20px;
     }
   }
-  
+
   p.dashboardLabel {
     color: $dashboardLabel;
     float: left;
-    padding: 20px 20px 20px 40px; 
+    padding: 20px 20px 20px 40px;
   }
   input.calendarInput {
     width: 80px;
@@ -701,8 +706,8 @@ a, {
     border: none;
     color: #666666;
     font-size: 0.9em;
-    background: transparent url("../assets/icnMiniCalendar.png") 0% 50% no-repeat; 
-  } 
+    background: transparent url("../assets/icnMiniCalendar.png") 0% 50% no-repeat;
+  }
 }
 div.buttons {
   input.button {
@@ -717,7 +722,7 @@ div.buttons {
     -moz-border-radius: 15px;
     -webkit-border-radius: 15px;
     border-radius: 15px;
-    text-transform: lowercase; 
+    text-transform: lowercase;
     margin: 0 0 10px 15px;
     }}
 
@@ -784,7 +789,7 @@ input.measurementPeriodEndDate {
 .measureProviderPopulationPercentage {
 //  width: 225px;
 //  margin-top: 0.25em;
-//  margin-left: $measureDetailTable-padding; 
+//  margin-left: $measureDetailTable-padding;
 	font-weight:bold;
   font-size: 1em;
   .jobLabel {
@@ -797,7 +802,7 @@ input.measurementPeriodEndDate {
       margin-top: 10px;
       height: 20px;
     }
-  } 
+  }
 }
 td.links {
   line-height: 1.2em;
@@ -805,12 +810,12 @@ td.links {
 
   a {
     color: $linkcolor;
-  } 
+  }
   a:hover {
     color: $linkhover;
   }
-}   
-    
+}
+
 .tableMeasureTitle {
   width: 225px;
   margin-top: 0.75em;
@@ -839,7 +844,7 @@ td.links {
   margin-bottom: 10px;
   clear: left;
   height: 3em;
-  
+
   .measureStats {
     width: 85px;
     float: left;
@@ -851,7 +856,7 @@ td.links {
       text-align: right;
       width: 75px;
       font-size: 1em;
-      vertical-align: middle; 
+      vertical-align: middle;
     }
     .measurePopulationPercentage {
       display: inline-block;
@@ -859,7 +864,7 @@ td.links {
       width: 2.2em;
       margin-right: 10px;
       font-size: 1.5em;
-      vertical-align: middle; 
+      vertical-align: middle;
     }
     .paren {
       font-size: 2em;
@@ -867,8 +872,8 @@ td.links {
       color: #999999;
       position: relative;
       margin-right: 1px;
-      top: 0; 
-      } 
+      top: 0;
+      }
       .inline-fraction {
         display: inline-block;
         position: relative;
@@ -889,11 +894,11 @@ td.links {
 
       a {
         display: block;
-        font-size: 0.8em; 
+        font-size: 0.8em;
         color: $linkcolor;
 
-      } 
-    } 
+      }
+    }
   }
   .numeratorValue {
     color: $numerator; }
@@ -951,16 +956,16 @@ a.tableEdit {
     font-size: 3.5em;
     color: #999999;
     position: relative;
-    top: 8px; 
+    top: 8px;
   }
   .inline-fraction {
     vertical-align: middle;
     font-size: 1.6em;
     line-height: 1.2em;
     .separator {
-      padding-bottom: 3px; 
-    } 
-  } 
+      padding-bottom: 3px;
+    }
+  }
 }
 
 #measurePopulationPercentage {
@@ -1024,14 +1029,14 @@ a.tableEdit {
 #patientTable {
   padding: $top_heading-padding $main_padding-right $bottom_heading-padding $main_padding-left;
   width: 100%;
-		
+
   th {
     padding: 2px 5px;
     color: $dashboardLabel;
     margin-bottom: 20px;
     text-transform: uppercase; }
   td {
-    padding: 2px 15px 2px 5px; 
+    padding: 2px 15px 2px 5px;
     font-size: 1.2em;
 
   }
@@ -1044,7 +1049,7 @@ a.tableEdit {
 table.measureTable {
 
 	tr.headerRow {
-    
+
 		td{
 			font-size: 1em;
       text-transform: uppercase;
@@ -1054,13 +1059,13 @@ table.measureTable {
       padding-bottom: 5px;
       margin-bottom: 5px;
     }
-	}	
+	}
   tr.measure {
-    
+
     td{
       padding: 10px 0;
     }
-  } 
+  }
 }
 
 
@@ -1132,7 +1137,7 @@ table#providerTable, table.measureTable  {
       padding-right:15px;
       padding: 0 10px;
       min-width: 80px;
-  
+
 
       div.measureProviderPopulationPercentage {
         color: black;
@@ -1188,7 +1193,7 @@ table#providerTable, table.measureTable  {
   -webkit-border-radius: 15px;
   background-color: #ccc;
   text-transform: lowercase;
-  height: 30px; 
+  height: 30px;
   padding: 0;
 }
 .ui-button:hover {
@@ -1197,7 +1202,7 @@ table#providerTable, table.measureTable  {
 
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default  {
   padding: 0;
-  height: 30px; 
+  height: 30px;
 
   span.ui-button-text {
     padding-top:0;
