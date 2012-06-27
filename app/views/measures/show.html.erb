@@ -16,6 +16,34 @@
         $("#exclusionCount").text(data.exclusions);
     }
 
+    popHealth.textForUnit = function(value, temporal, plural) {
+      decoder = {'a':'year','mo':'month','wk':'week','d':'day','h':'hour','min':'minute','s':'second'};
+      if(temporal) value = decoder[value];
+      if(temporal && plural) value += 's';
+      return value;
+    }
+
+    popHealth.textForValue = function(value, temporal) {
+      return (value['inclusive?'] ? '=' : '') + " " + value.value + (value.unit != null ? ' ' + popHealth.textForUnit(value.unit,temporal,value.value>1) +' ' : '')
+    }
+
+    popHealth.textForRange = function(range, temporal) {
+      if ((range.high != null) && (range.low != null)) {
+        if (range.high.value === range.low.value && range.high['inclusive?'] && range.low['inclusive?'])
+          return "=" + range.low.value;
+        else
+          return ">" + popHealth.textForValue(range.low,temporal) + " and <" + popHealth.textForValue(range.high,temporal);
+      } else {
+        if (range.high != null) 
+          return "<" + popHealth.textForValue(range.high,temporal);
+        if (range.low != null) 
+          return ">" + popHealth.textForValue(range.low,temporal);
+        if (range.value != null)
+          return "=" + range.value;
+        return '';
+      }
+    }
+
     popHealth.renderMeasureJSON = function(data) {
         var measure = data;
         var elemParent;
@@ -31,19 +59,7 @@
                 (
                   subset_operator.type + ' ' +
                   (
-                    subset_operator.value ? (
-                      (subset_operator.value.high != null) && (subset_operator.value.low != null) ?
-                      (
-                        subset_operator.value.high.value === subset_operator.value.low.value && subset_operator.value.high.inclusive && subset_operator.value.low.inclusive ?
-                        "=" + subset_operator.value.low.value :
-                        ">" + (subset_operator.value.low.inclusive ? '=' : '') + " " + subset_operator.value.low.value + " and <" + (subset_operator.value.high.inclusive ? '=' : '') + " " + subset_operator.value.high.value
-                      ) :
-                      (
-                        (subset_operator.value.high != null) ?
-                        "<" + (subset_operator.value.high.inclusive ? '=' : '') + " " + subset_operator.value.high.value :
-                        (subset_operator.value.low != null) ? ">" + (subset_operator.value.low.inclusive ? '=' : '') + " " + subset_operator.value.low.value : ''
-                      )
-                    ) : ''
+                    subset_operator.value ? popHealth.textForRange(subset_operator.value, false) : ''
                   ) +
                   ' of'
                 )
@@ -53,9 +69,9 @@
             }
             if ((obj.children_criteria != null)) {
               items = [];
-              if (this.children_criteria.length > 0){
+              if (obj.children_criteria.length > 0){
                 conjunction = this.derivation_operator == 'XPRODUCT' ? 'and' : 'or';
-                $.each(this.children_criteria, function(i, child){
+                $.each(obj.children_criteria, function(i, child){
                   items.push({'conjunction':conjunction, 'items': [{'id':child}], 'negation':null})
                 });
               }
@@ -69,11 +85,7 @@
                       temporal: true,
                       title: (
                         (
-                          temporal_reference.value ?
-                          (temporal_reference.value > 0 ? '>' : '<') +
-                          (temporal_reference.inclusive ? '= ' : ' ') +
-                          temporal_reference.value + temporal_reference.unit || '' :
-                          ''
+                          temporal_reference.range ? popHealth.textForRange(temporal_reference.range,true) : ''
                         ) +
                         ({
                           DURING:'During',SBS:'Starts Before Start of',SAS:'Starts After Start of',SBE:'Starts Before End of',
