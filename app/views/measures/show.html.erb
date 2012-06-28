@@ -27,6 +27,9 @@
       return (value['inclusive?'] ? '=' : '') + " " + value.value + (value.unit != null ? ' ' + popHealth.textForUnit(value.unit,temporal,value.value>1) +' ' : '')
     }
 
+    popHealth.humanizeCategory = function(catagory) {
+      return catagory.replace(/_/g,' ');
+    }
     popHealth.textForRange = function(range, temporal) {
       if ((range.high != null) && (range.low != null)) {
         if (range.high.value === range.low.value && range.high['inclusive?'] && range.low['inclusive?'])
@@ -70,10 +73,8 @@
             if ((obj.children_criteria != null)) {
               items = [];
               if (obj.children_criteria.length > 0){
-                conjunction = this.derivation_operator == 'XPRODUCT' ? 'and' : 'or';
-                $.each(obj.children_criteria, function(i, child){
-                  items.push({'conjunction':conjunction, 'items': [{'id':child}], 'negation':null})
-                });
+                conjunction = obj.derivation_operator == 'XPRODUCT' ? 'and' : 'or';
+                items.push({'conjunction': conjunction, 'items': obj.children_criteria, 'negation':null})
               }
             } else {
               if (obj.temporal_references) {
@@ -172,9 +173,6 @@
 
     });
 
-    function alertDate(e) {
-      alert("you changed me");
-    }
   </script>
   <script type="text/html" id="ph_tmpl_paramItem">
     <div>
@@ -192,9 +190,9 @@
     </div></div>
   </script>
   <script type="text/html" id="ph_tmpl_data_criteria_logic">
-    <div class='paramText {{if category}}${category}{{/if}} logicLeaf' {{if id}}id='${id}'{{/if}}>
+    <div class='paramText logicLeaf' {{if id}}id='${id}'{{/if}}>
       {{if operator}}<label>${operator}</label>{{/if}}
-      {{if category}}<label>${category}</label>{{/if}}
+      {{if category}}<label>${category}</label>{{/if}}{{if standard_category}}<label>${popHealth.humanizeCategory(standard_category)}</label>{{/if}}
       ${title} ${temporalText}
     </div>
   </script>
