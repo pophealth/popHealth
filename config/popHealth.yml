@@ -20,7 +20,7 @@ defaults: &defaults
   disable_provider_filters: false
   ccr_system_name: popHealth
   # force the system to allow HTTP connections
-  force_unsecure_communications: true
+  force_unsecure_communications: false
 
 development:
   <<: *defaults
