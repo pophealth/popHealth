@@ -27,6 +27,7 @@ development:
   idle_timeout_enabled: false
   default_user_staff_role: true
   patient_management_enabled: true
+  force_unsecure_communications: true
   
 test:
   <<: *defaults

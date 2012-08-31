@@ -71,7 +71,6 @@ class MeasuresController < ApplicationController
 
     
     
-    
     respond_to do |wants|
       wants.html {}
       
@@ -328,6 +327,7 @@ class MeasuresController < ApplicationController
       
       if can?(:read, :providers)
         @providers = Provider.page(@page).per(20).alphabetical
+        @providers_for_filter = Provider.alphabetical
         if APP_CONFIG['disable_provider_filters']
           @teams = Team.alphabetical
           @page = params[:page]
@@ -335,6 +335,9 @@ class MeasuresController < ApplicationController
           @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
           @providers_by_team['Other'] ||= []
           @providers_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
+          @providers_for_filter_by_team = @providers_for_filter.group_by { |pv| pv.team.try(:name) || "Other" }
+          @providers_for_filter_by_team['Other'] ||= []
+          @providers_for_filter_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
         end
       end
 

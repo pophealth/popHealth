@@ -55,6 +55,10 @@
 
   <%= yield %>
 
+  <%= debug current_user %>
+  <% if current_user.teams %>
+  	<%= debug current_user.team_names %>
+  <% end %>
 </div><!-- end #container -->
 
 </body>
