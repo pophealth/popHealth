@@ -91,6 +91,8 @@ class AdminController < ApplicationController
   
   def edit_teams
     @user = User.by_id(params[:id])
+
+    # Add item
     if (params[:add_team] && params[:add_team][:team_id])
       if (!@user.teams)
         @user.teams = Array.new
@@ -102,6 +104,12 @@ class AdminController < ApplicationController
         @user.teams << BSON::ObjectId(params[:add_team][:team_id])
         @user.save
       end
+    end
+
+    # Remove item
+    if (params[:remove_team] && params[:remove_team][:team_id])
+      @user.teams.delete_if {|item| item== BSON::ObjectId(params[:remove_team][:team_id]) }
+      @user.save
     end
   end
 

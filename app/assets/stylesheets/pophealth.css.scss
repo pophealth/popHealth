@@ -1219,3 +1219,15 @@ table#providerTable, table.measureTable  {
   border-radius: 15px;
   text-transform: lowercase;
 }
+
+input.userTeam {
+  cursor: pointer;
+  color: $dashboardText;
+  font-size: 1em;
+  background: -moz-linear-gradient(top, #ececec, #e5e5e5);
+  background-color: #f2f2f2;
+  border: 1px solid #afafaf;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+}

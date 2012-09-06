@@ -4,6 +4,8 @@
  - Added force_unsecure_communications: true to the development environment
  - Added teams and team_names to User model
  - Fixed Provider filters on the measures page to display all providers, rather than only the first 20
+ - Added Teams display on User admin page
+ - Added page to add/remove Teams to a User
  
 TO BE DONE
  - The pagination on the Providers page breaks after an edit (haven't checked if an add also breaks it)
