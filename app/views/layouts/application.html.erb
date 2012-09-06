@@ -55,9 +55,11 @@
 
   <%= yield %>
 
-  <%= debug current_user %>
-  <% if current_user.teams %>
-  	<%= debug current_user.team_names %>
+  <% if Rails.env.development? %>
+	  <%= debug current_user %>
+	  <% if current_user.teams %>
+	  	<%= debug current_user.team_names %>
+	  <% end %>
   <% end %>
 </div><!-- end #container -->
 

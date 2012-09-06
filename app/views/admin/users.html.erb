@@ -79,6 +79,16 @@
     $('.enable').click(popHealth.disableUser);
     $('.disable').click(popHealth.enableUser);
     $('.npi_select').change(popHealth.changeNpi);
+  
+	$('.teamView').cluetip({
+		activation: 'click',
+		arrows: true,
+		closePosition: 'title',
+		closeText: 'Close',
+		dropShadow: false,
+		local: true,
+		sticky: true
+	});
   });
 </script>
 <% end -%>
@@ -95,7 +105,9 @@
     <th>Staff Role</th>
     <th>Approved</th>
     <th>Status</th>
+    <th colspan="2">Teams</th>
   </tr>
+  <% i = 0 %>
   <% @users.each do |user| -%>
   <tr>
     <td><%= user.first_name %></td>
@@ -133,6 +145,24 @@
     <td>
       <a href="#" class="<%= (user.disabled?) ? 'disable' : 'enable'%>" data-username="<%= user.username %>"><%= (user.disabled?) ? 'disabled' : 'enabled'%></a>
     </td>
+  <% i = i + 1 %>
+    <!-- Teams Columns -->
+    <td>
+    	<a class="teamView" href='<%= "#teamViewTooltip_" + i.to_s %>' rel='<%= "#teamViewTooltip_" + i.to_s %>' title="<%= user.first_name %>'s Teams">View</a>
+    	<div id='<%= "teamViewTooltip_" + i.to_s %>' class="tooltipBody">
+			<% if (user.teams && user.teams.count > 0) %>
+				<% user.team_names.each do |team| -%>
+					<%= team %><br />
+				<% end %>
+			<% else %>
+				No teams
+			<% end %>
+    	</div>
+    </td>
+    <td>
+    	<%= link_to "Edit", :controller => "admin", :action => "edit_teams", :id => user._id %>
+    </td>
+    <!-- /Teams Columns -->
   </tr>
   <% end -%>
 </table>

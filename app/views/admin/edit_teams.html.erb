@@ -1,0 +1,32 @@
+<div id="pageContent" style="width: 100%;">
+	<div class="panel">
+    	<center>
+    		<% if flash[:error] %>
+				<div class="accountError">
+					<%= flash[:error] %>
+				</div>
+			<% end %>
+			
+			User: <%= @user.first_name + " " + @user.last_name %>
+			<br /><br />
+		    <%= form_for(:add_team, :controller => "admin", :action => "edit_teams", :id => @id) do |f| %>
+		    	<table>
+					<th><td colspan="3">Current Teams</td></th>
+					<% if (@user.teams && @user.teams.count > 0) %>
+						<% @user.team_names.each do |team| -%>
+							<tr><td colspan="3"><%= team %></td></tr>
+						<% end %>
+					<% else %>
+						<tr><td colspan="3">No teams</td></tr>
+					<% end %>
+					<tr><td colspan="3">&nbsp;</td></tr>
+		    		<tr>
+		    			<td style="vertical-align: top; width: 75px;"><%= f.label :team %></td>
+		    			<td style="vertical-align: top; width: 200px;"><%= f.collection_select :team_id, Team.alphabetical, :id, :name, {include_blank: true}, {style: "width:175px"}%></td>
+		    			<td style="vertical-align: top; width: 125px;"><%= f.submit "Add Team", {class: "exportReport", style: "width:100px"} %></td>
+		    		</tr>
+		    	</table>
+		    <% end %>
+    	</center>
+	</div>
+</div>

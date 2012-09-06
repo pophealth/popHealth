@@ -88,6 +88,22 @@ class AdminController < ApplicationController
     user.update_attribute(:npi, params[:npi]);
     render :text => "true"
   end
+  
+  def edit_teams
+    @user = User.by_id(params[:id])
+    if (params[:add_team] && params[:add_team][:team_id])
+      if (!@user.teams)
+        @user.teams = Array.new
+      end
+      
+      if @user.teams.include?(BSON::ObjectId(params[:add_team][:team_id]))
+        flash[:error] = 'Selected team has already been added.'
+      else
+        @user.teams << BSON::ObjectId(params[:add_team][:team_id])
+        @user.save
+      end
+    end
+  end
 
   private
 

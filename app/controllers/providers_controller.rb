@@ -8,7 +8,7 @@ class ProvidersController < ApplicationController
   add_breadcrumb 'providers', :providers_url
   
   def index
-    @providers = Provider.alphabetical.page(params[:page]).per(20)
+    @providers = Provider.alphabetical.page(params[:page]).per(60)
     
     respond_to do |wants|
       wants.html {}
@@ -57,7 +57,7 @@ class ProvidersController < ApplicationController
     
     respond_to do |wants|
       wants.html { render :action => "show" }
-      wants.js { @providers = Provider.alphabetical.page(params[:page]).per(20) }
+      wants.js { @providers = Provider.alphabetical.page(params[:page]).per(60) }
     end
   end
   
