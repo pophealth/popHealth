@@ -76,7 +76,7 @@ class MeasuresController < ApplicationController
       
       wants.js do
         
-        @providers = Provider.page(params[:page]).per(20).alphabetical
+        @providers = Provider.page(params[:page]).per(20).userfilter(current_user).alphabetical
         @providers = @providers.any_in(team_id: params[:team]) if params[:team]
         
       end
@@ -326,18 +326,20 @@ class MeasuresController < ApplicationController
     else
       
       if can?(:read, :providers)
-        @providers = Provider.page(@page).per(20).alphabetical
-        @providers_for_filter = Provider.alphabetical
+        @providers = Provider.page(@page).per(20).userfilter(current_user).alphabetical
+        @providers_for_filter = Provider.userfilter(current_user).alphabetical
         if APP_CONFIG['disable_provider_filters']
           @teams = Team.alphabetical
           @page = params[:page]
         else
           @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
-          @providers_by_team['Other'] ||= []
-          @providers_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
+          #Removed to enforce team display
+          #@providers_by_team['Other'] ||= []
+          #@providers_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
           @providers_for_filter_by_team = @providers_for_filter.group_by { |pv| pv.team.try(:name) || "Other" }
-          @providers_for_filter_by_team['Other'] ||= []
-          @providers_for_filter_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
+          #Removed to enforce team display
+          #@providers_for_filter_by_team['Other'] ||= []
+          #@providers_for_filter_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
         end
       end
 
