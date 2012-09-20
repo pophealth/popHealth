@@ -6,9 +6,9 @@ gem 'rack' , '1.3.3'
 
 gem 'redis', '2.2.2'
 
-gem 'quality-measure-engine', '1.1.5'
+#gem 'quality-measure-engine', '1.1.5'
 #gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'master'
-#gem 'quality-measure-engine', path: '../quality-measure-engine'
+gem 'quality-measure-engine', path: '../quality-measure-engine'
 gem 'health-data-standards', '1.0.1'
 #gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'master'
 #gem 'health-data-standards', path: '../health-data-standards'

@@ -35,17 +35,29 @@ class MeasuresController < ApplicationController
         generate_report
         @result = @quality_report.result
       end
-      wants.json do
+      wants.json do # this is what is called when displaying a measure on the index page
 
 #        SelectedMeasure.add_measure(current_user.username, params[:id])
+        # Current user/filter measures
         measures = params[:sub_id] ? Measure.get(params[:id], params[:sub_id]) : Measure.sub_measures(params[:id])
         
         render_measure_response(measures, params[:jobs]) do |sub|
           {
             report: QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters),
+            #fullReport: QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => nil),
             patient_count: @patient_count
           }
         end
+
+        # Full database measures
+        # fullMeasures = params[:sub_id] ? Measure.get(params[:id], params[:sub_id]) : Measure.sub_measures(params[:id])
+        
+        # render_measure_response(fullMeasures, params[:jobs]) do |sub|
+        #  {
+        #    report: QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => nil),
+        #    patient_count: @patient_count
+        #  }
+        #end
       end
     end
   end
@@ -111,10 +123,11 @@ class MeasuresController < ApplicationController
   end
   
   def patients
-    build_filters if (@selected_provider)
+    build_filters # if (@selected_provider)
     generate_report
   end
 
+  # This is used to populate the patient list for a selected measure
   def measure_patients
 
     @type = params[:type] || 'denominator'
@@ -137,7 +150,8 @@ class MeasuresController < ApplicationController
       result = PatientCache.by_provider(@selected_provider, @effective_date).where(query);
     else
       authorize! :manage, :providers
-      result = PatientCache.all.where(query)
+      # result = PatientCache.all.where(query)
+      result = PatientCache.provider_in(Provider.generateUserProviderIDList(current_user)).where(query)
     end
     @total = result.count
     @records = result.order_by(["value.#{sort}", sort_order]).skip(@skip).limit(@limit);
@@ -167,7 +181,8 @@ class MeasuresController < ApplicationController
       result = PatientCache.by_provider(@selected_provider, @effective_date).where(query);
     else
       authorize! :manage, :providers
-      result = PatientCache.all.where(query)
+      # result = PatientCache.all.where(query)
+      result = PatientCache.provider_in(Provider.generateUserProviderIDList(current_user)).where(query)
     end
     @records = result.order_by(["value.medical_record_id", 'desc']);
     
@@ -266,7 +281,8 @@ class MeasuresController < ApplicationController
   
   
   def set_up_environment
-    @patient_count = (@selected_provider) ? @selected_provider.records(@effective_date).count : mongo['records'].count
+    # @patient_count = (@selected_provider) ? @selected_provider.records(@effective_date).count : mongo['records'].count
+    @patient_count ||= (@selected_provider) ? @selected_provider.records(@effective_date).count : Record.provider_in(Provider.generateUserProviderIDList(current_user)).count
     if params[:id]
       measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
       render(:file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404) unless measure
@@ -286,6 +302,7 @@ class MeasuresController < ApplicationController
     return uuid
   end
   
+  #*********************************************************************************************************
   def render_measure_response(collection, uuids)
     result = collection.inject({jobs: {}, result: [], job_statuses: {}}) do |memo, var|
       data = yield(var)
@@ -310,6 +327,7 @@ class MeasuresController < ApplicationController
 
     render :json => result.merge(:complete => result[:jobs].empty?, :failed => !(result[:jobs].values.keep_if {|job| job[:status] == 'failed'}).empty?)
   end
+  #*********************************************************************************************************
   
   def setup_filters
     
@@ -320,7 +338,6 @@ class MeasuresController < ApplicationController
     end
     
     if request.xhr?
-      
       build_filters
       
     else
@@ -333,13 +350,13 @@ class MeasuresController < ApplicationController
           @page = params[:page]
         else
           @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
-          #Removed to enforce team display
-          #@providers_by_team['Other'] ||= []
-          #@providers_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
+          # Removed to enforce team display
+          # @providers_by_team['Other'] ||= []
+          # @providers_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
           @providers_for_filter_by_team = @providers_for_filter.group_by { |pv| pv.team.try(:name) || "Other" }
-          #Removed to enforce team display
-          #@providers_for_filter_by_team['Other'] ||= []
-          #@providers_for_filter_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
+          # Removed to enforce team display
+          # @providers_for_filter_by_team['Other'] ||= []
+          # @providers_for_filter_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
         end
       end
 
@@ -361,7 +378,9 @@ class MeasuresController < ApplicationController
       providers = Provider.any_in(team_id: params[:team]).map { |pv| pv.id.to_s }
       
     else
-      providers = nil
+      # Changed to, with setting the filters, to filter based on the user
+      # providers = nil
+      providers = Provider.userfilter(current_user).map { |pv| pv.id.to_s }
     end
 
     races = params[:race] ? Race.selected(params[:race]).all : nil

@@ -76,6 +76,16 @@ class Provider
     provider
   end
   
+  def self.generateUserProviderIDList(current_user)
+    results = Array.new
+    
+    Provider.userfilter(current_user).each do |currentProvider|
+      results << currentProvider._id      
+    end
+    
+    return results
+  end
+  
   def merge_provider(provider)
     return false if !self.npi.blank? && !provider[:npi].blank? #cannot merge providers with different NPIs
     self.attributes = provider.attributes.merge(attributes.reject { |k,v| v.blank? })

@@ -56,10 +56,23 @@
   <%= yield %>
 
   <% if Rails.env.development? %>
+	  <% if flash[:error] %>
+	  	Error<br />
+	  	<%= debug(flash[:error]) %>
+	  	<br /><hr /><br />
+	  <% end %>
+  	  Definition
+	  <%= debug @definition %>
+	  <br /><hr /><br />
+  	  User
 	  <%= debug current_user %>
 	  <% if current_user.teams %>
+		<br /><hr /><br />
 	  	<%= debug current_user.team_names %>
 	  <% end %>
+	  <br /><hr /><br />
+  	  Filters <% if @filters %> - Provider filter count = <%= @filters["providers"].count %> <% end %>
+	  <%= debug @filters %>
   <% end %>
 </div><!-- end #container -->
 
