@@ -73,6 +73,9 @@
 	  <br /><hr /><br />
   	  Filters <% if @filters %> - Provider filter count = <%= @filters["providers"].count %> <% end %>
 	  <%= debug @filters %>
+	  <br /><hr /><br />
+  	  Providers
+  	  <%= debug @providers_for_filter.to_a %>
   <% end %>
 </div><!-- end #container -->
 

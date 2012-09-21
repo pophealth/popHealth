@@ -14,7 +14,7 @@ class Provider
   
     def userfilter(current_user)
       if current_user.admin?
-        where(:team_id.ne => nil)
+        all
       else
         any_in(:team_id => current_user.teams)
       end

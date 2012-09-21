@@ -382,6 +382,11 @@ class MeasuresController < ApplicationController
       # providers = nil
       providers = Provider.userfilter(current_user).map { |pv| pv.id.to_s }
     end
+    
+    if (providers = nil || providers = [])
+      providers = Array.new
+      providers << "NO PROVIDERS SELECTED"
+    end
 
     races = params[:race] ? Race.selected(params[:race]).all : nil
     ethnicities = params[:ethnicity] ? Ethnicity.selected(params[:ethnicity]).all : nil
