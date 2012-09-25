@@ -193,7 +193,7 @@ ul {
 					color: $orange;
 					width: 14px;
 					height: 14px;
-					@include rounded();
+					@include rounded($tab-radius);
 				}
 			td.r {
 				margin-left: 20px;
