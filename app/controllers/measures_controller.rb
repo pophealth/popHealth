@@ -282,7 +282,15 @@ class MeasuresController < ApplicationController
   
   def set_up_environment
     # @patient_count = (@selected_provider) ? @selected_provider.records(@effective_date).count : mongo['records'].count
-    @patient_count ||= (@selected_provider) ? @selected_provider.records(@effective_date).count : Record.provider_in(Provider.generateUserProviderIDList(current_user)).count
+    if @selected_provider
+      @patient_count = @selected_provider.records(@effective_date).count
+    else
+      begin
+        @patient_count = Record.provider_in(Provider.generateUserProviderIDList(current_user)).count
+      rescue
+        @patient_count = 0
+      end
+    end
     if params[:id]
       measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
       render(:file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404) unless measure
@@ -349,14 +357,19 @@ class MeasuresController < ApplicationController
           @teams = Team.alphabetical
           @page = params[:page]
         else
-          @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
-          # Removed to enforce team display
-          # @providers_by_team['Other'] ||= []
-          # @providers_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
-          @providers_for_filter_by_team = @providers_for_filter.group_by { |pv| pv.team.try(:name) || "Other" }
-          # Removed to enforce team display
-          # @providers_for_filter_by_team['Other'] ||= []
-          # @providers_for_filter_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
+          begin
+            @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
+            # Removed to enforce team display
+            # @providers_by_team['Other'] ||= []
+            # @providers_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
+            @providers_for_filter_by_team = @providers_for_filter.group_by { |pv| pv.team.try(:name) || "Other" }
+            # Removed to enforce team display
+            # @providers_for_filter_by_team['Other'] ||= []
+            # @providers_for_filter_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
+          rescue
+            @providers_by_team = [ ]
+            @providers_for_filter_by_team = [ ]
+          end
         end
       end
 
@@ -382,12 +395,7 @@ class MeasuresController < ApplicationController
       # providers = nil
       providers = Provider.userfilter(current_user).map { |pv| pv.id.to_s }
     end
-    
-    if (providers = nil || providers = [])
-      providers = Array.new
-      providers << "NO PROVIDERS SELECTED"
-    end
-
+      
     races = params[:race] ? Race.selected(params[:race]).all : nil
     ethnicities = params[:ethnicity] ? Ethnicity.selected(params[:ethnicity]).all : nil
     languages = params[:language] ? Language.selected(params[:language]).all : nil
