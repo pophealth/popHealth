@@ -4,11 +4,11 @@ gem 'rails', '3.1.0'
 # locked to 1.3.3 to resolve annoying warning 'already initialized constant WFKV_'
 gem 'rack' , '1.3.3'
 
-#gem 'quality-measure-engine', '1.1.2'
-gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'master'
+gem 'quality-measure-engine', '1.1.5'
+#gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'master'
 #gem 'quality-measure-engine', path: '../quality-measure-engine'
-#gem 'health-data-standards', '0.8.0'
-gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'master'
+gem 'health-data-standards', '1.0.1'
+#gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'master'
 #gem 'health-data-standards', path: '../health-data-standards'
 
 gem 'nokogiri'
@@ -52,9 +52,8 @@ group :test, :develop do
 end
 
 group :production do
-  # Is there an easy way to say "all platforms except :mswin, :mingw" without
-  # explicitly listing all other platforms?
-  gem 'therubyracer', :platforms => [:ruby, :jruby]
+  gem 'libv8', '~> 3.11.8.3'
+  gem 'therubyracer', '~> 0.11.0beta5', :platforms => [:ruby, :jruby] # 10.8 mountain lion compatibility
 end
 
 gem 'jquery-rails'

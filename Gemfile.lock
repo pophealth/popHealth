@@ -1,28 +1,3 @@
-GIT
-  remote: http://github.com/pophealth/quality-measure-engine.git
-  revision: 20b235990b0b486fdca7d6b1b92c13d3a18a715f
-  branch: master
-  specs:
-    quality-measure-engine (1.1.5)
-      mongo (~> 1.3)
-      nokogiri (>= 1.4.4)
-      redis (~> 2.2.2)
-      resque (~> 1.15.0)
-      resque-status (~> 0.2.3)
-      rubyzip (~> 0.9.4)
-
-GIT
-  remote: https://github.com/projectcypress/health-data-standards.git
-  revision: d5d63ce2672fb2ca371def181f64e0e58739d0d4
-  branch: master
-  specs:
-    health-data-standards (0.8.1)
-      builder (~> 3.0.0)
-      erubis (~> 2.6)
-      mongoid (~> 2.4.2)
-      nokogiri (~> 1.4.7)
-      uuid (~> 2.3.4)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -90,6 +65,12 @@ GEM
     formtastic (2.2.0)
       actionpack (>= 3.0)
     hashie (1.2.0)
+    health-data-standards (1.0.1)
+      builder (~> 3.0.0)
+      erubis (~> 2.6)
+      mongoid (~> 2.4.2)
+      nokogiri (>= 1.4.4)
+      uuid (~> 2.3.4)
     hike (1.2.1)
     i18n (0.6.0)
     jquery-rails (1.0.19)
@@ -101,7 +82,7 @@ GEM
       activesupport (>= 3.0.0)
       railties (>= 3.0.0)
     kgio (2.7.4)
-    libv8 (3.3.10.4)
+    libv8 (3.11.8.3)
     macaddr (1.6.1)
       systemu (~> 2.5.0)
     mail (2.3.3)
@@ -128,6 +109,13 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.7.1)
       slop (>= 2.4.4, < 3)
+    quality-measure-engine (1.1.5)
+      mongo (~> 1.3)
+      nokogiri (>= 1.4.4)
+      redis (~> 2.2.2)
+      resque (~> 1.15.0)
+      resque-status (~> 0.2.3)
+      rubyzip (~> 0.9.4)
     rack (1.3.3)
     rack-cache (1.0.3)
       rack (>= 0.4)
@@ -164,6 +152,7 @@ GEM
     redisk (0.2.2)
       redis (>= 0.1.1)
       redis-namespace (>= 0.1.0)
+    ref (1.0.0)
     resque (1.15.0)
       json (~> 1.4.6)
       redis-namespace (>= 0.10.0)
@@ -190,8 +179,8 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     systemu (2.5.2)
-    therubyracer (0.10.1)
-      libv8 (~> 3.3.10)
+    therubyracer (0.11.0beta8)
+      ref
     thor (0.14.6)
     tilt (1.3.3)
     treetop (1.4.10)
@@ -229,22 +218,23 @@ DEPENDENCIES
   factory_girl (= 2.6.3)
   foreman
   formtastic
-  health-data-standards!
+  health-data-standards (= 1.0.1)
   jquery-rails
   json
   kaminari
+  libv8 (~> 3.11.8.3)
   minitest
   mocha
   mongo (= 1.3.1)
   mongoid
   nokogiri
   pry
-  quality-measure-engine!
+  quality-measure-engine (= 1.1.5)
   rack (= 1.3.3)
   rails (= 3.1.0)
   rubyzip
   sass-rails (~> 3.1.0)
-  therubyracer
+  therubyracer (~> 0.11.0beta5)
   turn
   uglifier
   unicorn
