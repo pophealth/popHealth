@@ -10,6 +10,3 @@
  - Updated Patient Count on the measures index page to be filtered by the providers associated to the teams the user is associated with
  - Filtered patient lists and patient export on the measure detail pages by providers associated to the teams the user is associated with
  - To fix pagination on provider create/edit, removed AJAX from the form 
- 
-TO DO
- - Fix Team filter in setup_filters method, if APP_CONFIG['disable_provider_filters']

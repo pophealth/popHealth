@@ -354,7 +354,7 @@ class MeasuresController < ApplicationController
         @providers = Provider.page(@page).per(20).userfilter(current_user).alphabetical
         @providers_for_filter = Provider.userfilter(current_user).alphabetical
         if APP_CONFIG['disable_provider_filters']
-          @teams = Team.alphabetical
+          @teams = Team.userfilter(current_user).alphabetical
           @page = params[:page]
         else
           begin
