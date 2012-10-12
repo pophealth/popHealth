@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.8'
+gem 'rails', '3.2.8'
 # locked to 1.3.3 to resolve annoying warning 'already initialized constant WFKV_'
-gem 'rack' , '1.3.6'
+gem 'rack' , '1.4.0'
 
 
 gem 'quality-measure-engine', '1.1.5'
@@ -39,8 +39,8 @@ gem 'win32-eventlog', :platforms => [:mswin, :mingw]
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', "3.1.5"
-  gem 'coffee-rails', "~> 3.1.0"
+  gem 'sass-rails', "3.2.5"
+  gem 'coffee-rails', "3.2.2"
   gem 'uglifier'
 end
 
