@@ -1,14 +1,17 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.8'
 # locked to 1.3.3 to resolve annoying warning 'already initialized constant WFKV_'
-gem 'rack' , '1.3.3'
+gem 'rack' , '1.3.6'
 
-gem 'quality-measure-engine', '1.1.3'
-# gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'master'
-gem 'health-data-standards', '0.8.1'
-# gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'master'
 
+gem 'quality-measure-engine', '1.1.5'
+#gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'master'
+#gem 'quality-measure-engine', path: '../quality-measure-engine'
+gem 'health-data-standards', '1.0.1'
+#gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'master'
+#gem 'health-data-standards', path: '../health-data-standards'
+# gem 'sass', "3.1.18"
 gem 'nokogiri'
 gem 'rubyzip'
 
@@ -21,12 +24,14 @@ gem "mongo", "1.3.1"
 gem "bson", "1.3.1"
 gem 'bson_ext',"1.3.1",  :platforms => :mri
 gem "mongoid"
-gem 'devise', "~> 2.0.0"
+
+gem 'devise', "~>2.0.0"
+
 gem 'foreman'
 gem 'pry'
 gem 'formtastic'
 gem 'cancan'
-gem 'factory_girl'
+gem 'factory_girl', "2.6.3"
 
 # Windows doesn't have syslog, so need a gem to log to EventLog instead
 gem 'win32-eventlog', :platforms => [:mswin, :mingw]
@@ -34,7 +39,7 @@ gem 'win32-eventlog', :platforms => [:mswin, :mingw]
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', "  ~> 3.1.0"
+  gem 'sass-rails', "3.1.5"
   gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
 end
@@ -50,9 +55,8 @@ group :test, :develop do
 end
 
 group :production do
-  # Is there an easy way to say "all platforms except :mswin, :mingw" without
-  # explicitly listing all other platforms?
-  gem 'therubyracer', :platforms => [:ruby, :jruby]
+  gem 'libv8', '~> 3.11.8.3'
+  gem 'therubyracer', '~> 0.11.0beta5', :platforms => [:ruby, :jruby] # 10.8 mountain lion compatibility
 end
 
 gem 'jquery-rails'
