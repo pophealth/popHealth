@@ -222,12 +222,12 @@
 			<br/>
 		</div><!-- end #measureDetailTable -->
 		<table class="measureTable" style="float:left">
-			<tr style="<%= display_header(@core_measures, current_user.selected_measures)%>" class="headerRow"><td colspan="6">Core Measures</td></tr>
+			<tr style="<%= display_header(@core_measures, current_user.selected_measures)%>" class="headerRow"><td colspan="6">Core Measures</td><td>Full %</td></tr>
 			<%= render :partial => "measure", :collection => @core_measures %>
-			<tr style="<%= display_header(@core_alt_measures, current_user.selected_measures)%>" class="headerRow"><td colspan="6">Core Alternate Measures</td></tr>
+			<tr style="<%= display_header(@core_alt_measures, current_user.selected_measures)%>" class="headerRow"><td colspan="6">Core Alternate Measures</td><td>Full %</td></tr>
 			<%= render :partial => "measure", :collection => @core_alt_measures %>
 			<% @alt_measures.each do |category, measures| %>
-				<tr style="<%= display_header(measures, current_user.selected_measures)%>" class="headerRow"><td colspan="6"><%=category%></td></tr>
+				<tr style="<%= display_header(measures, current_user.selected_measures)%>" class="headerRow"><td colspan="6"><%=category%></td><td>Full %</td></tr>
 				<%= render :partial => "measure", :collection => measures %>
 			<% end %>
 		</table>

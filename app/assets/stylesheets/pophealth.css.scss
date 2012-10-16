@@ -799,6 +799,26 @@ input.measurementPeriodEndDate {
     }
   } 
 }
+
+.measureFullPopulationPercentage {
+//  width: 225px;
+//  margin-top: 0.25em;
+//  margin-left: $measureDetailTable-padding; 
+  font-weight:bold;
+  font-size: 1em;
+  .jobLabel {
+    position:relative;
+    font-size: 11px;
+    top: 30px;
+    left: -6px;
+
+    img {
+      margin-top: 10px;
+      height: 20px;
+    }
+  } 
+}
+
 td.links {
   line-height: 1.2em;
   vertical-align: middle;
@@ -1135,6 +1155,17 @@ table#providerTable, table.measureTable  {
   
 
       div.measureProviderPopulationPercentage {
+        color: black;
+        display: inline-block;
+        position:relative;
+        top: 2px;
+        margin-right: 5px;
+        text-align: center;
+
+        width: 50px;
+      }
+      
+      div.measureFullPopulationPercentage {
         color: black;
         display: inline-block;
         position:relative;

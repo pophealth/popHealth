@@ -44,20 +44,12 @@ class MeasuresController < ApplicationController
         render_measure_response(measures, params[:jobs]) do |sub|
           {
             report: QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters),
-            #fullReport: QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => nil),
+            # *** Added ***
+            fullReport: QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => nil),
+            # *** /Added ***
             patient_count: @patient_count
           }
         end
-
-        # Full database measures
-        # fullMeasures = params[:sub_id] ? Measure.get(params[:id], params[:sub_id]) : Measure.sub_measures(params[:id])
-        
-        # render_measure_response(fullMeasures, params[:jobs]) do |sub|
-        #  {
-        #    report: QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => nil),
-        #    patient_count: @patient_count
-        #  }
-        #end
       end
     end
   end

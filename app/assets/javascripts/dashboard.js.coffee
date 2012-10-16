@@ -8,6 +8,7 @@
 		Render.percent row.find("div.measureProviderPopulationPercentage"), result
 		Render.barChart row.find("div.tableBar"), result
 		Render.fraction row.find("td.fraction"), result
+		Render.fullListPercent row.find("div.measureFullPopulationPercentage"), result
 	measureRow: (measure, sub_id) ->
 		selector = "tr.measure[data-measure='#{measure}']"
 		selector += "[data-measure-sub='#{sub_id || ''}']" if sub_id?

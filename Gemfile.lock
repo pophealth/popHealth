@@ -1,3 +1,14 @@
+PATH
+  remote: ../quality-measure-engine
+  specs:
+    quality-measure-engine (1.1.5)
+      mongo (~> 1.3)
+      nokogiri (>= 1.4.4)
+      redis (~> 2.2.2)
+      resque (~> 1.15.0)
+      resque-status (~> 0.2.3)
+      rubyzip (~> 0.9.4)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -108,13 +119,6 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.3.1)
-    quality-measure-engine (1.1.5)
-      mongo (~> 1.3)
-      nokogiri (>= 1.4.4)
-      redis (~> 2.2.2)
-      resque (~> 1.15.0)
-      resque-status (~> 0.2.3)
-      rubyzip (~> 0.9.4)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -255,7 +259,7 @@ DEPENDENCIES
   orm_adapter (= 0.0.7)
   polyglot (= 0.3.3)
   pry (= 0.9.10)
-  quality-measure-engine (= 1.1.5)
+  quality-measure-engine!
   rack (= 1.4.1)
   rack-cache (= 1.2)
   rack-mount (= 0.8.3)

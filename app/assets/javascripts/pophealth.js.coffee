@@ -64,6 +64,10 @@ class @QualityReport
 		percent = if (data.denominator == 0 || data.denominator == undefined) then 0 else  (data.numerator / data.denominator) * 100
 		selector.html("#{Math.floor(percent)}%")
 	
+	fullListPercent: (selector, data) -> 
+		percent = if (data.fullListDenominator == 0 || data.fullListDenominator == undefined) then 0 else (data.fullListNumerator / data.fullListDenominator) * 100
+		selector.html("#{Math.floor(percent)}%")
+	
 	barChart: (selector, data) ->
 		numerator_width = 0
 		denominator_width = 0

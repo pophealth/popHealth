@@ -6,12 +6,12 @@ gem 'rack' , '1.4.1' # was 1.3.3
 
 gem 'redis', '2.2.2'
 
-gem 'quality-measure-engine', '1.1.5'
-#gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'master'
-#gem 'quality-measure-engine', path: '../quality-measure-engine'
+# gem 'quality-measure-engine', '1.1.5'
+# gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'master'
+gem 'quality-measure-engine', path: '../quality-measure-engine'
 gem 'health-data-standards', '1.0.1'
-#gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'master'
-#gem 'health-data-standards', path: '../health-data-standards'
+# gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'master'
+# gem 'health-data-standards', path: '../health-data-standards'
 
 gem 'nokogiri', '1.5.5'
 gem 'rubyzip', '0.9.9'
@@ -60,7 +60,7 @@ group :production do
   gem 'libv8', '~> 3.11.8.3'
   gem 'therubyracer', '~> 0.11.0beta5', :platforms => [:ruby, :jruby] # 10.8 mountain lion compatibility
 
-  #gem 'therubyracer', '0.10.1', :platforms => [:ruby, :jruby]
+  # gem 'therubyracer', '0.10.1', :platforms => [:ruby, :jruby]
 end
 
 gem 'jquery-rails', '1.0.19'
@@ -95,7 +95,7 @@ gem 'hashie', '1.2.0'
 gem 'hike', '1.2.1'
 gem 'i18n', '0.6.0'
 gem 'kgio', '2.7.4'
-#gem 'libv8', '3.3.10.4'
+# gem 'libv8', '3.3.10.4'
 gem 'macaddr', '1.6.1'
 gem 'mail', '2.4.4' # was 2.3.3
 gem 'metaclass', '0.0.1'
