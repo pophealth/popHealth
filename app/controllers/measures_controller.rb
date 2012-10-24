@@ -45,7 +45,7 @@ class MeasuresController < ApplicationController
           {
             report: QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters),
             # *** Added ***
-            fullReport: QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => nil),
+            # fullReport: QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => nil),
             # *** /Added ***
             patient_count: @patient_count
           }
