@@ -253,6 +253,7 @@ class MeasuresController < ApplicationController
     report
   end
   
+  # BS - 121025 - This doesn't seem to be what returns the results
   def extract_result(id, sub_id, effective_date, providers=nil)
     if (providers)
       qr = QME::QualityReport.new(id, sub_id, 'effective_date' => effective_date, 'filters' => {'providers' => providers})
@@ -267,6 +268,8 @@ class MeasuresController < ApplicationController
       :population=>result['population'],
       :denominator=>result['denominator'],
       :numerator=>result['numerator'],
+#      :fullListDenominator=>1,
+#      :fullListNumerator=>1,
       :exclusions=>result['exclusions']
     }
   end
