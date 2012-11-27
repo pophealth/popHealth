@@ -16,28 +16,120 @@
         $("#exclusionCount").text(data.exclusions);
     }
 
+    popHealth.textForUnit = function(value, temporal, plural) {
+      decoder = {'a':'year','mo':'month','wk':'week','d':'day','h':'hour','min':'minute','s':'second'};
+      if(temporal) value = decoder[value];
+      if(temporal && plural) value += 's';
+      return value;
+    }
+
+    popHealth.textForValue = function(value, temporal) {
+      return (value['inclusive?'] ? '=' : '') + " " + value.value + (value.unit != null ? ' ' + popHealth.textForUnit(value.unit,temporal,value.value>1) +' ' : '')
+    }
+
+    popHealth.humanizeCategory = function(catagory) {
+      return catagory.replace(/_/g,' ');
+    }
+    popHealth.textForRange = function(range, temporal) {
+      if ((range.high != null) && (range.low != null)) {
+        if (range.high.value === range.low.value && range.high['inclusive?'] && range.low['inclusive?'])
+          return "=" + range.low.value;
+        else
+          return ">" + popHealth.textForValue(range.low,temporal) + " and <" + popHealth.textForValue(range.high,temporal);
+      } else {
+        if (range.high != null) 
+          return "<" + popHealth.textForValue(range.high,temporal);
+        if (range.low != null) 
+          return ">" + popHealth.textForValue(range.low,temporal);
+        if (range.value != null)
+          return "=" + range.value;
+        return '';
+      }
+    }
+
     popHealth.renderMeasureJSON = function(data) {
         var measure = data;
         var elemParent;
         var addParamItems = function(obj,elemParent,container) {
-          var items = obj['and'] || obj['or'];
-          if ($.isArray(items)) {
-            var conjunction = obj['and'] ? 'and' : 'or';
-            // add the grouping container
-            if (!container) {elemParent = $("#ph_tmpl_paramGroup").tmpl({}).appendTo(elemParent).find(".paramItem:last");}
-              $.each(items,function(i,node) {
-                addParamItems(node,elemParent);
-                if (i < items.length-1) {
-                  $(elemParent).append("<span class='"+conjunction+"'>"+conjunction+"</span>");
-                }
-              });
-            } else {
-              // we dont have a nested measure clause, add the item to the bottom of the list
-              if (!elemParent.hasClass("paramItem")) {
-                elemParent = $("#ph_tmpl_paramGroup").tmpl({}).appendTo(elemParent).find(".paramItem:last");
+          var conjunction, obj, items, subset_operator, _i, _len, _ref;
+          items = obj["items"];
+          if ((obj.title != null)) {
+            if ((obj.subset_operators != null)) {
+              _ref = obj.subset_operators;
+              for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                subset_operator = _ref[_i];
+                $(elemParent).append("<span class='" + subset_operator.type + "'>" +
+                (
+                  subset_operator.type + ' ' +
+                  (
+                    subset_operator.value ? popHealth.textForRange(subset_operator.value, false) : ''
+                  ) +
+                  ' of'
+                )
+                + "</span>"
+                );
               }
-              $("#ph_tmpl_paramItem").tmpl(obj).appendTo(elemParent);
             }
+            if ((obj.children_criteria != null)) {
+              items = [];
+              if (obj.children_criteria.length > 0){
+                conjunction = obj.derivation_operator == 'XPRODUCT' ? 'and' : 'or';
+                items.push({'conjunction': conjunction, 'items': obj.children_criteria, 'negation':null})
+              }
+            } else {
+              if (obj.temporal_references) {
+                items = $.map(obj.temporal_references,
+                  function(temporal_reference){
+                    return {
+                      conjunction: temporal_reference.type,
+                      items: [temporal_reference.reference],
+                      temporal: true,
+                      title: (
+                        (
+                          temporal_reference.range ? popHealth.textForRange(temporal_reference.range,true) : ''
+                        ) +
+                        ({
+                          DURING:'During',SBS:'Starts Before Start of',SAS:'Starts After Start of',SBE:'Starts Before End of',
+                          SAE:'Starts After End of',EBS:'Ends Before Start of',EAS:'Ends After Start of',EBE:'Ends Before End of',
+                          EAE:'Ends After End of',SDU:'Starts During',EDU:'Ends During',ECW:'Ends Concurrent with',
+                          SCW:'Starts Concurrent with',CONCURRENT:'Concurrent with'
+                        })[temporal_reference.type] +
+                        (temporal_reference.reference == 'MeasurePeriod' ? ' Measure Period' : '')
+                      )
+                    }
+                  }
+                );
+              }
+              if (!obj.temporal){
+                elemParent = $("#ph_tmpl_paramGroup").tmpl().appendTo(elemParent).find(".paramItem:last");
+                $('#ph_tmpl_data_criteria_logic').tmpl(obj).appendTo(elemParent);
+              }
+            }
+          }
+          var neg = obj.negation || false;
+          if ($.isArray(items)) {
+            conjunction = obj['conjunction'];
+            if (items.length > 1 && !(container != null)) {
+              elemParent = $('#ph_tmpl_paramGroup').tmpl().appendTo(elemParent).find(".paramItem:last");
+            }
+            if (neg) {
+              $(elemParent).append("<span class='not'>not</span>");
+            }
+            return $.each(items, function(i, node) {
+              var next;
+              if (node.temporal) {
+                $(elemParent).append("<span class='" + node.conjunction + "'>" + node.title + "</span>");
+              }
+              addParamItems(node, elemParent);
+              if (i < items.length - 1 && !node.temporal) {
+                next = items[i + 1];
+                if (!conjunction) {
+                  conjunction = node.conjunction;
+                }
+                return $(elemParent).append("<span class='" + conjunction + "'>" + conjunction + "</span>");
+              }
+            });
+          };
         } // end addParamItems
 
         if (data.population) {
@@ -55,7 +147,7 @@
           addParamItems(data.numerator,$("#outcomeMeasureItems"));
         }
 
-        if ('exclusions' in data && !$.isEmptyObject(data['exclusions'])) {
+        if (!$.isEmptyObject(data.exclusions)) {
           addParamItems(data.exclusions,$("#exclusionMeasureItems"));
           $("#exclusionMeasureItems").hide();
           $("#exclusionPanel").show();
@@ -65,12 +157,12 @@
     $(document).ready(function() {
       //$.getJSON("json/bp.json",popHealth.renderMeasureJSON);
       $.getJSON("<%= measure_definition_url(@definition['id'], @definition['sub_id']) %>",popHealth.renderMeasureJSON);
-      
+
       var qr = new QualityReport('<%=@definition['id']%>', '<%=@definition['sub_id']%>');
       var params = {}
       <% if (@selected_provider) %> params['npi'] = '<%= @selected_provider.npi %>';<%end%>
       qr.poll(params, popHealth.drawPctChart);
-      
+
       $("#exclusionPanel h3").click(function() {
         $("#exclusionMeasureItems").slideToggle('slow');
       });
@@ -78,12 +170,9 @@
       $(".deleteParamIcon").click(popHealth.deleteParam);
       $("#btnSaveNewMeasure").click(popHealth.saveNewMeasure);
       $("#btnReturnToDash").click(popHealth.returnToDash);
-      
+
     });
 
-    function alertDate(e) {
-      alert("you changed me");
-    }
   </script>
   <script type="text/html" id="ph_tmpl_paramItem">
     <div>
@@ -99,6 +188,13 @@
   <script type="text/html" id="ph_tmpl_paramGroup">
     <div class="paramGroup"><div class="paramItem">
     </div></div>
+  </script>
+  <script type="text/html" id="ph_tmpl_data_criteria_logic">
+    <div class='paramText logicLeaf' {{if id}}id='${id}'{{/if}}>
+      {{if operator}}<label>${operator}</label>{{/if}}
+      {{if category}}<label>${category}</label>{{/if}}{{if standard_category}}<label>${popHealth.humanizeCategory(standard_category)}</label>{{/if}}
+      ${title} ${temporalText}
+    </div>
   </script>
 <% end %>
 
