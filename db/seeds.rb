@@ -1,7 +1,19 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+MONGO_DB = Mongoid.default_session
+
+(
+  MONGO_DB['races'].drop() if MONGO_DB['races']
+  MONGO_DB['ethnicities'].drop() if MONGO_DB['ethnicities']
+  JSON.parse(File.read(File.join(Rails.root, 'test', 'fixtures', 'code_sets', 'races.json'))).each do |document|
+    MONGO_DB['races'].insert(document)
+  end
+  JSON.parse(File.read(File.join(Rails.root, 'test', 'fixtures', 'code_sets', 'ethnicities.json'))).each do |document|
+    MONGO_DB['ethnicities'].insert(document)
+  end
+) if MONGO_DB['races'].find.count == 0 || MONGO_DB['ethnicities'].find.count == 0
+
+# # insert languages
+(
+  JSON.parse(File.read(File.join(Rails.root, 'test', 'fixtures', 'code_sets', 'languages.json'))).each do |document|
+    MONGO_DB['languages'].insert(document)
+  end
+) if MONGO_DB['languages'].find.count == 0

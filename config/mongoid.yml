@@ -1,12 +1,18 @@
 development:
-  host: localhost
-  database: pophealth-development
-
+  sessions:
+    default:
+      database: pophealth-development
+      hosts:
+        - localhost:27017
 test:
-  host: localhost
-  database: pophealth-test
-
-# set these environment variables on your prod server
+  sessions:
+    default:
+      database: pophealth-test
+      hosts:
+        - localhost:27017
 production:
-  host: localhost
-  database: pophealth-production
+  sessions:
+    default:
+      database: pophealth-production
+      hosts:
+        - localhost:27017

@@ -17,15 +17,16 @@ class MeasuresController < ApplicationController
       {}
     end
   end
-  add_breadcrumb_dynamic([:definition, :selected_provider], only: %w{show patients}) {|data| measure = data[:definition]; provider = data[:selected_provider]; {title: "#{measure['endorser']}#{measure['id']}" + (measure['sub_id'] ? "#{measure['sub_id']}" : ''), url: "#{Rails.configuration.relative_url_root}/measure/#{measure['id']}"+(measure['subid'] ? "/#{measure['sub_id']}" : '')+(provider ? "?npi=#{provider.npi}" : "/providers")}}
+  add_breadcrumb_dynamic([:definition, :selected_provider], only: %w{show patients})  do |data| 
+    measure = data[:definition]; provider = data[:selected_provider]
+    {title: "#{measure['endorser']}#{measure['id']}" + (measure['sub_id'] ? "#{measure['sub_id']}" : ''), 
+     url: "#{Rails.configuration.relative_url_root}/measure/#{measure['id']}"+(measure['sub_id'] ? "/#{measure['sub_id']}" : '')+(provider ? "?npi=#{provider.npi}" : "/providers")}
+  end
   add_breadcrumb 'parameters', '', only: %w{show}
   add_breadcrumb 'patients', '', only: %w{patients}
   
   def index
-    @categories = Measure.non_core_measures
-    @core_measures = Measure.core_measures
-    @core_alt_measures = Measure.core_alternate_measures
-    @alt_measures = Measure.alternate_measures.group_by { |m| m['category'] }
+    @categories = Measure.categories[0..12]
   end
   
   def show
@@ -36,9 +37,7 @@ class MeasuresController < ApplicationController
         @result = @quality_report.result
       end
       wants.json do
-
-#        SelectedMeasure.add_measure(current_user.username, params[:id])
-        measures = params[:sub_id] ? Measure.get(params[:id], params[:sub_id]) : Measure.sub_measures(params[:id])
+        measures = params[:sub_id] ? QME::QualityMeasure.get(params[:id], params[:sub_id]) : QME::QualityMeasure.sub_measures(params[:id])
         
         render_measure_response(measures, params[:jobs]) do |sub|
           {
@@ -68,9 +67,6 @@ class MeasuresController < ApplicationController
   
   def providers    
     authorize! :manage, :providers
-
-    
-    
     
     respond_to do |wants|
       wants.html {}
@@ -96,9 +92,6 @@ class MeasuresController < ApplicationController
         end
       end
     end
-    
-    # @time_here2 = Time.now
-    # 
   end
   
   def remove
@@ -253,7 +246,7 @@ class MeasuresController < ApplicationController
     else
       qr = QME::QualityReport.new(id, sub_id, 'effective_date' => effective_date)
     end
-    qr.calculate(false) unless qr.calculated?
+    qr.calculate unless qr.calculated?
     result = qr.result
     {
       :id=>id,
@@ -267,7 +260,7 @@ class MeasuresController < ApplicationController
   
   
   def set_up_environment
-    @patient_count = (@selected_provider) ? @selected_provider.records(@effective_date).count : mongo['records'].count
+    @patient_count = (@selected_provider) ? @selected_provider.records(@effective_date).count : Record.count
     if params[:id]
       measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
       render(:file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404) unless measure
@@ -288,7 +281,7 @@ class MeasuresController < ApplicationController
   end
   
   def render_measure_response(collection, uuids)
-    result = collection.inject({jobs: {}, result: [], job_statuses: {}}) do |memo, var|
+    result = collection.inject({jobs: {}, result: []}) do |memo, var|
       data = yield(var)
       report = data[:report]
       patient_count = data[:patient_count]
@@ -298,14 +291,16 @@ class MeasuresController < ApplicationController
       else
         measure_id = report.instance_variable_get(:@measure_id)
         sub_id = report.instance_variable_get(:@sub_id)
-        filters = report.instance_variable_get(:@parameter_values)['filters']
+        
         key = "#{measure_id}#{sub_id}"
         uuid = (uuids.nil? || uuids[key].nil?) ? report.calculate : uuids[key]
+        filters = report.instance_variable_get(:@parameter_values)['filters']
         job = {uuid: uuid, status: report.status(uuid)['status'], measure_id: measure_id, sub_id: sub_id, filters: filters}
+
         memo[:jobs][key] = job
         memo[:result] << {job: job}
       end
-      
+
       memo
     end
 
@@ -316,7 +311,7 @@ class MeasuresController < ApplicationController
     
     if !can?(:read, :providers) || params[:npi]
       npi = params[:npi] ? params[:npi] : current_user.npi
-      @selected_provider = Provider.first(conditions: {npi: npi})
+      @selected_provider = Provider.where(conditions: {npi: npi}).first
       authorize! :read, @selected_provider
     end
     
@@ -332,15 +327,16 @@ class MeasuresController < ApplicationController
           @teams = Team.alphabetical
           @page = params[:page]
         else
-          @providers_by_team = @providers.group_by { |pv| pv.team.try(:name) || "Other" }
-          @providers_by_team['Other'] ||= []
-          @providers_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
+          other = Team.new(name: "Other")
+          @providers_by_team = @providers.group_by { |pv| pv.team || other }
+          @providers_by_team[other] ||= []
+          # @providers_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
         end
       end
 
       @races = Race.ordered
       @ethnicities = Ethnicity.ordered
-      @genders = [{name: 'Male', id: 'M'}, {name: 'Female', id: 'F'}]
+      @genders = [{name: 'Male', id: 'M'}, {name: 'Female', id: 'F'}].map { |g| OpenStruct.new(g)}
       @languages = Language.ordered
       
     end

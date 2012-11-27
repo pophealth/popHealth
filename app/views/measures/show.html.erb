@@ -102,32 +102,28 @@
   </script>
 <% end %>
 
-  <div>
-    <%= render :partial => 'shared/measure_metrics', locals: {numerator: (@result ? @result['numerator'] : 0), denominator: (@result ? @result['denominator'] : 0)} %>
+    <div class="row-fluid">
+          <%= render :partial => 'shared/measure_metrics', locals: {numerator: (@result ? @result['numerator'] : 0), denominator: (@result ? @result['denominator'] : 0)} %>
     <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
-    <div id="measureEditContainer">
-      <div id="exclusionPanel" style="display:none;">
-        <div id="exclusionMeasureItems"></div>
-        <h3>exclusions <em>(<span id="exclusionCount">0</span>)</em></h3>
+    </div>
+    <div id="measureEditContainer" class="row-fluid">
+      <div class="parameters span6">
+        <div class="row-fluid">
+          <h3 class="numerator span6">NUMERATOR</h3>
+        </div>
+        <div class="row-fluid">
+          <%= render partial: 'conjunction', object: @definition['numerator'] %>
+        </div>
       </div>
-      <div id="eligibilityMeasures">
-        <h3>denominator <em>(<span id="eligibleCount">0</span>)</em></h3>
-        <div class="measureBox">
-          <div id="eligibilityMeasureItems">
-          </div><!-- end #eligibilityMeasureItems -->
-        </div><!-- end measureBox -->
-      </div><!-- end #eligibilityMeasures -->
-      <div id="outcomeMeasures">
-        <h3>numerator <em>(<span id="outcomeCount">0</span>)</em></h3>
-        <div class="measureBox">
-          <div id="outcomeExclusionMarker" class="exclusionTab" style="display:none">
-            0 Exclusions
-          </div>
-          <div id="outcomeMeasureItems">
-          </div>
-          <div id="xexclusionMeasureItems">
-          </div>
-        </div><!-- end measureBox -->
-      </div><!-- end #outcomeMeasures -->
-    </div><!-- end measureEditContainer -->
-  </div>
+
+      <div class="parameters span6">
+        <div class="row-fluid">
+          <h3 class="denominator span6">DENOMINATOR</h3>
+        </div>
+        <div class="row-fluid">
+          <% #if @definition['denominator'] %>
+            <%= render partial: 'conjunction', object: @definition['denominator'] %>
+          <% #end %>
+        </div>
+      </div>
+    </div>

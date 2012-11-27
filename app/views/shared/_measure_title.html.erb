@@ -1,24 +1,20 @@
-<div class="measureDetailTable" id="measureDetailTitle">
+<div class="span10" id="measureDetailTitle">
 	<%= content_for :export_links %>
-	<% measureTitle = "#{measure['endorser']}#{measure['id']} #{measure['name']}" %>
-	<% if measure['sub_id'] %>
-  <%   measureTitle = "#{measureTitle} - (#{measure['sub_id']}) #{measure['subtitle']}" %>
-  <% end %>
-
-	<dl>
-    <dt style="line-height:2.5em">Measure Name:</dt>
-    <dd><h1 id="measureTitleText"><%= measureTitle %></h1></dd>
-  </dl>
-  <dl>
-    <dt>Reporting Period:</dt>
-    <dd>
-      <span id="measurementPeriodStartDate"><%= Time.at(start_date).strftime("%m/%d/%Y") %> - <%= Time.at(effective_date).strftime("%m/%d/%Y") %></span>
+  <dl class="dl-horizontal">
+    <dt>Measure Name:</dt>
+    <dd>      
+      <%= measure['name']%>
+      <% if measure['short_subtitle']%>
+        - <%= measure['short_subtitle'] %>
+      <% end %>
+      <dt>Reporting Period:</dt>
+      <dd>
+        <span id="measurementPeriodStartDate"><%= Time.at(start_date).strftime("%m/%d/%Y") %> - <%= Time.at(effective_date).strftime("%m/%d/%Y") %></span>
+      </dd>
+      <dt>Description:</dt>
+      <dd>
+        <span id="measureDescText"><%= measure['description'] %></span>
+      </dd>
     </dd>
-  </dl>
-  <dl>
-    <dt>Description:</dt>
-     <dd>
-       <span id="measureDescText"><%= measure['description'] %></span>
-     </dd>
   </dl>
 </div><!-- end #measureDetailTable -->

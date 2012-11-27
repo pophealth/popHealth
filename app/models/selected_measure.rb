@@ -1,6 +1,6 @@
 class SelectedMeasure < MongoBase
   # include Mongoid::Document
-  # 
+  
   # field :username         , type: String
   # field :id               , type: String
   # field :name             , type: String
@@ -16,11 +16,12 @@ class SelectedMeasure < MongoBase
   # @return [Hash] representing the added measure. nil if the measure is already selected or if the
   #                measure id provided does not match any measures
   def self.add_measure(username, measure_id)
-    if mongo['selected_measures'].find_one(:id => measure_id, :username => username)
+
+    if mongo['selected_measures'].find(:id => measure_id, :username => username).first
       return nil
     else
       measures = mongo['measures'].find(:id => measure_id)
-
+      
       if measures
         selected_measure_doc = {'subs' => [], 'short_subtitles' => {}}
         measures.each do |measure|
@@ -35,7 +36,7 @@ class SelectedMeasure < MongoBase
           end
         end
 
-        mongo['selected_measures'].save(selected_measure_doc)
+        mongo['selected_measures'].insert(selected_measure_doc)
 
         return selected_measure_doc
       else
@@ -45,7 +46,7 @@ class SelectedMeasure < MongoBase
   end
   
   def self.remove_measure(username, measure_id)
-    mongo['selected_measures'].remove(:id => measure_id, :username => username)
+    mongo['selected_measures'].find(:id => measure_id, :username => username).remove()
   end
   
 end

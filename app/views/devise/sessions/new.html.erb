@@ -7,16 +7,17 @@
     </div>
     <div id="panelLogin" class="panel">
       <%= f.label :username %>
-      <%= f.email_field :username %>
+      <%= f.text_field :username %>
       <%= f.label :password %>
-      <%= f.password_field :password, :onkeypress => "return submitKeyPress(event);" %>
+      <%= f.password_field :password %>
       
       <div class="accountError">
         <%= alert %>
       </div>
 
       <div class="actions">
-        <a class="bluebutton" href="#" onclick="submitLoginform();"><span>Login</span></a>
+        <%= submit_tag "Login", 'class' => "btn btn-info" %>
+       
       </div>
 
       <%= render :partial => "devise/shared/links" %>

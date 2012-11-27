@@ -1,132 +1,38 @@
-<div id="pageContent">
-  <div id="providerReports">
-    <h1>
-      Providers
-    </h1>
-    
-      <% if APP_CONFIG['disable_provider_filters'] %>
-	    <p class="note">
-	      Teams
-	    </p>
-			<div class="filterItemList teamList">
-				<ul>
-					<% @teams.each do |team| %>
-					<li class="checked" data-filter-type="team" data-filter-value="<%= team.id%>">
-						<%= team.name %>
-					</li>
-					<% end %>
-				</ul>						
-			</div>
-			<% else %>
-			<p class="note">
-	      Providers
-	    </p>
-			<div class="groupList">
-			<ul>
-        <% @providers_by_team.each do |team_name, providers| %>
-        <li>
-					
-          <label><%= team_name%></label>
-          <div class="filterItemList expandableList" style="display:none">
-            <ul>
-							<li class="selectAll providerSelectAll checked">All</li>
-              <% providers.each do |pv| %>
-              <li class="disabled" data-filter-type="provider" data-filter-value="<%=pv.id%>">
-                <%= pv.full_name %>
-              </li><% end %>
-            </ul>
-          </div>
-					<% end %>
-        </li>
-
-      </ul>
-		</div>
-			<% end %>
-    
-   <p class="note">
-      Demographics
-    </p>
-    <div class="groupList">
-      <ul>
-        <li>
-          <label>Races</label>
-          <div class="filterItemList expandableList" style="display:none">
-            <ul>
-							<li class="selectAll checked">All</li>
-               <% @races.each do |race| %>
-              <li class="disabled" data-filter-type="race" data-filter-value="<%=race.id%>">
-                <%= race.name %>
-              </li>
-							<% end %>
-            </ul>
-          </div>
-        </li>
-        <li>
-          <label>Ethnicities</label>
-          <div class="filterItemList expandableList" style="display:none">
-            <ul>
-							<li class="selectAll checked">All</li>
-               <% @ethnicities.each do |ethnicity| %>
-              <li class="disabled" data-filter-type="ethnicity" data-filter-value="<%=ethnicity.id%>">
-                <%= ethnicity.name %>
-              </li>
-							<% end %>
-            </ul>
-          </div>
-        </li>
-        <li>
-          <label>Genders</label>
-          <div class="filterItemList expandableList" style="display:none">
-            <ul>
-							<li class="selectAll checked">All</li>
-               <% @genders.each do |gender| %>
-              <li class="disabled" data-filter-type="gender" data-filter-value="<%=gender[:id]%>">
-                <%= gender[:name] %>
-              </li>
-							<% end %>
-            </ul>
-          </div>
-        </li>
-        <li>
-          <label>Languages</label>
-          <div class="filterItemList expandableList" style="display:none">
-            <ul>
-							 <li class="selectAll checked">All</li>
-               <% @languages.each do |language| %>
-              <li class="disabled" data-filter-type="language" data-filter-value="<%=language.id%>">
-                <%= language.name %>
-              </li>
-							<% end %>
-            </ul>
-          </div>
-        </li>
-      </ul>
-    </div>
+<div id="pageContent" class="row-fluid">
+  <div id="providerReports" class="span2">
+	<%= render partial: 'provider_filters' %>
+  <p class="note">
+    Demographics
+  </p>
+  <ul class="nav nav-tabs nav-stacked">
+    <%= render partial: 'filters', locals: {filters: @races, type: "race"} %>
+    <%= render partial: 'filters', locals: {filters: @ethnicities, type: "ethnicity"} %>
+    <%= render partial: 'filters', locals: {filters: @genders, type: "gender"} %>
+    <%= render partial: 'filters', locals: {filters: @languages, type: "language"} %>
+  </ul>
   </div>
-  <div id="providerMain">
-    <div id="aggregate">
-      <%= image_tag "loading_bar.gif", :id => "loadingAggregate", :style => "display:none" %>
-      <%= render :partial => 'shared/measure_metrics', locals: {numerator: nil, denominator: nil} %>
-   
-      <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
-        <div class="buttons">
-          <%= button_to 'parameters', measure_url(@definition['id'], @definition['sub_id']), method: 'get', :class => 'tableEdit button'%> 
-          <%= button_to 'patients', patients_url(@definition['id'], @definition['sub_id']), method: 'get', :class => 'tableEdit button'%>
+  <div id="providerMain" class="span10">
+    <div id="aggregate" class="row-fluid">
+      <div class="row-fluid">
+        <%= render :partial => 'shared/measure_metrics', locals: {numerator: nil, denominator: nil} %>
+        <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
       </div>
-    </div><br>
+
+        <div class="buttons row-fluid">
+          <%= link_to 'parameters', measure_url(@definition['id'], @definition['sub_id']), method: 'get', :class => 'tableEdit btn'%> 
+          <%= link_to 'patients', patients_url(@definition['id'], @definition['sub_id']), method: 'get', :class => 'tableEdit btn'%>
+      </div>
+    </div>
 		
-    <table id="providerTable" border="0" cellspacing="5" cellpadding="5" >
-      <tbody>
-        <tr>
-          <th>
-        <h1>INDIVIDUAL PROVIDER STATISTICS</h1>
-          </th>
-        </tr>
-				<tr>
-					<%= render :partial => "provider_row", :collection => @providers %>
-      </tbody>
-    </table>
-		<%= paginate @providers, :remote => true %>
+
+    <h3>INDIVIDUAL PROVIDER STATISTICS</h3>
+    <div id="providers">
+      <%= render :partial => "provider_row", :collection => @providers %>
+    </div>
+		<div class="row-fluid">
+      <%= paginate @providers, :remote => true %>
+    </div>
+		
   </div>
 </div>
 

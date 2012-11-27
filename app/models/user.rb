@@ -6,14 +6,14 @@ class User
   
   before_create :set_defaults
   
-  DEFAULT_EFFECTIVE_DATE = Time.gm(2010, 12, 31)
+  DEFAULT_EFFECTIVE_DATE = Time.gm(2011, 1, 1)
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:username]
 
 
    ## Database authenticatable
-   field :encrypted_password, :type => String, :null => false
+   field :encrypted_password, :type => String
 
    ## Recoverable
    field :reset_password_token,   :type => String

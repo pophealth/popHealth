@@ -48,12 +48,14 @@
 </head>
 <body>
   
-<div id="dashboardContainer">
+<div id="container" class="container-fluid">
   <% unless request.xhr?%>
     <%= render :partial => 'shared/header' %>
   <% end %>
-
-  <%= yield %>
+  <div class="row-fluid">
+    <%= yield %>
+  </div>  
+  
 
 </div><!-- end #container -->
 

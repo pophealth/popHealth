@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   end
 
   def mongo
-    MONGO_DB
+    # MONGO_DB
   end
   
   def set_effective_date(effective_date=nil, persist=false)

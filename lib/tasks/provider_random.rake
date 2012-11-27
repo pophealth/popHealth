@@ -1,4 +1,4 @@
-require 'mongo'
+# require 'mongo'
 require 'json'
 require 'factory_girl'
 
@@ -12,10 +12,8 @@ namespace :provider do
     FactoryGirl.find_definitions
     
     n = args.n.to_i>0 ? args.n.to_i : 10
-    
-    n.times do
-      Factory(:provider)
-    end
+
+    FactoryGirl.create_list(:provider, n)
     
     providers = Provider.all
     

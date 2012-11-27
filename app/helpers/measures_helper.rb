@@ -13,12 +13,6 @@ module MeasuresHelper
     end
   end
   
-  # Checks a measure id to see if it is in the Array returned
-  # be getting the selected_measure collection
-  def measure_selected(measure_id, selected_measures)
-    is_selected?(measure_id, selected_measures) ? 'checked' : nil
-  end
-  
   def display_row(measure_id, selected_measures)
     is_selected?(measure_id, selected_measures) ? "" : "display:none"
   end

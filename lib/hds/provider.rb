@@ -34,6 +34,8 @@ class Provider
                  "330000000X" => "Suppliers (including Pharmacies and Durable Medical Equipment)",
                  "360000000X" => "Physician Assistants and Advanced Practice Nursing Providers"}
   
+  # alias :full_name :name
+
   def full_name
     [family_name, given_name].compact.join(", ")
   end

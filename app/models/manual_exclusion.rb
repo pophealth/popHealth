@@ -1,7 +1,7 @@
 class ManualExclusion
   include Mongoid::Document
   
-  store_in :manual_exclusions
+  store_in collection: :manual_exclusions
   
   field :measure_id, type: String
   field :sub_id, type: String

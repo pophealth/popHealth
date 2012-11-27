@@ -1,20 +1,19 @@
-# Mongoid Configuration for Travis CI
-# ===================================
-#
-
-defaults: &defaults
-  host: localhost
-  port: 27017
-
 development:
-  <<: *defaults
-  database: pophealth-development
-
+  allow_dynamic_fields: false
+  sessions:
+    default:
+      database: pophealth-development
+      hosts:
+        - localhost:27017
 test:
-  <<: *defaults
-  database: pophealth-test
-
+  sessions:
+    default:
+      database: pophealth-test
+      hosts:
+        - localhost:27017
 production:
-  <<: *defaults
-  database: pophealth-production
-
+  sessions:
+    default:
+      database: pophealth-production
+      hosts:
+        - localhost:27017

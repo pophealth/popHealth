@@ -1,4 +1,4 @@
-a.bluebutton, a.whitebutton {
+/*a.bluebutton, a.whitebutton {
   background: transparent url('../assets/blue_right.png') no-repeat scroll top right;
   color: #787878;
   display: inline-block;
@@ -31,11 +31,11 @@ a.whitebutton span {
     outline: none; /* hide dotted outline in Firefox */
 }
 
-#btnMeasurementPeriodChange {
+/*#btnMeasurementPeriodChange {
   background: transparent url('../assets/refresh.png') no-repeat scroll top right;
 
 }
-
+*/
 .ui-button {
 
 }
@@ -47,4 +47,4 @@ a.whitebutton span {
 
 .ui-corner-all {
   border-radius: 10px;
-}
+}*/

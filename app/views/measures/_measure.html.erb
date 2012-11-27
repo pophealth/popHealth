@@ -1,19 +1,26 @@
 <% subs_iterator(measure['subs']) do |sub| %>
-	<tr style="<%=display_row(measure['id'], current_user.selected_measures)%>" data-measure="<%=measure['id']%>" data-measure-sub="<%= sub %>" class="measure">
-		<% if sub.nil? || sub == 'a' %>
-			<td class="name"><%= (can? :manage, :providers) ? link_to(raw("<span title='#{measure['description']}' class='vtip'>#{measure['name']}</span>"), "#{measure_path(measure['id'], sub)}/providers") : raw("<span title='#{measure['description']}' class='vtip'>#{measure['id']}: #{measure['name']}</span>") %></td>
-		<% else %>
-			<td class="name" />
-		<% end %>
-		
-		<% if sub %>
-			<td class="subtitle"><%= (can? :manage, :providers) ? link_to("#{measure['short_subtitles'][sub]}", "#{measure_path(measure['id'], sub)}/providers") : "#{measure['short_subtitles'][sub]}" %></td>
-		<% else %>
-			<td class="subtitle" />
-	  <% end %>
-		<td class="percent"><div class="measureProviderPopulationPercentage"></div></td>
-		<td class="fraction"><%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %></td>
-	  <td class="barChart"><%= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0, exclusions: 0}%></td>
-    <td class="links"><%npi_param = (@selected_provider ? "?npi=#{@selected_provider.npi}" : '')%><%= link_to 'parameters', measure_url(measure['id'], sub)+npi_param%><br><%= link_to 'patients', patients_url(measure['id'], sub)+npi_param%></td>
-	</tr>
+<div data-measure="<%=measure['id']%>" data-measure-sub="<%= sub['sub_id']%>" style="<%=display_row(measure['id'], current_user.selected_measures)%>" class="measure row-fluid">
+  <div class="span4">
+    <% if sub['sub_id'].nil? %>
+      <% if (can? :manage, :providers) %>
+        <%= link_to(measure['name'], "#{measure_path(measure['id'], sub['sub_id'])}/providers") %>
+      <% end %>
+    <% elsif sub['sub_id'] == 'a' %>
+        <span title="<%= measure['description'] %>"> <%= measure['name'] %></span>
+     <% end %>
+  </div>
+  <div class="span2">
+    <%= (can? :manage, :providers) ? link_to("#{sub['short_subtitle']}", "#{measure_path(measure['id'], sub['sub_id'])}/providers") : "#{sub['short_subtitle']}" %>
+  </div>
+  <div class="percentage span2">
+    <%= image_tag "loading_bar.gif" %>
+  </div>
+  <div class="fraction span2">
+    <%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %>
+  </div>
+  <div class="span2">
+    <%npi_param = (@selected_provider ? "?npi=#{@selected_provider.npi}" : '')%><%= link_to 'parameters', measure_url(measure['id'], sub['sub_id'])+npi_param%><br><%= link_to 'patients', patients_url(measure['id'], sub['sub_id'])+npi_param%>
+  </div>
+</div>
+
 <% end %>

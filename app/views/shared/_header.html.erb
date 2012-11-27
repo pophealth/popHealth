@@ -1,6 +1,7 @@
-<div id="header">
-  <div id="breadcrumbBox">
-    <ul id="breadcrumbItems" class="breadcrumbItems">
+<div id="header" class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/">popHealth</a>
+    <ul id="mainBreadcrumbs" class="breadcrumb">
       <% if @breadcrumbs %>
         <% @breadcrumbs[0..-2].each do |crumb| %>
           <li><%= link_to(crumb.title, crumb.url) %> <span class="sep">&raquo;</span></li>
@@ -8,6 +9,5 @@
         <li><%= @breadcrumbs.last.title %></li>
       <% end %>
     </ul>
-    <%= render :partial => 'shared/top_nav' %>
-  </div><!-- end #breadcrumbBox -->
-</div><!-- end #header -->
+  </div>
+</div>
