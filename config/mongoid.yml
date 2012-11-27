@@ -3,13 +3,10 @@ development:
   database: pophealth-development
 
 test:
-  host: <%= ENV['TEST_DB_HOST'] || 'localhost' %>
+  host: localhost
   database: pophealth-test
 
 # set these environment variables on your prod server
 production:
-  host: <%= ENV['MONGOID_HOST'] %>
-  port: <%= ENV['MONGOID_PORT'] %>
-  username: <%= ENV['MONGOID_USERNAME'] %>
-  password: <%= ENV['MONGOID_PASSWORD'] %>
-  database: <%= ENV['MONGOID_DATABASE'] %>
+  host: localhost
+  database: pophealth-production

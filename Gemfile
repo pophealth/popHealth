@@ -1,15 +1,16 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.2.8'
 # locked to 1.3.3 to resolve annoying warning 'already initialized constant WFKV_'
-gem 'rack' , '1.3.3'
+gem 'rack' , '1.4.0'
 
-#gem 'quality-measure-engine', '1.1.2'
-gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'develop'
-#gem 'quality-measure-engine', path: '../quality-measure-engine'
+# gem 'quality-measure-engine', '1.1.2'
+# gem "quality-measure-engine", git: "http://github.com/pophealth/quality-measure-engine.git"
+# gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'develop'
+gem 'quality-measure-engine', path: '../quality-measure-engine'
 #gem 'health-data-standards', '0.8.0'
-gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'develop'
-#gem 'health-data-standards', path: '../health-data-standards'
+gem "health-data-standards"
+# gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'develop'
 
 gem 'nokogiri'
 gem 'rubyzip'
@@ -19,31 +20,31 @@ gem "kaminari"
 
 gem 'json', :platforms => :jruby
 # these are all tied to 1.3.1 because bson 1.4.1 was yanked.  To get bundler to be happy we need to force 1.3.1 to cause the downgrade
-gem "mongo", "1.3.1"
-gem "bson", "1.3.1"
-gem 'bson_ext',"1.3.1",  :platforms => :mri
+
 gem "mongoid"
-gem 'devise', "~>2.0.0"
+
+gem 'devise'
+
 gem 'foreman'
-gem 'pry'
+
 gem 'formtastic'
 gem 'cancan'
 gem 'factory_girl', "2.6.3"
-
+gem "rails-backbone"
+gem "bootstrap-sass"
 # Windows doesn't have syslog, so need a gem to log to EventLog instead
 gem 'win32-eventlog', :platforms => [:mswin, :mingw]
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', "  ~> 3.1.0"
-  gem 'coffee-rails', "~> 3.1.0"
+  gem 'sass-rails'
+  gem 'coffee-rails'
   gem 'uglifier'
 end
 
 group :test, :develop do
-  # gem "rspec-rails"
-  # Pretty printed test output
+  gem 'pry'
   gem "unicorn", :platforms => [:ruby, :jruby]
   gem 'turn', :require => false
   gem 'cover_me'
@@ -52,9 +53,8 @@ group :test, :develop do
 end
 
 group :production do
-  # Is there an easy way to say "all platforms except :mswin, :mingw" without
-  # explicitly listing all other platforms?
-  gem 'therubyracer', :platforms => [:ruby, :jruby]
+  gem 'libv8', '~> 3.11.8.3'
+  gem 'therubyracer', '~> 0.11.0beta5', :platforms => [:ruby, :jruby] # 10.8 mountain lion compatibility
 end
 
 gem 'jquery-rails'
