@@ -19,8 +19,10 @@
         <div class="accordion-group">
           <div class="accordion-heading">
             <a href="#category<%=idx%>" class="accordion-toggle" data-parent="#measureSelectors" data-toggle="collapse">
+              <i class="icon-chevron-right pull-left"></i>
+              <div>
               <%= categorized['category'] %>
-              <i class="icon-chevron-down pull-right"></i> 
+              </div> 
             </a>
           </div>
           <div id="category<%=idx%>" class="accordion-body collapse">
@@ -71,16 +73,16 @@
           <% if (@selected_provider || !can?(:manage, :providers)) %>   
             <a class="btn" href="#">Export Report</a>
           <% else %>
-            <div class="btn-group">
-              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                Export Report
-                <span class="caret"></span>
+           <!--  <div class="btn-group">
+              <a id="btnExportReportSingle" class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="icon-download-alt"></i>
+        Export Report
               </a>
               <ul class="dropdown-menu">
                 <li><a href="#" tabindex="-1">Provider Report</a></li>
                 <li><a href="#" tabindex="-1">Practice Report</a></li>
               </ul>
-            </div>
+            </div> -->
           <% end %>
         </div>
         <% if (@selected_provider) %>
@@ -96,12 +98,19 @@
           </dl>
         <% end %>
         
-        <dl>
+        <dl id="reporting-period">
           <dt>Reporting Period:</dt>
           <dd>
-            <span id="measurementPeriodStartDate"><%= Time.at(@period_start).strftime("%m/%d/%Y") %></span> - 
-            <input id="measurementPeriodEndDate" type="text" class="input-small" value="<%= Time.at(@effective_date).strftime("%m/%d/%Y") %>">
-            <a id="btnMeasurementPeriodChange" style="margin-bottom:9px" class="btn" <% if (@selected_provider) %> data-npi="<%=@selected_provider.npi%>" <% end %>><i class="icon-refresh"></i></a>
+            <form class="form-inline">
+              <div id="measurementPeriodStartDate" style="margin-top:5px; margin-right:9px"> <%= Time.at(@period_start).utc.strftime("%m/%d/%Y") %>   - </div>
+             
+                <input id="measurementPeriodEndDate" type="text" class="input-small" value="<%= Time.at(@effective_date).utc.strftime("%m/%d/%Y") %>">
+      
+              <button id="btnMeasurementPeriodChange" <% if (@selected_provider) %> data-npi="<%=@selected_provider.npi%>" <% end %> class="btn btn-small" type="submit"> 
+                <i class="icon-refresh"></i>
+              </button>
+         
+            </form>
           </dd>
         </dl>
         <dl>
@@ -116,7 +125,7 @@
         <% end %>
        
       </div>
-       <hr>
+
       <div id="measures" class="row-fluid">
         <% @categories.each do |categorized| %>
             <div style="<%= display_header(categorized['measures'], current_user.selected_measures)%>" class='headerRow row-fluid'><%=categorized['category'] %>

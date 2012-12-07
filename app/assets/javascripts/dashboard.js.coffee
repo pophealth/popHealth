@@ -32,6 +32,8 @@
       params['npi'] = Page.npi
       qr.poll params, Page.onReportComplete
   onLoad: ->
+    $("[rel='tooltip']").tooltip();
+
     Page.onMeasureSelect = (measure) ->
       Dashboard.measureRow(measure).prevAll(".headerRow").first().show()
       Dashboard.fadeIn(measure)

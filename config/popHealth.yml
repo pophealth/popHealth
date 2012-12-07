@@ -21,6 +21,9 @@ defaults: &defaults
   ccr_system_name: popHealth
   # force the system to allow HTTP connections
   force_unsecure_communications: true
+  value_sets:
+    ticket_url: https://vsac.nlm.nih.gov/vsac/ws/Ticket
+    api_url: https://vsac.nlm.nih.gov/vsac/ws/RetrieveValueSet
 
 development:
   <<: *defaults

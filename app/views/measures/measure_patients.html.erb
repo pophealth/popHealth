@@ -36,43 +36,60 @@ popHealth.initPagination = function() {
 }
 
 popHealth.initExclusions = function() {
-  $( ".exclude" ).button().click(function() {
-      $( "#dialog-form" ).data("link", $(this).data("link")).dialog("option", "title", $(this).data().title).dialog("open");
-  });
-  
-  var rationale = $( "#rationale" );
-  
-  $( "#dialog-form" ).dialog({
-    autoOpen: false,
-    height: 215,
-    width: 410,
-    modal: true,
-    buttons: {
-      Update: function() {
-          $( this ).dialog( "close" );
-          
+  $("button.exclude").click(function() {
+    var rationale = $( "#rationale" );
+    var link = $(this).data("link")
+    console.log(link)
+    $("form").submit(function() {
+         console.log("here")
           $('#patientTableContainer').html("<div style='padding: 150px;'><img src='<%= Rails.configuration.relative_url_root%>/assets/loading_bar.gif'/></div>");
           $('.count').html('--');
           $('.numeratorValue').html('--');
           $('.denominatorValue').html('--');
           $('#measurePopulationPercentage').html('--%');
           $.ajaxSetup({async:false});
+       
           $.post(
-            $(this).data("link"),
+            link,
             {rationale: rationale.val()},
             function(data) {
               popHealth.poll();
             }
-          );
-        },
-      Cancel: function() {
-        $( this ).dialog( "close" );
-      }
-    },
-    close: function() {
-      rationale.val("");
-    }
+          )
+      return false;
+    })
   });
+  // $( "#dialog-form" ).dialog({
+  //   autoOpen: false,
+  //   height: 215,
+  //   width: 410,
+  //   modal: true,
+  //   buttons: {
+  //     Update: function() {
+  //         $( this ).dialog( "close" );
+          
+  //         $('#patientTableContainer').html("<div style='padding: 150px;'><img src='<%= Rails.configuration.relative_url_root%>/assets/loading_bar.gif'/></div>");
+  //         $('.count').html('--');
+  //         $('.numeratorValue').html('--');
+  //         $('.denominatorValue').html('--');
+  //         $('#measurePopulationPercentage').html('--%');
+  //         $.ajaxSetup({async:false});
+  //         $.post(
+  //           $(this).data("link"),
+  //           {rationale: rationale.val()},
+  //           function(data) {
+  //             popHealth.poll();
+  //           }
+  //         );
+  //       },
+  //     Cancel: function() {
+  //       $( this ).dialog( "close" );
+  //     }
+  //   },
+  //   close: function() {
+  //     rationale.val("");
+  //   }
+  // });
 
   
 }
@@ -87,7 +104,7 @@ $(document).ready(function() {
 <% end -%>
 
 
- <table id="patientTable">
+ <table id="patientTable" class="table table-hover">
     <thead>
        <tr>
          <th name="medical_record_id">Patient ID</th>
@@ -116,7 +133,8 @@ $(document).ready(function() {
            <% if (@type == 'exclusions' and not patient['manual_exclusion']) %>
              <div style="width: 10px; height: 30px;">&nbsp</div>
            <% else %>
-             <button class="exclude ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
+
+             <button href="#dialog-form" data-toggle="modal" class="exclude btn btn-small" 
                  data-link="<%= url_for(controller: :patients, action: :toggle_excluded, id: patient['patient_id'], measure_id: patient['measure_id'], sub_id: patient['sub_id']) %>"
                  data-title="<%= patient['manual_exclusion'] ? 'Include Patient' : 'Exclude Patient' %>">
                <%= patient['manual_exclusion'] ? 'Include' : 'Exclude' %>
@@ -143,13 +161,23 @@ $(document).ready(function() {
   <%= will_paginate @page_results%>
 </div>
 
+<div id="dialog-form"  tabindex="-1" role="dialog" aria-labelledby="Exclusion" aria-hidden="true" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Exclude Patient</h3>
+  </div>
+  <form>
+  <div class="modal-body">
 
-
-<div id="dialog-form" title="Exclude Patient">
-	<form onsubmit="return false;">
-  	<fieldset>
-		  <label for="rationale">Rationale: </label>
-		  <textarea name="rationale" cols="25" rows="2" id="rationale" class="text ui-widget-content ui-corner-all" />
-	  </fieldset>
-	</form>
+    <fieldset>
+      <label for="rationale">Rationale: </label>
+      <textarea name="rationale" rows="5" id="rationale" class="span12" />
+    </fieldset>
+    
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal">Close</button>
+    <%= submit_tag "Save Changes", 'class' => 'btn btn-primary'%>
+  </div>
+  </form>
 </div>

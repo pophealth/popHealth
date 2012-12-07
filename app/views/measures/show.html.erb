@@ -3,7 +3,7 @@
     function llog(x) {}
     var popHealth = popHealth || {};
     popHealth.drawPctChart = function(data) {
-        data = data[0]
+        data = data.result[0]
         var elem = "#measureMetrics";
         var percent = data.denominator > 0 ? Math.floor((data.numerator/data.denominator)*100) : 0;
         var numeratorWidth = (data.numerator/<%= @patient_count -%>).toFixed(2)*100;
@@ -101,8 +101,9 @@
                 );
               }
               if (!obj.temporal){
-                elemParent = $("#ph_tmpl_paramGroup").tmpl().appendTo(elemParent).find(".paramItem:last");
-                $('#ph_tmpl_data_criteria_logic').tmpl(obj).appendTo(elemParent);
+                elemParent.append(_.template(popHealth.Templates["ph_tmpl_paramGroup"])());
+                elemParent = $(elemParent).find(".paramItem:last")
+                elemParent.append(_.template(popHealth.Templates["ph_tmpl_data_criteria_logic"])({criteria: obj}))
               }
             }
           }
@@ -110,7 +111,8 @@
           if ($.isArray(items)) {
             conjunction = obj['conjunction'];
             if (items.length > 1 && !(container != null)) {
-              elemParent = $('#ph_tmpl_paramGroup').tmpl().appendTo(elemParent).find(".paramItem:last");
+              elemParent.append(_.template(popHealth.Templates["ph_tmpl_paramGroup"])())
+              elemParent = elemParent.find(".paramItem:last")
             }
             if (neg) {
               $(elemParent).append("<span class='not'>not</span>");
@@ -133,7 +135,9 @@
         } // end addParamItems
 
         if (data.population) {
-          elemParent = $("#ph_tmpl_paramGroup").tmpl({}).appendTo("#eligibilityMeasureItems").find(".paramItem:last");
+          elemParent = $("#eligibilityMeasureItems")
+          $(elemParent).append(_.template(popHealth.Templates['ph_tmpl_paramGroup']))
+          elemParent = $(elemParent).find(".paramItem:last")
           addParamItems(data.population,elemParent,elemParent);
           elemParent.parent().addClass("population");
         }
@@ -172,54 +176,49 @@
       $("#btnReturnToDash").click(popHealth.returnToDash);
 
     });
+    popHealth.Templates = {};
+
+    popHealth.Templates['ph_tmpl_paramGroup'] = "<div class=\"paramGroup\"><div class=\"paramItem\"></div></div>"
+    popHealth.Templates['ph_tmpl_data_criteria_logic'] = "<div class='paramText logicLeaf'>\
+      <%% if (criteria.operator != null) { %><label><%%= criteria.operator %></label><%% } %>\
+          <%% if (criteria.category != null) { %><label><%%=category%></label><%% }%>\
+          <%% if (criteria.standard_category != null) { %><label><%%= popHealth.humanizeCategory(criteria.standard_category) %></label><%% }%>\
+      <%%= criteria.title %> <%%= criteria.temporalText %></div>"
 
   </script>
-  <script type="text/html" id="ph_tmpl_paramItem">
-    <div>
-      <!-- ${percentage=Math.round(Math.random()*100,2)} -->
-      {{if category}}<label>${category}</label>{{/if}}
-      ${title}
-    </div>
-  </script>
-  <script type="text/html" id="ph_tmpl_paramGroupContainer">
-    <div class="paramGroupContainer">
-    </div>
-  </script>
-  <script type="text/html" id="ph_tmpl_paramGroup">
-    <div class="paramGroup"><div class="paramItem">
-    </div></div>
-  </script>
-  <script type="text/html" id="ph_tmpl_data_criteria_logic">
-    <div class='paramText logicLeaf' {{if id}}id='${id}'{{/if}}>
-      {{if operator}}<label>${operator}</label>{{/if}}
-      {{if category}}<label>${category}</label>{{/if}}{{if standard_category}}<label>${popHealth.humanizeCategory(standard_category)}</label>{{/if}}
-      ${title} ${temporalText}
-    </div>
-  </script>
+
 <% end %>
-
     <div class="row-fluid">
-          <%= render :partial => 'shared/measure_metrics', locals: {numerator: (@result ? @result['numerator'] : 0), denominator: (@result ? @result['denominator'] : 0)} %>
-    <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
+      <div class="span2">
+      <%= render :partial => 'shared/measure_metrics', locals: {numerator: (@result ? @result['numerator'] : 0), denominator: (@result ? @result['denominator'] : 0)} %>
+      </div>
+            <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
+    </div>
+    <div class="row-fluid">
+      <div id="exclusionPanel" style="display:none;" class="measureComponent span3">
+        <h3>exclusions <em>(<span id="exclusionCount">0</span>)</em></h3>
+        <div id="exclusionMeasureItems"></div>
+      </div>
     </div>
     <div id="measureEditContainer" class="row-fluid">
-      <div class="parameters span6">
-        <div class="row-fluid">
-          <h3 class="numerator span6">NUMERATOR</h3>
-        </div>
-        <div class="row-fluid">
-          <%= render partial: 'conjunction', object: @definition['numerator'] %>
-        </div>
-      </div>
 
-      <div class="parameters span6">
-        <div class="row-fluid">
-          <h3 class="denominator span6">DENOMINATOR</h3>
-        </div>
-        <div class="row-fluid">
-          <% #if @definition['denominator'] %>
-            <%= render partial: 'conjunction', object: @definition['denominator'] %>
-          <% #end %>
-        </div>
-      </div>
-    </div>
+      <div id="eligibilityMeasures" class="measureComponent span6">
+        <h3>denominator <em>(<span id="eligibleCount">0</span>)</em></h3>
+        <div class="measureBox">
+          <div id="eligibilityMeasureItems">
+          </div><!-- end #eligibilityMeasureItems -->
+        </div><!-- end measureBox -->
+      </div><!-- end #eligibilityMeasures -->
+      <div id="outcomeMeasures" class="measureComponent span6">
+        <h3>numerator <em>(<span id="outcomeCount">0</span>)</em></h3>
+        <div class="measureBox">
+          <div id="outcomeExclusionMarker" class="exclusionTab" style="display:none">
+            0 Exclusions
+          </div>
+          <div id="outcomeMeasureItems">
+          </div>
+          <div id="xexclusionMeasureItems">
+          </div>
+        </div><!-- end measureBox -->
+      </div><!-- end #outcomeMeasures -->
+    </div><!-- end measureEditContainer -->

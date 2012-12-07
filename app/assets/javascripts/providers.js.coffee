@@ -12,7 +12,6 @@
 				ref.isPollRequestActive = false
 				Providers.isLoading()
 			else
-				console.log(results)
 				$.each results, (i, data) ->
 					if (data.job && data.job.status == 'failed')
 						ref.isPollRequestActive = false

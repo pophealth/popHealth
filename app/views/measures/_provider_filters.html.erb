@@ -22,9 +22,8 @@
   <div class="accordion-group">
     <div class="accordion-heading">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#providerSelectors" data-target="#team<%=team.id%>">
-        <!-- <i class="icon-circle-arrow-down"></i>  -->
-        <%= team.name %>
-        <i class="icon-chevron-down pull-right"></i> 
+        <i class="icon-chevron-right pull-left"></i> 
+        <div><%= team.name %></div>
       </a>
     </div>
     <div  id="team<%=team.id%>" class="accordion-body collapse">
@@ -49,7 +48,7 @@
     </div>
   </div>
   <% else %>
-    <li class="disabled"><a>None</a></li>
+    None
   <% end %>
   <% end %>
 </div>

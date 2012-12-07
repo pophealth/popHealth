@@ -8,13 +8,13 @@
     var limit = 20;
     var display_type= "denominator";
     var effective_date = <%=Time.gm(2010, 12, 31).to_i%>;
-    var measure_id= '<%=params[:id] %>';
-    var sub_id=<%= "'#{params[:sub_id]}'" || 'null' %>;
+    var measure_id= '<%==params[:id] %>';
+    var sub_id= '<%==params[:sub_id] %>';
     var sort_ascending = true;
 
     popHealth.drawPctChart = function(data) {
-      data = data[0]
-      if (!data.job) {
+      if (data.complete) {
+        data = data.result[0]
         var elem = "#measureMetrics";
         var percent = data.denominator > 0 ? Math.floor((data.numerator/data.denominator)*100) : 0;
         var numeratorWidth = (data.numerator/<%= @patient_count %>).toFixed(2)*100;
@@ -23,12 +23,12 @@
         $(elem).find(".numeratorValue").text(data.numerator);
         $(elem).find(".denominatorValue").text(data.denominator);
         $("#measurePopulationPercentage").text(percent + "%");
-      
+        console.log(data)
         $("#numeratorCount").text(data.numerator);
         $("#denominatorCount").text(data.denominator);
         $("#antiNumeratorCount").text(data.antinumerator);
         $("#exclusionsCount").text(data.exclusions);
-      
+        $("#exceptionsCount").text(data.denexcep);
         display_type=$('input:radio[name=patientGroup]:checked').data('type')
       
         popHealth.reloadTable();
@@ -81,14 +81,18 @@
       $("#btnReturnToDash").click(popHealth.returnToDash);
       $("#btnExportExcel").click(function() {window.location = '<%= patient_list_url(params[:id], params[:sub_id], :format => :xml) + (@selected_provider ? "?npi=#{@selected_provider.npi}":'') %>'})
 
-      $('input[name=patientGroup]').change(function() {
+      $('button.patientGroup').click(function() {
         //$('#patientTableContainer').patient_table.displayNumerator();
+        $("button.patientGroup").removeClass("active")
+        $(this).addClass("active")
         if(this.id == "num"){
           display_type = "numerator";
         } else if(this.id == "den"){
             display_type = "denominator";
         } else if(this.id == "exc"){
             display_type = "exclusions";
+        } else if(this.id == 'denexc') {
+            display_type = "denexcep"
         } else {
             display_type = "antinumerator";
         }
@@ -102,26 +106,30 @@
   </script>
 <% end %>
 
-  <div id="pageContent">
-    <div id="patientMetrics">
+  <div id="pageContent" class="row-fluid">
+    <div id="patientMetrics" class="span2">
+
+      <div class="row-fluid">
       <%= render :partial => 'shared/measure_metrics', locals: {numerator: (@result ? @result['numerator'] : 0), denominator: (@result ? @result['denominator'] : 0)} %>
-      <div class="patientGroupType"><p>Show Patients in:</p>
-        <ul>
-          <li class="numerator"><span class="radio"><input type="radio" name="patientGroup" value="1"   id="num" data-type="numerator"/></span><label for="num">Numerator</label> <span class="count" id="numeratorCount"><%= (@result ? @result['numerator'] : 0) %></span></li>
-          <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="2" id="den" data-type="denominator" checked="true" /></span><label for="den">Denominator</label> <span class="count" id="denominatorCount"><%= (@result ? @result['denominator'] : 0) %></span> </li>
-          <li class="denominator"><span class="radio"><input type="radio" name="patientGroup" value="3" id="dnn" data-type="antinumerator"/></span><label for="dnn">Outliers</label> <span class="count" id="antiNumeratorCount"><%= (@result ? @result['antinumerator'] : 0) %></span></li>
-          <li class="exclusions"><span class="radio"><input type="radio" name="patientGroup" value="4" id="exc"  data-type="exclusions"/></span><label for="exc">Exclusions</label> <span class="count" id="exclusionsCount"><%= (@result ? @result['exclusions'] : 0) %></span></li>
-        </ul>
-        <br style="clear:both"/>
+      </div>
+      <div style="margin-top:30px" class="row-fluid btn-group btn-group-vertical">
+        <button id="num" href="#" class="patientGroup btn btn-success btn-large">Numerator<span id="numeratorCount" class="badge badge-inverse pull-left"></span></button>
+        <button id="den" href="#" class="active patientGroup btn btn-info btn-large">Denominator<span id="denominatorCount" class="badge badge-inverse pull-left"></span></button>
+        <button id="anti" href="#" class="patientGroup btn btn-danger btn-large">Outliers<span id="antiNumeratorCount" class="badge badge-inverse pull-left"></span></button>
+        <button id="exc" href="#" class="patientGroup btn btn-warning btn-large">Exclusions<span id="exceptionsCount" class="badge badge-inverse pull-left"></span></button>
+        <button id="denexc" href="#" class="patientGroup btn btn-inverse btn-large">Exceptions<span id="exclusionsCount" class="badge badge-inverse pull-left"></span></button>
       </div>
     </div><!-- end #patientMetrics -->
-    <div id="dashboardPeriod" >
+    <div id="dashboardPeriod" class="span10" >
+      <button id="btnExportExcel" class="exportReport btn pull-right" type="button">
+        <i class="icon-download-alt"></i>
+        Export Report
+      </button>
       <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
+            
       <br style="clear:left"/>
       <div id="patientTableContainer">
         <div style="padding: 150px;"><img src="/assets/loading_bar.gif"/></div>
       </div><!-- end patientTableContainer -->
-
-      <input id="btnExportExcel" class="exportReport" type="button" value="export to excel">
     </div>
   </div><!-- end #pageContent -->

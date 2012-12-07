@@ -1,10 +1,14 @@
-<table id="providerList">
-	<tr>
-		<th>Last Name</th>
-		<th>First Name</th>
-		<th>Team</th>
-		<th>Organization</th>
-		<th />
-	</tr>
+<table id="providerList" class='table table-striped'>
+  <thead>
+      <tr>
+    <th>Last Name</th>
+    <th>First Name</th>
+    <th>Team</th>
+    <th />
+  </tr>
+  </thead>
+
+  <tbody>
 	<%= render partial: 'provider_row', collection: providers%>
+</tbody>
 </table>

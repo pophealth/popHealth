@@ -1,15 +1,15 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.9'
 # locked to 1.3.3 to resolve annoying warning 'already initialized constant WFKV_'
 gem 'rack' , '1.4.0'
 
 # gem 'quality-measure-engine', '1.1.2'
 # gem "quality-measure-engine", git: "http://github.com/pophealth/quality-measure-engine.git"
-# gem 'quality-measure-engine', :git => 'http://github.com/pophealth/quality-measure-engine.git', :branch => 'develop'
-gem 'quality-measure-engine', path: '../quality-measure-engine'
+gem 'quality-measure-engine', :git => 'http://github.com/ssayer/quality-measure-engine.git', :branch => 'develop'
+# gem 'quality-measure-engine', path: '../quality-measure-engine'
 #gem 'health-data-standards', '0.8.0'
-gem "health-data-standards"
+gem "health-data-standards", :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'develop'
 # gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'develop'
 
 gem 'nokogiri'
@@ -26,7 +26,7 @@ gem "mongoid"
 gem 'devise'
 
 gem 'foreman'
-
+gem "thin"
 gem 'formtastic'
 gem 'cancan'
 gem 'factory_girl', "2.6.3"

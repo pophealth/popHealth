@@ -9,19 +9,30 @@ class PatientsController < ApplicationController
   add_breadcrumb_dynamic([:patient], only: %w{show}) {|data| patient = data[:patient]; {title: "#{patient.last}, #{patient.first}", url: "/patients/show/#{patient.id}"}}
 
   def show
-    @outliers = []
-    Measure.all.each do |measure|
-      executor = QME::MapReduce::Executor.new(measure['id'], measure['sub_id'], {'effective_date' => @effective_date})
-      result = executor.get_patient_result(@patient.medical_record_number)
-      if result['antinumerator']
-        @outliers << measure
+
+    respond_to do |wants|
+      wants.html {}
+      wants.json do
+        @outliers = []
+        @measures = Measure.list
+        @measures.each do |measure|
+          executor = QME::MapReduce::Executor.new(measure['id'], measure['sub_id'], {'effective_date' => @effective_date})
+          result = executor.get_patient_result(@patient.medical_record_number)
+          if result['antinumerator']
+            @outliers << measure
+          end
+        end
+
+        @manual_exclusions = ManualExclusion.for_record(@patient).all.map do |exclusion|
+          Measure.get(exclusion.measure_id, exclusion.sub_id).first
+        end
+
+        @outliers.delete_if do |outlier|
+          @manual_exclusions.find { |exclusion| exclusion['measure_id']==outlier['measure_id'] && exclusion['sub_id']==outlier['sub_id'] }
+        end
+
+        render json: {exclusions: @manual_exclusions, outliers: @outliers}
       end
-    end
-    @manual_exclusions = ManualExclusion.for_record(@patient).all.map do |exclusion|
-      Measure.get(exclusion.measure_id, exclusion.sub_id).first
-    end
-    @outliers.delete_if do |outlier|
-      @manual_exclusions.find { |exclusion| exclusion['measure_id']==outlier['measure_id'] && exclusion['sub_id']==outlier['sub_id'] }
     end
   end
   

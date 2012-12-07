@@ -20,19 +20,17 @@
 <% end -%>
 
 <div id="pageContent">
-    <h1>Logs</h1>
-    <table>
-      <tr>
-        <td>Start</td>
-        <td><input type="text" id="logStartDate" size="6" value="<%= params[:log_start_date] %>"/></td>
-      </tr>
-      <tr>
-        <td>End</td>
-        <td><input type="text" id="logEndDate" size="6" value="<%= params[:log_end_date] %>"/></td>
-      </tr>
-    </table>
+    <h3>Logs</h3>
+    <form class="form-inline">
+      <fieldset>
+        <legend>Date Range</legend>
+              <input type="text" id="logStartDate" size="6" value="<%= params[:log_start_date] %>" placeholder="Start Date" />
+      <input type="text" id="logEndDate" size="6" value="<%= params[:log_end_date] %>" placeholder="End Date"/>
+      </fieldset>
 
-    <table id="patientTable">
+    </form>
+
+    <table id="patientTable" class="table table-hover">
       <tr>
         <th><%= link_to 'Timestamp', time_range_params_plus(:sort => 'created_at', :order => 'desc') %></th>
         <th><%= link_to 'Username', time_range_params_plus(:sort => 'username', :order => 'desc') %></th>

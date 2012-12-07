@@ -4,24 +4,24 @@
   <p class="note">
     Demographics
   </p>
-  <ul class="nav nav-tabs nav-stacked">
     <%= render partial: 'filters', locals: {filters: @races, type: "race"} %>
     <%= render partial: 'filters', locals: {filters: @ethnicities, type: "ethnicity"} %>
     <%= render partial: 'filters', locals: {filters: @genders, type: "gender"} %>
     <%= render partial: 'filters', locals: {filters: @languages, type: "language"} %>
-  </ul>
   </div>
   <div id="providerMain" class="span10">
     <div id="aggregate" class="row-fluid">
       <div class="row-fluid">
+        <div class="span2">
         <%= render :partial => 'shared/measure_metrics', locals: {numerator: nil, denominator: nil} %>
+        </div>
         <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
       </div>
 
-        <div class="buttons row-fluid">
+        <div class="btn-group">
           <%= link_to 'parameters', measure_url(@definition['id'], @definition['sub_id']), method: 'get', :class => 'tableEdit btn'%> 
           <%= link_to 'patients', patients_url(@definition['id'], @definition['sub_id']), method: 'get', :class => 'tableEdit btn'%>
-      </div>
+        </div>
     </div>
 		
 

@@ -1,13 +1,56 @@
 <div id="header" class="navbar">
   <div class="navbar-inner">
-    <a class="brand" href="/">popHealth</a>
-    <ul id="mainBreadcrumbs" class="breadcrumb">
+    <a class="brand" id="brand" href="/"><%= image_tag "pophealth_logo_small-trans.png" %></a>
+    <ul id="mainBreadcrumbs" class="breadcrumb pull-left">
       <% if @breadcrumbs %>
         <% @breadcrumbs[0..-2].each do |crumb| %>
-          <li><%= link_to(crumb.title, crumb.url) %> <span class="sep">&raquo;</span></li>
+          <li><%= link_to(crumb.title, crumb.url) %> <span class="divider">&raquo;</span></li>
         <% end %>
         <li><%= @breadcrumbs.last.title %></li>
       <% end %>
     </ul>
+  <ul class="nav pull-right">
+    <li class="divider-vertical"></li>
+    <li>
+      <div class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          <i class="icon-user"></i>
+          <%= current_user.first_name.to_s %>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="User">
+          <% if APP_CONFIG['edit_account_enabled']%>
+            <li><%=link_to raw('<i class="icon-edit"></i> Edit'), edit_user_registration_path(current_user) %></li>
+          <% end %>
+          <% if APP_CONFIG['logout_enabled']%>
+            <li><%= link_to raw('<i class="icon-off"></i> Logout'), destroy_user_session_path, 'class' => 'log'%></li>
+          <% end %>
+          <% if current_user.staff_role? || current_user.admin? %>
+           <li class="divider"></li>
+          <li class="dropdown-submenu pull-left">
+            <a tabindex="-1" class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="icon-star"></i> 
+              Admin
+            </a>
+            <ul  style="margin-left:0px; margin-right:20px" class="dropdown-menu" role="menu" aria-labelledby="Admin">
+              <li><%= link_to raw('<i class="icon-plus"></i> Providers'), providers_path%></li>
+      
+              <% if current_user.admin? %>
+                <% if (APP_CONFIG['patient_management_enabled']) %>
+                  <li><%= link_to raw('<i class="icon-eye-open"></i> Patients'), admin_patients_path%></li>
+                <% end %>
+                <li><%= link_to raw('<i class="icon-heart"></i> Users'), admin_users_path%></li>
+               
+                <li><%= link_to raw('<i class="icon-pencil"></i> Logs'), logs_index_path%></li> 
+              <% end %>
+            </ul>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </li>
+    <li>
+    <li class="divider-vertical"></li>
+  </ul>
+  
   </div>
 </div>

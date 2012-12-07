@@ -4,8 +4,7 @@ class MeasuresController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :validate_authorization!
-  before_filter :setup_filters
-  before_filter :set_up_environment
+  before_filter :set_up_environment, :setup_filters
   after_filter :hash_document, :only => :measure_report
   
   add_breadcrumb_dynamic([:selected_provider], only: %w{index show patients}) {|data| provider = data[:selected_provider]; {title: (provider ? provider.full_name : nil), url: "#{Rails.configuration.relative_url_root}/?npi=#{(provider) ? provider.npi : nil}"}}
@@ -26,7 +25,7 @@ class MeasuresController < ApplicationController
   add_breadcrumb 'patients', '', only: %w{patients}
   
   def index
-    @categories = Measure.categories[0..12]
+    @categories = Measure.categories
   end
   
   def show
@@ -41,7 +40,7 @@ class MeasuresController < ApplicationController
         
         render_measure_response(measures, params[:jobs]) do |sub|
           {
-            report: QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters),
+            report: QME::QualityReport.new(sub['id'], sub['sub_id'], 'effective_date' => @effective_date, 'filters' => @filters, 'oid_dictionary' => @oid_dictionary),
             patient_count: @patient_count
           }
         end
@@ -122,9 +121,9 @@ class MeasuresController < ApplicationController
     query = {'value.measure_id' => measure_id, 'value.sub_id' => sub_id, 'value.effective_date' => @effective_date}
     
     if (@type == 'exclusions')
-      query.merge!({'$or'=>[{"value.#{@type}" => true}, {'value.manual_exclusion'=>true}]})
+      query.merge!({'$or'=>[{"value.#{@type}" => 1}, {'value.manual_exclusion'=>true}]})
     else
-      query.merge!({"value.#{@type}" => true, 'value.manual_exclusion'=>{'$ne'=>true}})
+      query.merge!({"value.#{@type}" => 1, 'value.manual_exclusion'=>{'$ne'=>true}})
     end
     
     if (@selected_provider)
@@ -149,6 +148,7 @@ class MeasuresController < ApplicationController
                  :medical_record_number => (patient_container['value'])['medical_record_id'])
     end
   end
+
 
   # excel patient list
   def patient_list
@@ -218,7 +218,7 @@ class MeasuresController < ApplicationController
   
   def period
     month, day, year = params[:effective_date].split('/')
-    set_effective_date(Time.local(year.to_i, month.to_i, day.to_i).to_i, params[:persist]=="true")
+    set_effective_date(Time.gm(year.to_i, month.to_i, day.to_i).to_i, params[:persist]=="true")
     render :period, :status=>200
   end
 
@@ -265,6 +265,7 @@ class MeasuresController < ApplicationController
       measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
       render(:file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404) unless measure
       @definition = measure.definition
+      @oid_dictionary = generate_oid_dictionary(@definition)
     end
   end
   
@@ -366,7 +367,7 @@ class MeasuresController < ApplicationController
     @filters.merge!({'ethnicities'=>(ethnicities.map {|ethnicity| ethnicity.codes}).flatten}) if ethnicities
     @filters.merge!({'languages'=>(languages.map {|language| language.codes}).flatten}) if languages
     @filters.merge!({'genders' => genders}) if genders
-    
+
     if @selected_provider
       @filters['providers'] = [@selected_provider.id.to_s]
     else

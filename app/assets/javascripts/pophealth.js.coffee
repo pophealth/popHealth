@@ -17,11 +17,11 @@ class @QualityReport
 				sub_id = job['sub_id'] if job['sub_id']
 				uuids[job['measure_id'] + sub_id] = job['uuid']
 			pollParams = $.extend(params, {jobs: uuids})
-
-			callback(response)
+			
 			if (!response.complete && !response.failed)
 				setTimeout (=> @poll(pollParams, callback)), 3000
-
+			else if (response.complete)
+				callback(response)
 @Page = {
 	onMeasureSelect: (measure_id) ->
 	onMeasureRemove: (measure_id) ->
@@ -60,12 +60,12 @@ class @QualityReport
 }
 
 @makeMeasureListClickable = ->
-	$("a.measure-group").focus ->
-		$("a.measure-group:visible").popover("hide")
-		$
+	$("#providerReports .accordion a").click -> 
+		others = $(@).parentsUntil("#providerReports").last().find("a").not(@)
+		others.children("i").replaceWith("<i class=\"icon-chevron-right pull-left\"></i>")
+		$(@).children("i").toggleClass("icon-chrevron-right icon-chevron-down")
 
 	$(".measureItemList input").on "change", ->
-		console.log('go')
 		measure = $(this).attr("data-measure-id")
 		subs = $(this).data("sub-measures")
 		sub_ids = if subs? then subs.split(",") else [null]
@@ -90,7 +90,9 @@ class @QualityReport
 	
 # Load Page
 $ ->
-	makeMeasureListClickable()
-	makeFilterListsClickable()
-	# makeListsExpandable()
-	Page.onLoad();
+	setTimeout ->
+		makeMeasureListClickable()
+		makeFilterListsClickable()
+		# makeListsExpandable()
+		Page.onLoad();
+	, 10
