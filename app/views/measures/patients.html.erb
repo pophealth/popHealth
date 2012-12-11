@@ -16,19 +16,19 @@
       if (data.complete) {
         data = data.result[0]
         var elem = "#measureMetrics";
-        var percent = data.denominator > 0 ? Math.floor((data.numerator/data.denominator)*100) : 0;
+        var percent = data.DENOM > 0 ? Math.floor((data.NUMER/data.DENOM)*100) : 0;
         var numeratorWidth = (data.numerator/<%= @patient_count %>).toFixed(2)*100;
-        var denominatorWidth = data.denominator > 0 ? ((data.denominator - data.numerator)/<%= @patient_count %>).toFixed(2)*100 : 0;
+        var denominatorWidth = data.DENOM > 0 ? ((data.DENOM - data.NUMER)/<%= @patient_count %>).toFixed(2)*100 : 0;
       
-        $(elem).find(".numeratorValue").text(data.numerator);
-        $(elem).find(".denominatorValue").text(data.denominator);
+        $(elem).find(".numeratorValue").text(data.NUMER);
+        $(elem).find(".denominatorValue").text(data.DENOM);
         $("#measurePopulationPercentage").text(percent + "%");
         console.log(data)
-        $("#numeratorCount").text(data.numerator);
-        $("#denominatorCount").text(data.denominator);
+        $("#numeratorCount").text(data.NUMER);
+        $("#denominatorCount").text(data.DENOM);
         $("#antiNumeratorCount").text(data.antinumerator);
-        $("#exclusionsCount").text(data.exclusions);
-        $("#exceptionsCount").text(data.denexcep);
+        $("#exclusionsCount").text(data.DENEX);
+        $("#exceptionsCount").text(data.DENEXCEP);
         display_type=$('input:radio[name=patientGroup]:checked').data('type')
       
         popHealth.reloadTable();
@@ -86,13 +86,13 @@
         $("button.patientGroup").removeClass("active")
         $(this).addClass("active")
         if(this.id == "num"){
-          display_type = "numerator";
+          display_type = "NUMER";
         } else if(this.id == "den"){
-            display_type = "denominator";
+            display_type = "DENOM";
         } else if(this.id == "exc"){
-            display_type = "exclusions";
+            display_type = "DENEX";
         } else if(this.id == 'denexc') {
-            display_type = "denexcep"
+            display_type = "DENEXCEP"
         } else {
             display_type = "antinumerator";
         }

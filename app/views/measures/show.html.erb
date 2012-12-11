@@ -5,15 +5,15 @@
     popHealth.drawPctChart = function(data) {
         data = data.result[0]
         var elem = "#measureMetrics";
-        var percent = data.denominator > 0 ? Math.floor((data.numerator/data.denominator)*100) : 0;
-        var numeratorWidth = (data.numerator/<%= @patient_count -%>).toFixed(2)*100;
-        var denominatorWidth = data.denominator > 0 ? ((data.denominator - data.numerator)/<%= @patient_count -%>).toFixed(2)*100 : 0;
-        $(elem).find(".numeratorValue").text(data.numerator);
-        $(elem).find(".denominatorValue").text(data.denominator);
+        var percent = data.DENOM > 0 ? Math.floor((data.NUMER/data.DENOM)*100) : 0;
+        var numeratorWidth = (data.NUMER/<%= @patient_count -%>).toFixed(2)*100;
+        var denominatorWidth = data.DENOM > 0 ? ((data.DENOM - data.NUMER)/<%= @patient_count -%>).toFixed(2)*100 : 0;
+        $(elem).find(".numeratorValue").text(data.NUMER);
+        $(elem).find(".denominatorValue").text(data.DENOM);
         $(elem).find("#measurePopulationPercentage").text(percent + "%");
-        $("#eligibleCount").text(data.denominator);
-        $("#outcomeCount").text(data.numerator);
-        $("#exclusionCount").text(data.exclusions);
+        $("#eligibleCount").text(data.DENOM);
+        $("#outcomeCount").text(data.NUMER);
+        $("#exclusionCount").text(data.DENEX);
     }
 
     popHealth.textForUnit = function(value, temporal, plural) {

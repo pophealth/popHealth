@@ -5,8 +5,8 @@ gem 'rails', '3.2.9'
 gem 'rack' , '1.4.0'
 
 # gem 'quality-measure-engine', '1.1.2'
-# gem "quality-measure-engine", git: "http://github.com/pophealth/quality-measure-engine.git"
-gem 'quality-measure-engine', :git => 'http://github.com/ssayer/quality-measure-engine.git', :branch => 'develop'
+gem "quality-measure-engine", git: "http://github.com/pophealth/quality-measure-engine.git", branch: 'develop'
+# gem 'quality-measure-engine', :git => 'http://github.com/ssayer/quality-measure-engine.git', :branch => 'develop'
 # gem 'quality-measure-engine', path: '../quality-measure-engine'
 #gem 'health-data-standards', '0.8.0'
 gem "health-data-standards", :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'develop'

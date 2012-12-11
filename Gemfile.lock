@@ -1,6 +1,6 @@
 GIT
-  remote: http://github.com/ssayer/quality-measure-engine.git
-  revision: 24b224b9576f32b29eb7b47e53199e408147d4ff
+  remote: http://github.com/pophealth/quality-measure-engine.git
+  revision: 4b6a3d39c17a1315974c7bd038956a854ca5d63a
   branch: develop
   specs:
     quality-measure-engine (2.1.0)

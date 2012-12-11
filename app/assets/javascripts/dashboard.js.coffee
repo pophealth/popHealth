@@ -21,9 +21,6 @@
     Dashboard.measureRows(measure).fadeOut("fast")
     $.ajax("#{rootContext}/measure/#{measure}/remove", {type: "DELETE"})
   calculateSelected: ->
-    # $(".measureProviderPopulationPercentage").html("<div><div class='jobLabel'></div><img src='#{rootContext}/assets/loading.gif'/></div>")
-    # $(".numeratorValue").html('0')
-    # $(".denominatorValue").html('0')
     $(".measureItemList input:checked").each (i, m) ->
       measureId = $(m).attr("data-measure-id")
       qr = new QualityReport(measureId)
@@ -44,6 +41,7 @@
       
     Page.onReportComplete = (report) ->
       if (report.complete?)
+        console.log(report)
         Dashboard.calculateMeasure(report.result)
       else
         $.each report.result, (i, data) ->

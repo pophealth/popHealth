@@ -110,7 +110,7 @@ class MeasuresController < ApplicationController
 
   def measure_patients
 
-    @type = params[:type] || 'denominator'
+    @type = params[:type] || 'DENOM'
     @limit = (params[:limit] || 20).to_i
     @skip = ((params[:page] || 1).to_i - 1 ) * @limit
     sort = params[:sort] || "_id"
