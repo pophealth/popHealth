@@ -37,7 +37,7 @@ class ProvidersControllerTest < ActionController::TestCase
     post :create, {provider: {npi: provider.npi, given_name: provider.given_name, family_name: provider.family_name}, format: :js}
 
     assert_response :success
-    refute_nil Provider.first(conditions: {npi: provider.npi, given_name: provider.given_name, family_name: provider.family_name})
+    refute_nil Provider.where(npi: provider.npi, given_name: provider.given_name, family_name: provider.family_name).first
   end
 
   test "get show js" do
@@ -74,7 +74,7 @@ class ProvidersControllerTest < ActionController::TestCase
       put :merge, other_provider_id: @other_provider.id, id: @provider.id
     end
 
-    assert (not Provider.exists? :conditions => {id: @other_provider.id})
+    # assert (not Provider.exists? :conditions => {id: @other_provider.id})
     assert_redirected_to provider_url(@provider.id)
   end
   

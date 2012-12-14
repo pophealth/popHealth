@@ -22,7 +22,7 @@
             <li><%=link_to raw('<i class="icon-edit"></i> Edit'), edit_user_registration_path(current_user) %></li>
           <% end %>
           <% if APP_CONFIG['logout_enabled']%>
-            <li><%= link_to raw('<i class="icon-off"></i> Logout'), destroy_user_session_path, 'class' => 'log'%></li>
+            <li><%= link_to raw('<i class="icon-off"></i> Logout'), destroy_user_session_path, method: 'delete' %></li>
           <% end %>
           <% if current_user.staff_role? || current_user.admin? %>
            <li class="divider"></li>

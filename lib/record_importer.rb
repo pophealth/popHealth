@@ -79,11 +79,11 @@ class RecordImporter
       rescue Exception => e
         STDERR.puts "error extracting providers"
       end
+      binding.pry 
     else
       return {status: 'error', message: 'Unknown XML Format', status_code: 400}
     end
 
-    patient_data.measures = QME::Importer::MeasurePropertiesGenerator.instance.generate_properties(patient_data)
     record = Record.update_or_create(patient_data)
     record.provider_performances = providers
     record.save

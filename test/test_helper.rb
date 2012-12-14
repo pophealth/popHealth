@@ -16,12 +16,12 @@ class ActiveSupport::TestCase
     Provider.delete_all
     Record.delete_all
     Team.delete_all
-    db = Mongoid::Config.master
-    db['measures'].remove({})
-    db['selected_measures'].remove({})
-    db['records'].remove({})
-    db['patient_cache'].remove({})
-    db['query_cache'].remove({})
+    db = Mongoid.default_session
+    db['measures'].drop()
+    db['selected_measures'].drop()
+    db['records'].drop
+    db['patient_cache'].drop
+    db['query_cache'].drop
   end
 
   def raw_post(action, body, parameters = nil, session = nil, flash = nil)
@@ -38,7 +38,7 @@ class ActiveSupport::TestCase
       MONGO_DB[collection].drop
       Dir.glob(File.join(Rails.root, 'test', 'fixtures', collection, '*.json')).each do |json_fixture_file|
         fixture_json = JSON.parse(File.read(json_fixture_file))
-          MONGO_DB[collection].save(fixture_json)
+          MONGO_DB[collection].insert(fixture_json)
       end
     end
   end
