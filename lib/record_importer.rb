@@ -70,16 +70,17 @@ class RecordImporter
       rescue Exception => e
         STDERR.puts "error extracting providers"
       end
-    elsif root_element_name == 'ContinuityOfCareRecord'
-      doc.root.add_namespace_definition('ccr', 'urn:astm-org:CCR')
-      patient_id_xpath = "./ccr:IDs/ccr:ID[../ccr:Type/ccr:Text=\"#{APP_CONFIG['ccr_system_name']}\"]"
-      patient_data = HealthDataStandards::Import::CCR::PatientImporter.instance.parse_ccr(doc, patient_id_xpath)
-      begin
-        providers = HealthDataStandards::Import::CCR::ProviderImporter.instance.extract_providers(doc)
-      rescue Exception => e
-        STDERR.puts "error extracting providers"
-      end
-      binding.pry 
+    # Disabling this until HDS is updated or QRDA Importer is done @SS
+    # elsif root_element_name == 'ContinuityOfCareRecord'
+    #   doc.root.add_namespace_definition('ccr', 'urn:astm-org:CCR')
+    #   patient_id_xpath = "./ccr:IDs/ccr:ID[../ccr:Type/ccr:Text=\"#{APP_CONFIG['ccr_system_name']}\"]"
+    #   patient_data = HealthDataStandards::Import::CCR::PatientImporter.instance.parse_ccr(doc, patient_id_xpath)
+    #   begin
+    #     providers = HealthDataStandards::Import::CCR::ProviderImporter.instance.extract_providers(doc)
+    #   rescue Exception => e
+    #     STDERR.puts "error extracting providers"
+    #   end
+    #   binding.pry 
     else
       return {status: 'error', message: 'Unknown XML Format', status_code: 400}
     end

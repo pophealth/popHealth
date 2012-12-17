@@ -2,8 +2,7 @@ require 'record_importer'
 class RecordsController < ActionController::Metal
   
   def create
-    # binding.pry
-    current_user = request.env['warden'].authenticate(:basic)
+    current_user = request.env['warden'].authenticate!
     
     if (current_user.admin?)
       result = RecordImporter.import(request.body)

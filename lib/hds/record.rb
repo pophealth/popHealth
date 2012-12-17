@@ -13,7 +13,6 @@ class Record
   scope :provider_performance_between, ->(effective_date) { where("provider_performances.start_date" => {"$lt" => effective_date}).and('$or' => [{'provider_performances.end_date' => nil}, 'provider_performances.end_date' => {'$gt' => effective_date}]) }
   
   def self.update_or_create(data)
-    binding.pry
     existing = Record.where(medical_record_number: data.medical_record_number).first
     if existing
       existing.update_attributes!(data.attributes.except('_id'))
