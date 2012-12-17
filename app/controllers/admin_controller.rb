@@ -74,7 +74,7 @@ class AdminController < ApplicationController
   end
 
   def approve
-    user = User.first(:conditions => {:username => params[:username]})
+    user = User.where(:username => params[:username]).first
     if user
       user.update_attribute(:approved, true)
       render :text => "true"

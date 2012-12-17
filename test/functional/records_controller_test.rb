@@ -19,27 +19,26 @@ class RecordsControllerTest < ActionController::TestCase
     assert_response(400)
   end
   
-  # test "unauthenticated create" do
-  #   sign_out @user
-  #   
-  #   assert_throws(:warden) do
-  #     raw_post(:create, @body)
-  #   end
-  #   
-  #   binding.pry
-  # 
-  # end
+  test "unauthenticated create" do
+    sign_out @user
+    
+    assert_throws(:warden) do
+      raw_post(:create, @body)
+    end
   
-  test "create record ccr with providers" do
-    raw_post(:create, @ccr_body)
-    assert_response(201)
-    # assert_not_nil assigns(:record)
-    
-    created_record = Record.find(:first)
-    
-    assert_not_nil created_record
-    assert_equal 1, created_record.providers.count
   end
+  
+  # CCR support temporarily removed until HDS is updated
+  # test "create record ccr with providers" do
+  #   raw_post(:create, @ccr_body)
+  #   assert_response(201)
+  #   # assert_not_nil assigns(:record)
+    
+  #   created_record = Record.where().first
+    
+  #   assert_not_nil created_record
+  #   assert_equal 1, created_record.providers.count
+  # end
   
   test "create without admin privileges" do
     sign_out @user
@@ -53,7 +52,7 @@ class RecordsControllerTest < ActionController::TestCase
     assert_response(201)
     # assert_not_nil assigns(:record)
     
-    created_record = Record.find(:first)
+    created_record = Record.first
     
     # test creation
     assert_not_nil created_record

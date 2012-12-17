@@ -2,7 +2,6 @@ require 'record_importer'
 class RecordsController < ActionController::Metal
   
   def create
-
     current_user = request.env['warden'].authenticate!
     
     if (current_user.admin?)

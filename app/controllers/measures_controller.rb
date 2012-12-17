@@ -185,7 +185,7 @@ class MeasuresController < ApplicationController
 
   def measure_report
     Atna.log(current_user.username, :query)
-    selected_measures = mongo['selected_measures'].find({:username => current_user.username}).to_a
+    selected_measures = current_user.selected_measures
     
     @report = {}
     @report[:registry_name] = current_user.registry_name
