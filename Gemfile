@@ -31,7 +31,6 @@ gem 'formtastic'
 gem 'cancan'
 gem 'factory_girl', "2.6.3"
 gem "rails-backbone"
-gem "bootstrap-sass"
 # Windows doesn't have syslog, so need a gem to log to EventLog instead
 gem 'win32-eventlog', :platforms => [:mswin, :mingw]
 
@@ -41,6 +40,7 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
+  gem "bootstrap-sass"
 end
 
 group :test, :develop do
