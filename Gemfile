@@ -1,8 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.9'
-# locked to 1.3.3 to resolve annoying warning 'already initialized constant WFKV_'
-gem 'rack' , '1.4.0'
+gem 'rails', '3.2.12'
 
 # gem 'quality-measure-engine', '1.1.2'
 gem "quality-measure-engine", git: "http://github.com/pophealth/quality-measure-engine.git", branch: 'develop'

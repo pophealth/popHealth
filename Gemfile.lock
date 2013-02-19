@@ -1,6 +1,6 @@
 GIT
   remote: http://github.com/pophealth/quality-measure-engine.git
-  revision: 3935a94214591b2bff98c01ffea5eb7814f4f1f5
+  revision: 30975d76d13a25640cd7ef692d1051b9ed04c88e
   branch: develop
   specs:
     quality-measure-engine (2.1.0)
@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: https://github.com/projectcypress/health-data-standards.git
-  revision: 7f4af618fc0d899af07f96bfa9afc28bc9e4d2e0
+  revision: ca55649146788cd5fdb4d0c4ffa39281cfdea45d
   branch: develop
   specs:
     health-data-standards (3.0.0)
@@ -33,31 +33,31 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
-    actionmailer (3.2.9)
-      actionpack (= 3.2.9)
+    actionmailer (3.2.12)
+      actionpack (= 3.2.12)
       mail (~> 2.4.4)
-    actionpack (3.2.9)
-      activemodel (= 3.2.9)
-      activesupport (= 3.2.9)
+    actionpack (3.2.12)
+      activemodel (= 3.2.12)
+      activesupport (= 3.2.12)
       builder (~> 3.0.0)
       erubis (~> 2.7.0)
       journey (~> 1.0.4)
-      rack (~> 1.4.0)
+      rack (~> 1.4.5)
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
-    activemodel (3.2.9)
-      activesupport (= 3.2.9)
+    activemodel (3.2.12)
+      activesupport (= 3.2.12)
       builder (~> 3.0.0)
-    activerecord (3.2.9)
-      activemodel (= 3.2.9)
-      activesupport (= 3.2.9)
+    activerecord (3.2.12)
+      activemodel (= 3.2.12)
+      activesupport (= 3.2.12)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activeresource (3.2.9)
-      activemodel (= 3.2.9)
-      activesupport (= 3.2.9)
-    activesupport (3.2.9)
+    activeresource (3.2.12)
+      activemodel (= 3.2.12)
+      activesupport (= 3.2.12)
+    activesupport (3.2.12)
       i18n (~> 0.6)
       multi_json (~> 1.0)
     ansi (1.4.3)
@@ -163,29 +163,29 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
-    rack (1.4.0)
+    rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
     rack-ssl (1.3.3)
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (3.2.9)
-      actionmailer (= 3.2.9)
-      actionpack (= 3.2.9)
-      activerecord (= 3.2.9)
-      activeresource (= 3.2.9)
-      activesupport (= 3.2.9)
+    rails (3.2.12)
+      actionmailer (= 3.2.12)
+      actionpack (= 3.2.12)
+      activerecord (= 3.2.12)
+      activeresource (= 3.2.12)
+      activesupport (= 3.2.12)
       bundler (~> 1.0)
-      railties (= 3.2.9)
+      railties (= 3.2.12)
     rails-backbone (0.9.10)
       coffee-script (~> 2.2.0)
       ejs (~> 1.1.1)
       jquery-rails (~> 2.1.3)
       railties (>= 3.1.0)
-    railties (3.2.9)
-      actionpack (= 3.2.9)
-      activesupport (= 3.2.9)
+    railties (3.2.12)
+      actionpack (= 3.2.12)
+      activesupport (= 3.2.12)
       rack-ssl (~> 1.3.2)
       rake (>= 0.8.7)
       rdoc (~> 3.4)
@@ -275,8 +275,7 @@ DEPENDENCIES
   nokogiri
   pry
   quality-measure-engine!
-  rack (= 1.4.0)
-  rails (= 3.2.9)
+  rails (= 3.2.12)
   rails-backbone
   rubyzip
   sass-rails
