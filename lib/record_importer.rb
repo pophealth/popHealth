@@ -66,7 +66,7 @@ class RecordImporter
       end
       
       begin
-        providers = HealthDataStandards::Import::C32::ProviderImporter.instance.extract_providers(doc)
+        providers = HealthDataStandards::Import::CDA::ProviderImporter.instance.extract_providers(doc)
       rescue Exception => e
         STDERR.puts "error extracting providers"
       end
