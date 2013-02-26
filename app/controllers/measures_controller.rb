@@ -265,7 +265,7 @@ class MeasuresController < ApplicationController
       measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
       render(:file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404) unless measure
       @definition = measure.definition
-      @oid_dictionary = generate_oid_dictionary(@definition)
+      @oid_dictionary = OidHelper.generate_oid_dictionary(@definition)
     end
   end
   

@@ -1,19 +1,19 @@
 GIT
   remote: http://github.com/pophealth/quality-measure-engine.git
-  revision: 30975d76d13a25640cd7ef692d1051b9ed04c88e
+  revision: 3596fece83c959d5f4d88e4ed5f3ec35fb8c73a5
   branch: develop
   specs:
     quality-measure-engine (2.1.0)
       delayed_job_mongoid (~> 2.0.0)
-      mongoid (~> 3.0.9)
-      moped (~> 1.2.7)
+      mongoid (~> 3.0)
+      moped (~> 1.4.2)
       nokogiri (~> 1.5.5)
       rubyXL (~> 1.2.10)
       rubyzip (~> 0.9.9)
 
 GIT
   remote: https://github.com/projectcypress/health-data-standards.git
-  revision: ca55649146788cd5fdb4d0c4ffa39281cfdea45d
+  revision: d94d05fafbfcf9299e1b8c8ff34ab286447ea88d
   branch: develop
   specs:
     health-data-standards (3.0.0)
@@ -22,7 +22,7 @@ GIT
       erubis (~> 2.7.0)
       google-spreadsheet-ruby (= 0.1.8)
       log4r (~> 1.1.10)
-      mongoid (~> 3.0.14)
+      mongoid (~> 3.1.0)
       nokogiri (~> 1.5.5)
       rest-client (~> 1.6.7)
       roo (= 1.10.1)
@@ -63,19 +63,19 @@ GEM
     ansi (1.4.3)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
-    bootstrap-sass (2.3.0.0)
+    bootstrap-sass (2.3.0.1)
       sass (~> 3.2)
     builder (3.0.4)
     cancan (1.6.9)
     choice (0.1.6)
-    coderay (1.0.8)
+    coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.4.0)
+    coffee-script-source (1.5.0)
     configatron (2.10.0)
       yamler (>= 0.1.0)
     cover_me (1.2.0)
@@ -99,7 +99,7 @@ GEM
       multi_json (~> 1.0)
     factory_girl (2.6.3)
       activesupport (>= 2.3.9)
-    faraday (0.8.5)
+    faraday (0.8.6)
       multipart-post (~> 1.1)
     foreman (0.61.0)
       thor (>= 0.13.6)
@@ -109,10 +109,10 @@ GEM
       nokogiri (>= 1.4.3.1)
       oauth (>= 0.3.6)
       oauth2 (>= 0.5.0)
-    hashie (2.0.0)
+    hashie (2.0.1)
     hike (1.2.1)
     httpauth (0.2.0)
-    i18n (0.6.1)
+    i18n (0.6.2)
     journey (1.0.4)
     jquery-rails (2.1.4)
       railties (>= 3.0, < 5.0)
@@ -138,18 +138,18 @@ GEM
     minitest (4.6.1)
     mocha (0.13.2)
       metaclass (~> 0.0.1)
-    mongoid (3.0.22)
-      activemodel (~> 3.1)
-      moped (~> 1.2)
+    mongoid (3.1.2)
+      activemodel (~> 3.2)
+      moped (~> 1.4.2)
       origin (~> 1.0)
       tzinfo (~> 0.3.22)
-    moped (1.2.9)
+    moped (1.4.2)
     multi_json (1.6.1)
     multi_xml (0.5.3)
-    multipart-post (1.1.5)
+    multipart-post (1.2.0)
     nokogiri (1.5.6)
     oauth (0.4.7)
-    oauth2 (0.9.0)
+    oauth2 (0.9.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
       jwt (~> 0.1.4)
@@ -192,7 +192,7 @@ GEM
       thor (>= 0.14.6, < 2.0)
     raindrops (0.10.0)
     rake (10.0.3)
-    rdoc (3.12.1)
+    rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.2)
     rest-client (1.6.7)
@@ -207,7 +207,7 @@ GEM
     ruby-ole (1.2.11.6)
     rubyXL (1.2.10)
     rubyzip (0.9.9)
-    sass (3.2.5)
+    sass (3.2.6)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -221,7 +221,7 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     systemu (2.5.2)
-    therubyracer (0.11.3)
+    therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
     thin (1.5.0)
@@ -241,7 +241,7 @@ GEM
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
-    unicorn (4.6.0)
+    unicorn (4.6.2)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
