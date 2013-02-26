@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="cda.xsl"?>
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns="urn:hl7-org:v3"
+ xmlns:voc="urn:hl7-org:v3/voc"
+ xmlns:sdtc="urn:hl7-org:sdtc">
+  <!-- QRDA Header -->
+  <realmCode code="US"/>
+  <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+  <!-- US Realm Header Template Id -->
+  <templateId root="2.16.840.1.113883.10.20.22.1.1"/> 
+  <!-- QRDA templateId -->   
+  <templateId root="2.16.840.1.113883.10.20.24.1.1"/>
+  <!-- QDM-based QRDA templateId -->
+  <templateId root="2.16.840.1.113883.10.20.24.1.2"/>
+  <!-- This is the globally unique identifier for this QRDA document -->
+  <id root="5b010313-eff2-432c-9909-6193d8416fac"/>
+  <!-- QRDA document type code -->
+  <code code="55182-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Quality Measure Report"/>
+  <title>QRDA Incidence Report</title>
+  <!-- This is the document creation time -->
+  <effectiveTime value="20130215192053"/>
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25"/>
+  <languageCode code="en-US"/>
+  <!-- reported patient -->
+    <recordTarget>
+    <patientRole>
+      <id root="Cypress" extension="511e8a957042f9e352000414"/>
+      <!-- Fake Medicare HIC number -->
+      <id extension="12345" root="2.16.840.1.113883.4.572"/>
+      <addr use="HP">
+        <streetAddressLine>202 Burlington Rd.</streetAddressLine>
+        <city>Bedford</city>
+        <state>MA</state>
+        <postalCode>01730</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom use="WP" value="tel:+1-781-271-3000"/>
+      <patient>
+        <name>
+          <given>Beth</given>
+          <family>Mendez</family>
+        </name>
+        <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="HL7 AdministrativeGender"/>
+        <birthTime value="19750320043156"/>
+          <raceCode code="2106-3"  codeSystemName="CDC Race and Ethnicity" codeSystem="2.16.840.1.113883.6.238"/>
+          <ethnicGroupCode code="2135-2"  codeSystemName="CDC Race and Ethnicity" codeSystem="2.16.840.1.113883.6.238"/>
+          <languageCommunication>
+            <templateId root="2.16.840.1.113883.3.88.11.83.2" assigningAuthorityName="HITSP/C83"/>
+            <templateId root="1.3.6.1.4.1.19376.1.5.3.1.2.1" assigningAuthorityName="IHE/PCC"/>
+            <languageCode code="en-US"/>
+          </languageCommunication>
+      </patient>
+    </patientRole>
+  </recordTarget>
+  <!-- Example of an author who is a device -->
+  <author>
+    <time value="20130215192053"/>
+    <assignedAuthor>
+      <id extension="Cypress" root="2.16.840.1.113883.19.5"/>
+      <!-- NPI -->
+      <id extension="FakeNPI" root="2.16.840.1.113883.4.6"/>
+      <addr>
+        <streetAddressLine>202 Burlington Rd.</streetAddressLine>
+        <city>Bedford</city>
+        <state>MA</state>
+        <postalCode>01730</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom use="WP" value="tel:(781)271-3000"/>
+      <assignedAuthoringDevice>
+        <manufacturerModelName>Cypress</manufacturerModelName >
+        <softwareName>Cypress</softwareName >
+      </assignedAuthoringDevice >
+    </assignedAuthor>   
+  </author>
+  <custodian>
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <id root="2.16.840.1.113883.19.5"/>
+        <name>Cypress Test Deck</name>
+        <telecom use="WP" value="tel:(781)271-3000"/>
+        <addr>
+          <streetAddressLine>202 Burlington Rd.</streetAddressLine>
+          <city>Bedford</city>
+          <state>MA</state>
+          <postalCode>01730</postalCode>
+          <country>US</country>
+        </addr>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <legalAuthenticator>
+    <time value="20130215192053"/>
+    <signatureCode code="S"/>
+    <assignedEntity>
+      <id root="bc01a5d1-3a34-4286-82cc-43eb04c972a7"/>
+      <addr>
+        <streetAddressLine>202 Burlington Rd.</streetAddressLine>
+        <city>Bedford</city>
+        <state>MA</state>
+        <postalCode>01730</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom use="WP" value="tel:(781)271-3000"/>
+      <assignedPerson>
+        <name>
+           <given>Henry</given>
+           <family>Seven</family>
+        </name>
+     </assignedPerson>
+      <representedOrganization>
+        <id root="2.16.840.1.113883.19.5"/>
+        <name>Cypress</name>
+      </representedOrganization>
+    </assignedEntity>
+  </legalAuthenticator>
+
+  <!-- TODO: This is where the provider information will go.
+       It is currently hard coded, but should be replaced with the providers
+       and the time over which they are performing. --> 
+  <documentationOf typeCode="DOC">
+    <serviceEvent classCode="PCPR"> <!-- care provision -->
+      <effectiveTime>
+        <low value="20100601"/>
+        <high value="20100915"/>
+      </effectiveTime>
+      <!-- You can include multiple performers, each with an NPI, TIN, CCN. -->
+      <performer typeCode="PRF"> 
+        <time>
+          <low value="20020716"/>
+          <high value="20070915"/>
+        </time>
+        <assignedEntity>
+          <!-- This is the provider NPI -->
+          <id root="2.16.840.1.113883.4.6" extension="111111111" /> 
+          <representedOrganization>
+            <!-- This is the organization TIN -->
+            <id root="2.16.840.1.113883.4.2" extension="1234567" /> 
+            <!-- This is the organization CCN -->
+            <id root="2.16.840.1.113883.4.336" extension="54321" /> 
+          </representedOrganization>
+        </assignedEntity>
+      </performer>
+    </serviceEvent>
+  </documentationOf>
+  <component>
+    <structuredBody>
+            <component>
+        <section>
+          <!-- 
+            *****************************************************************
+            Measure Section
+            *****************************************************************
+          -->
+          <!-- This is the templateId for Measure Section -->
+          <templateId root="2.16.840.1.113883.10.20.24.2.2"/>
+          <!-- This is the templateId for Measure Section QDM -->
+          <templateId root="2.16.840.1.113883.10.20.24.2.3"/>
+          <!-- This is the LOINC code for "Measure document". This stays the same for all measure section required by QRDA standard -->
+          <code code="55186-1" codeSystem="2.16.840.1.113883.6.1"/>
+          <title>Measure Section</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>eMeasure Title</th>
+                  <th>Version neutral identifier</th>
+                  <th>eMeasure Version Number</th>
+                  <th>NQF eMeasure Number</th>
+                  <th>Version specific identifier</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td>0B81B6BA-3B30-41BF-A2F3-95BDC9F558F2</td>
+                  <td>1</td>
+                  <td>PrimaryCariesPrevention</td>
+                  <td>8A4D92B2-370B-19FA-0137-27737C4300FA</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <!-- 1..* Organizers, each containing a reference to an eMeasure -->
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98"/>
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97"/>
+              <statusCode code="completed"/>
+              <!-- Containing isBranch external references -->
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID-->
+                  <id root="8A4D92B2-370B-19FA-0137-27737C4300FA"/>
+                  <!-- SHOULD: This is the NQF Number, root is an NQF OID and for eMeasure Number and extension is the eMeasure's NQF number -->
+                  <id root="2.16.840.1.113883.3.560.1" extension="PrimaryCariesPrevention"/>
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text></text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="0B81B6BA-3B30-41BF-A2F3-95BDC9F558F2"/>
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="1"/>                  
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+        </section>
+      </component>
+
+            <component>
+        <section>
+          <!-- This is the templateId for Reporting Parameters section -->
+          <templateId root="2.16.840.1.113883.10.20.17.2.1"/>
+          <code code="55187-9" codeSystem="2.16.840.1.113883.6.1"/>
+          <title>Reporting Parameters</title>
+          <text>
+            <list>
+              <item>Reporting period: January 1st, 2011 00:00 - December 31st, 2011 00:00</item>
+            </list>
+          </text>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <!-- This is the templateId for Reporting Parameteres Act -->
+              <templateId root="2.16.840.1.113883.10.20.17.3.8"/>
+              <code code="252116004" codeSystem="2.16.840.1.113883.6.96" displayName="Observation Parameters"/>
+              <effectiveTime>
+                <low value="20110101000000"/>
+                <high value="20111231000000"/>
+              </effectiveTime>
+            </act>
+          </entry>
+        </section>
+      </component>
+            <component>
+        <section>
+          <!-- This is the templateId for Patient Data section -->
+          <templateId root="2.16.840.1.113883.10.20.17.2.4"/>
+          <!-- This is the templateId for Patient Data QDM section -->
+          <templateId root="2.16.840.1.113883.10.20.24.2.1"/>
+          <code code="55188-7" codeSystem="2.16.840.1.113883.6.1"/>
+          <title>Patient Data</title>
+          <text>
+
+          </text>
+          <entry>
+  <procedure classCode="PROC" moodCode="EVN" >
+    <!--  Procedure performed template -->
+    <templateId root="2.16.840.1.113883.10.20.24.3.64"/>
+    <!-- Procedure Activity Procedure-->
+    <templateId root="2.16.840.1.113883.10.20.22.4.14"/>
+    <id root="1.3.6.1.4.1.115" extension="511e8a957042f9e352000415"/>
+    <code code="70468009" codeSystem="2.16.840.1.113883.6.96" sdtc:valueSet="2.16.840.1.113883.3.464.1003.125.12.1002"><originalText>Procedure, Performed: Fluoride Varnish Application for Children (Code List: 2.16.840.1.113883.3.464.1003.125.12.1002)</originalText><translation code="D1206" codeSystem="2.16.840.1.113883.6.14"/>
+</code>
+    <text>Procedure, Performed: Fluoride Varnish Application for Children (Code List: 2.16.840.1.113883.3.464.1003.125.12.1002)</text>
+    <statusCode code="completed"/>
+    <effectiveTime>
+      <low value='19870415130037'/>
+      <high value='19870415222319'/>
+    </effectiveTime>
+    
+  </procedure>
+</entry>
+
+<entry>
+  <encounter classCode="ENC" moodCode="EVN">
+    <!--  Encounter activities template -->
+    <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+    <!-- Encounter performed template -->
+    <templateId root="2.16.840.1.113883.10.20.24.3.23"/>
+    <id root="1.3.6.1.4.1.115" extension="511e8a957042f9e352000416"/>
+    <code code="90526000" codeSystem="2.16.840.1.113883.6.96" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1048"><originalText>Encounter, Performed: Face-to-Face Interaction (Code List: 2.16.840.1.113883.3.464.1003.101.12.1048)</originalText></code>
+    <text>Encounter, Performed: Face-to-Face Interaction (Code List: 2.16.840.1.113883.3.464.1003.101.12.1048)</text>
+    <statusCode code="completed"/>
+    <effectiveTime>
+      <!-- We try to look for the admit/discharge times on the encounter if they are
+           there. If not, we fall back to the typical start/end date. -->
+      <low value='19891009140800'/>
+      <high value='19891010072656'/>
+    </effectiveTime>
+  </encounter>
+</entry>
+<entry>
+  <encounter classCode="ENC" moodCode="EVN">
+    <!--  Encounter activities template -->
+    <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+    <!-- Encounter performed template -->
+    <templateId root="2.16.840.1.113883.10.20.24.3.23"/>
+    <id root="1.3.6.1.4.1.115" extension="511e8a957042f9e352000417"/>
+    <code code="99394" codeSystem="2.16.840.1.113883.6.12" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1024"><originalText>Encounter, Performed: Preventive Care - Established Office Visit, 0 to 17 (Code List: 2.16.840.1.113883.3.464.1003.101.12.1024)</originalText></code>
+    <text>Encounter, Performed: Preventive Care - Established Office Visit, 0 to 17 (Code List: 2.16.840.1.113883.3.464.1003.101.12.1024)</text>
+    <statusCode code="completed"/>
+    <effectiveTime>
+      <!-- We try to look for the admit/discharge times on the encounter if they are
+           there. If not, we fall back to the typical start/end date. -->
+      <low value='19891029214303'/>
+      <high value='19891029215315'/>
+    </effectiveTime>
+  </encounter>
+</entry>
+<entry>
+  <encounter classCode="ENC" moodCode="EVN">
+    <!--  Encounter activities template -->
+    <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+    <!-- Encounter performed template -->
+    <templateId root="2.16.840.1.113883.10.20.24.3.23"/>
+    <id root="1.3.6.1.4.1.115" extension="511e8a957042f9e352000418"/>
+    <code code="99384" codeSystem="2.16.840.1.113883.6.12" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1022"><originalText>Encounter, Performed: Preventive Care- Initial Office Visit, 0 to 17 (Code List: 2.16.840.1.113883.3.464.1003.101.12.1022)</originalText></code>
+    <text>Encounter, Performed: Preventive Care- Initial Office Visit, 0 to 17 (Code List: 2.16.840.1.113883.3.464.1003.101.12.1022)</text>
+    <statusCode code="completed"/>
+    <effectiveTime>
+      <!-- We try to look for the admit/discharge times on the encounter if they are
+           there. If not, we fall back to the typical start/end date. -->
+      <low value='20030330070535'/>
+      <high value='20030330161057'/>
+    </effectiveTime>
+  </encounter>
+</entry>
+<entry>
+  <encounter classCode="ENC" moodCode="EVN">
+    <!--  Encounter activities template -->
+    <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+    <!-- Encounter performed template -->
+    <templateId root="2.16.840.1.113883.10.20.24.3.23"/>
+    <id root="1.3.6.1.4.1.115" extension="511e8a957042f9e352000419"/>
+    <code code="99397" codeSystem="2.16.840.1.113883.6.12" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1025"><originalText>Encounter, Performed: Preventive Care Services - Established Office Visit, 18 and Up (Code List: 2.16.840.1.113883.3.464.1003.101.12.1025)</originalText></code>
+    <text>Encounter, Performed: Preventive Care Services - Established Office Visit, 18 and Up (Code List: 2.16.840.1.113883.3.464.1003.101.12.1025)</text>
+    <statusCode code="completed"/>
+    <effectiveTime>
+      <!-- We try to look for the admit/discharge times on the encounter if they are
+           there. If not, we fall back to the typical start/end date. -->
+      <low value='19830221105905'/>
+      <high value='19830221153320'/>
+    </effectiveTime>
+  </encounter>
+</entry>
+<entry>
+  <encounter classCode="ENC" moodCode="EVN">
+    <!--  Encounter activities template -->
+    <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+    <!-- Encounter performed template -->
+    <templateId root="2.16.840.1.113883.10.20.24.3.23"/>
+    <id root="1.3.6.1.4.1.115" extension="511e8a957042f9e35200041a"/>
+    <code code="99387" codeSystem="2.16.840.1.113883.6.12" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1023"><originalText>Encounter, Performed: Preventive Care Services-Initial Office Visit, 18 and Up (Code List: 2.16.840.1.113883.3.464.1003.101.12.1023)</originalText></code>
+    <text>Encounter, Performed: Preventive Care Services-Initial Office Visit, 18 and Up (Code List: 2.16.840.1.113883.3.464.1003.101.12.1023)</text>
+    <statusCode code="completed"/>
+    <effectiveTime>
+      <!-- We try to look for the admit/discharge times on the encounter if they are
+           there. If not, we fall back to the typical start/end date. -->
+      <low value='20080414085423'/>
+      <high value='20080414160519'/>
+    </effectiveTime>
+  </encounter>
+</entry>
+<entry>
+  <encounter classCode="ENC" moodCode="EVN">
+    <!--  Encounter activities template -->
+    <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+    <!-- Encounter performed template -->
+    <templateId root="2.16.840.1.113883.10.20.24.3.23"/>
+    <id root="1.3.6.1.4.1.115" extension="511e8a957042f9e35200041b"/>
+    <code code="99215" codeSystem="2.16.840.1.113883.6.12" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1001"><originalText>Encounter, Performed: Office Visit (Code List: 2.16.840.1.113883.3.464.1003.101.12.1001)</originalText></code>
+    <text>Encounter, Performed: Office Visit (Code List: 2.16.840.1.113883.3.464.1003.101.12.1001)</text>
+    <statusCode code="completed"/>
+    <effectiveTime>
+      <!-- We try to look for the admit/discharge times on the encounter if they are
+           there. If not, we fall back to the typical start/end date. -->
+      <low value='19901126203852'/>
+      <high value='19901127172007'/>
+    </effectiveTime>
+  </encounter>
+</entry>
+<entry>
+  <encounter classCode="ENC" moodCode="EVN">
+    <!--  Encounter activities template -->
+    <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+    <!-- Encounter performed template -->
+    <templateId root="2.16.840.1.113883.10.20.24.3.23"/>
+    <id root="1.3.6.1.4.1.115" extension="511e8a957042f9e35200041c"/>
+    <code nullFlavor="UNK" sdtc:valueSet="2.16.840.1.113883.3.464.1003.125.12.1003"><originalText>Encounter, Performed: Clinical Oral Evaluation (Code List: 2.16.840.1.113883.3.464.1003.125.12.1003)</originalText><translation code="D0180" codeSystem="2.16.840.1.113883.6.14"/>
+</code>
+    <text>Encounter, Performed: Clinical Oral Evaluation (Code List: 2.16.840.1.113883.3.464.1003.125.12.1003)</text>
+    <statusCode code="completed"/>
+    <effectiveTime>
+      <!-- We try to look for the admit/discharge times on the encounter if they are
+           there. If not, we fall back to the typical start/end date. -->
+      <low value='20121216215736'/>
+      <high value='20121217195224'/>
+    </effectiveTime>
+  </encounter>
+</entry>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>

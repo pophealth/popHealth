@@ -1,4 +1,4 @@
-module Measure
+class Measure
 
   GROUP = {'$group' => {_id: "$id", 
                         name: {"$first" => "$name"},
