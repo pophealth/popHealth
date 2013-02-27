@@ -60,13 +60,15 @@ class RecordImporter
         patient_data = HealthDataStandards::Import::C32::PatientImporter.instance.parse_c32(doc)
       elsif doc.at_xpath("/cda:ClinicalDocument/cda:templateId[@root='2.16.840.1.113883.10.20.22.1.2']")
         patient_data = HealthDataStandards::Import::CCDA::PatientImporter.instance.parse_ccda(doc)
+      elsif doc.at_xpath("/cda:ClinicalDocument/cda:templateId[@root='2.16.840.1.113883.10.20.24.1.2']")
+        patient_data = HealthDataStandards::Import::Cat1::PatientImporter.instance.parse_cat1(doc)
       else
         STDERR.puts("Unable to determinate document template/type of CDA document")
         return {status: 'error', message: "Document templateId does not identify it as a C32 or CCDA", status_code: 400}
       end
       
       begin
-        providers = HealthDataStandards::Import::C32::ProviderImporter.instance.extract_providers(doc)
+        providers = HealthDataStandards::Import::CDA::ProviderImporter.instance.extract_providers(doc)
       rescue Exception => e
         STDERR.puts "error extracting providers"
       end

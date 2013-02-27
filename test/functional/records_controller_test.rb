@@ -10,8 +10,8 @@ class RecordsControllerTest < ActionController::TestCase
     @body = File.new("test/fixtures/patient_provider_fragment.xml").read
     @body2 = File.new("test/fixtures/patient_sample.xml").read
     @ccr_body = File.new("test/fixtures/sample_ccr.xml").read
+    @cat1_body = File.new("test/fixtures/sample_cat1.xml").read
     sign_in @user
-    
   end
   
   test "send junk xml" do
@@ -69,6 +69,15 @@ class RecordsControllerTest < ActionController::TestCase
     end
     assert_equal 2, created_record.provider_performances.size
   end
+
+  test "create record with QRDA Cat 1" do
+    raw_post(:create, @cat1_body)
+    assert_response(201)
+    
+    created_record = Record.first
+    assert_equal 7, created_record.encounters.count
+  end
+
   
   test "replace existing record" do
     # create one record
