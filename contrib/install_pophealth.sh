@@ -560,7 +560,7 @@ else
 fi
 # install gems needed by popHealth
 echo -n "   Installing popHealth gem dependencies: "
-cd ~pophealth/pophealth; bundle install &> /dev/null
+cd ~pophealth/popHealth; bundle install &> /dev/null
 success_or_fail $? "done" "failed"
 echo
 
@@ -590,9 +590,9 @@ echo
 echo "Configure startup processes:"
 # create the script that kicks off the job
 echo -n "   Create delayed_job script: "
-cat << DELAYED_JOB_SCRIPT_END > ~popHealth/start_delayed_job.sh
+cat << DELAYED_JOB_SCRIPT_END > ~pophealth/start_delayed_job.sh
 #!/bin/bash
-cd ~pophealth/pophealth
+cd ~pophealth/popHealth
 . /usr/local/rvm/scripts/rvm
 bundle exec rake jobs:work RAILS_ENV=production
 DELAYED_JOB_SCRIPT_END
