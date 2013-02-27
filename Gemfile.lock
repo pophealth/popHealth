@@ -1,35 +1,3 @@
-GIT
-  remote: http://github.com/pophealth/quality-measure-engine.git
-  revision: 3596fece83c959d5f4d88e4ed5f3ec35fb8c73a5
-  branch: develop
-  specs:
-    quality-measure-engine (2.1.0)
-      delayed_job_mongoid (~> 2.0.0)
-      mongoid (~> 3.0)
-      moped (~> 1.4.2)
-      nokogiri (~> 1.5.5)
-      rubyXL (~> 1.2.10)
-      rubyzip (~> 0.9.9)
-
-GIT
-  remote: https://github.com/projectcypress/health-data-standards.git
-  revision: d94d05fafbfcf9299e1b8c8ff34ab286447ea88d
-  branch: develop
-  specs:
-    health-data-standards (3.0.0)
-      activesupport (~> 3.2.9)
-      builder (~> 3.0.0)
-      erubis (~> 2.7.0)
-      google-spreadsheet-ruby (= 0.1.8)
-      log4r (~> 1.1.10)
-      mongoid (~> 3.1.0)
-      nokogiri (~> 1.5.5)
-      rest-client (~> 1.6.7)
-      roo (= 1.10.1)
-      rubyzip
-      spreadsheet (= 0.6.8)
-      uuid (~> 2.3.5)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -109,7 +77,20 @@ GEM
       nokogiri (>= 1.4.3.1)
       oauth (>= 0.3.6)
       oauth2 (>= 0.5.0)
-    hashie (2.0.1)
+    hashie (2.0.2)
+    health-data-standards (3.0.2)
+      activesupport (~> 3.2.9)
+      builder (~> 3.0.0)
+      erubis (~> 2.7.0)
+      google-spreadsheet-ruby (= 0.1.8)
+      log4r (~> 1.1.10)
+      mongoid (~> 3.1.0)
+      nokogiri (~> 1.5.5)
+      rest-client (~> 1.6.7)
+      roo (= 1.10.1)
+      rubyzip
+      spreadsheet (= 0.6.8)
+      uuid (~> 2.3.5)
     hike (1.2.1)
     httpauth (0.2.0)
     i18n (0.6.2)
@@ -163,6 +144,13 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    quality-measure-engine (2.3.0)
+      delayed_job_mongoid (~> 2.0.0)
+      mongoid (~> 3.0)
+      moped (~> 1.4.2)
+      nokogiri (~> 1.5.5)
+      rubyXL (~> 1.2.10)
+      rubyzip (~> 0.9.9)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -264,7 +252,7 @@ DEPENDENCIES
   factory_girl (= 2.6.3)
   foreman
   formtastic
-  health-data-standards!
+  health-data-standards (~> 3.0.2)
   jquery-rails
   json
   kaminari
@@ -274,7 +262,7 @@ DEPENDENCIES
   mongoid
   nokogiri
   pry
-  quality-measure-engine!
+  quality-measure-engine (~> 2.3.0)
   rails (= 3.2.12)
   rails-backbone
   rubyzip
