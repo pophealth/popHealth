@@ -1,7 +1,10 @@
 language: ruby
 rvm:
-  - 1.9.2
+  - 1.9.3
 script: ./.travis/execute.sh
+
+services:
+  - mongodb
 
 notifications:
   email:
