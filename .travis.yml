@@ -3,6 +3,9 @@ rvm:
   - 1.9.3
 script: ./.travis/execute.sh
 
+services:
+  - mongodb
+
 notifications:
   email:
     recipients:
