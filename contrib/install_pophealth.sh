@@ -560,7 +560,7 @@ else
 fi
 # install gems needed by popHealth
 echo -n "   Installing popHealth gem dependencies: "
-cd ~pophealth/pophealth; bundle install &> /dev/null
+cd ~pophealth/popHealth; bundle install &> /dev/null
 success_or_fail $? "done" "failed"
 echo
 
@@ -575,11 +575,11 @@ else
   echo
   # download the measure bundle
   echo -n "   Download latest measure bundle: "
-  su - -c "cd pophealth; curl -s -u ${nlm_user}:${nlm_passwd} http://demo.projectcypress.org/bundles/bundle-latest.zip -o ../bundle-latest.zip" pophealth
+  su - -c "cd popHealth; curl -s -u ${nlm_user}:${nlm_passwd} http://demo.projectcypress.org/bundles/bundle-latest.zip -o ../bundle-latest.zip" pophealth
   success_or_fail $? "done" "failed to download bundle" "Can't continue without measure bundle."
   # import the bundle
   echo -n "   Import measure bundle: "
-  su - -c "cd pophealth; bundle exec rake bundle:import[../bundle-latest.zip,true,true,'ep'] RAILS_ENV=production &> /dev/null" pophealth
+  su - -c "cd popHealth; bundle exec rake bundle:import[../bundle-latest.zip,true,true,'ep'] RAILS_ENV=production &> /dev/null" pophealth
   success_or_fail $? "done" "failed to import bundle" "Can't continue without importing bundle."
 fi
 echo
@@ -590,9 +590,9 @@ echo
 echo "Configure startup processes:"
 # create the script that kicks off the job
 echo -n "   Create delayed_job script: "
-cat << DELAYED_JOB_SCRIPT_END > ~popHealth/start_delayed_job.sh
+cat << DELAYED_JOB_SCRIPT_END > ~pophealth/start_delayed_job.sh
 #!/bin/bash
-cd ~pophealth/pophealth
+cd ~pophealth/popHealth
 . /usr/local/rvm/scripts/rvm
 bundle exec rake jobs:work RAILS_ENV=production
 DELAYED_JOB_SCRIPT_END
@@ -638,9 +638,9 @@ success_or_fail $? "done" "failed"
 echo -n "   Install pophealth website: "
 cat << POPHEALTH_SITE_END > /etc/apache2/sites-available/pophealth
 <VirtualHost *:80>
-   DocumentRoot /home/pophealth/pophealth/public
+   DocumentRoot /home/pophealth/popHealth/public
    TimeOut 1200
-   <Directory /home/pophealth/pophealth/public>
+   <Directory /home/pophealth/popHealth/public>
       AllowOverride all
       Options -MultiViews
    </Directory>
