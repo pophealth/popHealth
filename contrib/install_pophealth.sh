@@ -579,7 +579,7 @@ else
   success_or_fail $? "done" "failed to download bundle" "Can't continue without measure bundle."
   # import the bundle
   echo -n "   Import measure bundle: "
-  su - -c "cd pophealth; bundle exec rake bundle:import[../bundle-latest.zip,true,true,'ep'] RAILS_ENV=production &> /dev/null" pophealth
+  su - -c "cd popHealth; bundle exec rake bundle:import[../bundle-latest.zip,true,true,'ep'] RAILS_ENV=production &> /dev/null" pophealth
   success_or_fail $? "done" "failed to import bundle" "Can't continue without importing bundle."
 fi
 echo
@@ -638,9 +638,9 @@ success_or_fail $? "done" "failed"
 echo -n "   Install pophealth website: "
 cat << POPHEALTH_SITE_END > /etc/apache2/sites-available/pophealth
 <VirtualHost *:80>
-   DocumentRoot /home/pophealth/pophealth/public
+   DocumentRoot /home/pophealth/popHealth/public
    TimeOut 1200
-   <Directory /home/pophealth/pophealth/public>
+   <Directory /home/pophealth/popHealth/public>
       AllowOverride all
       Options -MultiViews
    </Directory>
