@@ -575,7 +575,7 @@ else
   echo
   # download the measure bundle
   echo -n "   Download latest measure bundle: "
-  su - -c "cd pophealth; curl -s -u ${nlm_user}:${nlm_passwd} http://demo.projectcypress.org/bundles/bundle-latest.zip -o ../bundle-latest.zip" pophealth
+  su - -c "cd popHealth; curl -s -u ${nlm_user}:${nlm_passwd} http://demo.projectcypress.org/bundles/bundle-latest.zip -o ../bundle-latest.zip" pophealth
   success_or_fail $? "done" "failed to download bundle" "Can't continue without measure bundle."
   # import the bundle
   echo -n "   Import measure bundle: "
