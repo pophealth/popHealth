@@ -1,6 +1,6 @@
 <div>
-  <%= entry.description %>
-  <% if (entry.time.present?) %>
-    <time datetime="<%= display_time(entry.time) %>"><%= display_time(entry.time) %></time>
+  <%= entry.description || entry.free_text %>
+  <% if (entry.as_point_in_time.present?) %>
+    <time datetime="<%= display_time(entry.as_point_in_time) %>"><%= display_time(entry.as_point_in_time) %></time>
   <% end %>
 </div>
