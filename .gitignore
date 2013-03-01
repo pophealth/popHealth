@@ -19,3 +19,4 @@ Thumbs.db
 .bundle/config
 vendor
 dump.rdb
+.tags*
