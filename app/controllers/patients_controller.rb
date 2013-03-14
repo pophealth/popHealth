@@ -17,11 +17,12 @@ class PatientsController < ApplicationController
         @measures = Measure.list
         @measures.each do |measure|
           qm = QME::QualityMeasure.new(measure['id'], measure['sub_id'])
-          oid_dictionary = OidHelper.generate_oid_dictionary(qm.definition)
-          executor = QME::MapReduce::Executor.new(measure['id'], measure['sub_id'], {'effective_date' => @effective_date, 'oid_dictionary' => oid_dictionary})
-          result = executor.get_patient_result(@patient.medical_record_number)
-          if result['antinumerator']
-            @outliers << measure
+          qr = QME::QualityReport.new(measure['id'], measure['sub_id'], {'effective_date' => @effective_date})
+          if qr.calculated?
+            result = qr.patient_result(@patient.medical_record_number)
+            if result['antinumerator']
+              @outliers << measure
+            end
           end
         end
 
