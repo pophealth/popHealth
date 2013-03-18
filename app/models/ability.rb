@@ -23,7 +23,7 @@ class Ability
     if user.admin?
       can :manage, :all
     elsif user.staff_role?
-      can :read, Measure
+      can :read, HealthDataStandards::CQM::Measure
       can :read, Record
       can :manage, Provider
       can :manage, :providers
@@ -34,7 +34,7 @@ class Ability
       can :read, Record do |patient|
         patient.providers.map(&:npi).include?(user.npi)
       end
-      can :read, Measure
+      can :read, HealthDataStandards::CQM::Measure
       can :read, Provider, npi: user.npi
       can :manage, Team
       can :manage, User, id: user.id

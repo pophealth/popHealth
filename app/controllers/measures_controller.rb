@@ -25,7 +25,7 @@ class MeasuresController < ApplicationController
   add_breadcrumb 'patients', '', only: %w{patients}
   
   def index
-    @categories = Measure.categories
+    @categories = HealthDataStandards::CQM::Measure.categories
   end
   
   def show
@@ -415,7 +415,7 @@ class MeasuresController < ApplicationController
   end
 
   def validate_authorization!
-    authorize! :read, Measure
+    authorize! :read, HealthDataStandards::CQM::Measure
   end
   
 end
