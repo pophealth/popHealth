@@ -549,9 +549,9 @@ else
 fi
 # retrieve popHealth application
 echo -n "   Retrieve popHealth application: "
-if [ -d ~pophealth/pophealth ]; then
+if [ -d ~pophealth/popHealth ]; then
   # already exists, update it
-  su - -c "cd pophealth; git pull &> /dev/null" pophealth
+  su - -c "cd popHealth; git pull &> /dev/null" pophealth
   success_or_fail $? "updated" "failed to pull updates" "Can't continue without the popHealth code."
   cd ..
 else
