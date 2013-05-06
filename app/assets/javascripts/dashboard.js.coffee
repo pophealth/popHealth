@@ -96,6 +96,7 @@
       npiParam = "?npi=#{npi}" if (npi)
       window.location.href="#{rootContext}/measures"+npiParam
     , 'json')
+    false
         
   updatePeriodEnd: (selected) -> 
     effective_date = $('#measurementPeriodEndDate').val();
