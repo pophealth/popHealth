@@ -1,5 +1,5 @@
 <div class="provider row-fluid" data-provider="<%=provider_row.id%>">
-  <div class="span6"><%= link_to "#{provider_row.family_name.upcase} , #{provider_row.given_name}", measures_path(npi: provider_row.npi) %>
+  <div class="span6"><%= link_to formatted_provider_name(provider_row), measures_path(npi: provider_row.npi) %>
   </div>
   <div class="percent span3">
     <div class="measureProviderPopulationPercentage"></div>
