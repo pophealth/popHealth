@@ -1,0 +1,1 @@
+Time::DATE_FORMATS[:qrda] = '%Y%m%d'
