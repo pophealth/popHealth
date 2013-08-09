@@ -40,8 +40,8 @@ group :test, :develop do
   gem 'pry'
   gem "unicorn", :platforms => [:ruby, :jruby]
   gem 'turn', :require => false
-  gem 'cover_me'
-  gem 'minitest'
+  gem 'simplecov', :require => false
+  gem "minitest", "~> 4.0"
   gem 'mocha', :require => false
 end
 
