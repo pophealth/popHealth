@@ -35,7 +35,7 @@
   <!-- SHALL have 1..* author. MAY be device or person. 
     The author of the CDA document in this example is a device at a data submission vendor/registry. -->
   <author>
-    <time value="<%= Time.now.to_s %>"/>
+    <time value="<%= Time.now.to_formatted_s(:number) %>"/>
     <assignedAuthor>
       <!-- Registry author ID -->
       <id extension="Cypress" root="MITRE"/>
@@ -68,7 +68,7 @@
   <!-- SHALL -->
   <legalAuthenticator>
     <!-- SHALL -->
-    <time value="<%= Time.now.to_s %>"/>
+    <time value="<%= Time.now.to_formatted_s(:number) %>"/>
     <!-- SHALL -->
     <signatureCode code="S"/>
     <assignedEntity>
