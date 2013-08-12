@@ -235,12 +235,11 @@ Measure Section
                             displayName="rate aggregation" 
                             codeSystem="2.16.840.1.113883.5.4" 
                             codeSystemName="ActCode"/>
-
+                      <!--  SHALL value xsi:type="INT"-->
+                      <value xsi:type="INT" value="<%=pop_value["value"]%>"/>
                       <methodCode code="COUNT" displayName="Count"
                         codeSystem="2.16.840.1.113883.5.84"
                         codeSystemName="ObservationMethod"/>
-                      <!--  SHALL value xsi:type="INT"-->
-                      <value xsi:type="INT" value="<%=pop_value["value"]%>"/>
                     </observation>
                   </entryRelationship>
 
@@ -302,11 +301,11 @@ Measure Section
                             displayName="rate aggregation" 
                             codeSystem="2.16.840.1.113883.5.4" 
                             codeSystemName="ActCode"/>
-
-                      <methodCode code="COUNT" displayName="Count"
-                        codeSystem="2.16.840.1.113883.5.84"
-                        codeSystemName="ObservationMethod"/>
+                          <!--  SHALL value xsi:type="INT"-->
                           <value xsi:type="INT" value="<%=strata_value %>"/>
+                          <methodCode code="COUNT" displayName="Count"
+                            codeSystem="2.16.840.1.113883.5.84"
+                            codeSystemName="ObservationMethod"/>
                         </observation>
                       </entryRelationship>
 
