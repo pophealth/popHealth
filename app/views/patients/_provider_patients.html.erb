@@ -1,34 +1,34 @@
 <%= form_tag url: update_all_provider_patients_path(@provider), remote: true do %>
 <table border="0" cellspacing="5" cellpadding="5">
-	<tr>
-		<th>Patient ID</th>
-		<th>Last</th>
-		<th>First</th>
-		<th>Start Date</th>
-		<th>End Date</th>
-		<th />
-	</tr>
-	<% @records.each do |record| %>
-		<tr>
-			<td><%= record.medical_record_number %></td>
-			<td><%= record.last %></td>
-			<td><%= record.first %></td>
-			<% perfs = record.provider_performances.select{|pp| pp.provider_id == @provider.id} %>
-			<td>
-			<% perfs.each do |perf| %>
-				<%= text_field_tag "records[#{record.id}][start_date]", Time.at(perf.start_date).strftime("%m/%d/%y") if perf.start_date %>
-			<% end %>
-		</td>
-		<td>
-			<% perfs.each do |perf| %>
-				<%= text_field_tag "records[#{record.id}][end_date]", (perf.end_date ? Time.at(perf.end_date).strftime("%m/%d/%y") : nil) %>
-			<% end %>
-			</td>
-			<td>
-				<%= link_to "delete", provider_patient_path(@provider, record), :method => :delete, :confirm => "Are you sure you want to disassociate this patient from #{@provider.full_name}" %>
-			</td>
-		</tr>
-	<% end %>
+  <tr>
+    <th>Patient ID</th>
+    <th>Last</th>
+    <th>First</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th />
+  </tr>
+  <% @records.each do |record| %>
+    <tr>
+      <td><%= record.medical_record_number %></td>
+      <td><%= record.last %></td>
+      <td><%= record.first %></td>
+      <% perfs = record.provider_performances.select{|pp| pp.provider_id == @provider.id} %>
+      <td>
+      <% perfs.each do |perf| %>
+        <%= text_field_tag "records[#{record.id}][start_date]", Time.at(perf.start_date).strftime("%m/%d/%y") if perf.start_date %>
+      <% end %>
+    </td>
+    <td>
+      <% perfs.each do |perf| %>
+        <%= text_field_tag "records[#{record.id}][end_date]", (perf.end_date ? Time.at(perf.end_date).strftime("%m/%d/%y") : nil) %>
+      <% end %>
+      </td>
+      <td>
+        <%= link_to "delete", provider_patient_path(@provider, record), :method => :delete, :confirm => "Are you sure you want to disassociate this patient from #{@provider.full_name}" %>
+      </td>
+    </tr>
+  <% end %>
 </table>
 <% end %>
 

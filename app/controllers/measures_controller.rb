@@ -16,11 +16,13 @@ class MeasuresController < ApplicationController
       {}
     end
   end
+
   add_breadcrumb_dynamic([:definition, :selected_provider], only: %w{show patients})  do |data| 
     measure = data[:definition]; provider = data[:selected_provider]
     {title: "#{measure['endorser']}#{measure['id']}" + (measure['sub_id'] ? "#{measure['sub_id']}" : ''), 
      url: "#{Rails.configuration.relative_url_root}/measure/#{measure['id']}"+(measure['sub_id'] ? "/#{measure['sub_id']}" : '')+(provider ? "?npi=#{provider.npi}" : "/providers")}
   end
+
   add_breadcrumb 'parameters', '', only: %w{show}
   add_breadcrumb 'patients', '', only: %w{patients}
   
@@ -51,37 +53,26 @@ class MeasuresController < ApplicationController
   def definition
     render :json => @definition
   end
-  def result
 
-    uuid = generate_report(params[:uuid])
-    
+  def result
+    uuid = generate_report(params[:uuid])    
     if (@result)
       render :json => @result
     else
       render :json => @quality_report.status(uuid)
     end
-    
   end
-  
-  
+
   def providers    
     authorize! :manage, :providers
-    
     respond_to do |wants|
-      wants.html {}
-      
-      wants.js do
-        
+      wants.html {}   
+      wants.js do    
         @providers = Provider.page(params[:page]).per(20).alphabetical
-        @providers = @providers.any_in(team_id: params[:team]) if params[:team]
-        
-      end
-      
-      wants.json do
-
-            
-        providerIds = params[:provider].blank? ?  Provider.all.map { |pv| pv.id.to_s } : @filters.delete('providers')
-        
+        @providers = @providers.any_in(team_id: params[:team]) if params[:team]     
+      end   
+      wants.json do       
+        providerIds = params[:provider].blank? ?  Provider.all.map { |pv| pv.id.to_s } : @filters.delete('providers') 
         render_measure_response(providerIds, params[:jobs]) do |pvId|
           filters = @filters ? @filters.merge('providers' => [pvId]) : {'providers' => [pvId]}
           { 
@@ -148,7 +139,6 @@ class MeasuresController < ApplicationController
                  :medical_record_number => (patient_container['value'])['medical_record_id'])
     end
   end
-
 
   # excel patient list
   def patient_list
@@ -294,7 +284,6 @@ class MeasuresController < ApplicationController
     }
   end
   
-  
   def set_up_environment
     @patient_count = (@selected_provider) ? @selected_provider.records(@effective_date).count : Record.count
     if params[:id]
@@ -353,11 +342,8 @@ class MeasuresController < ApplicationController
     end
     
     if request.xhr?
-      
       build_filters
-      
     else
-      
       if can?(:read, :providers)
         @providers = Provider.page(@page).per(20).alphabetical
         if APP_CONFIG['disable_provider_filters']
@@ -377,7 +363,6 @@ class MeasuresController < ApplicationController
       @languages = Language.ordered
       
     end
-
   end
   
   def build_filters

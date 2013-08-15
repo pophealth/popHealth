@@ -11,7 +11,6 @@ FactoryGirl.find_definitions
 
 class ActiveSupport::TestCase
 
-
   def dump_database
     User.delete_all
     Provider.delete_all
@@ -65,7 +64,6 @@ class ActiveSupport::TestCase
     end
     
   end
-  
   
 end
 

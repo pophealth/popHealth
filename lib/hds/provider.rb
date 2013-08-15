@@ -52,7 +52,6 @@ class Provider
     super(options)
   end
   
-  
   def self.merge_or_build(attributes)
     if attributes[:npi]
       provider = Provider.by_npi(attributes[:npi]).first

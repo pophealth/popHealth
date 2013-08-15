@@ -77,7 +77,6 @@ class RecordsControllerTest < ActionController::TestCase
     created_record = Record.first
     assert_equal 7, created_record.encounters.count
   end
-
   
   test "replace existing record" do
     # create one record

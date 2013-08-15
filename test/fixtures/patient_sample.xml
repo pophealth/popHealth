@@ -920,14 +920,14 @@
                   <id/>
                   <addr/>
                   <telecom/>
-            			<assignedPerson>
-            				<name>
-            				  <prefix>Dr.</prefix>
-            					<given>Robert</given>
-            					<family>Kildare</family>
-            					<suffix>MD</suffix>
-            				</name>
-            			</assignedPerson>
+                  <assignedPerson>
+                    <name>
+                      <prefix>Dr.</prefix>
+                      <given>Robert</given>
+                      <family>Kildare</family>
+                      <suffix>MD</suffix>
+                    </name>
+                  </assignedPerson>
                 </assignedEntity>
               </performer>
               <participant typeCode="DEV">
@@ -2397,14 +2397,14 @@
                   <id/>
                   <addr/>
                   <telecom/>
-            			<assignedPerson>
-            				<name>
-            				  <prefix>Dr.</prefix>
-            					<given>Robert</given>
-            					<family>Kildare</family>
-            					<suffix>MD</suffix>
-            				</name>
-            			</assignedPerson>
+                  <assignedPerson>
+                    <name>
+                      <prefix>Dr.</prefix>
+                      <given>Robert</given>
+                      <family>Kildare</family>
+                      <suffix>MD</suffix>
+                    </name>
+                  </assignedPerson>
                 </assignedEntity>
               </performer>
               <participant typeCode="LOC">

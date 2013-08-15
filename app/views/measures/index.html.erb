@@ -3,13 +3,13 @@
   <% if @selected_provider %>
     Page.npi = '<%=@selected_provider.npi%>'
   <% end %>
-	Page.onLoad = Dashboard.onLoad;
+  Page.onLoad = Dashboard.onLoad;
 
 </script>
 <% end -%>
   
   <div id="pageContent" class="row-fluid">
- 		<div id="providerReports" class="span2">
+     <div id="providerReports" class="span2">
       <%#= @categories.to_a %>
     <h5>
       Measures
@@ -51,8 +51,8 @@
       </ul>
     </div>
     <% elsif can?(:manage, :providers)%>
-		  <%= render partial: 'provider_filters' %>
-		<% end %>
+      <%= render partial: 'provider_filters' %>
+    <% end %>
 
 
     <h5>
@@ -132,6 +132,6 @@
             </div>
             <%= render :partial => "measure", :collection => categorized['measures'] %>
         <% end %>
-        </div>	
+        </div>  
     </div><!-- end #dashboardPeriod -->
   </div><!-- end #pageContent -->

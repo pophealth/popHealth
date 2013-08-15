@@ -13,7 +13,6 @@ class ProvidersControllerTest < ActionController::TestCase
     sign_in @user
   end
 
-
   test "get index" do
     get :index
     assert_not_nil assigns[:providers]
