@@ -3,7 +3,7 @@ $("table#providerTable tr.provider").remove();
 $("table#providerTable").append("<%= render_js(:partial =>'provider_row', collection: @providers)  %> ");
 Providers.fadeOut();
 <% if @definition['sub_id'] %>
-	Providers.updatePage("<%= @definition['id']%>", "<%= @definition['sub_id'] %>");
+  Providers.updatePage("<%= @definition['id']%>", "<%= @definition['sub_id'] %>");
 <% else %>
-	Providers.updatePage("<%= @definition['id']%>");
+  Providers.updatePage("<%= @definition['id']%>");
 <% end %>

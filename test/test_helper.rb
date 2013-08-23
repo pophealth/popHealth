@@ -1,5 +1,6 @@
-require 'cover_me'
 ENV["RAILS_ENV"] = "test"
+
+require_relative "./simplecov"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
@@ -9,7 +10,6 @@ require 'mocha/setup'
 FactoryGirl.find_definitions
 
 class ActiveSupport::TestCase
-
 
   def dump_database
     User.delete_all
@@ -64,7 +64,6 @@ class ActiveSupport::TestCase
     end
     
   end
-  
   
 end
 

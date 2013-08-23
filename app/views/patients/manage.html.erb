@@ -1,28 +1,28 @@
 <div id="managePatients">
-	<% unless @unassigned.empty? %>
-		<%= form_tag update_all_provider_patients_path(@provider), {method: 'put'} do %>
-		<h3>Unassigned Patients</h3>
-		<span id="unassigned">
-			<%= submit_tag "Assign to #{@provider.full_name}", class: "btn btn-block btn-success" %>
+  <% unless @unassigned.empty? %>
+    <%= form_tag update_all_provider_patients_path(@provider), {method: 'put'} do %>
+    <h3>Unassigned Patients</h3>
+    <span id="unassigned">
+      <%= submit_tag "Assign to #{@provider.full_name}", class: "btn btn-block btn-success" %>
 
-				<%= render partial: 'unassigned', param_name: 'unassigned_page' %>
+        <%= render partial: 'unassigned', param_name: 'unassigned_page' %>
 
-		
-			<%= paginate @unassigned %>	
-			<%= submit_tag "Assign to #{@provider.full_name}", class: "btn btn-block btn-success" %>
-		</span>
-		<% end %>
-	<% end %>
-	<% unless @records.empty?%>
-		<%= form_tag update_all_provider_patients_path(@provider), {method: 'put'} do %>
-		<span id="providerPatients">
-			<h2><%= @provider.full_name%>'s patients</h2>
-			<div>
-				<%= render partial: 'provider_patients' %>
-			</div>
-			<%= paginate @records, param_name: 'provider_page' %>
-			 <%= submit_tag "Update", style: "float:right" %>
-		</span>
-		<% end %>
-	<% end %>
+    
+      <%= paginate @unassigned %>  
+      <%= submit_tag "Assign to #{@provider.full_name}", class: "btn btn-block btn-success" %>
+    </span>
+    <% end %>
+  <% end %>
+  <% unless @records.empty?%>
+    <%= form_tag update_all_provider_patients_path(@provider), {method: 'put'} do %>
+    <span id="providerPatients">
+      <h2><%= @provider.full_name%>'s patients</h2>
+      <div>
+        <%= render partial: 'provider_patients' %>
+      </div>
+      <%= paginate @records, param_name: 'provider_page' %>
+       <%= submit_tag "Update", style: "float:right" %>
+    </span>
+    <% end %>
+  <% end %>
 </div>

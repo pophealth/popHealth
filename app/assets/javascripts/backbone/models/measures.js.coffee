@@ -3,7 +3,7 @@ class PopHealth.Measure extends Backbone.Model
   report: ->
     console.log('polling')
     setTimeout => @report
-  , 3000
+    3000
     # fetch()
     # ref = this
     # this.fetch params, (response) ->

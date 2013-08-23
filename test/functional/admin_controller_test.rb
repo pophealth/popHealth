@@ -128,7 +128,6 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :redirect
   end
 
-
   test "disable invalid user should not freak out" do
     sign_in @admin
     post :disable, username: "crapusername"

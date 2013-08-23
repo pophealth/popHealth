@@ -1,4 +1,4 @@
-<div id="logOut">
+ß<div id="logOut">
   Welcome, <%= current_user.first_name.to_s %>
   <span class="sep">|</span> <a href="http://projectpophealth.org/faq.html">help</a>
   <% if APP_CONFIG['edit_account_enabled']%><span class="sep">|</span> <%= link_to 'account', edit_user_registration_path(current_user) %> <% end %>
@@ -36,8 +36,8 @@
       $('#manage_link').hover(popHealth.manageMenuIn, popHealth.manageMenuOut)
       $('#manage_link').mousemove(popHealth.manageMenuIn)
       $('.dialog-menu li a').hover(function() { $(this).addClass('ui-state-hover') } , function() { $(this).removeClass('ui-state-hover')} )
-		});
-		
+    });
+    
     popHealth.manageMenuOut = function(data) {
     }
     popHealth.manageMenuIn = function(data) {
@@ -66,7 +66,7 @@
     popHealth.manageMenuHoverOut = function() {
       setTimeout(popHealth.closeDialog, 600) 
     }
-		
+    
     
   </script>
   

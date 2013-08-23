@@ -16,16 +16,18 @@ class MeasuresController < ApplicationController
       {}
     end
   end
+
   add_breadcrumb_dynamic([:definition, :selected_provider], only: %w{show patients})  do |data| 
     measure = data[:definition]; provider = data[:selected_provider]
     {title: "#{measure['endorser']}#{measure['id']}" + (measure['sub_id'] ? "#{measure['sub_id']}" : ''), 
      url: "#{Rails.configuration.relative_url_root}/measure/#{measure['id']}"+(measure['sub_id'] ? "/#{measure['sub_id']}" : '')+(provider ? "?npi=#{provider.npi}" : "/providers")}
   end
+
   add_breadcrumb 'parameters', '', only: %w{show}
   add_breadcrumb 'patients', '', only: %w{patients}
   
   def index
-    @categories = Measure.categories
+    @categories = HealthDataStandards::CQM::Measure.categories
   end
   
   def show
@@ -51,37 +53,26 @@ class MeasuresController < ApplicationController
   def definition
     render :json => @definition
   end
-  def result
 
-    uuid = generate_report(params[:uuid])
-    
+  def result
+    uuid = generate_report(params[:uuid])    
     if (@result)
       render :json => @result
     else
       render :json => @quality_report.status(uuid)
     end
-    
   end
-  
-  
+
   def providers    
     authorize! :manage, :providers
-    
     respond_to do |wants|
-      wants.html {}
-      
-      wants.js do
-        
+      wants.html {}   
+      wants.js do    
         @providers = Provider.page(params[:page]).per(20).alphabetical
-        @providers = @providers.any_in(team_id: params[:team]) if params[:team]
-        
-      end
-      
-      wants.json do
-
-            
-        providerIds = params[:provider].blank? ?  Provider.all.map { |pv| pv.id.to_s } : @filters.delete('providers')
-        
+        @providers = @providers.any_in(team_id: params[:team]) if params[:team]     
+      end   
+      wants.json do       
+        providerIds = params[:provider].blank? ?  Provider.all.map { |pv| pv.id.to_s } : @filters.delete('providers') 
         render_measure_response(providerIds, params[:jobs]) do |pvId|
           filters = @filters ? @filters.merge('providers' => [pvId]) : {'providers' => [pvId]}
           { 
@@ -149,7 +140,6 @@ class MeasuresController < ApplicationController
     end
   end
 
-
   # excel patient list
   def patient_list
     measure_id = params[:id] 
@@ -179,6 +169,42 @@ class MeasuresController < ApplicationController
         headers['Content-Disposition'] = 'attachment; filename="excel-export.xls"'
         headers['Cache-Control'] = ''
         render :content_type => "application/vnd.ms-excel"
+      end
+    end
+  end
+
+  def qrda_cat3
+    Atna.log(current_user.username, :query)
+    selected_measures = current_user.selected_measures
+
+    measure_ids = selected_measures.map{|measure| measure['id']}
+    expected_results = QueryCache.in(:measure_id => measure_ids).where(:effective_date => current_user.effective_date)
+
+    results = {}
+    expected_results.each do |value|
+      result = results[value["measure_id"]] ||= {"hqmf_id"=>value["measure_id"], "population_ids" => {}}
+      population_ids = value["population_ids"]
+      strat_id = population_ids["stratification"]
+      population_ids.each_pair do |pop_key,pop_id|
+        if pop_key != "stratification" 
+          pop_result  = result["population_ids"][pop_id] ||= {"type"=> pop_key}
+          pop_val = value[pop_key]
+          if strat_id
+            pop_result["stratifications"] ||= {}
+            pop_result["stratifications"][strat_id] = pop_val
+          else
+            pop_result["value"] = pop_val
+          end
+        end
+      end
+    end
+    @results = results
+    @measures = MONGO_DB['measures'].find({:hqmf_id => {"$in" => measure_ids}, :sub_id => {"$in" =>[nil,'a']}})
+
+    respond_to do |format|
+      format.xml do
+        response.headers['Content-Disposition']='attachment;filename=qrda_cat3.xml';
+        render :content_type=>'application/xml'
       end
     end
   end
@@ -258,7 +284,6 @@ class MeasuresController < ApplicationController
     }
   end
   
-  
   def set_up_environment
     @patient_count = (@selected_provider) ? @selected_provider.records(@effective_date).count : Record.count
     if params[:id]
@@ -317,11 +342,8 @@ class MeasuresController < ApplicationController
     end
     
     if request.xhr?
-      
       build_filters
-      
     else
-      
       if can?(:read, :providers)
         @providers = Provider.page(@page).per(20).alphabetical
         if APP_CONFIG['disable_provider_filters']
@@ -341,7 +363,6 @@ class MeasuresController < ApplicationController
       @languages = Language.ordered
       
     end
-
   end
   
   def build_filters
@@ -379,7 +400,7 @@ class MeasuresController < ApplicationController
   end
 
   def validate_authorization!
-    authorize! :read, Measure
+    authorize! :read, HealthDataStandards::CQM::Measure
   end
   
 end

@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="qrda.xsl"?>
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="urn:hl7-org:v3 ../../CDASchema/CDA.xsd"
+ xmlns="urn:hl7-org:v3"
+ xmlns:cda="urn:hl7-org:v3">
+
+  <!-- 
+    ********************************************************
+    CDA Header
+    ********************************************************
+  -->
+  <realmCode code="US"/>
+  <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+  <!-- QRDA Category III Release 1 template ID (this template ID differs from QRDA III comment only template ID). -->
+  <templateId root="2.16.840.1.113883.10.20.27.1.1"/>
+  <id root="88414c01-715a-45bb-83bb-db7ac860fe9d"/>
+  <!-- SHALL QRDA III document type code -->
+  <code code="55184-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+    displayName="Quality Reporting Document Architecture Calculated Summary Report"/>
+  <!-- SHALL Title, SHOULD have this content -->
+  <title>QRDA Calculated Summary Report</title>
+  <!-- SHALL  -->
+  <effectiveTime value="20120513"/>
+  <confidentialityCode codeSystem="2.16.840.1.113883.5.25" code="N"/>
+  <languageCode code="en-US"/>
+  <!-- SHOULD The version of the file being submitted. -->
+  <versionNumber value="1"/>
+  <!-- SHALL contain recordTarget and ID - but ID is nulled to NA. This is an aggregate summary report. Therefore CDA's required patient identifier is nulled. -->
+  <recordTarget>
+    <patientRole>
+      <id nullFlavor="NA"/>
+    </patientRole>
+  </recordTarget>
+  <!-- SHALL have 1..* author. MAY be device or person. 
+    The author of the CDA document in this example is a device at a data submission vendor/registry. -->
+  <author>
+    <time value="<%= Time.now.to_formatted_s(:number) %>"/>
+    <assignedAuthor>
+      <!-- Registry author ID -->
+      <id extension="Cypress" root="MITRE"/>
+      <assignedAuthoringDevice>
+        <softwareName></softwareName>
+      </assignedAuthoringDevice>
+      <representedOrganization>
+        <!-- Represents unique registry organization TIN -->
+        <id root="root" extension="ext"/>
+        <!-- Contains name - specific registry not required-->
+        <name></name>
+      </representedOrganization>
+    </assignedAuthor>
+  </author>
+  <!-- The custodian of the CDA document is the same as the legal authenticator in this 
+  example and represents the reporting organization. -->
+  <!-- SHALL -->
+  <custodian>
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <!-- SHALL have an id - This is an example root -->
+        <id root="root"/>
+        <!-- SHOULD Name not required -->
+        <name>Cypress</name>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <!-- The legal authenticator of the CDA document is a single person who is at the 
+    same organization as the custodian in this example. This element must be present. -->
+  <!-- SHALL -->
+  <legalAuthenticator>
+    <!-- SHALL -->
+    <time value="<%= Time.now.to_formatted_s(:number) %>"/>
+    <!-- SHALL -->
+    <signatureCode code="S"/>
+    <assignedEntity>
+      <!-- SHALL ID -->
+      <id root="root"/>
+      <!-- SHALL -->
+      <representedOrganization>
+        <!-- SHALL Id -->
+        <!-- example root -->
+        <id root="root"/>
+      </representedOrganization>
+    </assignedEntity>
+  </legalAuthenticator>
+  
+
+  <!-- 
+********************************************************
+CDA Body
+********************************************************
+-->
+  <component>
+    <structuredBody>
+      <!-- 
+********************************************************
+QRDA Category III Reporting Parameters 
+********************************************************
+-->
+
+      <component>
+        <section>
+          <!-- Reporting Parameters templateId -->
+          <templateId root="2.16.840.1.113883.10.20.17.2.1"/>
+          <!-- QRDA Category III Reporting Parameters templateId -->
+          <templateId root="2.16.840.1.113883.10.20.27.2.2"/>
+          <code code="55187-9" codeSystem="2.16.840.1.113883.6.1"/>
+          <title>Reporting Parameters</title>
+          <text>
+            <list>
+              <item>Reporting period: 01 January 2012 - 31 March 2012</item>
+              <item>First encounter: 05 January 2012</item>
+              <item>Last encounter: 24 March 2012</item>
+            </list>
+          </text>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.17.3.8"/>
+              <id root="55a43e20-6463-46eb-81c3-9a3a1ad41225"/>
+              <code code="252116004" codeSystem="2.16.840.1.113883.6.96"
+                displayName="Observation Parameters"/>
+              <!-- This reporting period shows that Good Health Clinic is sending data for the first quarter of the year.
+              The referenced measure definition may be valid for the entire year or more-->
+              <effectiveTime>
+                <low value="20120101"/>
+                <!-- The first day of the period reported. -->
+                <high value="20120331"/>
+                <!-- The last day of the period reported. -->
+              </effectiveTime>
+            </act>
+          </entry>
+          <entry>
+            <encounter classCode="ENC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.27.3.11"/>
+              <!-- The month, day and year of the first service
+                encounter of the reporting period (From date) -->
+              <effectiveTime>
+                <low value="20120105"/>
+              </effectiveTime>
+            </encounter>
+          </entry>
+          <entry>
+            <encounter classCode="ENC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.27.3.12"/>
+              <!-- The month, day and year of the last service
+                encounter of the reporting period (To date) -->
+              <effectiveTime>
+                <low nullFlavor="NI"/>
+                <high value="20120324"/>
+              </effectiveTime>
+            </encounter>
+          </entry>
+        </section>
+      </component>
+      <!-- 
+********************************************************
+Measure Section
+********************************************************
+-->
+      <component>
+        <section>
+          <!-- Implied template Measure Section templateId -->
+          <templateId root="2.16.840.1.113883.10.20.24.2.2"/>
+          <!-- In this case the query is using an eMeasure -->
+          <!-- QRDA Category III Measure Section template -->
+          <templateId root="2.16.840.1.113883.10.20.27.2.1"/>
+          <code code="55186-1" codeSystem="2.16.840.1.113883.6.1"/>
+          <title>Measure Section</title>
+          <text>
+             
+          </text>
+          <!-- 
+            Proportion measure example 
+          -->
+          <% results = @results %>
+          <% @measures.each do |measure| %>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- Implied template Measure Reference templateId -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98"/>
+              <!-- SHALL 1..* (one for each referenced measure) Measure Reference and Results template -->
+              <templateId root="2.16.840.1.113883.10.20.27.3.1"/>
+              <statusCode code="completed"/>
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: required Id but not restricted to the eMeasure Document/Id-->
+                  <!-- QualityMeasureDocument/id This is the version specific identifier for eMeasure -->
+                  <id root="<%= measure['hqmf_id'] %>"/>
+                  
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text><%= measure['name'] %></text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="<%= measure['hqmf_set_id'] %>"/>
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="1"/>
+                </externalDocument>
+              </reference>
+            
+
+              <!-- SHALL 1..* (one for each population) Measure Data template -->
+              <!-- NOTE AT THE BOTTOM OF THIS ORGANIZER is the reference for the entire population that starts with the first component
+                observation at the top within the measure data template.  There are other external references contained within the 
+                entryRelationships below.  -->
+              <!-- This is the population as in IPP, numerator, denominator, etc. If there are multiple
+              populations, use the same method, but refer to IPP1, numerator1, IPP2, numerator2, etc -->
+              
+              <% result = results[measure['hqmf_id']] %>
+              <% cv_val = result["population_ids"].select {|key,value| value["type"] == "OBSERV"}
+                 cv_val = nil if cv_val.empty?
+               %>
+              <% result["population_ids"].each_pair do |pop_id, pop_value| %>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- Measure Data template -->
+                  <templateId root="2.16.840.1.113883.10.20.27.3.5"/>
+                  <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"
+                    displayName="Assertion" codeSystemName="ActCode"/>
+                  <statusCode code="completed"/>
+                  <!-- SHALL value with SHOULD be from valueSetName="ObservationPopulationInclusion"  
+                    valueSetOid="2.16.840.1.113883.1.11.20369"  Binding: Dynamic
+                  -->
+                  <value xsi:type="CD" code="<%=pop_value['type'] %>"
+                    codeSystem="2.16.840.1.113883.5.1063"
+                    displayName="initial patient population"
+                    codeSystemName="ObservationValue"/>
+                
+
+                  <!-- SHALL contain aggregate count template -->
+                  <entryRelationship typeCode="SUBJ" inversionInd="true">
+                    <!-- Aggregate Count (2.16.840.1.113883.10.20.27.3.3) -->
+                    <observation classCode="OBS" moodCode="EVN">
+                      <!-- Aggregate Count template -->
+                      <templateId root="2.16.840.1.113883.10.20.27.3.3"/>
+                      <!-- SHALL single value binding -->
+                      <code code="MSRAGG" 
+                            displayName="rate aggregation" 
+                            codeSystem="2.16.840.1.113883.5.4" 
+                            codeSystemName="ActCode"/>
+                      <!--  SHALL value xsi:type="INT"-->
+                      <value xsi:type="INT" value="<%=pop_value["value"]%>"/>
+                      <methodCode code="COUNT" displayName="Count"
+                        codeSystem="2.16.840.1.113883.5.84"
+                        codeSystemName="ObservationMethod"/>
+                    </observation>
+                  </entryRelationship>
+
+
+
+                  <% if cv_val  && pop_value["type"] == "MSRPOPL" %>
+                <!-- MAY 0..* Continuous Variable Measure Value template -->
+                  <entryRelationship typeCode="COMP">
+                    <!-- Continuous Variable Measure Value template -->
+                  
+                    <observation classCode="OBS" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.10.20.27.3.2"/>
+                      <code nullFlavor="OTH">
+                        <originalText>Time Difference</originalText>
+                      </code>
+                      <statusCode code="completed"/>
+                      <value xsi:type="PQ" value="75.7" unit="min"/>
+                      <!-- drawn from  ObservationMeasureAggregate value set, with a SHALL Dynamic binding -->
+                      <methodCode code="MEDIAN" displayName="Median"
+                        codeSystem="2.16.840.1.113883.5.84"
+                        codeSystemName="ObservationMethod"/>
+                      <reference typeCode="REFR">
+                        <!-- reference to the relevant measure observation in the eMeasure,
+                        in this case the median method is applied to the time difference
+                        referenced by this identifier -->
+                        <externalObservation classCode="OBS" moodCode="EVN">
+                        <id root="<%= cv_val.keys.first%>"/>
+                        </externalObservation>
+                      </reference>
+                      <!-- MAY 0..1 Used to represent the predicted continuous variable value based on the measure’s risk-adjustment model. -->
+                      <referenceRange>
+                        <observationRange>
+                        <value xsi:type="PQ" value="60" unit="min"/>
+                        </observationRange>
+                      </referenceRange>
+                    </observation>
+                  </entryRelationship>
+                  <% end %>
+                  <% (pop_value["stratifications"] || {}).each_pair do |strata_id,strata_value| %>
+                
+
+                  <!-- MAY 0..* Reporting Stratum template -->
+                  <entryRelationship typeCode="COMP">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <!-- Reporting Stratum template -->
+                      <templateId root="2.16.840.1.113883.10.20.27.3.4"/>
+                      <code code="ASSERTION"
+                        codeSystem="2.16.840.1.113883.5.4"
+                        displayName="Assertion" codeSystemName="ActCode"/>
+                      <statusCode code="completed"/>
+                      <value xsi:type="CD" nullFlavor="OTH">
+                        <originalText>Stratum</originalText>
+                      </value>
+                      <entryRelationship typeCode="SUBJ" inversionInd="true">
+                        <observation classCode="OBS" moodCode="EVN">
+                          <!-- SHALL 1..1 Aggregate Count template -->
+                          <templateId root="2.16.840.1.113883.10.20.27.3.3"/>
+                            <code code="MSRAGG" 
+                            displayName="rate aggregation" 
+                            codeSystem="2.16.840.1.113883.5.4" 
+                            codeSystemName="ActCode"/>
+                          <!--  SHALL value xsi:type="INT"-->
+                          <value xsi:type="INT" value="<%=strata_value %>"/>
+                          <methodCode code="COUNT" displayName="Count"
+                            codeSystem="2.16.840.1.113883.5.84"
+                            codeSystemName="ObservationMethod"/>
+                        </observation>
+                      </entryRelationship>
+
+
+
+
+                  <% if cv_val && pop_value["type"] == "MSRPOPL" %>
+                <!-- MAY 0..* Continuous Variable Measure Value template -->
+                  <entryRelationship typeCode="COMP">
+                    <!-- Continuous Variable Measure Value template -->
+        
+                    <observation classCode="OBS" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.10.20.27.3.2"/>
+                      <code nullFlavor="OTH">
+                        <originalText>Time Difference</originalText>
+                      </code>
+                      <statusCode code="completed"/>
+                      <value xsi:type="PQ" value="75.7" unit="min"/>
+                      <!-- drawn from  ObservationMeasureAggregate value set, with a SHALL Dynamic binding -->
+                      <methodCode code="MEDIAN" displayName="Median"
+                        codeSystem="2.16.840.1.113883.5.84"
+                        codeSystemName="ObservationMethod"/>
+                      <reference typeCode="REFR">
+                        <!-- reference to the relevant measure observation in the eMeasure,
+                        in this case the median method is applied to the time difference
+                        referenced by this identifier -->
+                        <externalObservation classCode="OBS" moodCode="EVN">
+                        <id root="<%= cv_val.keys.first %>"/>
+                        </externalObservation>
+                      </reference>
+                      <!-- MAY 0..1 Used to represent the predicted continuous variable value based on the measure’s risk-adjustment model. -->
+                      <referenceRange>
+                        <observationRange>
+                        <value xsi:type="PQ" value="60" unit="min"/>
+                        </observationRange>
+                      </referenceRange>
+                    </observation>
+                  </entryRelationship>
+                  <% end %>
+
+
+
+
+
+
+
+                      <reference typeCode="REFR">
+                        <!-- reference to the relevant strata in the eMeasure -->
+                        <externalObservation classCode="OBS" moodCode="EVN">
+                          <!-- Reference to the third defined Stratum -->
+                          <id root="<%=strata_id%>"/>
+                        </externalObservation>
+                      </reference>
+                    </observation>
+                  </entryRelationship>
+                  
+
+
+                  <% end %>
+                  
+                  <!-- SHALL 1..1  (Note: this is the reference for the entire population starting with the first component
+                    observation at the top within the measure data template-->
+                  <reference typeCode="REFR">
+                    <!-- reference to the relevant population in the eMeasure -->
+                    <externalObservation classCode="OBS" moodCode="EVN">
+                      <id root="<%=pop_id %>"/>
+                    </externalObservation>
+                  </reference>
+                </observation>
+              </component>
+
+              <% end %> 
+              
+            </organizer>
+          </entry>
+          <% end %>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>

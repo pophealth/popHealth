@@ -1,11 +1,10 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.14'
 
-gem 'quality-measure-engine', '~> 2.3.0'
+gem 'quality-measure-engine', '2.5.1'
 
-gem "health-data-standards", '~> 3.0.2'
-
+gem "health-data-standards", '3.2.8'
 gem 'nokogiri'
 gem 'rubyzip'
 
@@ -41,8 +40,8 @@ group :test, :develop do
   gem 'pry'
   gem "unicorn", :platforms => [:ruby, :jruby]
   gem 'turn', :require => false
-  gem 'cover_me'
-  gem 'minitest'
+  gem 'simplecov', :require => false
+  gem "minitest", "~> 4.0"
   gem 'mocha', :require => false
 end
 

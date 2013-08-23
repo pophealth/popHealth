@@ -12,6 +12,7 @@ PopHealth::Application.routes.draw do
   put "admin/upload_patients"
   delete "admin/remove_patients"
   delete "admin/remove_caches"
+  delete "admin/remove_providers"
 
   get "logs/index"
   
@@ -27,6 +28,7 @@ PopHealth::Application.routes.draw do
   match 'measures/measure_report', :to=>'measures#measure_report', :as => :measure_report, :via=> :get
   match 'measures/patient_list/:id(/:sub_id)', :to=>'measures#patient_list', :as => :patient_list, :via=> :get
   match 'measures/period', :to=>'measures#period', :as => :period, :via=> :post
+  match 'measures/qrda_cat3', :to=>'measures#qrda_cat3'
   
   match 'provider/:npi', :to => "measures#index", :as => :provider_dashboard, :via => :get
   

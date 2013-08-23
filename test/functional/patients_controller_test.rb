@@ -14,5 +14,4 @@ class PatientsControllerTest < ActionController::TestCase
     get :show, id: @record.id
   end
   
-  
 end

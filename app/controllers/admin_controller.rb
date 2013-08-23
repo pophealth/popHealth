@@ -6,24 +6,31 @@ class AdminController < ApplicationController
   add_breadcrumb 'admin', :admin_users_path
 
   def patients
-    @patient_count = Record.all.count
-    @query_cache_count = QueryCache.all.count
-    @patient_cache_count = PatientCache.all.count
+    @patient_count = Record.count
+    @query_cache_count = QueryCache.count
+    @patient_cache_count = PatientCache.count
+    @provider_count = Provider.count
   end
+
   def remove_patients
     Record.all.delete
     redirect_to action: 'patients'
   end
+
   def remove_caches
     QueryCache.all.delete
     PatientCache.all.delete
+    redirect_to action: 'patients'
+  end
+
+  def remove_providers
+    Provider.destroy_all
     redirect_to action: 'patients'
   end
   
   def upload_patients
 
     file = params[:file]
-    i = 0
     temp_file = Tempfile.new("patient_upload")
 
     File.open(temp_file.path, "wb") { |f| f.write(file.read) }

@@ -116,10 +116,10 @@
           <Type>
             <Text>Start date</Text>
           </Type>
-		  <DateTimeRange>
-	          <BeginRange>2010-08-08T00:00:00Z</BeginRange>
-	          <EndRange>2010-08-09T00:00:00Z</EndRange>
-		  </DateTimeRange>
+      <DateTimeRange>
+            <BeginRange>2010-08-08T00:00:00Z</BeginRange>
+            <EndRange>2010-08-09T00:00:00Z</EndRange>
+      </DateTimeRange>
         </DateTime>
         <Type>
           <Text>Diagnosis</Text>

@@ -14,12 +14,15 @@ class PatientsController < ApplicationController
       wants.html {}
       wants.json do
         @outliers = []
-        @measures = Measure.list
+        @measures = HealthDataStandards::CQM::Measure.all
         @measures.each do |measure|
-          executor = QME::MapReduce::Executor.new(measure['id'], measure['sub_id'], {'effective_date' => @effective_date})
-          result = executor.get_patient_result(@patient.medical_record_number)
-          if result['antinumerator']
-            @outliers << measure
+          qm = QME::QualityMeasure.new(measure['id'], measure.sub_id)
+          qr = QME::QualityReport.new(measure['id'], measure.sub_id, {'effective_date' => @effective_date})
+          if qr.calculated?
+            result = qr.patient_result(@patient.medical_record_number)
+            if result['value']['antinumerator'] == 1
+              @outliers << measure
+            end
           end
         end
 

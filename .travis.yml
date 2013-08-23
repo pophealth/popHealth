@@ -1,11 +1,10 @@
 language: ruby
 rvm:
   - 1.9.3
-script: ./.travis/execute.sh
-
+  - 2.0.0
+script: bundle exec rake test
 services:
   - mongodb
-
 notifications:
   email:
     recipients:
@@ -16,4 +15,3 @@ branches:
   only:
     - master
     - develop
-

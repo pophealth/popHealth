@@ -4,33 +4,33 @@
     PopHealth.categories = PopHealth.Utils.bootstrapCategories(<%== @categories %>, PopHealth.selectedMeasures, $("#main"));
     PopHealth.Utils.bootstrapFilters(<%== @filters.to_json %>, PopHealth.selectedMeasures);
 
-  	// PopHealth.Utils.bootstrapDemographics("Race", <%= raw(@races.to_json) %>)
-  	// PopHealth.Utils.bootstrapDemographics("Ethnicity", <%= raw(@ethnicities.to_json) %>)
-  	// PopHealth.Utils.bootstrapDemographics("Gender", <%= raw(@genders.to_json) %>)
-  	// PopHealth.Utils.bootstrapDemographics("Language", <%= raw(@languages.to_json) %>)
+    // PopHealth.Utils.bootstrapDemographics("Race", <%= raw(@races.to_json) %>)
+    // PopHealth.Utils.bootstrapDemographics("Ethnicity", <%= raw(@ethnicities.to_json) %>)
+    // PopHealth.Utils.bootstrapDemographics("Gender", <%= raw(@genders.to_json) %>)
+    // PopHealth.Utils.bootstrapDemographics("Language", <%= raw(@languages.to_json) %>)
   })
  </script>
 
 <div id="sidebar" class="span2">
 </div>
 <div id="main" class="span10">
-<!-- 	<div id="measures" class="row-fluid">
+<!--   <div id="measures" class="row-fluid">
       <div class="dashboard">
         <div class="pull-right">
-        	<% if (@selected_provider || !can?(:manage, :providers)) %>  	
-           	<a class="btn" href="#">Export Report</a>
-        	<% else %>
-        		<div class="btn-group">
-							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-  							Export Report
-  							<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="#" tabindex="-1">Provider Report</a></li>
-								<li><a href="#" tabindex="-1">Practice Report</a></li>
-							</ul>
-						</div>
-        	<% end %>
+          <% if (@selected_provider || !can?(:manage, :providers)) %>    
+             <a class="btn" href="#">Export Report</a>
+          <% else %>
+            <div class="btn-group">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                Export Report
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#" tabindex="-1">Provider Report</a></li>
+                <li><a href="#" tabindex="-1">Practice Report</a></li>
+              </ul>
+            </div>
+          <% end %>
         </div>
         <% if (@selected_provider) %>
           <dl>

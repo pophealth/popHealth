@@ -1,6 +1,6 @@
 <div id="pageContent" class="row-fluid">
   <div id="providerReports" class="span2">
-	<%= render partial: 'provider_filters' %>
+  <%= render partial: 'provider_filters' %>
   <p class="note">
     Demographics
   </p>
@@ -23,22 +23,22 @@
           <%= link_to 'patients', patients_url(@definition['id'], @definition['sub_id']), method: 'get', :class => 'tableEdit btn'%>
         </div>
     </div>
-		
+    
 
     <h3>INDIVIDUAL PROVIDER STATISTICS</h3>
     <div id="providers">
       <%= render :partial => "provider_row", :collection => @providers %>
     </div>
-		<div class="row-fluid">
+    <div class="row-fluid">
       <%= paginate @providers, :remote => true %>
     </div>
-		
+    
   </div>
 </div>
 
 
 <script id="row" type="text/html" charset="utf-8">
-	
+  
 </script>
 
 <% content_for :head do %>

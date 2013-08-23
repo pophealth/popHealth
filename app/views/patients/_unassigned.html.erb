@@ -1,22 +1,22 @@
 <table class='table table-striped' border="0">
-	<thead>
-	<tr>
-		<th />
-		<th>Patient ID</th>
-		<th>Last</th>
-		<th>First</th>
-		<th class="dateHeader" style="display:none">Start Date</th>
-		<th class="dateHeader" style="display:none">End Date</th>
-	</tr>
+  <thead>
+  <tr>
+    <th />
+    <th>Patient ID</th>
+    <th>Last</th>
+    <th>First</th>
+    <th class="dateHeader" style="display:none">Start Date</th>
+    <th class="dateHeader" style="display:none">End Date</th>
+  </tr>
 </thead>
-	<% @unassigned.each do |record| %>
-		<tr>
-			<td style="padding-left:0px;padding-right:0px;width:20px" ><%= check_box_tag "assign", 1,  false, {id: nil} %>
-			<td><%= record.medical_record_number %></td>
-			<td><%= record.last %></td>
-			<td><%= record.first %></td>
-			<td><%= text_field "records[#{record.id}]", :start_date, :size => 20, :style => "display:none" %></td>
-			<td><%= text_field "records[#{record.id}]", :end_date, :size => 20, :style => "display:none" %></td>
-		</tr>
-	<% end %>
+  <% @unassigned.each do |record| %>
+    <tr>
+      <td style="padding-left:0px;padding-right:0px;width:20px" ><%= check_box_tag "assign", 1,  false, {id: nil} %>
+      <td><%= record.medical_record_number %></td>
+      <td><%= record.last %></td>
+      <td><%= record.first %></td>
+      <td><%= text_field "records[#{record.id}]", :start_date, :size => 20, :style => "display:none" %></td>
+      <td><%= text_field "records[#{record.id}]", :end_date, :size => 20, :style => "display:none" %></td>
+    </tr>
+  <% end %>
 </table>
