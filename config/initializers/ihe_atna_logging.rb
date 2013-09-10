@@ -14,6 +14,10 @@ Warden::Manager.before_failure do |env, opts|
 end
 
 Warden::Manager.before_logout do |user,auth,opts|
-  Atna.log(user.username, :logout)
-  Log.create(:username => user.username, :event => 'logout')
+  #this has a chance of getting called with a nil user, in which case we skip logging
+  #TODO: figure out why this has a chance of getting called with a nil user (only happens from 403 page)
+  if user
+    Atna.log(user.username, :logout)
+    Log.create(:username => user.username, :event => 'logout')
+  end
 end
