@@ -18,17 +18,22 @@
   <%= csrf_meta_tag %>
   <%= yield :head %>
   <% if APP_CONFIG['idle_timeout_enabled'] %>
-  <script type="text/javascript" charset="utf-8">
-
+  <script type="text/javascript" charset="utf-8">  
     $(function() {
-      $(document).idleTimeout({
-         inactivity: <%=APP_CONFIG['idle_timeout']%>,
-         noconfirm: <%=APP_CONFIG['idle_timeout_noconfirm']%>,
-         sessionAlive: false,
-         alive_url: '/',
-         redirect_url: '<%= destroy_user_session_path %>',
-         logout_url: '<%=Rails.configuration.relative_url_root%>/logout.html'
-       });
+      $.idleTimeout('body', 'body', {
+        idleAfter: <%=APP_CONFIG['idle_timeout']%>,
+        warningLength: 20,
+        failedRequests: 0,
+        onTimeout: function(){
+          $.ajax({
+            url: '<%= destroy_user_session_path %>',
+            type: 'DELETE',
+            success: function(result) {
+              window.location.href = '<%=Rails.configuration.relative_url_root%>/logout.html';
+            }
+          });
+        }
+      });
     });
 
   </script>

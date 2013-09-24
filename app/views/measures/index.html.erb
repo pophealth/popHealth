@@ -73,6 +73,10 @@
           <% if (@selected_provider || !can?(:manage, :providers)) %>   
             <a class="btn" href="#">Export Report</a>
           <% else %>
+            <%= link_to measures_qrda_cat3_path(format: :xml), class: 'btn' do %>
+              <i class="icon-download-alt"></i>
+              Export Report
+            <% end %>
            <!--  <div class="btn-group">
               <a id="btnExportReportSingle" class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="icon-download-alt"></i>
