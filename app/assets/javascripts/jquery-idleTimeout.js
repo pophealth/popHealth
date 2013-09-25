@@ -59,9 +59,14 @@
     {
       if(opts.logout_url)
       {
-        $.ajax({ url: opts.logout_url, type: opts.logout_method});
+
+        $.ajax({ url: opts.logout_url, type: opts.logout_method}).always(function(){
+          window.location.href = opts.redirect_url;
+        });
       }
-      window.location.href = opts.redirect_url;
+      else {
+        window.location.href = opts.redirect_url;
+      }
     }
     
     var stay_logged_in = function(el)
