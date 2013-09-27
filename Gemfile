@@ -16,6 +16,8 @@ gem 'json', :platforms => :jruby
 
 gem "mongoid"
 
+gem 'highline'
+
 gem 'devise'
 
 gem 'foreman'
