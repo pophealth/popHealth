@@ -28,6 +28,7 @@
 
 <div class="links info">
     popHealth v2.1.2<br>
+    bundle <%= (b = HealthDataStandards::CQM::Bundle.all.sort(:version => :desc).first) ? b.version : 'n/a' %><br>
     <a href="http://www.hhs.gov/healthit/">Office of the National Coordinator for Health Information Technology</a> |
     <a href="http://www.mitre.org" target="_blank">MITRE</a>
 </div>
