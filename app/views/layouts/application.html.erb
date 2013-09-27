@@ -26,8 +26,9 @@
          noconfirm: <%=APP_CONFIG['idle_timeout_noconfirm']%>,
          sessionAlive: false,
          alive_url: '/',
-         redirect_url: '<%= destroy_user_session_path %>',
-         logout_url: '<%=Rails.configuration.relative_url_root%>/logout.html'
+         redirect_url: '<%=Rails.configuration.relative_url_root%>/logout.html',
+         logout_url:  '<%= destroy_user_session_path %>',
+         logout_method: 'DELETE'
        });
     });
 

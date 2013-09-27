@@ -14,7 +14,8 @@
 			redirect_url: '/js_sandbox/',
 			click_reset: true,
 			alive_url: '/js_sandbox/',
-			logout_url: '/js_sandbox/'
+			logout_url: '/js_sandbox/',
+			logout_method: 'GET'
 		}
     
     //##############################
@@ -58,9 +59,14 @@
     {
       if(opts.logout_url)
       {
-        $.get(opts.logout_url);
+
+        $.ajax({ url: opts.logout_url, type: opts.logout_method}).always(function(){
+          window.location.href = opts.redirect_url;
+        });
       }
-      window.location.href = opts.redirect_url;
+      else {
+        window.location.href = opts.redirect_url;
+      }
     }
     
     var stay_logged_in = function(el)
