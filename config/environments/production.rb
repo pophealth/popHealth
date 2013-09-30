@@ -20,6 +20,9 @@ PopHealth::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
+  config.assets.precompile << '*.scss'
+  config.assets.precompile << 'jquery.js'
+  config.assets.precompile << 'jquery_ujs.js'
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH

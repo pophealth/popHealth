@@ -66,6 +66,7 @@ GEM
       thor (>= 0.13.6)
     formtastic (2.2.1)
       actionpack (>= 3.0)
+    git (1.2.6)
     health-data-standards (3.2.8)
       activesupport (~> 3.2.14)
       builder (~> 3.0.0)
@@ -217,6 +218,7 @@ DEPENDENCIES
   factory_girl (= 2.6.3)
   foreman
   formtastic
+  git
   health-data-standards (= 3.2.8)
   jquery-rails
   json

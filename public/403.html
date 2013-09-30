@@ -17,6 +17,8 @@
       padding: 5px;
     }
   </style>
+  <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+  <script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
 </head>
 
 <body>
@@ -29,7 +31,7 @@
       <li>If you are trying to access an administration page, you will need the 'admin' role added to your account</li>
       <li>If you are trying to access data for another provider, you will need the 'staff_role' or 'admin' role added to your account</li>
     </ul>
-    <a href="/users/sign_out">Click here to logout</a>
+    <a href="/users/sign_out" data-method="delete">Click here to logout</a>
   </div>
 </body>
 </html>
