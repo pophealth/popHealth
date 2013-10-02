@@ -1,0 +1,14 @@
+{
+  "name": "popHealth",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "thorax": "~2.0.0",
+    "momentjs": "~2.1.0",
+    "requirejs-text": "~2.0.10",
+    "require-handlebars-plugin": "~0.4.0",
+    "requirejs-handlebars": "~0.0.2",
+    "bootstrap": "~3.0.0"
+  }
+}

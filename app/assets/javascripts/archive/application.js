@@ -9,5 +9,5 @@
 // = require bootstrap
 // = require underscore
 // = require backbone
-// = require backbone/pop_health
+// = require ./backbone/pop_health
 // = require_tree .
