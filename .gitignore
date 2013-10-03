@@ -17,6 +17,5 @@ doc
 Thumbs.db
 .bundle
 .bundle/config
-vendor
 dump.rdb
 .tags*
