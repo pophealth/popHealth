@@ -1,0 +1,52 @@
+@import "bootstrap/less/bootstrap";
+
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+.section {
+  .make-row();
+}
+.main {
+  .make-lg-column(8);
+  .make-lg-column-offset(1);
+}
+.left-sidebar {
+  .make-lg-column(3);
+}
+.filter-row {
+  .section;
+  display: block;
+}
+.filter-btn {
+  .btn-default;
+  .btn-sm;
+  .make-lg-column(4);
+}
+.filter-btn-ethnicity {
+  .btn-sm;
+  .btn-default;
+  .make-lg-column(6);
+}
+.category {
+  margin-top: 5em;
+  .section;
+}
+.category-title {
+  .make-lg-column(5);
+  .lead;
+  font-weight: bold;
+}
+.category-header(@cols: 2) {
+  .make-lg-column(@cols);
+  text-align: center;
+  font-weight: bold;
+}
+.category-header-lg {
+  .category-header(3);
+}
+
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://getbootstrap.com/customize/#less-variables for their names and documentation
+//
+@link-color: #49969E;
+@brand-primary: #49969E;

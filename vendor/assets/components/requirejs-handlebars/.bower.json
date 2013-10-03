@@ -1,0 +1,18 @@
+{
+  "name": "requirejs-handlebars",
+  "version": "0.0.3",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/webpro/requirejs-handlebars"
+  },
+  "homepage": "https://github.com/webpro/requirejs-handlebars",
+  "_release": "0.0.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.3",
+    "commit": "c7cf260986984ac8b787d95cb742cdcdb5024dd0"
+  },
+  "_source": "https://github.com/webpro/requirejs-handlebars.git",
+  "_target": "~0.0.2",
+  "_originalSource": "requirejs-handlebars"
+}

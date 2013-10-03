@@ -1,0 +1,27 @@
+paths:
+  text: "requirejs-text/text"
+  hbs: "require-handlebars-plugin/hbs"
+  hb: "requirejs-handlebars/hb"
+  json2: "require-handlebars-plugin/hbs/json2"
+  i18nprecompile: "require-handlebars-plugin/hbs/i18nprecompile"
+  jquery: "jquery/jquery"
+  handlebars: "handlebars/handlebars"
+  underscore: "underscore/underscore"
+  backbone: "backbone/backbone-min"
+  thorax: "thorax/thorax"
+shim:
+  handlebars:
+    exports: 'Handlebars'
+  underscore:
+    exports: '_'
+  backbone:
+    deps: ['underscore', 'jquery']
+    exports: 'Backbone'
+  thorax:
+    deps: ['underscore', 'backbone', 'jquery', 'handlebars']
+    exports: 'Thorax'
+hbs:
+  disableI18n: true
+  disableHelpers: true
+  compileOptions:
+    data: true

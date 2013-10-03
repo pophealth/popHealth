@@ -31,9 +31,16 @@ gem "rails-backbone"
 # Windows doesn't have syslog, so need a gem to log to EventLog instead
 gem 'win32-eventlog', :platforms => [:mswin, :mingw]
 
+
+# backport fixes from future versions of Sprockets into a Rails 3-compatible gem
+gem 'sprockets', '2.2.2.backport1'
+
+gem 'requirejs-rails'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
+  gem 'less-rails'
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'

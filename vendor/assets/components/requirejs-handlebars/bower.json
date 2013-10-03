@@ -1,0 +1,8 @@
+{
+    "name": "requirejs-handlebars",
+    "version": "0.0.3",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/webpro/requirejs-handlebars"
+    }
+}
