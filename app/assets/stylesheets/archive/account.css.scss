@@ -4,7 +4,7 @@ body.login {
   background-color: $accountBkgColor; }
 
 div#cap-top {
-  background: transparent url("../assets/cap-top.png") no-repeat;
+  background: transparent image-url("cap-top.png") no-repeat;
   height: 8px;
   width: 546px; }
 
@@ -13,24 +13,24 @@ div#cap-top {
 
 * html div#cap-top {
   background-image: none;
-  filter: e('progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../assets/cap-top.png", sizingMethod="crop")'); }
+  filter: e('progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../assets/cap-top.png", sizingMethod="crop")'); }
 
 div#cap-body {
-  background: transparent url("../assets/cap-bg.png") repeat-y;
+  background: transparent image-url("cap-bg.png") repeat-y;
   width: 545px; }
 
 * html div#cap-body {
   background-image: none;
-  filter: e('progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../assets/cap-bg.png", sizingMethod="scale")'); }
+  filter: e('progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../assets/cap-bg.png", sizingMethod="scale")'); }
 
 div#cap-bottom {
-  background: transparent url("../assets/cap-bottom.png") no-repeat;
+  background: transparent image-url("cap-bottom.png") no-repeat;
   height: 15px;
   width: 546px; }
 
 * html div#cap-bottom {
   background-image: none;
-  filter: e('progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../assets/cap-bottom.png", sizingMethod="crop")'); }
+  filter: e('progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../assets/cap-bottom.png", sizingMethod="crop")'); }
 
 #login {
   margin: 0 auto 0;
