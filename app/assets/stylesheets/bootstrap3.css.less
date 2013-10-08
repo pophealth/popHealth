@@ -6,11 +6,12 @@
   .make-row();
 }
 .main {
-  .make-lg-column(8);
-  .make-lg-column-offset(1);
+  .make-lg-column(9);
+  background-color: @main;
 }
 .left-sidebar {
   .make-lg-column(3);
+  background-color:@sidebar;
 }
 .filter-row {
   .section;
@@ -26,22 +27,53 @@
   .btn-default;
   .make-lg-column(6);
 }
-.category {
-  margin-top: 5em;
-  .section;
+.main-heading {
+  .make-lg-column(10);
 }
-.category-title {
-  .make-lg-column(5);
-  .lead;
-  font-weight: bold;
-}
+
 .category-header(@cols: 2) {
   .make-lg-column(@cols);
-  text-align: center;
+  text-align: left;
   font-weight: bold;
 }
 .category-header-lg {
   .category-header(3);
+}
+
+.category {
+  background-color: @category;
+  .make-lg-column(12);
+  vertical-align: baseline;
+}
+.category-title {
+  .make-lg-column(6);
+  font-weight: bold;
+  margin-left:0;
+  background-color: @title-color;
+  padding-left: 0;
+  vertical-align: center;
+  margin-bottom: 0;
+  line-height: @title-line-height;
+}
+.category-header-percent {
+  .make-lg-column(2);
+  text-align: center;
+
+}
+.title-circle {
+  height: 1.5em;
+  width: 1.5em;
+  font-size: 2em;
+  border-radius: .75em;
+  background-color: @circle-bkg-color;
+  text-align: center;
+}
+
+.category-header-fraction {
+  .make-lg-column(3);
+  font-weight: bold;  
+
+  line-height: @title-line-height;
 }
 
 //
@@ -50,3 +82,50 @@
 //
 @link-color: #49969E;
 @brand-primary: #49969E;
+@category: #f2f2f2;
+@circle-border: #f2f2f2;
+@main: white;
+@sidebar: #49969E;
+@title-color: #f2f2f2;
+@btn-hover: #357177;
+@title-line-height: 1.5;
+@listing-line-height: 1.5;
+@circle-bkg-color: #fff;
+
+
+.btn-lg {
+  float: right;
+}
+.btn-main {
+  .make-lg-column(2);
+}
+
+.panel {
+  width: 100%;
+}
+.measure {
+  .make-lg-column(6);
+  line-height: @listing-line-height;
+}
+.percent-listing {
+  .make-lg-column(2);
+  font-size: 2em;
+}
+.circle-listing {
+  height: 3em;
+  width: 3em;
+  border-radius: 1.5em;
+  background-color: @circle-bkg-color;
+  border: 2px solid @circle-border;
+  margin: 10px 0;
+  h2 {
+    text-align: center;
+  }
+}
+
+
+.fraction-listing {
+  .make-lg-column(3);
+}
+
+
