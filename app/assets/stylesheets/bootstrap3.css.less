@@ -6,11 +6,15 @@
   .make-row();
 }
 .main {
-  .make-lg-column(9);
+  .make-xs-column(6);
+  .make-sm-column(10);
+  .make-md-column(9);
   background-color: @main;
 }
 .left-sidebar {
-  .make-lg-column(3);
+  .make-xs-column(6);
+  .make-sm-column(2);
+  .make-md-column(3);
   background-color:@sidebar;
 }
 .filter-row {
@@ -20,34 +24,36 @@
 .filter-btn {
   .btn-default;
   .btn-sm;
-  .make-lg-column(4);
+  .make-md-column(4);
 }
 .filter-btn-ethnicity {
   .btn-sm;
   .btn-default;
-  .make-lg-column(6);
+  .make-md-column(6);
 }
 .main-heading {
-  .make-lg-column(10);
+  .make-md-column(10);
   .row;
 }
 
 .category-header(@cols: 2) {
-  .make-lg-column(@cols);
+  .make-md-column(@cols);
   text-align: left;
   font-weight: bold;
 }
-.category-header-lg {
+.category-header-md {
   .category-header(3);
 }
 
 .category {
   background-color: @category;
-  .make-lg-column(12);
+  .make-xs-column(0);
+  .make-sm-column(12);
+  .make-md-column(12);
   vertical-align: baseline;
 }
 .category-title {
-  .make-lg-column(6);
+  .make-sm-column(6);
   font-weight: bold;
   margin-left:0;
   background-color: @title-color;
@@ -57,7 +63,7 @@
   line-height: @title-line-height;
 }
 .category-header-percent {
-  .make-lg-column(2);
+  .make-md-column(2);
   text-align: center;
 
 }
@@ -71,7 +77,8 @@
 }
 
 .category-header-fraction {
-  .make-lg-column(3);
+  .make-md-column(3);
+  .make-sm-column(1);
   font-weight: bold;  
   line-height: @title-line-height;
 }
@@ -96,22 +103,24 @@
 
 
 .btn-primary {
+  margin-top: 2em;
   float: right;
-  background-color: @btn-primary-color;
+  color: @btn-primary-color;
 }
 .btn-main {
-  .make-lg-column(2);
+  .make-md-column(2);
 }
 
 .panel {
   width: 100%;
 }
 .measure {
-  .make-lg-column(6);
+  .make-md-column(6);
+  .make-sm-column(6);
   line-height: @listing-line-height;
 }
 .percent-listing {
-  .make-lg-column(2);
+  .make-md-column(2);
   font-size: 2em;
 }
 .circle-listing {
@@ -126,9 +135,20 @@
   }
 }
 
+ul { 
+  list-style-type: none; 
+}
+
+.denominator {
+  border-top: 1px solid black;
+  h3 {
+  margin-top: .5em;
+  }
+}
 
 .fraction-listing {
-  .make-lg-column(3);
+  .make-md-column(3);
+  .make-sm-column(1);
 }
 
 
