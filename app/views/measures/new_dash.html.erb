@@ -53,13 +53,11 @@
 <div class="main">
   <div class="main-heading">
     <h1 class="main-head">Measures</h1>
-  </div>
-  <div class="col-lg-2">
     <% if (@selected_provider || !can?(:manage, :providers)) %>   
       <a class="btn btn-primary" href="#">Export Report</a>
     <% else %>
-      <%= link_to measures_qrda_cat3_path(format: :xml), class: 'btn btn-primary' do %>
-        <i class="icon-download-alt"></i> Export Report
+      <%= link_to measures_qrda_cat3_path(format: :xml), class: 'btn btn-primary export-btn' do %>
+        <i class="icon-download-alt"></i> Export
       <% end %>
     <% end %>
   </div>
