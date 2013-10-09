@@ -6,6 +6,7 @@
 //
 // = require jquery
 // = require jquery_ujs
+// = require jquery-idletimer/dist/idle-timer
 // = require bootstrap
 // = require underscore
 // = require backbone
