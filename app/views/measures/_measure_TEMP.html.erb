@@ -1,0 +1,32 @@
+<% subs_iterator(measure_TEMP['subs']) do |sub| %>
+<div class="row" style="<%=display_row(measure_TEMP['id'], current_user.selected_measures)%>">
+  <div class="measure" data-measure="<%=measure_TEMP['id']%>" data-measure-sub="<%= sub['sub_id']%>">
+    <h4>
+      <% if sub['sub_id'].nil? || sub['sub_id'] == 'a' %>
+        <div data-placement="bottom" data-original-title="<%=measure_TEMP['description']%>" rel="tooltip">
+          <% if (can? :manage, :providers) %>
+            <%= link_to(measure_TEMP['name'], "#{measure_path(measure_TEMP['id'], sub['sub_id'])}/providers") %>
+          <% else %>
+            <span><%= measure_TEMP['name'] %></span>
+          <% end %>
+        </div>
+      <% end %>
+      <% if (can? :manage, :providers) %>
+        <%= link_to("#{sub['short_subtitle']}", "#{measure_path(measure_TEMP['id'], sub['sub_id'])}/providers") %>
+      <% else %>
+        <%= sub['short_subtitle'] %>
+      <% end %>
+    </h4>
+    <%npi_param = (@selected_provider ? "?npi=#{@selected_provider.npi}" : '')%><%= link_to 'parameters', measure_url(measure_TEMP['id'], sub['sub_id'])+npi_param%><br><%= link_to 'patients', patients_url(measure_TEMP['id'], sub['sub_id'])+npi_param%>
+  </div>
+  <div class="percent-listing">
+    <div class="circle-listing">
+      <h2>0%</h2>
+    </div>
+  </div>
+  <div class="fraction-listing">
+    <span class="top">0</span>
+    <span class="bottom">0</span>
+  </div>
+</div>
+<% end %>

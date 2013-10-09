@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#filterSelectors" href="#filter-<%=type%>">
+          <% label ||= type.capitalize %>
+          <%= label %>
+        </a>
+      </h4>
+  </div>
+  <div id="filter-<%=type%>" class="panel-collapse collapse">
+    <div class="panel-body">
+      <div class="checkbox">
+        <label>
+            <input name="all" type="checkbox" checked="true" class="all">
+            All
+        </label>
+      </div>
+      <% filters.each do |filter| %>
+        <div class="checkbox">
+          <label>
+            <%= check_box_tag :filter_id, filter.id, true, {id: nil, 'data-filter-type' => type, 'data-filter-value' => filter.id, disabled: true} %>
+              <%= filter.name %>
+          </label>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
