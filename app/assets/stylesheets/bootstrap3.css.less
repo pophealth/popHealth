@@ -77,14 +77,20 @@
 }
 
 .category {
+  .row;
+  > * {
+    height: 100%;
+    vertical-align: middle;
+    line-height: 2em;
+  }
   background-color: @category;
-  .make-sm-column(12);
-  .make-md-column(12);
+
   .category-title {
-    .row;
+
     .make-sm-column(6);
     .make-lg-column(6);
     margin-bottom: 0;
+    background-color: blue;
     h2 {
       font-weight: bold;
       font-size: 1.5em;
@@ -92,7 +98,10 @@
     }
   }
   .category-header-percent {
+    .make-lg-column(2);
     .make-md-column(2);
+    background-color: yellow;
+
     .title-circle {
       height: 1.5em;
       width: 1.5em;
@@ -101,48 +110,68 @@
       background-color: @circle-bkg-color;
       margin: 10px auto;
       text-align: center;
+      h2 {
+        margin: auto;
+      }
     }
   }
   .category-header-fraction {
-    .make-md-column(3);
-    .make-sm-column(1);
+    .make-md-column(2);
+    .make-sm-column(2);
     font-weight: 800;  
     height: @cat-header-height;
     line-height: @cat-line-height;
+    background-color: red;
   }
 }
 
-.measure {
-  .make-md-column(6);
-  .make-sm-column(6);
-  line-height: @listing-line-height;
-}  
+.row {
+  margin-top: 1em;
+  > * {
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  .measure {
+    .make-md-column(6);
+    .make-sm-column(6);
+    line-height: @listing-line-height;
+     background-color: blue;
+     font-size: 1.2em;
+     font-weight: 500;
+  }  
   .percent-listing {
+    .make-lg-column(2);
     .make-md-column(2);
     background-color: yellow;
 
     .circle-listing {
       height: 3em;
       width: 3em;
-      font-size: 2em;
       border-radius: 1.5em;
       background-color: @circle-bkg-color;
       border: 2px solid @circle-border;
       margin: 10px auto;
       text-align: center;
-      h2 {
-        vertical-align: middle;
-        font-weight: 100;
-      }
+      vertical-align: middle;
+      font-weight: 200;
+      font-size: 30px;     
     }
   }
   .fraction-listing {
     .make-md-column(2);
     .make-sm-column(2);
+    background-color: red;
+    height: 50px;
+    numerator {
+    }
+    denominator{
+
+    }
   }
   .patient-btn {
-    .make-md-column(2);
-    .make-sm-column(2);
     .btn;
     .btn-default;
+    text-transform: uppercase;
   }
+}

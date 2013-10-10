@@ -2,7 +2,6 @@
 <% subs_iterator(measure_TEMP['subs']) do |sub| %>
 <div class="row" style="<%=display_row(measure_TEMP['id'], current_user.selected_measures)%>">
   <div class="measure" data-measure="<%=measure_TEMP['id']%>" data-measure-sub="<%= sub['sub_id']%>">
-    <h4>
       <% if sub['sub_id'].nil? || sub['sub_id'] == 'a' %>
         <div data-placement="bottom" data-original-title="<%=measure_TEMP['description']%>" rel="tooltip">
           <%= link_to measure_TEMP['name'], measure_url(measure_TEMP['id'], sub['sub_id'])+npi_param%>
@@ -13,12 +12,11 @@
       <% else %>
         <%= sub['short_subtitle'] %>
       <% end %>
-    </h4>
     <br>
   </div>
   <div class="percent-listing">
     <div class="circle-listing">
-      <h2>0%</h2>
+      0%
     </div>
   </div>
   <div class="fraction-listing">
