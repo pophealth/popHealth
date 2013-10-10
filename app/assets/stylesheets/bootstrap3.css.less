@@ -12,7 +12,9 @@
 @circle-bkg-color: #fff;
 @title-bar-height: 3em;
 @category: #f2f2f2;
-
+@cat-header-height: 42px;
+@cat-line-height: 1.5;
+@vert-align-cat: baseline;
 @panel-default-border: white;
 @panel-default-heading-bg: @gray-lighter;
 @panel-primary-border: white;
@@ -58,6 +60,7 @@
       font-size: 3em;
     }
     .patient-size {
+      .row;
       .make-md-column(4);
       font-size: 1.2em;
       margin-top: 32px;
@@ -75,13 +78,12 @@
 
 .category {
   background-color: @category;
-  .make-xs-column(0);
   .make-sm-column(12);
   .make-md-column(12);
-  .row;
   .category-title {
+    .row;
     .make-sm-column(6);
-    .make-lg-column(7);
+    .make-lg-column(6);
     margin-bottom: 0;
     h2 {
       font-weight: bold;
@@ -105,20 +107,20 @@
     .make-md-column(3);
     .make-sm-column(1);
     font-weight: 800;  
+    height: @cat-header-height;
+    line-height: @cat-line-height;
   }
 }
 
 .measure {
   .make-md-column(6);
   .make-sm-column(6);
-  .row;
   line-height: @listing-line-height;
-  .measure-listing {
-    .make-md-column(7);
-    font-weight: 500;
-  }
+}  
   .percent-listing {
     .make-md-column(2);
+    background-color: yellow;
+
     .circle-listing {
       height: 3em;
       width: 3em;
@@ -135,14 +137,8 @@
     }
   }
   .fraction-listing {
-    .make-md-column(1);
-    .make-sm-column(1);
-    ul {
-      list-style-type: none;
-      h3 {
-        font-weight: normal;
-      }
-    }
+    .make-md-column(2);
+    .make-sm-column(2);
   }
   .patient-btn {
     .make-md-column(2);
@@ -150,4 +146,3 @@
     .btn;
     .btn-default;
   }
-}
