@@ -12,7 +12,7 @@ class @QualityReport
 	poll: (params, callback) ->
 		this.fetch params, (response) =>
 			uuids={}
-			console.log(response)
+			# console.log(response)
 			$.each response.jobs, (i, job) =>
 				sub_id = ''
 				sub_id = job['sub_id'] if job['sub_id']
@@ -52,8 +52,8 @@ class @QualityReport
 
 @Render = {
 	fraction: (selector, data) ->
-		selector.find(".numeratorValue").html(data.NUMER)
-		selector.find(".denominatorValue").html(data.DENOM)
+		selector.find(".numerator").html(data.NUMER)
+		selector.find(".denominator").html(data.DENOM)
 	percent: (selector, data) -> 
 		percent = if (data.DENOM == 0 || data.DENOM == undefined) then 0 else  (data.NUMER / data.DENOM) * 100
 		selector.html("#{Math.floor(percent)}%")	

@@ -5,15 +5,15 @@
   calculateSingleMeasure: (result) ->
     row = Dashboard.measureRow(result.measure_id, result.sub_id)
     row.fadeTo("fast", 1.0)
-    Render.percent row.find("div.percentage"), result
+    Render.percent row.find(".percent-listing .circle-listing h2"), result
     # Render.barChart row.find("div.tableBar"), result
-    Render.fraction row.find("div.fraction"), result
+    Render.fraction row.find(".fraction-listing"), result
   measureRow: (measure, sub_id) ->
     selector = ".measure[data-measure='#{measure}']"
     selector += "[data-measure-sub='#{sub_id || ''}']" if sub_id?
-    $(selector)
+    $(selector).parent()
   measureRows: (measure) ->
-    return $(".measure[data-measure='#{measure}']")
+    return $(".measure[data-measure='#{measure}']").parent()
   fadeIn: (measure) -> 
     Dashboard.measureRows(measure).fadeTo("fast", 0.5)
     $.post("#{rootContext}/measure/#{measure}/select", {})
@@ -32,12 +32,12 @@
     $("[rel='tooltip']").tooltip();
 
     Page.onMeasureSelect = (measure) ->
-      Dashboard.measureRow(measure).prevAll(".headerRow").first().show()
+      Dashboard.measureRow(measure).prevAll(".category").first().show()
       Dashboard.fadeIn(measure)
     Page.onMeasureRemove = (measure) -> 
       Dashboard.fadeOut(measure)
       measureRow = Dashboard.measureRow(measure).first()
-      Dashboard.measureRow(measure).prevAll(".headerRow").first().hide() if measureRow.prevUntil(".headerRow", ":not([data-measure='#{measure}']):visible").length == 0 && measureRow.nextUntil(".headerRow", ":not([data-measure='#{measure}']):visible").length == 0
+      Dashboard.measureRow(measure).prevAll(".category").first().hide() if measureRow.prevUntil(".category", ":not([data-measure='#{measure}']):visible").length == 0 && measureRow.nextUntil(".category", ":not([data-measure='#{measure}']):visible").length == 0
       
     Page.onReportComplete = (report) ->
       if (report.complete?)
@@ -84,7 +84,7 @@
     providerParams = ''
     if (providers['provider[]'])
       providerParams = "&#{$.param(providers)}"
-    window.location.href="#{rootContext}/measures/measure_report.xml?type=#{type}#{providerParams}"
+    window.location.href = "#{rootContext}/measures/measure_report.xml?type=#{type}#{providerParams}"
     
   changeMeasurePeriod: ->
     effective_date = $('#measurementPeriodEndDate').val();
@@ -94,7 +94,7 @@
       $('#measurementPeriodStartDate').text(data.start)
       npiParam = ''
       npiParam = "?npi=#{npi}" if (npi)
-      window.location.href="#{rootContext}/measures"+npiParam
+      window.location.href = "#{rootContext}/measures"+npiParam
     , 'json')
     false
         
