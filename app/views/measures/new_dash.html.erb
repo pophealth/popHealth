@@ -46,7 +46,7 @@
 <div class="main">
   <div class="main-heading">
     <h1 class="main-head">Measures</h1>
-    <h2 class="patient-size">Patients: 58</h2>
+    <h2 class="patient-size">Patients: <%= @patient_count %></h2>
     <% if (@selected_provider || !can?(:manage, :providers)) %>   
       <a class="export-btn" href="#">Export</a>
     <% else %>
