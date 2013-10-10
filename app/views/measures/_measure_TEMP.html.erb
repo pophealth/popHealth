@@ -7,12 +7,13 @@
           <%= link_to measure_TEMP['name'], measure_url(measure_TEMP['id'], sub['sub_id'])+npi_param%>
         </div>
       <% end %>
-      <% if (can? :manage, :providers) %>
-        <%= link_to("#{sub['short_subtitle']}", "#{measure_path(measure_TEMP['id'], sub['sub_id'])}/providers") %>
-      <% else %>
-        <%= sub['short_subtitle'] %>
-      <% end %>
-    <br>
+  </div>
+  <div class="measure-subtitle">
+    <% if (can? :manage, :providers) %>
+      <%= link_to("#{sub['short_subtitle']}", measure_path(measure_TEMP['id'], sub['sub_id'])) %>
+    <% else %>
+      <%= sub['short_subtitle'] %>
+    <% end %>
   </div>
   <div class="percent-listing">
     <div class="circle-listing">
