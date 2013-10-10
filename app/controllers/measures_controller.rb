@@ -26,12 +26,12 @@ class MeasuresController < ApplicationController
   add_breadcrumb 'parameters', '', only: %w{show}
   add_breadcrumb 'patients', '', only: %w{patients}
 
-  def new_dash
+  def index
     @categories = HealthDataStandards::CQM::Measure.categories
     render layout: 'application_future'
   end
   
-  def index
+  def old_dash
     @categories = HealthDataStandards::CQM::Measure.categories
   end
   
