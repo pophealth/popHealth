@@ -59,8 +59,8 @@
     .patient-size {
       .row;
       .make-md-column(4);
-      font-size: 1.2em;
-      margin-top: 32px;
+      font-size: 18px;
+      margin-top: 42px;
 
     }
     .export-btn {
@@ -124,23 +124,22 @@
   .measure {
     .make-md-column(6);
     .make-sm-column(6);
-    line-height: @listing-line-height;
-     background-color: blue;
-     font-size: 1.2em;
-     font-weight: 500;
+    padding-top: 10px;
+    font-size: 18px;
+    font-weight: 500;
   }  
   .percent-listing {
     .make-lg-column(2);
     .make-md-column(2);
-    background-color: yellow;
-
+    height: 78px;
     .circle-listing {
       height: 75px;
       width: 75px;
       border-radius: 35px;
       background-color: @circle-bkg-color;
       border: 2px solid @circle-border;
-      margin: 10px auto;
+      margin: 0 auto;
+      padding-top: 12px;
       text-align: center;
       vertical-align: middle;
       font-weight: 200;
@@ -148,17 +147,28 @@
     }
   }
   .fraction-listing {
+    padding-top: 10px;
     .make-md-column(2);
     .make-sm-column(2);
-    background-color: red;
-    height: 50px;
-    numerator {
+    text-align: center;
+    height: 75px;
+    font-size: 18px;
+    > * {
+      width: 40px;
+      font-weight: 500;
     }
-    denominator{
+
+    .numerator {
+
+    }
+    .denominator{
+
+      border-top: 1px solid black;
 
     }
   }
   .patient-btn {
+    margin-top: 16px;
     .btn;
     .btn-default;
     text-transform: uppercase;
