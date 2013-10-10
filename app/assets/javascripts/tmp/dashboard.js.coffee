@@ -41,7 +41,7 @@
       
     Page.onReportComplete = (report) ->
       if (report.complete?)
-        console.log(report)
+        # console.log(report)
         Dashboard.calculateMeasure(report.result)
       else
         $.each report.result, (i, data) ->

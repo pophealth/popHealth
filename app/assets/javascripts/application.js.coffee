@@ -4,7 +4,7 @@
 #= require underscore
 #= require backbone
 #= require ./archive/backbone/pop_health
-#= require_tree ./archive/tmp
+#= require_tree ./tmp
 #= require_self
 
 

@@ -77,13 +77,13 @@ class @QualityReport
 		else
 			Page.onMeasureRemove(measure)
 @makeFilterListsClickable = ->
-	$("ul input.all").change ->
-		filterList = $(@).parents("ul").filter(":first")
+	$(".filterItemList :checkbox.all").change ->
+		filterList = $(@).closest(".filterItemList")
 		allSelected = $(@).attr("checked")?
 		$.each filterList.find("input:not(.all)"), (i, filter) =>
 			$(filter).attr("checked", true)	
 			$(filter).attr("disabled", $(@).attr("checked")?)
-	$(".filterItemList li input").change ->
+	$(".filterItemList :checkbox:not(.all)").change ->
 		Page.onFilterChange(@)
 
 
