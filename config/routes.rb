@@ -16,7 +16,7 @@ PopHealth::Application.routes.draw do
 
   get "logs/index"
 
-  match 'new_dash', to: 'measures#new_dash', via: :get
+  match 'old_dash', to: 'measures#old_dash', via: :get
   
   match 'measures', :to => 'measures#index', :as => :dashboard, :via => :get
   match "measure/:id(/:sub_id)/providers", :to => "measures#providers", :via => :get
