@@ -53,8 +53,9 @@
 <div class="main">
   <div class="main-heading">
     <h1 class="main-head">Measures</h1>
+    <h2 class="patient-size">Patients: 58</h2>
     <% if (@selected_provider || !can?(:manage, :providers)) %>   
-      <a class="btn btn-primary" href="#">Export Report</a>
+      <a class="export-btn" href="#">Export</a>
     <% else %>
       <%= link_to measures_qrda_cat3_path(format: :xml), class: 'btn btn-primary export-btn' do %>
         <i class="icon-download-alt"></i> Export

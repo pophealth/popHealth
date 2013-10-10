@@ -53,9 +53,15 @@
   .main-heading {
     .row;
     .main-head {
-      .make-md-column(10);
+      .make-md-column(6);
       font-weight: lighter;
       font-size: 3em;
+    }
+    .patient-size {
+      .make-md-column(4);
+      font-size: 1.2em;
+      margin-top: 32px;
+
     }
     .export-btn {
       .make-md-column(2);
@@ -129,7 +135,7 @@
     }
   }
   .fraction-listing {
-    .make-md-column(3);
+    .make-md-column(1);
     .make-sm-column(1);
     ul {
       list-style-type: none;
@@ -137,5 +143,11 @@
         font-weight: normal;
       }
     }
+  }
+  .patient-btn {
+    .make-md-column(2);
+    .make-sm-column(2);
+    .btn;
+    .btn-default;
   }
 }
