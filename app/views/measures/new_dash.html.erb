@@ -58,13 +58,13 @@
   <% @categories.each do |categorized| %>
     <div class="category" style="<%= display_header(categorized['measures'], current_user.selected_measures) %>">
       <div class="category-title">
-        <h2><%=categorized['category'] %></h2>
+        <%=categorized['category'] %>
       </div>
       <div class="category-header-percent">
-        <div class="title-circle"><h2>%</h2></div>
+        <div class="title-circle">%</div>
       </div>
       <div class="category-header-fraction">
-        <h4>Numerator/Denominator</h4>
+        Numerator/Denominator
       </div>
     </div>
     <%= render :partial => "measure_TEMP", :collection => categorized['measures'] %>
