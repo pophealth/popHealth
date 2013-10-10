@@ -51,8 +51,12 @@
   </script>
 </head>
 <body>
-  
+  <% unless request.xhr?%>
+   <%= render :partial => 'shared/header_TEMP' %>
+  <% end %>
+ 
 <div id="container" class="container">
+
   <%= yield %>
 </div><!-- end #container -->
 </body>
