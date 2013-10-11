@@ -53,9 +53,9 @@ class @QualityReport
 @Render = {
 	fraction: (selector, data) ->
 		selector.find(".numerator").html(data.NUMER)
-		selector.find(".denominator").html(data.DENOM)
+		selector.find(".denominator").html("#{data.DENOM} - #{data.DENEX} - #{data.DENEXCEP}")
 	percent: (selector, data) -> 
-		percent = if (data.DENOM == 0 || data.DENOM == undefined) then 0 else  (data.NUMER / data.DENOM) * 100
+		percent = if (data.DENOM == 0 || data.DENOM == undefined) then 0 else  (data.NUMER / (data.DENOM - data.DENEX - data.DENEXCEP)) * 100
 		selector.html("#{Math.floor(percent)}%")	
 }
 
