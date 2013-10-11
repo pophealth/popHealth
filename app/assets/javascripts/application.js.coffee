@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= require jquery-idletimer/dist/idle-timer
 #= require bootstrap/dist/js/bootstrap
 #= require underscore
 #= require backbone
