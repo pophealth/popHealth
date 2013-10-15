@@ -21,7 +21,7 @@
         var denominatorWidth = data.DENOM > 0 ? ((data.DENOM - data.NUMER)/<%= @patient_count %>).toFixed(2)*100 : 0;
       
         $(elem).find(".numeratorValue").text(data.NUMER);
-        $(elem).find(".denominatorValue").text(data.DENOM + " - " + data.DENEX + " - " + data.DENEXCEP);
+        $(elem).find(".denominatorValue").text(data.DENOM  - data.DENEX - data.DENEXCEP);
         $("#measurePopulationPercentage").text(percent + "%");
         console.log(data)
         $("#numeratorCount").text(data.NUMER);
