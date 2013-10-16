@@ -25,6 +25,11 @@ Factory.define :unapproved_user, :parent => :user do |u|
   u.approved false
 end
 
+Factory.define :user_w_npi, :parent => :user do |u|
+  u.npi "9238429385"
+  u.staff_role false
+end
+
 Factory.define :user_w_selected_measures, :parent => :user do |u|
   u.after_create {|u| Factory(:selected_measure, :username => u.username)}
 end
@@ -48,6 +53,10 @@ Factory.define :provider do |pv|
   pv.sequence(:npi) { |n| 9238429384+ n }
   pv.organization { FactoryGirl.build(:organization)}
   pv.specialty "200000000X"
+end
+
+Factory.define :provider_with_known_npi, :parent => :provider do |p|
+  p.npi "9238429385"
 end
 
 Factory.define(:organization) do |org|

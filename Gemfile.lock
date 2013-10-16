@@ -1,3 +1,16 @@
+GIT
+  remote: https://github.com/pophealth/quality-measure-engine.git
+  revision: b7cdb91e52ee98d6d35147dc8fbd7029c2ce95ab
+  branch: mongoid_refactor
+  specs:
+    quality-measure-engine (3.0.0)
+      delayed_job_mongoid (~> 2.0.0)
+      mongoid (~> 3.1.4)
+      moped (~> 1.5.1)
+      nokogiri (~> 1.6.0)
+      rubyXL (~> 1.2.10)
+      rubyzip (~> 0.9.9)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -45,8 +58,15 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    columnize (0.3.6)
     commonjs (0.2.7)
     daemons (1.1.9)
+    debugger (1.6.1)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.3)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.3)
     delayed_job (3.0.5)
       activesupport (~> 3.0)
     delayed_job_mongoid (2.0.0)
@@ -116,18 +136,18 @@ GEM
     memoist (0.9.1)
     metaclass (0.0.1)
     method_source (0.8.2)
-    mime-types (1.24)
+    mime-types (1.25)
     mini_portile (0.5.1)
     minitest (4.7.5)
     mocha (0.14.0)
       metaclass (~> 0.0.1)
-    mongoid (3.1.4)
+    mongoid (3.1.5)
       activemodel (~> 3.2)
       moped (~> 1.4)
       origin (~> 1.0)
-      tzinfo (~> 0.3.22)
+      tzinfo (~> 0.3.29)
     moped (1.5.1)
-    multi_json (1.8.0)
+    multi_json (1.8.2)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     origin (1.1.0)
@@ -137,13 +157,9 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
-    quality-measure-engine (2.5.1)
-      delayed_job_mongoid (~> 2.0.0)
-      mongoid (~> 3.1.4)
-      moped (~> 1.5.1)
-      nokogiri (~> 1.6.0)
-      rubyXL (~> 1.2.10)
-      rubyzip (~> 0.9.9)
+    pry-debugger (0.2.2)
+      debugger (~> 1.3)
+      pry (~> 0.9.10)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -223,7 +239,7 @@ GEM
       polyglot (>= 0.3.1)
     turn (0.9.6)
       ansi
-    tzinfo (0.3.37)
+    tzinfo (0.3.38)
     uglifier (2.1.2)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
@@ -263,7 +279,8 @@ DEPENDENCIES
   mongoid
   nokogiri
   pry
-  quality-measure-engine (= 2.5.1)
+  pry-debugger
+  quality-measure-engine!
   rails (= 3.2.14)
   rails-backbone
   rubyzip

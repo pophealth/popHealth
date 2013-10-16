@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to "#{root_url}403.html", :alert => exception.message
+    render "public/403", :format=>"html", :status=> 403, :alert => exception.message
   end
 
   def set_effective_date(effective_date=nil, persist=false)

@@ -1,5 +1,6 @@
 {
     "id" : "0013",
+    "hqmf_id" : "0013",
     "name" : "Hypertension: Blood Pressure Measurement",
     "description" : "Patients more than 18 years old who have a diagnosis of hypertension seen in at least two office visits, with blood pressure recorded.",
     "category" : "Core",

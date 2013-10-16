@@ -38,7 +38,22 @@ class ActiveSupport::TestCase
       MONGO_DB[collection].drop
       Dir.glob(File.join(Rails.root, 'test', 'fixtures', collection, '*.json')).each do |json_fixture_file|
         fixture_json = JSON.parse(File.read(json_fixture_file))
-          MONGO_DB[collection].insert(fixture_json)
+        set_mongoid_ids(fixture_json)
+        MONGO_DB[collection].insert(fixture_json)
+      end
+    end
+  end
+
+  def set_mongoid_ids(json)
+    if json.kind_of?( Hash)
+      json.each_pair do |k,v|
+        if v && v.kind_of?( Hash )
+          if v["$oid"]
+            json[k] = Moped::BSON::ObjectId(v["$oid"])
+          else
+            set_mongoid_ids(v)
+          end  
+        end
       end
     end
   end
