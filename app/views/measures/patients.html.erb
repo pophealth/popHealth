@@ -16,12 +16,12 @@
       if (data.complete) {
         data = data.result[0]
         var elem = "#measureMetrics";
-        var percent = data.DENOM > 0 ? Math.floor((data.NUMER/data.DENOM)*100) : 0;
+        var percent = data.DENOM > 0 ? Math.floor((data.NUMER/(data.DENOM - data.DENEX - data.DENEXCEP))*100) : 0;
         var numeratorWidth = (data.numerator/<%= @patient_count %>).toFixed(2)*100;
         var denominatorWidth = data.DENOM > 0 ? ((data.DENOM - data.NUMER)/<%= @patient_count %>).toFixed(2)*100 : 0;
       
         $(elem).find(".numeratorValue").text(data.NUMER);
-        $(elem).find(".denominatorValue").text(data.DENOM);
+        $(elem).find(".denominatorValue").text(data.DENOM  - data.DENEX - data.DENEXCEP);
         $("#measurePopulationPercentage").text(percent + "%");
         console.log(data)
         $("#numeratorCount").text(data.NUMER);
