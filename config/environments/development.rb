@@ -29,6 +29,10 @@ PopHealth::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  puts "HEY"
+  # Add spec/javascripts to asset paths so that jasmine tests work
+  config.assets.paths << Rails.root.join('spec/javascripts')
   
   #add support for Pry debugging
   silence_warnings do

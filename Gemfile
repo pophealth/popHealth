@@ -27,7 +27,10 @@ gem "thin"
 gem 'formtastic'
 gem 'cancan'
 gem 'factory_girl', "2.6.3"
+
+# FIXME remove this when we don't need old versions of backbone/underscore anymore
 gem "rails-backbone"
+
 # Windows doesn't have syslog, so need a gem to log to EventLog instead
 gem 'win32-eventlog', :platforms => [:mswin, :mingw]
 
@@ -47,6 +50,7 @@ end
 
 group :test, :develop do
   gem 'pry'
+  gem 'jasmine'
   gem "unicorn", :platforms => [:ruby, :jruby]
   gem 'turn', :require => false
   gem 'simplecov', :require => false
@@ -59,6 +63,7 @@ group :production do
   gem 'therubyracer', '~> 0.11.0beta5', :platforms => [:ruby, :jruby] # 10.8 mountain lion compatibility
 end
 
+# FIXME remove this when we don't need old versions of jquery/backbone/underscore anymore
 gem 'jquery-rails'
 
 # Use unicorn as the web server
