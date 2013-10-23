@@ -17,8 +17,62 @@
 @panel-primary-border: white;
 @border-radius-base: 0px;
 
-// Since bootstrap was imported above you have access to its mixins which
-// you may use and inherit here
+// Fonts
+
+@font-face {
+    font-family: 'Roboto';
+    src: font-url('Roboto-Thin/Roboto-Thin-webfont.eot');
+    src: font-url('Roboto-Thin/Roboto-Thin-webfont.eot?#iefix') format('embedded-opentype'),
+         font-url('Roboto-Thin/Roboto-Thin-webfont.woff') format('woff'),
+         font-url('Roboto-Thin/Roboto-Thin-webfont.ttf') format('truetype'),
+         font-url('Roboto-Thin/Roboto-Thin-webfont.svg#RobotoRegular') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: font-url('Roboto-Light/Roboto-Light-webfont.eot');
+    src: font-url('Roboto-Light/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         font-url('Roboto-Light/Roboto-Light-webfont.woff') format('woff'),
+         font-url('Roboto-Light/Roboto-Light-webfont.ttf') format('truetype'),
+         font-url('Roboto-Light/Roboto-Light-webfont.svg#RobotoRegular') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: font-url('Roboto-Regular/Roboto-Regular-webfont.eot');
+    src: font-url('Roboto-Regular/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         font-url('Roboto-Regular/Roboto-Regular-webfont.woff') format('woff'),
+         font-url('Roboto-Regular/Roboto-Regular-webfont.ttf') format('truetype'),
+         font-url('Roboto-Regular/Roboto-Regular-webfont.svg#RobotoRegular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: font-url('Roboto-Medium/Roboto-Medium-webfont.eot');
+    src: font-url('Roboto-Medium/Roboto-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+         font-url('Roboto-Medium/Roboto-Medium-webfont.woff') format('woff'),
+         font-url('Roboto-Medium/Roboto-Medium-webfont.ttf') format('truetype'),
+         font-url('Roboto-Medium/Roboto-Medium-webfont.svg#RobotoRegular') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: font-url('Roboto-Bold/Roboto-Bold-webfont.eot');
+    src: font-url('Roboto-Bold/Roboto-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         font-url('Roboto-Bold/Roboto-Bold-webfont.woff') format('woff'),
+         font-url('Roboto-Bold/Roboto-Bold-webfont.ttf') format('truetype'),
+         font-url('Roboto-Bold/Roboto-Bold-webfont.svg#RobotoRegular') format('svg');
+    font-weight: 700;
+    font-style: normal;
+}
 
 // Additions to Bootstrap classes
 
@@ -28,6 +82,10 @@
 .dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
 .dropdown-submenu:hover>a:after{border-left-color:#ffffff;}
 .dropdown-submenu .dropdown-menu.pull-left{left:-100%;}
+
+h1, h2, h3, h4, h5, h6, p, body {
+	font-family: 'Roboto', Serif;
+}
 
 .navbar {
 
@@ -40,7 +98,7 @@
     font-weight: 500;
     .time {
       font-size: 18px;
-      font-weight: 200;
+      font-weight: 300;
     }
   }
   .profile {
@@ -82,7 +140,7 @@
     .main-head {
       .make-lg-column(6);
       .make-md-column(6);
-      font-weight: lighter;
+      font-weight: 300;
       font-size: 3em;
     }
     .patient-size {
@@ -118,7 +176,7 @@
     .make-lg-column(6);
     margin-bottom: 0;
     font-size: 1.5em;
-    font-weight: bold;
+    font-weight: 700;
     text-transform: uppercase;
 
   }
@@ -140,7 +198,7 @@
   .category-header-fraction {
     .make-md-column(2);
     .make-lg-column(2);
-    font-weight: 800;  
+    font-weight: 700;  
     font-size: 18px;
   }
 }
