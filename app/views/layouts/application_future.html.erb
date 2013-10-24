@@ -9,35 +9,16 @@
   <title>popHealth : An Open Source Quality Measure Reference Implementation</title>
   <link rel="shortcut icon" href="/favicon.ico"/>
 
-  <% unless request.xhr?%>
   <%= stylesheet_link_tag "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%end%>
   
   <%= csrf_meta_tag %>
   <%= yield :head %>
-  <% if APP_CONFIG['idle_timeout_enabled'] %>
-  <script type="text/javascript" charset="utf-8">  
-  $(function() {
-    $( document ).idleTimer( APP_CONFIG['idle_timeout'] );
-    $( document ).on( "idle.idleTimer", function(){
-      $.ajax({
-        url: '<%= destroy_user_session_path %>',
-        type: 'DELETE',
-        success: function(result) {
-          window.location.href = '<%=Rails.configuration.relative_url_root%>/logout.html';
-        }
-      });
-    });
-  });
-  </script>
-  <% end %>
 
   <% if @definition %>
+  <!-- TODO remove global variables; deal with state locally in a model/view -->
   <script type="text/javascript" charset="utf-8">
     currentMeasure = "<%= @definition['id'] %>";
     subMeasure = "<%= @definition['sub_id'] %>";
-    
   </script>
   <% end %>
   
@@ -50,9 +31,26 @@
    <%= render :partial => 'shared/header_TEMP' %>
   <% end %>
  
-<div id="container" class="container">
+  <div id="container" class="container"></div>
 
-  <%= yield %>
-</div><!-- end #container -->
+  <%= javascript_include_tag "application" %>
+
+  <!-- TODO consider moving config into a js.erb file, and referencing this from application.js -->
+  <% if APP_CONFIG['idle_timeout_enabled'] %>
+    <script type="text/javascript" charset="utf-8">  
+    $(function() {
+      $(document).idleTimer(APP_CONFIG['idle_timeout']);
+      $(document).on("idle.idleTimer", function() {
+        $.ajax({
+          url: '<%= destroy_user_session_path %>',
+          type: 'DELETE',
+          success: function(result) {
+            window.location.href = '<%=Rails.configuration.relative_url_root%>/logout.html';
+          }
+        });
+      });
+    });
+    </script>
+  <% end %>
 </body>
 </html>

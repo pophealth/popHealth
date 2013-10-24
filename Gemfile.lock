@@ -92,6 +92,10 @@ GEM
     formtastic (2.2.1)
       actionpack (>= 3.0)
     git (1.2.6)
+    handlebars_assets (0.14.1)
+      execjs (>= 1.2.9)
+      sprockets (>= 2.0.3)
+      tilt
     health-data-standards (3.2.8)
       activesupport (~> 3.2.14)
       builder (~> 3.0.0)
@@ -266,6 +270,7 @@ DEPENDENCIES
   foreman
   formtastic
   git
+  handlebars_assets
   health-data-standards (= 3.2.8)
   highline
   jasmine

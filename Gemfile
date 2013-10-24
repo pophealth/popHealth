@@ -44,6 +44,7 @@ group :assets do
   gem 'less-rails'
   gem 'sass-rails'
   gem 'coffee-rails'
+  gem 'handlebars_assets'
   gem 'uglifier'
   gem "bootstrap-sass"
 end

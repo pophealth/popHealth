@@ -3,6 +3,7 @@
 #= require bootstrap/dist/js/bootstrap
 #= require underscore/underscore
 #= require backbone/backbone
+#= require handlebars/handlebars
 #= require thorax/thorax
 #= require backbone_sync_rails
 #
@@ -11,3 +12,4 @@
 #= require_tree ./views
 #= require router
 #= require_self
+
