@@ -1,17 +1,24 @@
 <div class="left-sidebar" id="filters">
-  <h1>Filters</h1>
-  {{#collection}}
-    <div class="panel-group" id="measureSelectors">
+  <h3>Filters</h3>
+  <div class="panel-group" id="measureSelectors">
+    {{#collection}}
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#measureSelectors" href="#category{{@cid}}">
               {{category}}
             </a>
-          </h4>
+            <i class="glyphicon glyphicon-chevron-right pull-right"></i>
+          </div>
         </div>
         <div id="category{{@cid}}" class="panel-collapse collapse">
           <div class="panel-body measureItemList">
+            <div class="checkbox">
+              <label>
+                  <input name="all" type="checkbox" class="all">
+                  Select All
+              </label>
+            </div>
             {{#collection measures}}
               <div class="checkbox">
                 <label>
@@ -24,33 +31,34 @@
           </div>
         </div>
       </div>
-    </div>
-  {{/collection}}
+    {{/collection}}
+  </div>
 </div>
 
 <div class="main">
   <div class="main-heading">
-    <h1 class="main-head">Measures</h1>
-    <a href="/measures/qrda_cat3.xml" class="btn btn-primary export-btn"><i class="icon-download-alt"></i> Export</a>
+    <h1 class="title">Measures</h1>
+    <a href="/measures/qrda_cat3.xml" class="export-btn"><i class="glyphicon glyphicon-download-alt"></i> Export</a>
   </div>
   {{#collection selectedCategories}}
     <div class="category" style="">
-      <div class="category-title">{{category}}</div>
+      <h2 class="category-title">{{category}}</h2>
       <div class="category-header-percent">
         <div class="title-circle">%</div>
       </div>
       <div class="category-header-fraction">
-        Numerator/Denominator
+        <div>Numerator/</div>
+        <div>Denominator</div>
       </div>
     </div>
 
     {{#collection measures}}
     {{!-- <%npi_param = (@selected_provider ? "?npi=#{@selected_provider.npi}" : '')%> --}}
       {{#collection submeasures}}
-        <div class="row" style="">
-          <div class="measure" data-measure-sub="{{sub_id}}">
+        <div class="measure" style="">
+          <div class="measure-title" data-measure-sub="{{sub_id}}">
             {{#if isPrimary}}
-              <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}" data-placement="bottom" data-original-title="{{description}}" rel="tooltip">{{name}}</a>
+              <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}" data-placement="bottom" data-content="{{description}}" rel="popover">{{name}}</a>
             {{/if}}
             {{!-- {{#link "measures/{{../../id}}" expand-tokens=true}}{{../../name}}{{/link}} --}}
 {{!--         <% if sub['sub_id'].nil? || sub['sub_id'] == 'a' %>

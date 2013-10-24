@@ -1,0 +1,110 @@
+@import "bootstrap/less/bootstrap";
+
+// Bootstrap Variables
+
+@brand-primary: #4B979D;
+@gray-lighter: #f2f2f2;
+@btn-hover-color: #357177;
+@panel-default-border: white;
+@panel-default-heading-bg: @gray-lighter;
+@panel-primary-border: white;
+@border-radius-base: 0px;
+@border-radius-large: 0px;
+
+// Additions to Bootstrap classes
+
+.dropdown-submenu{position:relative;}
+.dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;}
+.dropdown-submenu:hover>.dropdown-menu{display:block;}
+.dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
+.dropdown-submenu:hover>a:after{border-left-color:#ffffff;}
+.dropdown-submenu .dropdown-menu.pull-left{left:-100%;}
+
+.navbar {
+  .navbar-header {
+    .make-md-column(3);
+    .make-lg-column(3);
+  }
+}
+
+.panel {
+  width: 100%;
+  box-shadow: none;
+  .panel-title {
+    font-weight: 500;
+    .row;
+    margin: 0;
+    > a {
+      .make-md-column(10);
+      padding: 0;
+    }
+    > i {
+      .make-md-column(2);
+      padding: 0;
+      width: 16px !important;
+    }
+  }
+  .panel-body {
+    padding: 5px;
+  }
+}
+
+.popover {
+  font-weight: normal;
+  font-size: 14px;
+  box-shadow: none;
+}
+
+// Custom Semantic Classes
+
+.left-sidebar {
+  .make-xs-column(3);
+}
+
+.main {
+  .make-xs-column(9);
+  .main-heading {
+    .row;
+    .title {
+      .make-xs-column(3);
+    }
+    .export-btn {
+      .btn;
+      .btn-primary;
+      .pull-right;
+    }
+  }
+}
+
+.category {
+  .row;
+  .category-title {
+    .make-xs-column(6);
+  }
+  .category-header-percent {
+    .make-xs-column(2);
+  }
+  .category-header-fraction {
+    .make-xs-column(2);
+  }
+}
+
+.measure {
+  .row;
+  .measure-title {
+    .make-xs-column(4);
+  }
+  .measure-subtitle {
+    .make-xs-column(2);
+  }
+  .percent-listing {
+    .make-xs-column(2);
+  }
+  .fraction-listing {
+    .make-xs-column(2);
+  }
+  .patient-btn {
+    .btn;
+    .btn-default;
+  }
+}
