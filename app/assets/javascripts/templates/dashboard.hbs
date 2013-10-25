@@ -1,3 +1,89 @@
-{{#collection}}
-  {{name}}
-{{/collection}}
+<div class="left-sidebar" id="filters">
+  <h1>Filters</h1>
+  {{#collection}}
+    <div class="panel-group" id="measureSelectors">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#measureSelectors" href="#category{{cid}}">
+              {{category}}
+            </a>
+          </h4>
+        </div>
+        <div id="category{{cid}}" class="panel-collapse collapse">
+          <div class="panel-body measureItemList">
+            {{#collection measures}}
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  {{name}}
+                  {{!-- <%= check_box_tag :measure_id, measure["id"], is_selected?(measure['id'], current_user.selected_measures), {id: nil, 'data-measure-id' => measure['id'], 'data-sub-measures' => measure['sub_ids'].join(',')} %><%= measure['name'] %> --}}
+                </label>
+              </div>
+            {{/collection}}
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/collection}}
+</div>
+
+<div class="main">
+  <div class="main-heading">
+    <h1 class="main-head">Measures</h1>
+    <a href="/measures/qrda_cat3.xml" class="btn btn-primary export-btn"><i class="icon-download-alt"></i> Export</a>
+  </div>
+  {{#collection}}
+    <div class="category" style="">
+      <div class="category-title">{{category}}</div>
+      <div class="category-header-percent">
+        <div class="title-circle">%</div>
+      </div>
+      <div class="category-header-fraction">
+        Numerator/Denominator
+      </div>
+    </div>
+
+    {{#collection measures}}
+    {{!-- <%npi_param = (@selected_provider ? "?npi=#{@selected_provider.npi}" : '')%> --}}
+      {{#collection submeasures}}
+        <div class="row" style="">
+          <div class="measure" data-measure-sub="{{sub_id}}">
+            {{#if isPrimary}}
+              <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}" data-placement="bottom" data-original-title="{{description}}" rel="tooltip">{{name}}</a>
+            {{/if}}
+            {{!-- {{#link "measures/{{../../id}}" expand-tokens=true}}{{../../name}}{{/link}} --}}
+{{!--         <% if sub['sub_id'].nil? || sub['sub_id'] == 'a' %>
+                
+                  <%= link_to measure_TEMP['name'], measure_url(measure_TEMP['id'], sub['sub_id'])+npi_param%>
+                </div>
+              <% end %>
+ --}}
+          </div>
+          <div class="measure-subtitle">
+{{!--       <% if (can? :manage, :providers) %>
+              <%= link_to("#{sub['short_subtitle']}", measure_path(measure_TEMP['id'], sub['sub_id'])) %>
+            <% else %>
+              <%= sub['short_subtitle'] %>
+            <% end %>--}}
+            {{#if short_subtitle}}
+              <a href="#measures/{{id}}/{{sub_id}}">{{short_subtitle}}</a>
+            {{/if}}
+          </div>
+          <div class="percent-listing">
+            <div class="circle-listing">
+              0%
+            </div>
+          </div>
+          <div class="fraction-listing">
+            <div class="numerator">0</div>
+            <div class="denominator">0</div>
+          </div>
+          {{!-- <%= link_to patients_url(measure_TEMP['id'], sub['sub_id'])+npi_param, class: 'patient-btn' do %> --}}
+            <i class="glyphicon glyphicon-user"></i> Patients
+          {{!-- <% end %> --}}
+        </div>
+      {{/collection}}
+    {{/collection}}
+  {{/collection}}
+</div>

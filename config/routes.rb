@@ -40,7 +40,7 @@ PopHealth::Application.routes.draw do
   match 'patients/show/:id', :to => 'patients#show'
   match 'patients/toggle_excluded/:id/:measure_id(/:sub_id)', :to => 'patients#toggle_excluded', :via => :post
 
-  root :to => 'measures#index'
+  root :to => 'home#index'
   
   resources :measures do
     member { get :providers }

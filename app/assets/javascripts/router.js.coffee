@@ -1,14 +1,18 @@
 class PopHealthRouter extends Backbone.Router
   initialize: ->
-    @measures = new Thorax.Collections.Measures()
+    # categories is defined globally in view
+    @categories = new Thorax.Collections.Categories categories, parse: true
     @view = new Thorax.LayoutView el: '#container'
 
   routes:
-    '': 'dashboard'
+    '':                       'dashboard'
+    'measures/:id(/:sub_id)': 'measure'
 
   dashboard: ->
-    @view.setView new Thorax.Views.Dashboard collection: @measures
+    @view.setView new Thorax.Views.Dashboard collection: @categories
 
+  measure: (id, subId) ->
+    # @view.setView yourView
 
 new PopHealthRouter()
 Backbone.history.start()

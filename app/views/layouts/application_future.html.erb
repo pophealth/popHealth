@@ -27,30 +27,12 @@
   </script>
 </head>
 <body>
-  <% unless request.xhr?%>
-   <%= render :partial => 'shared/header_TEMP' %>
-  <% end %>
+  <%= render :partial => 'shared/header_TEMP' %>
  
   <div id="container" class="container"></div>
 
-  <%= javascript_include_tag "application" %>
+  <%= yield %>
 
-  <!-- TODO consider moving config into a js.erb file, and referencing this from application.js -->
-  <% if APP_CONFIG['idle_timeout_enabled'] %>
-    <script type="text/javascript" charset="utf-8">  
-    $(function() {
-      $(document).idleTimer(APP_CONFIG['idle_timeout']);
-      $(document).on("idle.idleTimer", function() {
-        $.ajax({
-          url: '<%= destroy_user_session_path %>',
-          type: 'DELETE',
-          success: function(result) {
-            window.location.href = '<%=Rails.configuration.relative_url_root%>/logout.html';
-          }
-        });
-      });
-    });
-    </script>
-  <% end %>
+  <%= javascript_include_tag "application" %>
 </body>
 </html>

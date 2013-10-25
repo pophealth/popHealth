@@ -2,14 +2,14 @@ module Api
   class MeasuresController < ApplicationController
     include MeasuresHelper
     include PaginationHelper
-    # before_filter :authenticate_user!
+    before_filter :authenticate_user!
     before_filter :validate_authorization!
     before_filter :set_pagination_params, :only=> :index
     before_filter :create_filter , :only => :index
     
     def index
       measures = HealthDataStandards::CQM::Measure.where(@filter)
-      render :json => paginate(api_measures_url, measures)
+      render json: paginate(api_measures_url, measures), each_serializer: HealthDataStandards::CQM::MeasureSerializer
     end
     
     def show

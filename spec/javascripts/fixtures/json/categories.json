@@ -1,0 +1,877 @@
+[{
+  "measures": [{
+    "id": "40280381-3D27-5493-013D-5A665E26122A",
+    "name": "Statin Prescribed at Discharge",
+    "description": "Acute myocardial infarction (AMI) patients who are prescribed a statin at hospital discharge.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D27-5493-013D-4BEBA8855DEB",
+    "name": "Primary PCI Received Within 90 Minutes of Hospital Arrival",
+    "description": "Acute myocardial infarction (AMI) patients with ST-segment elevation or LBBB on the ECG closest to arrival time receiving primary PCI during the hospital stay with a time from hospital arrival to PCI of 90 minutes or less.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D27-5493-013D-40EC9FCF4A60",
+    "name": "Fibrinolytic Therapy Received Within 30 Minutes of Hospital Arrival",
+    "description": "Acute myocardial infarction (AMI) patients with ST-segment elevation or LBBB on the ECG closest to arrival time receiving fibrinolytic therapy during the hospital stay and having a time from hospital arrival to fibrinolysis of 30 minutes or less",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D27-5493-013D-4BFBD29A5F66",
+    "name": "Aspirin Prescribed at Discharge",
+    "description": "Acute myocardial infarction (AMI) patients who are prescribed aspirin at hospital discharge",
+    "subs": [{}],
+    "sub_ids": []
+  }],
+  "category": "Acute Myocardial Infarction"
+}, {
+  "measures": [{
+    "id": "8A4D92B2-37BF-6F1B-0137-CCD612A40D0E",
+    "name": "Home Management Plan of Care (HMPC) Document Given to Patient/Caregiver",
+    "description": "An assessment that there is documentation in the medical record that a Home Management Plan of Care (HMPC) document was given to the pediatric asthma patient/caregiver.",
+    "subs": [{}],
+    "sub_ids": []
+  }],
+  "category": "Asthma"
+}, {
+  "measures": [{
+    "id": "8A4D92B2-3927-D7AE-0139-366C49F93102",
+    "name": "Maternal Depression Screening",
+    "description": "The percentage of children who turned 6 months of age during the measurement year, who had a face-to-face visit between the clinician and the child during child\u2019s first 6 months, and who had  a maternal depression screening for the mother at least once between 0 and 6 months of life.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-8A3638093344",
+    "name": "Depression Utilization of the PHQ-9 Tool",
+    "description": "Adult patients age 18 and older with the diagnosis of major depression or dysthymia who have a PHQ-9 tool administered at least once during a 4-month period in which there was a qualifying visit.",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "Sep-Dec"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "May-Aug"
+    }, {
+      "sub_id": "c",
+      "short_subtitle": "Jan-Apr"
+    }],
+    "sub_ids": ["a", "b", "c"]
+  }, {
+    "id": "40280381-3D61-56A7-013E-8698AB2E1E30",
+    "name": "Depression Remission at Twelve Months",
+    "description": "Adult patients age 18 and older with major depression or dysthymia and an initial PHQ-9 score > 9 who demonstrate remission at twelve months defined as PHQ-9 score less than 5. This measure applies to both patients with newly diagnosed and existing depression whose current PHQ-9 score indicates a need for treatment",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-658BC7A23C9C",
+    "name": "Bipolar Disorder and Major Depression: Appraisal for alcohol or chemical substance use",
+    "description": "Percentage of patients with depression or bipolar disorder with evidence of an initial assessment that includes an appraisal for alcohol or chemical substance use.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-7BC533A071D3",
+    "name": "Adult Major Depressive Disorder (MDD): Suicide Risk Assessment",
+    "description": "Percentage of patients aged 18 years and older with a diagnosis of major depressive disorder (MDD) with a suicide risk assessment completed during the visit in which a new diagnosis or recurrent episode was identified",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-5B2AA3493C42",
+    "name": "Initiation and Engagement of Alcohol and Other Drug Dependence Treatment",
+    "description": "Percentage of patients 13 years of age and older with a new episode of alcohol and other drug (AOD) dependence who received the following. Two rates are reported.\na. Percentage of patients who initiated treatment within 14 days of the diagnosis.\nb. Percentage of patients who initiated treatment and who had two or more additional services with an AOD diagnosis within 30 days of the initiation visit.",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "Treatment"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "Treatment w/ AOD"
+    }, {
+      "sub_id": "c",
+      "short_subtitle": "Treatment, RS1: 13-17"
+    }, {
+      "sub_id": "d",
+      "short_subtitle": "Treatment, RS2: >=18"
+    }, {
+      "sub_id": "e",
+      "short_subtitle": "Treatment w/ AOD, RS1: 13-17"
+    }, {
+      "sub_id": "f",
+      "short_subtitle": "Treatment w AOD, RS2: >=18"
+    }],
+    "sub_ids": ["a", "b", "c", "d", "e", "f"]
+  }, {
+    "id": "40280381-3D61-56A7-013E-7AF612436402",
+    "name": "Anti-depressant Medication Management",
+    "description": "Percentage of patients 18 years of age and older who were diagnosed with major depression and treated with antidepressant medication, and who remained on antidepressant medication treatment. Two rates are reported. \na. Percentage of patients who remained on an antidepressant medication for at least 84 days (12 weeks). \nb. Percentage of patients who remained on an antidepressant medication for at least 180 days (6 months).",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "84 days"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "180 days"
+    }],
+    "sub_ids": ["a", "b"]
+  }],
+  "category": "Behavioral Health Adult"
+}, {
+  "measures": [{
+    "id": "40280381-3D61-56A7-013E-57FA83AF36FA",
+    "name": "Dementia: Cognitive Assessment",
+    "description": "Percentage of patients, regardless of age, with a diagnosis of dementia for whom an assessment of cognition is performed and the results reviewed at least once within a 12 month period",
+    "subs": [{}],
+    "sub_ids": []
+  }],
+  "category": "Behavioral Health General"
+}, {
+  "measures": [{
+    "id": "40280381-3D61-56A7-013E-5D9034CF7065",
+    "name": "Child and Adolescent Major Depressive Disorder (MDD): Suicide Risk Assessment",
+    "description": "Percentage of patient visits for those patients aged 6 through 17 years with a\ndiagnosis of major depressive disorder with an assessment for suicide risk",
+    "subs": [{}],
+    "sub_ids": []
+  }],
+  "category": "Behavioral Health Pediatric"
+}, {
+  "measures": [{
+    "id": "40280381-3D61-56A7-013E-62AF4C523143",
+    "name": "Oncology: Medical and Radiation \u2013 Pain Intensity Quantified",
+    "description": "Percentage of patient visits, regardless of patient age, with a diagnosis of cancer currently receiving chemotherapy or radiation therapy in which pain intensity is quantified",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-6696AF6E477F",
+    "name": "Prostate Cancer: Avoidance of Overuse of Bone Scan for Staging Low Risk Prostate Cancer Patients",
+    "description": "Percentage of patients, regardless of age, with a diagnosis of prostate cancer at low risk of recurrence receiving interstitial prostate brachytherapy, OR external beam radiotherapy to the prostate, OR radical prostatectomy, OR cryotherapy who did not have a bone scan performed at any time since diagnosis of prostate cancer",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-6ABD73E15076",
+    "name": "Breast Cancer: Hormonal Therapy for Stage IC-IIIC Estrogen Receptor/Progesterone Receptor (ER/PR) Positive Breast Cancer",
+    "description": "Percentage of female patients aged 18 years and older with Stage IC through IIIC, ER or PR positive breast cancer who were prescribed tamoxifen or aromatase inhibitor (AI) during the 12-month reporting period",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-6B81E6E455A5",
+    "name": "Colon Cancer: Chemotherapy for AJCC Stage III Colon Cancer Patients",
+    "description": "Percentage of patients aged 18 through 80 years with AJCC Stage III colon cancer who are referred for adjuvant chemotherapy, prescribed adjuvant chemotherapy, or have previously received adjuvant chemotherapy within the 12-month reporting period.",
+    "subs": [{}],
+    "sub_ids": []
+  }],
+  "category": "Cancer"
+}, {
+  "measures": [{
+    "id": "40280381-3D61-56A7-013D-A31D2B2F57EA",
+    "name": "Initial Antibiotic Selection for Community-Acquired Pneumonia (CAP) in Immunocompetent Patients",
+    "description": "(PN-6) Immunocompetent patients with Community-Acquired Pneumonia who receive an initial antibiotic regimen during the first 24 hours that is consistent with current guidelines \n\n(Population 1) Immunocompetent ICU patients with Community-Acquired Pneumonia who receive an initial antibiotic regimen during the first 24 hours that is consistent with current guidelines\n\n(Population 2) Immunocompetent non-Intensive Care Unit (ICU) patients with Community-Acquired Pneumonia who receive an initial antibiotic regimen during the first 24 hours that is consistent with current guidelines",
+    "subs": [{
+      "sub_id": "b",
+      "short_subtitle": "non-ICU patients"
+    }, {
+      "sub_id": "a",
+      "short_subtitle": "ICU patients"
+    }],
+    "sub_ids": ["b", "a"]
+  }],
+  "category": "Community Acquired Pneumonia"
+}, {
+  "measures": [{
+    "id": "40280381-3E93-D1AF-013E-A49CA9F94008",
+    "name": "Functional Status Assessment for Complex Chronic Conditions",
+    "description": "Percentage of patients aged 65 years and older with heart failure who completed initial and follow-up patient-reported functional status assessments",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-8F2F5AD054E2",
+    "name": "Children Who Have Dental Decay or Cavities",
+    "description": "Percentage of children, age 0-20 years, who have had tooth decay or cavities during the measurement period.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3E93-D1AF-013E-D6E2B772150D",
+    "name": "Preventive Care and Screening: Body Mass Index (BMI) Screening and Follow-Up",
+    "description": "Percentage of patients aged 18 years and older with a documented BMI during the encounter or during the previous six months, AND when the BMI is outside of normal parameters, a follow-up plan is documented during the encounter or during the previous six months of the encounter \r\n\r\nNormal Parameters:       Age 65 years and older BMI => 23 and < 30 \r\n\r\n                                    Age 18 \u2013 64 years BMI => 18.5 and < 25",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "65+"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "18-64"
+    }],
+    "sub_ids": ["a", "b"]
+  }, {
+    "id": "40280381-3D61-56A7-013E-62E052273699",
+    "name": "ADHD: Follow-Up Care for Children Prescribed Attention-Deficit/Hyperactivity Disorder (ADHD) Medication",
+    "description": "Percentage of children 6-12 years of age and newly dispensed a medication for attention-deficit/hyperactivity disorder (ADHD) who had appropriate follow-up care.  Two rates are reported.  \na. Percentage of children who had one follow-up visit with a practitioner with prescribing authority during the 30-Day Initiation Phase.\nb. Percentage of children who remained on ADHD medication for at least 210 days and who, in addition to the visit in the Initiation Phase, had at least two additional follow-up visits with a practitioner within 270 days (9 months) after the Initiation Phase ended.",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "Visit within 30 days"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "Visit with 2+ followups"
+    }],
+    "sub_ids": ["a", "b"]
+  }, {
+    "id": "40280381-3D61-56A7-013E-5D530FD26D47",
+    "name": "Weight Assessment and Counseling for Nutrition and Physical Activity for Children and Adolescents",
+    "description": "Percentage of patients 3-17 years of age who had an outpatient visit with a Primary Care Physician (PCP) or Obstetrician/Gynecologist (OB/GYN) and who had evidence of the following during the measurement period. Three rates are reported.\n\n - Percentage of patients with height, weight, and body mass index (BMI) percentile documentation\n - Percentage of patients with counseling for nutrition\n - Percentage of patients with counseling for physical activity",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "BMI Recorded"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "Nutrition Counseling"
+    }, {
+      "sub_id": "c",
+      "short_subtitle": "Physical Activity Counseling"
+    }, {
+      "sub_id": "d",
+      "short_subtitle": "BMI Recorded, RS1: 3-11"
+    }, {
+      "sub_id": "e",
+      "short_subtitle": "BMI Recorded, RS2: 12-17"
+    }, {
+      "sub_id": "f",
+      "short_subtitle": "Nutrition Counseling, RS1: 3-11"
+    }, {
+      "sub_id": "g",
+      "short_subtitle": "Nutrition Counseling, RS2: 12-17"
+    }, {
+      "sub_id": "h",
+      "short_subtitle": "Physical Activity Counseling, RS1: 3-11"
+    }, {
+      "sub_id": "i",
+      "short_subtitle": "Physical Activity Counseling, RS2: 12-17"
+    }],
+    "sub_ids": ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
+  }, {
+    "id": "40280381-3D61-56A7-013E-7AA509DE6258",
+    "name": "Closing the referral loop: receipt of specialist report",
+    "description": "Percentage of patients with referrals, regardless of age, for which the referring provider receives a report from the provider to whom the patient was referred.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-62790FE42CA1",
+    "name": "Use of Imaging Studies for Low Back Pain",
+    "description": "Percentage of patients 18-50 years of age with a diagnosis of low back pain who did not have an imaging study (plain X-ray, MRI, CT scan) within 28 days of the diagnosis.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3E93-D1AF-013E-A36090B72CC8",
+    "name": "Documentation of Current Medications in the Medical Record",
+    "description": "Percentage of visits for patients aged 18 years and older for which the eligible professional attests to documenting a list of current medications using all immediate resources available on the date of the encounter.  This list must include ALL known prescriptions, over-the-counters, herbals, and vitamin/mineral/dietary (nutritional) supplements AND must contain the medications' name, dosage, frequency and route of administration.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-6649110743CE",
+    "name": "Use of Appropriate Medications for Asthma",
+    "description": "Percentage of patients 5-64 years of age who were identified as having persistent asthma and were appropriately prescribed medication during the measurement period.",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "5-64"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "RS1: 5-11"
+    }, {
+      "sub_id": "c",
+      "short_subtitle": "RS2: 12-18"
+    }, {
+      "sub_id": "d",
+      "short_subtitle": "RS3: 19-50"
+    }, {
+      "sub_id": "e",
+      "short_subtitle": "RS4: 51-64"
+    }],
+    "sub_ids": ["a", "b", "c", "d", "e"]
+  }, {
+    "id": "40280381-3D61-56A7-013E-6224E2AC25F3",
+    "name": "Childhood Immunization Status",
+    "description": "Percentage of children 2 years of age who had four diphtheria, tetanus and acellular pertussis (DTaP); three polio (IPV), one measles, mumps and rubella (MMR); three H influenza type B (HiB); three hepatitis B (Hep B); one chicken pox (VZV); four pneumococcal conjugate (PCV); one hepatitis A (Hep A); two or three rotavirus (RV); and two influenza (flu) vaccines by their second birthday.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-65C9C3043E54",
+    "name": "Use of High-Risk Medications in the Elderly",
+    "description": "Percentage of patients 66 years of age and older who were ordered high-risk medications. Two rates are reported.\na. Percentage of patients who were ordered at least one high-risk medication. \nb. Percentage of patients who were ordered at least two different high-risk medications.",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "1+ High-Risk Medications"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "2+ High-Risk Medications"
+    }],
+    "sub_ids": ["a", "b"]
+  }, {
+    "id": "40280381-3D61-56A7-013E-66BC02DA4DEE",
+    "name": "Controlling High Blood Pressure",
+    "description": "Percentage of patients 18-85 years of age who had a diagnosis of hypertension and whose blood pressure was adequately controlled (<140/90mmHg) during the measurement period.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-5D1EF9B76A48",
+    "name": "Appropriate Testing for Children with Pharyngitis",
+    "description": "Percentage of children 2-18 years of age who were diagnosed with pharyngitis, ordered an antibiotic and received a group A streptococcus (strep) test for the episode.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-5D4001866C09",
+    "name": "Chlamydia Screening for Women",
+    "description": "Percentage of women 16-24 years of age who were identified as sexually active and who had at least one test for chlamydia during the measurement period.",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "16-24"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "RS1: 16-20"
+    }, {
+      "sub_id": "c",
+      "short_subtitle": "RS2: 21-24"
+    }],
+    "sub_ids": ["a", "b", "c"]
+  }, {
+    "id": "40280381-3D61-56A7-013E-5CC8AA6D6290",
+    "name": "Appropriate Treatment for Children with Upper Respiratory Infection (URI)",
+    "description": "Percentage of children 3 months-18 years of age who were diagnosed with upper respiratory infection (URI) and were not dispensed an antibiotic prescription on or three days after the episode.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3E93-D1AF-013E-9F642782222A",
+    "name": "Preventive Care and Screening: Screening for Clinical Depression and Follow-Up Plan",
+    "description": "Percentage of patients aged 12 years and older screened for clinical depression on the date of the encounter using an age appropriate standardized depression screening tool AND if positive, a follow-up plan is documented on the date of the positive screen.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-5CD94A4D64FA",
+    "name": "Preventive Care and Screening: Tobacco Use: Screening and Cessation Intervention",
+    "description": "Percentage of patients aged 18 years and older who were screened for tobacco use one or more times within 24 months AND who received cessation counseling intervention if identified as a tobacco user",
+    "subs": [{}],
+    "sub_ids": []
+  }],
+  "category": "Core"
+}, {
+  "measures": [{
+    "id": "40280381-3D61-56A7-013E-8ACBFE873BCB",
+    "name": "Primary Caries Prevention Intervention as Offered by Primary Care Providers, including Dentists",
+    "description": "Percentage of children, age 0-20 years, who received a fluoride varnish application during the measurement period.",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "0-20"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "RS1: <= 5"
+    }, {
+      "sub_id": "c",
+      "short_subtitle": "RS2: 6-12"
+    }, {
+      "sub_id": "d",
+      "short_subtitle": "RS3: 13-20"
+    }],
+    "sub_ids": ["a", "b", "c", "d"]
+  }],
+  "category": "Dental"
+}, {
+  "measures": [{
+    "id": "40280381-3D61-56A7-013E-62ABF5662FFF",
+    "name": "Diabetes: Urine Protein Screening",
+    "description": "The percentage of patients 18-75 years of age with diabetes who had a nephropathy screening test or evidence of nephropathy during the measurement period.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-66B2CA294C47",
+    "name": "Diabetic Retinopathy: Communication with the Physician Managing Ongoing Diabetes Care",
+    "description": "Percentage of patients aged 18 years and older with a diagnosis of diabetic retinopathy who had a dilated macular or fundus exam performed with documented communication to the physician who manages the ongoing care of the patient with diabetes mellitus regarding the findings of the macular or fundus exam at least once within 12 months",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-61EF9907211D",
+    "name": "Hemoglobin A1c Test for Pediatric Patients",
+    "description": "Percentage of patients 5-17 years of age with diabetes with an HbA1c test during the measurement period",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "8A4D92B2-397A-48D2-0139-9CD4937E6C86",
+    "name": "Diabetes: Hemoglobin A1c Poor Control",
+    "description": "Percentage of patients 18-75 years of age with diabetes who had hemoglobin A1c > 9.0% during the measurement period.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-5D11ABE068EB",
+    "name": "Diabetes: Foot Exam",
+    "description": "Percentage of patients aged 18-75 years of age with diabetes who had a foot exam during the measurement period.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-57FE7ED437D7",
+    "name": "Diabetic Retinopathy: Documentation of Presence or Absence of Macular Edema and Level of Severity of Retinopathy",
+    "description": "Percentage of patients aged 18 years and older with a diagnosis of diabetic retinopathy who had a dilated macular or fundus exam performed which included documentation of the level of severity of retinopathy and the presence or absence of macular edema during one or more office visits within 12 months",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-5D5B19BF6DFB",
+    "name": "Diabetes: Low Density Lipoprotein (LDL) Management",
+    "description": "Percentage of patients 18\u201375 years of age with diabetes whose LDL-C was adequately controlled (<100 mg/dL) during the measurement period.",
+    "subs": [{}],
+    "sub_ids": []
+  }],
+  "category": "Diabetes"
+}, {
+  "measures": [{
+    "id": "40280381-3D27-5493-013D-4D8E4DC46570",
+    "name": "Median Admit Decision Time to ED Departure Time for Admitted Patients",
+    "description": "Median time (in minutes) from admit decision time to time of departure from the emergency department for emergency department patients admitted to inpatient status.",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "Unstratified"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "RS1: ED and inpatient"
+    }, {
+      "sub_id": "c",
+      "short_subtitle": "RS2: ED and inpatient w/out psych"
+    }, {
+      "sub_id": "d",
+      "short_subtitle": "RS3: ED and inpatient w/ psych"
+    }],
+    "sub_ids": ["a", "b", "c", "d"]
+  }, {
+    "id": "40280381-3D27-5493-013D-4D86B2B36480",
+    "name": "Median Time from ED Arrival to ED Departure for Admitted ED Patients",
+    "description": "Median time from emergency department arrival to time of departure from the emergency room for patients admitted to the facility from the emergency department.",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "Unstratified"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "RS1: ED and inpatient"
+    }, {
+      "sub_id": "c",
+      "short_subtitle": "RS2: ED and inpatient w/out psych"
+    }, {
+      "sub_id": "d",
+      "short_subtitle": "RS3: ED and inpatient w/ psych"
+    }],
+    "sub_ids": ["a", "b", "c", "d"]
+  }, {
+    "id": "40280381-3D27-5493-013D-61073DA32A30",
+    "name": "Median Time from ED Arrival to ED Departure for Discharged ED Patients",
+    "description": "Median time from emergency department arrival to time of departure from the emergency room for patients discharged from the emergency department.",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "Unstratified"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "RS1: With ED Encounter"
+    }, {
+      "sub_id": "c",
+      "short_subtitle": "RS2: With Mental Disorders"
+    }, {
+      "sub_id": "d",
+      "short_subtitle": "RS3: With Acute care hospital transfer"
+    }, {
+      "sub_id": "e",
+      "short_subtitle": "RS4: Without Mental Disorders and Acute care hospital transfer"
+    }],
+    "sub_ids": ["a", "b", "c", "d", "e"]
+  }],
+  "category": "Emergency Department"
+}, {
+  "measures": [{
+    "id": "40280381-3D61-56A7-013E-425AD8E9179C",
+    "name": "Primary Open-Angle Glaucoma (POAG): Optic Nerve Evaluation",
+    "description": "Percentage of patients aged 18 years and older with a diagnosis of primary open-angle glaucoma (POAG) who have an optic nerve head evaluation during one or more office visits within 12 months",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-66AE98364ADE",
+    "name": "Cataracts: Complications within 30 Days Following Cataract Surgery Requiring Additional Surgical Procedures",
+    "description": "Percentage of patients aged 18 years and older with a diagnosis of uncomplicated cataract who had cataract surgery and had any of a specified list of surgical procedures in the 30 days following cataract surgery which would indicate the occurrence of any of the following major complications: retained nuclear fragments, endophthalmitis, dislocated or wrong power IOL, retinal detachment, or wound dehiscence",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "8A4D92B2-39CA-AF4B-0139-D472724E0C46",
+    "name": "Diabetes: Eye Exam",
+    "description": "Percentage of patients 18-75 years of age with diabetes who had a retinal or dilated eye exam by an eye care professional during the measurement period or a negative retinal exam (no evidence of retinopathy) in the 12 months prior to the measurement period",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-846AAE0F021F",
+    "name": "Cataracts: 20/40 or Better Visual Acuity within 90 Days Following Cataract Surgery",
+    "description": "Percentage of patients aged 18 years and older with a diagnosis of uncomplicated cataract who had cataract surgery and no significant ocular conditions impacting the visual outcome of surgery and had best-corrected visual acuity of 20/40 or better (distance or near) achieved within 90 days following the cataract surgery",
+    "subs": [{}],
+    "sub_ids": []
+  }],
+  "category": "Eye"
+}, {
+  "measures": [{
+    "id": "40280381-3E93-D1AF-013E-B297A0A15BB5",
+    "name": "Preventive Care and Screening: Risk-Stratified Cholesterol \u2013 Fasting Low Density Lipoprotein (LDL-C)",
+    "description": "Percentage of patients aged 20 through 79 years who had a fasting LDL-C test performed and whose risk-stratified fasting LDL-C is at or below the recommended LDL-C goal.",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "LDL-C <100 mg/dL"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "LDL-C <130 mg/dL"
+    }, {
+      "sub_id": "c",
+      "short_subtitle": "LDL-C <160 mg/dL"
+    }],
+    "sub_ids": ["a", "b", "c"]
+  }, {
+    "id": "40280381-3E93-D1AF-013E-AF14FC6B5642",
+    "name": "Preventive Care and Screening:  Screening for High Blood Pressure and Follow-Up Documented",
+    "description": "Percentage of patients aged 18 years and older seen during the reporting period who were screened for high blood pressure AND a recommended follow-up plan is documented based on the current blood pressure (BP) reading as indicated",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-66A79D4A4A23",
+    "name": "Pneumonia Vaccination Status for Older Adults",
+    "description": "Percentage of patients 65 years of age and older who have ever received a pneumococcal vaccine.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-62684F542B66",
+    "name": "Falls: Screening for Future Fall Risk",
+    "description": "Percentage of patients 65 years of age and older who were screened for future fall risk during the measurement period.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-5BFF718B5A57",
+    "name": "Colorectal Cancer Screening",
+    "description": "Percentage of adults 50-75 years of age who had appropriate screening for colorectal cancer.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-669CBC034836",
+    "name": "Cervical Cancer Screening",
+    "description": "Percentage of women 21-64 years of age, who received one or more Pap tests to screen for cervical cancer.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-66A5A5834990",
+    "name": "Breast Cancer Screening",
+    "description": "Percentage of women 40\u201369 years of age who had a mammogram to screen for breast cancer.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3E93-D1AF-013E-A4CAFFEF4684",
+    "name": "Hypertension: Improvement in Blood Pressure",
+    "description": "Percentage of patients aged 18-85 years of age with a diagnosis of hypertension whose blood pressure improved during the measurement period.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3E93-D1AF-013E-B277EE0A5A46",
+    "name": "Preventive Care and Screening: Cholesterol - Fasting Low Density Lipoprotein (LDL-C) Test Performed",
+    "description": "Percentage of patients aged 20 through 79 years whose risk factors have been assessed and a fasting LDL-C test has been performed.",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "High Risk"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "Moderate Risk"
+    }, {
+      "sub_id": "c",
+      "short_subtitle": "Low Risk"
+    }],
+    "sub_ids": ["a", "b", "c"]
+  }],
+  "category": "General Practice Adult"
+}, {
+  "measures": [{
+    "id": "40280381-3D61-56A7-013E-57F49972361A",
+    "name": "Preventive Care and Screening: Influenza Immunization",
+    "description": "Percentage of patients aged 6 months and older seen for a visit between October 1 and March 31 who received an influenza immunization OR who reported previous receipt of an influenza immunization",
+    "subs": [{}],
+    "sub_ids": []
+  }],
+  "category": "General Practice Pediatric"
+}, {
+  "measures": [{
+    "id": "40280381-3D61-56A7-013E-8AB774D0398A",
+    "name": "HIV/AIDS: RNA Control for Patients with HIV",
+    "description": "Percentage of patients aged 13 years and older with a diagnosis of HIV/AIDS, with at least two visits during the measurement year, with at least 90 days between each visit, whose most recent HIV RNA level is <200 copies/mL.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3E93-D1AF-013E-A49F8F204114",
+    "name": "HIV/AIDS: Pneumocystis jiroveci pneumonia (PCP) prophylaxis",
+    "description": "Percentage of patients aged 6 weeks and older with a diagnosis of HIV/AIDS who were prescribed Pneumocystis jiroveci pneumonia (PCP) prophylaxis",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "<=3 Mon. of CD4 <200 cells/mm3"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "At Diagnosis of HIV"
+    }, {
+      "sub_id": "c",
+      "short_subtitle": "<=3 Mon. of CD4 <500 cells/mm3 or CD4 <15%"
+    }],
+    "sub_ids": ["a", "b", "c"]
+  }, {
+    "id": "8A4D92B2-3A00-2A25-013A-407C78A12C20",
+    "name": "HIV/AIDS: Medical Visit",
+    "description": "Percentage of patients, regardless of age, with a diagnosis of HIV/AIDS with at least two medical visits during the measurement year with a minimum of 90 days between each visit",
+    "subs": [{}],
+    "sub_ids": []
+  }],
+  "category": "HIV"
+}, {
+  "measures": [{
+    "id": "40280381-3E93-D1AF-013E-9E3E037E08D6",
+    "name": "ADE Prevention and Monitoring: Warfarin Time in Therapeutic Range",
+    "description": "Average percentage of time in which patients aged 18 and older with atrial fibrillation who are on chronic warfarin therapy have International Normalized Ratio (INR) test results within the therapeutic range (i.e., TTR) during the measurement period.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-62367B892985",
+    "name": "Heart Failure (HF): Angiotensin-Converting Enzyme (ACE) Inhibitor or Angiotensin Receptor Blocker (ARB) Therapy for Left Ventricular Systolic Dysfunction (LVSD)",
+    "description": "Percentage of patients aged 18 years and older with a diagnosis of heart failure (HF) with a current or prior left ventricular ejection fraction (LVEF) < 40% who were prescribed ACE inhibitor or ARB therapy either within a 12 month period when seen in the outpatient setting OR at each hospital discharge",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3F77-75C9-013F-7B481CEA02FD",
+    "name": "Ischemic Vascular Disease (IVD): Complete Lipid Panel and LDL Control",
+    "description": "Percentage of patients 18 years of age and older who were discharged alive for acute myocardial infarction (AMI), coronary artery bypass graft (CABG) or percutaneous coronary interventions (PCI) in the 12 months prior to the measurement period, or who had an active diagnosis of ischemic vascular disease (IVD) during the measurement period, and who had a complete lipid profile performed during the measurement period and whose LDL-C was adequately controlled (< 100 mg/dL).",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "Complete Lipid Profile"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "Most Recent LDL-C <100 mg/dL"
+    }],
+    "sub_ids": ["a", "b"]
+  }, {
+    "id": "8A4D92B2-397A-48D2-0139-C626C0935307",
+    "name": "Ischemic Vascular Disease (IVD): Use of Aspirin or Another Antithrombotic",
+    "description": "Percentage of patients 18 years of age and older who were discharged alive for acute myocardial infarction (AMI), coronary artery bypass graft (CABG) or percutaneous coronary interventions (PCI) in the 12 months prior to the measurement period, or who had an active diagnosis of ischemic vascular disease (IVD) during the measurement period, and who had documentation of use of aspirin or another antithrombotic during the measurement period.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-666032B244F7",
+    "name": "Heart Failure (HF): Beta-Blocker Therapy for Left Ventricular Systolic Dysfunction (LVSD)",
+    "description": "Percentage of patients aged 18 years and older with a diagnosis of heart failure (HF) with a current or prior left ventricular ejection fraction (LVEF) < 40% who were prescribed beta-blocker therapy either within a 12 month period when seen in the outpatient setting OR at each hospital discharge",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-6B885A105724",
+    "name": "Coronary Artery Disease (CAD): Beta-Blocker Therapy\u2014Prior Myocardial Infarction (MI) or Left Ventricular Systolic Dysfunction (LVEF <40%)",
+    "description": "Percentage of patients aged 18 years and older with a diagnosis of coronary artery disease seen within a 12 month period who also have a prior MI or a current or prior LVEF <40% who were prescribed beta-blocker therapy",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "LVSD"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "prior MI"
+    }],
+    "sub_ids": ["a", "b"]
+  }],
+  "category": "Heart"
+}, {
+  "measures": [{
+    "id": "40280381-3D61-56A7-013D-891538FB7B05",
+    "name": "Hearing Screening Prior To Hospital Discharge (EHDI-1a)",
+    "description": "This measure assesses the proportion of births that have been screened for hearing loss before hospital discharge.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D27-5493-013D-4DC3477E6961",
+    "name": "Exclusive Breast Milk Feeding",
+    "description": "PC-05 Exclusive breast milk feeding during the newborn's entire hospitalization\nPC-05a Exclusive breast milk feeding during the newborn\u2019s entire hospitalization considering mother\u2019s choice",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "All"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "Refusals Excluded"
+    }],
+    "sub_ids": ["a", "b"]
+  }, {
+    "id": "40280381-3D27-5493-013D-5C2858EC1933",
+    "name": "Healthy Term Newborn",
+    "description": "Percent of term singleton live births (excluding those with diagnoses originating in the fetal period) who DO NOT have significant complications during birth or the nursery care.",
+    "subs": [{}],
+    "sub_ids": []
+  }],
+  "category": "Newborn"
+}, {
+  "measures": [{
+    "id": "40280381-3D61-56A7-013E-8B8F87F64D63",
+    "name": "Functional Status Assessment for Knee Replacement",
+    "description": "Percentage of patients aged 18 years and older with primary total knee arthroplasty (TKA) who completed  baseline and follow-up (patient-reported) functional status assessments.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013E-8B6A8ACA4A39",
+    "name": "Functional Status Assessment for Hip Replacement",
+    "description": "Percentage of patients aged 18 years and older with primary total hip arthroplasty (THA) who completed baseline and follow-up (patient-reported) functional status assessments",
+    "subs": [{}],
+    "sub_ids": []
+  }],
+  "category": "Orthopedics"
+}, {
+  "measures": [{
+    "id": "40280381-3D61-56A7-013E-7B520EB06BF3",
+    "name": "Pregnant women that had HBsAg testing",
+    "description": "This measure identifies pregnant women who had a HBsAg (hepatitis B) test during their pregnancy.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D27-5493-013D-4DBF0566683C",
+    "name": "Elective Delivery",
+    "description": "Patients with elective vaginal deliveries or elective cesarean sections at >= 37 and < 39 weeks of gestation completed",
+    "subs": [{}],
+    "sub_ids": []
+  }],
+  "category": "Pregnancy"
+}, {
+  "measures": [{
+    "id": "40280381-3D61-56A7-013D-694C97DB4155",
+    "name": "Thrombolytic Therapy",
+    "description": "Acute ischemic stroke patients who arrive at this hospital within 2 hours of time last known well and for whom IV t-PA was initiated at this hospital within 3 hours of time last known well.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D27-5493-013D-380BA9CE367C",
+    "name": "Discharged on Statin Medication",
+    "description": "Ischemic stroke patients with LDL greater than or equal to 100 mg/dL, or LDL not measured, or who were on a lipid-lowering medication prior to hospital arrival are prescribed statin medication at hospital discharge.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013D-61A513F50150",
+    "name": "Anticoagulation Therapy for Atrial Fibrillation/Flutter",
+    "description": "Ischemic stroke patients with atrial fibrillation/flutter who are prescribed anticoagulation therapy at hospital discharge.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013D-8477CE9D700A",
+    "name": "Stroke Education",
+    "description": "Ischemic or hemorrhagic stroke patients or their caregivers who were given educational materials during the hospital stay addressing all of the following: activation of emergency medical system, need for follow-up after discharge, medications prescribed at discharge, risk factors for stroke, and warning signs and symptoms of stroke.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D27-5493-013D-4604D3D76BB8",
+    "name": "Assessed for Rehabilitation",
+    "description": "Ischemic or hemorrhagic stroke patients who were assessed for rehabilitation services.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D27-5493-013D-37E60AC03200",
+    "name": "Antithrombotic Therapy By End of Hospital Day 2",
+    "description": "Ischemic stroke patients administered antithrombotic therapy by the end of hospital day 2.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D27-5493-013D-4DCA4B826AE4",
+    "name": "Discharged on Antithrombotic Therapy",
+    "description": "Ischemic stroke patients prescribed antithrombotic therapy at hospital discharge",
+    "subs": [{}],
+    "sub_ids": []
+  }],
+  "category": "Stroke"
+}, {
+  "measures": [{
+    "id": "40280381-3D27-5493-013D-4B637CFF42A3",
+    "name": "Prophylactic Antibiotic Received Within One Hour Prior to Surgical Incision",
+    "description": "Surgical patients with prophylactic antibiotics initiated within one hour prior to surgical incision. Patients who received vancomycin or a fluoroquinolone for prophylactic antibiotics should have the antibiotics initiated within two hours prior to surgical incision. Due to the longer infusion time required for vancomycin or a fluoroquinolone, it is acceptable to start these antibiotics within two hours prior to incision time.",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "CABG procedures"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "Other cardiac surgery"
+    }, {
+      "sub_id": "c",
+      "short_subtitle": "Hip arthroplasty"
+    }, {
+      "sub_id": "d",
+      "short_subtitle": "Knee arthroplasty"
+    }, {
+      "sub_id": "e",
+      "short_subtitle": "Colon surgery"
+    }, {
+      "sub_id": "f",
+      "short_subtitle": "Abdominal hysterectomy"
+    }, {
+      "sub_id": "g",
+      "short_subtitle": "Vaginal hysterectomy"
+    }, {
+      "sub_id": "h",
+      "short_subtitle": "Vascular surgery"
+    }],
+    "sub_ids": ["a", "b", "c", "d", "e", "f", "g", "h"]
+  }, {
+    "id": "40280381-3D27-5493-013D-4B6C7D1E455D",
+    "name": "Urinary catheter removed on Postoperative Day 1 (POD 1) or Postoperative Day 2 (POD 2) with day of surgery being day zero",
+    "description": "Surgical patients with urinary catheter removed on Postoperative Day 1 or Postoperative Day 2 with day of surgery being day zero.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D61-56A7-013D-C5EF46C917F4",
+    "name": "Prophylactic Antibiotic Selection for Surgical Patients",
+    "description": "Surgical patients who received prophylactic antibiotics consistent with current guidelines (specific to each type of surgical procedure).",
+    "subs": [{
+      "sub_id": "a",
+      "short_subtitle": "CABG procedures"
+    }, {
+      "sub_id": "b",
+      "short_subtitle": "Other cardiac surgery"
+    }, {
+      "sub_id": "c",
+      "short_subtitle": "Hip arthroplasty"
+    }, {
+      "sub_id": "d",
+      "short_subtitle": "Knee arthroplasty"
+    }, {
+      "sub_id": "e",
+      "short_subtitle": "Colon surgery"
+    }, {
+      "sub_id": "f",
+      "short_subtitle": "Abdominal hysterectomy"
+    }, {
+      "sub_id": "g",
+      "short_subtitle": "Vaginal hysterectomy"
+    }, {
+      "sub_id": "h",
+      "short_subtitle": "Vascular surgery"
+    }],
+    "sub_ids": ["a", "b", "c", "d", "e", "f", "g", "h"]
+  }],
+  "category": "Surgical Care Improvement Project"
+}, {
+  "measures": [{
+    "id": "40280381-3CD1-4954-013D-12B735B91C26",
+    "name": "Venous Thromboembolism Patients Receiving Unfractionated Heparin with Dosages/Platelet Count Monitoring by Protocol or Nomogram",
+    "description": "This measure assesses the number of patients diagnosed with confirmed VTE who received intravenous (IV) UFH therapy dosages AND had their platelet counts monitored using defined parameters such as a nomogram or protocol.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D27-5493-013D-477B9CFB13AF",
+    "name": "Incidence of Potentially-Preventable Venous Thromboembolism",
+    "description": "This measure assesses the number of patients diagnosed with confirmed VTE during hospitalization (not present at admission) who did not receive VTE prophylaxis between hospital admission and the day before the VTE diagnostic testing order date.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D27-5493-013D-4BD0BAC05A44",
+    "name": "Intensive Care Unit Venous Thromboembolism Prophylaxis",
+    "description": "This measure assesses the number of patients who received VTE prophylaxis or have documentation why no VTE prophylaxis was given the day of or the day after the initial admission (or transfer) to the Intensive Care Unit (ICU) or surgery end date for surgeries that start the day of or the day after ICU admission (or transfer).",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D27-5493-013D-460F43C16CB7",
+    "name": "Venous Thromboembolism Discharge Instructions",
+    "description": "This measure assesses the number of patients diagnosed with confirmed VTE that are discharged to home, home care, court/law enforcement or home on hospice care on warfarin with written discharge instructions that address all four criteria: compliance issues, dietary advice, follow-up monitoring, and information about the potential for adverse drug reactions/interactions.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3D27-5493-013D-4BE1467A5C5A",
+    "name": "Venous Thromboembolism Prophylaxis",
+    "description": "This measure assesses the number of patients who received VTE prophylaxis or have documentation why no VTE prophylaxis was given the day of or the day after hospital admission or surgery end date for surgeries that start the day of or the day after hospital admission.",
+    "subs": [{}],
+    "sub_ids": []
+  }, {
+    "id": "40280381-3CD1-4954-013C-F32C3AA00C8F",
+    "name": "Venous Thromboembolism Patients with Anticoagulation Overlap Therapy",
+    "description": "This measure assesses the number of patients diagnosed with confirmed VTE who received an overlap of parenteral (intravenous [IV] or subcutaneous [subcu]) anticoagulation and warfarin therapy. For patients who received less than five days of overlap therapy, they should be discharged on both medications or have a reason for discontinuation of overlap therapy. Overlap therapy should be administered for at least five days with an international normalized ratio (INR) greater than or equal to 2 prior to discontinuation of the parenteral anticoagulation therapy, discharged on both medications or have a reason for discontinuation of overlap therapy.",
+    "subs": [{}],
+    "sub_ids": []
+  }],
+  "category": "Venous Thromboembolism"
+}]
