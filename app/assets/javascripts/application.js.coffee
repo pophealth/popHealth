@@ -7,7 +7,3 @@
 #= require ./archive/backbone/pop_health
 #= require_tree ./tmp
 #= require_self
-
-
-# require ['thorax'], (Thorax) ->
-#   console?.log 'requirejs successfully loads this code.'
