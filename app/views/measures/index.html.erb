@@ -38,19 +38,10 @@
           </div>
         </div>
       <% end %>
-    </div>
+    </div>  
+           
     
-    <% if @selected_provider %>
-      <ul class="filterItemList">
-        <li>
-            <label class="checkbox">
-                <%= check_box_tag :measure_id, provider.npi, is_selected?(measure['id'], current_user.selected_measures), {id: nil, 'data-filter-type' => 'provider', 'data-filter-value' => @selected_provider.id} %>
-                <%= @selected_provider.full_name %>
-            </label>
-        </li>
-      </ul>
-    </div>
-    <% elsif can?(:manage, :providers)%>
+    <% if can?(:manage, :providers)%>
       <%= render partial: 'provider_filters' %>
     <% end %>
 

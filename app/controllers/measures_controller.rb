@@ -4,9 +4,14 @@ class MeasuresController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :validate_authorization!
-  before_filter :set_up_environment, :setup_filters
+  before_filter :filter_order
   after_filter :hash_document, :only => :measure_report
   
+  def filter_order
+    setup_filters
+    set_up_environment
+  end
+
   add_breadcrumb_dynamic([:selected_provider], only: %w{index show patients}) {|data| provider = data[:selected_provider]; {title: (provider ? provider.full_name : nil), url: "#{Rails.configuration.relative_url_root}/?npi=#{(provider) ? provider.npi : nil}"}}
   add_breadcrumb_dynamic([:definition], only: %w{providers}) do|data| 
     measure = data[:definition];
@@ -285,6 +290,15 @@ class MeasuresController < ApplicationController
   end
   
   def set_up_environment
+    provider_npi = params[:npi]
+    if @current_user.admin? && provider_npi
+      @patient_count = Provider.where(:npi => "#{provider_npi}").first.records(@effective_date).count
+    elsif @current_user.admin?
+      @patient_count = Record.count
+    elsif @selected_provider
+      @patient_count = @selected_provider.records(@effective_date).count
+    end
+    
     @patient_count = (@selected_provider) ? @selected_provider.records(@effective_date).count : Record.count
     if params[:id]
       measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
@@ -335,12 +349,23 @@ class MeasuresController < ApplicationController
   
   def setup_filters
     
-    if !can?(:read, :providers) || params[:npi]
-      npi = params[:npi] ? params[:npi] : current_user.npi
-      @selected_provider = Provider.where(conditions: {npi: npi}).first
+#    if !can?(:read, :providers) || params[:npi]
+#      npi = params[:npi] ? params[:npi] : current_user.npi
+#      @selected_provider = Provider.where(conditions: {npi: npi}).first
+#      authorize! :read, @selected_provider
+#    end
+    
+    user_npi = current_user.npi
+    measures_npi = params[:npi]
+
+    if (measures_npi) 
+      @selected_provider = Provider.where(:npi => "#{measures_npi}").first
+      authorize! :read, @selected_provider
+    elsif (user_npi)
+      @selected_provider = Provider.where(:npi => "#{user_npi}").first
       authorize! :read, @selected_provider
     end
-    
+
     if request.xhr?
       build_filters
     else
