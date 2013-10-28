@@ -1,4 +1,4 @@
-  module API
+module Api
   class QueriesController  < ApplicationController
     include PaginationHelper
     skip_authorization_check :only=> :create

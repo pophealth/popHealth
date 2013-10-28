@@ -1,3 +1,4 @@
 <script>
   var categories = <%= @categories.to_json.html_safe %>;
+  var currentUser = <%= current_user.to_json(:methods => :selected_measures).html_safe %>;
 </script>

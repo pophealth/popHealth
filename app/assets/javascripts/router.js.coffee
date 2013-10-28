@@ -5,13 +5,17 @@ class PopHealthRouter extends Backbone.Router
     @view = new Thorax.LayoutView el: '#container'
 
   routes:
-    '':                       'dashboard'
-    'measures/:id(/:sub_id)': 'measure'
+    '':                                 'dashboard'
+    'measures/:id(/:sub_id)':           'measure'
+    'measures/:id(/:sub_id)/patients':  'patientsForMeasure'
 
   dashboard: ->
     @view.setView new Thorax.Views.Dashboard collection: @categories
 
   measure: (id, subId) ->
+    # @view.setView yourView
+
+  patientsForMeasure: (id, subId) ->
     # @view.setView yourView
 
 new PopHealthRouter()

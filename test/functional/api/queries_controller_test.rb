@@ -1,6 +1,6 @@
 require 'test_helper'
 include Devise::TestHelpers
-  module API
+module Api
   class QueriesControllerTest < ActionController::TestCase
     
     setup do
