@@ -11,6 +11,25 @@
 @border-radius-base: 0px;
 @border-radius-large: 0px;
 
+// Custom styles on HTML tags that are part of the theme
+
+h1 {
+  font-weight: 200;
+  font-size: 3em;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 1.5em;  
+  text-transform: uppercase;
+}
+
+h3 {
+  font-weight: 100;
+  font-size: 1.8em;
+  text-transform: uppercase;
+}
+
 // Additions to Bootstrap classes
 
 .dropdown-submenu{position:relative;}
@@ -22,8 +41,8 @@
 
 .navbar {
   .navbar-header {
-    .make-md-column(3);
-    .make-lg-column(3);
+    .make-xs-column(3);
+    margin-top: 4px;
   }
 }
 
@@ -34,12 +53,12 @@
     font-weight: 500;
     .row;
     margin: 0;
-    > a {
-      .make-md-column(10);
+    a {
+      .make-xs-column(10);
       padding: 0;
     }
-    > i {
-      .make-md-column(2);
+    i {
+      .make-xs-column(2);
       padding: 0;
       width: 16px !important;
     }
@@ -50,9 +69,10 @@
 }
 
 .popover {
-  font-weight: normal;
-  font-size: 14px;
   box-shadow: none;
+  .popover-content {  // inheriting font-weight from measure-title for some reason...
+    font-size: 14px;
+  }
 }
 
 // Custom Semantic Classes
@@ -81,10 +101,10 @@
   .category-title {
     .make-xs-column(6);
   }
-  .category-header-percent {
+  .category-percent {
     .make-xs-column(2);
   }
-  .category-header-fraction {
+  .category-fraction {
     .make-xs-column(2);
   }
 }

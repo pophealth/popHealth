@@ -1,75 +1,57 @@
 @import "bootstrap3";
+
 // Custom Variables
-@title-color: @gray-lighter;
 @title-line-height: 1.5;
 @title-bar-height: 3em;
 @listing-line-height: 1.5;
 @circle-bkg-color: #fff;
-@circle-border: @gray-lighter;
-@category: @gray-lighter;
+@title-circle-radius: 21px;
+@circle-listing-radius: 35px;
 
 // Custom classes for semantic mark-up
+// font-size -> 1em = 14px
 
-.profile {
-  margin-top: 14px;
-  font-size: 14px;
+.nav {
   font-weight: 500;
+  
+  .location {
+    margin-top: 4px
+  }
+  .profile {
+    margin-top: 14px;
+  }
 }
 
-.logo img {
-  padding-top: 4px;
-}
-
-h1 {
-  font-weight: lighter;
-  font-size: 3em;
-}
-
-h3 {
-  font-weight: 100;
-  font-size: 1.8em;
+.export-btn {
+  width: 110px;
+  text-align: center;
+  margin-top: 24px;
   text-transform: uppercase;
 }
 
-.main {
-  .export-btn {
-    width: 110px;
-    margin-right: 5px;
-    text-align: center;
-    margin-top: 24px;
-    text-transform: uppercase;
-  }
-}
-
 .category {
-  background-color: @category;
-  > * {
-    height: 100%;
-    line-height: 2em;
-  }
+  background-color: @gray-lighter;
+  margin-top: 1em;
   .category-title {
+    line-height: 2em;
     margin-bottom: 0;
     margin-top: 0;
-    font-size: 1.5em;
-    font-weight: bold;
-    text-transform: uppercase;
-
   }
-  .category-header-percent {
+  .category-percent {
     .title-circle {
-      height: 42px;
-      width: 42px;
-      border-radius: 21px;
+      border-radius: @title-circle-radius;
+      height: @title-circle-radius * 2;
+      width: @title-circle-radius * 2;
       background-color: @circle-bkg-color;
       margin: auto;
       padding-top: 5px;
       text-align: center;
-      font-size: 24px;
+      font-size: 1.7em;
     }
   }
-  .category-header-fraction {
+  .category-fraction {
     font-weight: 800;  
-    font-size: 14px;
+    font-size: 1em;
     line-height: 1.4em;
   }
 }
@@ -78,7 +60,7 @@ h3 {
   margin-top: 1em;
   .measure-title {
     padding-top: 10px;
-    font-size: 18px;
+    font-size: 18px;     // Has to be in pixels otherwise popover inherits font-size
     font-weight: 500;
   }
   .measure-subtitle {
@@ -88,27 +70,27 @@ h3 {
   .percent-listing {
     height: 78px;
     .circle-listing {
-      height: 75px;
-      width: 75px;
-      border-radius: 35px;
+      border-radius: @circle-listing-radius;
+      height: @circle-listing-radius * 2 + 5px;
+      width: @circle-listing-radius * 2 + 5px;
       background-color: @circle-bkg-color;
-      border: 2px solid @circle-border;
+      border: 2px solid @gray-lighter;
       margin: 0 auto;
-      padding-top: 12px;
+      padding-top: 14px;
       text-align: center;
       vertical-align: middle;
       font-weight: 200;
-      font-size: 28px;     
+      font-size: 2em;     
     }
   }
   .fraction-listing {
     padding-top: 10px;
     text-align: center;
     height: 75px;
-    font-size: 18px;
-    > * {
-      width: 40px;
-      font-weight: 500;
+    font-size: 1.3em;
+    font-weight: 500;
+    .numerator, .denominator {
+      width: 40px;      
     }
     .denominator{
       border-top: 1px solid black;

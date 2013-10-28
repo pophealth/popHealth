@@ -43,19 +43,20 @@
   {{#collection selectedCategories}}
     <div class="category" style="">
       <h2 class="category-title">{{category}}</h2>
-      <div class="category-header-percent">
+      <div class="category-percent">
         <div class="title-circle">%</div>
       </div>
-      <div class="category-header-fraction">
+      <div class="category-fraction">
         <div>Numerator/</div>
         <div>Denominator</div>
       </div>
     </div>
+  </div>
 
     {{#collection measures}}
     {{!-- <%npi_param = (@selected_provider ? "?npi=#{@selected_provider.npi}" : '')%> --}}
       {{#collection submeasures}}
-        <div class="measure" style="">
+        <div class="measure" style="">  
           <div class="measure-title" data-measure-sub="{{sub_id}}">
             {{#if isPrimary}}
               <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}" data-placement="bottom" data-content="{{description}}" rel="popover">{{name}}</a>
@@ -64,7 +65,6 @@
 {{!--         <% if sub['sub_id'].nil? || sub['sub_id'] == 'a' %>
                 
                   <%= link_to measure_TEMP['name'], measure_url(measure_TEMP['id'], sub['sub_id'])+npi_param%>
-                </div>
               <% end %>
  --}}
           </div>
