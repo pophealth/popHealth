@@ -9,7 +9,17 @@ class Provider
   scope :all_except, ->(prov) { where(:_id.ne => prov.id) }
   scope :selected, ->(provider_ids) { any_in(:_id => provider_ids)}
   scope :selected_or_all, ->(provider_ids) { provider_ids.nil? || provider_ids.empty? ? Provider.all : Provider.selected(provider_ids) }
-   
+  
+  
+	# added from bstrezze
+  def self.userfilter(current_user)
+    if current_user.admin?
+      Provider.all
+    else
+      Provider.any_in(:team_id => current_user.teams)
+    end
+  end 
+
   belongs_to :team
   
   Specialties = {"100000000X" => "Behavioral Health and Social Service Providers",
@@ -52,6 +62,7 @@ class Provider
     super(options)
   end
   
+  
   def self.merge_or_build(attributes)
     if attributes[:npi]
       provider = Provider.by_npi(attributes[:npi]).first
@@ -64,6 +75,17 @@ class Provider
     end
     
     provider
+  end
+  
+	# added from bstrezze
+  def self.generateUserProviderIDList(current_user)
+    results = Array.new
+    
+    Provider.userfilter(current_user).each do |currentProvider|
+      results << currentProvider._id      
+    end
+    
+    return results
   end
   
   def merge_provider(provider)

@@ -2,6 +2,11 @@ PopHealth::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 
+	# added by ssiddiqui - enable sign out
+  devise_for :users do 
+  	get '/users/sign_out' => 'devise/sessions#destroy' 
+  end
+  
   get "admin/users"
   post "admin/promote"
   post "admin/demote"
@@ -12,9 +17,18 @@ PopHealth::Application.routes.draw do
   put "admin/upload_patients"
   delete "admin/remove_patients"
   delete "admin/remove_caches"
-  delete "admin/remove_providers"
+	delete "admin/remove_providers" #added for button, ssiddiqui
+	
+	delete "measures/remove_selections" #added for button, ssiddiqui
+	delete "logs/delete_logs"
+	
+	match "admin/user_profile/:id", :to => 'admin#user_profile', :via=>[:get, :post]
+	
+	match 'admin/edit_teams/:id', :to => 'admin#edit_teams', :via => [ :get, :post ] # added from bstrezze
+	match 'admin/delete_user/:id', :to => 'admin#delete_user', :via => [ :get, :post, :delete] # added by ssiddiqui
 
   get "logs/index"
+  post "logs/index" #added by ssiddiqui for log filters
   
   match 'measures', :to => 'measures#index', :as => :dashboard, :via => :get
   match "measure/:id(/:sub_id)/providers", :to => "measures#providers", :via => :get
@@ -28,7 +42,6 @@ PopHealth::Application.routes.draw do
   match 'measures/measure_report', :to=>'measures#measure_report', :as => :measure_report, :via=> :get
   match 'measures/patient_list/:id(/:sub_id)', :to=>'measures#patient_list', :as => :patient_list, :via=> :get
   match 'measures/period', :to=>'measures#period', :as => :period, :via=> :post
-  match 'measures/qrda_cat3', :to=>'measures#qrda_cat3'
   
   match 'provider/:npi', :to => "measures#index", :as => :provider_dashboard, :via => :get
   
@@ -37,8 +50,8 @@ PopHealth::Application.routes.draw do
   match 'patients', :to => 'patients#index', :via => :get
   match 'patients/show/:id', :to => 'patients#show'
   match 'patients/toggle_excluded/:id/:measure_id(/:sub_id)', :to => 'patients#toggle_excluded', :via => :post
-
-  root :to => 'measures#index'
+  
+	root :to => 'measures#index'
   
   resources :measures do
     member { get :providers }
@@ -51,7 +64,7 @@ PopHealth::Application.routes.draw do
         put :update_all
       end
     end
-    
+   
     member do
       get :merge_list
       put :merge

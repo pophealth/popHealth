@@ -11,6 +11,7 @@ namespace :admin do
                      :agree_license =>  true,
                      :admin =>          true,
                      :approved =>       true)
+    admin_account.grant_admin                
     admin_account.save!
   end
 end

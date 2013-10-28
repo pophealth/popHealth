@@ -23,10 +23,10 @@ class RecordImporter
         
         result = RecordImporter.import(File.new(file).read, provider_map)
         
-        if (result[:status] == 'success') 
+        if (result[:status] == 'success')
           record = result[:record]
           record.save
-        else 
+        else
           assert result[:message]
         end
         
@@ -49,7 +49,7 @@ class RecordImporter
   
   def self.import(xml_data, provider_map = {})
     doc = Nokogiri::XML(xml_data)
-    
+    #doc.root.add_namespace_definition('cda', 'urn:hl7-org:v3')
     providers = []
     root_element_name = doc.root.name
     
@@ -67,11 +67,12 @@ class RecordImporter
         return {status: 'error', message: "Document templateId does not identify it as a C32 or CCDA", status_code: 400}
       end
       
-      begin
+     	begin
         providers = HealthDataStandards::Import::CDA::ProviderImporter.instance.extract_providers(doc)
       rescue Exception => e
         STDERR.puts "error extracting providers"
       end
+
     # Disabling this until HDS is updated or QRDA Importer is done @SS
     # elsif root_element_name == 'ContinuityOfCareRecord'
     #   doc.root.add_namespace_definition('ccr', 'urn:astm-org:CCR')
