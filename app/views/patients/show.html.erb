@@ -23,13 +23,13 @@
 <% end %>
 
 <div id="pageContent" class='row-fluid'>
-  <div id="providerReports" class="span2">
-    <div id="outlierList" class="row-fluid groupList">
-      <h5>Outliers</h5>
+	<div id="providerReports" class="span2">
+		<div id="outlierList" class="row-fluid groupList">
+			<h5>Outliers</h5>
       <div style='text-align:center'><%= image_tag 'loading_bar.gif' %></div>
     </div>
-    <div id="exclusionList" class="groupList">
-      <h5>Manual Exclusions</h5>
+		<div id="exclusionList" class="groupList">
+			<h5>Manual Exclusions</h5>
       <div style='text-align:center'><%= image_tag 'loading_bar.gif' %></div>
     </div>
   </div>
@@ -78,7 +78,7 @@
               <%= render :partial => 'section', :object => @patient.conditions, :locals => {:title => 'Conditions'} %>
       </div>
       <div class="span6">
-                      <%= render :partial => 'section', :object => @patient.procedures, :locals => {:title => 'Procedures'} %>
+              <%= render :partial => 'section', :object => @patient.procedures, :locals => {:title => 'Procedures'} %>
               <%= render :partial => 'section', :object => @patient.medications, :locals => {:title => 'Medications'} %>
               <%= render :partial => 'section', :object => @patient.social_history, :locals => {:title => 'Social History'} %>
               <%= render :partial => 'section', :object => @patient.immunizations, :locals => {:title => 'Immunizations'} %>

@@ -5,9 +5,11 @@
   calculateSingleMeasure: (result) ->
     row = Dashboard.measureRow(result.measure_id, result.sub_id)
     row.fadeTo("fast", 1.0)
-    Render.percent row.find("div.percentage"), result
-    # Render.barChart row.find("div.tableBar"), result
+    Render.fullPercent row.find("div.fullPercentage"), result
+    Render.percent row.find("div.userPercentage"), result # added by ssiddiqui
+    Render.barChart row.find("div.measureChart"), result # added by ssiddiqui
     Render.fraction row.find("div.fraction"), result
+		
   measureRow: (measure, sub_id) ->
     selector = ".measure[data-measure='#{measure}']"
     selector += "[data-measure-sub='#{sub_id || ''}']" if sub_id?
@@ -68,6 +70,7 @@
         $(@).siblings("div").html()
   
   exportMenuHasMouse: false
+  
   exportReport: ->
     position = $(this).offset()
     dialog = $( "#generate-menu" ).dialog({ position: [position.left+5, (position.top + $(this).height() + 10 - $(window).scrollTop())], resizable: false, dialogClass: 'dialog-menuwindow', minWidth: false, minHeight: false, width: 170 }).css('padding', '2px');

@@ -1,3 +1,13 @@
-<div id="content">
-  <%= render :partial => "profile"%>
+<div id="content" style="margin-left:40px; margin-top:20px">  
+	<h2><%= @provider.full_name %></h2>
+	
+  <% if current_user.admin? %>
+		<%= render partial: 'edit_profile', locals: {provider: Provider.new} %> 
+	<% else %>
+	  <%= render partial: 'show_profile', locals: {provider: Provider.new} %>
+	<% end %>
+	<br>
+	<%= link_to "Return to Providers Page", "/providers", class: "btn btn-success" %>
 </div>
+
+

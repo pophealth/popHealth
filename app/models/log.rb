@@ -7,5 +7,4 @@ class Log
   field :description, :type => String
   field :medical_record_number, :type => String
   field :checksum, :type => String
-  
 end

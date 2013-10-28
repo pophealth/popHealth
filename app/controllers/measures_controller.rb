@@ -7,34 +7,35 @@ class MeasuresController < ApplicationController
   before_filter :filter_order
   after_filter :hash_document, :only => :measure_report
   
+  # fixed by ssiddiqui. order important to establish selected_provider first
   def filter_order
-    setup_filters
-    set_up_environment
+  	setup_filters
+  	set_up_environment 
   end
-
-  add_breadcrumb_dynamic([:selected_provider], only: %w{index show patients}) {|data| provider = data[:selected_provider]; {title: (provider ? provider.full_name : nil), url: "#{Rails.configuration.relative_url_root}/?npi=#{(provider) ? provider.npi : nil}"}}
-  add_breadcrumb_dynamic([:definition], only: %w{providers}) do|data| 
-    measure = data[:definition];
-    if measure
-      {title: "#{measure['endorser']}#{measure['id']}" + (measure['sub_id'] ? "#{measure['sub_id']}" : ''), url: "#{Rails.configuration.relative_url_root}/measure/#{measure['id']}"+(measure['subid'] ? "/#{measure['sub_id']}" : '')+"/providers"}
-    else
-      {}
-    end
-  end
+  
+#  add_breadcrumb_dynamic([:selected_provider], only: %w{index show patients}) {|data| provider = data[:selected_provider]; {title: (provider ? provider.full_name : nil), url: "#{Rails.configuration.relative_url_root}/?npi=#{(provider) ? provider.npi : nil}"}}
+#  add_breadcrumb_dynamic([:definition], only: %w{providers}) do|data| 
+#    measure = data[:definition];
+#    if measure
+#      {title: "#{measure['endorser']}#{measure['id']}" + (measure['sub_id'] ? "#{measure['sub_id']}" : ''), url: "#{Rails.configuration.relative_url_root}/measure/#{measure['id']}"+(measure['subid'] ? "/#{measure['sub_id']}" : '')+"/providers"}
+#    else
+#      {}
+#    end
+#  end
 
   add_breadcrumb_dynamic([:definition, :selected_provider], only: %w{show patients})  do |data| 
     measure = data[:definition]; provider = data[:selected_provider]
     {title: "#{measure['endorser']}#{measure['id']}" + (measure['sub_id'] ? "#{measure['sub_id']}" : ''), 
      url: "#{Rails.configuration.relative_url_root}/measure/#{measure['id']}"+(measure['sub_id'] ? "/#{measure['sub_id']}" : '')+(provider ? "?npi=#{provider.npi}" : "/providers")}
   end
-
-  add_breadcrumb 'parameters', '', only: %w{show}
-  add_breadcrumb 'patients', '', only: %w{patients}
+  add_breadcrumb 'Parameters', '', only: %w{show}
+  add_breadcrumb 'Patients', '', only: %w{patients}
   
   def index
+	#	@categories = Measure.categories
     @categories = HealthDataStandards::CQM::Measure.categories
   end
-  
+
   def show
     respond_to do |wants|
       wants.html do
@@ -58,26 +59,30 @@ class MeasuresController < ApplicationController
   def definition
     render :json => @definition
   end
-
+  
   def result
-    uuid = generate_report(params[:uuid])    
+    uuid = generate_report(params[:uuid])
     if (@result)
       render :json => @result
     else
       render :json => @quality_report.status(uuid)
-    end
-  end
-
+    end  
+  end  
+  
   def providers    
     authorize! :manage, :providers
+    
     respond_to do |wants|
-      wants.html {}   
+      wants.html {}
       wants.js do    
-        @providers = Provider.page(params[:page]).per(20).alphabetical
-        @providers = @providers.any_in(team_id: params[:team]) if params[:team]     
-      end   
-      wants.json do       
-        providerIds = params[:provider].blank? ?  Provider.all.map { |pv| pv.id.to_s } : @filters.delete('providers') 
+      #  @providers = Provider.page(params[:page]).per(20).userfilter(current_user).alphabetical
+       	@providers = Provider.userfilter(current_user) # added by ssiddiqui
+        @providers = @providers.any_in(team_id: params[:team]) if params[:team]
+       	 
+      end
+      
+      wants.json do
+        providerIds = params[:provider].blank? ?  Provider.all.map { |pv| pv.id.to_s } : @filters.delete('providers')
         render_measure_response(providerIds, params[:jobs]) do |pvId|
           filters = @filters ? @filters.merge('providers' => [pvId]) : {'providers' => [pvId]}
           { 
@@ -94,6 +99,12 @@ class MeasuresController < ApplicationController
     render :text => 'Removed'
   end
   
+	# ADDED FOR CLEAR SELECTION BUTTON - ssiddiqui
+	def remove_selections
+    SelectedMeasure.remove_all(current_user.username)
+    redirect_to(:back)
+  end
+
   def select
     SelectedMeasure.add_measure(current_user.username, params[:id])
     render :text => 'Select'
@@ -104,6 +115,7 @@ class MeasuresController < ApplicationController
     generate_report
   end
 
+  # This is used to populate the patient list for a selected measure
   def measure_patients
 
     @type = params[:type] || 'DENOM'
@@ -126,7 +138,8 @@ class MeasuresController < ApplicationController
       result = PatientCache.by_provider(@selected_provider, @effective_date).where(query);
     else
       authorize! :manage, :providers
-      result = PatientCache.all.where(query)
+      # added from bstrezze
+      result = PatientCache.provider_in(Provider.generateUserProviderIDList(current_user)).where(query)
     end
     @total = result.count
     @records = result.order_by(["value.#{sort}", sort_order]).skip(@skip).limit(@limit);
@@ -145,6 +158,7 @@ class MeasuresController < ApplicationController
     end
   end
 
+
   # excel patient list
   def patient_list
     measure_id = params[:id] 
@@ -156,7 +170,8 @@ class MeasuresController < ApplicationController
       result = PatientCache.by_provider(@selected_provider, @effective_date).where(query);
     else
       authorize! :manage, :providers
-      result = PatientCache.all.where(query)
+			# added from bstrezze
+      result = PatientCache.provider_in(Provider.generateUserProviderIDList(current_user)).where(query)
     end
     @records = result.order_by(["value.medical_record_id", 'desc']);
     
@@ -178,6 +193,7 @@ class MeasuresController < ApplicationController
     end
   end
 
+  # added from latest version of popHealth on github
   def qrda_cat3
     Atna.log(current_user.username, :query)
     selected_measures = current_user.selected_measures
@@ -289,17 +305,21 @@ class MeasuresController < ApplicationController
     }
   end
   
+  
   def set_up_environment
+    # added from bstrezze, edited by ssiddiqui
     provider_npi = params[:npi]
-    if @current_user.admin? && provider_npi
-      @patient_count = Provider.where(:npi => "#{provider_npi}").first.records(@effective_date).count
-    elsif @current_user.admin?
-      @patient_count = Record.count
+		if @current_user.admin? && provider_npi
+    	@patient_count = Provider.where(:npi => "#{provider_npi}").first.records(@effective_date).count
+    elsif @current_user.admin?		
+			@patient_count = Record.all.count
     elsif @selected_provider
       @patient_count = @selected_provider.records(@effective_date).count
+    else
+    	# for teams
+      @patient_count = Record.provider_in(Provider.generateUserProviderIDList(current_user)).count
     end
-    
-    @patient_count = (@selected_provider) ? @selected_provider.records(@effective_date).count : Record.count
+
     if params[:id]
       measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
       render(:file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404) unless measure
@@ -331,11 +351,10 @@ class MeasuresController < ApplicationController
       else
         measure_id = report.instance_variable_get(:@measure_id)
         sub_id = report.instance_variable_get(:@sub_id)
-        
         key = "#{measure_id}#{sub_id}"
         uuid = (uuids.nil? || uuids[key].nil?) ? report.calculate : uuids[key]
-        filters = report.instance_variable_get(:@parameter_values)['filters']
-        job = {uuid: uuid, status: report.status(uuid)['status'], measure_id: measure_id, sub_id: sub_id, filters: filters}
+        filters = report.instance_variable_get(:@parameter_values)['filters']        
+				job = {uuid: uuid, status: report.status(uuid)['status'], measure_id: measure_id, sub_id: sub_id, filters: filters}
 
         memo[:jobs][key] = job
         memo[:result] << {job: job}
@@ -354,31 +373,39 @@ class MeasuresController < ApplicationController
 #      @selected_provider = Provider.where(conditions: {npi: npi}).first
 #      authorize! :read, @selected_provider
 #    end
+   	
+   	# fixed by ssiddiqui
+		user_npi = current_user.npi
+		measures_npi = params[:npi]
+#		legit_provider = Provider.where(:npi => "#{npi}").count 
+		
+		if(measures_npi)
+			@selected_provider = Provider.where(:npi => "#{measures_npi}").first
+			authorize! :read, @selected_provider
+		elsif(user_npi != nil)			
+			@selected_provider = Provider.where(:npi => "#{user_npi}").first
+			authorize! :read, @selected_provider
+		end
     
-    user_npi = current_user.npi
-    measures_npi = params[:npi]
-
-    if (measures_npi) 
-      @selected_provider = Provider.where(:npi => "#{measures_npi}").first
-      authorize! :read, @selected_provider
-    elsif (user_npi)
-      @selected_provider = Provider.where(:npi => "#{user_npi}").first
-      authorize! :read, @selected_provider
-    end
-
     if request.xhr?
+      
       build_filters
+      
     else
+
       if can?(:read, :providers)
-        @providers = Provider.page(@page).per(20).alphabetical
+				# updated from bstrezze
+        #@providers = Provider.page(@page).per(20).userfilter(current_user).alphabetical
+				@providers = Provider.page(@page).userfilter(current_user) # added by ssiddiqui        
+				@providers_for_filter = Provider.userfilter(current_user).alphabetical
         if APP_CONFIG['disable_provider_filters']
-          @teams = Team.alphabetical
+          @teams = Team.userfilter(current_user).alphabetical
           @page = params[:page]
-        else
-          other = Team.new(name: "Other")
+        else				
+					other = Team.new(name: "Other")
           @providers_by_team = @providers.group_by { |pv| pv.team || other }
           @providers_by_team[other] ||= []
-          # @providers_by_team['Other'] << OpenStruct.new(full_name: 'No Providers', id: 'null')
+					@providers_for_filter_by_team = @providers_for_filter.group_by { |pv| pv.team.try(:name) || "Other" }
         end
       end
 
@@ -388,6 +415,7 @@ class MeasuresController < ApplicationController
       @languages = Language.ordered
       
     end
+
   end
   
   def build_filters
@@ -399,7 +427,9 @@ class MeasuresController < ApplicationController
       providers = Provider.any_in(team_id: params[:team]).map { |pv| pv.id.to_s }
       
     else
-      providers = nil
+      # Changed to, with setting the filters, to filter based on the user
+      # providers = nil
+      providers = Provider.userfilter(current_user).map { |pv| pv.id.to_s } # added from bstrezze
     end
 
     races = params[:race] ? Race.selected(params[:race]).all : nil
@@ -425,7 +455,7 @@ class MeasuresController < ApplicationController
   end
 
   def validate_authorization!
-    authorize! :read, HealthDataStandards::CQM::Measure
+    authorize! :read, HealthDataStandards::CQM::Measure #Measure
   end
   
 end

@@ -1,54 +1,59 @@
-<%= form_for provider, {html: {id: "providerForm", class: "form-horizontal"}, remote: true} do |f| %>
-<h2>
-<% if provider.new_record? %>
-  new
-<% else %>
-  edit
-<% end %>
-provider:
-</h2>
-<div class='control-group form-inline'>
-    <label class="control-label">
-      Name: 
-    </label>
-    <div class="controls">
-        <%= f.text_field :title, 'class' => "input-mini", placeholder: "Title" %>
-        <%= f.text_field :given_name, 'class' => "input-small", placeholder: "First Name" %>
-        <%= f.text_field :family_name, 'class' => "input-small", placeholder: "Last Name" %>
-    </div>
-</div>
-<div class="control-group">  
-  <%= f.label :npi, "NPI:", 'class' => 'control-label' %>
-  <div class="controls">
-    <%= f.text_field :npi, class: "input-small"%>
-  </div>
-</div>
-<div class="control-group">  
-  <%= f.label :tin, "Tax ID:", 'class' => 'control-label' %>
-  <div class="controls">
-    <%= f.text_field :tin, class: "input-small"%>
-  </div>
-</div>
-<div class="control-group">  
-  <%= f.label :team_id, "Team:", 'class' => 'control-label' %>
-  <div class="controls">
-    <%= f.collection_select :team_id, Team.alphabetical, :id, :name, {include_blank: true} %>
-    <%= link_to "edit teams", teams_path, remote: true %>
-  </div>
-</div>
-<div class="control-group">  
-  <%= f.label :specialty, "Specialty:", 'class' => 'control-label' %>
-  <div class="controls">
-    <%= f.select :specialty, specialties, {include_blank: true} %>
-  </div>
-</div>
-<div class="control-group">
-  <div class="controls">
-    <%=submit_tag "Save", class: "btn btn-info" %>
-  <%= link_to raw("<i class=\"icon-plus-sign\"></i> Add New Provider"), new_provider_path, remote: true, class: "btn" %>
-</div>
-</div>
+<style type='text/css'>
+	h2{
+		margin-top : 20px;
+    margin-left :0px;
+	}
+</style>
 
-<% end %>
+<!-- got rid of remote option to reload page -->
+<%= form_for @provider, {html: {id: "providerForm", class: "form-horizontal"}} do |f| %>
+
+	<div id="tbl" style="margin-left:-60px">
+		<div class='control-group form-inline'>
+				<label class="control-label">
+					Name: 
+				</label>
+				<div class="controls">
+						<%= f.text_field :title, 'class' => "input-mini", placeholder: "Title" %>
+						<%= f.text_field :given_name, 'class' => "input-small", placeholder: "First Name" %>
+						<%= f.text_field :family_name, 'class' => "input-small", placeholder: "Last Name" %>
+				</div>
+		</div>
+		<div class="control-group">	
+			<%= f.label :npi, "NPI:", 'class' => 'control-label' %>
+			<div class="controls">
+				<%= f.text_field :npi, class: "input-small"%>
+			</div>
+		</div>
+		<div class="control-group">	
+			<%= f.label :tin, "Tax ID:", 'class' => 'control-label' %>
+			<div class="controls">
+				<%= f.text_field :tin, class: "input-small"%>
+			</div>
+		</div>
+		<div class="control-group">	
+			<%= f.label :team_id, "Team:", 'class' => 'control-label' %>
+	 		<div class="controls">
+		  	<%= f.collection_select :team_id, Team.alphabetical, :id, :name, {include_blank: true} %>
+			</div>
+
+		</div>
+		<div class="control-group">	
+			<%= f.label :specialty, "Specialty:", 'class' => 'control-label' %>
+			<div class="controls">
+				<%= f.select :specialty, specialties, {include_blank: true}, :style=>"width:300px" %>
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<div class="controls">
+				<%= submit_tag "Save", class: "btn btn-info", :style => "width:120px", :confirm => "Are you sure you want to save changes?"%>
+				<%= link_to raw("<i class=\"icon-plus-sign\"></i> Add New Provider"), new_provider_path, remote: true, class: "btn" %>
+			</div>
+		</div>
+	
+	
+	</div>
+<% end %> <!-- end of form -->
 
 

@@ -1,2 +1,2 @@
-$(".modal-footer").html("<%= escape_javascript( link_to 'add team', new_team_path, remote: true ) %>")
-$(".modal-body").html("<table id='teamTable'><%= render_js partial: 'team', collection: @teams %></table>")
+$(".modal-footer").html("<%= escape_javascript( link_to 'add team', new_team_path, remote: true, class: 'btn btn-info' ) %>")
+$(".modal-body").html("<div id='teamTable'><%= render_js partial: 'team', collection: @teams %></div>")

@@ -188,11 +188,12 @@
   </script>
 
 <% end %>
+	<div style="margin-left:20px; margin-right:20px">
     <div class="row-fluid">
       <div class="span2">
       <%= render :partial => 'shared/measure_metrics', locals: {numerator: (@result ? @result['numerator'] : 0), denominator: (@result ? @result['denominator'] : 0)} %>
       </div>
-            <%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
+      	<%= render :partial => 'shared/measure_title', locals: {measure: @definition, start_date: @period_start, effective_date: @effective_date }%>
     </div>
     <div class="row-fluid">
       <div id="exclusionPanel" style="display:none;" class="measureComponent span3">
@@ -222,3 +223,4 @@
         </div><!-- end measureBox -->
       </div><!-- end #outcomeMeasures -->
     </div><!-- end measureEditContainer -->
+  </div>

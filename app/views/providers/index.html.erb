@@ -1,3 +1,48 @@
-<%= render partial: 'edit_profile', locals: {provider: Provider.new} %>
-<%= render partial: 'provider_list', locals: {providers: @providers} %>
-<%= paginate @providers %>
+<!--Added by ssiddiqui -->
+<style type='text/css'>
+	#rt{
+    margin-left : 20px;
+    margin-right: 20px;
+	}
+
+		
+	#lst{
+		margin-right: 20px;
+		margin-left: 20px;	
+	}
+	
+</style>
+
+
+
+<!-- perfect template for header with buttons -->
+<hr style='margin-bottom:-5px'>
+<div style="padding-left:40px; padding-right:40px">
+	<table class="table-condensed" style="width:100%">
+		<td> <h2><strong>Providers</strong></h2> </td>
+
+		<% if current_user.admin? %>	
+			<td colspan='2' align='right'>	
+				<%= link_to "Edit Teams", teams_path, remote: true, :class => "btn btn-large btn-success"%> 	
+		
+				<%= link_to "Delete All Providers", "/admin/remove_providers", 'method' => 'delete', 
+			:confirm => "Are you sure you want to delete all the providers?", 'class' => 'btn btn-large btn-danger'%>
+			</td>
+		<% end %>
+	</table>
+</div>
+<hr style="margin-top:-5px">
+
+
+
+<div id="lst" class="container-fluid">
+	<% if current_user.admin? %>
+		<%#= render partial: 'edit_profile', locals: {provider: Provider.new} %> 
+	<% end %>
+
+	<%= render partial: 'provider_list', locals: {providers: @providers} %>
+	<br> <br>
+	<br> <br>
+</div>
+
+

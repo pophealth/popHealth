@@ -1,4 +1,4 @@
-class SelectedMeasure < MongoBase
+class SelectedMeasure
   # include Mongoid::Document
   
   # field :username         , type: String
@@ -17,10 +17,10 @@ class SelectedMeasure < MongoBase
   #                measure id provided does not match any measures
   def self.add_measure(username, measure_id)
 
-    if mongo['selected_measures'].find(:id => measure_id, :username => username).first
+    if MONGO_DB['selected_measures'].find(:id => measure_id, :username => username).first
       return nil
     else
-      measures = mongo['measures'].find(:id => measure_id)
+      measures = MONGO_DB['measures'].find(:id => measure_id)
       
       if measures
         selected_measure_doc = {'subs' => [], 'short_subtitles' => {}}
@@ -36,7 +36,7 @@ class SelectedMeasure < MongoBase
           end
         end
 
-        mongo['selected_measures'].insert(selected_measure_doc)
+        MONGO_DB['selected_measures'].insert(selected_measure_doc)
 
         return selected_measure_doc
       else
@@ -46,7 +46,14 @@ class SelectedMeasure < MongoBase
   end
   
   def self.remove_measure(username, measure_id)
-    mongo['selected_measures'].find(:id => measure_id, :username => username).remove()
+    MONGO_DB['selected_measures'].find(:id => measure_id, :username => username).remove()
   end
   
+	# added by ssiddiqui
+	def self.remove_all(username)
+		while MONGO_DB['selected_measures'].find(:username => username).count() != 0 do		
+			MONGO_DB['selected_measures'].find(:username => username).remove()
+		end
+	end
+
 end

@@ -7,59 +7,87 @@
   });
   
 </script>
-<% end -%>
+<% end %>
 
-<div id="pageContent" style="padding:20px;">
-<h3>Patients</h3>
+<style type="text/css">
+	#pageContent{
+		
+	}
+</style>
 
-  <table>
+<hr style='margin-bottom:-5px'>
+	<div style="padding-left:40px; padding-right:40px">
+		<table class="table-condensed" style="width:100%">
+			<td> <h2><strong>Patients</strong></h2> </td>
+		</table>
+	</div>
+<hr style="margin-top:-5px">
 
-    <tr><td>patients loaded: </td>
+<div id="pageContent" style="margin-left:40px; margin-right:40px">
+  <table class='table-hover' style="width:60%; margin-top:-20px" >
+  	
+    <tr>
+    	<td><h5>Patients Loaded: </h5></td>
+      <td> <%= @patient_count %> Patients </td>
+      <td> <%= button_to "Delete Patients", "/admin/remove_patients", 'method' => 'delete', 'class' => 'btn btn-danger', :confirm=>"Are you sure you want to delete all patient records?", :style=>'margin-top:20px'%> </td>
+    </tr>    
+    <tr> 
+    	<td><h5>Cache Counts:</h5> </td>
+      <td> Query Cache: <%= @query_cache_count%> <br> Patient Cache: <%= @patient_cache_count%> </td>
       <td>
-        <%= @patient_count %> patients 
-      </td>
-      <td>
-        <%= button_to "Delete Patients", "/admin/remove_patients", 'method' => 'delete', 'class' => 'btn btn-danger'%>
-      </td>
+        <%= button_to "Delete Caches", "/admin/remove_caches", 'method' => 'delete', 'class' => 'btn btn-danger', :style=>'margin-top:20px'%>
+   	 	</td>
+    </tr>     
+    <tr>
+    	<td><h5> Providers loaded: </h5> </td>
+      <td> <%= @provider_count%> Providers </td>
+      <td> <%= button_to "Delete Providers", "/admin/remove_providers", 'method' => 'delete', 'class' => 'btn btn-danger',:style=>'margin-top:20px', confirm: "Are you sure you want to delete all provider profiles?"%> </td>
     </tr>  
-    <tr><td colspan="2">&nbsp;</td></tr>  
-
-    <tr><td>cache counts: </td>
-      <td>
-        query cache: <%= @query_cache_count%> <br>
-        patient cache: <%= @patient_cache_count%>
-        
-      </td>
-      <td>
-        <%= button_to "Delete Caches", "/admin/remove_caches", 'method' => 'delete', 'class' => 'btn btn-danger'%>
-      </td>
-    </tr>  
-    <tr><td colspan="2">&nbsp;</td></tr>  
-    
-    <tr><td>providers loaded: </td>
-      <td>
-        <%= @provider_count %> providers
-
-      </td>
-      <td>
-        <%= button_to "Delete Providers", "/admin/remove_providers", 'method' => 'delete', 'class' => 'btn btn-danger'%>
-      </td>
-    </tr>  
-    <tr><td colspan="2">&nbsp;</td></tr>
-    
-    <tr><td colspan="2">&nbsp;</td></tr>  
+    <!-- form for uploading patients -->
     <%= form_tag("/admin/upload_patients", :method => "put", :multipart=>true) do %>
-    <tr><td>Upload patient zip file: </td>
-      <td>
-        
-          <%= file_field_tag(:file)%>
-          
-        
-      </td>
-      <td><%= submit_tag("Upload", 'class' => "btn btn-success") %></td>
-    </tr>  
+      
+		  <tr>
+		  	<td><h5>Upload patient zip file:</h5> </td>
+		    <td type="file" id="upload_file">
+		        <%= file_field_tag :file %>	      
+		    </td>
+		    <td><%= submit_tag("Upload", 'class' => "btn btn-success", style: "margin-top:20px; margin-bottom:20px") %></td>
+		  </tr>  
     <% end %>
-    
   </table>
+  
+  <hr>
+
+  <h3> Patient List: </h3>
+  
+		<table id="adminPatientTable" class="display table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Last Name</th>
+					<th>First Name</th>
+					<th> Date of Birth </th>
+					<th> Age </th>
+					<th> Patient ID</th>
+					<th/>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<% @records.each do |record| %>
+					<tr>
+						<td><%= record.last %></td>
+						<td><%= record.first %></td>
+						<td> <%= Time.at(record.birthdate).strftime('%m/%d/%Y') %> </td>		
+						<td> <%= Time.now.year - Time.at(record.birthdate).year %></td>
+						<% rec=record.medical_record_number %>
+						<% id = Record.where(medical_record_number: "#{rec}").first._id %>
+						<td> <%= rec %>
+						<td> <%= link_to "View Patient Summary", :controller => "patients", :action => "show", :id => "#{id}"%> </td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+ <br>
+ <br>
 
 </div> <!-- pageContent -->

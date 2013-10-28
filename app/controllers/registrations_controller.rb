@@ -7,12 +7,12 @@ class RegistrationsController < Devise::RegistrationsController
 
   # Need bundle info to display the license information
   def new
-    @bundles = Bundle.find() || []
+    @bundles = MONGO_DB["bundles"].find() #Bundle.find() # []
     super
   end
 
   def create
-    @bundles = Bundle.find() || []
+    @bundles = MONGO_DB["bundles"].find() #Bundle.find() # || []
     super
   end
 

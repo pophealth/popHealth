@@ -1,10 +1,11 @@
-<div id="measureMetrics">
+<div id="measureMetrics" class='span12'>
   
-  <div id="measurePopulationPercentage" class="span7">
-    <%= image_tag "loading.gif", :id => "loadingAggregate", :style => "display:none;margin-top:12px" %>
+  <div id="measurePopulationPercentage" class='span7' style="text-align:left">
+  	<%= image_tag "loading.gif", :id => "loadingAggregate", :style => "display:none;margin-top:12px" %>
     <h1><%= display_raw_percentage(numerator, denominator) %></h1>
-  </div>
-  <div style="text-align:center" class="span5">
+  </div> 
+  
+  <div style="text-align:right" class='span5' >
     <%= render :partial => "shared/fraction", locals: {numerator: numerator, denominator: denominator}%>
-  </div>
+  </div> 
 </div>

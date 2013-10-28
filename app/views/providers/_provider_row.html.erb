@@ -1,6 +1,13 @@
 <tr data-provider="<%= provider_row.id %>">
-  <td><%= provider_row.family_name%></td>
-  <td><%= provider_row.given_name%></td>
-  <td><%= provider_row.team.try(:name) || "N/A" %></td>
-  <td><%= link_to "edit", edit_provider_path(provider_row), remote: true %> | <%= link_to "manage patients", manage_provider_patients_path(provider_row) %></td>
+	<td><%= provider_row.family_name%></td>
+	<td><%= provider_row.given_name%></td>
+	<td><%= provider_row.team.try(:name) || "N/A" %></td>
+	<td><%= provider_row.npi %> </td>
+	<% if current_user.admin? %>
+		<td> <%= link_to "view / edit", :controller => "providers", :action => "show", :id => "#{provider_row.id}" %>  | <%= link_to "manage patients", manage_provider_patients_path(provider_row)%> | <%=link_to "view measures page", measures_path('npi'=> provider_row.npi) %></td>
+	<% else %>
+		<td> <%= link_to "view", :controller => "providers", :action => "show", :id => "#{provider_row.id}" %> </td>	
+	<% end %>
 </tr>
+
+

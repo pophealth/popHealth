@@ -5,24 +5,21 @@ class PatientsController < ApplicationController
   before_filter :validate_authorization!
   before_filter :load_patient, :only => [:show, :toggle_excluded]
   after_filter :hash_document, :only => :list
-  
   add_breadcrumb_dynamic([:patient], only: %w{show}) {|data| patient = data[:patient]; {title: "#{patient.last}, #{patient.first}", url: "/patients/show/#{patient.id}"}}
-
+	add_breadcrumb 'Patients', :root_path
+  
   def show
 
     respond_to do |wants|
       wants.html {}
       wants.json do
         @outliers = []
-        @measures = HealthDataStandards::CQM::Measure.all
+        @measures = HealthDataStandards::CQM::Measure.all #Measure.list
         @measures.each do |measure|
-          qm = QME::QualityMeasure.new(measure['id'], measure.sub_id)
-          qr = QME::QualityReport.new(measure['id'], measure.sub_id, {'effective_date' => @effective_date})
-          if qr.calculated?
-            result = qr.patient_result(@patient.medical_record_number)
-            if result['value']['antinumerator'] == 1
-              @outliers << measure
-            end
+          executor = QME::MapReduce::Executor.new(measure['id'], measure['sub_id'], {'effective_date' => @effective_date})
+          result = executor.get_patient_result(@patient.medical_record_number)
+          if result['antinumerator']
+            @outliers << measure
           end
         end
 
@@ -45,9 +42,9 @@ class PatientsController < ApplicationController
   end
   
   def manage
-    @unassigned = Record.page(params[:unassigned_page]).per(50).alphabetical.without_provider
+    @unassigned = Record.page(params[:unassigned_page]).per(10).alphabetical.without_provider
     @provider = Provider.find(params[:provider_id])
-    @records = Record.page(params[:provider_page]).per(25).alphabetical.by_provider(@provider, nil)
+    @records = Record.page(params[:provider_page]).per(10).alphabetical.by_provider(@provider, nil)
   end
   
   def update_all

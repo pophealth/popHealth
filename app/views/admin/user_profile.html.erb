@@ -1,0 +1,57 @@
+<div id="userProfile">
+	<hr style='margin-bottom:-5px'>
+		<div style="padding-left:40px; padding-right:40px">
+			<table class="table-condensed" style="width:100%">
+				<td> <h2><strong>User Profile:  <%= @user.full_name%> </strong></h2> </td>
+			</table>
+		</div>
+	<hr style="margin-top:-5px">
+
+	<div style="margin-left:40px; margin-right:40px; margin-top:10px; width:50%">
+		<table class="table table-hover table-bordered">
+
+			<tr>
+				<td> Username: </td>
+				<td> <%= @user.username %> </td>
+			<tr>
+
+			<tr>
+				<td> Email: </td>
+				<td> <%= @user.email %> </td>
+			<tr>
+	
+			<tr>
+				<td> Organization: </td>
+				<td> <%= @user.company %> </td>
+			<tr>
+	
+			<tr>
+				<td> Organization URL: </td>
+				<td> <%= @user.company_url %> </td>
+			<tr>
+
+			<tr>
+				<td> Registry Name: </td>
+				<td> <%= @user.registry_name %> </td>
+			<tr>
+	
+			<tr>
+				<td> Registry ID: </td>
+				<td> <%= @user.registry_id %> </td>
+			<tr>
+
+			<tr>
+				<td> National Provider Id: </td>
+				<td> <%= @user.npi %> </td>
+			<tr>
+
+			<tr>
+				<td> Tax Identifier: </td>
+				<td> <%= @user.tin %> </td>
+			<tr>
+		</table>
+		
+		<%= link_to "Back to Users", "/admin/users", :class=>"btn btn-success" %>
+	</div>
+
+</div>

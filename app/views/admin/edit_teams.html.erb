@@ -1,0 +1,52 @@
+<hr style='margin-bottom:-5px'>
+	<div style="padding-left:40px; padding-right:40px">
+		<table class="table-condensed" style="width:100%">
+			<td> <h2>Team Assignments</h2> </td>
+		</table>
+	</div>
+<hr style="margin-top:-5px">
+
+<div style="margin-left:40px;margin-right:40px">
+  	<% if flash[:notice] %>
+			<div class="accountError">
+				<font color="red"> <b> <%= flash[:notice] %> </b> </font>
+			</div>
+		<% end %>
+
+		<h4> User: <%=@user.username%> (<%=@user.full_name%>)</h4>
+		<br>
+		   
+    <%= form_for(:add_team, :controller => "admin", :action => "edit_teams", :id => @id) do |f| %>
+    	<table>
+    		<tr>
+    			<td style="vertical-align: top; width: 75px;"><%= f.label :teams %></td>
+    			<td style="vertical-align: top; width: 200px;"><%= f.collection_select :team_id, Team.alphabetical, :id, :name, {include_blank: true}, {style: "width:175px"}%></td>
+    			<td style="vertical-align: top; width: 125px;"><%= f.submit "Add Team", {class: "btn btn-success", style: "width:100px"} %></td>
+    		</tr>
+    	</table>
+    <% end %> <!-- end form -->	
+  	
+    
+    <table id="tableTeams" class="display table table-condensed" style="width:40%">
+			<tr><th colspan='2'><b>Current Teams:</b></th></tr>
+			<% if (@user.teams && @user.teams.count > 0) %>
+				<% @user.teams.sort.each do |team| -%>
+					<tbody >
+						<td align="left"><%= MONGO_DB['teams'].find({_id: team}).to_a[0]["name"] %></td>
+						<td align="right" width="30px">
+						    <%= form_for(:remove_team, :controller => "admin", :action => "edit_teams", :id => @id) do |f| %>
+						    	<%= f.hidden_field :team_id, :value => team %>
+								<%= submit_tag "Remove", {class: "btn btn-danger", confirm: "Are you sure?"} %>
+						    <% end %>
+						</td>
+					</tbody>
+				<% end %>
+			<% else %>
+				<tr><td>No teams assigned</td><td>&nbsp;</td></tr>
+			<% end %>
+		</table>	
+		
+</div>
+
+
+

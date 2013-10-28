@@ -1,9 +1,46 @@
 @import "mixins";
 @import "bootstrap";
 
+// new measure bar charts -------------------------------
+div.measureBarGraph {
+    height: 1.529411765em;
+    margin-bottom: .470588235em;
+    overflow: hidden;
+    background-color: #e5e5e5;
+    border-radius: .071428571em;
+    text-align: center;
+}
+
+	/* The actual bar itself */
+	.graph-single-bar {
+		  float: left;
+		  width: 0;
+		  height: 100%;
+		  color: $measurePopulationChartBar;
+		  background-color: #0088cc;
+	}
+
+	/* Alternate color for stacked graphs */
+	.measureBarNumerator {
+		  background-color: $numerator;
+	}
+	/* Alternate color for stacked graphs */
+	.measureBarDenominator {
+		  background-color: $denominator;
+	}
+	/* Alternate color for stacked graphs */
+	.measureBarExclusions{
+		  background-color: $exclusions;
+	}
+	
+
+// -------------------------------------------!
+
+
 a {
   color: $denominator;
 }
+
 
 #providerReports a {
   color:black;
@@ -34,8 +71,6 @@ ul.nav {
   }
 }
 
-
-
 .popover-title {
   background-color:$numerator;
 }
@@ -52,7 +87,12 @@ ul.nav {
   padding-top:10px;
 }
 
-div.percentage {
+// added by ssiddiqui
+div.fullPercentage {
+  font-size:22px;
+}
+
+div.userPercentage {
   font-size:22px;
 }
 
@@ -70,9 +110,7 @@ a#brand {
   padding: 0px 10px 0px 0px;
 }
 
-#dashboardPeriod {
-  padding-right:2%;
-}
+
 
 #providerReports {
   padding-left: 10px;
@@ -107,7 +145,7 @@ a#brand {
 
 #measures {
 
-  margin-top:20px;
+  margin-top:30px;
 
  .headerRow {
     
@@ -115,8 +153,9 @@ a#brand {
     font-size: 1em;
     text-transform: uppercase;
     color:#888;
-    padding-bottom: 5px;
+    padding-bottom: 0px;
     margin-bottom: 5px;
+    margin-top:10px;
  } 
   .measure {
       padding: 10px;
@@ -153,6 +192,10 @@ a#brand {
 
     margin:0px;
   }
+
+  padding-right:2%;
+  
+  //width: 80%;
 }
 
 #outlierList, #exclusionList {
@@ -207,6 +250,10 @@ input#measurementPeriodEndDate {
   margin-left:2px;
 }
 
+
+
+#measureEditContainer {
+
   span {
     margin: 5px 0;
     padding: 1px 3px;
@@ -225,6 +272,7 @@ input#measurementPeriodEndDate {
     width: 2em;
     background-color: #dddddd; 
   }
+}
 
 #exclusionPanel {
   h3 {
@@ -234,6 +282,9 @@ input#measurementPeriodEndDate {
 }
 
 #eligibilityMeasures {
+//   width: 500px;
+//   display: table-cell;
+//   padding-right: 20px;
   h3 {
     background-color: $eligibleHdr;
   }
@@ -285,12 +336,80 @@ input#measurementPeriodEndDate {
   } 
 }
 
+// added by ssiddiqui
+div.dashboardTabs {
+     clear: left;
+     padding-left: $measureDetailTable-padding;
+ 
+     border-bottom: 2px solid $borderColor; 
+     border-radius: $tab-radius;
+     span{
+       text-transform: lowercase;
+       text-color: black;
+       padding-left: 10px;
+       padding-right: 10px;
+       padding-top: 6px;
+       padding-bottom: 3px;
+       border-left: 2px solid $borderColor;
+       border-right: 2px solid $borderColor;
+       border-top: 2px solid $borderColor;
+
+      font-weight: bold;
+      background-color: $active-tab_background;
+      color: $active-tab_font;
+      border-left: $active-tab_border;
+      border-right: $active-tab_border;
+      border-top: $active-tab_border;
+			
+       margin-right: 2px;
+       @include rounded($tab-radius);
+     }
+
+}
+
+// added by ssiddiqui
+#providerReports{
+		border-right: 1px solid #e0e0e0;
+		background: #f4f4f4;
+
+}
+
+// added by ssiddiqui
+#legend{
+	
+	div {
+		display: block;
+    float: left;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+	}
+	.numerator {
+		background: $numerator; 
+	}
+	.denominator {
+		background: $denominator; 
+	}
+	.patients {
+		background: $patients; 
+	}
+	.exclusions {
+		background: $exclusions; 
+	}
+}
+
+
+
 #measureMetrics {
   margin-top:20px;
   padding-left: 20px;
 
   h1 {
-    // margin:0px;
+
+  }
+  .measurePopulationPercentage{
+  	font-size: 22px;
+  
   }
 
   .paren {
@@ -309,10 +428,15 @@ input#measurementPeriodEndDate {
   }
 }
 
+// added by ssiddiqui
+#managePatients {
+	margin-left:40px;
+	margin-right:40px;
+
+}
+
+
 #patientMetrics {
   padding:10px;
 }
 
-.btn-large {
-  width:170px
-}

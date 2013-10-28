@@ -1,53 +1,83 @@
-<% content_for :head do -%>
-  <script type="text/javascript">
-  var popHealth = popHealth || {};
+<script type="text/javascript">
+		$(document).ready(function(){
+		      $('#log_start_date').datepicker();
+		      $('#log_end_date').datepicker();
+		});
   
-  popHealth.rangeChanged = function () {
-    var query = $.query
-    if ($('#logStartDate').val().length > 0) {
-      query = query.set('log_start_date', $('#logStartDate').val());
-    }
-    if ($('#logEndDate').val().length > 0) {
-      query = query.set('log_end_date', $('#logEndDate').val());
-    }
-    window.location.search = query.toString();
-  };
-  
-  $(document).ready(function() {
-    $('#logStartDate, #logEndDate').calendricalDateRange({usa: true, changed: popHealth.rangeChanged});
-  });
-  </script>
-<% end -%>
+</script>
 
-<div id="pageContent">
-    <h3>Logs</h3>
-    <form class="form-inline">
-      <fieldset>
-        <legend>Date Range</legend>
-              <input type="text" id="logStartDate" size="6" value="<%= params[:log_start_date] %>" placeholder="Start Date" />
-      <input type="text" id="logEndDate" size="6" value="<%= params[:log_end_date] %>" placeholder="End Date"/>
-      </fieldset>
+	<hr style='margin-bottom:-5px'>
+	<div style="padding-left:40px; padding-right:40px">
+		<table class="table-condensed" style="width:100%">
+			<td> <h2><strong>Logs</strong></h2> </td>
+			<td colspan='2' align='right'>	
+				<%= link_to "Delete All Logs", "delete_logs", :confirm => "Are you sure you want to delete all logs?", class: "btn btn-large btn-danger", :style => "float:right", method: "delete" %>
+			</td>
+		</table>
+	</div>
+	<hr style="margin-top:-5px">
+    
+<div id="pageContent" style="margin-left:40px; margin-right:40px; margin-top:10px">    
+    
+<!--    
+    <form accept-charset="UTF-8"  action="/logs/index">
+        <font><b> Date Range &nbsp&nbsp </b> </font>
+        
+     		<input type="text" id="logStartDate" size="6" value="<%= params[:log_start_date] %>" placeholder="Start Date" />
+      	<input type="text" id="logEndDate" size="6" value="<%= params[:log_end_date] %>" placeholder="End Date"/>
+      
+		    <select value="<%= params[:log_event] %>">
+					<option value="">Select Filter</option>
+				
+					<option value="patient record imported">Record Imports</option>
+					<option value="patient record viewed">Record Views</option>
+					<option value="login">Logins</option>
+					<option value="logout">Logouts</option>
+					<option value="failed login attempt">Failed Login Attempts</option>
+				</select> 
 
+				<input class="btn btn-small" type="submit" value="Refresh">               
+				  
+        </input> 
+   
     </form>
-
-    <table id="patientTable" class="table table-hover">
-      <tr>
-        <th><%= link_to 'Timestamp', time_range_params_plus(:sort => 'created_at', :order => 'desc') %></th>
-        <th><%= link_to 'Username', time_range_params_plus(:sort => 'username', :order => 'desc') %></th>
-        <th><%= link_to 'Event', time_range_params_plus(:sort => 'event', :order => 'desc') %></th>
-        <th><%= link_to 'File SHA1 Hash', time_range_params_plus(:sort => 'checksum', :order => 'desc') %></th>
-        <th><%= link_to 'Patient Id', time_range_params_plus(:sort => 'medical_record_number', :order => 'desc') %></th>
-      </tr>
-      <% @logs.each do |log| -%>
-      <tr>
-        <td><%= log.created_at %></td>
-        <td><%= log.username %></td>
-        <td><%= log.event %></td>
-        <td><%= log.checksum %></td>
-        <td><%= log.medical_record_number %></td>
-      </tr>
-      <% end -%>
+-->
+    
+    <%= form_tag :controller=>"logs", :action=>"index" do%>
+    	<%= text_field_tag "log_start_date", params[:log_start_date], :placeholder => "Start Date"  %> 
+	  	<%= text_field_tag "log_end_date", params[:log_end_date], :placeholder => "End Date" %>	
+	  	<%= select_tag "log_event", options_for_select([ ["Select filter",""],["Patient Record Imported","patient record imported"], ["Patient Record Viewed","patient record viewed"], ['Logins','login'],['Logouts','logout'],['Failed login attempts',"failed login attempt"]], :selected=> params[:log_event])%>
+	  	<%= submit_tag 'Apply', class: "btn btn-success", style: "margin-bottom:10px"%>
+	  	<%= link_to "Clear Filters", "index", class: "btn btn-info", style: "margin-bottom:10px"%>
+    <% end %>
+ 		
+    
+    <table id="logTable" class="display table-hover table-bordered">
+      <thead>
+      	<tr>
+		      <th> Timestamp<%#= link_to 'Timestamp', time_range_params_plus(:sort => 'created_at', :order => 'desc') %></th>
+		      <th> Username<%#= link_to 'Username', time_range_params_plus(:sort => 'username', :order => 'desc') %></th>
+		      <th> Event<%#= link_to 'Event', time_range_params_plus(:sort => 'event', :order => 'desc') %></th>
+		      <th> Patient Id<%#= link_to 'Patient Id', time_range_params_plus(:sort => 'medical_record_number', :order => 'desc') %></th>
+          <th> File SHA1 Hash<%#= link_to 'File SHA1 Hash', time_range_params_plus(:sort => 'checksum', :order => 'desc') %></th>
+		    </tr>
+      </thead>
+      <tbody>
+      	<% unless @logs.empty? %>
+		    	<% @logs.each do |log| %>
+						<tr>
+						  <td><%= log.created_at %></td>
+						  <td><%= log.username %></td>
+						  <td><%= log.event %></td>
+						  <td><%= log.medical_record_number %></td>
+					    <td><%= log.checksum %></td>
+						</tr>
+			  	<% end %>
+		  	<% end %>	
+      </tbody>
     </table>
+    <br>
+    <br>
 
-    <%= will_paginate @logs %>
+
 </div> <!-- pageContent -->

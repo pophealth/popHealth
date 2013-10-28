@@ -1,3 +1,56 @@
+<% subs_iterator(measure['subs']) do |sub| %> 
+	<div data-measure="<%=measure['id']%>" data-measure-sub="<%= sub['sub_id']%>" style="<%=display_row(measure['id'], current_user.selected_measures)%>" class="measure row-fluid">
+		
+		<div class="span3 measure-name">
+		  <% if sub['sub_id'].nil? || sub['sub_id'] == 'a' %>
+		    <div data-placement="bottom" data-original-title="<%=measure['description']%>" rel="tooltip">
+		      <% if (can? :manage, :providers) %>
+		        <%= link_to(measure['name'], "#{measure_path(measure['id'], sub['sub_id'])}/providers") %>
+		      <% else %>
+		        <span><%= measure['name'] %></span>
+		      <% end %>
+		    </div>
+		   <% end %>
+		</div>		
+	
+		<div class="measure-subtitle span2">
+		  <% if (can? :manage, :providers) %>
+		    <%= link_to("#{sub['short_subtitle']}", "#{measure_path(measure['id'], sub['sub_id'])}/providers") %>
+		  <% else %>
+		    <%= sub['short_subtitle'] %>
+		  <% end %>
+		</div>
+			
+		<div class="measureChart span2">
+			<%#= render :partial => "shared/table_bar", locals: {numerator: 0, denominator:0, patient_count: 0, exclusions: 0}%>
+			<%= render :partial => "shared/measure_bar"%>
+		</div>
+
+		<div class="fraction span1" style="text-align: center">
+				<%= render :partial => "shared/fraction", locals: {numerator: 0, denominator: 0} %>
+		</div>
+	
+		<div class="userPercentage span1">	
+		 		<%= image_tag "loading.gif" %>
+		</div>   
+
+		<div class="span1" style="margin-bottom:10px">		
+			<%npi_param = (@selected_provider ? "?npi=#{@selected_provider.npi}" : '')%>
+			<%= link_to 'Parameters', measure_url(measure['id'], sub['sub_id'])+npi_param%>
+			<%= link_to 'Patients', patients_url(measure['id'], sub['sub_id'])+npi_param%>  
+		</div>
+	
+
+		<div class="fullPercentage span1" style="text-align:right">
+				<%= image_tag "loading.gif"%>	
+		</div>
+
+
+	</div>
+<% end %> 
+
+
+<!--
 <% subs_iterator(measure['subs']) do |sub| %>
 <div data-measure="<%=measure['id']%>" data-measure-sub="<%= sub['sub_id']%>" style="<%=display_row(measure['id'], current_user.selected_measures)%>" class="measure row-fluid">
   <div class="span4 measure-name">
@@ -18,7 +71,12 @@
       <%= sub['short_subtitle'] %>
     <% end %>
   </div>
-  <div class="percentage span1">
+  
+  <div class="providerPercentage span1" style='margin-left:-100px'>
+    <%= image_tag "loading_bar.gif" %>
+  </div>
+  
+  <div class="fullPercentage span1">
     <%= image_tag "loading_bar.gif" %>
   </div>
   <div class="fraction span1">
@@ -29,4 +87,11 @@
   </div>
 </div>
 
-<% end %>
+<% end %> 
+
+
+     
+
+-->
+
+     

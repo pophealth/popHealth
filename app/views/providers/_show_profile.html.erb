@@ -1,0 +1,50 @@
+<style type='text/css'>
+	h2{
+		margin-top : 20px;
+    margin-left :0px;
+	}
+</style>
+
+
+<%= form_for @provider, {html: {id: "providerForm", class: "form-horizontal"}, remote: true} do |f| %>
+	
+	<div id="tbl" style="margin-left:-60px">
+		<div class='control-group form-inline'>
+				<label class="control-label">
+					Name: 
+				</label>
+				<div class="controls" >
+						<%= f.text_field :title, 'class' => "input-mini", placeholder: "Title", :disabled => "true"%>
+						<%= f.text_field :given_name, 'class' => "input-small", placeholder: "First Name", :disabled => "true" %>
+						<%= f.text_field :family_name, 'class' => "input-small", placeholder: "Last Name", :disabled => "true" %>
+				</div>
+		</div>
+		<div class="control-group">	
+			<%= f.label :npi, "NPI:", 'class' => 'control-label', :disabled=>"true" %>
+			<div class="controls">
+				<%= f.text_field :npi, class: "input-small", :disabled=>"true"%>
+			</div>
+		</div>
+		<div class="control-group">	
+			<%= f.label :tin, "Tax ID:", 'class' => 'control-label', :disabled=>"true" %>
+			<div class="controls">
+				<%= f.text_field :tin, class: "input-small", :disabled=>"true"%>
+			</div>
+		</div>
+		<div class="control-group">	
+			<%= f.label :team_id, "Team:", 'class' => 'control-label', :disabled=>"true" %>
+	 		<div class="controls">
+		  	<%= f.collection_select :team_id, Team.alphabetical, :id, :name, {include_blank: true}, :disabled=>"true"%>
+			</div>
+
+		</div>
+		<div class="control-group">	
+			<%= f.label :specialty, "Specialty:", 'class' => 'control-label', :disabled=>"true"%>
+			<div class="controls">
+				<%= f.select :specialty, specialties, {include_blank: true}, :disabled=>"true", :style=>"width:300px" %>
+			</div>
+		</div>
+	</div>
+<% end %> <!-- end of form -->
+
+

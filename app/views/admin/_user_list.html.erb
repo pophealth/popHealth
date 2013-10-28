@@ -1,0 +1,75 @@
+<table class="table table-hover">
+	<thead>
+	<tr>
+	  <th>First Name</th>
+	  <th>Last Name</th>
+	  <th>Username</th>
+	  <th>Provider</th>
+	  <th>Administrator</th>
+	  <th>Staff Role</th>
+	  <th>Approved</th>
+	<!--  <th>Status</th> -->
+	  <th>Teams</th> <%# added from bstrezze %>
+	  <th colspan='2'> </th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	<% users.each do |user|%>
+	<tr>
+		<td><%= user.first_name %></td>
+		<td><%= user.last_name %></td>
+		<td><%= user.username %></td>
+		
+		<!--
+		<td>
+		  <select class="npi_select" data-username="<%= user.username %>" name="user[npi]">
+		    <option value="-1">&nbsp;</option>
+		    <% Provider.all.alphabetical.each do |provider| %>
+		      <option value="<%= provider.npi %>" <%= (user.npi == provider.npi) ? "selected=\"selected\"" : ""%>><%= provider.full_name%></option>
+		    <% end%>
+		  </select>
+		</td>
+		-->
+		<td>
+			<% Provider.all.alphabetical.each do |provider| %>
+				<%= (user.npi == provider.npi) ? provider.full_name : "" %>
+			<% end%>			
+		</td>
+		
+		
+		<td>
+		  <% if user.admin? -%>
+		  Yes - <a href="#" class="demote" data-role="admin" data-username="<%= user.username %>">Revoke</a>
+		  <% else -%>
+		  No - <a href="#" class="promote" data-role="admin" data-username="<%= user.username %>">Grant</a>
+		  <% end -%>
+		</td>
+		<td>
+		  <% if user.staff_role? -%>
+		  Yes - <a href="#" class="demote" data-role="staff_role" data-username="<%= user.username %>">Revoke</a>
+		  <% else -%>
+		  No - <a href="#" class="promote" data-role="staff_role" data-username="<%= user.username %>">Grant</a>
+		  <% end -%>
+		</td>
+		<td>
+		  <% if user.approved? -%>
+		  True
+		  <% else -%>
+		  <a href="#" class="approve" data-username="<%= user.username %>">Approve</a>
+		  <% end -%>
+		</td>
+	<!--	<td>
+		  <a href="#" class="<%= (user.disabled?) ? 'Disable' : 'Enable'%>" data-username="<%= user.username %>"><%= (user.disabled?) ? 'Disabled' : 'Enabled'%></a> -->
+		<td>	
+			<%= link_to "View/Edit", :controller => "admin", :action => "edit_teams", :id => user._id %>
+		</td>
+		<td>
+			<%= link_to "View Info",{:controller => "admin", :action => "user_profile", :id => user._id}, :class => "btn btn-info"%>    
+			<%= link_to "Delete User", {:controller => "admin", :action => "delete_user", :id => user._id}, 'method' => 'delete', :confirm=>"Are you sure you want to delete this user?", 'class' => 'btn btn-danger' %>    
+		</td>
+	
+	</tr>
+	<% end -%>
+	</tbody>
+</table>

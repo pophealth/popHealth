@@ -1,3 +1,12 @@
+
+jQuery -> 	$('#logTable').dataTable
+          	sPaginationType: "full_numbers"
+						bJQueryUI: true
+						
+jQuery -> 	$('#adminPatientTable').dataTable
+          	sPaginationType: "full_numbers"
+						bJQueryUI: true
+
 class @QualityReport
 	constructor: (@measure, @sub_id, @filters) ->
 		@sub_id or= null
@@ -54,9 +63,29 @@ class @QualityReport
 	fraction: (selector, data) ->
 		selector.find(".numeratorValue").html(data.NUMER)
 		selector.find(".denominatorValue").html(data.DENOM)
+	
+	#added by ssiddiqui
+	fullPercent: (selector, data) -> 
+		full_percent = if (data.DENOM == 0 || data.DENOM == undefined) then 0 else  (data.NUMER / data.DENOM) * 100	
+		selector.html("#{Math.floor(full_percent)}%")	
+		
+		
 	percent: (selector, data) -> 
 		percent = if (data.DENOM == 0 || data.DENOM == undefined) then 0 else  (data.NUMER / data.DENOM) * 100
 		selector.html("#{Math.floor(percent)}%")	
+		
+	barChart: (selector, data) ->
+		numerator_width = 0
+		denominator_width = 0
+		exclusion_width = 0
+		if data.IPP != 0
+			numerator_width = (data.NUMER / data.considered) * 100
+			denominator_width = ((data.DENOM) / data.considered) * 100 # changed (denom-num)/pop to denom/pop
+			exclusion_width = (data.DENEX / data.considered) * 100	
+		selector.find("div.measureBarNumerator").animate({width: "#{numerator_width}%"}, "slow");
+		selector.find("div.measureBarDenominator").animate({width: "#{denominator_width}%"}, "slow");
+		selector.find("div.measureBarExclusions").animate({width: "#{exclusion_width}%"}, "slow");
+		
 }
 
 @makeMeasureListClickable = ->
@@ -93,6 +122,6 @@ $ ->
 	setTimeout ->
 		makeMeasureListClickable()
 		makeFilterListsClickable()
-		# makeListsExpandable()
+		#makeListsExpandable()
 		Page.onLoad();
 	, 10

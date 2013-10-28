@@ -12,7 +12,14 @@ class PatientCache
   scope :by_provider, ->(provider, effective_date) { where({'value.provider_performances.provider_id' => provider.id, 'value.effective_date'=>effective_date}) }
   scope :outliers, ->(patient) {where({'value.patient_id'=>patient.id})}
 
-  MATCH = {'$match' => {'value.measure_id' => "8A4D92B2-397A-48D2-0139-9BB3331F4C02", "value.sub_id" => "a"}} 
+	# added from bstrezze	: filters patient lists by the teams/providers a user is associated with
+
+	def self.provider_in(provider_list) 
+    any_in("value.provider_performances.provider_id" => provider_list)
+  end
+  
+	
+	MATCH = {'$match' => {'value.measure_id' => "8A4D92B2-397A-48D2-0139-9BB3331F4C02", "value.sub_id" => "a"}} 
 
   SUM = {'$group' => {
           "_id" => "$value.measure_id", # we don't really need this, but Mongo requires that we group 

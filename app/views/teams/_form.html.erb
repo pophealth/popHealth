@@ -2,3 +2,9 @@
   <%= f.text_field :name %>
   <%= f.submit class: "btn btn-info" %>
 <% end %>
+
+<% if flash[:notice] %>
+	<font color="red"> <b> <%= flash[:notice] %> </b> </font>
+<br> </br>
+<% end %>
+

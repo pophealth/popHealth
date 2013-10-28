@@ -106,22 +106,22 @@
   </script>
 <% end %>
 
-  <div id="pageContent" class="row-fluid">
+  <div id="pageContent" class="row-fluid" style="margin-left:10px">
     <div id="patientMetrics" class="span2">
 
       <div class="row-fluid">
       <%= render :partial => 'shared/measure_metrics', locals: {numerator: (@result ? @result['numerator'] : 0), denominator: (@result ? @result['denominator'] : 0)} %>
       </div>
       <div style="margin-top:30px" class="row-fluid btn-group btn-group-vertical">
-        <button id="num" href="#" class="patientGroup btn btn-success btn-large">Numerator<span id="numeratorCount" class="badge badge-inverse pull-left"></span></button>
-        <button id="den" href="#" class="active patientGroup btn btn-info btn-large">Denominator<span id="denominatorCount" class="badge badge-inverse pull-left"></span></button>
-        <button id="anti" href="#" class="patientGroup btn btn-danger btn-large">Outliers<span id="antiNumeratorCount" class="badge badge-inverse pull-left"></span></button>
-        <button id="exc" href="#" class="patientGroup btn btn-warning btn-large">Exclusions<span id="exclusionsCount" class="badge badge-inverse pull-left"></span></button>
-        <button id="denexc" href="#" class="patientGroup btn btn-inverse btn-large">Exceptions<span id="exceptionsCount" class="badge badge-inverse pull-left"></span></button>
+        <button id="num" href="#" class="patientGroup btn btn-success btn-large span12">Numerator<span id="numeratorCount" class="badge badge-inverse pull-left"></span></button>
+        <button id="den" href="#" class="active patientGroup btn btn-info btn-large span12">Denominator<span id="denominatorCount" class="badge badge-inverse pull-left"></span></button>
+        <button id="anti" href="#" class="patientGroup btn btn-danger btn-large span12">Outliers<span id="antiNumeratorCount" class="badge badge-inverse pull-left"></span></button>
+        <button id="exc" href="#" class="patientGroup btn btn-warning btn-large span12">Exclusions<span id="exceptionsCount" class="badge badge-inverse pull-left"></span></button>
+        <button id="denexc" href="#" class="patientGroup btn btn-inverse btn-large span12">Exceptions<span id="exclusionsCount" class="badge badge-inverse pull-left"></span></button>
       </div>
     </div><!-- end #patientMetrics -->
     <div id="dashboardPeriod" class="span10" >
-      <button id="btnExportExcel" class="exportReport btn pull-right" type="button">
+      <button id="btnExportExcel" class="exportReport btn btn-info pull-right" style="margin-right:20px" type="button">
         <i class="icon-download-alt"></i>
         Export Report
       </button>

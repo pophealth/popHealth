@@ -79,61 +79,86 @@
     $('.enable').click(popHealth.disableUser);
     $('.disable').click(popHealth.enableUser);
     $('.npi_select').change(popHealth.changeNpi);
+  
+	<%# added from bstrezze %>
+	$('.teamView').cluetip({
+		activation: 'click',
+		arrows: true,
+		closePosition: 'title',
+		closeText: 'Close',
+		dropShadow: false,
+		local: true,
+		sticky: true
+	});
   });
 </script>
 <% end -%>
 
-<div id="pageContent">
-<h3>Users</h3>
-<table id="patientTable" class="table">
-  <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Username</th>
-    <th>provider</th>
-    <th>Administrator</th>
-    <th>Staff Role</th>
-    <th>Approved</th>
-    <th>Status</th>
-  </tr>
-  <% @users.each do |user| -%>
-  <tr>
-    <td><%= user.first_name %></td>
-    <td><%= user.last_name %></td>
-    <td><%= user.username %></td>
-    <td>
-      <select class="npi_select" data-username="<%= user.username %>" name="user[npi]">
-        <option value="-1">&nbsp;</option>
-        <% Provider.all.alphabetical.each do |provider| %>
-          <option value="<%= provider.npi %>" <%= (user.npi == provider.npi) ? "selected=\"selected\"" : ""%>><%= provider.full_name%></option>
-        <% end%>
-      </select>
-    </td>
-    <td>
-      <% if user.admin? -%>
-      Yes - <a href="#" class="demote" data-role="admin" data-username="<%= user.username %>">revoke</a>
-      <% else -%>
-      No - <a href="#" class="promote" data-role="admin" data-username="<%= user.username %>">grant</a>
-      <% end -%>
-    </td>
-    <td>
-      <% if user.staff_role? -%>
-      Yes - <a href="#" class="demote" data-role="staff_role" data-username="<%= user.username %>">revoke</a>
-      <% else -%>
-      No - <a href="#" class="promote" data-role="staff_role" data-username="<%= user.username %>">grant</a>
-      <% end -%>
-    </td>
-    <td>
-      <% if user.approved? -%>
-      true
-      <% else -%>
-      <a href="#" class="approve" data-username="<%= user.username %>">approve</a>
-      <% end -%>
-    </td>
-    <td>
-      <a href="#" class="<%= (user.disabled?) ? 'disable' : 'enable'%>" data-username="<%= user.username %>"><%= (user.disabled?) ? 'disabled' : 'enabled'%></a>
-    </td>
-  </tr>
-  <% end -%>
-</table>
+<hr style='margin-bottom:-5px'>
+	<div style="padding-left:40px; padding-right:40px">
+		<table class="table-condensed" style="width:100%">
+			<td> <h2><strong>Users</strong></h2> </td>
+			<td colspan='2' align='right'>	
+				<%= link_to "Refresh Tables", "users", class: "btn btn-large btn-primary", :style => "float:right" %>
+			</td>
+		</table>
+	</div>
+<hr style="margin-top:-5px">
+
+<div id="pageContent" style="margin-left:40px; margin-right:50px; margin-top:20px">
+	
+	<% if flash[:notice] %>
+		<font color="red"> <b> <%= flash[:notice] %> </b> </font>
+		<br> </br>
+	<% end %>
+	
+	<h5> Click on one of the tabs to view list of users: </h5>
+
+	<div class="dropdown">
+    <a class="dropdown-toggle btn btn-large btn-danger span3" data-toggle="dropdown" href="#">
+   	 Admin (<%= User.where(:admin => "true").count%>)
+    </a>
+    <ul class="dropdown-menu" role="menu" style="width:100%; margin-top:50px">
+      	<%= render partial: 'user_list', :locals => {:users => User.where(:admin => "true")} %>
+    </ul>
+	</div> 	
+	
+	<div class="dropdown">
+    <a class="dropdown-toggle btn btn-large btn-info span3" data-toggle="dropdown" href="#">
+   	 Providers (<%= User.where(:provider => "true", :approved =>"true").count%>)
+    </a>
+    <ul class="dropdown-menu" role="menu" style="width:100%; margin-top:50px">
+      	<%= render partial: 'user_list', :locals => {:users => User.where(:provider => "true", :approved =>"true")} %>
+    </ul>
+	</div> 	
+	
+	<div class="dropdown">
+    <a class="dropdown-toggle btn btn-large btn-success span3" data-toggle="dropdown" href="#">
+   	 Staff (<%= User.where(:staff_role => "true").count%>)
+    </a>
+    <ul class="dropdown-menu" role="menu" style="width:100%; margin-top:50px">
+      	<%= render partial: 'user_list', :locals => {:users => User.where(:staff_role => "true")} %>
+    </ul>
+	</div> 	
+	
+	<div class="dropdown">
+    <a class="dropdown-toggle btn btn-large btn-warning span2" data-toggle="dropdown" href="#">
+   	 Pending (<%= User.where(:approved=>'false').count%>)
+    </a>
+    <ul class="dropdown-menu" role="menu" style="width:100%; margin-top:50px">
+      	<%= render partial: 'user_list', :locals => {:users => User.where(:approved => "false")} %>
+    </ul>
+	</div> 	
+	
+	<div class="dropdown">
+    <a class="dropdown-toggle btn btn-large span2" data-toggle="dropdown" href="#">
+   	 All (<%= User.all.count%>)
+    </a>
+    <ul class="dropdown-menu" role="menu" style="width:100%; margin-top:50px">
+      	<%= render partial: 'user_list', :locals => {:users => User.all} %>
+    </ul>
+	</div> 	
+	
+
+
 </div> <!-- pageContent -->

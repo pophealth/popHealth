@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta http-equiv="content-script-type" content="text/javascript">
-  
-  <title>popHealth : An Open Source Quality Measure Reference Implementation</title>
+	<meta http-equiv="content-script-type" content="text/javascript">
+	
+	<title>popHealth : An Open Source Quality Measure Reference Implementation</title>
   <link rel="shortcut icon" href="/favicon.ico"/>
   <%# stylesheet_link_tag :all %>
 
@@ -16,6 +16,14 @@
   <%end%>
   
   <%= csrf_meta_tag %>
+  
+  <!-- added by ssiddiqui for calendrical date_select -->
+	<%#= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css", "application" %>
+  <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css", "application" %>
+  <%#= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js", "application" %>
+ 
+  
+  
   <%= yield :head %>
   <% if APP_CONFIG['idle_timeout_enabled'] %>
   <script type="text/javascript" charset="utf-8">
@@ -34,17 +42,17 @@
   </script>
   <% end %>
 
-  <% if @definition %>
-  <script type="text/javascript" charset="utf-8">
-    currentMeasure = "<%= @definition['id'] %>";
-    subMeasure = "<%= @definition['sub_id'] %>";
-    
-  </script>
-  <% end %>
-  
-  <script type="text/javascript" charset="utf-8">
-    rootContext = "<%= Rails.configuration.relative_url_root %>";
-  </script>
+	<% if @definition %>
+	<script type="text/javascript" charset="utf-8">
+		currentMeasure = "<%= @definition['id'] %>";
+		subMeasure = "<%= @definition['sub_id'] %>";
+		
+	</script>
+	<% end %>
+	
+	<script type="text/javascript" charset="utf-8">
+	  rootContext = "<%= Rails.configuration.relative_url_root %>";
+	</script>
 </head>
 <body>
   

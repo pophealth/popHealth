@@ -23,4 +23,5 @@ class PopHealth.SelectedMeasures extends Backbone.Collection
   model: PopHealth.Measure
   query: (measure) -> measure.report()
 
+
     

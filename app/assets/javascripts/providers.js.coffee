@@ -1,3 +1,9 @@
+# added by ssiddiqui
+jQuery -> 	$('#providerList').dataTable
+          	sPaginationType: "full_numbers"
+						bJQueryUI: true
+			
+					
 @Providers = {
 	updateAggregate: (current_measure, sub_id) ->
 		@isPollRequestActive = true
@@ -50,6 +56,7 @@
 						row = $(Providers.row(providers[0]))
 						Render.percent row.find(".measureProviderPopulationPercentage"), result
 						Render.fraction row, result
+						Render.barChart row.find(".provider_row_measure_bar"), result
 						row.fadeTo("fast", 1.0)
 			else
 				$.each results, (i, data) ->
@@ -73,6 +80,8 @@
 			$("#loadingAggregate").hide()
 			$("div#measureMetrics").fadeTo "fast", 1.0, ->
 			
+
+				
 }
 
 class @ProvidersReport extends QualityReport

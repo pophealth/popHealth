@@ -6,8 +6,12 @@
 //
 // = require jquery
 // = require jquery_ujs
+// = require jquery-ui
 // = require bootstrap
 // = require underscore
 // = require backbone
 // = require backbone/pop_health
-// = require_tree .
+// = require_tree 
+// = require dataTables/jquery.dataTables
+
+

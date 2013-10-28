@@ -15,13 +15,17 @@ class TeamsController < ApplicationController
   end
   
   def create
-    @team = Team.create(params[:team])
+    if Team.where(:name => params[:team][:name]).exists?
+    	flash[:error] = 'Team already exists'
+    else 
+    	@team = Team.create(params[:team]) 
+    end
 
     respond_to do |wants|
       wants.html { redirect_to :action => "index" }
-      wants.js { render partial: "update_form"}
+    	wants.js { render partial: "update_form"}	 
     end
-    
+      
   end
   
   def update
@@ -35,12 +39,12 @@ class TeamsController < ApplicationController
 
   end
   
-  def destroy
+  def destroy	
     @team.destroy
     
     respond_to do |wants|
       wants.html { redirect_to :action => "index" }
-      wants.js { render partial: "update_form"}
+			wants.js { render partial: "update_form"}
     end
   end
   
