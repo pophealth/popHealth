@@ -11,6 +11,7 @@ class RecordsControllerTest < ActionController::TestCase
     @body2 = File.new("test/fixtures/patient_sample.xml").read
     @ccr_body = File.new("test/fixtures/sample_ccr.xml").read
     @cat1_body = File.new("test/fixtures/sample_cat1.xml").read
+    @cat1_inlined = File.new("test/fixtures/cat1_with_sdtc_inlined.xml").read
     sign_in @user
   end
   
@@ -78,6 +79,11 @@ class RecordsControllerTest < ActionController::TestCase
     assert_equal 7, created_record.encounters.count
   end
   
+  test "create record with QRDA Cat 1 with inlined sdtc attributes" do
+    raw_post(:create, @cat1_inlined)
+    assert_response(201)
+  end
+
   test "replace existing record" do
     # create one record
     raw_post(:create, @body)
