@@ -55,6 +55,7 @@ class RecordImporter
     
     if root_element_name == 'ClinicalDocument'
       doc.root.add_namespace_definition('cda', 'urn:hl7-org:v3')
+      doc.root.add_namespace_definition('sdtc', 'urn:hl7-org:sdtc')
 
       if doc.at_xpath("/cda:ClinicalDocument/cda:templateId[@root='2.16.840.1.113883.3.88.11.32.1']")
         patient_data = HealthDataStandards::Import::C32::PatientImporter.instance.parse_c32(doc)

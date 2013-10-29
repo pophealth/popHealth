@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type='text/xsl' href='CDA.xsl'?>
+<ClinicalDocument  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:voc="urn:hl7-org:v3/voc" >
+  <realmCode code="US" />
+  <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3" />
+  <templateId root="2.16.840.1.113883.10.20.24.1.1" />
+  <templateId root="2.16.840.1.113883.10.20.24.1.2" />
+  <id assigningAuthorityName="EPC" extension="4bca62ca-3d81-11e3-8ecc-460231621f93" root="1.2.840.114350.1.13.327.1.7.1.1" />
+  <code code="55182-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="QRDA Category I – Single Patient Report" />
+  <title>Quality Measure Report (Patient Level)</title>
+  <effectiveTime value="20131025092528" />
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" />
+  <languageCode code="en-US" />
+  <recordTarget>
+    <patientRole>
+      <id extension="395-73-5097" root="2.16.840.1.113883.4.1" />
+      <addr use="HP">
+        <streetAddressLine nullFlavor="UNK" />
+        <city nullFlavor="UNK" />
+      </addr>
+      <telecom nullFlavor="UNK" />
+      <patient>
+        <name>
+          <given>crash</given>
+          <family>Btw</family>
+        </name>
+        <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGenderCode" />
+        <birthTime value="19631025" />
+        <ethnicGroupCode codeSystem="2.16.840.1.113883.6.238" nullFlavor="UNK" />
+      </patient>
+    </patientRole>
+  </recordTarget>
+  <legalAuthenticator>
+    <time value="20131025092528-0500" />
+    <signatureCode code="S" />
+    <assignedEntity>
+      <id extension="1000001143" root="2.16.840.1.113883.4.6" />
+      <telecom use="WP" />
+      <assignedPerson>
+        <name>
+          <given>MUHAMMAD</given>
+          <family>BTW AL-KHWARIZMI</family>
+        </name>
+      </assignedPerson>
+      <representedOrganization>
+        <id extension="1" root="1.2.840.114350.1.13.327.1.7.2.696570" />
+        <name>CDE FACILITY</name>
+        <telecom use="WP" value="tel:+1-404-777-8000" />
+        <addr nullFlavor="UNK" />
+      </representedOrganization>
+    </assignedEntity>
+  </legalAuthenticator>
+  <component>
+    <structuredBody>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.17.2.4" />
+          <templateId root="2.16.840.1.113883.10.20.24.2.1" />
+          <code code="55188-7" codeSystem="2.16.840.1.113883.6.1" />
+
+          <entry>
+            <encounter classCode="ENC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+              <templateId root="2.16.840.1.113883.10.20.24.3.23"/>
+              <id root="1.3.6.1.4.1.115" extension="512ba7eae7e915f677000003"/>
+              <code code="112689000" codeSystem="2.16.840.1.113883.6.96" sdtc:valueSet="2.16.840.1.113883.3.666.5.625" xmlns:sdtc="urn:hl7-org:sdtc"><originalText>Encounter, Performed: Hospital 
+
+Measures-Encounter Inpatient (Code List: 2.16.840.1.113883.3.666.5.625)</originalText></code>
+              <text>Encounter, Performed: Hospital Measures-Encounter Inpatient (Code List: 
+
+2.16.840.1.113883.3.666.5.625)</text>
+              <statusCode code="completed"/>
+              <effectiveTime>
+                <low value='20061121075239'/>
+                <high value='20061122012933'/>
+              </effectiveTime>
+            </encounter>
+          </entry>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>
