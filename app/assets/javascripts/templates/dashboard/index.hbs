@@ -5,17 +5,17 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#measureSelectors" href="#category{{cid}}">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#measureSelectors" href="#category{{@cid}}">
               {{category}}
             </a>
           </h4>
         </div>
-        <div id="category{{cid}}" class="panel-collapse collapse">
+        <div id="category{{@cid}}" class="panel-collapse collapse">
           <div class="panel-body measureItemList">
             {{#collection measures}}
               <div class="checkbox">
                 <label>
-                  <input type="checkbox">
+                  <input type="checkbox"{{#if selected}} checked{{/if}}>
                   {{name}}
                   {{!-- <%= check_box_tag :measure_id, measure["id"], is_selected?(measure['id'], current_user.selected_measures), {id: nil, 'data-measure-id' => measure['id'], 'data-sub-measures' => measure['sub_ids'].join(',')} %><%= measure['name'] %> --}}
                 </label>
@@ -33,7 +33,7 @@
     <h1 class="main-head">Measures</h1>
     <a href="/measures/qrda_cat3.xml" class="btn btn-primary export-btn"><i class="icon-download-alt"></i> Export</a>
   </div>
-  {{#collection}}
+  {{#collection selectedCategories}}
     <div class="category" style="">
       <div class="category-title">{{category}}</div>
       <div class="category-header-percent">
