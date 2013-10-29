@@ -17,29 +17,22 @@
             </a>
             <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="User">
               <% if APP_CONFIG['edit_account_enabled']%>
-                <li><%=link_to raw('<i class="glyphicon glyphicon-edit"></i> Edit'), edit_user_registration_path(current_user) %></li>
+                <li><%=link_to raw('<i class="glyphicon glyphicon-edit"></i> Edit Account'), edit_user_registration_path(current_user) %></li>
               <% end %>
               <% if APP_CONFIG['logout_enabled']%>
-                <li><%= link_to raw('<i class="glyphicon glyphicon-off"></i> Logout'), destroy_user_session_path, method: 'delete' %></li>
+                <li><%= link_to raw('<i class="glyphicon glyphicon-log-out"></i> Logout'), destroy_user_session_path, method: 'delete' %></li>
               <% end %>
               <% if current_user.staff_role? || current_user.admin? %>
                 <li class="divider"></li>
-                <li class="dropdown-submenu">
-                  <a tabindex="-1" data-toggle="dropdown" href="#">
-                    <i class="glyphicon glyphicon-star"></i> 
-                    Admin
-                  </a>
-                  <ul  style="margin-left:0px; margin-right:20px" class="dropdown-menu pull-left" role="menu" aria-labelledby="Admin">
-                    <li><%= link_to raw('<i class="glyphicon glyphicon-plus"></i> Providers'), providers_path%></li>
-                    <% if current_user.admin? %>
-                      <% if (APP_CONFIG['patient_management_enabled']) %>
-                        <li><%= link_to raw('<i class="glyphicon glyphicon-eye-open"></i> Patients'), admin_patients_path%></li>
-                      <% end %>
-                      <li><%= link_to raw('<i class="glyphicon glyphicon-heart"></i> Users'), admin_users_path%></li>
-                      <li><%= link_to raw('<i class="glyphicon glyphicon-pencil"></i> Logs'), logs_index_path%></li> 
-                    <% end %>
-                  </ul>
-                </li>
+                <li role="presentation" class="dropdown-header">Admin</li>
+                <li><%= link_to raw('<i class="glyphicon glyphicon-plus"></i> Providers'), providers_path%></li>
+                <% if current_user.admin? %>
+                  <% if (APP_CONFIG['patient_management_enabled']) %>
+                    <li><%= link_to raw('<i class="glyphicon glyphicon-eye-open"></i> Patients'), admin_patients_path%></li>
+                  <% end %>
+                  <li><%= link_to raw('<i class="glyphicon glyphicon-user"></i> Users'), admin_users_path%></li>
+                  <li><%= link_to raw('<i class="glyphicon glyphicon-list-alt"></i> Logs'), logs_index_path%></li> 
+                <% end %>
               <% end %>
             </ul>
           </div>
