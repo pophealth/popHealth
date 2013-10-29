@@ -35,8 +35,6 @@ gem 'win32-eventlog', :platforms => [:mswin, :mingw]
 # backport fixes from future versions of Sprockets into a Rails 3-compatible gem
 gem 'sprockets', '2.2.2.backport1'
 
-gem 'requirejs-rails'
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
