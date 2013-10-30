@@ -1,6 +1,6 @@
 class Thorax.Models.Category extends Thorax.Model
   parse: (attrs) ->
-    # WARNING this modifies attrs in place, consider `attrs = $.extend {}, attrs` to make a deep copy
+    attrs = $.extend {}, attrs
     attrs.measures = new Thorax.Collections.Measures attrs.measures, parse: true
     attrs
 
@@ -13,3 +13,15 @@ class Thorax.Collections.Categories extends Thorax.Collection
       1
     else
       a.get('category').localeCompare b.get('category')
+
+  findMeasure: (id, subId) ->
+    desiredMeasure = null
+    @each (category) ->
+      measure = category.get('measures').get(id)
+      if measure?
+        if subId?
+          desiredMeasure = measure.get('submeasures').get(subId)
+        else
+          desiredMeasure = measure.get('submeasures').first()
+        return
+    desiredMeasure
