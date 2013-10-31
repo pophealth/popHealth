@@ -8,6 +8,7 @@ class PopHealthRouter extends Backbone.Router
     '':                                 'dashboard'
     'measures/:id(/:sub_id)':           'measure'
     'measures/:id(/:sub_id)/patients':  'patientsForMeasure'
+    'patients/:id':                     'patient'
 
   dashboard: ->
     @view.setView new Thorax.Views.Dashboard collection: @categories
@@ -17,6 +18,11 @@ class PopHealthRouter extends Backbone.Router
 
   patientsForMeasure: (id, subId) ->
     # @view.setView yourView
+
+  patient: (id) ->
+    patientRecord = new Thorax.Models.Patient '_id': id
+    # TODO Handle 404 case
+    @view.setView new Thorax.Views.PatientView model: patientRecord
 
 new PopHealthRouter()
 Backbone.history.start()

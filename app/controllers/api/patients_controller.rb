@@ -1,4 +1,4 @@
-  module API
+  module Api
   class PatientsController < ApplicationController
     include MeasuresHelper
     include PaginationHelper

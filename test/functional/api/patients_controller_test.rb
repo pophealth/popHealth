@@ -1,6 +1,6 @@
 require 'test_helper'
 
-  module API
+  module Api
   class PatientsControllerTest < ActionController::TestCase
     include Devise::TestHelpers
       
