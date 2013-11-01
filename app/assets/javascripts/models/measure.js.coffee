@@ -31,7 +31,9 @@ class SubCollection extends Thorax.Collection
 class Query extends Thorax.Model
   idAttribute: '_id'
   urlRoot: '/api/queries'
-  initialize: (attrs, options) -> @parent = options.parent
+  initialize: (attrs, options) -> 
+    @parent = options.parent
+    @set 'patient_results', new Thorax.Collections.PatientResults [], parent: this
   isPopulated: -> @has('status') and @get('status').state isnt 'queued'
   isLoading: -> !@isPopulated()
   numerator: -> if @isPopulated() and @has('result') then @get('result').NUMER else 0
@@ -42,3 +44,4 @@ class Query extends Thorax.Model
   performanceRate: -> Math.round(100 * @numerator() / Math.max(1, @performanceDenominator()))
   # hack so that creating a query acts just like checking an existing query
   fetch: -> if @isNew() then @save() else super(arguments...)
+

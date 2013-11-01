@@ -6,8 +6,8 @@ class PopHealthRouter extends Backbone.Router
 
   routes:
     '':                                 'dashboard'
+    'measures/:id(/:sub_id)/patient_results':  'patientResultsForMeasure'
     'measures/:id(/:sub_id)':           'measure'
-    'measures/:id(/:sub_id)/patients':  'patientsForMeasure'
     'patients/:id':                     'patient'
     'providers/:id':                    'provider'
 
@@ -15,10 +15,14 @@ class PopHealthRouter extends Backbone.Router
     @view.setView new Thorax.Views.Dashboard collection: @categories
 
   measure: (id, subId) ->
-    # @view.setView yourView
+    console?.log 'measure!'
 
-  patientsForMeasure: (id, subId) ->
-    # @view.setView yourView
+  patientResultsForMeasure: (id, subId) ->
+    measure = @categories.findMeasure(id, subId)
+    if measure?
+      @view.setView new Thorax.Views.PatientResultsView query: measure.get('query')
+    else
+      console?.log 'Measure not found'
 
   patient: (id) ->
     patientRecord = new Thorax.Models.Patient '_id': id
