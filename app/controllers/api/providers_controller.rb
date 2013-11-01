@@ -1,4 +1,4 @@
-  module API
+  module Api
   class ProvidersController < ApplicationController
     include PaginationHelper
     # load resource must be before authorize resource
