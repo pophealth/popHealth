@@ -1,4 +1,8 @@
 class Thorax.Models.PatientResult extends Thorax.Model
+  parse: (attrs) ->
+    # JSON that comes back is in the MongoDB M/R created format
+    # We only want to work with the properties in value
+    attrs.value
 
 class Thorax.Collections.PatientResults extends Thorax.Collection
   model: Thorax.Models.PatientResult

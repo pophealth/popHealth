@@ -40,6 +40,7 @@ class Query extends Thorax.Model
   denominator: -> if @isPopulated() and @has('result') then @get('result').DENOM else 0
   exceptions: -> if @isPopulated() and @has('result') then @get('result').DENEXCEP else 0
   exclusions: -> if @isPopulated() and @has('result') then @get('result').DENEX else 0
+  outliers: -> if @isPopulated() and @has('result') then @get('result').antinumerator else 0
   performanceDenominator: -> @denominator() - @exceptions() - @exclusions()
   performanceRate: -> Math.round(100 * @numerator() / Math.max(1, @performanceDenominator()))
   # hack so that creating a query acts just like checking an existing query

@@ -1,5 +1,6 @@
-Patients
+{{view "QueryView" model=query parent=this}}
+<div class="main">
 {{#collection}}
   {{value.first}} {{value.last}}
 {{/collection}}
-Done
+</div>
