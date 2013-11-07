@@ -4,6 +4,7 @@ class Thorax.Views.ResultsView extends Thorax.View
     model:
       change: ->
         clearInterval(@timeout) if @timeout? and !@model.isLoading()
+        @$(".dial").knob()
   performanceRate: -> @model.performanceRate()
   numerator: -> @model.numerator()
   denominator: -> @model.denominator()
@@ -13,13 +14,16 @@ class Thorax.Views.ResultsView extends Thorax.View
       @timeout = setInterval =>
         @model.fetch()
       , 3000
-
+  rendered: ->
+    console.log "TEST"
 
 class Thorax.Views.Dashboard extends Thorax.View
   template: JST['dashboard/index']
   events:
     rendered: ->
       @$("[rel='tooltip']").tooltip()
+      
+
 
   initialize: ->
     selectedIds = _(currentUser.selected_measures).map (m) -> m.id

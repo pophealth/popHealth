@@ -15,7 +15,8 @@ class PopHealthRouter extends Backbone.Router
     @view.setView new Thorax.Views.Dashboard collection: @categories
 
   measure: (id, subId) ->
-    console?.log 'measure!'
+    @measure = @categories.findMeasure(id, subId)
+    @view.setView new Thorax.Views.MeasureView model: @measure
 
   patientResultsForMeasure: (id, subId) ->
     measure = @categories.findMeasure(id, subId)
