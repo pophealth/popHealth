@@ -1,6 +1,32 @@
-{{view "QueryView" model=query parent=this}}
-<div class="main">
+{{!-- Patients
 {{#collection}}
-  {{value.first}} {{value.last}}
+  {{first}} {{last}} {{gender}}
 {{/collection}}
-</div>
+Done --}}
+
+<table class="table">
+  <thead>
+    <tr> 
+      <th>Patient ID</th>
+      <th>Last Name</th>
+      <th>First Name</th>
+      <th>Age</th>
+      <th>DOB</th>
+      <th>Sex</th>
+      <th>Exclusion</th>
+    </tr>
+  </thead>
+  {{#collection tag='tbody' item-filter=itemFilter}}
+    <tr>
+      <td><a href="patients/{{patient_id}}">{{patient_id}}</a></td>
+      <td><strong>{{last}}</strong></td>
+      <td>{{first}}</td>
+      <td>{{age}}</td>
+      <td>{{birthdate}}</td>
+      <td>{{gender}}</td>
+      <td>
+        <button class="btn-default">Exclude</button>
+      </td>
+    </tr>
+  {{/collection}}
+</table>

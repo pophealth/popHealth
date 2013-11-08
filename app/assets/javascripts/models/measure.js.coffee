@@ -36,6 +36,7 @@ class Query extends Thorax.Model
     @set 'patient_results', new Thorax.Collections.PatientResults [], parent: this
   isPopulated: -> @has('status') and @get('status').state isnt 'queued'
   isLoading: -> !@isPopulated()
+  ipp: -> if @isPopulated() and @has('result') then @get('result').IPP else 0
   numerator: -> if @isPopulated() and @has('result') then @get('result').NUMER else 0
   denominator: -> if @isPopulated() and @has('result') then @get('result').DENOM else 0
   exceptions: -> if @isPopulated() and @has('result') then @get('result').DENEXCEP else 0

@@ -1,44 +1,26 @@
 <div class="left-sidebar">
-  <h3>Populations</h3>
-  <div class="panel-group" id="populationSelectors">
-    <div class="panel panel-default">
-      <div class="panel-heading population" id="NUMER">
-        <h4 class="panel-title">
-          Numerator - {{numerator}}
-        </h4>  
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading population" id="DENOM">
-        <h4 class="panel-title">
-          Denominator - {{denominator}}
-        </h4>  
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading population" id="antinumerator">
-        <h4 class="panel-title">
-          Outliers - {{outliers}}
-        </h4>  
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading population" id="DENEX">
-        <h4 class="panel-title">
-          Exclusions - {{exclusions}}
-        </h4>  
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading population" id="DENEXCEP">
-        <h4 class="panel-title">
-          Exceptions - {{exceptions}}
-        </h4>  
-      </div>
-    </div>
-  </div>
+  <button class="population-btn btn-primary">
+    <span class="title">Initial Patient Population</span>
+    <span class="query-result">{{ipp}}</span>
+  </button>
+  <button class="population-btn">
+    <span class="title">Numerator</span>
+    <span class="query-result">{{numerator}}</span>
+  </button>
+  <button class="population-btn">
+    <span class="title">Denominator</span>
+    <span class="query-result">{{denominator}}</span>
+  </button>
+  <button class="population-btn">
+    <span class="title">Exclusions</span>
+    <span class="query-result">{{exclusions}}</span>
+  </button>
+  <button class="population-btn">
+    <span class="title">Exceptions</span>
+    <span class="query-result">{{exceptions}}</span>
+  </button>
+  <button class="population-btn">
+    <span class="title">Outliers</span>
+    <span class="query-result">{{outliers}}</span>
+  </button>
 </div>

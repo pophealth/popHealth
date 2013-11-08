@@ -101,3 +101,36 @@
     text-transform: uppercase;
   }
 }
+
+
+
+
+
+
+// New styles for side bar for the measure view/patient list
+// TODO Clean up these styles
+
+.population-btn {
+  .col-xs-12;
+  .btn;
+  font-weight: 700;
+  font-size: 1.1em;
+  line-height: 2.5em;
+  border: 1px solid white;
+  padding: 0px 7px;
+  background-color: @gray-lighter;
+  .query-result {
+    .pull-right;
+    font-size: 1.3em;
+  }
+  &.selected {
+    color: white;
+    background-color: @brand-primary;
+  }
+  .title {
+    .pull-left;
+  }
+  &.btn-primary {
+    background-color: @brand-primary;
+  }
+}

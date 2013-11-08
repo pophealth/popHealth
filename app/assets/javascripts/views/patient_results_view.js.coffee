@@ -1,6 +1,5 @@
-class Thorax.Views.PatientResultsView extends Thorax.CollectionView
+class Thorax.Views.PatientResultsView extends Thorax.View
   template: JST['patient_results/index']
-  itemTemplate: JST['patient_results/patient']
 
   query: -> @query
   initialize: ->
@@ -23,6 +22,7 @@ class Thorax.Views.PatientResultsView extends Thorax.CollectionView
 
 class Thorax.Views.QueryView extends Thorax.View
   template: JST['patient_results/query']
+  ipp: -> @model.ipp()
   numerator: -> @model.numerator()
   denominator: -> @model.denominator()
   exceptions: -> @model.exceptions()
