@@ -1,4 +1,5 @@
 class Thorax.Models.PatientResult extends Thorax.Model
+  formatted_birthdate: -> moment(@get('birthdate')).format('MM/DD/YYYY') if @get('birthdate')
   parse: (attrs) ->
     # JSON that comes back is in the MongoDB M/R created format
     # We only want to work with the properties in value

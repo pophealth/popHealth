@@ -121,3 +121,26 @@
     background-color: @brand-primary;
   }
 }
+
+@table-border-color: white;
+.table {
+  thead {
+    background-color: @gray-lighter;
+    > tr > th {
+      border: none;
+      font-weight: 700;
+      &.pid {
+        text-transform: uppercase;
+        font-size: 1.2em;
+      }
+    }
+  }
+  > thead > tr > th, > tbody > tr > td {
+    line-height: 2;
+    font-size: 1em;
+    vertical-align: middle;
+    .btn-default {
+      padding: 7px 10px;
+    }
+  }
+}
