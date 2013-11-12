@@ -31,10 +31,11 @@ class SubCollection extends Thorax.Collection
 class Query extends Thorax.Model
   idAttribute: '_id'
   urlRoot: '/api/queries'
-  initialize: (attrs, options) -> 
+  initialize: (attrs, options) ->
     @parent = options.parent
     @set 'patient_results', new Thorax.Collections.PatientResults [], parent: this
-  isPopulated: -> @has('status') and @get('status').state isnt 'queued'
+  # TODO what other final states are there other than completed?
+  isPopulated: -> @has('status') and @get('status').state in ['completed']
   isLoading: -> !@isPopulated()
   ipp: -> if @isPopulated() and @has('result') then @get('result').IPP else 0
   numerator: -> if @isPopulated() and @has('result') then @get('result').NUMER else 0
