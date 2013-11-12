@@ -1,7 +1,8 @@
-class PopHealthRouter extends Backbone.Router
+window.PopHealth ||= {}
+class PopHealth.Router extends Backbone.Router
   initialize: ->
     # categories is defined globally in view
-    @categories = new Thorax.Collections.Categories categories, parse: true
+    @categories = new Thorax.Collections.Categories PopHealth.categories, parse: true
     @view = new Thorax.LayoutView el: '#container'
 
   routes:
@@ -35,5 +36,3 @@ class PopHealthRouter extends Backbone.Router
     # TODO Handle 404 case
     @view.setView new Thorax.Views.ProviderView model: providerModel
 
-new PopHealthRouter()
-Backbone.history.start()

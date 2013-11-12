@@ -26,7 +26,7 @@ class Thorax.Views.Dashboard extends Thorax.View
 
 
   initialize: ->
-    selectedIds = _(currentUser.selected_measures).map (m) -> m.id
+    selectedIds = _(PopHealth.currentUser.selected_measures).map (m) -> m.id
     @selectedCategories = new Thorax.Collections.Categories
     @collection.each (cat) =>
       selectedMeasures = cat.get('measures').select (m) => _(selectedIds).contains m.id
