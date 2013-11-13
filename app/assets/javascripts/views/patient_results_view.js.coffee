@@ -35,11 +35,10 @@ class Thorax.Views.QueryView extends Thorax.View
     @setModel(attrs.model, {render: true})
     @parent = attrs.parent
   
-  events: { 
-    'click .population-btn': 'changeFilter'
-  }    
+  events:
+    'click .population-btn': 'changeFilter' 
 
   changeFilter: (event) ->
     @parent.changePopulation event.currentTarget.id
-    $('.population-btn.active').removeClass('active')
-    $(event.currentTarget).addClass('active')
+    $('.population-btn.active').removeClass 'active'
+    $(event.currentTarget).addClass 'active'
