@@ -34,7 +34,12 @@ class Thorax.Views.QueryView extends Thorax.View
   initialize: (attrs) ->
     @setModel(attrs.model, {render: true})
     @parent = attrs.parent
+  
   events: { 
-    'click .population-btn': (event) ->
-      @parent.changePopulation event.currentTarget.id
+    'click .population-btn': 'changeFilter'
   }    
+
+  changeFilter: (event) ->
+    @parent.changePopulation event.currentTarget.id
+    $('.population-btn.active').removeClass('active')
+    $(event.currentTarget).addClass('active')
