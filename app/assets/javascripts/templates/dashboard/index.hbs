@@ -55,7 +55,7 @@
 
     {{#collection measures}}
     {{!-- <%npi_param = (@selected_provider ? "?npi=#{@selected_provider.npi}" : '')%> --}}
-      {{#collection submeasures item-view="DashboardSubmeasureRowView"}}
+      {{#collection submeasures item-view="DashboardSubmeasureView"}}
         <div class="measure">
           <div class="measure-title" data-measure-sub="{{sub_id}}">
             {{#if isPrimary}}
