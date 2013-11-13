@@ -35,13 +35,14 @@ The following options are supported :
 Behaviors :
 * min : min value | default=0.
 * max : max value | default=100.
+* step : step size | default=1.
 * angleOffset : starting angle in degrees | default=0.
 * angleArc : arc size in degrees | default=360.
 * stopper : stop at min & max on keydown/mousewheel | default=true.
 * readOnly : disable input and events | default=false.
 
 UI :
-* cursor : display mode "cursor" | default=gauge.
+* cursor : display mode "cursor", cursor size could be changed passing a numeric value to the option, default width is used when passing boolean value "true" | default=gauge.
 * thickness : gauge thickness.
 * lineCap : gauge stroke endings. | default=butt, round=rounded line endings
 * width : dial width.
@@ -49,6 +50,8 @@ UI :
 * displayPrevious : default=false | true=displays the previous value with transparency.
 * fgColor : foreground color.
 * inputColor : input value (number) color.
+* font : font family.
+* fontWeight : font weight.
 * bgColor : background color.
 
 Hooks
@@ -80,6 +83,8 @@ Hooks
     - ... console.log(this);
 
 * 'cancel' : triggered on [esc] keydown
+
+* 'error' : called if the browser doesn't support canvases and the plugin didn't initialize as a result
 
 The scope (this) of each hook function is the current Knob instance (refer to the demo code).
 
@@ -125,25 +130,3 @@ Supported browser
 -------
 
 Tested on Chrome, Safari, Firefox, IE 9.0.
-
-MIT License
--------
-
-Copyright (C) 2013 Anthony Terrien
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

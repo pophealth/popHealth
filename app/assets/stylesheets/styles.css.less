@@ -6,14 +6,13 @@
 @listing-line-height: 1.5;
 @circle-bkg-color: #fff;
 @title-circle-radius: 21px;
-@circle-listing-radius: 35px;
 
 // Custom classes for semantic mark-up
 // font-size -> 1em = 14px
 
 .nav {
   font-weight: 500;
-  
+
   .location {
     margin-top: 4px
   }
@@ -50,7 +49,7 @@
     }
   }
   .category-fraction {
-    font-weight: 800;  
+    font-weight: 800;
     font-size: 1em;
     line-height: 1.4em;
   }
@@ -69,19 +68,7 @@
   }
   .percent-listing {
     height: 78px;
-    .circle-listing {
-      border-radius: @circle-listing-radius;
-      height: @circle-listing-radius * 2 + 5px;
-      width: @circle-listing-radius * 2 + 5px;
-      background-color: @circle-bkg-color;
-      border: 2px solid @gray-lighter;
-      margin: 0 auto;
-      padding-top: 14px;
-      text-align: center;
-      vertical-align: middle;
-      font-weight: 200;
-      font-size: 2em;     
-    }
+    text-align: center;
   }
   .fraction-listing {
     padding-top: 10px;
@@ -90,7 +77,7 @@
     font-size: 1.3em;
     font-weight: 500;
     .numerator, .denominator {
-      width: 40px;      
+      width: 40px;
     }
     .denominator{
       border-top: 1px solid black;

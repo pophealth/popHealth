@@ -5,7 +5,7 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
         <script src="js/jquery.knob.js"></script>
         <script>
-            $(function() {
+            $(function($) {
 
                 $(".knob").knob({
                     change : function (value) {
@@ -145,8 +145,9 @@ data-min="-100"
             <p>&#215; Angle offset</p>
             <pre>
 data-angleOffset=90
+data-linecap=round
             </pre>
-            <input class="knob" data-angleOffset=90 value="35">
+            <input class="knob" data-angleOffset=90 data-linecap=round value="35">
         </div>
         <div class="demo">
             <p>&#215; Angle offset and arc</p>
@@ -158,12 +159,14 @@ data-angleArc=250
             <input class="knob" data-angleOffset=-125 data-angleArc=250 data-fgColor="#66EE66" value="35">
         </div>
         <div class="demo" >
-            <p>&#215; 5-digit values</p>
+            <p>&#215; 5-digit values, step 1000</p>
             <pre>
+data-step="1000"
 data-min="-15000"
 data-max="15000"
+data-displayPrevious=true
             </pre>
-            <input class="knob" data-min="-15000" data-max="15000" value="-11000">
+            <input class="knob" data-min="-15000" data-displayPrevious=true data-max="15000" data-step="1000" value="-11000">
         </div>
         <div style="clear:both"></div>
         <div style="text-align: center">
@@ -202,14 +205,63 @@ data-max="15000"
             </div>
         </div>
         <div style="clear:both"></div>
+        <div class="demo" style="width:100%">
+            <p>&#215; Responsive</p>
+            <pre>
+data-width="80%"
+            </pre>
+            <div style="width: 30%; border: 3px dashed; margin-bottom: 20px">
+                <i>
+                    Current div width is 30% of window width.<br>
+                    Knob width is 80% of current div.<br>
+                    Knob width is 80% of 30% of window width.<br>
+                    Test resizing window.
+                </i>
+                <br>
+                <br>
+                <input class="knob" data-width="80%" value="35">
+            </div>
+        </div>
+        <div style="clear:both"></div>
+        <script>
+        function clock() {
+            var $s = $(".second"),
+                $m = $(".minute"),
+                $h = $(".hour");
+                d = new Date(),
+                s = d.getSeconds(),
+                m = d.getMinutes(),
+                h = d.getHours();
+            $s.val(s).trigger("change");
+            $m.val(m).trigger("change");
+            $h.val(h).trigger("change");
+            setTimeout("clock()", 1000);
+        }
+        clock();
+        </script>
+        <div class="demo" style="color:#EEE;background:#222;height:420px;width:100%">
+            <p>&#215; Superpose (clock)</p>
+            <div style="position:relative;width:350px;margin:auto">
+                <div style="position:absolute;left:10px;top:10px">
+                    <input class="knob hour" data-min="0" data-max="24" data-bgColor="#333" data-fgColor="#ffec03" data-displayInput=false data-width="300" data-height="300" data-thickness=".3">
+                </div>
+                <div style="position:absolute;left:60px;top:60px">
+                    <input class="knob minute" data-min="0" data-max="60" data-bgColor="#333" data-displayInput=false data-width="200" data-height="200" data-thickness=".45">
+                </div>
+                <div style="position:absolute;left:110px;top:110px">
+                    <input class="knob second" data-min="0" data-max="60" data-bgColor="#333" data-fgColor="rgb(127, 255, 0)" data-displayInput=false data-width="100" data-height="100" data-thickness=".3">
+                </div>
+            </div>
+        </div>
+        <div style="clear:both"></div>
         <div class="demo">
             <p>&#215; Readonly</p>
             <pre>
+readonly (or data-readOnly=true)
 data-thickness=".4"
 data-fgColor="chartreuse"
-data-readOnly=true
             </pre>
-            <input class="knob" data-fgColor="chartreuse" data-thickness=".4" data-readOnly=true value="22">
+            <input class="knob" data-fgColor="chartreuse" data-thickness=".4" readonly value="22">
         </div>
         <div class="demo">
             <p>&#215; Dynamic</p>
