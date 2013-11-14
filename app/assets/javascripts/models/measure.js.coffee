@@ -10,6 +10,8 @@ class Thorax.Models.Measure extends Thorax.Model
 
 class Thorax.Collections.Measures extends Thorax.Collection
   model: Thorax.Models.Measure
+  initialize: (models, options) -> @parent = options.parent
+  comparator: 'name'
 
 class Submeasure extends Thorax.Model
   idAttribute: 'sub_id'

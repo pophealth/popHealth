@@ -15,14 +15,14 @@
           <div class="panel-body measureItemList">
             <div class="checkbox">
               <label>
-                  <input name="all" type="checkbox" class="all">
+                  <input type="checkbox" class="all">
                   Select All
               </label>
             </div>
             {{#collection measures}}
               <div class="checkbox">
                 <label>
-                  <input type="checkbox"{{#if selected}} checked{{/if}}>
+                  <input type="checkbox" class="individual"{{#if selected}} checked{{/if}}>
                   {{name}}
                   {{!-- <%= check_box_tag :measure_id, measure["id"], is_selected?(measure['id'], current_user.selected_measures), {id: nil, 'data-measure-id' => measure['id'], 'data-sub-measures' => measure['sub_ids'].join(',')} %><%= measure['name'] %> --}}
                 </label>
@@ -61,29 +61,16 @@
             {{#if isPrimary}}
               <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}" data-placement="bottom" data-content="{{description}}" rel="popover">{{name}}</a>
             {{/if}}
-            {{!-- {{#link "measures/{{../../id}}" expand-tokens=true}}{{../../name}}{{/link}} --}}
-{{!--         <% if sub['sub_id'].nil? || sub['sub_id'] == 'a' %>
-
-                  <%= link_to measure_TEMP['name'], measure_url(measure_TEMP['id'], sub['sub_id'])+npi_param%>
-              <% end %>
- --}}
           </div>
           <div class="measure-subtitle">
-{{!--       <% if (can? :manage, :providers) %>
-              <%= link_to("#{sub['short_subtitle']}", measure_path(measure_TEMP['id'], sub['sub_id'])) %>
-            <% else %>
-              <%= sub['short_subtitle'] %>
-            <% end %>--}}
             {{#if short_subtitle}}
               <a href="#measures/{{id}}/{{sub_id}}">{{short_subtitle}}</a>
             {{/if}}
           </div>
           {{view "ResultsView" model=query}}
-          {{!-- <%= link_to patients_url(measure_TEMP['id'], sub['sub_id'])+npi_param, class: 'patient-btn' do %> --}}
           <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}/patient_results" class="patient-btn">
             <i class="glyphicon glyphicon-user"></i> Patients
           </a>
-          {{!-- <% end %> --}}
         </div>
       {{/collection}}
     {{/collection}}

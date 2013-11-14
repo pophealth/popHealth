@@ -1,7 +1,7 @@
 class Thorax.Models.Category extends Thorax.Model
   parse: (attrs) ->
     attrs = $.extend {}, attrs
-    attrs.measures = new Thorax.Collections.Measures attrs.measures, parse: true
+    attrs.measures = new Thorax.Collections.Measures attrs.measures, parent: this, parse: true
     attrs
 
 class Thorax.Collections.Categories extends Thorax.Collection
