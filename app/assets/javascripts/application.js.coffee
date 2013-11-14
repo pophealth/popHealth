@@ -19,8 +19,8 @@
 #= require router
 #= require_self
 
-if Config.idleTimeoutEnabled
-  $(document).idleTimer Config.idleTimeout
+if Config.idleTimeout.isEnabled
+  $(document).idleTimer Config.idleTimeout.timer
   $(document).on 'idle.idleTimer', ->
     $.ajax
       url: '/users/sign_out'
