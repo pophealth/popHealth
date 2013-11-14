@@ -67,25 +67,40 @@
     font-weight: 500;
   }
   .percent-listing {
-    height: 78px;
     text-align: center;
   }
-  .fraction-listing {
-    padding-top: 10px;
-    text-align: center;
-    height: 75px;
-    font-size: 1.3em;
-    font-weight: 500;
-    .numerator, .denominator {
-      width: 40px;
+  .row-remainder {
+    .fraction-listing {
+      text-align: center;
+      font-size: 1.3em;
+      font-weight: 500;
+      .numerator, .denominator {
+        width: 40px;
+      }
+      .denominator {
+        border-top: 1px solid black;
+      }
     }
-    .denominator{
-      border-top: 1px solid black;
+
+    .pop-chart {
+      height: 50px;
+      width: 125px;
+      rect{
+        stroke:white;
+        stroke-width:0px;
+        fill: rgb(205,205,205);
+      }
+      .numer {
+        fill: rgb(59,133,140);
+      }
+      .denom {
+        fill: rgb(59,133,140);
+      }
     }
-  }
-  .patient-btn {
-    margin-top: 16px;
-    text-transform: uppercase;
+
+    .patient-btn {
+      text-transform: uppercase;
+    }
   }
 }
 

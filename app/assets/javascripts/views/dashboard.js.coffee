@@ -3,8 +3,12 @@ class Thorax.Views.ResultsView extends Thorax.View
   events:
     model:
       change: ->
-        clearInterval(@timeout) if @timeout? and !@model.isLoading()
-    rendered: -> @$('.dial').knob()
+        unless @model.isLoading()
+          clearInterval(@timeout) if @timeout?
+          d3.select(@el).select('.pop-chart').datum(@model.get('result')).call(@popChart)
+    rendered: ->
+      @$('.dial').knob()
+      d3.select(@el).select('.pop-chart').datum(@model.get('result')).call(@popChart) if @model.isPopulated()
     destroyed: ->
       clearInterval(@timeout) if @timeout?
 
@@ -13,6 +17,7 @@ class Thorax.Views.ResultsView extends Thorax.View
   denominator: -> @model.denominator()
   performanceDenominator: -> @model.performanceDenominator()
   initialize: ->
+    @popChart = PopHealth.viz.populationChart().width(125).height(50).numerSpacing(2).maximumValue(PopHealth.patientCount)
     unless @model.isPopulated()
       @timeout = setInterval =>
         @model.fetch()

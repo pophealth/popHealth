@@ -46,10 +46,7 @@
       <div class="category-percent">
         <div class="title-circle">%</div>
       </div>
-      <div class="category-fraction">
-        <div>Numerator/</div>
-        <div>Denominator</div>
-      </div>
+      <div class="category-fraction">Numerator/Denominator</div>
     </div>
   </div>
 
@@ -67,10 +64,7 @@
               <a href="#measures/{{id}}/{{sub_id}}">{{short_subtitle}}</a>
             {{/if}}
           </div>
-          {{view "ResultsView" model=query}}
-          <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}/patient_results" class="patient-btn">
-            <i class="glyphicon glyphicon-user"></i> Patients
-          </a>
+          {{view "ResultsView" model=query id=id sub_id=sub_id}}
         </div>
       {{/collection}}
     {{/collection}}
