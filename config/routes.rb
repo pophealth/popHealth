@@ -40,7 +40,7 @@ PopHealth::Application.routes.draw do
   match 'patients/show/:id', :to => 'patients#show'
   match 'patients/toggle_excluded/:id/:measure_id(/:sub_id)', :to => 'patients#toggle_excluded', :via => :post
 
-  root :to => 'measures#index'
+  root :to => 'home#index'
   
   resources :measures do
     member { get :providers }
@@ -61,7 +61,26 @@ PopHealth::Application.routes.draw do
   end
   
   resources :teams
-  
+
+  namespace :api do
+    resources :providers do
+      resources :patients do
+        collection do
+          get :manage
+          put :update_all
+        end
+      end
+    end
+    resources :patients
+    resources :measures
+    resources :queries do
+       member do
+        get :patients
+        get :patient_results
+        put :recalculate
+       end
+    end
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

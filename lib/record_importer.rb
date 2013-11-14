@@ -73,17 +73,6 @@ class RecordImporter
       rescue Exception => e
         STDERR.puts "error extracting providers"
       end
-    # Disabling this until HDS is updated or QRDA Importer is done @SS
-    # elsif root_element_name == 'ContinuityOfCareRecord'
-    #   doc.root.add_namespace_definition('ccr', 'urn:astm-org:CCR')
-    #   patient_id_xpath = "./ccr:IDs/ccr:ID[../ccr:Type/ccr:Text=\"#{APP_CONFIG['ccr_system_name']}\"]"
-    #   patient_data = HealthDataStandards::Import::CCR::PatientImporter.instance.parse_ccr(doc, patient_id_xpath)
-    #   begin
-    #     providers = HealthDataStandards::Import::CCR::ProviderImporter.instance.extract_providers(doc)
-    #   rescue Exception => e
-    #     STDERR.puts "error extracting providers"
-    #   end
-    #   binding.pry 
     else
       return {status: 'error', message: 'Unknown XML Format', status_code: 400}
     end
@@ -95,5 +84,26 @@ class RecordImporter
     {status: 'success', message: 'patient imported', status_code: 201, record: record}
     
   end
+
+  def self.load_zip(zip_file)
+
+      temp_file = Tempfile.new("patient_upload")
+      File.open(temp_file.path, "wb") { |f| f.write(zip_file.read) }
+      Zip::ZipFile.open(temp_file.path) do |zipfile|
+        zipfile.entries.each do |entry|
+          next if entry.directory?
+          xml = zipfile.read(entry.name)
+          result = RecordImporter.import(xml)
+          
+          if (result[:status] == 'success') 
+            @record = result[:record]
+            QME::QualityReport.update_patient_results(@record.medical_record_number)
+            Atna.log(current_user.username, :phi_import)
+            Log.create(:username => current_user.username, :event => 'patient record imported', :medical_record_number => @record.medical_record_number)
+          end
+          
+        end
+      end
+    end  
 
 end

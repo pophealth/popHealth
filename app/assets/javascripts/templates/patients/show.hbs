@@ -1,0 +1,53 @@
+<p>
+  Name: {{first}} {{last}}<br>
+  Effective Date: {{formatted_effective_time}}<br>
+  DOB: {{formatted_birthdate}}<br>
+  Sex: {{gender}}<br>
+  Race: {{race.name}}<br>
+  Ethnicity: {{ethnicity.name}}<br>
+  Languages: {{languages}}<br>
+  Record Number: {{medical_record_number}}<br>
+  Allergies: {{allergies}}<br>
+  Care Goals: {{care_goals}}<br>
+</p>
+<p>
+  Vital Signs (Description):
+  {{#each vital_signs}}
+    <br>{{description}}
+  {{/each}}
+</p>
+<p>
+  Laboratory Results (Start time):
+  {{#each results}}
+    <br>{{start_time}}
+  {{/each}}
+</p>
+<p>
+  Encounters (Start time):
+  {{#each encounters}}
+    <br>{{start_time}}
+  {{/each}}
+</p>
+<p>
+  Conditions (Description): 
+  {{#each conditions}}
+    <br>{{description}}
+  {{/each}}
+</p>
+<p>
+  Procedures (Description): 
+  {{#each procedures}}
+    <br>{{description}}
+  {{/each}}
+</p>
+<p>
+  Medications (Description): 
+  {{#each medications}}
+    <br>{{description}}
+  {{/each}}
+</p>
+<p>
+  Social History: {{social_history}}<br>
+  Immunizations: {{immunizations}}<br>
+  Medical Equipment: {{medical_equipment}}<br>
+</p>

@@ -1,0 +1,618 @@
+{
+  "_id": {
+    "$oid": "523c57e3949d9dd06956b621"
+  },
+  "value": {
+    "IPP": 1,
+    "patient_id": {
+      "$oid": "523c57e1b59a907ea9000064"
+    },
+    "medical_record_id": "1379686369_6",
+    "first": "Christine",
+    "last": "Snyder",
+    "gender": "F",
+    "birthdate": 948790604,
+    "test_id": {
+      "$oid": "523c57e1b59a907ea9000002"
+    },
+    "provider_performances": null,
+    "race": {
+      "code": "1002-5",
+      "name": "American Indian or Alaska Native",
+      "codeSystem": "CDC Race"
+    },
+    "ethnicity": {
+      "code": "2186-5",
+      "name": "Not Hispanic or Latino",
+      "codeSystem": "CDC Race"
+    },
+    "languages": [],
+    "payer": {
+      "code": "349",
+      "codeSystem": "SOP"
+    },
+    "DENOM": 1,
+    "NUMER": 0,
+    "DENEXCEP": 0,
+    "DENEX": 1,
+    "antinumerator": 0,
+    "logger": [
+      " IPP:",
+      "         PatientCharacteristicBirthdateBirthDate_precondition_42:",
+      "                 called patient.birthtime():",
+      "                 patient.birthtime() -> Tue Jan 25 2000 03:56:44 GMT-0500 (EST)",
+      "                 MeasurePeriod:",
+      "                 MeasurePeriod -> true",
+      "         PatientCharacteristicBirthdateBirthDate_precondition_42 -> true",
+      "         Specific context",
+      "                 [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                 [\"*\",\"*\",\"*\",\"*\",\"*\"]",
+      "         ------",
+      "         PatientCharacteristicBirthdateBirthDate_precondition_44:",
+      "                 called patient.birthtime():",
+      "                 patient.birthtime() -> Tue Jan 25 2000 03:56:44 GMT-0500 (EST)",
+      "                 MeasurePeriod:",
+      "                 MeasurePeriod -> true",
+      "         PatientCharacteristicBirthdateBirthDate_precondition_44 -> true",
+      "         Specific context",
+      "                 [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                 [\"*\",\"*\",\"*\",\"*\",\"*\"]",
+      "         ------",
+      "         OccurrenceAPersistentAsthma1_precondition_46:",
+      "                 called patient.allProblems():",
+      "                 called patient.conditions():",
+      "                 patient.conditions() -> 5 entries",
+      "                 called patient.socialHistories():",
+      "                 patient.socialHistories() -> 0 entries",
+      "                 called patient.procedures():",
+      "                 patient.procedures() -> 0 entries",
+      "                 patient.allProblems() -> 5 entries",
+      "                 accessed codes: 2.16.840.1.113883.3.464.1003.102.12.1023",
+      "                 matched -> 1 entries",
+      "                 MeasurePeriod:",
+      "                 MeasurePeriod -> true",
+      "         OccurrenceAPersistentAsthma1_precondition_46 -> true",
+      "         Specific context",
+      "                 [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                 [\"523c5252b59a904e7f0001d1\",\"*\",\"*\",\"*\",\"*\"]",
+      "         ------",
+      "         EncounterPerformedOfficeVisit_precondition_48:",
+      "                 called patient.encounters():",
+      "                 patient.encounters() -> 4 entries",
+      "                 accessed codes: 2.16.840.1.113883.3.464.1003.101.12.1001",
+      "                 matched -> 4 entries",
+      "                 MeasurePeriod:",
+      "                 MeasurePeriod -> true",
+      "         EncounterPerformedOfficeVisit_precondition_48 -> true",
+      "         Specific context",
+      "                 [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                 [\"*\",\"*\",\"*\",\"*\",\"*\"]",
+      "                 [\"*\",\"*\",\"*\",\"*\",\"*\"]",
+      "                 [\"*\",\"*\",\"*\",\"*\",\"*\"]",
+      "                 [\"*\",\"*\",\"*\",\"*\",\"*\"]",
+      "         ------",
+      "         EncounterPerformedFaceToFaceInteraction_precondition_50:",
+      "                 called patient.encounters():",
+      "                 patient.encounters() -> 4 entries",
+      "                 accessed codes: 2.16.840.1.113883.3.464.1003.101.12.1048",
+      "                 matched -> 0 entries",
+      "         EncounterPerformedFaceToFaceInteraction_precondition_50 -> false",
+      "         EncounterPerformedPreventiveCareEstablishedOfficeVisit0To17_precondition_52:",
+      "                 called patient.encounters():",
+      "                 patient.encounters() -> 4 entries",
+      "                 accessed codes: 2.16.840.1.113883.3.464.1003.101.12.1024",
+      "                 matched -> 0 entries",
+      "         EncounterPerformedPreventiveCareEstablishedOfficeVisit0To17_precondition_52 -> false",
+      "         EncounterPerformedPreventiveCareServicesEstablishedOfficeVisit18AndUp_precondition_54:",
+      "                 called patient.encounters():",
+      "                 patient.encounters() -> 4 entries",
+      "                 accessed codes: 2.16.840.1.113883.3.464.1003.101.12.1025",
+      "                 matched -> 0 entries",
+      "         EncounterPerformedPreventiveCareServicesEstablishedOfficeVisit18AndUp_precondition_54 -> false",
+      "         EncounterPerformedPreventiveCareServicesInitialOfficeVisit18AndUp_precondition_56:",
+      "                 called patient.encounters():",
+      "                 patient.encounters() -> 4 entries",
+      "                 accessed codes: 2.16.840.1.113883.3.464.1003.101.12.1023",
+      "                 matched -> 0 entries",
+      "         EncounterPerformedPreventiveCareServicesInitialOfficeVisit18AndUp_precondition_56 -> false",
+      "         EncounterPerformedPreventiveCareInitialOfficeVisit0To17_precondition_58:",
+      "                 called patient.encounters():",
+      "                 patient.encounters() -> 4 entries",
+      "                 accessed codes: 2.16.840.1.113883.3.464.1003.101.12.1022",
+      "                 matched -> 0 entries",
+      "         EncounterPerformedPreventiveCareInitialOfficeVisit0To17_precondition_58 -> false",
+      "         EncounterPerformedHomeHealthcareServices_precondition_60:",
+      "                 called patient.encounters():",
+      "                 patient.encounters() -> 4 entries",
+      "                 accessed codes: 2.16.840.1.113883.3.464.1003.101.12.1016",
+      "                 matched -> 0 entries",
+      "         EncounterPerformedHomeHealthcareServices_precondition_60 -> false",
+      "         called atLeastOneTrue(62,[object Object],[object Object],[object Object],,,,,,):",
+      "         atLeastOneTrue -> true",
+      "         OccurrenceAPersistentAsthma1_precondition_40:",
+      "                 called patient.allProblems():",
+      "                 called patient.conditions():",
+      "                 patient.conditions() -> 5 entries",
+      "                 called patient.socialHistories():",
+      "                 patient.socialHistories() -> 0 entries",
+      "                 called patient.procedures():",
+      "                 patient.procedures() -> 0 entries",
+      "                 patient.allProblems() -> 5 entries",
+      "                 accessed codes: 2.16.840.1.113883.3.464.1003.102.12.1023",
+      "                 matched -> 1 entries",
+      "                 MeasurePeriod:",
+      "                 MeasurePeriod -> true",
+      "         OccurrenceAPersistentAsthma1_precondition_40 -> false",
+      "         called allFalse(64,):",
+      "         allFalse -> true",
+      "         called allTrue(65,Tue Jan 25 2000 03:56:44 GMT-0500 (EST),Tue Jan 25 2000 03:56:44 GMT-0500 (EST),[object Object],true,true):",
+      "                 Intersecting (5):",
+      "                         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                         [\"*\",\"*\",\"*\",\"*\",\"*\"]",
+      "                         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                         [\"*\",\"*\",\"*\",\"*\",\"*\"]",
+      "                         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                         [\"523c5252b59a904e7f0001d1\",\"*\",\"*\",\"*\",\"*\"]",
+      "                         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                         [\"*\",\"*\",\"*\",\"*\",\"*\"]",
+      "                         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                         [\"*\",\"*\",\"*\",\"*\",\"*\"]",
+      "                 Intersected result:",
+      "                         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                         [\"523c5252b59a904e7f0001d1\",\"*\",\"*\",\"*\",\"*\"]",
+      "         allTrue -> true",
+      "         called allTrue(IPP,true):",
+      "                 Intersecting (1):",
+      "                         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                         [\"523c5252b59a904e7f0001d1\",\"*\",\"*\",\"*\",\"*\"]",
+      "                 Intersected result:",
+      "                         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                         [\"523c5252b59a904e7f0001d1\",\"*\",\"*\",\"*\",\"*\"]",
+      "         allTrue -> true",
+      " IPP -> true",
+      " Specific context",
+      "         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "         [\"523c5252b59a904e7f0001d1\",\"*\",\"*\",\"*\",\"*\"]",
+      " ------",
+      " DENOM:",
+      " DENOM -> true",
+      " Intersecting (2):",
+      "         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "         [\"523c5252b59a904e7f0001d1\",\"*\",\"*\",\"*\",\"*\"]",
+      " Intersected result:",
+      "         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "         [\"523c5252b59a904e7f0001d1\",\"*\",\"*\",\"*\",\"*\"]",
+      " DENEX:",
+      "         OccurrenceAChronicObstructivePulmonaryDisease2_precondition_8:",
+      "                 called patient.allProblems():",
+      "                 called patient.conditions():",
+      "                 patient.conditions() -> 5 entries",
+      "                 called patient.socialHistories():",
+      "                 patient.socialHistories() -> 0 entries",
+      "                 called patient.procedures():",
+      "                 patient.procedures() -> 0 entries",
+      "                 patient.allProblems() -> 5 entries",
+      "                 accessed codes: 2.16.840.1.113883.3.464.1003.102.12.1007",
+      "                 matched -> 0 entries",
+      "         OccurrenceAChronicObstructivePulmonaryDisease2_precondition_8 -> false",
+      "         OccurrenceAChronicObstructivePulmonaryDisease2_precondition_6:",
+      "                 called patient.allProblems():",
+      "                 called patient.conditions():",
+      "                 patient.conditions() -> 5 entries",
+      "                 called patient.socialHistories():",
+      "                 patient.socialHistories() -> 0 entries",
+      "                 called patient.procedures():",
+      "                 patient.procedures() -> 0 entries",
+      "                 patient.allProblems() -> 5 entries",
+      "                 accessed codes: 2.16.840.1.113883.3.464.1003.102.12.1007",
+      "                 matched -> 0 entries",
+      "         OccurrenceAChronicObstructivePulmonaryDisease2_precondition_6 -> false",
+      "         called allFalse(10,):",
+      "         allFalse -> true",
+      "         called allTrue(11,,true):",
+      "                 Intersecting (2):",
+      "                         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                         [\"*\",\"*\",\"*\",\"*\",\"*\"]",
+      "                 Intersected result:",
+      "         allTrue -> false",
+      "         OccurrenceAEmphysema3_precondition_15:",
+      "                 called patient.allProblems():",
+      "                 called patient.conditions():",
+      "                 patient.conditions() -> 5 entries",
+      "                 called patient.socialHistories():",
+      "                 patient.socialHistories() -> 0 entries",
+      "                 called patient.procedures():",
+      "                 patient.procedures() -> 0 entries",
+      "                 patient.allProblems() -> 5 entries",
+      "                 accessed codes: 2.16.840.1.113883.3.464.1003.102.12.1004",
+      "                 matched -> 0 entries",
+      "         OccurrenceAEmphysema3_precondition_15 -> false",
+      "         OccurrenceAEmphysema3_precondition_13:",
+      "                 called patient.allProblems():",
+      "                 called patient.conditions():",
+      "                 patient.conditions() -> 5 entries",
+      "                 called patient.socialHistories():",
+      "                 patient.socialHistories() -> 0 entries",
+      "                 called patient.procedures():",
+      "                 patient.procedures() -> 0 entries",
+      "                 patient.allProblems() -> 5 entries",
+      "                 accessed codes: 2.16.840.1.113883.3.464.1003.102.12.1004",
+      "                 matched -> 0 entries",
+      "         OccurrenceAEmphysema3_precondition_13 -> false",
+      "         called allFalse(17,):",
+      "         allFalse -> true",
+      "         called allTrue(18,,true):",
+      "                 Intersecting (2):",
+      "                         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                         [\"*\",\"*\",\"*\",\"*\",\"*\"]",
+      "                 Intersected result:",
+      "         allTrue -> false",
+      "         OccurrenceACysticFibrosis4_precondition_22:",
+      "                 called patient.allProblems():",
+      "                 called patient.conditions():",
+      "                 patient.conditions() -> 5 entries",
+      "                 called patient.socialHistories():",
+      "                 patient.socialHistories() -> 0 entries",
+      "                 called patient.procedures():",
+      "                 patient.procedures() -> 0 entries",
+      "                 patient.allProblems() -> 5 entries",
+      "                 accessed codes: 2.16.840.1.113883.3.464.1003.102.12.1002",
+      "                 matched -> 1 entries",
+      "                 MeasurePeriod:",
+      "                 MeasurePeriod -> true",
+      "         OccurrenceACysticFibrosis4_precondition_22 -> true",
+      "         Specific context",
+      "                 [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                 [\"*\",\"*\",\"*\",\"523c5252b59a904e7f0001d4\",\"*\"]",
+      "         ------",
+      "         OccurrenceACysticFibrosis4_precondition_20:",
+      "                 called patient.allProblems():",
+      "                 called patient.conditions():",
+      "                 patient.conditions() -> 5 entries",
+      "                 called patient.socialHistories():",
+      "                 patient.socialHistories() -> 0 entries",
+      "                 called patient.procedures():",
+      "                 patient.procedures() -> 0 entries",
+      "                 patient.allProblems() -> 5 entries",
+      "                 accessed codes: 2.16.840.1.113883.3.464.1003.102.12.1002",
+      "                 matched -> 1 entries",
+      "                 MeasurePeriod:",
+      "                 MeasurePeriod -> true",
+      "         OccurrenceACysticFibrosis4_precondition_20 -> false",
+      "         called allFalse(24,):",
+      "         allFalse -> true",
+      "         called allTrue(25,[object Object],true):",
+      "                 Intersecting (2):",
+      "                         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                         [\"*\",\"*\",\"*\",\"523c5252b59a904e7f0001d4\",\"*\"]",
+      "                         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                         [\"*\",\"*\",\"*\",\"*\",\"*\"]",
+      "                 Intersected result:",
+      "                         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                         [\"*\",\"*\",\"*\",\"523c5252b59a904e7f0001d4\",\"*\"]",
+      "         allTrue -> true",
+      "         OccurrenceAAcuteRespiratoryFailure5_precondition_29:",
+      "                 called patient.allProblems():",
+      "                 called patient.conditions():",
+      "                 patient.conditions() -> 5 entries",
+      "                 called patient.socialHistories():",
+      "                 patient.socialHistories() -> 0 entries",
+      "                 called patient.procedures():",
+      "                 patient.procedures() -> 0 entries",
+      "                 patient.allProblems() -> 5 entries",
+      "                 accessed codes: 2.16.840.1.113883.3.464.1003.102.12.1018",
+      "                 matched -> 0 entries",
+      "         OccurrenceAAcuteRespiratoryFailure5_precondition_29 -> false",
+      "         OccurrenceAAcuteRespiratoryFailure5_precondition_27:",
+      "                 called patient.allProblems():",
+      "                 called patient.conditions():",
+      "                 patient.conditions() -> 5 entries",
+      "                 called patient.socialHistories():",
+      "                 patient.socialHistories() -> 0 entries",
+      "                 called patient.procedures():",
+      "                 patient.procedures() -> 0 entries",
+      "                 patient.allProblems() -> 5 entries",
+      "                 accessed codes: 2.16.840.1.113883.3.464.1003.102.12.1018",
+      "                 matched -> 0 entries",
+      "         OccurrenceAAcuteRespiratoryFailure5_precondition_27 -> false",
+      "         called allFalse(31,):",
+      "         allFalse -> true",
+      "         called allTrue(32,,true):",
+      "                 Intersecting (2):",
+      "                         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                         [\"*\",\"*\",\"*\",\"*\",\"*\"]",
+      "                 Intersected result:",
+      "         allTrue -> false",
+      "         called atLeastOneTrue(34,false,false,true,false):",
+      "         atLeastOneTrue -> true",
+      "         called allTrue(36,true):",
+      "                 Intersecting (1):",
+      "                         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                         [\"*\",\"*\",\"*\",\"523c5252b59a904e7f0001d4\",\"*\"]",
+      "                 Intersected result:",
+      "                         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "                         [\"*\",\"*\",\"*\",\"523c5252b59a904e7f0001d4\",\"*\"]",
+      "         allTrue -> true",
+      "         called atLeastOneTrue(DENEX,true):",
+      "         atLeastOneTrue -> true",
+      " DENEX -> true",
+      " Specific context",
+      "         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "         [\"*\",\"*\",\"*\",\"523c5252b59a904e7f0001d4\",\"*\"]",
+      " ------",
+      " Intersecting (2):",
+      "         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "         [\"*\",\"*\",\"*\",\"523c5252b59a904e7f0001d4\",\"*\"]",
+      "         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "         [\"523c5252b59a904e7f0001d1\",\"*\",\"*\",\"*\",\"*\"]",
+      " Intersected result:",
+      "         [\"OccurrenceAPersistentAsthma1\",\"OccurrenceAChronicObstructivePulmonaryDisease2\",\"OccurrenceAEmphysema3\",\"OccurrenceACysticFibrosis4\",\"OccurrenceAAcuteRespiratoryFailure5\"]",
+      "         [\"523c5252b59a904e7f0001d1\",\"*\",\"*\",\"523c5252b59a904e7f0001d4\",\"*\"]"
+    ],
+    "rationale": {
+      "MeasurePeriod": {
+        "results": [
+          {
+            "id": "undefined",
+            "json": {
+              "start_time": 1325376000,
+              "end_time": 1356998340,
+              "codes": {}
+            }
+          }
+        ]
+      },
+      "PatientCharacteristicBirthdateBirthDate_precondition_42": {
+        "results": []
+      },
+      "PatientCharacteristicBirthdateBirthDate_precondition_44": {
+        "results": []
+      },
+      "OccurrenceAPersistentAsthma1_precondition_46": {
+        "results": [
+          {
+            "id": "523c5252b59a904e7f0001d1",
+            "json": {
+              "_id": {
+                "$oid": "523c5252b59a904e7f0001d1"
+              },
+              "codes": {
+                "SNOMED-CT": [
+                  "426656000"
+                ],
+                "ICD-10-CM": [
+                  "J45.30"
+                ]
+              },
+              "mood_code": "EVN",
+              "_type": "Condition",
+              "causeOfDeath": null,
+              "description": "Diagnosis, Active: Persistent Asthma (Code List: 2.16.840.1.113883.3.464.1003.102.12.1023)",
+              "end_time": null,
+              "free_text": null,
+              "name": null,
+              "negationInd": null,
+              "negationReason": null,
+              "oid": "2.16.840.1.113883.3.560.1.2",
+              "ordinality": null,
+              "priority": null,
+              "reason": null,
+              "severity": null,
+              "specifics": null,
+              "start_time": 1335158804,
+              "status_code": {
+                "SNOMED-CT": [
+                  "55561003"
+                ],
+                "HL7 ActStatus": [
+                  "active"
+                ]
+              },
+              "time": null,
+              "time_of_death": null,
+              "type": null
+            }
+          }
+        ]
+      },
+      "EncounterPerformedOfficeVisit_precondition_48": {
+        "results": [
+          {
+            "id": "523c5252b59a904e7f0001d6",
+            "json": {
+              "_id": {
+                "$oid": "523c5252b59a904e7f0001d6"
+              },
+              "codes": {
+                "CPT": [
+                  "99201"
+                ]
+              },
+              "mood_code": "EVN",
+              "_type": "Encounter",
+              "admitTime": null,
+              "admitType": null,
+              "description": "Encounter, Performed: Office Visit (Code List: 2.16.840.1.113883.3.464.1003.101.12.1001)",
+              "dischargeDisposition": null,
+              "dischargeTime": null,
+              "end_time": 1327730204,
+              "free_text": null,
+              "negationInd": null,
+              "negationReason": null,
+              "oid": "2.16.840.1.113883.3.560.1.79",
+              "performer_id": null,
+              "specifics": null,
+              "start_time": 1327726604,
+              "status_code": {
+                "HL7 ActStatus": [
+                  "performed"
+                ]
+              },
+              "time": null,
+              "transferFrom": null,
+              "transferTo": null
+            }
+          },
+          {
+            "id": "523c5252b59a904e7f0001d7",
+            "json": {
+              "_id": {
+                "$oid": "523c5252b59a904e7f0001d7"
+              },
+              "codes": {
+                "CPT": [
+                  "99201"
+                ]
+              },
+              "mood_code": "EVN",
+              "_type": "Encounter",
+              "admitTime": null,
+              "admitType": null,
+              "description": "Encounter, Performed: Office Visit (Code List: 2.16.840.1.113883.3.464.1003.101.12.1001)",
+              "dischargeDisposition": null,
+              "dischargeTime": null,
+              "end_time": 1333868204,
+              "free_text": null,
+              "negationInd": null,
+              "negationReason": null,
+              "oid": "2.16.840.1.113883.3.560.1.79",
+              "performer_id": null,
+              "specifics": null,
+              "start_time": 1333864604,
+              "status_code": {
+                "HL7 ActStatus": [
+                  "performed"
+                ]
+              },
+              "time": null,
+              "transferFrom": null,
+              "transferTo": null
+            }
+          },
+          {
+            "id": "523c5252b59a904e7f0001d8",
+            "json": {
+              "_id": {
+                "$oid": "523c5252b59a904e7f0001d8"
+              },
+              "codes": {
+                "CPT": [
+                  "99201"
+                ]
+              },
+              "mood_code": "EVN",
+              "_type": "Encounter",
+              "admitTime": null,
+              "admitType": null,
+              "description": "Encounter, Performed: Office Visit (Code List: 2.16.840.1.113883.3.464.1003.101.12.1001)",
+              "dischargeDisposition": null,
+              "dischargeTime": null,
+              "end_time": 1335160604,
+              "free_text": null,
+              "negationInd": null,
+              "negationReason": null,
+              "oid": "2.16.840.1.113883.3.560.1.79",
+              "performer_id": null,
+              "specifics": null,
+              "start_time": 1335157004,
+              "status_code": {
+                "HL7 ActStatus": [
+                  "performed"
+                ]
+              },
+              "time": null,
+              "transferFrom": null,
+              "transferTo": null
+            }
+          }
+        ]
+      },
+      "EncounterPerformedFaceToFaceInteraction_precondition_50": false,
+      "EncounterPerformedPreventiveCareEstablishedOfficeVisit0To17_precondition_52": false,
+      "EncounterPerformedPreventiveCareServicesEstablishedOfficeVisit18AndUp_precondition_54": false,
+      "EncounterPerformedPreventiveCareServicesInitialOfficeVisit18AndUp_precondition_56": false,
+      "EncounterPerformedPreventiveCareInitialOfficeVisit0To17_precondition_58": false,
+      "EncounterPerformedHomeHealthcareServices_precondition_60": false,
+      "precondition_62": true,
+      "OccurrenceAPersistentAsthma1_precondition_40": false,
+      "precondition_64": true,
+      "precondition_65": true,
+      "precondition_IPP": true,
+      "IPP": true,
+      "DENOM": true,
+      "OccurrenceAChronicObstructivePulmonaryDisease2_precondition_8": false,
+      "OccurrenceAChronicObstructivePulmonaryDisease2_precondition_6": false,
+      "precondition_10": true,
+      "precondition_11": false,
+      "OccurrenceAEmphysema3_precondition_15": false,
+      "OccurrenceAEmphysema3_precondition_13": false,
+      "precondition_17": true,
+      "precondition_18": false,
+      "OccurrenceACysticFibrosis4_precondition_22": {
+        "results": [
+          {
+            "id": "523c5252b59a904e7f0001d4",
+            "json": {
+              "_id": {
+                "$oid": "523c5252b59a904e7f0001d4"
+              },
+              "codes": {
+                "SNOMED-CT": [
+                  "190905008"
+                ],
+                "ICD-9-CM": [
+                  "277.00"
+                ],
+                "ICD-10-CM": [
+                  "E84.0"
+                ]
+              },
+              "mood_code": "EVN",
+              "_type": "Condition",
+              "causeOfDeath": null,
+              "description": "Diagnosis, Active: Cystic Fibrosis (Code List: 2.16.840.1.113883.3.464.1003.102.12.1002)",
+              "end_time": null,
+              "free_text": null,
+              "name": null,
+              "negationInd": null,
+              "negationReason": null,
+              "oid": "2.16.840.1.113883.3.560.1.2",
+              "ordinality": null,
+              "priority": null,
+              "reason": null,
+              "severity": null,
+              "specifics": null,
+              "start_time": 1335160604,
+              "status_code": {
+                "SNOMED-CT": [
+                  "55561003"
+                ],
+                "HL7 ActStatus": [
+                  "active"
+                ]
+              },
+              "time": null,
+              "time_of_death": null,
+              "type": null
+            }
+          }
+        ]
+      },
+      "OccurrenceACysticFibrosis4_precondition_20": false,
+      "precondition_24": true,
+      "precondition_25": true,
+      "OccurrenceAAcuteRespiratoryFailure5_precondition_29": false,
+      "OccurrenceAAcuteRespiratoryFailure5_precondition_27": false,
+      "precondition_31": true,
+      "precondition_32": false,
+      "precondition_34": true,
+      "precondition_36": true,
+      "precondition_DENEX": true,
+      "DENEX": true
+    },
+    "measure_id": "40280381-3D61-56A7-013E-6649110743CE",
+    "sub_id": "a",
+    "nqf_id": "0036",
+    "effective_date": 1356998340
+  }
+}

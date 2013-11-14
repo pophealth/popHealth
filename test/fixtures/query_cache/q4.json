@@ -1,0 +1,76 @@
+{
+  "_id": {
+    "$oid": "523c57e3949d9dd06956b61b"
+  },
+  "measure_id": "40280381-3D61-56A7-013E-6649110743CE",
+  "sub_id": "b",
+  "nqf_id": "0036",
+  "population_ids": {
+    "IPP": "ED07A793-9C2B-47C0-B9EB-6AD4A8026A5D",
+    "DENOM": "47260199-F952-48FE-A822-71AFAEACEF9D",
+    "NUMER": "17E39E36-56BB-4AE1-81C4-ADC1475ACC08",
+    "DENEX": "850A5C2F-3191-4342-BD49-58F392A42172",
+    "stratification": "0A6D040F-28DE-4007-9C06-35B3741355E8"
+  },
+  "effective_date": 1356998340,
+  "filters": null,
+  "IPP": 2,
+  "DENOM": 2,
+  "NUMER": 0,
+  "antinumerator": 0,
+  "DENEX": 2,
+  "DENEXCEP": 0,
+  "MSRPOPL": 0,
+  "considered": 6,
+  "execution_time": 0,
+  "supplemental_data": {
+    "IPP": {
+      "RACE": {
+        "1002-5": 2
+      },
+      "ETHNICITY": {
+        "2186-5": 2
+      },
+      "SEX": {
+        "F": 2
+      },
+      "PAYER": {
+        "349": 2
+      }
+    },
+    "DENOM": {
+      "RACE": {
+        "1002-5": 2
+      },
+      "ETHNICITY": {
+        "2186-5": 2
+      },
+      "SEX": {
+        "F": 2
+      },
+      "PAYER": {
+        "349": 2
+      }
+    },
+    "NUMER": {
+      "RACE": {},
+      "ETHNICITY": {},
+      "SEX": {},
+      "PAYER": {}
+    },
+    "DENEX": {
+      "RACE": {
+        "1002-5": 2
+      },
+      "ETHNICITY": {
+        "2186-5": 2
+      },
+      "SEX": {
+        "F": 2
+      },
+      "PAYER": {
+        "349": 2
+      }
+    }
+  }
+}

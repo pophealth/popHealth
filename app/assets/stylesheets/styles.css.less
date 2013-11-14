@@ -1,0 +1,158 @@
+@import "bootstrap3";
+
+// Custom Variables
+@title-line-height: 1.5;
+@title-bar-height: 3em;
+@listing-line-height: 1.5;
+@circle-bkg-color: #fff;
+@title-circle-radius: 21px;
+
+// Custom classes for semantic mark-up
+// font-size -> 1em = 14px
+
+.nav {
+  font-weight: 500;
+
+  .location {
+    margin-top: 4px
+  }
+  .profile {
+    margin-top: 14px;
+  }
+}
+
+.export-btn {
+  width: 110px;
+  text-align: center;
+  margin-top: 24px;
+  text-transform: uppercase;
+}
+
+.category {
+  background-color: @gray-lighter;
+  margin-top: 1em;
+  .category-title {
+    line-height: 2em;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  .category-percent {
+    .title-circle {
+      border-radius: @title-circle-radius;
+      height: @title-circle-radius * 2;
+      width: @title-circle-radius * 2;
+      background-color: @circle-bkg-color;
+      margin: auto;
+      padding-top: 5px;
+      text-align: center;
+      font-size: 1.7em;
+    }
+  }
+  .category-fraction {
+    font-weight: 800;
+    font-size: 1em;
+    line-height: 1.4em;
+  }
+}
+
+.measure {
+  margin-top: 1em;
+  .measure-title {
+    padding-top: 10px;
+    font-size: 18px;     // Has to be in pixels otherwise popover inherits font-size
+    font-weight: 500;
+  }
+  .measure-subtitle {
+    padding-top: 15px;
+    font-weight: 500;
+  }
+  .percent-listing {
+    text-align: center;
+  }
+  .row-remainder {
+    .fraction-listing {
+      text-align: center;
+      font-size: 1.3em;
+      font-weight: 500;
+      .numerator, .denominator {
+        width: 40px;
+      }
+      .denominator {
+        border-top: 1px solid black;
+      }
+    }
+
+    .pop-chart {
+      height: 50px;
+      width: 125px;
+      rect{
+        stroke:white;
+        stroke-width:0px;
+        fill: rgb(205,205,205);
+      }
+      .numer {
+        fill: rgb(59,133,140);
+      }
+      .denom {
+        fill: rgb(59,133,140);
+      }
+    }
+
+    .patient-btn {
+      text-transform: uppercase;
+    }
+  }
+}
+
+
+
+
+
+
+// New styles for side bar for the measure view/patient list
+// TODO Clean up these styles
+
+.population-btn {
+  .col-xs-12;
+  .btn;
+  font-weight: 700;
+  font-size: 1.1em;
+  line-height: 2.5em;
+  border: 1px solid white;
+  padding: 0px 7px;
+  background-color: @gray-lighter;
+  .query-result {
+    .pull-right;
+    font-size: 1.3em;
+  }
+  .title {
+    .pull-left;
+  }
+  &.active {
+    background-color: @brand-primary;
+    color: white;
+  }
+}
+
+@table-border-color: white;
+.table {
+  thead {
+    background-color: @gray-lighter;
+    > tr > th {
+      border: none;
+      font-weight: 700;
+      &.pid {
+        text-transform: uppercase;
+        font-size: 1.2em;
+      }
+    }
+  }
+  > thead > tr > th, > tbody > tr > td {
+    line-height: 2;
+    font-size: 1em;
+    vertical-align: middle;
+    .btn-default {
+      padding: 7px 10px;
+    }
+  }
+}

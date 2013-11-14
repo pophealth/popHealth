@@ -1,0 +1,8 @@
+<script>
+  // PopHealth object created in application.js (specifically, within router)
+  PopHealth.categories = <%= @categories.to_json.html_safe %>;
+  PopHealth.patientCount = <%= @patient_count %>;
+  PopHealth.currentUser = <%= current_user.to_json(:methods => :selected_measures).html_safe %>;
+  new PopHealth.Router();
+  Backbone.history.start();
+</script>

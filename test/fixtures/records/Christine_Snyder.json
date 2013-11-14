@@ -1,0 +1,779 @@
+{
+  "_id": {
+    "$oid": "523c57e1b59a907ea9000064"
+  },
+  "languages": [],
+  "birthdate": 948790604,
+  "description": "",
+  "description_category": "EXCL",
+  "ethnicity": {
+    "code": "2186-5",
+    "name": "Not Hispanic or Latino",
+    "codeSystem": "CDC Race"
+  },
+  "expired": false,
+  "first": "Christine",
+  "gender": "F",
+  "last": "Snyder",
+  "measure_ids": [
+    "0033",
+    "0041",
+    "0002",
+    "0418",
+    "0060",
+    "0024",
+    "0069",
+    "0038",
+    "0036",
+    "0018",
+    "0052",
+    "0004",
+    "0108",
+    "0384",
+    "1365"
+  ],
+  "measure_period_end": 1356930000000,
+  "measure_period_start": 1325394000000,
+  "medical_record_number": "1379686369_6",
+  "race": {
+    "code": "1002-5",
+    "name": "American Indian or Alaska Native",
+    "codeSystem": "CDC Race"
+  },
+  "source_data_criteria": [
+    {
+      "id": "EncounterPerformedOfficeVisit",
+      "start_date": 1323104400000,
+      "end_date": 1323108000000,
+      "value": [],
+      "negation": "",
+      "negation_code_list_id": null,
+      "field_values": {},
+      "oid": "2.16.840.1.113883.3.464.1003.101.12.1001",
+      "definition": "encounter",
+      "status": "performed"
+    },
+    {
+      "id": "OccurrenceAAdhdMedications33",
+      "start_date": 1323104400000,
+      "end_date": 32503698000000,
+      "value": [],
+      "negation": "",
+      "negation_code_list_id": null,
+      "field_values": {},
+      "oid": "2.16.840.1.113883.3.464.1003.196.12.1171",
+      "definition": "medication",
+      "status": "active"
+    },
+    {
+      "id": "EncounterPerformedOfficeVisit",
+      "start_date": 1328371200000,
+      "end_date": 1328374800000,
+      "value": [],
+      "negation": "",
+      "negation_code_list_id": null,
+      "field_values": {},
+      "oid": "2.16.840.1.113883.3.464.1003.101.12.1001",
+      "definition": "encounter",
+      "status": "performed"
+    },
+    {
+      "id": "MedicationDispensedAdhdMedications",
+      "start_date": 1328374800000,
+      "end_date": 1328374800000,
+      "value": [],
+      "negation": "",
+      "negation_code_list_id": null,
+      "field_values": {},
+      "oid": "2.16.840.1.113883.3.464.1003.196.12.1171",
+      "definition": "medication",
+      "status": "dispensed"
+    },
+    {
+      "id": "OccurrenceBOfficeVisit7",
+      "start_date": 1334505600000,
+      "end_date": 1334509200000,
+      "value": [],
+      "negation": "",
+      "negation_code_list_id": null,
+      "field_values": {},
+      "oid": "2.16.840.1.113883.3.464.1003.101.12.1001",
+      "definition": "encounter",
+      "status": "performed"
+    },
+    {
+      "id": "MedicationActiveAntibioticMedications",
+      "start_date": 1334507400000,
+      "end_date": 32503698000000,
+      "value": [],
+      "negation": "",
+      "negation_code_list_id": null,
+      "field_values": {},
+      "oid": "2.16.840.1.113883.3.464.1003.196.12.1001",
+      "definition": "medication",
+      "status": "active"
+    },
+    {
+      "id": "EncounterPerformedOfficeVisit",
+      "start_date": 1335798000000,
+      "end_date": 1335801600000,
+      "value": [],
+      "negation": "",
+      "negation_code_list_id": null,
+      "field_values": {},
+      "oid": "2.16.840.1.113883.3.464.1003.101.12.1001",
+      "definition": "encounter",
+      "status": "performed"
+    },
+    {
+      "id": "OccurrenceAPregnancy1",
+      "start_date": 1335799800000,
+      "end_date": 32503698000000,
+      "value": [],
+      "negation": "",
+      "negation_code_list_id": null,
+      "field_values": {},
+      "oid": "2.16.840.1.113883.3.526.3.378",
+      "definition": "diagnosis",
+      "status": "active"
+    },
+    {
+      "id": "DiagnosisActivePersistentAsthma",
+      "start_date": 1335799800000,
+      "end_date": 32503698000000,
+      "value": [],
+      "negation": "",
+      "negation_code_list_id": null,
+      "field_values": {},
+      "oid": "2.16.840.1.113883.3.464.1003.102.12.1023",
+      "definition": "diagnosis",
+      "status": "active"
+    },
+    {
+      "id": "DiagnosisActiveAcutePharyngitis",
+      "start_date": 1335799800000,
+      "end_date": 1338391800000,
+      "value": [],
+      "negation": "",
+      "negation_code_list_id": null,
+      "field_values": {},
+      "oid": "2.16.840.1.113883.3.464.1003.102.12.1011",
+      "definition": "diagnosis",
+      "status": "active"
+    },
+    {
+      "id": "MedicationOrderAntibioticMedications",
+      "start_date": 1335799800000,
+      "end_date": 1335799800000,
+      "value": [],
+      "negation": "",
+      "negation_code_list_id": null,
+      "field_values": {},
+      "oid": "2.16.840.1.113883.3.464.1003.196.12.1001",
+      "definition": "medication",
+      "status": "ordered"
+    },
+    {
+      "id": "OccurrenceAUpperRespiratoryInfection1",
+      "start_date": 1335799800000,
+      "end_date": 1335799800000,
+      "value": [],
+      "negation": "",
+      "negation_code_list_id": null,
+      "field_values": {},
+      "oid": "2.16.840.1.113883.3.464.1003.102.12.1022",
+      "definition": "diagnosis",
+      "status": "active"
+    },
+    {
+      "id": "DiagnosisActiveCysticFibrosis",
+      "start_date": 1335801600000,
+      "end_date": 32503698000000,
+      "value": [],
+      "negation": "",
+      "negation_code_list_id": null,
+      "field_values": {},
+      "oid": "2.16.840.1.113883.3.464.1003.102.12.1002",
+      "definition": "diagnosis",
+      "status": "active"
+    },
+    {
+      "id": "MeasurePeriod",
+      "start_date": 1325394000000,
+      "end_date": 1356930000000
+    }
+  ],
+  "type": "ep",
+  "bundle_id": {
+    "$oid": "523c5240b59a904e7f000001"
+  },
+  "deathdate": null,
+  "original_medical_record_number": "5407e0ea5126420644b503c66153eb3c",
+  "test_id": {
+    "$oid": "523c57e1b59a907ea9000002"
+  },
+  "conditions": [
+    {
+      "_id": {
+        "$oid": "523c5252b59a904e7f0001d0"
+      },
+      "codes": {
+        "SNOMED-CT": [
+          "102872000"
+        ],
+        "ICD-9-CM": [
+          "633.11"
+        ],
+        "ICD-10-CM": [
+          "O00.1"
+        ]
+      },
+      "mood_code": "EVN",
+      "_type": "Condition",
+      "causeOfDeath": null,
+      "description": "Diagnosis, Active: Pregnancy (Code List: 2.16.840.1.113883.3.526.3.378)",
+      "end_time": null,
+      "free_text": null,
+      "name": null,
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.2",
+      "ordinality": null,
+      "priority": null,
+      "reason": null,
+      "severity": null,
+      "specifics": null,
+      "start_time": 1335158804,
+      "status_code": {
+        "SNOMED-CT": [
+          "55561003"
+        ],
+        "HL7 ActStatus": [
+          "active"
+        ]
+      },
+      "time": null,
+      "time_of_death": null,
+      "type": null
+    },
+    {
+      "_id": {
+        "$oid": "523c5252b59a904e7f0001d1"
+      },
+      "codes": {
+        "SNOMED-CT": [
+          "426656000"
+        ],
+        "ICD-10-CM": [
+          "J45.30"
+        ]
+      },
+      "mood_code": "EVN",
+      "_type": "Condition",
+      "causeOfDeath": null,
+      "description": "Diagnosis, Active: Persistent Asthma (Code List: 2.16.840.1.113883.3.464.1003.102.12.1023)",
+      "end_time": null,
+      "free_text": null,
+      "name": null,
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.2",
+      "ordinality": null,
+      "priority": null,
+      "reason": null,
+      "severity": null,
+      "specifics": null,
+      "start_time": 1335158804,
+      "status_code": {
+        "SNOMED-CT": [
+          "55561003"
+        ],
+        "HL7 ActStatus": [
+          "active"
+        ]
+      },
+      "time": null,
+      "time_of_death": null,
+      "type": null
+    },
+    {
+      "_id": {
+        "$oid": "523c5252b59a904e7f0001d2"
+      },
+      "codes": {
+        "ICD-9-CM": [
+          "034.0"
+        ],
+        "SNOMED-CT": [
+          "1532007"
+        ],
+        "ICD-10-CM": [
+          "J02.8"
+        ]
+      },
+      "mood_code": "EVN",
+      "_type": "Condition",
+      "causeOfDeath": null,
+      "description": "Diagnosis, Active: Acute Pharyngitis (Code List: 2.16.840.1.113883.3.464.1003.102.12.1011)",
+      "end_time": 1337750804,
+      "free_text": null,
+      "name": null,
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.2",
+      "ordinality": null,
+      "priority": null,
+      "reason": null,
+      "severity": null,
+      "specifics": null,
+      "start_time": 1335158804,
+      "status_code": {
+        "SNOMED-CT": [
+          "55561003"
+        ],
+        "HL7 ActStatus": [
+          "active"
+        ]
+      },
+      "time": null,
+      "time_of_death": null,
+      "type": null
+    },
+    {
+      "_id": {
+        "$oid": "523c5252b59a904e7f0001d3"
+      },
+      "codes": {
+        "SNOMED-CT": [
+          "195708003"
+        ],
+        "ICD-9-CM": [
+          "460"
+        ],
+        "ICD-10-CM": [
+          "J00"
+        ]
+      },
+      "mood_code": "EVN",
+      "_type": "Condition",
+      "causeOfDeath": null,
+      "description": "Diagnosis, Active: Upper Respiratory Infection (Code List: 2.16.840.1.113883.3.464.1003.102.12.1022)",
+      "end_time": 1335158804,
+      "free_text": null,
+      "name": null,
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.2",
+      "ordinality": null,
+      "priority": null,
+      "reason": null,
+      "severity": null,
+      "specifics": null,
+      "start_time": 1335158804,
+      "status_code": {
+        "SNOMED-CT": [
+          "55561003"
+        ],
+        "HL7 ActStatus": [
+          "active"
+        ]
+      },
+      "time": null,
+      "time_of_death": null,
+      "type": null
+    },
+    {
+      "_id": {
+        "$oid": "523c5252b59a904e7f0001d4"
+      },
+      "codes": {
+        "SNOMED-CT": [
+          "190905008"
+        ],
+        "ICD-9-CM": [
+          "277.00"
+        ],
+        "ICD-10-CM": [
+          "E84.0"
+        ]
+      },
+      "mood_code": "EVN",
+      "_type": "Condition",
+      "causeOfDeath": null,
+      "description": "Diagnosis, Active: Cystic Fibrosis (Code List: 2.16.840.1.113883.3.464.1003.102.12.1002)",
+      "end_time": null,
+      "free_text": null,
+      "name": null,
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.2",
+      "ordinality": null,
+      "priority": null,
+      "reason": null,
+      "severity": null,
+      "specifics": null,
+      "start_time": 1335160604,
+      "status_code": {
+        "SNOMED-CT": [
+          "55561003"
+        ],
+        "HL7 ActStatus": [
+          "active"
+        ]
+      },
+      "time": null,
+      "time_of_death": null,
+      "type": null
+    }
+  ],
+  "encounters": [
+    {
+      "_id": {
+        "$oid": "523c5252b59a904e7f0001d5"
+      },
+      "codes": {
+        "CPT": [
+          "99201"
+        ]
+      },
+      "mood_code": "EVN",
+      "_type": "Encounter",
+      "admitTime": null,
+      "admitType": null,
+      "description": "Encounter, Performed: Office Visit (Code List: 2.16.840.1.113883.3.464.1003.101.12.1001)",
+      "dischargeDisposition": null,
+      "dischargeTime": null,
+      "end_time": 1322463404,
+      "free_text": null,
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.79",
+      "performer_id": null,
+      "specifics": null,
+      "start_time": 1322459804,
+      "status_code": {
+        "HL7 ActStatus": [
+          "performed"
+        ]
+      },
+      "time": null,
+      "transferFrom": null,
+      "transferTo": null
+    },
+    {
+      "_id": {
+        "$oid": "523c5252b59a904e7f0001d6"
+      },
+      "codes": {
+        "CPT": [
+          "99201"
+        ]
+      },
+      "mood_code": "EVN",
+      "_type": "Encounter",
+      "admitTime": null,
+      "admitType": null,
+      "description": "Encounter, Performed: Office Visit (Code List: 2.16.840.1.113883.3.464.1003.101.12.1001)",
+      "dischargeDisposition": null,
+      "dischargeTime": null,
+      "end_time": 1327730204,
+      "free_text": null,
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.79",
+      "performer_id": null,
+      "specifics": null,
+      "start_time": 1327726604,
+      "status_code": {
+        "HL7 ActStatus": [
+          "performed"
+        ]
+      },
+      "time": null,
+      "transferFrom": null,
+      "transferTo": null
+    },
+    {
+      "_id": {
+        "$oid": "523c5252b59a904e7f0001d7"
+      },
+      "codes": {
+        "CPT": [
+          "99201"
+        ]
+      },
+      "mood_code": "EVN",
+      "_type": "Encounter",
+      "admitTime": null,
+      "admitType": null,
+      "description": "Encounter, Performed: Office Visit (Code List: 2.16.840.1.113883.3.464.1003.101.12.1001)",
+      "dischargeDisposition": null,
+      "dischargeTime": null,
+      "end_time": 1333868204,
+      "free_text": null,
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.79",
+      "performer_id": null,
+      "specifics": null,
+      "start_time": 1333864604,
+      "status_code": {
+        "HL7 ActStatus": [
+          "performed"
+        ]
+      },
+      "time": null,
+      "transferFrom": null,
+      "transferTo": null
+    },
+    {
+      "_id": {
+        "$oid": "523c5252b59a904e7f0001d8"
+      },
+      "codes": {
+        "CPT": [
+          "99201"
+        ]
+      },
+      "mood_code": "EVN",
+      "_type": "Encounter",
+      "admitTime": null,
+      "admitType": null,
+      "description": "Encounter, Performed: Office Visit (Code List: 2.16.840.1.113883.3.464.1003.101.12.1001)",
+      "dischargeDisposition": null,
+      "dischargeTime": null,
+      "end_time": 1335160604,
+      "free_text": null,
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.79",
+      "performer_id": null,
+      "specifics": null,
+      "start_time": 1335157004,
+      "status_code": {
+        "HL7 ActStatus": [
+          "performed"
+        ]
+      },
+      "time": null,
+      "transferFrom": null,
+      "transferTo": null
+    }
+  ],
+  "medications": [
+    {
+      "_id": {
+        "$oid": "523c5252b59a904e7f0001d9"
+      },
+      "codes": {
+        "RxNorm": [
+          "1009145"
+        ]
+      },
+      "mood_code": "EVN",
+      "_type": "Medication",
+      "administrationTiming": null,
+      "cumulativeMedicationDuration": null,
+      "deliveryMethod": null,
+      "description": "Medication, Active: ADHD Medications (Code List: 2.16.840.1.113883.3.464.1003.196.12.1171)",
+      "dose": null,
+      "doseIndicator": null,
+      "doseRestriction": null,
+      "end_time": null,
+      "freeTextSig": null,
+      "free_text": null,
+      "fulfillmentInstructions": null,
+      "indication": null,
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.13",
+      "patientInstructions": null,
+      "productForm": null,
+      "reaction": null,
+      "reason": null,
+      "route": null,
+      "site": null,
+      "specifics": null,
+      "start_time": 1322459804,
+      "statusOfMedication": null,
+      "status_code": {
+        "SNOMED-CT": [
+          "55561003"
+        ],
+        "HL7 ActStatus": [
+          "active"
+        ]
+      },
+      "time": null,
+      "typeOfMedication": null,
+      "vehicle": null
+    },
+    {
+      "_id": {
+        "$oid": "523c5252b59a904e7f0001da"
+      },
+      "codes": {
+        "RxNorm": [
+          "1009145"
+        ]
+      },
+      "mood_code": "EVN",
+      "_type": "Medication",
+      "administrationTiming": null,
+      "cumulativeMedicationDuration": null,
+      "deliveryMethod": null,
+      "description": "Medication, Dispensed: ADHD Medications (Code List: 2.16.840.1.113883.3.464.1003.196.12.1171)",
+      "dose": null,
+      "doseIndicator": null,
+      "doseRestriction": null,
+      "end_time": 1327730204,
+      "freeTextSig": null,
+      "free_text": null,
+      "fulfillmentInstructions": null,
+      "indication": null,
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.8",
+      "patientInstructions": null,
+      "productForm": null,
+      "reaction": null,
+      "reason": null,
+      "route": null,
+      "site": null,
+      "specifics": null,
+      "start_time": 1327730204,
+      "statusOfMedication": null,
+      "status_code": {
+        "HL7 ActStatus": [
+          "dispensed"
+        ]
+      },
+      "time": null,
+      "typeOfMedication": null,
+      "vehicle": null
+    },
+    {
+      "_id": {
+        "$oid": "523c5252b59a904e7f0001db"
+      },
+      "codes": {
+        "RxNorm": [
+          "105152"
+        ]
+      },
+      "mood_code": "EVN",
+      "_type": "Medication",
+      "administrationTiming": null,
+      "cumulativeMedicationDuration": null,
+      "deliveryMethod": null,
+      "description": "Medication, Active: Antibiotic Medications (Code List: 2.16.840.1.113883.3.464.1003.196.12.1001)",
+      "dose": null,
+      "doseIndicator": null,
+      "doseRestriction": null,
+      "end_time": null,
+      "freeTextSig": null,
+      "free_text": null,
+      "fulfillmentInstructions": null,
+      "indication": null,
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.13",
+      "patientInstructions": null,
+      "productForm": null,
+      "reaction": null,
+      "reason": null,
+      "route": null,
+      "site": null,
+      "specifics": null,
+      "start_time": 1333866404,
+      "statusOfMedication": null,
+      "status_code": {
+        "SNOMED-CT": [
+          "55561003"
+        ],
+        "HL7 ActStatus": [
+          "active"
+        ]
+      },
+      "time": null,
+      "typeOfMedication": null,
+      "vehicle": null
+    },
+    {
+      "_id": {
+        "$oid": "523c5252b59a904e7f0001dc"
+      },
+      "codes": {
+        "RxNorm": [
+          "105152"
+        ]
+      },
+      "mood_code": "EVN",
+      "_type": "Medication",
+      "administrationTiming": null,
+      "cumulativeMedicationDuration": null,
+      "deliveryMethod": null,
+      "description": "Medication, Order: Antibiotic Medications (Code List: 2.16.840.1.113883.3.464.1003.196.12.1001)",
+      "dose": null,
+      "doseIndicator": null,
+      "doseRestriction": null,
+      "end_time": 1335158804,
+      "freeTextSig": null,
+      "free_text": null,
+      "fulfillmentInstructions": null,
+      "indication": null,
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.17",
+      "patientInstructions": null,
+      "productForm": null,
+      "reaction": null,
+      "reason": null,
+      "route": null,
+      "site": null,
+      "specifics": null,
+      "start_time": 1335158804,
+      "statusOfMedication": null,
+      "status_code": {
+        "HL7 ActStatus": [
+          "ordered"
+        ]
+      },
+      "time": null,
+      "typeOfMedication": null,
+      "vehicle": null
+    }
+  ],
+  "insurance_providers": [
+    {
+      "_id": {
+        "$oid": "523c5252b59a904e7f0001dd"
+      },
+      "mood_code": "EVN",
+      "_type": "InsuranceProvider",
+      "codes": {
+        "SOP": [
+          "349"
+        ]
+      },
+      "end_time": null,
+      "financial_responsibility_type": {
+        "code": "SELF",
+        "codeSystem": "HL7 Relationship Code"
+      },
+      "free_text": null,
+      "member_id": "1234567890",
+      "name": "Other",
+      "relationship": null,
+      "start_time": 1198537004,
+      "time": null,
+      "type": "OT",
+      "payer": {
+        "_id": {
+          "$oid": "523c5252b59a904e7f0001de"
+        },
+        "name": "Other"
+      }
+    }
+  ]
+}

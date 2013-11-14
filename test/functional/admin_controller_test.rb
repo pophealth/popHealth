@@ -31,7 +31,7 @@ class AdminControllerTest < ActionController::TestCase
     get :users
     users = assigns[:users]
     assert_nil users
-    assert_response :redirect
+    assert_response 403
   end
 
   test "promote user should make user admin" do
@@ -58,7 +58,7 @@ class AdminControllerTest < ActionController::TestCase
     post :promote, username: @user.username, role: 'admin'
     @user = User.find(@user.id)
     assert !@user.admin?
-    assert_response :redirect
+    assert_response 403
   end
 
   test "should not be able to demote if not admin" do
@@ -67,7 +67,7 @@ class AdminControllerTest < ActionController::TestCase
     post :demote, username: @admin2.username, role: 'admin'
     @admin2 = User.find(@admin2.id)
     assert @admin2.admin?
-    assert_response :redirect
+    assert_response 403
   end
 
   test "disable user should mark the user disabled" do
@@ -95,7 +95,7 @@ class AdminControllerTest < ActionController::TestCase
     post :disable, username: @user2.username, disabled: 1
     @user2.reload
     assert !@user2.disabled
-    assert_response :redirect
+    assert_response 403
   end
 
   test "enable user should not enable the user if not admin" do
@@ -107,7 +107,7 @@ class AdminControllerTest < ActionController::TestCase
     post :disable, username: @user2.username, disabled: 0
     @user2.reload
     assert @user2.disabled
-    assert_response :redirect
+    assert_response 403
   end
 
   test "approve user should approve the user" do
@@ -125,7 +125,7 @@ class AdminControllerTest < ActionController::TestCase
     post :approve, username: @unapproved_user.username
     @unapproved_user = User.find(@unapproved_user.id)
     assert !@unapproved_user.approved?
-    assert_response :redirect
+    assert_response 403
   end
 
   test "disable invalid user should not freak out" do

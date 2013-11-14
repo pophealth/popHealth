@@ -1,12 +1,12 @@
 <div class="panel panel-default filterItemList">
   <div class="panel-heading">
-    <h4 class="panel-title">
+    <div class="panel-title">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#filterSelectors" href="#filter-<%=type%>">
-          <% label ||= type.capitalize %>
-          <%= label %>
-        </a>
-        <i class="icon-chevron-right pull-right"></i>
-    </h4>
+        <% label ||= type.capitalize %>
+        <%= label %>
+      </a>
+      <i class="glyphicon glyphicon-chevron-right pull-right"></i>
+    </div>
   </div>
   <div id="filter-<%=type%>" class="panel-collapse collapse">
     <div class="panel-body">

@@ -4,6 +4,15 @@ require 'highline/import'
 namespace :pophealth do
   task :setup => :environment
 
+  desc "Removes properties from the measures document that are not needed by popHealth"
+  task :prune_measures => :environment do
+    HealthDataStandards::CQM::Measure.each do |measure|
+      measure.remove_attribute(:hqmf_document)
+      measure.remove_attribute(:data_criteria)
+      measure.save!
+    end
+  end
+
   task :download_value_sets, [:username, :password] => :environment do |t, args|
     valuesets = Measure.all.collect {|m| m['oids']}
     errors = {}

@@ -1,0 +1,6 @@
+@Config =
+  idleTimeout:
+    isEnabled: <%= APP_CONFIG['idle_timeout_enabled'] %>
+    timer: <%= APP_CONFIG['idle_timeout'] %>
+  # FIXME don't hard-code effective date
+  effectiveDate: 1356998340

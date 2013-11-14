@@ -1,0 +1,348 @@
+[{
+  "_id": "52545920b99cc8adf50000ac",
+  "addresses": [
+    {
+      "_id": "52545920b99cc8adf50000c3",
+      "city": "Bedford",
+      "country": "US",
+      "state": "MA",
+      "street": [
+        "202 Burlington Rd."
+      ],
+      "use": "HP",
+      "zip": "01730"
+    }
+  ],
+  "birthdate": -880916400,
+  "clinicalTrialParticipant": true,
+  "conditions": [
+    {
+      "_id": "52545920b99cc8adf50000ad",
+      "causeOfDeath": null,
+      "cda_identifier": {
+        "_id": "52545920b99cc8adf50000ae",
+        "extension": "5931757",
+        "root": "1.3.6.1.4.1.115"
+      },
+      "codes": {
+        "ICD-9-CM": [
+          "401.1"
+        ]
+      },
+      "description": null,
+      "end_time": null,
+      "free_text": "",
+      "mood_code": "EVN",
+      "name": null,
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.2",
+      "ordinality": null,
+      "priority": null,
+      "reason": null,
+      "severity": null,
+      "specifics": null,
+      "start_time": 1330578000,
+      "status_code": {
+        "SNOMED-CT": [
+          "55561003"
+        ],
+        "HL7 ActStatus": [
+          "active"
+        ]
+      },
+      "time": null,
+      "time_of_death": null,
+      "type": null
+    }
+  ],
+  "deathdate": null,
+  "effective_time": 1381259494,
+  "encounters": [
+    {
+      "_id": "52545920b99cc8adf50000af",
+      "admitTime": null,
+      "admitType": null,
+      "cda_identifier": {
+        "_id": "52545920b99cc8adf50000b0",
+        "extension": "1351872",
+        "root": "1.3.6.1.4.1.115"
+      },
+      "codes": {
+        "CPT": [
+          "99201"
+        ]
+      },
+      "description": null,
+      "dischargeDisposition": null,
+      "dischargeTime": 1330615720,
+      "end_time": 1330615720,
+      "free_text": "",
+      "mood_code": "EVN",
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.79",
+      "performer_id": null,
+      "reason": null,
+      "specifics": null,
+      "start_time": 1330614720,
+      "status_code": {
+        "HL7 ActStatus": [
+          "performed"
+        ]
+      },
+      "time": null,
+      "transferFrom": null,
+      "transferTo": null
+    },
+    {
+      "_id": "52545920b99cc8adf50000b1",
+      "admitTime": null,
+      "admitType": null,
+      "cda_identifier": {
+        "_id": "52545920b99cc8adf50000b2",
+        "extension": "1449679",
+        "root": "1.3.6.1.4.1.115"
+      },
+      "codes": {
+        "CPT": [
+          "99201"
+        ]
+      },
+      "description": null,
+      "dischargeDisposition": null,
+      "dischargeTime": 1356017320,
+      "end_time": 1356017320,
+      "free_text": "",
+      "mood_code": "EVN",
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.79",
+      "performer_id": null,
+      "reason": null,
+      "specifics": null,
+      "start_time": 1356016320,
+      "status_code": {
+        "HL7 ActStatus": [
+          "performed"
+        ]
+      },
+      "time": null,
+      "transferFrom": null,
+      "transferTo": null
+    }
+  ],
+  "ethnicity": {
+    "name": "Hispanic",
+    "order": null,
+    "codes": null
+  },
+  "expired": null,
+  "first": "Jonathan",
+  "gender": "M",
+  "languages": [
+    "eng"
+  ],
+  "last": "Murray",
+  "marital_status": null,
+  "measures": null,
+  "medical_record_number": "828914689A",
+  "provider_performances": [
+    {
+      "_id": "52545920b99cc8adf50000c5",
+      "end_date": 1381204800,
+      "provider_id": "52545920b99cc8adf50000aa",
+      "start_date": 1026792000
+    }
+  ],
+  "race":  {
+    "name": "Hispanic",
+    "order": null,
+    "codes": null
+  },
+  "religious_affiliation": null,
+  "results": [
+    {
+      "_id": "52545920b99cc8adf50000b3",
+      "cda_identifier": {
+        "_id": "52545920b99cc8adf50000b4",
+        "extension": "fxc1cdglkmatgo298gx74vx4vfesnw9i4genup2w0zp2onda2i",
+        "root": "1.3.6.1.4.1.115"
+      },
+      "codes": {
+        "LOINC": [
+          "8462-4"
+        ]
+      },
+      "description": null,
+      "end_time": 1330615020,
+      "free_text": null,
+      "interpretation": null,
+      "mood_code": "EVN",
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.18",
+      "reason": null,
+      "referenceRange": null,
+      "specifics": null,
+      "start_time": 1330615020,
+      "status_code": {
+        "HL7 ActStatus": [
+          null
+        ]
+      },
+      "time": null,
+      "values": [
+        {
+          "_id": "52545920b99cc8adf50000b5",
+          "scalar": "60",
+          "units": "mmHg"
+        },
+        {
+          "_id": "52545920b99cc8adf50000b6",
+          "scalar": "60",
+          "units": "mmHg"
+        }
+      ]
+    },
+    {
+      "_id": "52545920b99cc8adf50000b7",
+      "cda_identifier": {
+        "_id": "52545920b99cc8adf50000b8",
+        "extension": "92rdoxbl08q83bzx0wy4nfhas05qoqv3atdgqz6d17cphayixn",
+        "root": "1.3.6.1.4.1.115"
+      },
+      "codes": {
+        "LOINC": [
+          "8462-4"
+        ]
+      },
+      "description": null,
+      "end_time": 1356016620,
+      "free_text": null,
+      "interpretation": null,
+      "mood_code": "EVN",
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.18",
+      "reason": null,
+      "referenceRange": null,
+      "specifics": null,
+      "start_time": 1356016620,
+      "status_code": {
+        "HL7 ActStatus": [
+          null
+        ]
+      },
+      "time": null,
+      "values": [
+        {
+          "_id": "52545920b99cc8adf50000b9",
+          "scalar": "60",
+          "units": "mmHg"
+        },
+        {
+          "_id": "52545920b99cc8adf50000ba",
+          "scalar": "60",
+          "units": "mmHg"
+        }
+      ]
+    },
+    {
+      "_id": "52545920b99cc8adf50000bb",
+      "cda_identifier": {
+        "_id": "52545920b99cc8adf50000bc",
+        "extension": "jhye4mfmbubkmpq0qqu6gjc4khl78nre1ahj2y87dq6xw8zels",
+        "root": "1.3.6.1.4.1.115"
+      },
+      "codes": {
+        "LOINC": [
+          "8480-6"
+        ]
+      },
+      "description": null,
+      "end_time": 1330615020,
+      "free_text": null,
+      "interpretation": null,
+      "mood_code": "EVN",
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.18",
+      "reason": null,
+      "referenceRange": null,
+      "specifics": null,
+      "start_time": 1330615020,
+      "status_code": {
+        "HL7 ActStatus": [
+          null
+        ]
+      },
+      "time": null,
+      "values": [
+        {
+          "_id": "52545920b99cc8adf50000bd",
+          "scalar": "150",
+          "units": "mmHg"
+        },
+        {
+          "_id": "52545920b99cc8adf50000be",
+          "scalar": "150",
+          "units": "mmHg"
+        }
+      ]
+    },
+    {
+      "_id": "52545920b99cc8adf50000bf",
+      "cda_identifier": {
+        "_id": "52545920b99cc8adf50000c0",
+        "extension": "5qudmtedn1o68y3wbl7ixr4xwmfyfg7vts6zbiml7ka2rf2vpb",
+        "root": "1.3.6.1.4.1.115"
+      },
+      "codes": {
+        "LOINC": [
+          "8480-6"
+        ]
+      },
+      "description": null,
+      "end_time": 1356016620,
+      "free_text": null,
+      "interpretation": null,
+      "mood_code": "EVN",
+      "negationInd": null,
+      "negationReason": null,
+      "oid": "2.16.840.1.113883.3.560.1.18",
+      "reason": null,
+      "referenceRange": null,
+      "specifics": null,
+      "start_time": 1356016620,
+      "status_code": {
+        "HL7 ActStatus": [
+          null
+        ]
+      },
+      "time": null,
+      "values": [
+        {
+          "_id": "52545920b99cc8adf50000c1",
+          "scalar": "130",
+          "units": "mmHg"
+        },
+        {
+          "_id": "52545920b99cc8adf50000c2",
+          "scalar": "130",
+          "units": "mmHg"
+        }
+      ]
+    }
+  ],
+  "telecoms": [
+    {
+      "_id": "52545920b99cc8adf50000c4",
+      "preferred": null,
+      "use": "WP",
+      "value": "tel:+1-781-271-3000"
+    }
+  ],
+  "test_id": null,
+  "title": null
+}]
