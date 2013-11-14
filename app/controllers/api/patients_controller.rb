@@ -1,6 +1,5 @@
   module Api
   class PatientsController < ApplicationController
-    include MeasuresHelper
     include PaginationHelper
     respond_to :json
     before_filter :authenticate_user!
