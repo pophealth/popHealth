@@ -1,13 +1,11 @@
 <div class="left-sidebar" id="measureSummary">
-    <div>
-          <input type="text" value="80" class="dial">
-    </div>
-    <div class="fraction-listing">
-      <div class="numerator">{{numerator}}</div>
-      <div class="denominator">{{performanceDenominator}}</div>
-    </div>
-    <div id="test" class="popChart">
-        
-    </div>
-
+  <div>
+    {{! TODO move this into a partial? }}
+    <input type="text" value="80" class="dial" data-readOnly="true" data-width="80" data-height="80" data-thickness=".1" data-fgColor="#4B979D" data-inputColor="#444" data-font="Helvetica Neue, Roboto, Helvetica, Arial, sans-serif">
+  </div>
+  <div class="fraction-listing">
+    <div class="numerator">{{numerator}}</div>
+    <div class="denominator">{{performanceDenominator}}</div>
+  </div>
+  <div id="test" class="pop-chart"></div>
 </div>
