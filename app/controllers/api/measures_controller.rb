@@ -1,6 +1,5 @@
 module Api
   class MeasuresController < ApplicationController
-    include MeasuresHelper
     include PaginationHelper
     before_filter :authenticate_user!
     before_filter :validate_authorization!
