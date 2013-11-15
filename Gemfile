@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.14'
-#gem 'quality-measure-engine', :path=>"../quality-measure-engine" 
+#gem 'quality-measure-engine', :path=>"../quality-measure-engine"
 gem 'quality-measure-engine', :git=> "https://github.com/pophealth/quality-measure-engine.git", :branch=> "mongoid_refactor"
 
 gem "health-data-standards", '3.2.8'
@@ -46,7 +46,6 @@ group :assets do
   gem 'less-rails'
   gem 'sass-rails'
   gem 'coffee-rails'
-  gem 'handlebars_assets'
   gem 'uglifier'
   gem "bootstrap-sass"
 end
@@ -67,6 +66,7 @@ group :production do
   gem 'therubyracer', '~> 0.11.0beta5', :platforms => [:ruby, :jruby] # 10.8 mountain lion compatibility
 end
 
+gem 'handlebars_assets'
 # FIXME remove this when we don't need old versions of jquery/backbone/underscore anymore
 gem 'jquery-rails'
 
