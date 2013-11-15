@@ -1,56 +1,44 @@
-<div id="header" class="navbar">
-  <div class="navbar-inner">
-    <a class="brand" id="brand" href="/"><%= image_tag "pophealth_logo_small-trans.png" %></a>
-    <ul id="mainBreadcrumbs" class="breadcrumb pull-left">
-      <% if @breadcrumbs %>
-        <% @breadcrumbs[0..-2].each do |crumb| %>
-          <li><%= link_to(crumb.title, crumb.url) %> <span class="divider">&raquo;</span></li>
-        <% end %>
-        <li><%= @breadcrumbs.last.title %></li>
-      <% end %>
-    </ul>
-  <ul class="nav pull-right">
-    <li class="divider-vertical"></li>
-    <li>
-      <div class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-          <i class="icon-user"></i>
-          <%= current_user.first_name.to_s %>
-        </a>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="User">
-          <% if APP_CONFIG['edit_account_enabled']%>
-            <li><%=link_to raw('<i class="icon-edit"></i> Edit'), edit_user_registration_path(current_user) %></li>
-          <% end %>
-          <% if APP_CONFIG['logout_enabled']%>
-            <li><%= link_to raw('<i class="icon-off"></i> Logout'), destroy_user_session_path, method: 'delete' %></li>
-          <% end %>
-          <% if current_user.staff_role? || current_user.admin? %>
-           <li class="divider"></li>
-          <li class="dropdown-submenu pull-left">
-            <a tabindex="-1" class="dropdown-toggle" data-toggle="dropdown" href="#">
-              <i class="icon-star"></i> 
-              Admin
+<div class="navbar navbar-default" role="navigation">
+  <div class="container">
+    <div class="navbar-header col-lg-4">
+      <a class="logo"  href="/" style="max-width: initial"><%= image_tag "pophealth_logo_small-trans.png" %></a>
+    </div>
+    <div class="collapse navbar-collapse in">
+      <ul class="nav navbar-nav pull-left" style="margin-top: 10px">
+        <li class="location"><% if @breadcrumbs %><%= @breadcrumbs[0].title %><% end %> <span class="time"> 2012</span></li>
+      </ul>
+       <ul class="nav pull-right">
+        <li class="divider-vertical"></li>
+        <li class="profile">
+          <div class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="glyphicon glyphicon-user"></i>
+              <%= current_user.first_name.to_s %>
             </a>
-            <ul  style="margin-left:0px; margin-right:20px" class="dropdown-menu" role="menu" aria-labelledby="Admin">
-              <li><%= link_to raw('<i class="icon-plus"></i> Providers'), providers_path%></li>
-      
-              <% if current_user.admin? %>
-                <% if (APP_CONFIG['patient_management_enabled']) %>
-                  <li><%= link_to raw('<i class="icon-eye-open"></i> Patients'), admin_patients_path%></li>
+            <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="User">
+              <% if APP_CONFIG['edit_account_enabled']%>
+                <li><%=link_to raw('<i class="glyphicon glyphicon-edit"></i> Edit Account'), edit_user_registration_path(current_user) %></li>
+              <% end %>
+              <% if APP_CONFIG['logout_enabled']%>
+                <li><%= link_to raw('<i class="glyphicon glyphicon-log-out"></i> Logout'), destroy_user_session_path, method: 'delete' %></li>
+              <% end %>
+              <% if current_user.staff_role? || current_user.admin? %>
+                <li class="divider"></li>
+                <li role="presentation" class="dropdown-header">Admin</li>
+                <li><%= link_to raw('<i class="glyphicon glyphicon-plus"></i> Providers'), providers_path%></li>
+                <% if current_user.admin? %>
+                  <% if (APP_CONFIG['patient_management_enabled']) %>
+                    <li><%= link_to raw('<i class="glyphicon glyphicon-eye-open"></i> Patients'), admin_patients_path%></li>
+                  <% end %>
+                  <li><%= link_to raw('<i class="glyphicon glyphicon-user"></i> Users'), admin_users_path%></li>
+                  <li><%= link_to raw('<i class="glyphicon glyphicon-list-alt"></i> Logs'), logs_index_path%></li> 
                 <% end %>
-                <li><%= link_to raw('<i class="icon-heart"></i> Users'), admin_users_path%></li>
-               
-                <li><%= link_to raw('<i class="icon-pencil"></i> Logs'), logs_index_path%></li> 
               <% end %>
             </ul>
-          </li>
-          <% end %>
-        </ul>
-      </div>
-    </li>
-    <li>
-    <li class="divider-vertical"></li>
-  </ul>
-  
+          </div>
+        </li>
+        <li class="divider-vertical"></li>
+      </ul>
+    </div>
   </div>
 </div>
