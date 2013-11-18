@@ -26,6 +26,7 @@ class Thorax.Views.ResultsView extends Thorax.View
 class Thorax.Views.DashboardSubmeasureView extends Thorax.View
   events:
     rendered: ->
+      @$("[rel='popover']").popover()
       query = @model.get('query')
       unless query.isPopulated()
         @$el.fadeTo 'fast', 0.5
@@ -41,8 +42,6 @@ class Thorax.Views.Dashboard extends Thorax.View
   events:
     'change :checkbox.all':         'toggleCategory'
     'change :checkbox.individual':  'toggleMeasure'
-    rendered: ->
-      @$("[rel='tooltip']").tooltip()
 
   initialize: ->
     selectedIds = _(PopHealth.currentUser.selected_measures).map (m) -> m.id
