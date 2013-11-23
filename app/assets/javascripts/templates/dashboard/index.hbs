@@ -1,7 +1,7 @@
 <div class="left-sidebar" id="filters">
   <h3>Filters</h3>
   <div class="panel-group" id="measureSelectors">
-    {{#collection}}
+    {{#collection item-context=categoryFilterContext}}
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -15,11 +15,11 @@
           <div class="panel-body measureItemList">
             <div class="checkbox">
               <label>
-                  <input type="checkbox" class="all">
+                  <input type="checkbox" class="all"{{#if selected}} checked{{/if}}>
                   Select All
               </label>
             </div>
-            {{#collection measures}}
+            {{#collection measures item-context=../measureFilterContext}}
               <div class="checkbox">
                 <label>
                   <input type="checkbox" class="individual"{{#if selected}} checked{{/if}}>
