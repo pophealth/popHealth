@@ -3,11 +3,11 @@ require 'uniq_validator'
 class User
 
   include Mongoid::Document
-  
+
   before_create :set_defaults
-  
+
   DEFAULT_EFFECTIVE_DATE = Time.gm(2011, 1, 1)
-  
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:username]
 
@@ -56,9 +56,10 @@ class User
   field :approved, type: Boolean
   field :staff_role, type: Boolean
   field :disabled, type: Boolean
-  
+  field :preferences, type: Hash, default: {selected_measure_ids: []}
+
   scope :ordered_by_username, order_by([:username, :asc])
-  
+
   attr_protected :admin, :approved, :disabled, :encrypted_password, :remember_created_at, :reset_password_token, :reset_password_sent_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip, :effective_date
 
   validates_presence_of :first_name, :last_name
@@ -77,7 +78,7 @@ class User
     true
   end
 
-  def active_for_authentication? 
+  def active_for_authentication?
     super && approved? && !disabled?
   end
 
@@ -92,14 +93,10 @@ class User
   # =============
   # = Accessors =
   # =============
-  def selected_measures
-    MONGO_DB['selected_measures'].find({:username => username}).to_a #need to call to_a so that it isn't a cursor
-  end
-  
   def full_name
     "#{first_name} #{last_name}"
   end
-  
+
   # ===========
   # = Finders =
   # ===========

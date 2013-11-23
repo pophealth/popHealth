@@ -23,6 +23,8 @@ class Thorax.Views.ResultsView extends Thorax.View
         @model.fetch()
       , 3000
 
+
+
 class Thorax.Views.DashboardSubmeasureView extends Thorax.View
   events:
     rendered: ->
@@ -41,18 +43,18 @@ class Thorax.Views.Dashboard extends Thorax.View
   events:
     'change :checkbox.all':         'toggleCategory'
     'change :checkbox.individual':  'toggleMeasure'
-    rendered: ->
-      @$("[rel='tooltip']").tooltip()
 
   initialize: ->
-    selectedIds = _(PopHealth.currentUser.selected_measures).map (m) -> m.id
-    @selectedCategories = new Thorax.Collections.Categories
-    @collection.each (cat) =>
-      selectedMeasures = cat.get('measures').select (m) => _(selectedIds).contains m.id
-      if selectedMeasures.length
-        selectedCategory = cat.clone()
-        selectedCategory.set 'measures', new Thorax.Collections.Measures selectedMeasures, parent: selectedCategory
-        @selectedCategories.add selectedCategory
+    @selectedCategories = PopHealth.currentUser.selectedCategories(@collection)
+
+  categoryFilterContext: (category) ->
+    selectedCategory = @selectedCategories.findWhere(category: category.get('category'))
+    allSelected = selectedCategory?.get('measures').length == category.get('measures').length
+    _(category.toJSON()).extend selected: allSelected
+  measureFilterContext: (measure) ->
+    isSelected = @selectedCategories.any (cat) ->
+      cat.get('measures').any (selectedMeasure) -> measure is selectedMeasure
+    _(measure.toJSON()).extend selected: isSelected
 
   toggleMeasure: (e) ->
     # update 'all' checkbox to be checked if all measures are checked
@@ -61,18 +63,10 @@ class Thorax.Views.Dashboard extends Thorax.View
     $all.prop 'checked', $cb.closest('.panel-body').find(':checkbox.individual').not(':checked').length is 0
     # show/hide measure
     measure = $(e.target).model()
-    category = measure.collection.parent
-    selectedCategory = @selectedCategories.findWhere category: category.get('category')
     if $(e.target).is(':checked')
-      unless selectedCategory?
-        selectedCategory = new Thorax.Models.Category {category: category.get('category'), measures: []}, parse: true
-        @selectedCategories.add selectedCategory
-      selectedCategory.get('measures').add measure
+      @selectedCategories.selectMeasure measure
     else
-      measures = selectedCategory.get('measures')
-      measures.remove measures.get(measure)
-      @selectedCategories.remove(selectedCategory) if measures.isEmpty()
-
+      @selectedCategories.removeMeasure measure
 
   toggleCategory: (e) ->
     # change DOM
@@ -80,11 +74,7 @@ class Thorax.Views.Dashboard extends Thorax.View
     $cb.closest('.panel-body').find(':checkbox.individual').prop 'checked', $cb.is(':checked')
     # change models
     category = $cb.model()
-    selectedCategory = @selectedCategories.findWhere category: category.get('category')
     if $cb.is(':checked')
-      unless selectedCategory?
-        selectedCategory = new Thorax.Models.Category {category: category.get('category'), measures: []}, parse: true
-        @selectedCategories.add selectedCategory
-      selectedCategory.get('measures').reset category.get('measures').models
+      @selectedCategories.selectCategory category
     else
-      @selectedCategories.remove selectedCategory
+      @selectedCategories.removeCategory category
