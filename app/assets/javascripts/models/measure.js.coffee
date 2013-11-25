@@ -18,7 +18,7 @@ class Submeasure extends Thorax.Model
   url: -> "/api/measures/#{@get('id')}"
   initialize: ->
     # FIXME don't use hardcoded effective date
-    query = new Query({measure_id: @get('id'), sub_id: @get('sub_id'), effective_date: Config.effectiveDate}, parent: this)
+    query = new Thorax.Models.Query({measure_id: @get('id'), sub_id: @get('sub_id'), effective_date: Config.effectiveDate}, parent: this)
     @set 'query', query
 
   fetch: (options = {}) ->
@@ -30,7 +30,7 @@ class SubCollection extends Thorax.Collection
   initialize: (models, options) -> @parent = options.parent
 
 
-class Query extends Thorax.Model
+class Thorax.Models.Query extends Thorax.Model
   idAttribute: '_id'
   urlRoot: '/api/queries'
   initialize: (attrs, options) ->

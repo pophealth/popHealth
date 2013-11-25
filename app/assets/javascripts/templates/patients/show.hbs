@@ -1,53 +1,129 @@
-<p>
-  Name: {{first}} {{last}}<br>
-  Effective Date: {{formatted_effective_time}}<br>
-  DOB: {{formatted_birthdate}}<br>
-  Sex: {{gender}}<br>
-  Race: {{race.name}}<br>
-  Ethnicity: {{ethnicity.name}}<br>
-  Languages: {{languages}}<br>
-  Record Number: {{medical_record_number}}<br>
-  Allergies: {{allergies}}<br>
-  Care Goals: {{care_goals}}<br>
-</p>
-<p>
-  Vital Signs (Description):
-  {{#each vital_signs}}
-    <br>{{description}}
-  {{/each}}
-</p>
-<p>
-  Laboratory Results (Start time):
-  {{#each results}}
-    <br>{{start_time}}
-  {{/each}}
-</p>
-<p>
-  Encounters (Start time):
-  {{#each encounters}}
-    <br>{{start_time}}
-  {{/each}}
-</p>
-<p>
-  Conditions (Description): 
-  {{#each conditions}}
-    <br>{{description}}
-  {{/each}}
-</p>
-<p>
-  Procedures (Description): 
-  {{#each procedures}}
-    <br>{{description}}
-  {{/each}}
-</p>
-<p>
-  Medications (Description): 
-  {{#each medications}}
-    <br>{{description}}
-  {{/each}}
-</p>
-<p>
-  Social History: {{social_history}}<br>
-  Immunizations: {{immunizations}}<br>
-  Medical Equipment: {{medical_equipment}}<br>
-</p>
+<div class="row">
+  <div class="left-sidebar">
+    <h1><i class="fa fa-tasks"></i> measures</h1>
+    <div class="panel-group">
+      <h2>Outliers</h2>
+      <div class="panel-heading active">
+        <div class="indicator">
+          <i class="fa fa-exclamation-triangle"></i>
+        </div>
+        <div class="measure-title">Preventive Care And Screening: Tobacco - Use Assessment
+        </div>
+      </div>
+    </div>
+    <div class="panel-heading">
+      <div class="indicator">
+        <i class="fa fa-exclamation-triangle"></i>
+      </div>
+      <div class="measure-title">Smoking And Tobacco Use Cessation, Medical Assistance - Advising Smokers And Tobacco Users To Quit
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <h1 class="main-head"><i class="fa fa-user"></i> {{first}} {{last}}</h1>
+    <div id="time-bar"></div>
+    <div class="demo col-md-offset-1">
+      <dl class="dl-demo dl-horizontal">
+        <dt>RECORD NUMBER</dt>
+        <dd>730132778</dd>
+        <dt>EFFECTIVE DATE</dt>
+        <dd>{{effective_time}}</dd>
+        <dt>DOB</dt>
+        <dd>{{birthdate}}</dd>
+        <dt>GENDER</dt>
+        <dd>{{gender}}</dd>
+      </dl>
+      <dl class="dl-demo dl-horizontal">
+        <dt>RACE</dt>
+        <dd>{{race}}</dd>
+        <dt>ETHNICITY</dt>
+        <dd>{{ethnicity}}</dd>
+        <dt>LANGUAGES</dt>
+        <dd>{{languages}}</dd>
+        <dt>PROVIDERS</dt>
+        <dd>Jonathan Cooper MD</dd>
+      </dl>
+    </div>
+    <div class="time-line">
+      <div class="timeline-title">Patient History Relative to Measures
+      </div>
+    </div>
+{{!--     <div class="record-listing ">
+      <div class="circle-icon active-icon">
+        <i class="fa fa-question"></i>
+      </div>
+      <div class="patient-data active">
+        <dl class="dl-record dl-horizontal">
+          <dt>MISSING</dt>
+          <dd>Medication ordered
+          </dd>
+        </dl>
+        <dl class="dl-date dl-horizontal">
+          <dt>DATE </dt>
+          <dd>12-2-2012 - 12-2-2012
+          </dd>
+        </dl>
+      </div>
+    </div> --}}
+    {{#collection events}}
+      {{_type}}
+    {{/collection}}
+    <div class="record-listing">
+      <div class="circle-icon">
+        <i class="fa fa-user-md"></i>
+      </div>
+      <div class="patient-data">
+        <dl class="dl-record dl-horizontal">
+          <dt>ENCOUNTER</dt>
+          <dd>Outpatient                                      
+          </dd>
+        </dl>
+        <dl class="dl-date dl-horizontal">
+          <dt>DATE</dt>
+          <dd>5-25-2012 - 5-25-2012
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <div class="record-listing">
+      <div class="circle-icon">
+        <i class="fa fa-user-md"></i>
+      </div>
+      <div class="patient-data">
+        <dl class="dl-record dl-horizontal">
+          <dt>ENCOUNTER</dt>
+          <dd>Outpatient 
+          </dd>
+          <dt>VITAL SIGNS</dt>
+          <dd>BMI:  23</dd>
+          <dt>MEDICATIONS</dt>
+          <dd>Influenza Vaccine</dd>
+          </dd>
+        </dl>
+        <dl class="dl-date dl-horizontal">
+          <dt>DATE</dt>
+          <dd>3-2-2011 - 3-2-2011
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <div class="record-listing">
+      <div class="circle-icon">
+        <i class="fa fa-stethoscope"></i>
+      </div>
+      <div class="patient-data">
+        <dl class="dl-record dl-horizontal">
+          <dt>CONDITION</dt>
+          <dd>Hypertention
+          </dd>
+        </dl>
+        <dl class="dl-date dl-horizontal">
+          <dt>DATE </dt>
+          <dd>2-2-2010 - 2-2-2010
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>

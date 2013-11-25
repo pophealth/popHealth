@@ -1,4 +1,8 @@
 @import "bootstrap3";
+@import "font-awesome/less/font-awesome";
+
+@icon-font-path: "../fonts/";
+@fa-font-path: "../fonts";
 
 // Custom Variables
 @title-line-height: 1.5;
@@ -153,4 +157,153 @@
       padding: 7px 10px;
     }
   }
+}
+
+// patient view
+// TODO clean up the following code
+.demo {
+  .clearfix;
+}
+.dl-demo {
+  .dl-horizontal;
+  .make-md-column(6);
+}
+.dl-horizontal {
+  dt{ 
+    text-align: left;
+  }
+}
+
+.indicator, .measure-title {
+  display: inline-block;
+  vertical-align: top;
+
+}
+indicator {
+  width: 14px;
+  padding-right: 5px;
+}
+
+.measure-title {
+  width: 212px;
+}
+
+.main-head {
+  font-size: 36px;
+  i {
+    .make-md-column(1);
+    text-align: left;
+    padding-left: 3px;
+  }
+}
+.demo{
+  dl {
+    padding-left: 0;
+  }
+}
+
+.panel-group {
+  .active {
+    background-color: @brand-primary;
+    color: #fff;
+  }
+}
+.time-line {
+  background-color: @gray-lighter;
+  margin-left: 15px;
+}
+.timeline-title {
+  font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+  .make-md-column-offset(1);
+}
+
+.record-listing {
+  display: inline-block;
+  .make-md-column(12);
+  padding-left: 0;
+  margin-top: 20px;
+  padding-right: 0;
+  
+  .active {
+    background-color: @brand-primary;
+    color: #fff;
+    border: 2px dashed #fff;
+  }
+  .circle-icon {
+    display: inline-block;
+    .pull-left;
+    margin-top: 15px;
+    .make-md-column(1);
+    padding-left: 0;
+
+  i {
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 8px;
+    width: 36px;
+    height: 36px;
+    background-color: #fff;
+    border-radius: 18px;
+    border: 2px solid @brand-primary;
+    color: @brand-primary;
+  }
+
+  .active-icon {
+    i{
+      background-color: @brand-primary;
+      border-radius: 18px;
+      color: #fff;
+    }
+  }
+
+  .fa {
+    color: @brand-primary;
+    font-size: 18px;
+    margin: auto;
+  }
+}
+}
+.patient-data {
+  .make-md-column(11);
+  background-color: #fff;
+  border: 1px solid @gray-darker;
+}
+
+#time-bar {
+  position: absolute;
+  left: 28px;
+  top: 54px;
+  width: 8px;
+  height: 100%;
+  background-color: @gray-lighter;
+}
+.dl-record {
+  .dl-horizontal;
+  .make-md-column(8);
+  line-height: 24px;
+  dd{
+  }
+}
+.dl-date {
+  .make-md-column(4);
+
+  dt{
+    width: 60px;
+  }
+
+  dd {
+    margin-left: 0px;
+  }
+
+}
+h2 {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+}
+.panel-heading {
+  background-color: @gray-lighter;
+  margin-bottom: 5px;
 }

@@ -1,0 +1,24 @@
+{
+  "id": "40280381-3D61-56A7-013E-66BC02DA4DEE",
+  "name": "Controlling High Blood Pressure",
+  "description": "Percentage of patients 18-85 years of age who had a diagnosis of hypertension and whose blood pressure was adequately controlled (<140\/90mmHg) during the measurement period.",
+  "subs": [
+    {
+      "id": "40280381-3D61-56A7-013E-66BC02DA4DEE",
+      "name": "Controlling High Blood Pressure",
+      "description": "Percentage of patients 18-85 years of age who had a diagnosis of hypertension and whose blood pressure was adequately controlled (<140\/90mmHg) during the measurement period.",
+      "isPrimary": true
+    }
+  ],
+  "sub_ids": [
+    
+  ],
+  "submeasures": [
+    {
+      "id": "40280381-3D61-56A7-013E-66BC02DA4DEE",
+      "name": "Controlling High Blood Pressure",
+      "description": "Percentage of patients 18-85 years of age who had a diagnosis of hypertension and whose blood pressure was adequately controlled (<140\/90mmHg) during the measurement period.",
+      "isPrimary": true
+    }
+  ]
+}
