@@ -7,7 +7,7 @@ require 'test_helper'
     setup do
       dump_database
       @record = Factory(:record)
-      @user = Factory(:user_w_selected_measures)
+      @user = Factory(:user)
       sign_in @user
     end
     
