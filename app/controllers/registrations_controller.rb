@@ -22,7 +22,6 @@ class RegistrationsController < Devise::RegistrationsController
   def update
     # Devise use update_with_password instead of update_attributes.
     # This is the only change we make.
-    # binding.pry
     if resource.update_attributes(params[resource_name])
       respond_to do |format|
         # Line below required if using Devise >= 1.2.0
