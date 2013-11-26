@@ -1,0 +1,22 @@
+[{
+  "_id": "51fbd521d6fcfb3540000002",
+  "admin": true,
+  "agree_license": true,
+  "approved": true,
+  "company": "MITRE",
+  "company_url": "",
+  "disabled": null,
+  "effective_date": 1372636800,
+  "email": "admin@mitre.org",
+  "first_name": "Adam",
+  "last_name": "Minn",
+  "npi": "",
+  "preferences": {
+    "selected_measure_ids": []
+  },
+  "registry_id": "",
+  "registry_name": "",
+  "staff_role": true,
+  "tin": "",
+  "username": "admin"
+}]
