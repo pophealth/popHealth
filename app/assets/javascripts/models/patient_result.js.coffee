@@ -7,4 +7,8 @@ class Thorax.Models.PatientResult extends Thorax.Model
 class Thorax.Collections.PatientResults extends Thorax.Collection
   model: Thorax.Models.PatientResult
   url: -> "#{@parent.url()}/patient_results"
-  initialize: (attrs, options) -> @parent = options.parent
+  initialize: (attrs, options) ->
+    @parent = options.parent
+    @page = 1
+  fetchNextPage: (options = {perPage: 10}) ->
+    @fetch remove: false, data: {page: ++@page, per_page: options.perPage}
