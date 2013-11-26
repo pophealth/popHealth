@@ -1,4 +1,6 @@
 class Thorax.Views.PatientResultsView extends Thorax.View
+  tagName: 'table'
+  className: 'table'
   template: JST['patient_results/index']
   patientContext: (patient) ->
     _(patient.toJSON()).extend
@@ -7,38 +9,46 @@ class Thorax.Views.PatientResultsView extends Thorax.View
 
   initialize: ->
     @filterPopulation = 'DENOM'
-    @query.on 'change', => 
+    @query.on 'change', =>
       @setCollection(@query.get('patient_results'), {render: true})
       @query.get('patient_results').fetch()
     if @query.isNew()
-      @query.fetch() 
-    else 
+      @query.fetch()
+    else
       @setCollection(@query.get('patient_results'))
       @query.get('patient_results').fetch()
 
   itemFilter: (model, index) ->
     model.get(@filterPopulation) == 1
 
-  changePopulation: (population) ->
+  changeFilter: (population) ->
     @filterPopulation = population
     @updateFilter()
 
+# TODO consider inheriting from/joining with ResultsView
 class Thorax.Views.QueryView extends Thorax.View
   template: JST['patient_results/query']
+  events:
+    'click .population-btn': 'changeFilter'
+    rendered: ->
+      @$('.dial').knob()
+      d3.select(@el).select('.pop-chart').datum(@model.get('result')).call(@popChart) if @model.isPopulated()
+
   ipp: -> @model.ipp()
   numerator: -> @model.numerator()
   denominator: -> @model.denominator()
   exceptions: -> @model.exceptions()
   exclusions: -> @model.exclusions()
   outliers: -> @model.outliers()
-  initialize: (attrs) ->
-    @setModel(attrs.model, {render: true})
-    @parent = attrs.parent
-  
-  events:
-    'click .population-btn': 'changeFilter' 
+  performanceRate: -> @model.performanceRate()
+  performanceDenominator: -> @model.performanceDenominator()
+  initialize: ->
+    @currentPopulation = 'IPP'
+    @popChart = PopHealth.viz.populationChart().width(125).height(50).numerSpacing(2).maximumValue(PopHealth.patientCount)
 
   changeFilter: (event) ->
-    @parent.changePopulation event.currentTarget.id
+    @currentPopulation = event.currentTarget.id
+    @parent.getView().changeFilter @currentPopulation
+    # FIXME bootstrap can manage this for us /->
     $('.population-btn.active').removeClass 'active'
     $(event.currentTarget).addClass 'active'

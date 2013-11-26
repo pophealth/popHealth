@@ -1,11 +1,19 @@
-class Thorax.Views.MeasureView extends Thorax.View
+class Thorax.Views.MeasureView extends Thorax.LayoutView
   template: JST['measures/show']
-  events:
-    rendered: ->
-      @$('.dial').knob()
-      myChart = PopHealth.viz.populationChart().width(125).height(50).barHeight(20).maximumValue(PopHealth.patientCount)
-      select = d3.select(@el).select('#test')
-        .datum(NUMER: 5, DENOM: 7, DENEX: 2, DENEXCEP: 6)
-        .call(myChart)
+
+  initialize: ->
+    @queryView = new Thorax.Views.QueryView model: @model.get('query')
+
+  activateLogicView: ->
+    view = new Thorax.Views.LogicView model: @model
+    view.changeFilter @queryView.currentPopulation
+    @setView view
 
 
+  activatePatientResultsView: ->
+    view = new Thorax.Views.PatientResultsView query: @model.get('query')
+    view.changeFilter @queryView.currentPopulation
+    @setView view
+
+  logicIsActive: -> if view = @getView() then view instanceof Thorax.Views.LogicView else @type is 'logic'
+  patientResultsIsActive: -> if view = @getView() then view instanceof Thorax.Views.PatientResultsView else @type is 'patient_results'

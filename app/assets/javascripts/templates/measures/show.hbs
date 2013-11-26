@@ -1,11 +1,18 @@
 <div class="sidebar" id="measureSummary">
-  <div>
-    {{! TODO move this into a partial? }}
-    <input type="text" value="80" class="dial" data-readOnly="true" data-width="80" data-height="80" data-thickness=".1" data-fgColor="#4B979D" data-inputColor="#444" data-font="Helvetica Neue, Roboto, Helvetica, Arial, sans-serif">
-  </div>
-  <div class="fraction-listing">
-    <div class="numerator">{{numerator}}</div>
-    <div class="denominator">{{performanceDenominator}}</div>
-  </div>
-  <div id="test" class="pop-chart"></div>
+  {{view queryView}}
+</div>
+<div class="main">
+  <dl class="dl-horizontal">
+    <dt>Measure Name:</dt>
+    <dd>{{name}}</dd>
+    <dt>Reporting Period:</dt>
+    <dd>mm/dd/yyyy &ndash; mm/dd/yyyy</dd>
+    <dt>Description:</dt>
+    <dd>{{description}}</dd>
+  </dl>
+  <ul class="nav nav-tabs">
+    <li{{#if logicIsActive}} class="active"{{/if}}>{{#link "measures/{{id}}" expand-tokens=true tag="a" data-toggle="tab" data-target="#logic"}}Measure{{/link}}</li>
+    <li{{#if patientResultsIsActive}} class="active"{{/if}}>{{#link "measures/{{id}}/patient_results" expand-tokens=true tag="a" data-toggle="tab" data-target="#patient_results"}}Patients{{/link}}</li>
+  </ul>
+  {{layout-element}}
 </div>

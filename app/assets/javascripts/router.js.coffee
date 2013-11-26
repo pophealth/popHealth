@@ -16,13 +16,20 @@ class PopHealth.Router extends Backbone.Router
     @view.setView new Thorax.Views.Dashboard collection: @categories
 
   measure: (id, subId) ->
-    @measure = @categories.findMeasure(id, subId)
-    @view.setView new Thorax.Views.MeasureView model: @measure
+    measure = @categories.findMeasure(id, subId)
+    if (measureView = @view.getView()) instanceof Thorax.Views.MeasureView and measureView.model is measure
+      measureView.activateLogicView()
+    else
+      @view.setView new Thorax.Views.MeasureView model: measure, type: 'logic'
 
   patientResultsForMeasure: (id, subId) ->
     measure = @categories.findMeasure(id, subId)
     if measure?
-      @view.setView new Thorax.Views.PatientResultsView query: measure.get('query')
+      measureView = @view.getView()
+      unless measureView instanceof Thorax.Views.MeasureView and measureView.model is measure
+        measureView = new Thorax.Views.MeasureView model: measure, type: 'patient_results'
+        @view.setView measureView
+      measureView.activatePatientResultsView()
     else
       console?.log 'Measure not found'
 
