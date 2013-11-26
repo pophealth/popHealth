@@ -3,35 +3,34 @@ class Thorax.Models.User extends Thorax.Model
   idAttribute: '_id'
 
   selectedCategories: (categories) ->
-    selectedIds = @get('preferences').selected_measure_ids
     selectedCats = new categories.constructor
-    categories.each (cat) ->
-      selectedMeasures = cat.get('measures').select (m) -> _(selectedIds).contains m.id
+    categories.each (cat) =>
+      selectedMeasures = cat.get('measures').select (m) => _(@get('preferences').selected_measure_ids).contains m.id
       if selectedMeasures.length
         selectedCategory = cat.clone()
         selectedCategory.set 'measures', new Thorax.Collections.Measures selectedMeasures, parent: selectedCategory
         selectedCats.add selectedCategory
 
     selectedCats.selectMeasure = (measure) =>
-      return if _(selectedIds).any (id) -> id is measure.id
+      return if _(@get('preferences').selected_measure_ids).any (id) -> id is measure.id
       categoryName = measure.collection.parent.get('category')
       selectedCategory = selectedCats.findWhere category: categoryName
       unless selectedCategory?
         selectedCategory = new Thorax.Models.Category category: categoryName, measures: [], {parse: true}
         selectedCats.add selectedCategory
       selectedCategory.get('measures').add measure
-      selectedIds.push measure.id
+      @get('preferences').selected_measure_ids.push measure.id
       @save()
 
     selectedCats.removeMeasure = (measure) =>
-      idx = selectedIds.indexOf(measure.id)
+      idx = @get('preferences').selected_measure_ids.indexOf(measure.id)
       return unless idx > -1
       categoryName = measure.collection.parent.get('category')
       selectedCategory = selectedCats.findWhere category: categoryName
       measures = selectedCategory.get('measures')
       measures.remove measure
       selectedCats.remove(selectedCategory) if measures.isEmpty()
-      selectedIds.splice idx, 1
+      @get('preferences').selected_measure_ids.splice idx, 1
       @save()
 
     selectedCats.selectCategory = (category) =>
@@ -40,13 +39,15 @@ class Thorax.Models.User extends Thorax.Model
         selectedCategory = new Thorax.Models.Category {category: category.get('category'), measures: []}, parse: true
         selectedCats.add selectedCategory
       selectedCategory.get('measures').reset category.get('measures').models
-      @get('preferences').selected_measure_ids = _(selectedIds).union(category.get('measures').map (m) -> m.id)
+      @get('preferences').selected_measure_ids.push _(category.get('measures').pluck('id')).difference(@get('preferences').selected_measure_ids)...
       @save()
 
     selectedCats.removeCategory = (category) =>
       selectedCategory = selectedCats.findWhere category: category.get('category')
       selectedCats.remove selectedCategory
-      @get('preferences').selected_measure_ids = _(selectedIds).difference(category.get('measures').map (m) -> m.id)
+      for id in category.get('measures').pluck('id')
+        idx = _(@get('preferences').selected_measure_ids).indexOf(id)
+        @get('preferences').selected_measure_ids.splice(idx, 1) if idx > -1
       @save()
 
 
@@ -61,7 +62,7 @@ class Thorax.Models.User extends Thorax.Model
 # # // when i remove or add to the selected, user.select(measure) / user.remove(measure) gets called
 
 
-# user.getSelectedIds
+# user.get@get('preferences').selected_measure_ids
 
 
 # # category.on 'reset',
