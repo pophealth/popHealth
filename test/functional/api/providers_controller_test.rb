@@ -8,7 +8,6 @@ include Devise::TestHelpers
       @user = Factory(:admin)
       @provider = Factory(:provider)
       @other_provider = Factory(:provider)
-      @selected_measure = @user.selected_measures.first
       collection_fixtures 'measures'
       sign_in @user
     end

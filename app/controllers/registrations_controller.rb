@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+  wrap_parameters :user, format: [:json]
 
   unless (APP_CONFIG['allow_user_update'])
     before_filter :authorize_user_update
@@ -22,13 +23,21 @@ class RegistrationsController < Devise::RegistrationsController
     # Devise use update_with_password instead of update_attributes.
     # This is the only change we make.
     if resource.update_attributes(params[resource_name])
-      set_flash_message :notice, :updated
-      # Line below required if using Devise >= 1.2.0
-      sign_in resource_name, resource, :bypass => true
-      redirect_to after_update_path_for(resource)
+      respond_to do |format|
+        # Line below required if using Devise >= 1.2.0
+        sign_in resource_name, resource, :bypass => true
+        format.html do
+          set_flash_message :notice, :updated
+          redirect_to after_update_path_for(resource)
+        end
+        format.json { render json: resource }
+      end
     else
-      clean_up_passwords(resource)
-      render_with_scope :edit
+      respond_to do |format|
+        clean_up_passwords(resource)
+        format.html { render_with_scope :edit }
+        format.json { render json: { errors: @model.errors.full_messages, status: :unprocessable_entity } }
+      end
     end
   end
 

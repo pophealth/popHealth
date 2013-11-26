@@ -30,20 +30,6 @@ Factory.define :user_w_npi, :parent => :user do |u|
   u.staff_role false
 end
 
-Factory.define :user_w_selected_measures, :parent => :user do |u|
-  u.after_create {|u| Factory(:selected_measure, :username => u.username)}
-end
-
-Factory.define :selected_measure, :class => FactoryHash do |u| 
-  u.id "0032"
-  u.subs []
-  u.name "Cervical Cancer Screening"
-  u.category "Women's Health"
-  u.description "Women from 21 to 64 years old who received one or more Pap tests."
-  u.username "andy"
-  u.after_build {|event| event.collection('selected_measures')}
-end
-
 Factory.define :provider do |pv|
   pv.title "Dr."
   pv.given_name { %w(Robert Jane Steve Claire Joe Liana Edmund Emily Kevin Amanda Gino Michelle Dylan Jake Jessica Duane Jamie Leon Elizabeth George).sample }

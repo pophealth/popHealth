@@ -5,8 +5,8 @@ include Devise::TestHelpers
 
     setup do
       dump_database
-      collection_fixtures 'measures', 'selected_measures', 'records'
-      @user = Factory(:user_w_selected_measures)
+      collection_fixtures 'measures', 'records'
+      @user = Factory(:user)
       @admin = Factory(:admin)
       
     end
@@ -28,7 +28,7 @@ include Devise::TestHelpers
 
     test "simple user cannot delete measures" do
       sign_in @user
-      count =QME::QualityMeasure.where({"hqmf_id" => "0013"}).count
+      count = QME::QualityMeasure.where({"hqmf_id" => "0013"}).count
       assert 0< count
       delete :destroy, :id=>'0013'
 
@@ -38,7 +38,7 @@ include Devise::TestHelpers
 
      test "admin can delete measures" do
       sign_in @admin
-      count =QME::QualityMeasure.where({"hqmf_id" => "0013"}).count
+      count = QME::QualityMeasure.where({"hqmf_id" => "0013"}).count
       assert 0< count, "should be at least one 0013 measure database"
       delete :destroy, :id=>'0013'
       assert_response 204
