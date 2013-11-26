@@ -1,1 +1,0 @@
-We have a plan to migrate our JavaScript to an MVC approach, based on the [Thorax](http://thoraxjs.org/) framework. This directory gives the older JavaScript a home until such a point as it's replaced and can be removed.

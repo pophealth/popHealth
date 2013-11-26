@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-  layout 'application_future'
   before_filter :authenticate_user!, :validate_authorization!
 
   def index
