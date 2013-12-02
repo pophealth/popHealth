@@ -4,8 +4,8 @@ class Thorax.Views.MeasureView extends Thorax.LayoutView
   initialize: ->
     @queryView = new Thorax.Views.QueryView model: @measure.get('query')
 
-  initialize: ->
-    @queryView = new Thorax.Views.QueryView model: @model.get('query')
+  context: ->
+    _(super).extend @measure.toJSON()
 
   activateLogicView: ->
     view = new Thorax.Views.LogicView model: @measure
