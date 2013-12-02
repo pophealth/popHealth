@@ -11,8 +11,12 @@
     <dd>{{description}}</dd>
   </dl>
   <ul class="nav nav-tabs">
-    <li{{#if logicIsActive}} class="active"{{/if}}>{{#link "measures/{{id}}" expand-tokens=true tag="a" data-toggle="tab" data-target="#logic"}}Measure{{/link}}</li>
-    <li{{#if patientResultsIsActive}} class="active"{{/if}}>{{#link "measures/{{id}}/patient_results" expand-tokens=true tag="a" data-toggle="tab" data-target="#patient_results"}}Patients{{/link}}</li>
+    <li{{#if logicIsActive}} class="active"{{/if}}>
+      <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}" data-toggle="tab" data-target="#logic" data-call-method="_anchorClick">Measure</a>
+    </li>
+    <li{{#if patientResultsIsActive}} class="active"{{/if}}>
+      <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}/patient_results" data-toggle="tab" data-target="#patient_results" data-call-method="_anchorClick">Patients</a>
+    </li>
   </ul>
   {{layout-element}}
 </div>

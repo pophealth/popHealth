@@ -1,0 +1,7 @@
+{{#if referencesDataCriteria}}
+  <span class="{{type}} temporal-operator">{{period}}</span>
+  {{view "TemporalReferenceDataCriteriaView" model=data_criteria reference=this.model}}
+{{else}}
+  {{#if range}}{{view valueView model=range}}{{/if}}
+  {{period}} {{reference}}
+{{/if}}

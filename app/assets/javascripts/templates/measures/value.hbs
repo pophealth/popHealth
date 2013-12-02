@@ -1,0 +1,7 @@
+{{#unless isAnyNonNull}}
+  {{#if isCoded}}
+    : {{title}}
+  {{else}}
+    {{operator}} {{value}}{{#if unit }} {{unit}}{{/if}}
+  {{/if}}
+{{/unless}}

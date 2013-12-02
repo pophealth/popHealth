@@ -37,14 +37,16 @@ class Thorax.Views.QueryView extends Thorax.View
   ipp: -> @model.ipp()
   numerator: -> @model.numerator()
   denominator: -> @model.denominator()
+  hasExceptions: -> @model.hasExceptions()
   exceptions: -> @model.exceptions()
+  hasExclusions: -> @model.hasExclusions()
   exclusions: -> @model.exclusions()
   outliers: -> @model.outliers()
   performanceRate: -> @model.performanceRate()
   performanceDenominator: -> @model.performanceDenominator()
   initialize: ->
     @currentPopulation = 'IPP'
-    @popChart = PopHealth.viz.populationChart().width(125).height(50).numerSpacing(2).maximumValue(PopHealth.patientCount)
+    @popChart = PopHealth.viz.populationChart().width(125).height(50).barHeight(20).maximumValue(PopHealth.patientCount)
 
   changeFilter: (event) ->
     @currentPopulation = event.currentTarget.id

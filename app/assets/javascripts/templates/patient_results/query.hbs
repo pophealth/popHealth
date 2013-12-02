@@ -20,15 +20,21 @@
   <span class="title">Denominator</span>
   <span class="query-result">{{denominator}}</span>
 </button>
+{{#if hasExclusions}}
 <button class="population-btn" id="DENEX">
   <span class="title">Exclusions</span>
   <span class="query-result">{{exclusions}}</span>
 </button>
+{{/if}}
+{{#if hasExceptions}}
 <button class="population-btn" id="DENEXCEP">
   <span class="title">Exceptions</span>
   <span class="query-result">{{exceptions}}</span>
 </button>
+{{/if}}
+{{#if hasOutliers}}
 <button class="population-btn" id="antinumerator">
   <span class="title">Outliers</span>
   <span class="query-result">{{outliers}}</span>
 </button>
+{{/if}}
