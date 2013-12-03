@@ -10,6 +10,7 @@ notifications:
     recipients:
       - healthcare-ci@googlegroups.com
     on_failure: change
+bundler_args: --without test develop
 
 branches: 
   only:
