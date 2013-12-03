@@ -55,13 +55,13 @@ group :test, :develop, :ci do
   gem 'jasmine'
   gem 'turn', :require => false
   gem 'simplecov', :require => false
+  gem 'mocha', :require => false
+  gem "unicorn", :platforms => [:ruby, :jruby]
   gem 'minitest', "~> 4.0"
 end
 
 group :test, :develop do
   gem 'pry-debugger'
-  gem "unicorn", :platforms => [:ruby, :jruby]
-  gem 'mocha', :require => false
 end
 
 group :production do
