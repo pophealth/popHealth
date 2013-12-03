@@ -98,7 +98,7 @@ GEM
       execjs (>= 1.2.9)
       sprockets (>= 2.0.3)
       tilt
-    health-data-standards (3.2.8)
+    health-data-standards (3.3.0)
       activesupport (~> 3.2.14)
       builder (~> 3.0.0)
       erubis (~> 2.7.0)
@@ -107,7 +107,7 @@ GEM
       mongoid (~> 3.1.4)
       nokogiri (~> 1.6.0)
       rest-client (~> 1.6.7)
-      rubyzip
+      rubyzip (= 0.9.9)
       uuid (~> 2.3.7)
     highline (1.6.19)
     hike (1.2.3)
@@ -274,7 +274,7 @@ DEPENDENCIES
   formtastic
   git
   handlebars_assets
-  health-data-standards (= 3.2.8)
+  health-data-standards (= 3.3.0)
   highline
   jasmine
   jquery-rails
