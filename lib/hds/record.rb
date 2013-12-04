@@ -27,6 +27,14 @@ class Record
     lang_codes = (languages.nil?) ? [] : languages.map { |l| l.gsub(/\-[A-Z]*$/, "") }
     Language.ordered.by_code(lang_codes).map(&:name)
   end
+
+  def results(params = {})
+    query = {"value.medical_record_id" => self.medical_record_number }
+    query["value.effective_date"]= params["effective_date"] if params["effective_date"]
+    query["value.measure_id"]= params["measure_id"] if params["measure_id"]
+    query["value.sub_id"]= params["sub_id"] if params["sub_id"]
+    HealthDataStandards::CQM::PatientCache.where(query)
+  end
   
   
 end
