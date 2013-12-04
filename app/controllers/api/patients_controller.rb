@@ -4,7 +4,7 @@
     respond_to :json
     before_filter :authenticate_user!
     before_filter :validate_authorization!
-    before_filter :load_patient, :only => [:show, :delete, :toggle_excluded]
+    before_filter :load_patient, :only => [:show, :delete, :toggle_excluded, :results]
     before_filter :set_pagination_params, :only => :index
     before_filter :set_filter_params, :only => :index
 
@@ -45,6 +45,10 @@
       authorize! :delete, @patient
       @patient.destroy
       render :status=> 204, text=> ""
+    end
+
+    def results
+      render :json=> @patient.results(params).to_a
     end
     
     private
