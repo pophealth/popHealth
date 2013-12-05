@@ -112,7 +112,7 @@
 
 
 // New styles for side bar for the measure view/patient list
-// TODO Clean up these styles
+// TODO Clean up these styles once pages are integrated and complete.
 
 .population-btn {
   .col-xs-12;
@@ -170,6 +170,7 @@
 }
 .dl-horizontal {
   dt{ 
+    text-transform: uppercase;
     text-align: left;
   }
 }
@@ -238,32 +239,32 @@ indicator {
     .make-md-column(1);
     padding-left: 0;
 
-  i {
-    text-align: center;
-    vertical-align: middle;
-    padding-top: 8px;
-    width: 36px;
-    height: 36px;
-    background-color: #fff;
-    border-radius: 18px;
-    border: 2px solid @brand-primary;
-    color: @brand-primary;
-  }
-
-  .active-icon {
-    i{
-      background-color: @brand-primary;
+    i {
+      text-align: center;
+      vertical-align: middle;
+      padding-top: 8px;
+      width: 36px;
+      height: 36px;
+      background-color: #fff;
       border-radius: 18px;
-      color: #fff;
+      border: 2px solid @brand-primary;
+      color: @brand-primary;
+    }
+
+    .active-icon {
+      i{
+        background-color: @brand-primary;
+        border-radius: 18px;
+        color: #fff;
+      }
+    }
+
+    .fa {
+      color: @brand-primary;
+      font-size: 18px;
+      margin: auto;
     }
   }
-
-  .fa {
-    color: @brand-primary;
-    font-size: 18px;
-    margin: auto;
-  }
-}
 }
 .patient-data {
   .make-md-column(11);
@@ -297,11 +298,6 @@ indicator {
     margin-left: 0px;
   }
 
-}
-h2 {
-  text-transform: uppercase;
-  font-size: 14px;
-  font-weight: bold;
 }
 .panel-heading {
   background-color: @gray-lighter;

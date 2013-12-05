@@ -42,32 +42,40 @@ class Thorax.Collections.Entries extends Thorax.Collection
 
 class Thorax.Models.Allergy extends Thorax.Model
   entryType: -> 'allergy'
+  icon: -> 'stethoscope'
   displayFields: -> ['type', 'reaction', 'severity'] 
 
 class Thorax.Models.Condition extends Thorax.Model
   entryType: -> 'condition'
+  icon: -> 'stethoscope'
   displayFields: -> ['type', 'causeOfDeath', 'time_of_death', 'name']
   
 class Thorax.Models.Encounter extends Thorax.Model
   entryType: -> 'encounter'
+  icon: -> 'user-md'
   displayFields: -> ['admitType', 'reason']
 
 class Thorax.Models.Immunization extends Thorax.Model
   entryType: -> 'immunization'
+  icon: -> 'medkit'
   displayFields: -> ['seriesNumber', 'medication_product']
 
 class Thorax.Models.Result extends Thorax.Model
   entryType: -> 'result'
+  icon: -> 'stethoscope'
   displayFields: -> ['type', 'interpretation']
 
 class Thorax.Models.Medication extends Thorax.Model
   entryType: -> 'medication'
+  icon: -> 'medkit'
   displayFields: -> ['dose', 'typeOfMedication', 'statusOfMedication']
 
 class Thorax.Models.Procedure extends Thorax.Model
   entryType: -> 'procedure'
+  icon: -> 'scissors'
   displayFields: -> ['site']
 
 class Thorax.Models.VitalSign extends Thorax.Model
-  entryType: -> 'lab_result'
+  entryType: -> 'result'
+  icon: -> 'stethoscope'
   displayFields: -> ['type', 'interpretation']
