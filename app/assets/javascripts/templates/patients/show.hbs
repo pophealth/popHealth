@@ -46,8 +46,7 @@
       </dl>
     </div>
     <div class="time-line">
-      <div class="timeline-title">Patient History Relative to Measures
-      </div>
+      <div class="timeline-title">Patient History Relative to Measures</div>
     </div>
 {{!--     <div class="record-listing ">
       <div class="circle-icon active-icon">
@@ -66,10 +65,25 @@
         </dl>
       </div>
     </div> --}}
-    {{#collection events}}
-      {{_type}}
+    {{#collection entries item-view="EntryView"}}
+      <div class="record-listing">
+        <div class="circle-icon">
+          <i class="fa fa-user-md"></i>
+        </div>
+        <div class="patient-data">
+          <dl class="dl-record dl-horizontal">
+            <dt>{{entry_type}}</dt>
+            <dd>Outpatient</dd>
+          </dl>
+          <dl class="dl-date dl-horizontal">
+            <dt>DATE</dt>
+            <dd>{{start_time}} {{end_time}}
+            </dd>
+          </dl>
+        </div>
+      </div>
     {{/collection}}
-    <div class="record-listing">
+    {{!-- <div class="record-listing">
       <div class="circle-icon">
         <i class="fa fa-user-md"></i>
       </div>
@@ -123,7 +137,7 @@
           <dd>2-2-2010 - 2-2-2010
           </dd>
         </dl>
-      </div>
+      </div> --}}
     </div>
   </div>
 </div>
