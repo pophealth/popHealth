@@ -30,6 +30,7 @@ class Thorax.Views.EntryView extends Thorax.View
       start_time: format_time @model.get('start_time')
       end_time: '- ' + format_time @model.get('end_time') if @model.get('end_time')?
       entry_type: @model.entryType()
+      icon: @model.icon()
       
   # Helper function for date/time conversion
   format_time = (time) -> moment(time).format('MM-DD-YYYY') if time
