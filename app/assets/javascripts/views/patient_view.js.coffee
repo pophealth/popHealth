@@ -32,7 +32,6 @@ class Thorax.Views.EntryView extends Thorax.View
       entry_type: @model.entryType()
       icon: @model.icon()
       description: @model.get('description').split('(')[0] if @model.get('description')
-          
 
   # Helper function for date/time conversion
   format_time = (time) -> moment(time).format('M/DD/YYYY') if time
