@@ -5,6 +5,7 @@ class User
   include Mongoid::Document
 
   before_create :set_defaults
+  before_save   :denullify_arrays
 
   DEFAULT_EFFECTIVE_DATE = Time.gm(2011, 1, 1)
 
@@ -76,6 +77,15 @@ class User
     self.staff_role ||= APP_CONFIG["default_user_staff_role"]
     self.approved ||= APP_CONFIG["default_user_approved"]
     true
+  end
+
+  # replace nil with [] when it should be an array; see https://github.com/rails/rails/issues/8832
+  def denullify_arrays
+    # if self.preferences[:selected_measure_ids] == nil
+    #   binding.pry
+    # end
+    self.preferences["selected_measure_ids"] ||= []
+    # puts self.preferences[:selected_measure_ids]
   end
 
   def active_for_authentication?
