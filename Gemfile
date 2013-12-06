@@ -4,7 +4,7 @@ gem 'rails', '3.2.14'
 #gem 'quality-measure-engine', :path=>"../quality-measure-engine"
 gem 'quality-measure-engine', :git=> "https://github.com/pophealth/quality-measure-engine.git", :branch=> "mongoid_refactor"
 
-gem "health-data-standards", '3.2.8'
+gem "health-data-standards", '3.3.0'
 gem 'nokogiri'
 gem 'rubyzip'
 
@@ -50,15 +50,18 @@ group :assets do
   gem "bootstrap-sass"
 end
 
-group :test, :develop do
+group :test, :develop, :ci do
   gem 'pry'
-  gem 'pry-debugger'
   gem 'jasmine'
-  gem "unicorn", :platforms => [:ruby, :jruby]
   gem 'turn', :require => false
   gem 'simplecov', :require => false
-  gem "minitest", "~> 4.0"
   gem 'mocha', :require => false
+  gem "unicorn", :platforms => [:ruby, :jruby]
+  gem 'minitest', "~> 4.0"
+end
+
+group :test, :develop do
+  gem 'pry-debugger'
 end
 
 group :production do
