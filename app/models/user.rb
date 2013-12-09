@@ -57,6 +57,7 @@ class User
   field :approved, type: Boolean
   field :staff_role, type: Boolean
   field :disabled, type: Boolean
+  field :mask_phi_data, type: Boolean, default: false
   field :preferences, type: Hash, default: {selected_measure_ids: []}
 
   scope :ordered_by_username, order_by([:username, :asc])

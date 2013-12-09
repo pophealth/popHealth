@@ -12,6 +12,7 @@
 #= require d3/d3
 #
 #= require config
+#= require helpers
 #= require population_chart
 #= require_tree ./templates
 #= require_tree ./models
