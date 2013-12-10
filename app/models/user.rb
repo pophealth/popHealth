@@ -4,8 +4,8 @@ class User
 
   include Mongoid::Document
 
-  before_create :set_defaults
-  before_save   :denullify_arrays
+  before_save  :denullify_arrays
+  before_create :set_defaults, :build_preferences
 
   DEFAULT_EFFECTIVE_DATE = Time.gm(2011, 1, 1)
 
@@ -57,12 +57,14 @@ class User
   field :approved, type: Boolean
   field :staff_role, type: Boolean
   field :disabled, type: Boolean
-  field :mask_phi_data, type: Boolean, default: false
-  field :preferences, type: Hash, default: {selected_measure_ids: []}
+
+  has_one :preferences, class_name: 'Preference'
 
   scope :ordered_by_username, order_by([:username, :asc])
 
   attr_protected :admin, :approved, :disabled, :encrypted_password, :remember_created_at, :reset_password_token, :reset_password_sent_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip, :effective_date
+
+  accepts_nested_attributes_for :preferences
 
   validates_presence_of :first_name, :last_name
 
@@ -85,7 +87,9 @@ class User
     # if self.preferences[:selected_measure_ids] == nil
     #   binding.pry
     # end
-    self.preferences["selected_measure_ids"] ||= []
+    unless self.preferences.nil?
+      self.preferences["selected_measure_ids"] ||= []
+    end
     # puts self.preferences[:selected_measure_ids]
   end
 

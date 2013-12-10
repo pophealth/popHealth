@@ -2,7 +2,7 @@ class Thorax.Models.User extends Thorax.Model
   url: '/users' # no ID necessary, as this corresponds to the currently logged in user
   idAttribute: '_id'
 
-  maskStatus: -> @get('mask_phi_data')
+  maskStatus: -> @get('preferences').mask_phi_data
 
   selectedCategories: (categories) ->
     selectedCats = new categories.constructor

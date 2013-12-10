@@ -52,10 +52,12 @@
           <label for="tin">Tax Identifier:</label>
           <%= f.text_field :tin %>
         </li>
-        <li>
-          <label for="tin">Mask PHI Data:</label>
-          <%= f.check_box :mask_phi_data %>
-        </li>
+        <%= f.fields_for :preferences do |t| %>
+          <li>
+            <label for="tin">Mask PHI Data:</label>
+            <%= t.check_box :mask_phi_data %>
+          </li>
+        <% end %>
       </ul>
 
       <div class="actions">
