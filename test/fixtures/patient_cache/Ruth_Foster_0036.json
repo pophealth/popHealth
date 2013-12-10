@@ -12,9 +12,6 @@
     "last": "Foster",
     "gender": "F",
     "birthdate": 791933764,
-    "test_id": {
-      "$oid": "523c57e1b59a907ea9000002"
-    },
     "provider_performances": null,
     "race": {
       "code": "1002-5",

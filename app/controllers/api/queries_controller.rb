@@ -52,7 +52,7 @@ module Api
       authorize! :read, qr
       # this returns a criteria object so we can filter it additionally as needed 
       results = qr.patient_results
-      render json: paginate(patient_results_api_query_url(qr),results.order_by([:last.asc, :first.asc]))
+      render json: paginate(patient_results_api_query_url(qr),results.where(build_patient_filter).order_by([:last.asc, :first.asc]))
     end
 
     def patients
@@ -60,7 +60,7 @@ module Api
       authorize! :read, qr
       # this returns a criteria object so we can filter it additionally as needed 
       results = qr.patient_results
-      ids = paginate(patients_api_query_url(qr),results.order_by([:last.asc, :first.asc])).collect{|r| r["value.medical_record_number"]}
+      ids = paginate(patients_api_query_url(qr),results.where(build_patient_filter).order_by([:last.asc, :first.asc])).collect{|r| r["value.medical_record_id"]}
       render :json=> Record.where({:medical_record_number.in => ids})
     end
 
@@ -82,6 +82,18 @@ module Api
         #an empty Provider with no NPI number gets around this
         authorize! :read, Provider.new
       end
+    end
+
+    def build_patient_filter
+      patient_filter = {}
+      patient_filter["value.IPP"]= {"$gt" => 0} if params[:ipp] == true
+      patient_filter["value.DENOM"]= {"$gt" => 0} if params[:denom] == true
+      patient_filter["value.NUMER"]= {"$gt" => 0} if params[:numer] == true
+      patient_filter["value.DENEX"]= {"$gt" => 0} if params[:denex] == true
+      patient_filter["value.DENEXCEP"]= {"$gt" => 0} if params[:denexcep] == true
+      patient_filter["value.MSRPOPL"]= {"$gt" => 0} if params[:msrpopl] == true
+      patient_filter["value.antinumerator"]= {"$gt" => 0} if params[:antinumerator] == true
+      patient_filter
     end
 
     def collect_provider_id
