@@ -9,6 +9,9 @@ class Thorax.Collections.PatientResults extends Thorax.Collection
   url: -> "#{@parent.url()}/patient_results"
   initialize: (attrs, options) ->
     @parent = options.parent
+    @population = options.population
     @page = 1
   fetchNextPage: (options = {perPage: 10}) ->
-    @fetch remove: false, data: {page: ++@page, per_page: options.perPage}
+    data = {page: ++@page, per_page: options.perPage}
+    data[@population.toLowerCase()] = true if @population?
+    @fetch remove: false, data: data
