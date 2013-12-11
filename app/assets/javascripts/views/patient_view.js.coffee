@@ -31,11 +31,8 @@ class Thorax.Views.EntryView extends Thorax.View
       end_time: format_time @model.get('end_time') if @model.get('end_time')?
       entry_type: @model.entryType()
       icon: @model.icon()
-      description: 
-        if @model.get('description')
-          @model.get('description').split('(')[0] 
-        # else
-        #   'No Details Available'
+      description: @model.get('description').split('(')[0] if @model.get('description')
+          
 
   # Helper function for date/time conversion
   format_time = (time) -> moment(time).format('M/DD/YYYY') if time

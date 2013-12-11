@@ -1,30 +1,30 @@
 <div class="row">
   <div class="left-sidebar">
-    <h1><i class="fa fa-tasks"></i> measures</h1>
-    <div class="panel-group">
-      <h2>Outliers</h2>
-      <div class="panel-heading active">
-        <div class="indicator">
-          <i class="fa fa-exclamation-triangle"></i>
-        </div>
-        <div class="measure-title">Preventive Care And Screening: Tobacco - Use Assessment
-        </div>
-      </div>
-    </div>
-    <div class="panel-heading">
+    <h1><i class="fa fa-tasks"></i> Measures</h1>
+    <h2>Outliers</h2>
+    <div class="measure-title active">
       <div class="indicator">
         <i class="fa fa-exclamation-triangle"></i>
       </div>
-      <div class="measure-title">Smoking And Tobacco Use Cessation, Medical Assistance - Advising Smokers And Tobacco Users To Quit
+      <div class="">
+        Controlling High Blood Pressure
+      </div>
+    </div>
+    <div class="measure-title">
+      <div class="indicator">
+        <i class="fa fa-exclamation-triangle"></i>
+      </div>
+      <div class="">
+        Smoking And Tobacco Use Cessation, Medical Assistance - Advising Smokers And Tobacco Users To Quit
       </div>
     </div>
   </div>
 
-  <div class="main">
+  <div class="main patient">
     <h1 class="main-head"><i class="fa fa-user"></i> {{first}} {{last}}</h1>
     <div id="time-bar"></div>
-    <div class="demo col-md-offset-1">
-      <dl class="dl-demo dl-horizontal">
+    <div class="demographics">
+      <dl class="dl-horizontal">
         <dt>RECORD NUMBER</dt>
         <dd>730132778</dd>
         <dt>EFFECTIVE DATE</dt>
@@ -34,7 +34,7 @@
         <dt>GENDER</dt>
         <dd>{{gender}}</dd>
       </dl>
-      <dl class="dl-demo dl-horizontal">
+      <dl class="dl-horizontal">
         <dt>RACE</dt>
         <dd>{{race}}</dd>
         <dt>ETHNICITY</dt>
@@ -48,18 +48,40 @@
     <div class="time-line">
       <div class="timeline-title">Patient History Relative to Measures</div>
     </div>
+    {{!-- 
+      The following section can be added back in after filtering is added and  
+      we have the ability to determine the cause of a patient being an outlier.
+    --}}
+    {{!--     <div class="record-listing ">
+      <div class="circle-icon active-icon">
+        <i class="fa fa-question"></i>
+      </div>
+      <div class="patient-data active">
+        <dl class="dl-record dl-horizontal">
+          <dt>MISSING</dt>
+          <dd>Medication ordered
+          </dd>
+        </dl>
+        <dl class="dl-date dl-horizontal">
+          <dt>DATE </dt>
+          <dd>12-2-2012 - 12-2-2012
+          </dd>
+        </dl>
+      </div>
+    </div> --}}
     {{#collection entries item-view="EntryView"}}
       <div class="record-listing">
         <div class="circle-icon">
           <i class="fa fa-{{icon}}"></i>
         </div>
         <div class="patient-data">
+        <div class="triangle-left"></div>
           <dl class="dl-record dl-horizontal">
             <dt>{{entry_type}}</dt>
             {{#if description}}
               <dd>{{description}}</dd>
             {{else}}
-              <dd class="status-unavailable">No Details Available</dd>
+              <dd class="text-muted">No Details Available</dd>
             {{/if}}
           </dl>
           <dl class="dl-date dl-horizontal">
@@ -69,6 +91,5 @@
         </div>
       </div>
     {{/collection}}
-    </div>
   </div>
 </div>
