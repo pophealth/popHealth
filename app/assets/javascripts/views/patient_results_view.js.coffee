@@ -1,3 +1,17 @@
+class Thorax.Views.PatientResultsLayoutView extends Thorax.LayoutView
+  template: JST['patient_results/layout']
+  initialize: ->
+    @views = {}
+  events:
+    destroyed:
+      view.release() for population, view of @views
+  changePopulation: (population) ->
+    if currentView = @getView()
+      currentView.retain() # don't destroy child views until the layout view is destroyed
+    @views[population] ||= new Thorax.Views.PatientResultsView(population: population, query: @query)
+    @setView @views[population]
+
+
 class Thorax.Views.PatientResultsView extends Thorax.View
   tagName: 'table'
   className: 'table'
@@ -9,7 +23,9 @@ class Thorax.Views.PatientResultsView extends Thorax.View
       age: moment(patient.get('birthdate')).fromNow().split(' ')[0] if patient.get('birthdate')
 
   events:
-    'change:load-state': (state) -> @isFetching = false if state is 'end'
+    'change:load-state': (state) ->
+      console.log state
+      @isFetching = false if state is 'end'
     rendered: ->
       $(document).on 'scroll', @scrollHandler
     destroyed: ->
@@ -19,25 +35,16 @@ class Thorax.Views.PatientResultsView extends Thorax.View
     @isFetching = false
     @scrollHandler = =>
       distanceToBottom = $(document).height() - $(window).scrollTop() - $(window).height()
-      if !@isFetching and @query.get('patient_results')?.length and @fetchTriggerPoint > distanceToBottom
+      console.log distanceToBottom, @isFetching, @collection?.length
+      if !@isFetching and @collection?.length and @fetchTriggerPoint > distanceToBottom
         @isFetching = true
-        @query.get('patient_results').fetchNextPage()
-    @filterPopulation = 'DENOM'
-    @query.on 'change', =>
-      @setCollection(@query.get('patient_results'), render: true)
-      @query.get('patient_results').fetch()
-    if @query.isNew()
-      @query.fetch()
-    else
-      @setCollection(@query.get('patient_results'))
-      @query.get('patient_results').fetch()
+        @collection.fetchNextPage()
 
-  itemFilter: (model, index) ->
-    model.get(@filterPopulation) == 1
-
-  changePopulation: (population) ->
-    @filterPopulation = population
-    @updateFilter()
+    setCollection = =>
+      @setCollection new Thorax.Collections.PatientResults([], parent: @query, population: @population), render: true
+      @collection.fetch()
+    @query.on 'change', setCollection
+    if @query.isNew() then @query.save() else setCollection()
 
 class Thorax.Views.QueryView extends Thorax.View
   template: JST['patient_results/query']
