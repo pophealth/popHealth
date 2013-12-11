@@ -48,7 +48,7 @@
     end
 
     def results
-      render :json=> @patient.results(params).to_a
+      render :json=> @patient.cache_results(params).to_a
     end
     
     private

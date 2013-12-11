@@ -79,5 +79,72 @@
         "349": 2
       }
     }
-  }
+  },
+  "result" : {"IPP": 6,
+  "DENOM": 6,
+  "NUMER": 2,
+  "antinumerator": 2,
+  "DENEX": 2,
+  "DENEXCEP": 0,
+  "MSRPOPL": 0,
+  "considered": 6,
+  "execution_time": 0,
+  "supplemental_data": {
+    "IPP": {
+      "RACE": {
+        "1002-5": 6
+      },
+      "ETHNICITY": {
+        "2186-5": 6
+      },
+      "SEX": {
+        "F": 6
+      },
+      "PAYER": {
+        "349": 6
+      }
+    },
+    "DENOM": {
+      "RACE": {
+        "1002-5": 6
+      },
+      "ETHNICITY": {
+        "2186-5": 6
+      },
+      "SEX": {
+        "F": 6
+      },
+      "PAYER": {
+        "349": 6
+      }
+    },
+    "NUMER": {
+      "RACE": {
+        "1002-5": 2
+      },
+      "ETHNICITY": {
+        "2186-5": 2
+      },
+      "SEX": {
+        "F": 2
+      },
+      "PAYER": {
+        "349": 2
+      }
+    },
+    "DENEX": {
+      "RACE": {
+        "1002-5": 2
+      },
+      "ETHNICITY": {
+        "2186-5": 2
+      },
+      "SEX": {
+        "F": 2
+      },
+      "PAYER": {
+        "349": 2
+      }
+    }
+  }}
 }

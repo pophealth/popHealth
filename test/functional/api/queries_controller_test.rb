@@ -203,6 +203,26 @@ module Api
 
     end 
 
+
+    test "filter patient results" do
+      sign_in @staff
+      get :patients, :id=>"523c57e4949d9dd06956b622"
+      assert_response :success
+      json = JSON.parse(response.body)
+      assert_equal 1, json.length
+
+      get :patients, :id=>"523c57e4949d9dd06956b622", :denex=>"true"
+      assert_response :success
+      json = JSON.parse(response.body)
+      assert_equal 0, json.length
+
+      get :patients, :id=>"523c57e4949d9dd06956b622", :denom=>"true"
+      assert_response :success
+      json = JSON.parse(response.body)
+      assert_equal 1, json.length
+
+    end
+
     test "index admin" do 
       skip "need to implement"
     end
