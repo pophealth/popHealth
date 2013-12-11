@@ -8,7 +8,7 @@
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:name=>"login_form"}) do |f| %>
   <div class="form-group input-group input-group-lg">
       <span class="input-group-addon"><i class="fa fa-envelope fa-lg fa-fw"></i></span>
-      <%= f.email_field :email, class: "form-control", placeholder: "email@example.com" %>
+      <%= f.email_field :username, class: "form-control", placeholder: "username" %>
   </div>
   <div class="form-group input-group input-group-lg">
       <span class="input-group-addon"><i class="fa fa-lock fa-lg fa-fw"></i></span>
