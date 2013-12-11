@@ -11,8 +11,19 @@
 @circle-bkg-color: #fff;
 @title-circle-radius: 21px;
 
+// Custom styles that are part of the theme
+
+.dl-horizontal {
+  dt{ 
+    text-transform: uppercase;
+    text-align: left;
+  }
+}
+
 // Custom classes for semantic mark-up
 // font-size -> 1em = 14px
+
+// Dashboard
 
 .nav {
   font-weight: 500;
@@ -92,8 +103,6 @@
   }
 }
 
-
-
 .pop-chart {
   height: 50px;
   width: 125px;
@@ -161,149 +170,155 @@
 
 // patient view
 // TODO clean up the following code
-.status-unavailable {
-  color: @gray-light;
-  font-style: italic;
-}
-.demo {
-  .clearfix;
-}
-.dl-demo {
-  .dl-horizontal;
-  .make-md-column(6);
-}
-.dl-horizontal {
-  dt{ 
-    text-transform: uppercase;
-    text-align: left;
+.left-sidebar {
+  .measure-title {
+    width: 260px;
+    background-color: @gray-lighter;
+    margin-bottom: 5px;
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    > * {
+      display: inline;
+    }
+    &.active {
+      background-color: @brand-primary;
+      color: #fff;
+    }
+  }
+  .indicator {
+    width: 14px;
+    padding-right: 5px;
   }
 }
 
-.indicator, .measure-title {
-  display: inline-block;
-  vertical-align: top;
-
-}
-indicator {
-  width: 14px;
-  padding-right: 5px;
-}
-
-.measure-title {
-  width: 212px;
-}
-
-.main-head {
-  font-size: 36px;
-  i {
-    .make-md-column(1);
-    text-align: left;
-    padding-left: 3px;
+.patient {
+  .main-head {
+    font-size: 36px;
+    .fa-user {
+      .make-md-column(1);
+      text-align: left;
+      padding-left: 3px;
+    }
   }
-}
-.demo{
-  dl {
-    padding-left: 0;
-  }
-}
 
-.panel-group {
-  .active {
-    background-color: @brand-primary;
-    color: #fff;
+  #time-bar {
+    position: absolute;
+    left: 28px;
+    top: 54px;
+    width: 8px;
+    height: 100%;
+    background-color: @gray-lighter;
   }
-}
-.time-line {
-  background-color: @gray-lighter;
-  margin-left: 15px;
-}
-.timeline-title {
-  font-size: 24px;
-    font-weight: bold;
-    text-transform: uppercase;
-  .make-md-column-offset(1);
-}
 
-.record-listing {
-  display: inline-block;
-  .make-md-column(12);
-  padding-left: 0;
-  margin-top: 20px;
-  padding-right: 0;
-  
-  .active {
-    background-color: @brand-primary;
-    color: #fff;
-    border: 2px dashed #fff;
+  .demographics {
+    .clearfix;
+    .make-sm-column-offset(1);
+
+    .dl-horizontal {
+      padding-left: 0;
+      .make-md-column(6);
+    }
   }
-  .circle-icon {
-    display: inline-block;
-    .pull-left;
-    margin-top: 15px;
-    .make-md-column(1);
-    padding-left: 0;
 
-    i {
-      text-align: center;
-      vertical-align: middle;
-      padding-top: 8px;
-      width: 36px;
-      height: 36px;
-      background-color: #fff;
-      border-radius: 18px;
-      border: 2px solid @brand-primary;
-      color: @brand-primary;
+  .time-line {
+    background-color: @gray-lighter;
+    margin-left: 15px;
+
+    .timeline-title {
+      .make-md-column-offset(1);
+      font-size: 24px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+
+  .record-listing {
+    .make-md-column(12);
+    padding: 15px 0;
+    margin-top: 20px;
+    
+    .active {
+      background-color: @brand-primary;
+      color: #fff;
+      border: 2px dashed #fff;
     }
 
-    .active-icon {
-      i{
-        background-color: @brand-primary;
+    .circle-icon {
+      .pull-left;
+      .make-md-column(1);
+      margin-top: 8px;
+      padding-left: 0;
+
+      .fa {
+        text-align: center;
+        padding-top: 7px;
+        width: 36px;
+        height: 36px;
+        background-color: white;
         border-radius: 18px;
-        color: #fff;
+        border: 2px solid @brand-primary;
+        color: @brand-primary;
+        font-size: 18px;
+        margin: auto;
+      }
+
+      .active-icon {
+        .fa {
+          background-color: @brand-primary;
+          border-radius: 18px;
+          color: white;
+        }
       }
     }
 
-    .fa {
-      color: @brand-primary;
-      font-size: 18px;
-      margin: auto;
+    .patient-data {
+      .make-md-column(11);
+      background-color: white;
+      border: 1px solid @gray-darker;
+      
+      &:before {
+         content:"";
+         position: absolute;
+         right: 100%;
+         top: 11px;
+         width: 0;
+         height: 0;
+         border-top: 14px solid transparent;
+         border-right: 28px solid black;
+         border-bottom: 14px solid transparent;
+      }
+
+      &:after {
+         content:"";
+         position: absolute;
+         right: 100%;
+         top: 12px;
+         width: 0;
+         height: 0;
+         border-top: 13px solid transparent;
+         border-right: 26px solid white;
+         border-bottom: 13px solid transparent;
+      }
+
+      dl {
+        margin-bottom: 15px;
+        line-height: 24px;
+      }
+
+      .dl-record {
+        .make-md-column(8);
+      }
+      
+      .dl-date {
+        .make-md-column(4);
+        dt {
+          width: 60px;
+        }
+        dd {
+          margin-left: 0px;
+        }
+      }
     }
   }
 }
-.patient-data {
-  .make-md-column(11);
-  background-color: #fff;
-  border: 1px solid @gray-darker;
-}
 
-#time-bar {
-  position: absolute;
-  left: 28px;
-  top: 54px;
-  width: 8px;
-  height: 100%;
-  background-color: @gray-lighter;
-}
-.dl-record {
-  .dl-horizontal;
-  .make-md-column(8);
-  line-height: 24px;
-  dd{
-  }
-}
-.dl-date {
-  .make-md-column(4);
-
-  dt{
-    width: 60px;
-  }
-
-  dd {
-    margin-left: 0px;
-  }
-
-}
-.panel-heading {
-  background-color: @gray-lighter;
-  margin-bottom: 5px;
-}
