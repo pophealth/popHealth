@@ -2,22 +2,22 @@
   <div class="left-sidebar">
     <h1><i class="fa fa-tasks"></i> Measures</h1>
     <h2>Outliers</h2>
-    <div class="measure-title active">
+    {{#button "filter" class="btn measure-btn active"}}
       <div class="indicator">
         <i class="fa fa-exclamation-triangle"></i>
       </div>
-      <div class="">
+      <div class="measure-title">
         Controlling High Blood Pressure
       </div>
-    </div>
-    <div class="measure-title">
+    {{/button}}
+    {{#button "filter" class="btn measure-btn"}}
       <div class="indicator">
         <i class="fa fa-exclamation-triangle"></i>
       </div>
-      <div class="">
+      <div class="measure-title">
         Smoking And Tobacco Use Cessation, Medical Assistance - Advising Smokers And Tobacco Users To Quit
       </div>
-    </div>
+    {{/button}}
   </div>
 
   <div class="main patient">
