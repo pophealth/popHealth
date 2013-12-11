@@ -211,12 +211,12 @@ module Api
       json = JSON.parse(response.body)
       assert_equal 1, json.length
 
-      get :patients, :id=>"523c57e4949d9dd06956b622", :denex=>true
+      get :patients, :id=>"523c57e4949d9dd06956b622", :denex=>"true"
       assert_response :success
       json = JSON.parse(response.body)
       assert_equal 0, json.length
 
-      get :patients, :id=>"523c57e4949d9dd06956b622", :denom=>true
+      get :patients, :id=>"523c57e4949d9dd06956b622", :denom=>"true"
       assert_response :success
       json = JSON.parse(response.body)
       assert_equal 1, json.length

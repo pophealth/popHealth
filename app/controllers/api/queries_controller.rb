@@ -86,13 +86,13 @@ module Api
 
     def build_patient_filter
       patient_filter = {}
-      patient_filter["value.IPP"]= {"$gt" => 0} if params[:ipp] == true
-      patient_filter["value.DENOM"]= {"$gt" => 0} if params[:denom] == true
-      patient_filter["value.NUMER"]= {"$gt" => 0} if params[:numer] == true
-      patient_filter["value.DENEX"]= {"$gt" => 0} if params[:denex] == true
-      patient_filter["value.DENEXCEP"]= {"$gt" => 0} if params[:denexcep] == true
-      patient_filter["value.MSRPOPL"]= {"$gt" => 0} if params[:msrpopl] == true
-      patient_filter["value.antinumerator"]= {"$gt" => 0} if params[:antinumerator] == true
+      patient_filter["value.IPP"]= {"$gt" => 0} if params[:ipp] == "true"
+      patient_filter["value.DENOM"]= {"$gt" => 0} if params[:denom] == "true"
+      patient_filter["value.NUMER"]= {"$gt" => 0} if params[:numer] == "true"
+      patient_filter["value.DENEX"]= {"$gt" => 0} if params[:denex] == "true"
+      patient_filter["value.DENEXCEP"]= {"$gt" => 0} if params[:denexcep] == "true"
+      patient_filter["value.MSRPOPL"]= {"$gt" => 0} if params[:msrpopl] == "true"
+      patient_filter["value.antinumerator"]= {"$gt" => 0} if params[:antinumerator] == "true"
       patient_filter
     end
 
