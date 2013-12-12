@@ -50,11 +50,10 @@ PopHealth.viz.populationChart = ->
         .attr('y', yScale('DENOM'))
         .attr('x', xScale(data.antinumerator) + xScale(data.DENEX)) 
         .attr('data-placement', "bottom")
-        .attr('data-content', "Exception: " + data.DENEXCEP)
+        .attr('data-content', "Exceptions: " + data.DENEXCEP)
         .attr('data-trigger', "hover focus") 
         .attr('data-container', 'body') if data.DENEXCEP > 0
       
-      $('rect').popover() 
 
   width = 150
   height = 40
