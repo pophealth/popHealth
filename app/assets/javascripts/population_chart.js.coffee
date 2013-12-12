@@ -18,6 +18,8 @@ PopHealth.viz.populationChart = ->
         .attr('data-placement', "top")
         .attr('data-content', "Numerator: " + data.NUMER)
         .attr('data-trigger', "hover focus")
+        .attr('data-container', 'body')
+
       denom = gEnter.append('g')
         .attr('class', 'denom')
       denom.append('rect')
@@ -29,6 +31,7 @@ PopHealth.viz.populationChart = ->
         .attr('data-placement', "bottom")
         .attr('data-content', "Denominator: " + data.antinumerator)
         .attr('data-trigger', "hover focus")
+        .attr('data-container', 'body')
       denom.append('rect')
         .attr('class', 'denex')
         .attr('width', xScale(data.DENEX))
@@ -37,7 +40,8 @@ PopHealth.viz.populationChart = ->
         .attr( 'x', xScale(data.antinumerator)) 
         .attr('data-placement', "bottom")
         .attr('data-content', "Exclusion: " + data.DENEX)
-        .attr('data-trigger', "hover focus") if data.DENEX > 0
+        .attr('data-trigger', "hover focus")
+        .attr('data-container', 'body') if data.DENEX > 0
 
       denom.append('rect')
         .attr('class', 'denexc')
@@ -47,10 +51,10 @@ PopHealth.viz.populationChart = ->
         .attr('x', xScale(data.antinumerator) + xScale(data.DENEX)) 
         .attr('data-placement', "bottom")
         .attr('data-content', "Exception: " + data.DENEXCEP)
-        .attr('data-trigger', "hover focus") if data.DENEXCEP > 0
-      # Now we need to add in the popover for this chart. The container: 'body'
-      # tells bootstrap to not insert the popover in the svg
-      $('rect').popover({container:'body'}) 
+        .attr('data-trigger', "hover focus") 
+        .attr('data-container', 'body') if data.DENEXCEP > 0
+      
+      $('rect').popover() 
 
   width = 150
   height = 40

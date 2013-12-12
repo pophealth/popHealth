@@ -18,7 +18,6 @@ class Thorax.Views.ResultsView extends Thorax.View
   performanceDenominator: -> @model.performanceDenominator()
   initialize: ->
     @popChart = PopHealth.viz.populationChart().width(125).height(50).barHeight(20).maximumValue(PopHealth.patientCount)
-    @$("[rel='popover']").popover()
     unless @model.isPopulated()
       @timeout = setInterval =>
         @model.fetch()
