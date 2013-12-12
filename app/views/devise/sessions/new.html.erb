@@ -1,3 +1,5 @@
+
+<div class="login">
   <header>
       <%= image_tag "pophealth_welcome.png", :id => 'imgLogo', :title => 'popHealth welcomes you!', :alt => 'popHealth logo' %>
     <%= content_tag(:div, flash[:error], id: "flash_error", class: "alert alert-error") if flash[:error] %>
@@ -24,5 +26,6 @@
   <%= f.submit "Login", class: "btn btn-login" %>
 
   <%= render :partial => "devise/shared/links" %>
-  <% end %>
+<% end %>
+</div>
 
