@@ -49,4 +49,5 @@ class Query extends Thorax.Model
   performanceRate: -> Math.round(100 * @numerator() / Math.max(1, @performanceDenominator()))
   # hack so that creating a query acts just like checking an existing query
   fetch: -> if @isNew() then @save() else super(arguments...)
+  result: -> _(@get('result')).extend performanceDenominator: @performanceDenominator()
 
