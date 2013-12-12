@@ -1,98 +1,104 @@
-<div class="navbar" role="navigation">
-    <a class="logo"  href="/" style="max-width: initial"><%= image_tag "pophealth_logo_small-trans.png" %></a>
+<div class="navbar navbar-default" role="navigation">
+  <div class="container">
+    <div class="navbar-header col-lg-4">
+      <a class="logo"  href="/" style="max-width: initial"><%= image_tag "pophealth_logo_small-trans.png" %></a>
+    </div>
+  </div>
+</div>
+<div class="register-body">
+  <h1>Register</h1>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {name: "register_form", class: "registration"}) do |f| %>
+    <% if resource.errors.present? %>
+    <div class="alert alert-danger">
+      <%= devise_error_messages! %>
+    </div>
+    <% end %>
+    <div class="form-group row">
+      <div class="input-group input-group-lg col-md-6 required">
+        <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+        <%= f.text_field :first_name, class: "form-control", placeholder: "first name*" %>
+      </div>
+      <div class="input-group input-group-lg col-md-6 required">
+        <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+        <%= f.text_field :last_name, class: "form-control", placeholder: "last name*" %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-6">  
+        <div class="input-group input-group-lg">
+          <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+          <%= f.text_field :username, class: "form-control", placeholder: "username" %>
+        </div>
+        Must be at least 5 characters long.
+      </div>
+      <div class="input-group input-group-lg col-md-6">
+        <span class="input-group-addon"><i class="fa fa-envelope fa-lg fa-fw"></i></span>
+        <%= f.email_field :email, class: "form-control", placeholder: "email@example.com" %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-6">
+        <div class="input-group input-group-lg required">
+          <span class="input-group-addon"><i class="fa fa-lock fa-lg fa-fw"></i></span>
+          <%= f.password_field :password, class: "form-control", placeholder: "password*" %>
+        </div>
+        Must be at least 8 characters long.
+      </div>
+      <div class="input-group input-group-lg col-md-6 required">
+        <span class="input-group-addon"><i class="fa fa-lock fa-lg fa-fw"></i></span>
+        <%= f.password_field :password_confirmation, class: "form-control", placeholder: "confirm password*" %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="input-group input-group-lg col-md-6">
+        <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+        <%= f.text_field :company, class: "form-control", placeholder: "company" %>
+      </div>
+      <div class="input-group input-group-lg col-md-6">
+        <span class="input-group-addon"><i class="fa fa-link fa-lg fa-fw"></i></span>
+        <%= f.text_field :company_url, class: "form-control", placeholder: "www.company.com" %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="input-group input-group-lg col-md-6">
+        <span class="input-group-addon"><i class="fa fa-h-square fa-lg fa-fw"></i></span>
+        <%= f.text_field :registry_name, class: "form-control", placeholder: "registry name" %>
+      </div>
+      <div class="input-group input-group-lg col-md-6">
+        <span class="input-group-addon"><i class="fa fa-archive fa-lg fa-fw"></i></span>
+        <%= f.text_field :registry_id, class: "form-control", placeholder: "registry identifier" %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="input-group input-group-lg col-md-6">
+        <span class="input-group-addon"><i class="fa fa-hospital-o fa-lg fa-fw"></i></span>
+        <%= f.text_field :npi, class: "form-control", placeholder: "national provider id" %>
+      </div>
+      <div class="input-group input-group-lg col-md-6">
+        <span class="input-group-addon"><i class="fa fa-folder fa-lg fa-fw"></i></span>
+        <%= f.text_field :tin, class: "form-control", placeholder: "tax id number" %>
+      </div>
+    </div>
+    <div class="required">
+      <%= check_box_tag :agree_license %>
+      <%= label_tag :agree_license, "I agree to the above Terms and Conditions of use*", class: "control-label" %>
+    </div>
+
+    <div class="form-group row" style="margin-top: 30px">
+      <div class="col-md-6">
+        <%= render :partial => "devise/shared/links" %>
+      </div>
+
+      <div class="col-md-6">
+        <div class="row">
+        <div class="col-xs-6"><a class="btn btn-default btn-block btn-lg" href="/">Cancel</a></div>
+        <div class="col-xs-6"><%= f.submit "REGISTER", class: "btn btn-primary btn-block btn-lg", disabled: true %></div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
 
-<h1>Register</h1>
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {name: "register_form", class: "registration"}) do |f| %>
-  <% if resource.errors.present? %>
-  <div class="alert alert-danger">
-    <%= devise_error_messages! %>
-  </div>
-  <% end %>
-  <div class="form-group row">
-    <div class="input-group input-group-lg col-md-6 required">
-      <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
-      <%= f.text_field :first_name, class: "form-control", placeholder: "first name*" %>
-    </div>
-    <div class="input-group input-group-lg col-md-6 required">
-      <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
-      <%= f.text_field :last_name, class: "form-control", placeholder: "last name*" %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-md-6">  
-      <div class="input-group input-group-lg">
-        <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
-        <%= f.text_field :username, class: "form-control", placeholder: "username" %>
-      </div>
-      Must be at least 5 characters long.
-    </div>
-    <div class="input-group input-group-lg col-md-6">
-      <span class="input-group-addon"><i class="fa fa-envelope fa-lg fa-fw"></i></span>
-      <%= f.email_field :email, class: "form-control", placeholder: "email@example.com" %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-md-6">
-      <div class="input-group input-group-lg required">
-        <span class="input-group-addon"><i class="fa fa-lock fa-lg fa-fw"></i></span>
-        <%= f.password_field :password, class: "form-control", placeholder: "password*" %>
-      </div>
-      Must be at least 8 characters long.
-    </div>
-    <div class="input-group input-group-lg col-md-6 required">
-      <span class="input-group-addon"><i class="fa fa-lock fa-lg fa-fw"></i></span>
-      <%= f.password_field :password_confirmation, class: "form-control", placeholder: "confirm password*" %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="input-group input-group-lg col-md-6">
-      <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
-      <%= f.text_field :company, class: "form-control", placeholder: "company" %>
-    </div>
-    <div class="input-group input-group-lg col-md-6">
-      <span class="input-group-addon"><i class="fa fa-link fa-lg fa-fw"></i></span>
-      <%= f.text_field :company_url, class: "form-control", placeholder: "www.company.com" %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="input-group input-group-lg col-md-6">
-      <span class="input-group-addon"><i class="fa fa-h-square fa-lg fa-fw"></i></span>
-      <%= f.text_field :registry_name, class: "form-control", placeholder: "registry name" %>
-    </div>
-    <div class="input-group input-group-lg col-md-6">
-      <span class="input-group-addon"><i class="fa fa-archive fa-lg fa-fw"></i></span>
-      <%= f.text_field :registry_id, class: "form-control", placeholder: "registry identifier" %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="input-group input-group-lg col-md-6">
-      <span class="input-group-addon"><i class="fa fa-hospital-o fa-lg fa-fw"></i></span>
-      <%= f.text_field :npi, class: "form-control", placeholder: "national provider id" %>
-    </div>
-    <div class="input-group input-group-lg col-md-6">
-      <span class="input-group-addon"><i class="fa fa-folder fa-lg fa-fw"></i></span>
-      <%= f.text_field :tin, class: "form-control", placeholder: "tax id number" %>
-    </div>
-  </div>
-  <div class="required">
-    <%= check_box_tag :agree_license %>
-    <%= label_tag :agree_license, "I agree to the above Terms and Conditions of use*", class: "control-label" %>
-  </div>
-
-  <div class="form-group row" style="margin-top: 30px">
-    <div class="col-md-6">
-      <%= render :partial => "devise/shared/links" %>
-    </div>
-
-    <div class="col-md-6">
-      <div class="row">
-      <div class="col-xs-6"><a class="btn btn-default btn-block btn-lg" href="/">Cancel</a></div>
-      <div class="col-xs-6"><%= f.submit "REGISTER", class: "btn btn-primary btn-block btn-lg", disabled: true %></div>
-      </div>
-    </div>
-  </div>
-<% end %>
 
 <script>
   $(function() {

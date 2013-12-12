@@ -2,7 +2,7 @@
 .login {
   // center horizontally, give it some breathing room across the top
   margin-top: 200px;
-  .make-md-column(4);
+  .make-sm-column(4);
   .make-sm-column-offset(4);
 
   header img {
@@ -37,4 +37,8 @@
   .required {
     .form-control-validation(@brand-primary; @brand-primary; @input-bg);
   }
+}
+.register-body {
+  .make-sm-column(8);
+  .make-sm-column-offset(2);
 }
