@@ -8,8 +8,9 @@ class Thorax.Views.ResultsView extends Thorax.View
           d3.select(@el).select('.pop-chart').datum(@model.get('result')).call(@popChart)
     rendered: ->
       @$('.dial').knob()
-      d3.select(@el).select('.pop-chart').datum(@model.get('result')).call(@popChart) if @model.isPopulated()
-      @$('rect').popover() 
+      if @model.isPopulated()
+        d3.select(@el).select('.pop-chart').datum(@model.get('result')).call(@popChart) 
+        @$('rect').popover() 
     destroyed: ->
       clearInterval(@timeout) if @timeout?
 
