@@ -1,0 +1,26 @@
+{{#if subset_operators}}
+  {{#collection subset_operators item-context=childContext}}
+    <span class="conjunction {{type}}">{{type}}{{#if value}} {{view valueView model=value}}{{/if}}</span>
+  {{/collection}}
+{{/if}}
+
+{{#if children_criteria}}
+  {{collection children_criteria item-view="ChildCriteriaView"}}
+{{else}}
+  <div class="measure-content">
+    {{#if icon}}<span class="icon-border"><i class="fa fa-2x fa-{{icon}}"></i></span>{{/if}}
+    <label>
+      {{#if specific_occurrence}}Occurrence {{specific_occurrence}}:{{/if}}
+      {{! TODO description isn't fine-grained enough; if the type is 'characteristic', use the type and title, otherwise use definition and status}}
+      {{description}}
+    </label>
+    {{title}}
+    {{#if value}}(result {{view valueView model=value}}){{/if}}
+    {{#if field_values}}
+      {{#collection field_values item-context=fieldValueContext tag="span"}}
+        <span>{{#unless isFirst}}and {{/unless}}{{title}} {{view valueView model=value}}</span>
+      {{/collection}}
+    {{/if}}
+    {{#if temporalReference}}{{view "TemporalReferenceView" model=temporalReference}}{{/if}}
+  </div>
+{{/if}}

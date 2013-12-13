@@ -1,11 +1,22 @@
-<div class="sidebar" id="measureSummary">
-  <div>
-    {{! TODO move this into a partial? }}
-    <input type="text" value="80" class="dial" data-readOnly="true" data-width="80" data-height="80" data-thickness=".1" data-fgColor="#4B979D" data-inputColor="#444" data-font="Helvetica Neue, Roboto, Helvetica, Arial, sans-serif">
-  </div>
-  <div class="fraction-listing">
-    <div class="numerator">{{numerator}}</div>
-    <div class="denominator">{{performanceDenominator}}</div>
-  </div>
-  <div id="test" class="pop-chart"></div>
+<div class="sidebar">
+  {{view queryView}}
+</div>
+<div class="main">
+  <dl class="dl-horizontal">
+    <dt>Measure Name:</dt>
+    <dd>{{name}}</dd>
+    <dt>Measurement Period:</dt>
+    <dd>{{measurementPeriod}}</dd>
+    <dt>Description:</dt>
+    <dd>{{description}}</dd>
+  </dl>
+  <ul class="nav nav-tabs">
+    <li{{#if logicIsActive}} class="active"{{/if}}>
+      <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}" data-toggle="tab" data-target="#logic" data-call-method="_anchorClick">Measure</a>
+    </li>
+    <li{{#if patientResultsIsActive}} class="active"{{/if}}>
+      <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}/patient_results" data-toggle="tab" data-target="#patient_results" data-call-method="_anchorClick">Patients</a>
+    </li>
+  </ul>
+  {{layout-element}}
 </div>

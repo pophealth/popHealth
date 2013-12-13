@@ -14747,7 +14747,7 @@ Thorax.View = Backbone.View.extend({
 
   _addChild: function(view) {
     if (this.children[view.cid]) {
-      return;
+      return view;
     }
     view.retain();
     this.children[view.cid] = view;
@@ -14759,7 +14759,7 @@ Thorax.View = Backbone.View.extend({
     // in the case of a nested helper, which will cause an error.
     // In either case it's not necessary to ever call
     // _removeChild on a HelperView as _addChild should only
-    // be called when a HelperView is created.  
+    // be called when a HelperView is created.
     if (view.parent && view.parent !== this && !view._helperOptions) {
       view.parent._removeChild(view);
     }
@@ -14799,6 +14799,11 @@ Thorax.View = Backbone.View.extend({
   },
 
   render: function(output) {
+    // NOP for destroyed views
+    if (!this.el) {
+      return;
+    }
+
     if (this._rendering) {
       // Nested rendering of the same view instances can lead to some very nasty issues with
       // the root render process overwriting any updated data that may have been output in the child
@@ -15673,6 +15678,11 @@ Handlebars.registerViewHelper = function(name, ViewClass, callback) {
       } else {
         instance = new ViewClass(viewOptions);
       }
+
+      // Remove any possible entry in previous helpers in case this is a cached value returned from
+      // slightly different data that does not qualify for the previous helpers direct reuse.
+      // (i.e. when using an array that is modified between renders)
+      declaringView._previousHelpers = _.without(declaringView._previousHelpers, instance);
 
       args.push(instance);
       declaringView._addChild(instance);
@@ -16570,7 +16580,11 @@ _.extend(Thorax.View.prototype, {
 // Keeping state in the views
 Thorax.View.on({
   'before:rendered': function() {
-    if (!this._renderCount) { return; }
+    // Do not store previous options if we have not rendered or if we have changed the associated
+    // model since the last render
+    if (!this._renderCount || (this.model && this.model.cid) !== this._formModelCid) {
+      return;
+    }
 
     var modelOptions = this.getObjectOptions(this.model);
     // When we have previously populated and rendered the view, reuse the user data
@@ -16589,6 +16603,7 @@ Thorax.View.on({
       this.populate(this.previousFormData, _.extend({_silent: true}, populate));
     }
 
+    this._formModelCid = this.model && this.model.cid;
     this.previousFormData = null;
   }
 });
@@ -16705,10 +16720,10 @@ Thorax.LayoutView = Thorax.View.extend({
       return false;
     }
     this.trigger('change:view:start', view, oldView, options);
-    
+
     remove = _.bind(function() {
       if (oldView) {
-        oldView.$el.remove();
+        oldView.$el && oldView.$el.remove();
         triggerLifecycleEvent.call(oldView, 'deactivated', options);
         this._removeChild(oldView);
       }

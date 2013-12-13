@@ -53,7 +53,7 @@ module PopHealth
     # add devise views
 #    config.paths["app/views/devise"]
     config.paths["app/views"] << "app/views/devise"
-    
+
     require 'will_paginate/array'
   end
 end

@@ -1,0 +1,17 @@
+{{#unless isOuterLevel}}
+{{#unless isFirstItem}}<span class="conjunction {{conjunction}}">{{conjunction}}</span>{{/unless}}
+{{#if negation}}<span class="conjunction negation">not</span>{{/if}}
+<div class="measure-border">
+{{/unless}}
+
+  <div class="measure-item">
+  {{#if preconditions}}
+    {{collection preconditions item-view="PreconditionView"}}
+  {{else}}
+    {{view "DataCriteriaView" model=dataCriteria}}
+  {{/if}}
+  </div>
+
+{{#unless isOuterLevel}}
+</div>
+{{/unless}}

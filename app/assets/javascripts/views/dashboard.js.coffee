@@ -28,6 +28,8 @@ class Thorax.Views.ResultsView extends Thorax.View
 
 
 class Thorax.Views.DashboardSubmeasureView extends Thorax.View
+  options:
+    fetch: false
   events:
     rendered: ->
       @$("[rel='popover']").popover()
