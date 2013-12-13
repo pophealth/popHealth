@@ -79,6 +79,11 @@
         <%= f.text_field :tin, class: "form-control", placeholder: "tax id number" %>
       </div>
     </div>
+    <div id="termsANDCondition">
+      <% @bundles.each do |bundle| -%>
+      <%= raw bundle.license %>
+      <% end -%>
+    </div>
     <div class="required">
       <%= check_box_tag :agree_license %>
       <%= label_tag :agree_license, "I agree to the above Terms and Conditions of use*", class: "control-label" %>
