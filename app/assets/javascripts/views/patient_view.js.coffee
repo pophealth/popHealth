@@ -2,8 +2,8 @@ class Thorax.Views.PatientView extends Thorax.View
   template: JST['patients/show']
   context: ->
     _(super).extend
-      effective_time: format_time @model.get('effective_time')
-      birthdate: format_time @model.get('birthdate')
+      effective_time: formatTime @model.get('effective_time')
+      birthdate: formatTime @model.get('birthdate')
       gender: 
         if @model.get('gender') == 'M'
           'Male' 
@@ -21,20 +21,20 @@ class Thorax.Views.PatientView extends Thorax.View
           'None Provided'
 
   # Helper function for date/time conversion
-  format_time = (time) -> moment(time).format('DD MMM YYYY') if time
+  formatTime = (time) -> moment(time).format('DD MMM YYYY') if time
 
 class Thorax.Views.EntryView extends Thorax.View
   template: JST['patients/_result']
   context: ->
     _(super).extend
-      start_time: format_time @model.get('start_time')
-      end_time: format_time @model.get('end_time') if @model.get('end_time')?
+      start_time: formatTime @model.get('start_time')
+      end_time: formatTime @model.get('end_time') if @model.get('end_time')?
       entry_type: @model.entryType()
       icon: @model.icon()
       description: @model.get('description').split('(')[0] if @model.get('description')
 
   # Helper function for date/time conversion
-  format_time = (time) -> moment(time).format('M/DD/YYYY') if time
+  formatTime = (time) -> moment(time).format('M/DD/YYYY') if time
 
 ### Note ###
 #
