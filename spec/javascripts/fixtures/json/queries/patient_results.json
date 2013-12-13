@@ -1,0 +1,338 @@
+[
+  {
+    "value": {
+      "DENEX": 0,
+      "DENEXCEP": 0,
+      "DENOM": 1,
+      "IPP": 1,
+      "MSRPOPL": null,
+      "NUMER": 0,
+      "OBSERV": null,
+      "_id": "5293ed2001fbdfb6f6000003",
+      "antinumerator": 0,
+      "birthdate": 259736400,
+      "effective_date": 1356998340,
+      "ethnicity": null,
+      "filters": null,
+      "first": "Paul",
+      "gender": "M",
+      "languages": [
+        "eng"
+      ],
+      "last": "Hewson",
+      "logger": [
+
+      ],
+      "manual_exclusion": false,
+      "measure_id": "40280381-3D61-56A7-013E-66BC02DA4DEE",
+      "medical_record_id": "505327621A",
+      "nqf_id": "0018",
+      "patient_id": "525d98f501fbdf993a000084",
+      "payer": {
+
+      },
+      "provider_performances": [
+        {
+          "_id": "525d98f501fbdf993a000089",
+          "start_date": 1026792000,
+          "end_date": 1381204800,
+          "provider_id": "525d98f501fbdf993a000082"
+        }
+      ],
+      "race": null,
+      "rationale": {
+
+      },
+      "sub_id": null,
+      "test_id": null
+    }
+  },
+  {
+    "value": {
+      "DENEX": 0,
+      "DENEXCEP": 0,
+      "DENOM": 1,
+      "IPP": 1,
+      "MSRPOPL": null,
+      "NUMER": 0,
+      "OBSERV": null,
+      "_id": "5293eddb01fbdfb6f6000004",
+      "antinumerator": 1,
+      "birthdate": -880916400,
+      "effective_date": 1356998340,
+      "ethnicity": null,
+      "filters": null,
+      "first": "Dean",
+      "gender": "M",
+      "languages": [
+        "eng"
+      ],
+      "last": "Holloway",
+      "logger": [
+
+      ],
+      "manual_exclusion": false,
+      "measure_id": "40280381-3D61-56A7-013E-66BC02DA4DEE",
+      "medical_record_id": "505327622A",
+      "nqf_id": "0018",
+      "patient_id": "525d98f501fbdf993a00008d",
+      "payer": {
+
+      },
+      "provider_performances": [
+        {
+          "_id": "525d98f501fbdf993a0000a2",
+          "start_date": 1026792000,
+          "end_date": 1381204800,
+          "provider_id": "525d98f501fbdf993a00008b"
+        }
+      ],
+      "race": null,
+      "rationale": {
+
+      },
+      "sub_id": null,
+      "test_id": null
+    }
+  },
+  {
+    "value": {
+      "DENEX": 0,
+      "DENEXCEP": 0,
+      "DENOM": 1,
+      "IPP": 1,
+      "MSRPOPL": null,
+      "NUMER": 1,
+      "OBSERV": null,
+      "_id": "5293eddc01fbdfb6f6000050",
+      "antinumerator": 0,
+      "birthdate": -880916400,
+      "effective_date": 1356998340,
+      "ethnicity": null,
+      "filters": null,
+      "first": "Jonathan",
+      "gender": "M",
+      "languages": [
+        "eng"
+      ],
+      "last": "Murray",
+      "logger": [
+
+      ],
+      "manual_exclusion": false,
+      "measure_id": "40280381-3D61-56A7-013E-66BC02DA4DEE",
+      "medical_record_id": "828914689A",
+      "nqf_id": "0018",
+      "patient_id": "525d98f501fbdf993a00002c",
+      "payer": {
+
+      },
+      "provider_performances": [
+        {
+          "_id": "525d98f501fbdf993a000045",
+          "start_date": 1026792000,
+          "end_date": 1381204800,
+          "provider_id": "525d98f501fbdf993a00002a"
+        }
+      ],
+      "race": null,
+      "rationale": {
+
+      },
+      "sub_id": null,
+      "test_id": null
+    }
+  },
+  {
+    "value": {
+      "DENEX": 1,
+      "DENEXCEP": 0,
+      "DENOM": 1,
+      "IPP": 1,
+      "MSRPOPL": null,
+      "NUMER": 0,
+      "OBSERV": null,
+      "_id": "5293eddc01fbdfb6f6000051",
+      "antinumerator": 0,
+      "birthdate": -1041274800,
+      "effective_date": 1356998340,
+      "ethnicity": null,
+      "filters": null,
+      "first": "Patsy",
+      "gender": "F",
+      "languages": [
+        "eng"
+      ],
+      "last": "Parsons",
+      "logger": [
+
+      ],
+      "manual_exclusion": false,
+      "measure_id": "40280381-3D61-56A7-013E-66BC02DA4DEE",
+      "medical_record_id": "795776002A",
+      "nqf_id": "0018",
+      "patient_id": "525d98f501fbdf993a000049",
+      "payer": {
+
+      },
+      "provider_performances": [
+        {
+          "_id": "525d98f501fbdf993a000054",
+          "start_date": 1026792000,
+          "end_date": 1381204800,
+          "provider_id": "525d98f501fbdf993a000047"
+        }
+      ],
+      "race": null,
+      "rationale": {
+
+      },
+      "sub_id": null,
+      "test_id": null
+    }
+  },
+  {
+    "value": {
+      "DENEX": 1,
+      "DENEXCEP": 0,
+      "DENOM": 1,
+      "IPP": 1,
+      "MSRPOPL": null,
+      "NUMER": 0,
+      "OBSERV": null,
+      "_id": "5293eddc01fbdfb6f6000052",
+      "antinumerator": 0,
+      "birthdate": -1041274800,
+      "effective_date": 1356998340,
+      "ethnicity": null,
+      "filters": null,
+      "first": "Lucille",
+      "gender": "F",
+      "languages": [
+        "eng"
+      ],
+      "last": "Butler",
+      "logger": [
+
+      ],
+      "manual_exclusion": false,
+      "measure_id": "40280381-3D61-56A7-013E-66BC02DA4DEE",
+      "medical_record_id": "795776003A",
+      "nqf_id": "0018",
+      "patient_id": "525d98f501fbdf993a000058",
+      "payer": {
+
+      },
+      "provider_performances": [
+        {
+          "_id": "525d98f501fbdf993a000063",
+          "start_date": 1026792000,
+          "end_date": 1381204800,
+          "provider_id": "525d98f501fbdf993a000056"
+        }
+      ],
+      "race": null,
+      "rationale": {
+
+      },
+      "sub_id": null,
+      "test_id": null
+    }
+  },
+  {
+    "value": {
+      "DENEX": 0,
+      "DENEXCEP": 0,
+      "DENOM": 1,
+      "IPP": 1,
+      "MSRPOPL": null,
+      "NUMER": 1,
+      "OBSERV": null,
+      "_id": "5293eddc01fbdfb6f6000053",
+      "antinumerator": 0,
+      "birthdate": -880916400,
+      "effective_date": 1356998340,
+      "ethnicity": null,
+      "filters": null,
+      "first": "Ryan",
+      "gender": "M",
+      "languages": [
+        "eng"
+      ],
+      "last": "Swanson",
+      "logger": [
+
+      ],
+      "manual_exclusion": false,
+      "measure_id": "40280381-3D61-56A7-013E-66BC02DA4DEE",
+      "medical_record_id": "505327620A",
+      "nqf_id": "0018",
+      "patient_id": "525d98f501fbdf993a000067",
+      "payer": {
+
+      },
+      "provider_performances": [
+        {
+          "_id": "525d98f501fbdf993a000080",
+          "start_date": 1026792000,
+          "end_date": 1381204800,
+          "provider_id": "525d98f501fbdf993a000065"
+        }
+      ],
+      "race": null,
+      "rationale": {
+
+      },
+      "sub_id": null,
+      "test_id": null
+    }
+  },
+  {
+    "value": {
+      "DENEX": 0,
+      "DENEXCEP": 0,
+      "DENOM": 1,
+      "IPP": 1,
+      "MSRPOPL": null,
+      "NUMER": 0,
+      "OBSERV": null,
+      "_id": "5293eddc01fbdfb6f6000054",
+      "antinumerator": 1,
+      "birthdate": -880916400,
+      "effective_date": 1356998340,
+      "ethnicity": null,
+      "filters": null,
+      "first": "Eugene",
+      "gender": "M",
+      "languages": [
+        "eng"
+      ],
+      "last": "Casey",
+      "logger": [
+
+      ],
+      "manual_exclusion": false,
+      "measure_id": "40280381-3D61-56A7-013E-66BC02DA4DEE",
+      "medical_record_id": "505327623A",
+      "nqf_id": "0018",
+      "patient_id": "525d98f501fbdf993a0000a6",
+      "payer": {
+
+      },
+      "provider_performances": [
+        {
+          "_id": "525d98f501fbdf993a0000bb",
+          "start_date": 1026792000,
+          "end_date": 1381204800,
+          "provider_id": "525d98f501fbdf993a0000a4"
+        }
+      ],
+      "race": null,
+      "rationale": {
+
+      },
+      "sub_id": null,
+      "test_id": null
+    }
+  }
+]
