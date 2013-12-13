@@ -1,7 +1,8 @@
 describe 'PatientView', ->
   beforeEach ->
-    patients = getJSONFixture('patients.json')
-    @patient = new Thorax.Models.Patient patients[0]
+    json = loadJSONFixtures('patients.json', 'users.json')
+    window.PopHealth.currentUser = new Thorax.Models.User $.extend(true, {}, json['users.json'][0])
+    @patient = new Thorax.Models.Patient json['patients.json'][0]
     @patientView = new Thorax.Views.PatientView model: @patient
     @patientView.render()
 

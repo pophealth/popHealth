@@ -5,6 +5,11 @@ describe 'User', ->
     @user = new Thorax.Models.User $.extend(true, {}, json['users.json'][0])
     expect(@user.get('preferences').selected_measure_ids).toEqual []
 
+  describe 'maskStatus', ->
+    it 'returns false if the user has not enabled masking under settings', ->
+      maskStatus = @user.maskStatus()
+      expect(maskStatus).toEqual false
+
   describe 'selectedCategories', ->
     it 'returns an empty collection if there are no selected categories', ->
       selectedCategories = @user.selectedCategories(@categories)
