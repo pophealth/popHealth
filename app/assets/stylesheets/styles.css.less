@@ -169,31 +169,31 @@
 }
 
 // patient view
-// TODO clean up the following code
-.left-sidebar {
-  .measure-btn {
-    width: 260px;
-    background-color: @gray-lighter;
-    margin-bottom: 5px;
-    padding: 10px 15px;
-    border-bottom: 1px solid transparent;
-    white-space: normal;
-    text-align: left;
-    > * {
-      display: inline;
-    }
-    &.active {
-      background-color: @brand-primary;
-      color: #fff;
-    }
-  }
-  .indicator {
-    width: 14px;
-    padding-right: 5px;
-  }
-}
-
 .patient {
+  .row;
+  .sidebar {
+    .measure-btn {
+      width: 260px;
+      background-color: @gray-lighter;
+      margin-bottom: 5px;
+      padding: 10px 15px;
+      border-bottom: 1px solid transparent;
+      white-space: normal;
+      text-align: left;
+      > * {
+        display: inline;
+      }
+      &.active {
+        background-color: @brand-primary;
+        color: #fff;
+      }
+    }
+    .indicator {
+      width: 14px;
+      padding-right: 5px;
+    }
+  }
+
   .main-head {
     font-size: 36px;
     .fa-user {

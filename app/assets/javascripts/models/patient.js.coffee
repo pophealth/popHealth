@@ -4,15 +4,16 @@ class Thorax.Models.Patient extends Thorax.Model
   parse: (attrs) ->
     attrs = $.extend {}, attrs
     attrs.entries = new Thorax.Collections.Entries
-    attrs.entries.comparator = (e) ->  -1 * e.get('start_time')
-    for type in ['allergies', 'conditions', 'encounters', 'immunizations', 
-      'medical_equipment', 'results', 'medications', 'procedures', 'vital_signs']
+    for type in Thorax.Collections.Entries::types
       if attrs[type]?
         for entry in attrs[type] 
           attrs.entries.add entry, type: type
     attrs
 
 class Thorax.Collections.Entries extends Thorax.Collection
+  types: ['allergies', 'conditions', 'encounters', 'immunizations', 
+      'medical_equipment', 'results', 'medications', 'procedures', 
+      'vital_signs']
   model: (attrs, options) ->
     switch options.type
       when 'allergies'
@@ -33,6 +34,7 @@ class Thorax.Collections.Entries extends Thorax.Collection
         new Thorax.Models.Procedure attrs, parse: true
       when 'vital_signs'
         new Thorax.Models.VitalSign attrs, parse: true
+  comparator: (e) ->  -1 * e.get('start_time')
 
 # Entry Models
 # All have start time, end time, and description that should also
