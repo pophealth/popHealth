@@ -8,7 +8,7 @@ describe 'measure logic', ->
       @dataCriteria = @submeasure.get('data_criteria')
     it 'creates criteria with a key as its ID', ->
       # FIXME use @json.hqmf_document.data_criteria? which has a different format
-      key = _(@json.data_criteria[0]).keys()[0] # 'DiagnosisActiveNarcolepsy_precondition_36'
+      key = _(@json.hqmf_document.data_criteria).keys()[0] # 'DiagnosisActiveNarcolepsy_precondition_36'
       dcModel = @dataCriteria.get(key)
       expect(dcModel).toBeInstanceOf Thorax.Models.DataCriteria
 

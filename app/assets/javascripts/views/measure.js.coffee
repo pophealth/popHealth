@@ -4,7 +4,7 @@ class Thorax.Views.MeasureView extends Thorax.LayoutView
     @queryView = new Thorax.Views.QueryView model: @measure.get('query')
 
   context: ->
-    _(super).extend @measure.toJSON()
+    _(super).extend @measure.toJSON(), measurementPeriod: moment(Config.effectiveDate * 1000).format('YYYY')
 
   activateLogicView: ->
     view = new Thorax.Views.LogicView model: @measure
