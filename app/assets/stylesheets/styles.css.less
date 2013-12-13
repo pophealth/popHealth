@@ -14,7 +14,7 @@
 // Custom styles that are part of the theme
 
 .dl-horizontal {
-  dt{ 
+  dt{
     text-transform: uppercase;
     text-align: left;
   }
@@ -170,58 +170,64 @@
 
 
 
-
-.measure-border-level-n(@n) {
-  background-color: lighten(@brand-primary, percentage(0.5 - @n / 10));
-}
-
-.measure-border {
-  background-color: @brand-primary;
-  padding: 2px;
-  border-radius: 10px;
-  .icon-border {
-    border: 2px solid #4b979d;
-    border-radius: @title-circle-radius;
-    color: @brand-primary;
-    display: inline-block;
-    line-height: @title-circle-radius * 2;
-    text-align: center;
-    height: @title-circle-radius * 2;
-    width: @title-circle-radius * 2;
+#measureSummary {
+  // FIXME this should build on the media query for large monitors
+  .dl-horizontal dt {
+    width: 175px;
   }
-  .measure-border-level-n(1);
+
+  .measure-border-level-n(@n) {
+    background-color: lighten(@brand-primary, percentage(0.5 - @n / 10));
+  }
+
   .measure-border {
-    .measure-border-level-n(2);
+    background-color: @brand-primary;
+    padding: 2px;
+    border-radius: 10px;
+    .icon-border {
+      border: 2px solid #4b979d;
+      border-radius: @title-circle-radius;
+      color: @brand-primary;
+      display: inline-block;
+      line-height: @title-circle-radius * 2;
+      text-align: center;
+      height: @title-circle-radius * 2;
+      width: @title-circle-radius * 2;
+    }
+    .measure-border-level-n(1);
     .measure-border {
-      .measure-border-level-n(3);
+      .measure-border-level-n(2);
       .measure-border {
-        .measure-border-level-n(4);
+        .measure-border-level-n(3);
         .measure-border {
-          .measure-border-level-n(5);
+          .measure-border-level-n(4);
+          .measure-border {
+            .measure-border-level-n(5);
+          }
         }
       }
     }
-  }
-  .measure-item {
-    background-color: @body-bg;
-    border-radius: 10px;
-    margin: 2px 2px 2px 20px;
-    .measure-content {
-      padding: 2px;
+    .measure-item {
+      background-color: @body-bg;
+      border-radius: 10px;
+      margin: 2px 2px 2px 20px;
+      .measure-content {
+        padding: 2px;
+      }
     }
   }
-}
 
-.conjunction, .temporal-operator {
-  background-color: @gray-lighter;
-  border-radius: 10px;
-  padding: 5px 10px;
-  margin: 10px;
-  font-weight: bold;
-  display: inline-block;
-  &.negation {
-    color: white;
-    background-color: @brand-danger;
+  .conjunction, .temporal-operator {
+    background-color: @gray-lighter;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: 10px;
+    font-weight: bold;
+    display: inline-block;
+    &.negation {
+      color: white;
+      background-color: @brand-danger;
+    }
   }
 }
 
@@ -295,7 +301,7 @@
     .make-md-column(12);
     padding: 15px 0;
     margin-top: 20px;
-    
+
     .active {
       background-color: @brand-primary;
       color: #fff;
@@ -334,7 +340,7 @@
       .make-md-column(11);
       background-color: white;
       border: 1px solid @gray-darker;
-      
+
       &:before {
          content:"";
          position: absolute;
@@ -367,7 +373,7 @@
       .dl-record {
         .make-md-column(8);
       }
-      
+
       .dl-date {
         .make-md-column(4);
         padding-right: 0;

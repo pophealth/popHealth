@@ -19,6 +19,7 @@ class Thorax.Views.DataCriteriaView extends Thorax.View
       medications:      'medkit'
       conditions:       'stethoscope'
       encounters:       'user-md'
+      physical_exams:   'user-md'
       characteristic:   'user'
       procedures:       'scissors'
       laboratory_tests: 'flask'

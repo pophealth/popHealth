@@ -1,4 +1,5 @@
 class Thorax.Views.MeasureView extends Thorax.LayoutView
+  id: 'measureSummary'
   template: JST['measures/show']
   initialize: ->
     @queryView = new Thorax.Views.QueryView model: @measure.get('query')
@@ -18,3 +19,4 @@ class Thorax.Views.MeasureView extends Thorax.LayoutView
 
   logicIsActive: -> if view = @getView() then view instanceof Thorax.Views.LogicView else @type is 'logic'
   patientResultsIsActive: -> if view = @getView() then view instanceof Thorax.Views.PatientResultsView else @type is 'patient_results'
+
