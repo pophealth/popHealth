@@ -1,25 +1,19 @@
 {
   "name": "thorax",
-  "version": "2.0.3",
+  "version": "2.1.3",
   "main": [
     "thorax.js",
     "thorax-mobile.js"
   ],
-  "dependencies": {
-    "jquery": "1.9.0",
-    "zepto": "1.0.0",
-    "handlebars": "1.0.0",
-    "underscore": "1.4.4",
-    "backbone": "1.0.0"
-  },
   "homepage": "https://github.com/components/thorax",
-  "_release": "2.0.3",
+  "_release": "2.1.3",
   "_resolution": {
     "type": "version",
-    "tag": "v2.0.3",
-    "commit": "04f15c4af18af39ad91ac49e0016403371296eca"
+    "tag": "v2.1.3",
+    "commit": "aace9303116188b30bfd7782db22dbb60654fc8d"
   },
   "_source": "https://github.com/components/thorax.git",
-  "_target": "~2.0.0",
-  "_originalSource": "thorax"
+  "_target": "~2.1.3",
+  "_originalSource": "thorax",
+  "_direct": true
 }
