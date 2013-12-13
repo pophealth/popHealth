@@ -20,6 +20,7 @@ class Thorax.Models.Submeasure extends Thorax.Model
     # FIXME don't use hardcoded effective date
     query = new Thorax.Models.Query({measure_id: @get('id'), sub_id: @get('sub_id'), effective_date: Config.effectiveDate}, parent: this)
     @set 'query', query
+  isPopulated: -> @has 'IPP'
   fetch: (options = {}) ->
     options.data = {sub_id: @get('sub_id')} unless options.data?
     super(options)
