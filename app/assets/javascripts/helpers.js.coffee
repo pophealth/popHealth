@@ -3,7 +3,7 @@
 Handlebars.registerHelper 'maskName', (value) -> 
 	maskStatus = PopHealth.currentUser.maskStatus()
 	if value && maskStatus
-		return value[0]+Array(value.length).join("x")
+		return value[0]+"xxxxxx"
 	else
 		return value
 
