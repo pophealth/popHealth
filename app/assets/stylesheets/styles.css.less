@@ -1,4 +1,8 @@
 @import "bootstrap3";
+@import "font-awesome/less/font-awesome";
+
+@icon-font-path: "../fonts/";
+@fa-font-path: "../fonts";
 
 // Custom Variables
 @title-line-height: 1.5;
@@ -7,8 +11,19 @@
 @circle-bkg-color: #fff;
 @title-circle-radius: 21px;
 
+// Custom styles that are part of the theme
+
+.dl-horizontal {
+  dt{ 
+    text-transform: uppercase;
+    text-align: left;
+  }
+}
+
 // Custom classes for semantic mark-up
 // font-size -> 1em = 14px
+
+// Dashboard
 
 .nav {
   font-weight: 500;
@@ -88,8 +103,6 @@
   }
 }
 
-
-
 .pop-chart {
   height: 50px;
   width: 125px;
@@ -108,7 +121,7 @@
 
 
 // New styles for side bar for the measure view/patient list
-// TODO Clean up these styles
+// TODO Clean up these styles once pages are integrated and complete.
 
 .population-btn {
   .col-xs-12;
@@ -151,6 +164,163 @@
     vertical-align: middle;
     .btn-default {
       padding: 7px 10px;
+    }
+  }
+}
+
+// patient view
+.patient {
+  .row;
+  .sidebar {
+    .measure-btn {
+      width: 260px;
+      background-color: @gray-lighter;
+      margin-bottom: 5px;
+      padding: 10px 15px;
+      border-bottom: 1px solid transparent;
+      white-space: normal;
+      text-align: left;
+      > * {
+        display: inline;
+      }
+      &.active {
+        background-color: @brand-primary;
+        color: #fff;
+      }
+    }
+    .indicator {
+      width: 14px;
+      padding-right: 5px;
+    }
+  }
+
+  .main-head {
+    font-size: 36px;
+    .fa-user {
+      .make-md-column(1);
+      text-align: left;
+      padding-left: 3px;
+    }
+  }
+
+  #time-bar {
+    position: absolute;
+    left: 28px;
+    top: 54px;
+    width: 8px;
+    height: 100%;
+    background-color: @gray-lighter;
+  }
+
+  .demographics {
+    .clearfix;
+    .make-sm-column-offset(1);
+
+    .dl-horizontal {
+      padding-left: 0;
+      .make-md-column(6);
+    }
+  }
+
+  .time-line {
+    background-color: @gray-lighter;
+    margin-left: 15px;
+
+    .timeline-title {
+      .make-md-column-offset(1);
+      font-size: 24px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+
+  .record-listing {
+    .make-md-column(12);
+    padding: 15px 0;
+    margin-top: 20px;
+    
+    .active {
+      background-color: @brand-primary;
+      color: #fff;
+      border: 2px dashed #fff;
+    }
+
+    .circle-icon {
+      .pull-left;
+      .make-md-column(1);
+      margin-top: 8px;
+      padding-left: 0;
+
+      .fa {
+        text-align: center;
+        padding-top: 7px;
+        width: 36px;
+        height: 36px;
+        background-color: white;
+        border-radius: 18px;
+        border: 2px solid @brand-primary;
+        color: @brand-primary;
+        font-size: 18px;
+        margin: auto;
+      }
+
+      .active-icon {
+        .fa {
+          background-color: @brand-primary;
+          border-radius: 18px;
+          color: white;
+        }
+      }
+    }
+
+    .patient-data {
+      .make-md-column(11);
+      background-color: white;
+      border: 1px solid @gray-darker;
+      
+      &:before {
+         content:"";
+         position: absolute;
+         right: 100%;
+         top: 11px;
+         width: 0;
+         height: 0;
+         border-top: 14px solid transparent;
+         border-right: 20px solid black;
+         border-bottom: 14px solid transparent;
+      }
+
+      &:after {
+         content:"";
+         position: absolute;
+         right: 100%;
+         top: 12px;
+         width: 0;
+         height: 0;
+         border-top: 13px solid transparent;
+         border-right: 19px solid white;
+         border-bottom: 13px solid transparent;
+      }
+
+      dl {
+        margin-bottom: 15px;
+        line-height: 24px;
+      }
+
+      .dl-record {
+        .make-md-column(8);
+      }
+      
+      .dl-date {
+        .make-md-column(4);
+        padding-right: 0;
+        dt {
+          width: 60px;
+        }
+        dd {
+          margin-left: 0px;
+        }
+      }
     }
   }
 }

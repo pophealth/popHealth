@@ -1,53 +1,95 @@
-<p>
-  Name: {{first}} {{last}}<br>
-  Effective Date: {{formatted_effective_time}}<br>
-  DOB: {{formatted_birthdate}}<br>
-  Sex: {{gender}}<br>
-  Race: {{race.name}}<br>
-  Ethnicity: {{ethnicity.name}}<br>
-  Languages: {{languages}}<br>
-  Record Number: {{medical_record_number}}<br>
-  Allergies: {{allergies}}<br>
-  Care Goals: {{care_goals}}<br>
-</p>
-<p>
-  Vital Signs (Description):
-  {{#each vital_signs}}
-    <br>{{description}}
-  {{/each}}
-</p>
-<p>
-  Laboratory Results (Start time):
-  {{#each results}}
-    <br>{{start_time}}
-  {{/each}}
-</p>
-<p>
-  Encounters (Start time):
-  {{#each encounters}}
-    <br>{{start_time}}
-  {{/each}}
-</p>
-<p>
-  Conditions (Description): 
-  {{#each conditions}}
-    <br>{{description}}
-  {{/each}}
-</p>
-<p>
-  Procedures (Description): 
-  {{#each procedures}}
-    <br>{{description}}
-  {{/each}}
-</p>
-<p>
-  Medications (Description): 
-  {{#each medications}}
-    <br>{{description}}
-  {{/each}}
-</p>
-<p>
-  Social History: {{social_history}}<br>
-  Immunizations: {{immunizations}}<br>
-  Medical Equipment: {{medical_equipment}}<br>
-</p>
+<div class="patient">
+  <div class="sidebar">
+    <h1><i class="fa fa-tasks"></i> Measures</h1>
+    <h2>Outliers</h2>
+    {{#button "filter" class="btn measure-btn active"}}
+      <div class="indicator">
+        <i class="fa fa-exclamation-triangle"></i>
+      </div>
+      <div class="measure-title">
+        Controlling High Blood Pressure
+      </div>
+    {{/button}}
+    {{#button "filter" class="btn measure-btn"}}
+      <div class="indicator">
+        <i class="fa fa-exclamation-triangle"></i>
+      </div>
+      <div class="measure-title">
+        Smoking And Tobacco Use Cessation, Medical Assistance - Advising Smokers And Tobacco Users To Quit
+      </div>
+    {{/button}}
+  </div>
+
+  <div class="main">
+    <h1 class="main-head"><i class="fa fa-user"></i> {{first}} {{last}}</h1>
+    <div id="time-bar"></div>
+    <div class="demographics">
+      <dl class="dl-horizontal">
+        <dt>RECORD NUMBER</dt>
+        <dd>730132778</dd>
+        <dt>EFFECTIVE DATE</dt>
+        <dd>{{effective_time}}</dd>
+        <dt>DOB</dt>
+        <dd>{{birthdate}}</dd>
+        <dt>GENDER</dt>
+        <dd>{{gender}}</dd>
+      </dl>
+      <dl class="dl-horizontal">
+        <dt>RACE</dt>
+        <dd>{{race}}</dd>
+        <dt>ETHNICITY</dt>
+        <dd>{{ethnicity}}</dd>
+        <dt>LANGUAGES</dt>
+        <dd>{{languages}}</dd>
+        <dt>PROVIDERS</dt>
+        <dd>Jonathan Cooper MD</dd>
+      </dl>
+    </div>
+    <div class="time-line">
+      <div class="timeline-title">Patient History Relative to Measures</div>
+    </div>
+    {{!-- 
+      The following section can be added back in after filtering is added and  
+      we have the ability to determine the cause of a patient being an outlier.
+    --}}
+    {{!--     <div class="record-listing ">
+      <div class="circle-icon active-icon">
+        <i class="fa fa-question"></i>
+      </div>
+      <div class="patient-data active">
+        <dl class="dl-record dl-horizontal">
+          <dt>MISSING</dt>
+          <dd>Medication ordered
+          </dd>
+        </dl>
+        <dl class="dl-date dl-horizontal">
+          <dt>DATE </dt>
+          <dd>12-2-2012 - 12-2-2012
+          </dd>
+        </dl>
+      </div>
+    </div> --}}
+    {{#collection entries item-view="EntryView"}}
+      <div class="record-listing">
+        <div class="circle-icon">
+          <i class="fa fa-{{icon}}"></i>
+        </div>
+        <div class="patient-data">
+        <div class="triangle-left"></div>
+          <dl class="dl-record dl-horizontal">
+            <dt>{{entry_type}}</dt>
+            {{#if description}}
+              <dd>{{description}}</dd>
+            {{else}}
+              <dd class="text-muted">No Details Available</dd>
+            {{/if}}
+          </dl>
+          <dl class="dl-date dl-horizontal">
+            <dt>date</dt>
+            <dd>{{start_time}} {{#if end_time}} &ndash; {{end_time}} {{/if}}</dd>
+          </dl>
+        </div>
+      </div>
+    {{/collection}}
+  </div>
+</div>
