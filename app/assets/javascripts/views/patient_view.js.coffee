@@ -3,7 +3,7 @@ class Thorax.Views.PatientView extends Thorax.View
   context: ->
     _(super).extend
       effective_time: formatTime @model.get('effective_time')
-      birthdate: formatTime @model.get('birthdate')
+      birthdate: Handlebars.helpers.maskDate formatTime @model.get('birthdate')
       gender: 
         if @model.get('gender') == 'M'
           'Male' 
