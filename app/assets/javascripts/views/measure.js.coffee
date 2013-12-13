@@ -13,10 +13,9 @@ class Thorax.Views.MeasureView extends Thorax.LayoutView
     @setView view
 
   activatePatientResultsView: ->
-    view = new Thorax.Views.PatientResultsView query: @measure.get('query')
+    view = new Thorax.Views.PatientResultsLayoutView query: @measure.get('query')
     view.changeFilter @queryView.currentPopulation
     @setView view
 
   logicIsActive: -> if view = @getView() then view instanceof Thorax.Views.LogicView else @type is 'logic'
-  patientResultsIsActive: -> if view = @getView() then view instanceof Thorax.Views.PatientResultsView else @type is 'patient_results'
-
+  patientResultsIsActive: -> if view = @getView() then view instanceof Thorax.Views.PatientResultsLayoutView else @type is 'patient_results'

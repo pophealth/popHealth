@@ -1,11 +1,10 @@
 class Thorax.Views.PatientResultsLayoutView extends Thorax.LayoutView
-  template: JST['patient_results/layout']
   initialize: ->
     @views = {}
   events:
-    destroyed:
+    destroyed: ->
       view.release() for population, view of @views
-  changePopulation: (population) ->
+  changeFilter: (population) ->
     if currentView = @getView()
       currentView.retain() # don't destroy child views until the layout view is destroyed
     @views[population] ||= new Thorax.Views.PatientResultsView(population: population, query: @query)
@@ -23,19 +22,17 @@ class Thorax.Views.PatientResultsView extends Thorax.View
       age: moment(patient.get('birthdate')).fromNow().split(' ')[0] if patient.get('birthdate')
 
   events:
-    'change:load-state': (state) ->
-      console.log state
-      @isFetching = false if state is 'end'
     rendered: ->
       $(document).on 'scroll', @scrollHandler
     destroyed: ->
       $(document).off 'scroll', @scrollHandler
+    collection:
+      sync: -> @isFetching = false
 
   initialize: ->
     @isFetching = false
     @scrollHandler = =>
       distanceToBottom = $(document).height() - $(window).scrollTop() - $(window).height()
-      console.log distanceToBottom, @isFetching, @collection?.length
       if !@isFetching and @collection?.length and @fetchTriggerPoint > distanceToBottom
         @isFetching = true
         @collection.fetchNextPage()
