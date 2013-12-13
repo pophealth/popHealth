@@ -26,6 +26,7 @@ class Thorax.Models.Submeasure extends Thorax.Model
     super(options)
   parse: (attrs) ->
     attrs = $.extend true, {}, attrs
+    attrs.id = attrs.hqmf_id
     # turn {someKey: {title: 'title'}} into {id: 'someKey', title: 'title'}
     dataCriteria = for id, criteria of attrs.hqmf_document.data_criteria
       _(criteria).extend id: id

@@ -32,7 +32,7 @@ class Thorax.Views.QueryView extends Thorax.View
     'click .population-btn': 'changeFilter'
     rendered: ->
       @$('.dial').knob()
-      d3.select(@el).select('.pop-chart').datum(@model.get('result')).call(@popChart) if @model.isPopulated()
+      d3.select(@el).select('.pop-chart').datum(@model.result()).call(@popChart) if @model.isPopulated()
 
   ipp: -> @model.ipp()
   numerator: -> @model.numerator()
