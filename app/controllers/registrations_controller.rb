@@ -8,12 +8,12 @@ class RegistrationsController < Devise::RegistrationsController
 
   # Need bundle info to display the license information
   def new
-    @bundles = Bundle.find() || []
+    @bundles = Bundle.all() || []
     super
   end
 
   def create
-    @bundles = Bundle.find() || []
+    @bundles = Bundle.all() || []
     super
   end
 

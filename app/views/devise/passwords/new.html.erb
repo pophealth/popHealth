@@ -1,29 +1,27 @@
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-<div id="login">
-  <div id="cap-top"></div>
-  <div id="cap-body">
-    <div id="branding">
+
+<div class="login">
+  <header>
       <%= image_tag "pophealth_welcome.png", :id => 'imgLogo', :title => 'popHealth welcomes you!', :alt => 'popHealth logo' %>
+  </header>
+  <h1>Everyone forgets.</h1>
+  <p>Just enter your email address, and we'll send you a link to reset your password.</p>
+  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:name=>"forgot_password_form"}) do |f| %>
+    <div class="form-group input-group input-group-lg">
+      <span class="input-group-addon"><i class="fa fa-envelope fa-lg fa-fw"></i></span>
+      <%= f.email_field :email, class: "form-control", placeholder: "email@example.com" %>
     </div>
-    <div id="panelReset" class="panel">
-      <h1>That's okay. Everyone forgets.</h1>
-      <p>Just tell us the email address you used to create your popHealth account, and we'll send you a link to reset your password!</p>
-      <br>
-      <div>
-        <label>Your Email Address</label>
-        <%= f.email_field :email %>
-      </div>
 
-      <div class="accountError">
-        <%= devise_error_messages! %>
-      </div>
-
-      <div class="actions">
-        <a class="whitebutton" href="/"><span>Cancel</span></a>
-        <a class="bluebutton" href="#" onclick="submitResetPasswordinform();" ><span>Continue</span></a>
-      </div>
+    <% if resource.errors.present? %>
+    <div class="alert alert-danger">
+      <%= devise_error_messages! %>
     </div>
-  </div>  
-  <div id="cap-bottom"></div>
+    <% end %>
+    <!-- <a class="btn btn-primary form-control btn-lg">Login</a> -->
+    <%= f.submit "Send", class: "btn btn-login" %>
+
+    <%= render :partial => "devise/shared/links" %>
+  <% end %>
 </div>
-<% end %>
+
+
+
