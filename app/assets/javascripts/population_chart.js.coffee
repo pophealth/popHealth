@@ -6,12 +6,54 @@ PopHealth.viz.populationChart = ->
       xScale.domain([0, maximumValue]).range([minWidth, width - margin.left - margin.right - 3 * minWidth]).clamp(true).nice()
       yScale.domain(['NUMER', 'DENOM']).range [margin.top, height-margin.bottom-barHeight]
       svg = d3.select(this).selectAll('svg').data([data])
-      gEnter = svg.enter().append('svg').attr('width', @width).attr('height', @height)
-      numer = gEnter.append('g').append('rect').attr('class', 'numer').attr('width', xScale(data.NUMER)).attr('height', barHeight).attr('y', yScale('NUMER')).attr('x', margin.left)
-      denom = gEnter.append('g').attr('class', 'denom')
-      denom.append('rect').attr('class', 'denom').attr('width', xScale(data.DENOM)).attr('height', barHeight).attr('y', yScale('DENOM')).attr 'x', margin.left
-      denom.append('rect').attr('class', 'denex').attr('width', xScale(data.DENEX)).attr('height', barHeight).attr('y', yScale('DENOM')).attr 'x', xScale(data.DENOM) if data.DENEX > 0
-      denom.append('rect').attr('class', 'denexc').attr('width', xScale(data.DENEXCEP)).attr('height', barHeight).attr('y', yScale('DENOM')).attr 'x', xScale(data.DENOM) + xScale(data.DENEX) if data.DENEXCEP > 0
+      gEnter = svg.enter().append('svg')
+        .attr('width', @width)
+        .attr('height', @height)
+      numer = gEnter.append('g').append('rect')
+        .attr('class', 'numer')
+        .attr('width', xScale(data.NUMER))
+        .attr('height', barHeight)
+        .attr('y', yScale('NUMER'))
+        .attr('x', margin.left)
+        .attr('data-placement', "top")
+        .attr('data-content', "Numerator: " + data.NUMER)
+        .attr('data-trigger', "hover focus")
+        .attr('data-container', 'body')
+
+      denom = gEnter.append('g')
+        .attr('class', 'denom')
+      denom.append('rect')
+        .attr('class', 'denom')
+        .attr('width', xScale(data.performanceDenominator))
+        .attr('height', barHeight)
+        .attr('y', yScale('DENOM'))
+        .attr( 'x', margin.left)
+        .attr('data-placement', "bottom")
+        .attr('data-content', "Denominator: " + data.performanceDenominator)
+        .attr('data-trigger', "hover focus")
+        .attr('data-container', 'body')
+      denom.append('rect')
+        .attr('class', 'denex')
+        .attr('width', xScale(data.DENEX))
+        .attr('height', barHeight)
+        .attr('y', yScale('DENOM'))
+        .attr( 'x', xScale(data.performanceDenominator)) 
+        .attr('data-placement', "bottom")
+        .attr('data-content', "Exclusion: " + data.DENEX)
+        .attr('data-trigger', "hover focus")
+        .attr('data-container', 'body') if data.DENEX > 0
+
+      denom.append('rect')
+        .attr('class', 'denexc')
+        .attr('width', xScale(data.DENEXCEP))
+        .attr('height', barHeight)
+        .attr('y', yScale('DENOM'))
+        .attr('x', xScale(data.performanceDenominator) + xScale(data.DENEX)) 
+        .attr('data-placement', "bottom")
+        .attr('data-content', "Exceptions: " + data.DENEXCEP)
+        .attr('data-trigger', "hover focus") 
+        .attr('data-container', 'body') if data.DENEXCEP > 0
+      
 
   width = 150
   height = 40
