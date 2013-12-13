@@ -1,18 +1,20 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.14'
-gem 'quality-measure-engine', :git=> "https://github.com/pophealth/quality-measure-engine.git", :branch=> "mongoid_refactor"
+gem 'quality-measure-engine', '3.0.0.beta.1'
 
 gem "health-data-standards", '3.3.0'
 gem 'nokogiri'
 gem 'rubyzip'
 
+# Should be removed in the future. This is only used for the
+# admin log page. When the admin pages are switched to 
+# client side pagination, this can go away.
 gem 'will_paginate'
 
 gem "active_model_serializers"
 
 gem 'json', :platforms => :jruby
-# these are all tied to 1.3.1 because bson 1.4.1 was yanked.  To get bundler to be happy we need to force 1.3.1 to cause the downgrade
 
 gem "mongoid"
 
