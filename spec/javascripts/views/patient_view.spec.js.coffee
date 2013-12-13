@@ -10,7 +10,7 @@ describe 'PatientView', ->
     expect(@patientView.$el).toContainText @patient.get('last')
 
   it 'formats the effective time correctly', ->
-    expect(@patientView.context().effective_time).toEqual("16 Jan 1970")
+    expect(@patientView.$el).toContainText "16 Jan 1970"
 
   it 'formats the birthday correctly', ->
-    expect(@patientView.context().birthdate).toEqual("21 Dec 1969")
+    expect(@patientView.$el).toContainText "21 Dec 1969"
