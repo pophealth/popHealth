@@ -2,8 +2,8 @@ class Thorax.Views.PatientView extends Thorax.View
   template: JST['patients/show']
   context: ->
     _(super).extend
-      effective_time: formatTime @model.get('effective_time')
-      birthdate: formatTime @model.get('birthdate'), Handlebars.helpers.maskDate 'DD MMM YYYY'
+      effective_time: formatTime @model.get('effective_time'), 'DD MMM YYYY'
+      birthdate: formatTime @model.get('birthdate'), maskDate 'DD MMM YYYY'
       gender: 
         if @model.get('gender') == 'M'
           'Male' 
@@ -22,6 +22,13 @@ class Thorax.Views.PatientView extends Thorax.View
 
   # Helper function for date/time conversion
   formatTime = (time, format) -> moment(time).format(format) if time
+
+  maskDate = (value) -> 
+    maskStatus = PopHealth.currentUser.maskStatus()
+    if value && maskStatus
+      return value.replace(/[MD]/g, 'x')
+    else
+      return value
 
 class Thorax.Views.EntryView extends Thorax.View
   template: JST['patients/_result']
