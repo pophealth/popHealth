@@ -2,7 +2,9 @@ class Thorax.Views.PatientResultsView extends Thorax.View
   template: JST['patient_results/index']
   patientContext: (patient) ->
     _(patient.toJSON()).extend
-      formattedBirthdate: moment(patient.get('birthdate')).format(maskDateFormat('MM/DD/YYYY')) if patient.get('birthdate')
+      first: PopHealth.Helpers.maskName(patient.get('first')) if patient.get('first')
+      last: PopHealth.Helpers.maskName(patient.get('last')) if patient.get('last')
+      formattedBirthdate: moment(patient.get('birthdate')).format(PopHealth.Helpers.maskDateFormat('MM/DD/YYYY')) if patient.get('birthdate')
       age: moment(patient.get('birthdate')).fromNow().split(' ')[0] if patient.get('birthdate')
 
   initialize: ->
@@ -22,13 +24,6 @@ class Thorax.Views.PatientResultsView extends Thorax.View
   changePopulation: (population) ->
     @filterPopulation = population
     @updateFilter()
-
-  maskDateFormat = (value) -> 
-    maskStatus = PopHealth.currentUser.maskStatus()
-    if value && maskStatus
-      return value.replace(/[MD]/g, 'x')
-    else
-      return value
 
 class Thorax.Views.QueryView extends Thorax.View
   template: JST['patient_results/query']
