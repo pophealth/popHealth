@@ -3,7 +3,7 @@ class Thorax.Views.PatientView extends Thorax.View
   context: ->
     _(super).extend
       effective_time: formatTime @model.get('effective_time'), 'DD MMM YYYY'
-      birthdate: formatTime @model.get('birthdate'), maskDate 'DD MMM YYYY'
+      birthdate: formatTime @model.get('birthdate'), maskDateFormat 'DD MMM YYYY'
       gender: 
         if @model.get('gender') == 'M'
           'Male' 
@@ -23,7 +23,7 @@ class Thorax.Views.PatientView extends Thorax.View
   # Helper function for date/time conversion
   formatTime = (time, format) -> moment(time).format(format) if time
 
-  maskDate = (value) -> 
+  maskDateFormat = (value) -> 
     maskStatus = PopHealth.currentUser.maskStatus()
     if value && maskStatus
       return value.replace(/[MD]/g, 'x')
