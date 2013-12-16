@@ -18,7 +18,7 @@ class Thorax.Views.PatientResultsView extends Thorax.View
   fetchTriggerPoint: 500 # fetch data when we're 500 pixels away from the bottom
   patientContext: (patient) ->
     _(patient.toJSON()).extend
-      formatted_birthdate: moment(patient.get('birthdate')).format('MM/DD/YYYY') if patient.get('birthdate')
+      formatted_birthdate: moment(patient.get('birthdate')).format(Handlebars.helpers.maskDate('MM/DD/YYYY')) if patient.get('birthdate')
       age: moment(patient.get('birthdate')).fromNow().split(' ')[0] if patient.get('birthdate')
 
   events:
