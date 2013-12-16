@@ -2,7 +2,7 @@ class Thorax.Views.PatientResultsView extends Thorax.View
   template: JST['patient_results/index']
   patientContext: (patient) ->
     _(patient.toJSON()).extend
-      formatted_birthdate: moment(patient.get('birthdate')).format(maskDate('MM/DD/YYYY')) if patient.get('birthdate')
+      formattedBirthdate: moment(patient.get('birthdate')).format(maskDate('MM/DD/YYYY')) if patient.get('birthdate')
       age: moment(patient.get('birthdate')).fromNow().split(' ')[0] if patient.get('birthdate')
 
   initialize: ->
