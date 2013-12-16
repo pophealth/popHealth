@@ -18,7 +18,9 @@ class Thorax.Views.PatientResultsView extends Thorax.View
   fetchTriggerPoint: 500 # fetch data when we're 500 pixels away from the bottom
   patientContext: (patient) ->
     _(patient.toJSON()).extend
-      formattedBirthdate: moment(patient.get('birthdate')).format(maskDateFormat('MM/DD/YYYY')) if patient.get('birthdate')
+      first: PopHealth.Helpers.maskName(patient.get('first')) if patient.get('first')
+      last: PopHealth.Helpers.maskName(patient.get('last')) if patient.get('last')
+      formatted_birthdate: moment(patient.get('birthdate')).format(PopHealth.Helpers.maskDateFormat('MM/DD/YYYY')) if patient.get('birthdate')
       age: moment(patient.get('birthdate')).fromNow().split(' ')[0] if patient.get('birthdate')
 
   events:
@@ -42,13 +44,6 @@ class Thorax.Views.PatientResultsView extends Thorax.View
       @collection.fetch()
     @query.on 'change', setCollection
     if @query.isNew() then @query.save() else setCollection()
-
-  maskDateFormat = (value) -> 
-    maskStatus = PopHealth.currentUser.maskStatus()
-    if value && maskStatus
-      return value.replace(/[MD]/g, 'x')
-    else
-      return value
 
 class Thorax.Views.QueryView extends Thorax.View
   template: JST['patient_results/query']
