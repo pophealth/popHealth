@@ -3,7 +3,7 @@ class Thorax.Views.PatientView extends Thorax.View
   context: ->
     _(super).extend
       effective_time: formatTime @model.get('effective_time')
-      birthdate: Handlebars.helpers.maskDate formatTime @model.get('birthdate')
+      birthdate: formatTime @model.get('birthdate'), Handlebars.helpers.maskDate 'DD MMM YYYY'
       gender: 
         if @model.get('gender') == 'M'
           'Male' 
@@ -21,7 +21,7 @@ class Thorax.Views.PatientView extends Thorax.View
           'None Provided'
 
   # Helper function for date/time conversion
-  formatTime = (time) -> moment(time).format('DD MMM YYYY') if time
+  formatTime = (time, format) -> moment(time).format(format) if time
 
 class Thorax.Views.EntryView extends Thorax.View
   template: JST['patients/_result']

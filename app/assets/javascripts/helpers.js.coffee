@@ -12,7 +12,6 @@ Handlebars.registerHelper 'maskName', (value) ->
 Handlebars.registerHelper 'maskDate', (value) -> 
 	maskStatus = PopHealth.currentUser.maskStatus()
 	if value && maskStatus
-		value = value.split("/")
-		return "xx/xx/"+value[value.length-1]
+		return value.replace(/[MD]/g, 'x')
 	else
 		return value
