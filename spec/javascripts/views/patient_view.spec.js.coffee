@@ -13,7 +13,7 @@ describe 'PatientView', ->
     expect(@patientView.$el).toContainText @patient.get('gender')
 
   it 'formats the effective time correctly', ->
-    expect(@patientView.formatted_effective_time()).toEqual("01/16/1970")
+    expect(@patientView.formattedEffectiveTime()).toEqual("01/16/1970")
 
   it 'formats the birthday correctly', ->
-    expect(@patientView.formatted_birthdate()).toEqual("12/21/1969")
+    expect(@patientView.formattedBirthdate()).toEqual("12/21/1969")
