@@ -4,8 +4,9 @@ class User
 
   include Mongoid::Document
 
-  before_save  :denullify_arrays
-  before_create :set_defaults, :build_preferences
+  after_initialize :build_preferences, unless: Proc.new { |user| user.preferences.present? }
+  before_save :denullify_arrays
+  before_create :set_defaults
 
   DEFAULT_EFFECTIVE_DATE = Time.gm(2011, 1, 1)
 
@@ -87,9 +88,7 @@ class User
     # if self.preferences[:selected_measure_ids] == nil
     #   binding.pry
     # end
-    unless self.preferences.nil?
-      self.preferences["selected_measure_ids"] ||= []
-    end
+    self.preferences["selected_measure_ids"] ||= []
     # puts self.preferences[:selected_measure_ids]
   end
 
