@@ -11,7 +11,23 @@ describe 'PatientView', ->
     expect(@patientView.$el).toContainText @patient.get('last')
 
   it 'formats the effective time correctly', ->
-    expect(@patientView.$el).toContainText "08 Oct 2013"
+    expect(@patientView.$el).toContainText '08 Oct 2013'
 
   it 'formats the birthday correctly', ->
-    expect(@patientView.$el).toContainText "01 Feb 1942"
+    expect(@patientView.$el).toContainText '01 Feb 1942'
+
+  describe 'when PHI is masked', ->
+    beforeEach ->
+      PopHealth.currentUser.get('preferences').mask_phi_data = true
+      expect(PopHealth.currentUser.maskStatus()).toBeTruthy()
+      @patientView.render()
+
+    it 'formats effective time the same', ->
+      expect(@patientView.$el).toContainText '08 Oct 2013'
+
+    it 'masks the birthday', ->
+      expect(@patientView.$el).toContainText 'xx xxx 1942'
+
+    it 'masks the name', ->
+      expect(@patientView.$el).toContainText "#{@patient.get('first')[0]}xxxxxx"
+      expect(@patientView.$el).toContainText "#{@patient.get('last')[0]}xxxxxx"
