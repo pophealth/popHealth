@@ -1,12 +1,20 @@
 describe 'PatientResults', ->
+  beforeEach ->
+    @json = getJSONFixture 'queries/patient_results.json'
+
   describe 'Collection', ->
-    beforeEach ->
-      @json = getJSONFixture 'queries/patient_results.json'
+    beforeEach ->      
       jasmine.Ajax.useMock()
       @collection = new Thorax.Collections.PatientResults @json[0...2], parse: true, parent: jasmine.createSpyObj('parent', ['url'])
 
     it 'can fetch additional pages', ->
+      expect(@collection.length).toEqual 2
       @collection.fetchNextPage(perPage: 2)
       mostRecentAjaxRequest().response {responseText: JSON.stringify(@json[2...4]), status: 200}
-      expect(@collection.toJSON()).toEqual _(@json[0...4]).map (r) -> r.value
       expect(@collection.page).toEqual 2
+      expect(@collection.length).toEqual 4
+
+  describe 'Model', ->
+    it 'should correct birthdate to milliseconds', ->
+      pr = new Thorax.Models.PatientResult @json[0], parse: true
+      expect(pr.get('birthdate')).toEqual(259736400000)
