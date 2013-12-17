@@ -19,6 +19,11 @@ class Thorax.Views.PatientView extends Thorax.View
           @model.get('ethnicity').name
         else
           'None Provided'
+      languages:
+        if @model.has('languages')
+          if _.isEmpty(@model.get('languages')) then 'Not Available' else @model.get('languages')
+        else
+          'Not Available'
 
   # Helper function for date/time conversion
   formatTime = (time) -> moment(time).format('DD MMM YYYY') if time

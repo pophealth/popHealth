@@ -9,8 +9,16 @@ describe 'PatientView', ->
     expect(@patientView.$el).toContainText @patient.get('first')
     expect(@patientView.$el).toContainText @patient.get('last')
 
-  it 'formats the effective time correctly', ->
-    expect(@patientView.$el).toContainText "08 Oct 2013"
-
   it 'formats the birthday correctly', ->
     expect(@patientView.$el).toContainText "01 Feb 1942"
+
+  it 'renders language correctly', ->
+    expect(@patientView.$el).toContainText "eng"
+
+  it 'renders language correctly when it is not there', ->
+    clonedPatient = _.clone(@patient.toJSON())
+    clonedPatient.languages = []
+    noLanguagePatient = new Thorax.Models.Patient clonedPatient, parse: true
+    noLanguageView = new Thorax.Views.PatientView model: noLanguagePatient
+    noLanguageView.render()
+    expect(noLanguageView.$el).toContainText "Not Available"
