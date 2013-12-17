@@ -19,7 +19,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "user preferences: selected_measure_ids replaces null with empty arrays" do
-    @user.preferences = {selected_measure_ids: nil}
+    @user.preferences['selected_measure_ids'] = nil
     assert @user.save
     @user.reload
     assert_equal [], @user.preferences['selected_measure_ids']

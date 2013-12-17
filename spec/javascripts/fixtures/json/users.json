@@ -12,7 +12,8 @@
   "last_name": "Minn",
   "npi": "",
   "preferences": {
-    "selected_measure_ids": []
+    "selected_measure_ids": [],
+    "mask_phi_data": false
   },
   "registry_id": "",
   "registry_name": "",
