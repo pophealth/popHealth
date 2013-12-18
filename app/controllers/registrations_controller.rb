@@ -17,27 +17,37 @@ class RegistrationsController < Devise::RegistrationsController
     super
   end
 
-  # Lets the account info be updated (like tax id) without changing
-  # the password
+  # modified to avoid redirecting if responding via JSON
   def update
-    # Devise use update_with_password instead of update_attributes.
-    # This is the only change we make.
-    if resource.update_attributes(params[resource_name])
+    self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+    prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
+
+    if update_resource(resource, params)
+      yield resource if block_given?
+      if is_flashing_format?
+        flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
+          :update_needs_confirmation : :updated
+        set_flash_message :notice, flash_key
+      end
+      sign_in resource_name, resource, :bypass => true
       respond_to do |format|
-        # Line below required if using Devise >= 1.2.0
-        sign_in resource_name, resource, :bypass => true
-        format.html do
-          set_flash_message :notice, :updated
-          redirect_to after_update_path_for(resource)
-        end
+        format.html { redirect_to after_update_path_for(resource) }
         format.json { render json: resource }
       end
     else
-      respond_to do |format|
-        clean_up_passwords(resource)
-        format.html { render_with_scope :edit }
-        format.json { render json: { errors: @model.errors.full_messages, status: :unprocessable_entity } }
-      end
+      clean_up_passwords resource
+      respond_with resource
+    end
+  end
+
+  # If this is an AJAX request, just update the attributes; if this is an HTML request, update the attributes unless password or current_password are present.
+  def update_resource(resource, params)
+    params = params[resource_name]
+    if request.xhr? || !(params[:password].present? || params[:current_password].present?)
+      # remove passwords from params
+      resource.update_attributes(params.reject { |k, v| %w(password password_confirmation current_password).include? k })
+    else
+      resource.update_with_password(params)
     end
   end
 
