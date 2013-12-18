@@ -64,6 +64,7 @@ module Api
       render :json=> Record.where({:medical_record_number.in => ids})
     end
 
+
   private
     def build_filter
       @filter = params[:filter] || {}
