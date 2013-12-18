@@ -8,7 +8,7 @@ class Thorax.Views.LogicView extends Thorax.View
 
   reloadPopulation: ->
     population = @model.get @population
-    view = if population.has 'preconditions'
+    view = if population?.has 'preconditions'
       new Thorax.Views.PreconditionView model: population.get('preconditions').first()
     else
       new Thorax.Views.EmptyPopulationView population: @population
