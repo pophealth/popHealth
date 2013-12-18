@@ -60,6 +60,7 @@ class Thorax.Views.QueryView extends Thorax.View
   exceptions: -> @model.exceptions()
   hasExclusions: -> @model.hasExclusions()
   exclusions: -> @model.exclusions()
+  hasOutliers: -> @model.hasOutliers()
   outliers: -> @model.outliers()
   performanceRate: -> @model.performanceRate()
   performanceDenominator: -> @model.performanceDenominator()

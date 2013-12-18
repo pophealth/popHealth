@@ -60,7 +60,7 @@ class Thorax.Models.Query extends Thorax.Model
   exceptions: -> if @isPopulated() and @has('result') then @get('result').DENEXCEP else 0
   hasExclusions: -> @has('population_ids') and @get('population_ids').hasOwnProperty('DENEX')
   exclusions: -> if @isPopulated() and @has('result') then @get('result').DENEX else 0
-  hasOutliers: -> @has('population_ids') and @get('population_ids').hasOwnProperty('antinumerator')
+  hasOutliers: -> @has('antinumerator')
   outliers: -> if @isPopulated() and @has('result') then @get('result').antinumerator else 0
   performanceDenominator: -> @denominator() - @exceptions() - @exclusions()
   performanceRate: -> Math.round(100 * @numerator() / Math.max(1, @performanceDenominator()))
