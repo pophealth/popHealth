@@ -18,10 +18,10 @@ Rake::TestTask.new(:test_unit) do |t|
   t.verbose = true
 end
 
-
-task :test => [:test_unit] do
+task :test => [:test_unit, "jasmine:ci"] do
   system("open coverage/index.html")
 end
+
 begin
   require 'jasmine'
   load 'jasmine/tasks/jasmine.rake'

@@ -4,13 +4,16 @@ describe 'PatientResults', ->
 
   describe 'Collection', ->
     beforeEach ->      
-      jasmine.Ajax.useMock()
+      jasmine.Ajax.install()
       @collection = new Thorax.Collections.PatientResults @json[0...2], parse: true, parent: jasmine.createSpyObj('parent', ['url'])
+
+    afterEach ->
+      jasmine.Ajax.uninstall()
 
     it 'can fetch additional pages', ->
       expect(@collection.length).toEqual 2
       @collection.fetchNextPage(perPage: 2)
-      mostRecentAjaxRequest().response {responseText: JSON.stringify(@json[2...4]), status: 200}
+      jasmine.Ajax.requests.mostRecent().response({responseText: JSON.stringify(@json[2...4]), status: 200})
       expect(@collection.page).toEqual 2
       expect(@collection.length).toEqual 4
 

@@ -48,7 +48,7 @@ end
 
 group :test, :develop, :ci do
   gem 'pry'
-  gem 'jasmine'
+  gem 'jasmine', '2.0.0'
   gem 'turn', :require => false
   gem 'simplecov', :require => false
   gem 'mocha', :require => false

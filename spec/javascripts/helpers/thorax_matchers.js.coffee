@@ -1,8 +1,11 @@
 beforeEach ->
-  @addMatchers
+  jasmine.addMatchers
     toBeNew: ->
-      @actual.isNew()
+      compare: (actual) ->
+        pass: actual.isNew()
     toBeValid: ->
-      @actual.isValid()
+      compare: (actual) ->
+        pass: actual.isValid()
     toBeEmpty: ->
-      @actual.isEmpty()
+      compare: (actual) ->
+        pass: actual.isEmpty()

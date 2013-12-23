@@ -1,7 +1,9 @@
 beforeEach ->
-  @addMatchers
-    toBeInstanceOf: (klass) ->
-      @actual instanceof klass
+  jasmine.addMatchers
+    toBeInstanceOf: ->
+      compare: (actual, klass) ->
+        pass: actual instanceof klass
 
-    toDeeplyEqual: (obj) ->
-      _(@actual).isEqual obj
+    toDeeplyEqual: ->
+      compare: (actual, obj) ->
+        pass: _(actual).isEqual obj
