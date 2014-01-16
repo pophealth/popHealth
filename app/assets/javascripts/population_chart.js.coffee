@@ -7,8 +7,8 @@ PopHealth.viz.populationChart = ->
       yScale.domain(['NUMER', 'DENOM']).range [margin.top, height-margin.bottom-barHeight]
       svg = d3.select(this).selectAll('svg').data([data])
       gEnter = svg.enter().append('svg')
-        .attr('width', @width)
-        .attr('height', @height)
+        .attr('viewBox', "0 0 #{width} #{height}")
+        .attr('preserveAspectRatio', 'none')
       numer = gEnter.append('g').append('rect')
         .attr('class', 'numer')
         .attr('width', xScale(data.NUMER))
@@ -16,7 +16,7 @@ PopHealth.viz.populationChart = ->
         .attr('y', yScale('NUMER'))
         .attr('x', margin.left)
         .attr('data-placement', "top")
-        .attr('data-content', "Numerator: " + data.NUMER)
+        .attr('data-content', "Numerator: #{data.NUMER}")
         .attr('data-trigger', "hover focus")
         .attr('data-container', 'body')
 
@@ -27,9 +27,9 @@ PopHealth.viz.populationChart = ->
         .attr('width', xScale(data.performanceDenominator))
         .attr('height', barHeight)
         .attr('y', yScale('DENOM'))
-        .attr( 'x', margin.left)
+        .attr('x', margin.left)
         .attr('data-placement', "bottom")
-        .attr('data-content', "Denominator: " + data.performanceDenominator)
+        .attr('data-content', "Denominator: #{data.performanceDenominator}")
         .attr('data-trigger', "hover focus")
         .attr('data-container', 'body')
       denom.append('rect')
@@ -37,9 +37,9 @@ PopHealth.viz.populationChart = ->
         .attr('width', xScale(data.DENEX))
         .attr('height', barHeight)
         .attr('y', yScale('DENOM'))
-        .attr( 'x', xScale(data.performanceDenominator)) 
+        .attr('x', xScale(data.performanceDenominator))
         .attr('data-placement', "bottom")
-        .attr('data-content', "Exclusion: " + data.DENEX)
+        .attr('data-content', "Exclusion: #{data.DENEX}")
         .attr('data-trigger', "hover focus")
         .attr('data-container', 'body') if data.DENEX > 0
 
@@ -48,12 +48,12 @@ PopHealth.viz.populationChart = ->
         .attr('width', xScale(data.DENEXCEP))
         .attr('height', barHeight)
         .attr('y', yScale('DENOM'))
-        .attr('x', xScale(data.performanceDenominator) + xScale(data.DENEX)) 
+        .attr('x', xScale(data.performanceDenominator) + xScale(data.DENEX))
         .attr('data-placement', "bottom")
-        .attr('data-content', "Exceptions: " + data.DENEXCEP)
-        .attr('data-trigger', "hover focus") 
+        .attr('data-content', "Exceptions: #{data.DENEXCEP}")
+        .attr('data-trigger', "hover focus")
         .attr('data-container', 'body') if data.DENEXCEP > 0
-      
+
 
   width = 150
   height = 40

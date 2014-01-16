@@ -1,51 +1,48 @@
 <div class="patient">
-  <div class="sidebar">
+  <div class="col-measure-info">
     <h1><i class="fa fa-tasks"></i> Measures</h1>
     <h2>Outliers</h2>
-    {{#button "filter" class="btn measure-btn active"}}
-      <div class="indicator">
+    {{#button "filter" class="btn btn-measure btn-primary"}}
+      <span class="indicator">
         <i class="fa fa-exclamation-triangle"></i>
-      </div>
-      <div class="measure-title">
-        Controlling High Blood Pressure
-      </div>
+      </span>
+      Controlling High Blood Pressure
     {{/button}}
-    {{#button "filter" class="btn measure-btn"}}
-      <div class="indicator">
+    {{#button "filter" class="btn btn-measure"}}
+      <span class="indicator">
         <i class="fa fa-exclamation-triangle"></i>
-      </div>
-      <div class="measure-title">
-        Smoking And Tobacco Use Cessation, Medical Assistance - Advising Smokers And Tobacco Users To Quit
-      </div>
+      </span>
+      Smoking And Tobacco Use Cessation, Medical Assistance - Advising Smokers And Tobacco Users To Quit
     {{/button}}
   </div>
 
-  <div class="main">
-    <h1 class="main-head"><i class="fa fa-user"></i> {{first}} {{last}}</h1>
-    <div id="time-bar"></div>
-    <div class="demographics">
-      <dl class="dl-horizontal">
-        <dt>RECORD NUMBER</dt>
-        <dd>{{medical_record_number}}</dd>
-        <dt>DOB</dt>
-        <dd>{{birthdate}}</dd>
-        <dt>GENDER</dt>
-        <dd>{{gender}}</dd>
-      </dl>
-      <dl class="dl-horizontal">
-        <dt>RACE</dt>
-        <dd>{{race}}</dd>
-        <dt>ETHNICITY</dt>
-        <dd>{{ethnicity}}</dd>
-        <dt>LANGUAGES</dt>
-        <dd>{{languages}}</dd>
-        <dt>PROVIDERS</dt>
-        <dd>Jonathan Cooper MD</dd>
-      </dl>
+  <div class="col-patient-info">
+    <h1 class="patient-heading"><i class="fa fa-user"></i> {{first}} {{last}}</h1>
+    <div class="timeline-entry">
+      <div class="patient-data-list">
+        <dl class="dl-horizontal">
+          <dt>RECORD NUMBER</dt>
+          <dd>{{medical_record_number}}</dd>
+          <dt>DOB</dt>
+          <dd>{{birthdate}}</dd>
+          <dt>GENDER</dt>
+          <dd>{{gender}}</dd>
+        </dl>
+        <dl class="dl-horizontal">
+          <dt>RACE</dt>
+          <dd>{{race}}</dd>
+          <dt>ETHNICITY</dt>
+          <dd>{{ethnicity}}</dd>
+          <dt>LANGUAGES</dt>
+          <dd>{{languages}}</dd>
+          <dt>PROVIDERS</dt>
+          <dd>Jonathan Cooper MD</dd>
+        </dl>
+      </div>
     </div>
-    <div class="time-line">
-      <div class="timeline-title">Patient History Relative to Measures</div>
-    </div>
+
+    <header class="timeline-entry"><h2>Patient History Relative to Measures</h2></header>
+
     {{!--
       The following section can be added back in after filtering is added and
       we have the ability to determine the cause of a patient being an outlier.
@@ -68,24 +65,23 @@
       </div>
     </div> --}}
     {{#collection entries item-view="EntryView"}}
-      <div class="record-listing">
-        <div class="circle-icon">
-          <i class="fa fa-{{icon}}"></i>
-        </div>
+      <div class="timeline-entry">
+        <div class="circle-icon"><i class="fa fa-{{icon}}"></i></div>
         <div class="patient-data">
-        <div class="triangle-left"></div>
-          <dl class="dl-record dl-horizontal">
-            <dt>{{entry_type}}</dt>
-            {{#if description}}
-              <dd>{{description}}</dd>
-            {{else}}
-              <dd class="text-muted">No Details Available</dd>
-            {{/if}}
-          </dl>
-          <dl class="dl-date dl-horizontal">
-            <dt>date</dt>
-            <dd>{{start_time}} {{#if end_time}} &ndash; {{end_time}} {{/if}}</dd>
-          </dl>
+          <div class="patient-data-list">
+            <dl class="dl-horizontal">
+              <dt>{{entry_type}}</dt>
+              {{#if description}}
+                <dd>{{description}}</dd>
+              {{else}}
+                <dd class="text-muted">No Details Available</dd>
+              {{/if}}
+            </dl>
+            <dl class="dl-horizontal">
+              <dt>date</dt>
+              <dd>{{start_time}}{{#if end_time}} &ndash; {{end_time}}{{/if}}</dd>
+            </dl>
+          </div>
         </div>
       </div>
     {{/collection}}

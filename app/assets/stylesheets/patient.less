@@ -1,0 +1,92 @@
+.patient {
+  .make-row;
+  .col-measure-info {
+    .make-md-column(3);
+  }
+
+  .col-patient-info {
+    .make-md-column(9);
+    .patient-heading {
+      margin-left: -10px;
+    }
+    // h2 {
+    //   background-color: @gray;
+    // }
+    .timeline-entry {
+      border-left: 8px solid @gray-lighter;
+      padding: 10px 0 0 @grid-gutter-width;
+      &.during-measurement-period {
+        border-left: 8px solid @brand-primary;
+      }
+    }
+    header.timeline-entry {
+      background-color: @gray-lighter;
+      padding: 8px 0 8px @grid-gutter-width;
+      h2 {
+        margin: 0;
+      }
+    }
+  }
+
+  .btn-measure {
+    display: block;
+    text-align: left;
+    white-space: normal;
+    width: 100%;
+    & + .btn-measure {
+      margin-top: 5px;
+    }
+  }
+
+
+  .circle-icon {
+    @radius: 18px;
+    position: absolute;
+    left: 0px;
+    background-color: white;
+    border: 2px solid @brand-primary;
+    border-radius: @radius;
+    color: @brand-primary;
+    .square(@radius * 2);
+    line-height: 2;
+    text-align: center;
+    &.selected {
+      background-color: @brand-primary;
+      color: white;
+    }
+  }
+
+  .patient-data {
+    position: relative;
+    border: 1px solid @gray;
+    &:before {
+      content: ' ';
+      background-color: white;
+      border-bottom: 1px solid @gray;
+      border-left: 1px solid @gray;
+      position: absolute;
+      .square(@grid-gutter-width / 2);
+      left: -(@grid-gutter-width / 4) - 1; // width/2 (-1 to account for border)
+      top: 9px;
+      .rotate(45deg);
+    }
+    &.selected {
+      @border-selected: 2px dashed white;
+      background-color: @brand-primary;
+      border: @border-selected;
+      color: white;
+      &:before {
+        background-color: @brand-primary;
+        border-bottom: @border-selected;
+        border-left: @border-selected;
+      }
+    }
+  }
+
+  .patient-data-list {
+    .make-row;
+    dl {
+      .make-md-column(6);
+    }
+  }
+}
