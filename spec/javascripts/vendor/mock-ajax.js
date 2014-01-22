@@ -55,8 +55,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       this.requests.reset();
     };
 
-    this.stubRequest = function(url) {
-      var stub = new RequestStub(url);
+    this.stubRequest = function(url, data) {
+      var stub = new RequestStub(url, data);
       stubTracker.addStub(stub);
       return stub;
     };
@@ -85,10 +85,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       stubs = [];
     };
 
-    this.findStub = function(url) {
+    this.findStub = function(url, data) {
       for (var i = stubs.length - 1; i >= 0; i--) {
         var stub = stubs[i];
-        if (stub.url === url) {
+        if (stub.matches(url, data)) {
           return stub;
         }
       }
@@ -109,6 +109,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         this.username = arguments[3];
         this.password = arguments[4];
         this.readyState = 1;
+        this.onreadystatechange();
       },
 
       setRequestHeader: function(header, value) {
@@ -119,6 +120,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         this.readyState = 0;
         this.status = 0;
         this.statusText = "abort";
+        this.onreadystatechange();
       },
 
       readyState: 0,
@@ -134,8 +136,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       send: function(data) {
         this.params = data;
         this.readyState = 2;
+        this.onreadystatechange();
 
-        var stub = stubTracker.findStub(this.url);
+        var stub = stubTracker.findStub(this.url, data);
         if (stub) {
           this.response(stub);
         }
@@ -243,14 +246,19 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     };
   }
 
-  function RequestStub(url) {
+  function RequestStub(url, stubData) {
     this.url = url;
+    this.data = stubData ? stubData.split('&').sort().join('&') : undefined;
 
     this.andReturn = function(options) {
       this.status = options.status || 200;
 
       this.contentType = options.contentType;
       this.responseText = options.responseText;
+    };
+
+    this.matches = function(url, data) {
+      return this.url === url && (!this.data || this.data === (data && data.split('&').sort().join('&')));
     };
   }
 
