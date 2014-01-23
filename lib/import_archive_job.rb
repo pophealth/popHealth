@@ -6,8 +6,12 @@ class ImportArchiveJob
     @current_user = options['user']._id
   end
 
+  def before
+    Atna.log(current_user.username, :phi_import)
+  end
+
   def perform
-    RecordImporter.import_archive(File.new(@file), User.find(@current_user))
+    HealthDataStandards::Import::BulkRecordImporter.import_archive(File.new(@file))
   end
 
   def after

@@ -1,11 +1,10 @@
-require 'record_importer'
 class RecordsController < ActionController::Metal
   
   def create
     current_user = request.env['warden'].authenticate!
     
     if (current_user.admin?)
-      result = RecordImporter.import(request.body)
+      result = HealthDataStandards::Import::BulkRecordImporter.import(request.body)
 
       if (result[:status] == 'success') 
         @record = result[:record]
