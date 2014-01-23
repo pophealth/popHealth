@@ -36,3 +36,6 @@ describe 'PatientView', ->
     noLanguageView = new Thorax.Views.PatientView model: noLanguagePatient
     noLanguageView.render()
     expect(noLanguageView.$el).toContainText "Not Available"
+
+  it 'renders any values', ->
+    expect(@patientView.$el).toContainText '60 mmHg, 60 mmHg'

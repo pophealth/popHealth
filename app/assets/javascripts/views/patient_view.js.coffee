@@ -6,9 +6,9 @@ class Thorax.Views.PatientView extends Thorax.View
       last: PopHealth.Helpers.maskName @model.get('last')
       effective_time: formatTime @model.get('effective_time'), 'DD MMM YYYY'
       birthdate: formatTime @model.get('birthdate'), PopHealth.Helpers.maskDateFormat 'DD MMM YYYY'
-      gender: 
+      gender:
         if @model.get('gender') == 'M'
-          'Male' 
+          'Male'
         else
           'Female'
       race:
@@ -31,14 +31,13 @@ class Thorax.Views.PatientView extends Thorax.View
   formatTime = (time, format) -> moment(time).format(format) if time
 
 class Thorax.Views.EntryView extends Thorax.View
-  template: JST['patients/_result']
   context: ->
     _(super).extend
       start_time: formatTime @model.get('start_time')
       end_time: formatTime @model.get('end_time') if @model.get('end_time')?
-      entry_type: @model.entryType()
-      icon: @model.icon()
-      description: @model.get('description').split('(')[0] if @model.get('description')
+      entry_type: @model.entryType
+      icon: @model.icon
+      description: @model.get('description')?.split('(')[0]
 
   # Helper function for date/time conversion
   formatTime = (time) -> moment(time).format('M/DD/YYYY') if time
@@ -52,5 +51,5 @@ class Thorax.Views.EntryView extends Thorax.View
 #
 # {{#if allergy}} {{> "patients/_allergy"}} {{/if}}
 #
-# Where allergy is a property in the context that is true or false based 
+# Where allergy is a property in the context that is true or false based
 # based on the entryType. Each type with a partial would need their own property.
