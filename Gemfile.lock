@@ -84,7 +84,7 @@ GEM
       multi_json
       sprockets (>= 2.0.3)
       tilt
-    health-data-standards (3.3.0)
+    health-data-standards (3.4.0)
       activesupport (~> 3.2.14)
       builder (~> 3.0.0)
       erubis (~> 2.7.0)
@@ -249,7 +249,7 @@ DEPENDENCIES
   formtastic
   git
   handlebars_assets
-  health-data-standards (= 3.3.0)
+  health-data-standards (= 3.4.0)
   highline
   jasmine (= 2.0.0)
   jquery-rails

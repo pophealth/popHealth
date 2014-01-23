@@ -1,4 +1,3 @@
-require 'record_importer'
 require 'import_archive_job'
 require 'fileutils'
 

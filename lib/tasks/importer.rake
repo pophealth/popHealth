@@ -1,4 +1,3 @@
-require 'record_importer'
 require 'json'
 namespace :import do
 
@@ -7,8 +6,7 @@ namespace :import do
     if !args.source_dir || args.source_dir.size==0
       raise "please specify a value for source_dir"
     end
-    importer = RecordImporter.new(args.source_dir, args.providers_predefined == 'true')
-    importer.run
+    HealthDataStandards::Import::BulkRecordImporter.import_directory(args.source_dir)
   end
 
   desc 'import providers from a file containing a json array of providers'
