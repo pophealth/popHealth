@@ -14,7 +14,11 @@
     end
 
     def show
-      respond_with @patient
+      json = @patient.as_json(params[:include_results] ? {methods: :cache_results} : {})
+      if results = json.delete('cache_results')
+        json['measure_results'] = results_with_measure_metadata(results)
+      end
+      respond_with json
     end
 
     def create
@@ -32,14 +36,14 @@
       respond_with({}, :status=>204)
     end
 
-    
+
     def toggle_excluded
       # TODO - figure out security constraints around manual exclusions -- this should probably be built around
       # the security constraints for queries
       ManualExclusion.toggle!(@patient, params[:measure_id], params[:sub_id], params[:rationale], current_user)
       redirect_to :controller => :measures, :action => :patients, :id => params[:measure_id], :sub_id => params[:sub_id]
     end
-    
+
 
     def destroy
       authorize! :delete, @patient
@@ -48,11 +52,11 @@
     end
 
     def results
-      render :json=> @patient.cache_results(params).to_a
+      render :json=> results_with_measure_metadata(@patient.cache_results(params))
     end
-    
+
     private
-    
+
     def load_patient
       @patient = Record.find(params[:id])
       authorize! :read, @patient
@@ -75,5 +79,13 @@
       @order = params[:order] || [:last.acsd, :first.asc]
     end
 
+    def results_with_measure_metadata(results)
+      results.to_a.map do |result|
+        hqmf_id = result['value']['measure_id']
+        sub_id = result['value']['sub_id']
+        measure = HealthDataStandards::CQM::Measure.where("hqmf_id" => hqmf_id, "sub_id" => sub_id).first
+        result['value'].merge(measure_title: measure.title, measure_subtitle: measure.subtitle)
+      end
+    end
   end
 end
