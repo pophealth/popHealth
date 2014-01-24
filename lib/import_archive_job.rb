@@ -3,11 +3,11 @@ class ImportArchiveJob
 
   def initialize(options)
     @file = options['file'].path
-    @current_user = options['user']._id
+    @current_user = options['user']
   end
 
   def before
-    Atna.log(current_user.username, :phi_import)
+    Atna.log(@current_user.username, :phi_import)
   end
 
   def perform
