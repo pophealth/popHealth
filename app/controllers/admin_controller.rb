@@ -15,18 +15,18 @@ class AdminController < ApplicationController
   end
 
   def remove_patients
-    Record.all.delete
+    Record.delete_all
     redirect_to action: 'patients'
   end
 
   def remove_caches
-    QueryCache.all.delete
-    PatientCache.all.delete
+    QueryCache.delete_all
+    PatientCache.delete_all
     redirect_to action: 'patients'
   end
 
   def remove_providers
-    Provider.destroy_all
+    Provider.delete_all
     redirect_to action: 'patients'
   end
   

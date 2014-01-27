@@ -8,9 +8,10 @@ class RecordsController < ActionController::Metal
 
       if (result[:status] == 'success') 
         @record = result[:record]
-        QME::QualityReport.update_patient_results(@record.medical_record_number)
         Atna.log(current_user.username, :phi_import)
         Log.create(:username => current_user.username, :event => 'patient record imported', :medical_record_number => @record.medical_record_number)
+        QueryCache.delete_all
+        PatientCache.delete_all
       end
 
       self.content_type = "text/plain"
