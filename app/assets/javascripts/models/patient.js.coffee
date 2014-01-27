@@ -1,6 +1,10 @@
 class Thorax.Models.Patient extends Thorax.Model
   urlRoot: '/api/patients'
   idAttribute: '_id'
+  fetch: (options = {}) ->
+    options.data ?= {}
+    options.data.include_results = true
+    super options
   parse: (attrs) ->
     attrs = $.extend {}, attrs
     attrs.birthdate = attrs.birthdate * 1000
@@ -10,6 +14,8 @@ class Thorax.Models.Patient extends Thorax.Model
       if attrs[type]?
         for entry in attrs[type]
           attrs.entries.add entry, type: type
+    if attrs.measure_results
+      attrs.measure_results = new Thorax.Collections.PatientMeasureResults attrs.measure_results, parse: true, parent: this
     attrs
 
 class Thorax.Collections.Entries extends Thorax.Collection
