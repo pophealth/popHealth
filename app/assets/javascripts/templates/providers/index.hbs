@@ -1,0 +1,22 @@
+<thead>
+  <tr>
+    <th class="pid">Provider NPI</th>
+    <th>Last Name</th>
+    <th>First Name</th>
+    <th>Tax ID</th>
+    <th>Phone</th>
+    <th>Team</th>
+  </tr>
+</thead>
+{{#collection tag='tbody'}}
+  <tr>
+    <td>
+      {{#link "providers/{{_id}}" expand-tokens=true}}{{npi}}{{/link}}
+    </td>
+    <td><strong>{{family_name}}</strong></td>
+    <td>{{given_name}}</td>
+    <td>{{tin}}</td>
+    <td>{{phone}}</td>
+    <td>{{team.name}}</td>
+  </tr>
+{{/collection}}
