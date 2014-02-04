@@ -1,5 +1,9 @@
 class Thorax.Views.PatientView extends Thorax.View
   template: JST['patients/show']
+  events:
+    rendered: ->
+      @$('#measures').on 'show.bs.collapse hide.bs.collapse', (e) ->
+        $(e.target).prev().toggleClass('active').find('.submeasure-expander .fa').toggleClass('fa-plus-square-o fa-minus-square-o')
   context: ->
     _(super).extend
       first: PopHealth.Helpers.maskName @model.get('first')
