@@ -27,14 +27,6 @@ class Thorax.Views.PatientView extends Thorax.View
         measures.add measure
     return measures
 
-  # measures: ->
-  #   measures = new Thorax.Collection
-  #   if @model.has 'measure_results'
-  #     resultsByMeasure = @model.get('measure_results').groupBy (r) -> "#{r.get('measure_id')}/#{r.get('sub_id')}"
-  #     for measureID, results of resultsByMeasure
-  #       result = results[0] #
-  #       measures.add id: measureID, sub_id: title: results[0].measure_title, subtitle:
-
   # Helper function for date/time conversion
   formatTime = (time, format) -> moment(time).format(format) if time
 
