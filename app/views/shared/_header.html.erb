@@ -25,7 +25,7 @@
               <% if current_user.staff_role? || current_user.admin? %>
                 <li class="divider"></li>
                 <li role="presentation" class="dropdown-header">Admin</li>
-                <li><%= link_to raw('<i class="glyphicon glyphicon-plus"></i> Providers'), providers_path%></li>
+                <li><%= link_to raw('<i class="glyphicon glyphicon-plus"></i> Providers'), '/#providers'%></li>
                 <% if current_user.admin? %>
                   <% if (APP_CONFIG['patient_management_enabled']) %>
                     <li><%= link_to raw('<i class="glyphicon glyphicon-eye-open"></i> Patients'), admin_patients_path%></li>

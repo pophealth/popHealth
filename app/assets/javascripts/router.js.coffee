@@ -10,7 +10,7 @@ class PopHealth.Router extends Backbone.Router
     'measures/:id(/:sub_id)/patient_results':  'patientResultsForMeasure'
     'measures/:id(/:sub_id)':           'measure'
     'patients/:id':                     'patient'
-    'providers/:id':                    'provider'
+    'providers(/:id)':                  'provider'
 
   dashboard: ->
     @view.setView new Thorax.Views.Dashboard collection: @categories
@@ -40,7 +40,10 @@ class PopHealth.Router extends Backbone.Router
     @view.setView new Thorax.Views.PatientView model: patientRecord
 
   provider: (id) ->
-    providerModel = new Thorax.Models.Provider '_id': id
-    # TODO Handle 404 case
-    @view.setView new Thorax.Views.ProviderView model: providerModel
-
+    if id?
+      providerModel = new Thorax.Models.Provider '_id': id
+      # TODO Handle 404 case
+      @view.setView new Thorax.Views.ProviderView model: providerModel
+    else
+      providerCollection = new Thorax.Collections.Providers
+      @view.setView new Thorax.Views.ProvidersView collection: providerCollection    
