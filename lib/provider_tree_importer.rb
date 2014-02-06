@@ -1,0 +1,60 @@
+require 'rexml/document'
+
+class ProviderTreeImporter
+  class ProviderEntry
+    attr_accessor :attributes, :sub_providers
+
+    def initialize(element)
+      @attributes = map_attributes_to_hash(element.attributes)
+      @sub_providers = element.elements.map { |this| ProviderEntry.new(this) }
+    end
+
+    def flatten
+      @flatten ||= @outlines.map(&:flatten).unshift(self)
+    end
+
+    def to_s
+      @to_s ||= attributes['text'] || super
+    end
+
+    def respond_to?(method)
+      return true if attributes[method.to_s]
+      super
+    end
+
+    # def method_missing(method, *args, &block)
+    #   attributes[method.to_s] || super
+    # end
+
+    private
+      def map_attributes_to_hash(attributes)
+        list = {}
+        attributes.each { |key, value| list[key.underscore] = value }
+      end
+  end
+
+  attr_reader :sub_providers
+
+  def initialize(xml)
+    @doc = REXML::Document.new(xml)
+
+    # parse_head_elements :title, :owner_name, :owner_email
+    # parse_head_elements :date_created, :date_modified, :with => Proc.new { |e| Time.parse(e) }
+
+    @sub_providers = document_body ? initialize_subproviders_from_document_body : []
+  end
+
+  def flatten
+    @flatten ||= @sub_providers.map(&:flatten).flatten
+  end
+
+  private
+
+  def document_body
+    @document_body ||= @doc.elements['opml/body']
+  end
+
+  def initialize_subproviders_from_document_body
+    document_body.elements.map { |element| ProviderEntry.new(element) }
+  end
+end
