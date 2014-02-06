@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<opml version="1.1">
+<head />
+<body>
+  <outline id="1" text="VA New England Healthcare System" level="VISN">
+    <outline id="627" text="VA Connecticut Healthcare System, West Haven Campus" level="division">
+      <outline id="6279AA" text="Newington VANURS" level="facility" />
+    </outline>
+  </outline>
+</body>
+</opml>
