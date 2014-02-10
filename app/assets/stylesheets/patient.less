@@ -28,6 +28,36 @@
     }
   }
 
+  .panel {
+    .panel-heading {
+      &.active {
+        background-color: @brand-primary;
+        color: white;
+        .submeasure-expander {
+          color: white;
+        }
+      }
+    }
+    .panel-body {
+      padding: 5px 0;
+    }
+
+    .submeasure-expander {
+      .pull-right;
+      color: @brand-primary;
+      margin: 0 0 3px 3px;
+    }
+
+    .measure-title {
+      .panel-title;
+      color: inherit;
+      display: inline-block;
+      font-weight: 500;
+      text-transform: capitalize;
+      width: 100%;
+    }
+  }
+
   .btn-measure {
     display: block;
     text-align: left;
