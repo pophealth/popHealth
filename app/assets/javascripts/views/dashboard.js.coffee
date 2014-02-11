@@ -9,8 +9,8 @@ class Thorax.Views.ResultsView extends Thorax.View
     rendered: ->
       @$('.dial').knob()
       if @model.isPopulated()
-        d3.select(@el).select('.pop-chart').datum(@model.result()).call(@popChart) 
-        @$('rect').popover() 
+        d3.select(@el).select('.pop-chart').datum(@model.result()).call(@popChart)
+        @$('rect').popover()
     destroyed: ->
       clearInterval(@timeout) if @timeout?
 
@@ -54,8 +54,9 @@ class Thorax.Views.Dashboard extends Thorax.View
 
   categoryFilterContext: (category) ->
     selectedCategory = @selectedCategories.findWhere(category: category.get('category'))
-    allSelected = selectedCategory?.get('measures').length == category.get('measures').length
-    _(category.toJSON()).extend selected: allSelected
+    measureCount = selectedCategory?.get('measures').length || 0
+    allSelected = measureCount == category.get('measures').length
+    _(category.toJSON()).extend selected: allSelected, measure_count: measureCount
   measureFilterContext: (measure) ->
     isSelected = @selectedCategories.any (cat) ->
       cat.get('measures').any (selectedMeasure) -> measure is selectedMeasure
@@ -63,23 +64,27 @@ class Thorax.Views.Dashboard extends Thorax.View
 
   toggleMeasure: (e) ->
     # update 'all' checkbox to be checked if all measures are checked
-    $cb = $(e.target)
+    $cb = $(e.target); $cbs = $cb.closest('.panel-body').find(':checkbox.individual')
     $all = $cb.closest('.panel-body').find(':checkbox.all')
-    $all.prop 'checked', $cb.closest('.panel-body').find(':checkbox.individual').not(':checked').length is 0
+    $all.prop 'checked', $cbs.not(':checked').length is 0
     # show/hide measure
     measure = $(e.target).model()
     if $(e.target).is(':checked')
       @selectedCategories.selectMeasure measure
     else
       @selectedCategories.removeMeasure measure
+    $cb.closest('.panel-collapse').prev('.panel').find('.measure-count').text $cbs.filter(':checked').length
 
   toggleCategory: (e) ->
     # change DOM
     $cb = $(e.target)
     $cb.closest('.panel-body').find(':checkbox.individual').prop 'checked', $cb.is(':checked')
+    $measureCount = $cb.closest('.panel-collapse').prev('.panel').find('.measure-count')
     # change models
     category = $cb.model()
     if $cb.is(':checked')
       @selectedCategories.selectCategory category
+      $measureCount.text $cb.model().get('measures').length
     else
       @selectedCategories.removeCategory category
+      $measureCount.text 0
