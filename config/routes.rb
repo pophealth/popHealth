@@ -1,5 +1,7 @@
 PopHealth::Application.routes.draw do
 
+  apipie
+
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   get "admin/users"
