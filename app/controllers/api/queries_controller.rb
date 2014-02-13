@@ -1,5 +1,9 @@
 module Api
   class QueriesController  < ApplicationController
+    resource_description do
+      short 'Queries'
+      formats ['json']
+    end
     include PaginationHelper
     skip_authorization_check :only=> :create
     before_filter :authenticate_user!
@@ -19,6 +23,11 @@ module Api
       render json: @qr
     end
 
+    api :POST, '/queries', "Calculate a clinical quality measure"
+    param :measure_id, String, :desc => 'The HQMF id for the CQM to calculate', :required => true
+    param :sub_id, String, :desc => 'The sub id for the CQM to calculate. This is popHealth specific.', :required => false
+    param :effective_date, Fixnum, :desc => 'Time in seconds since the epoch for the end date of the reporting period', 
+                                   :required => true
     def create
       build_filter
       authorize_providers

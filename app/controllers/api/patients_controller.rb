@@ -1,5 +1,8 @@
   module Api
   class PatientsController < ApplicationController
+    resource_description do
+      short 'Patients'
+    end
     include PaginationHelper
     respond_to :json
     before_filter :authenticate_user!
@@ -8,11 +11,23 @@
     before_filter :set_pagination_params, :only => :index
     before_filter :set_filter_params, :only => :index
 
+    def_param_group :pagination do
+      param :page, /\d+/
+      param :per_page, /\d+/
+    end
+
+    api :GET, "/patients", "Get a list of patients"
+    param_group :pagination
+    formats ['json']
     def index
       records = Record.where(@query)
       respond_with  paginate(api_patients_url,records)
     end
 
+    api :GET, "/patients/:id[?include_results=:include_results]", "Retrieve a patient in JSON format"
+    formats ['json']
+    param :id, String, :desc => "Patient ID", :required => true
+    param :include_results, String, :desc => "Include measure calculation results", :required => false
     def show
       json = @patient.as_json(params[:include_results] ? {methods: :cache_results} : {})
       if results = json.delete('cache_results')
@@ -21,6 +36,9 @@
       respond_with json
     end
 
+    api :POST, "/patients", "Load a patient into popHealth"
+    formats ['xml']
+    description "Upload a QRDA Category I document for a patient into popHealth"
     def create
       authorize! :create, Record
       RecordImporter.import(params[:file])
