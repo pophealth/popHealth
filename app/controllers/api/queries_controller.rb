@@ -3,6 +3,11 @@ module Api
     resource_description do
       short 'Queries'
       formats ['json']
+      description <<-QCDESC
+        This resource is responsible for managing clinical quality measure calculations. Creating a new query will kick 
+        off a new CQM caluclation (if it hasn't already been calculated). You can determine the status of ongoing
+        calculations, force recalculations and see results through this resource.
+QCDESC
     end
     include PaginationHelper
     skip_authorization_check :only=> :create
@@ -32,7 +37,7 @@ SDESC
     api :POST, '/queries', "Start a clinical quality measure calculation"
     param :measure_id, String, :desc => 'The HQMF id for the CQM to calculate', :required => true
     param :sub_id, String, :desc => 'The sub id for the CQM to calculate. This is popHealth specific.', :required => false
-    param :effective_date, Fixnum, :desc => 'Time in seconds since the epoch for the end date of the reporting period', 
+    param :effective_date, ->(effective_date){ effective_date.present? }, :desc => 'Time in seconds since the epoch for the end date of the reporting period', 
                                    :required => true
     example '{"_id":"52fe409bb99cc8f818000001", "status":{"state":"queued", ...}, ...}'
     description <<-CDESC
@@ -85,6 +90,11 @@ CDESC
     param :antinumerator, /true|false/, :desc => 'Ensure patients are not in the numerator but are in the denominator for the measure', :required => false
     param_group :pagination, Api::PatientsController
     example '[{"_id":"52fe409ef78ba5bfd2c4127f","value":{"DENEX":0,"DENEXCEP":0,"DENOM":1,"IPP":1,"NUMER":1,"antinumerator":0,"birthdate":1276869600.0,"effective_date":1356998340.0,,"first":"Steve","gender":"M","last":"E","measure_id":"40280381-3D61-56A7-013E-6224E2AC25F3","medical_record_id":"ce83c561f62e245ad4e0ca648e9de0dd","nqf_id":"0038","patient_id":"52fbbf34b99cc8a728000068"}},...]'
+    description <<-PRDESC
+      This action returns an array of patients that have results calculated for this clinical quality measure. The list can be restricted
+      to specific populations, such as only patients that have made it into the numerator by passing in a query parameter for a particular
+      population. Results are paginated.
+PRDESC
     def patient_results
       qr = QME::QualityReport.find(params[:id])
       authorize! :read, qr
