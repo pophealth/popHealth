@@ -10,7 +10,7 @@ class ProviderTreeImporter
     end
 
     def flatten
-      @flatten ||= @outlines.map(&:flatten).unshift(self)
+      @flatten ||= @sub_providers.map(&:flatten).unshift(self)
     end
 
     def to_s
@@ -22,31 +22,39 @@ class ProviderTreeImporter
       super
     end
 
-    # def method_missing(method, *args, &block)
-    #   attributes[method.to_s] || super
-    # end
-
     private
-      def map_attributes_to_hash(attributes)
-        list = {}
-        attributes.each { |key, value| list[key.underscore] = value }
-      end
+
+    def map_attributes_to_hash(attributes)
+      list = {}
+      attributes.each { |key, value| list[key.underscore] = value }
+    end
   end
 
   attr_reader :sub_providers
 
   def initialize(xml)
     @doc = REXML::Document.new(xml)
-
-    # parse_head_elements :title, :owner_name, :owner_email
-    # parse_head_elements :date_created, :date_modified, :with => Proc.new { |e| Time.parse(e) }
-
     @sub_providers = document_body ? initialize_subproviders_from_document_body : []
   end
 
   def flatten
     @flatten ||= @sub_providers.map(&:flatten).flatten
   end
+
+  def load_providers(provider_list, parent=nil)
+      provider_list.each do |sub|
+      prov = Provider.new({
+        :npi          => sub.attributes["id"],
+        :given_name   => sub.attributes["name"],
+        :address        => sub.attributes["address"],
+        })
+      if parent
+        parent.children << prov
+      end
+      prov.save
+      load_providers(sub.sub_providers, prov)
+    end
+  end 
 
   private
 
@@ -57,4 +65,5 @@ class ProviderTreeImporter
   def initialize_subproviders_from_document_body
     document_body.elements.map { |element| ProviderEntry.new(element) }
   end
+    
 end
