@@ -49,12 +49,8 @@
 
     api :POST, "/patients", "Load a patient into popHealth"
     formats ['xml']
-    description <<-PDESC 
-      Upload a QRDA Category I document for a patient into popHealth.
-
-      This action expects the QRDA Cat I document to be the request body. The expected Content-Type is text/xml.
-      This is *not* a multipart/form-data based endpoint. 
-    PDESC
+    param :file, String, :desc => "The QRDA Cat I file", :required => true
+    description "Upload a QRDA Category I document for a patient into popHealth."
     def create
       authorize! :create, Record
       RecordImporter.import(params[:file])
