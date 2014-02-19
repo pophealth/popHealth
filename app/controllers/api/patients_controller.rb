@@ -11,7 +11,7 @@
 
         Ids used for patients by this resource are the MongoDB identifier for the patient, not the
         patient's medical record number.
-PCDESC
+      PCDESC
     end
     include PaginationHelper
     respond_to :json

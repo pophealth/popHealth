@@ -3,9 +3,7 @@ module Api
     resource_description do
       short 'Measures'
       formats ['json']
-      description <<-MCDESC
-        This resource allows for the management of clinical quality measurses in the popHealth application.
-MCDESC
+      description "This resource allows for the management of clinical quality measurses in the popHealth application."
     end
     include PaginationHelper
     before_filter :authenticate_user!
