@@ -40,24 +40,7 @@ namespace :provider do
   desc 'Load provider tree from OPML'
   task :load_from_opml, :path do |t, args|
     provider_tree = ProviderTreeImporter.new(File.new(args.path))
-
-    def load_providers(provider_list, parent=nil) 
-      provider_list.each do |sub|
-        prov = Provider.new({
-          :npi          => sub.attributes["id"],
-          :given_name   => sub.attributes["text"],
-          :level        => sub.attributes["level"],
-          })
-        if parent
-          parent.children << prov
-        end
-        prov.save
-        load_providers(sub.sub_providers, prov)
-      end
-    end
-
-    load_providers(provider_tree.sub_providers)
-
+    provider_tree.load_providers(provider_tree.sub_providers)
   end
     
 end

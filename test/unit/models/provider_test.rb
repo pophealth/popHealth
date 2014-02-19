@@ -19,5 +19,15 @@ class ProviderTest < ActiveSupport::TestCase
     user2 = FactoryGirl.create(:provider)
     assert_false @user1.merge_provider(user2)
   end
-  
+
+  test "should import providers from OPML properly" do
+    provider_tree = ProviderTreeImporter.new(File.new('test/fixtures/providers.opml'))
+    provider_tree.load_providers(provider_tree.sub_providers)
+    leaf = Provider.where(:given_name => "Newington VANURS").first
+    first_parent = Provider.where(:_id => leaf.parent_id).first
+    root = Provider.where(:_id => first_parent.parent_id).first
+    assert_equal leaf.npi, "6279AA"
+    assert_equal first_parent.npi, "627"
+    assert_equal root.npi, "1"
+  end
 end
