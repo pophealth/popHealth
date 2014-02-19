@@ -7,7 +7,7 @@ module Api
         This resource is responsible for managing clinical quality measure calculations. Creating a new query will kick 
         off a new CQM caluclation (if it hasn't already been calculated). You can determine the status of ongoing
         calculations, force recalculations and see results through this resource.
-QCDESC
+      QCDESC
     end
     include PaginationHelper
     skip_authorization_check :only=> :create
@@ -25,9 +25,7 @@ QCDESC
     api :GET, '/queries/:id', "Retrieve clinical quality measure calculation"
     param :id, String, :desc => 'The id of the quality measure calculation', :required => true
     example '{"DENEX":0,"DENEXCEP":0,"DENOM":5,"IPP":5,"MSRPOPL":0,"NUMER":0,  "status":{"state":"completed", ...}, ...}'
-    description <<-SDESC
-      Gets a clinical quality measure calculation. If calculation is completed, the response will include the results.
-SDESC
+    description "Gets a clinical quality measure calculation. If calculation is completed, the response will include the results."
     def show
       @qr = QME::QualityReport.find(params[:id])
       authorize! :read, @qr
@@ -45,7 +43,7 @@ SDESC
       it will return the results. If not, it will return the status of the calculation, which can be checked in
       the status property of the returned JSON. If it is calculating, then the results may be obtained by the
       GET action with the id. 
-CDESC
+    CDESC
     def create
       build_filter
       authorize_providers
@@ -94,7 +92,7 @@ CDESC
       This action returns an array of patients that have results calculated for this clinical quality measure. The list can be restricted
       to specific populations, such as only patients that have made it into the numerator by passing in a query parameter for a particular
       population. Results are paginated.
-PRDESC
+    PRDESC
     def patient_results
       qr = QME::QualityReport.find(params[:id])
       authorize! :read, qr

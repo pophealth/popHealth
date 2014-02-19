@@ -7,7 +7,7 @@ module Api
       description <<-RCDESC
         This resource is responsible for the generation of QRDA Category III reports from clincial
         quality measure calculations.
-RCDESC
+      RCDESC
     end
     before_filter :authenticate_user!
     skip_authorization_check
@@ -19,7 +19,7 @@ RCDESC
     description <<-CDESC
       This action will generate a QRDA Category III document. If measure_ids and effective_date are not provided,
       the values from the user's dashboard will be used.
-CDESC
+    CDESC
     def cat3
       measure_ids = params[:measure_ids] ||current_user.preferences["selected_measure_ids"]
       filter = measure_ids=="all" ? {}  : {:hqmf_id.in =>measure_ids}
