@@ -29,6 +29,7 @@ gem "thin"
 gem 'formtastic'
 gem 'cancan'
 gem 'factory_girl', "2.6.3"
+gem 'apipie-rails'
 
 # Windows doesn't have syslog, so need a gem to log to EventLog instead
 gem 'win32-eventlog', :platforms => [:mswin, :mingw]
