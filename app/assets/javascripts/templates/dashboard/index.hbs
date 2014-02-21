@@ -67,7 +67,7 @@
               <a href="#measures/{{id}}/{{sub_id}}">{{short_subtitle}}</a>
             {{/if}}
           </div>
-          {{view "ResultsView" model=query id=id sub_id=sub_id}}
+          {{view "ResultsView" model=query id=id sub_id=sub_id provider_id=../../../provider_id}}
         </div>
       {{/collection}}
     {{/collection}}
