@@ -36,5 +36,11 @@ namespace :provider do
     Provider.all.each { |pr| pr.destroy }
     
   end
+
+  desc 'Load provider tree from OPML'
+  task :load_from_opml, :path do |t, args|
+    provider_tree = ProviderTreeImporter.new(File.new(args.path))
+    provider_tree.load_providers(provider_tree.sub_providers)
+  end
     
 end

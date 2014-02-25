@@ -1,5 +1,6 @@
 class Provider
-  include Mongoid::Document
+
+  field :level, type: String
   
   scope :alphabetical, order_by([:family_name, :asc], [:given_name, :asc])
   scope :with_npi, where(:npi.ne => nil).or(:npi.ne => "")
