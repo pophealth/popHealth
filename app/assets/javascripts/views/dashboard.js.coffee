@@ -19,7 +19,7 @@ class Thorax.Views.ResultsView extends Thorax.View
   denominator: -> @model.denominator()
   performanceDenominator: -> @model.performanceDenominator()
   initialize: ->
-    @model.set('provider_id', @provider_id) if @provider_id?
+    @model.set('providers', [@provider_id]) if @provider_id?
     @popChart = PopHealth.viz.populationChart().width(125).height(50).barHeight(18).maximumValue(PopHealth.patientCount)
     unless @model.isPopulated()
       @timeout = setInterval =>
