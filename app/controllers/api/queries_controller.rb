@@ -37,6 +37,7 @@ module Api
     param :sub_id, String, :desc => 'The sub id for the CQM to calculate. This is popHealth specific.', :required => false
     param :effective_date, ->(effective_date){ effective_date.present? }, :desc => 'Time in seconds since the epoch for the end date of the reporting period',
                                    :required => true
+    param :providers, Array, :desc => 'An array of provider IDs to filter the query by'
     example '{"_id":"52fe409bb99cc8f818000001", "status":{"state":"queued", ...}, ...}'
     description <<-CDESC
       This action will create a clinical quality measure calculation. If the measure has already been calculated,
@@ -45,7 +46,6 @@ module Api
       GET action with the id.
     CDESC
     def create
-      # binding.pry
       build_filter
       authorize_providers
       qr = QME::QualityReport.find_or_create(params[:measure_id],
