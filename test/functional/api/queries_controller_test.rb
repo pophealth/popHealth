@@ -2,7 +2,7 @@ require 'test_helper'
 include Devise::TestHelpers
 module Api
   class QueriesControllerTest < ActionController::TestCase
-    
+
     setup do
       dump_database
       collection_fixtures 'measures'
@@ -42,98 +42,98 @@ module Api
 
 
 
-    test "show admin" do 
+    test "show admin" do
       sign_in @admin
       get :show, :id=>"523c57e2949d9dd06956b606"
       assert_response :success
     end
-    
-    test "show npi" do 
+
+    test "show npi" do
       sign_in @npi_user
       get :show, :id=>"523c57e2949d9dd06956b606"
       assert_response :success
     end
 
-    test "show unauthorized" do 
+    test "show unauthorized" do
       sign_in @user
       get :show, :id=>"523c57e2949d9dd06956b606"
       assert_response 403
     end
 
-    test "show staff_role" do 
+    test "show staff_role" do
       sign_in @staff
       get :show, :id=>"523c57e2949d9dd06956b606"
       assert_response :success
     end
 
-    test "delete admin" do 
+    test "delete admin" do
       sign_in @admin
       delete :destroy, :id=>"523c57e2949d9dd06956b606"
       assert_response 204
     end
-    
-    test "delete npi" do 
+
+    test "delete npi" do
       sign_in @npi_user
       delete :destroy, :id=>"523c57e2949d9dd06956b606"
       assert_response 204
     end
 
-    test "delete unauthorized" do 
+    test "delete unauthorized" do
       sign_in @user
       delete :destroy, :id=>"523c57e2949d9dd06956b606"
       assert_response 403
     end
 
-    test "delete staff_role" do 
+    test "delete staff_role" do
       sign_in @staff
       delete :destroy, :id=>"523c57e2949d9dd06956b606"
       assert_response 204
     end
 
 
-    test "recalculate admin" do 
+    test "recalculate admin" do
       sign_in @admin
       get :recalculate, :id=>"523c57e2949d9dd06956b606"
       assert_response :success
     end
-    
-    test "recalculate npi" do 
+
+    test "recalculate npi" do
       sign_in @npi_user
       get :recalculate, :id=>"523c57e2949d9dd06956b606"
       assert_response :success
     end
 
-    test "recalculate unauthorized" do 
+    test "recalculate unauthorized" do
       sign_in @user
       get :recalculate, :id=>"523c57e2949d9dd06956b606"
       assert_response 403
     end
 
-    test "recalculate staff_role" do 
+    test "recalculate staff_role" do
       sign_in @staff
       get :recalculate, :id=>"523c57e2949d9dd06956b606"
       assert_response :success
     end
 
-    test "patient_results admin" do 
+    test "patient_results admin" do
       sign_in @admin
       get :patient_results, :id=>"523c57e2949d9dd06956b606"
       assert_response :success
     end
-    
-    test "patient_results npi" do 
+
+    test "patient_results npi" do
       sign_in @npi_user
       get :patient_results, :id=>"523c57e2949d9dd06956b606"
       assert_response :success
     end
 
-    test "patient_results unauthorized" do 
+    test "patient_results unauthorized" do
       sign_in @user
       get :patient_results, :id=>"523c57e2949d9dd06956b606"
       assert_response 403
     end
 
-    test "patient_results staff_role" do 
+    test "patient_results staff_role" do
       sign_in @staff
       get :patient_results, :id=>"523c57e2949d9dd06956b606"
       assert_response :success
@@ -141,34 +141,34 @@ module Api
 
 
 
-    test "patients admin" do 
+    test "patients admin" do
       sign_in @admin
       get :patients, :id=>"523c57e2949d9dd06956b606"
       assert_response :success
     end
-    
-    test "patients npi" do 
+
+    test "patients npi" do
       sign_in @npi_user
       get :patients, :id=>"523c57e2949d9dd06956b606"
       assert_response :success
     end
 
-    test "patients unauthorized" do 
+    test "patients unauthorized" do
       sign_in @user
       get :patients, :id=>"523c57e2949d9dd06956b606"
       assert_response 403
     end
 
-    test "patients staff_role" do 
+    test "patients staff_role" do
       sign_in @staff
       get :patients, :id=>"523c57e2949d9dd06956b606"
       assert_response :success
     end
 
-    
+
     test "create admin" do
       sign_in @admin
-      post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :filter=>{:providers=>[@provider.id]}
+      post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@provider.id]
       assert_response :success, "admin should be able to create reports for npis "
 
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212
@@ -177,16 +177,16 @@ module Api
 
     test "create staff" do
       sign_in @staff
-      post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212,:filter=>{:providers=>[@provider.id]}
+      post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@provider.id]
       assert_response :success, "staff should be able to create all reports for npis"
 
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212
       assert_response :success, "staff should be able to create all reports for no npi"
-    end 
+    end
 
     test "create npi user" do
       sign_in @npi_user
-      post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE',  :sub_id=>"a",:effective_date=>1212121212, :filter=>{:providers=>[@provider.id]}
+      post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@provider.id]
       assert_response :success, "should be able to create a quality report for users own npi"
 
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212
@@ -195,13 +195,13 @@ module Api
 
     test "create unauthorized" do
       sign_in @user
-      post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE',  :sub_id=>"a",:effective_date=>1212121212,:filter=>{:providers=>[@provider.id]}
+      post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@provider.id]
       assert_response 403, "Should be unauthorized for npi"
 
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212
       assert_response 403, "Should be unauthorized with no npi"
 
-    end 
+    end
 
 
     test "filter patient results" do
@@ -223,9 +223,9 @@ module Api
 
     end
 
-    test "index admin" do 
+    test "index admin" do
       skip "need to implement"
     end
-    
+
   end
 end

@@ -4,7 +4,7 @@ module Api
       short 'Queries'
       formats ['json']
       description <<-QCDESC
-        This resource is responsible for managing clinical quality measure calculations. Creating a new query will kick 
+        This resource is responsible for managing clinical quality measure calculations. Creating a new query will kick
         off a new CQM caluclation (if it hasn't already been calculated). You can determine the status of ongoing
         calculations, force recalculations and see results through this resource.
       QCDESC
@@ -13,7 +13,7 @@ module Api
     skip_authorization_check :only=> :create
     before_filter :authenticate_user!
     before_filter :set_pagination_params, :only=>[:patient_results, :patients]
-   
+
     def index
       filter = {}
       filter["hqmf_id"] = {"$in" => params["measure_ids"]} if params["measure_ids"]
@@ -35,14 +35,15 @@ module Api
     api :POST, '/queries', "Start a clinical quality measure calculation"
     param :measure_id, String, :desc => 'The HQMF id for the CQM to calculate', :required => true
     param :sub_id, String, :desc => 'The sub id for the CQM to calculate. This is popHealth specific.', :required => false
-    param :effective_date, ->(effective_date){ effective_date.present? }, :desc => 'Time in seconds since the epoch for the end date of the reporting period', 
+    param :effective_date, ->(effective_date){ effective_date.present? }, :desc => 'Time in seconds since the epoch for the end date of the reporting period',
                                    :required => true
+    param :providers, Array, :desc => 'An array of provider IDs to filter the query by'
     example '{"_id":"52fe409bb99cc8f818000001", "status":{"state":"queued", ...}, ...}'
     description <<-CDESC
       This action will create a clinical quality measure calculation. If the measure has already been calculated,
       it will return the results. If not, it will return the status of the calculation, which can be checked in
       the status property of the returned JSON. If it is calculating, then the results may be obtained by the
-      GET action with the id. 
+      GET action with the id.
     CDESC
     def create
       build_filter
@@ -76,7 +77,7 @@ module Api
       render json: qr
     end
 
-    api :GET, '/queries/:id/patient_results[?population=true|false]', 
+    api :GET, '/queries/:id/patient_results[?population=true|false]',
               "Retrieve patients relevant to a clinical quality measure calculation"
     param :id, String, :desc => 'The id of the quality measure calculation', :required => true
     param :ipp, /true|false/, :desc => 'Ensure patients meet the initial patient population for the measure', :required => false
@@ -96,7 +97,7 @@ module Api
     def patient_results
       qr = QME::QualityReport.find(params[:id])
       authorize! :read, qr
-      # this returns a criteria object so we can filter it additionally as needed 
+      # this returns a criteria object so we can filter it additionally as needed
       results = qr.patient_results
       render json: paginate(patient_results_api_query_url(qr),results.where(build_patient_filter).order_by([:last.asc, :first.asc]))
     end
@@ -104,7 +105,7 @@ module Api
     def patients
       qr = QME::QualityReport.find(params[:id])
       authorize! :read, qr
-      # this returns a criteria object so we can filter it additionally as needed 
+      # this returns a criteria object so we can filter it additionally as needed
       results = qr.patient_results
       ids = paginate(patients_api_query_url(qr),results.where(build_patient_filter).order_by([:last.asc, :first.asc])).collect{|r| r["value.medical_record_id"]}
       render :json=> Record.where({:medical_record_number.in => ids})
@@ -113,7 +114,7 @@ module Api
 
   private
     def build_filter
-      @filter = params[:filter] || {}
+      @filter = params.select { |k, v| %w(providers).include? k }.to_options
     end
 
     def authorize_providers
@@ -124,7 +125,7 @@ module Api
           authorize! :read, provider
         end
       else
-        #this is hacky and ugly but cancan will allow just the 
+        #this is hacky and ugly but cancan will allow just the
         # class Provider to pass for a simple user so providing
         #an empty Provider with no NPI number gets around this
         authorize! :read, Provider.new
