@@ -16,7 +16,9 @@
     end
     
     def show
-      render json: @provider
+      provider_json = @provider.as_json
+      provider_json[:children] = @provider.children if @provider.children.present?
+      render json: provider_json
     end
 
     def create
@@ -34,8 +36,8 @@
     end
    
     def destroy
-    @provider.destroy
-     render json: nil, status: 204
+      @provider.destroy
+      render json: nil, status: 204
     end
 
   private 
