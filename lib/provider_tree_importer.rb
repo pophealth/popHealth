@@ -43,11 +43,20 @@ class ProviderTreeImporter
 
   def load_providers(provider_list, parent=nil)
       provider_list.each do |sub|
-      prov = Provider.new({
-        :npi          => sub.attributes["id"],
+      prov = Provider.new(
         :given_name   => sub.attributes["name"],
         :address        => sub.attributes["address"],
-        })
+        )
+      possible_npi = sub.attributes["id"]
+      if possible_npi.present?
+        prov.npi = possible_npi
+      end
+      sub.attributes.each_pair do |root, extension|
+        unless ['tin', 'id', 'name', 'address', 'npi'].include? root
+          prov.cda_identifiers << CDAIdentifier.new(root: root, extension: extension)
+        end
+      end
+
       if parent
         parent.children << prov
       end

@@ -45,7 +45,7 @@ class Ability
       end
       can :read, HealthDataStandards::CQM::Measure
       can :read, Provider do |pv|
-        user.npi && pv.npi == user.npi
+        user.npi && (pv.npi == user.npi)
       end
       can :manage, Team
       can :manage, User, id: user.id

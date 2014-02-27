@@ -24,10 +24,13 @@ class ProviderTest < ActiveSupport::TestCase
     provider_tree = ProviderTreeImporter.new(File.new('test/fixtures/providers.opml'))
     provider_tree.load_providers(provider_tree.sub_providers)
     leaf = Provider.where(:given_name => "Newington VANURS").first
-    first_parent = Provider.where(:_id => leaf.parent_id).first
-    root = Provider.where(:_id => first_parent.parent_id).first
-    assert_equal leaf.npi, "6279AA"
-    assert_equal first_parent.npi, "627"
-    assert_equal root.npi, "1"
+    first_parent = Provider.find(leaf.parent_id)
+    root = Provider.find(first_parent.parent_id)
+    assert_equal "6279AA", leaf.npi
+    assert_equal "6279AA", leaf.cda_identifiers.where(root: 'Facility').first.extension
+    assert_equal "627", first_parent.npi
+    assert_equal "627", first_parent.cda_identifiers.where(root: 'Division').first.extension
+    assert_equal "1", root.npi
+    assert_equal "1", root.cda_identifiers.where(root: 'VISN').first.extension
   end
 end
