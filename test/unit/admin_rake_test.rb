@@ -32,7 +32,8 @@ class AdminRakeTest < ActiveSupport::TestCase
     @admin = User.where(:username => 'pophealth').first
 
     assert !@admin.blank?
-    assert @admin.admin?
+    assert @admin.approved?, "the created user should be approved"
+    assert @admin.admin?, "the created user should be an admin"
   end
     
   def capture_stdout(&block)

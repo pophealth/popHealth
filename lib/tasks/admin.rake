@@ -8,9 +8,8 @@ namespace :admin do
                      :username =>       "pophealth",
                      :password =>       "pophealth",
                      :email =>          "provideadmin@providemycompanyname.com",
-                     :agree_license =>  true,
-                     :admin =>          true,
-                     :approved =>       true)
+                     :agree_license =>  true)
     admin_account.save!
+    admin_account.grant_admin
   end
 end
