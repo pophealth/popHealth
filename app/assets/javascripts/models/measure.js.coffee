@@ -4,6 +4,7 @@ class Thorax.Models.Measure extends Thorax.Model
     subs = for sub in attrs.subs
       subData = _(sub).extend(data)
       subData.isPrimary = !sub.sub_id? or sub.sub_id is 'a'
+      subData.isContinuous = sub.continuous_variable is true
       subData
     attrs.submeasures = new SubCollection subs, parent: this
     attrs
@@ -54,8 +55,10 @@ class Thorax.Models.Query extends Thorax.Model
   isPopulated: -> @has('status') and @get('status').state in ['completed']
   isLoading: -> !@isPopulated()
   ipp: -> if @isPopulated() and @has('result') then @get('result').IPP else 0
+  msrpopl: -> if @isPopulated() and @has('result') then @get('result').MSRPOPL else 0
   numerator: -> if @isPopulated() and @has('result') then @get('result').NUMER else 0
   denominator: -> if @isPopulated() and @has('result') then @get('result').DENOM else 0
+  observ: -> if @isPopulated() and @has('result') then @get('result').OBSERV else 0
   hasExceptions: -> @has('population_ids') and @get('population_ids').hasOwnProperty('DENEXCEP')
   exceptions: -> if @isPopulated() and @has('result') then @get('result').DENEXCEP else 0
   hasExclusions: -> @has('population_ids') and @get('population_ids').hasOwnProperty('DENEX')
