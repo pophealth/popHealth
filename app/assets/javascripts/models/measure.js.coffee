@@ -54,6 +54,7 @@ class Thorax.Models.Query extends Thorax.Model
   # TODO what other final states are there other than completed?
   isPopulated: -> @has('status') and @get('status').state in ['completed']
   isLoading: -> !@isPopulated()
+  isContinuous: -> @has('population_ids') and @get('population_ids').hasOwnProperty('MSRPOPL')
   ipp: -> if @isPopulated() and @has('result') then @get('result').IPP else 0
   msrpopl: -> if @isPopulated() and @has('result') then @get('result').MSRPOPL else 0
   numerator: -> if @isPopulated() and @has('result') then @get('result').NUMER else 0
@@ -63,7 +64,7 @@ class Thorax.Models.Query extends Thorax.Model
   exceptions: -> if @isPopulated() and @has('result') then @get('result').DENEXCEP else 0
   hasExclusions: -> @has('population_ids') and @get('population_ids').hasOwnProperty('DENEX')
   exclusions: -> if @isPopulated() and @has('result') then @get('result').DENEX else 0
-  hasOutliers: -> @has('antinumerator')
+  hasOutliers: -> !@isContinuous() and @has('antinumerator')
   outliers: -> if @isPopulated() and @has('result') then @get('result').antinumerator else 0
   performanceDenominator: -> @denominator() - @exceptions() - @exclusions()
   performanceRate: -> Math.round(100 * @numerator() / Math.max(1, @performanceDenominator()))
