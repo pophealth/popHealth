@@ -1,11 +1,9 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.14'
-gem 'quality-measure-engine', '3.0.0.beta.1'
+gem 'quality-measure-engine', '3.0.0.beta.2'
 
-
-#pinned to git until HDS > 3.4.1
-gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git'
+gem 'health-data-standards', '3.4.2'
 gem 'nokogiri'
 gem 'rubyzip'
 
