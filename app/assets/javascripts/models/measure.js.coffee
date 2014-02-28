@@ -42,6 +42,7 @@ class Thorax.Models.Submeasure extends Thorax.Model
 class SubCollection extends Thorax.Collection
   model: Thorax.Models.Submeasure
   initialize: (models, options) -> @parent = options.parent
+  comparator: 'sub_id'
 
 
 class Thorax.Models.Query extends Thorax.Model
