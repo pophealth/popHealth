@@ -8,12 +8,13 @@
   </div>
 
   <div class="row-remainder">
-    <div class="msrpopl pull-left">
-      {{#if isPrimary}}
-        <small>Population</small>
-        <br/>
-      {{/if}}
-      {{msrpopl}}
+    <div class="fraction-listing pull-left">
+      <div class="numerator">{{msrpopl}}</div>
+      <div class="denominator">{{ipp}}</div>
+    </div>
+    <div class="fraction-listing pull-left">
+      <div class="numerator caption">MSRPOPL</div>
+      <div class="denominator caption">IPP</div>
     </div>
     <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}/patient_results" class="patient-btn pull-right">
       <i class="glyphicon glyphicon-user"></i> Patients
