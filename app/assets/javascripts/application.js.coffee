@@ -14,6 +14,7 @@
 #= require config
 #= require helpers
 #= require population_chart
+#= require provider_chart
 #= require_tree ./templates
 #= require_tree ./models
 #= require_tree ./views
