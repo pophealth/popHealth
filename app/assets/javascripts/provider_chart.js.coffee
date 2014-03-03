@@ -1,5 +1,5 @@
 window.PopHealth ||= {}
-PopHealth.vis ||= {}
+PopHealth.viz ||= {}
 PopHealth.viz.providerChart = ->
   width = 800
   height = 150
