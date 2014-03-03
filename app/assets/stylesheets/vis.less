@@ -1,0 +1,46 @@
+#providerChart svg{
+  overflow: display;
+  .node text{
+    alignment-baseline: central;
+  }
+  .node circle {
+    fill: #fff;
+    stroke: @brand-primary;
+    stroke-width: 1.5px;
+    cursor: pointer;
+
+    .active {
+      r: 9px;
+      fill: @brand-primary;
+      stroke:#fff !important; 
+    }
+  } 
+}
+
+.node text{
+    cursor: pointer;
+}
+
+
+.node {
+  font: 10px sans-serif;
+}
+//.node text:before {
+//  content: "\f0c4";
+//  font-family: FontAwesome;
+//  font-weight: normal;
+//  font-style: normal;
+//  display: inline-block;
+//  text-decoration: inherit;
+//}
+
+.link.active {
+    stroke: @brand-primary;
+    stroke-width: 2px;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: .5px;
+}
