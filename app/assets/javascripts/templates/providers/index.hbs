@@ -1,6 +1,8 @@
 <thead>
   <tr>
     <th class="pid">Provider NPI</th>
+    <th> Provider Type </th>
+    <th> Provider Extension </th>
     <th>Provider Name</th>
     <th>Tax ID</th>
     <th>Phone</th>
@@ -12,7 +14,9 @@
     <td>
       {{npi}}
     </td>
-    <td>{{#link "providers/{{_id}}" expand-tokens=true}}{{providerType}} {{providerExtension}} {{given_name}}{{/link}}</td>
+    <td>{{providerType}}</td>
+    <td>{{#link "providers/{{_id}}" expand-tokens=true}}{{providerExtension}}{{/link}}</td>
+    <td>{{#link "providers/{{_id}}" expand-tokens=true}}{{given_name}}{{/link}}</td>
     <td>{{tin}}</td>
     <td>{{phone}}</td>
     <td>{{team.name}}</td>
