@@ -8,6 +8,10 @@ class Thorax.Views.ProviderView extends Thorax.View
   #    providerId = $(event.currentTarget).attr("id") # selected ID
   #    @setModel(new Thorax.Models.Provider(_id: providerId))
   #    @dashboardView.remove()
+  context: ->
+    _(super).extend
+      providerType: @model.providerType() || ""
+      providerExtension: @model.providerExtension() || ""
   events:
     # 'click g': 'changeProvider'
     rendered: ->
@@ -19,3 +23,6 @@ class Thorax.Views.ProvidersView extends Thorax.View
   tagName: 'table'
   className: 'table'
   template: JST['providers/index']
+  itemContext: (model, index) ->
+    _.extend {}, model.attributes, providerType: model.providerType() || "", providerExtension: model.providerExtension() || ""
+    

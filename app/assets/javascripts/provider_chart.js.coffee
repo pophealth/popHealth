@@ -70,7 +70,7 @@ PopHealth.viz.providerChart = ->
           .on("click", click)           
         svg.selectAll(".node:not(.active)")
           .attr('data-placement', "bottom")
-          .attr('data-content', (d) -> "#{d.given_name}")
+          .attr('data-content', (d) -> "#{d.cda_identifiers[0].root} #{d.cda_identifiers[0].extension} #{d.given_name}")
           .attr('data-trigger', "hover focus")
           .attr('data-container', '#providerChart')
 
@@ -93,7 +93,7 @@ PopHealth.viz.providerChart = ->
           .attr("r", (d) -> d.size)
           
         nodeUpdate.select("text")
-          .text((d) -> d.given_name if d.active)
+          .text((d) -> "#{d.cda_identifiers?[0].root || ""} #{d.cda_identifiers?[0].extension || ""} #{d.given_name}" if d.active)
           .attr("transform", (d) -> if d.active then "translate(25) rotate(0)" else "translate(0) rotate(30, -9, 4.5)")
 
 
