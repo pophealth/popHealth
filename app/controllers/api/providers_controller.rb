@@ -16,16 +16,17 @@ module Api
     authorize_resource
     respond_to :json
     before_filter :authenticate_user!
-    
+
     add_breadcrumb 'providers', :providers_url
-    
+
     api :GET, "/providers", "Get a list of providers. Returns all providers that the user has access to."
+    param_group :pagination, Api::PatientsController
     def index
       @providers = paginate(api_providers_url, Provider.alphabetical)
       authorize_providers(@providers)
       render json: @providers
     end
-    
+
     api :GET, "/providers/:id", "Get an individual provider"
     param :id, String, :desc => "Provider ID", :required => true
     description <<-SDESC
