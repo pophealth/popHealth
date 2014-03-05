@@ -22,7 +22,7 @@ module Api
     api :GET, "/providers", "Get a list of providers. Returns all providers that the user has access to."
     param_group :pagination, Api::PatientsController
     def index
-      @providers = paginate(api_providers_url, Provider.alphabetical)
+      @providers = paginate(api_providers_url, Provider.order_by([:parent_id, :asc],[:family_name, :asc], [:given_name, :asc]))
       authorize_providers(@providers)
       render json: @providers
     end
@@ -61,7 +61,7 @@ module Api
     EXAMPLE
     def show
       provider_json = @provider.as_json
-      provider_json[:parent_name] = Provider.find(@provider.parent_id).given_name if @provider.parent_id 
+      provider_json[:parent_name] = Provider.find(@provider.parent_id).given_name if @provider.parent_id
       provider_json[:children] = @provider.children if @provider.children.present?
       render json: provider_json
     end
@@ -71,7 +71,7 @@ module Api
       @provider = Provider.create(params[:provider])
       render json: @provider
     end
-    
+
     api :PUT, "/providers/:id", "Update a provider"
     param :id, String, :desc => "Provider ID", :required => true
     def update
@@ -90,7 +90,7 @@ module Api
       render json: nil, status: 204
     end
 
-  private 
+  private
 
     def authorize_providers(providers)
       providers.each do |p|

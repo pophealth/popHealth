@@ -10,7 +10,7 @@ PopHealth.viz.providerChart = ->
   my = (selection) ->
     cluster = d3.layout.tree().size([width, height])
     selection.each (data) ->
-      highlight = (d, value) => 
+      highlight = (d, value) =>
         links = d3.selectAll($("path.link[target=#{d.id}]"))
         if links.node()? then links.classed("active", value)
         if d.parent? and value then highlight(d.parent, value)
@@ -19,8 +19,8 @@ PopHealth.viz.providerChart = ->
         window.location.hash = "providers/#{d._id}"
         return
         # This code is not currently used, it is to handle collapsing and opening
-        if not d.loaded 
-          d3.json "api/providers/#{d._id}", (children) -> 
+        if not d.loaded
+          d3.json "api/providers/#{d._id}", (children) ->
             d.children = children.children
             d.loaded = true
             d.active = true
@@ -38,14 +38,14 @@ PopHealth.viz.providerChart = ->
           highlight(d,true)
           d.active=true
           d.size = 6
-          d.parent?.children.forEach((d) -> 
+          d.parent?.children.forEach((d) ->
             d.hidden = true
           )
           d.hidden = false
           d.children = d._children
           d._children = null
-        
-        update(d) 
+
+        update(d)
       update = (source) =>
         nodes = cluster.nodes(root)
         links = cluster.links(nodes)
@@ -53,10 +53,14 @@ PopHealth.viz.providerChart = ->
         heightScale = d3.scale.linear()
           .range([30,height-30])
           .domain(d3.extent(nodes, (d) -> d.depth))
+        widthScale = d3.scale.linear()
+          .range([0, width - 60])
+          .domain([0,width])
         # Normalize for constant height
-        nodes.forEach (d) -> 
+        nodes.forEach (d) ->
           d.y = heightScale(d.depth)
-          if not d.size?  
+          d.x = widthScale(d.x)
+          if not d.size?
             d.size = if d.active then 15 else 8
 
         node = svg.selectAll("g.node")
@@ -67,7 +71,7 @@ PopHealth.viz.providerChart = ->
           .classed("active", (d) -> d.active)
           .attr("id", (d) -> d._id)
           .attr("transform", "translate(#{source.x0}, #{source.y0})")
-          .on("click", click)           
+          .on("click", click)
         svg.selectAll(".node:not(.active)")
           .attr('data-placement', "bottom")
           .attr('data-content', (d) -> "#{d.cda_identifiers[0].root} #{d.cda_identifiers[0].extension} #{d.given_name}")
@@ -84,17 +88,17 @@ PopHealth.viz.providerChart = ->
           .attr("transform", "rotate(45, -9, 4.5)")
           .style("fill-opacity", 1.0)
           .attr("width")
-          
+
 
         nodeUpdate = node.transition()
           .duration(duration)
           .attr("transform", (d) -> "translate(#{d.x}, #{d.y})")
         nodeUpdate.select("circle")
           .attr("r", (d) -> d.size)
-          
+
         nodeUpdate.select("text")
-          .text((d) -> "#{d.cda_identifiers?[0].root || ""} #{d.cda_identifiers?[0].extension || ""} #{d.given_name}" if d.active)
-          .attr("transform", (d) -> if d.active then "translate(25) rotate(0)" else "translate(0) rotate(30, -9, 4.5)")
+          .text((d) -> if d.active then "#{d.cda_identifiers?[0].root || ""} #{d.cda_identifiers?[0].extension || ""} #{d.given_name}" else "#{d.cda_identifiers?[0].root || ""} #{d.cda_identifiers?[0].extension || ""}")
+          .attr("transform", (d) -> if d.active then "translate(25) rotate(0)" else "translate(15)")
 
 
         nodeExit = node.exit()
@@ -114,12 +118,12 @@ PopHealth.viz.providerChart = ->
         link.enter().insert("path", "g")
           .classed("link", true)
           .attr("target", (d) -> d.target.id)
-          .attr("d", (d)-> 
+          .attr("d", (d)->
             o = {x: source.x0, y: source.y0}
             return diagonal({source: o, target: o}))
 
 
-        
+
         link.transition()
           .duration(duration)
           .attr("d", diagonal)
@@ -127,12 +131,12 @@ PopHealth.viz.providerChart = ->
 
         link.exit().transition()
           .duration(duration)
-          .attr("d", (d)-> 
+          .attr("d", (d)->
             o = {x: source.x, y: source.y}
             return diagonal({source: o, target: o}))
           .remove()
 
-        nodes.forEach (d) -> 
+        nodes.forEach (d) ->
           d.x0 = d.x
           d.y0 = d.y
 
@@ -153,7 +157,7 @@ PopHealth.viz.providerChart = ->
       root.x0 = width/2
       root.y0 = height/2
 
-      collapse = (d) -> 
+      collapse = (d) ->
         if d.children?
           d._children = d.children
           d.children = null
@@ -161,28 +165,27 @@ PopHealth.viz.providerChart = ->
         else
           d.children = d._children
           d._children = null
-      
+
       update(root)
 
   my.width = (_) ->
     return width unless arguments.length
     width = _
     my
-    
+
   my.height = (_) ->
     return height unless arguments.length
     height = _
     my
-    
+
   my.duration = (_) ->
     return duration unless arguments.length
     duration = _
     my
-    
+
   my.depth = (_) ->
     return depth unless arguments.length
     depth = _
     my
 
   my
-    
