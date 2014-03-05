@@ -98,7 +98,7 @@ PopHealth.viz.providerChart = ->
 
         nodeUpdate.select("text")
           .text((d) -> if d.active then "#{d.cda_identifiers?[0].root || ""} #{d.cda_identifiers?[0].extension || ""} #{d.given_name}" else "#{d.cda_identifiers?[0].root || ""} #{d.cda_identifiers?[0].extension || ""}")
-          .attr("transform", (d) -> if d.active then "translate(25) rotate(0)" else "translate(15)")
+          .attr("transform", (d) -> if d.active then "translate(25) rotate(0)" else "translate(15) rotate(30)")
 
 
         nodeExit = node.exit()
