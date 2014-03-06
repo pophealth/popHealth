@@ -2,7 +2,7 @@ window.PopHealth ||= {}
 PopHealth.viz ||= {}
 PopHealth.viz.providerChart = ->
   width = 800
-  height = 150
+  height = 180
   duration = 500
   depth = {}
   nodeId = 0
@@ -51,10 +51,10 @@ PopHealth.viz.providerChart = ->
         links = cluster.links(nodes)
         cluster.separation((a,b) -> 25)
         heightScale = d3.scale.linear()
-          .range([30,height-30])
+          .range([30,height-60])
           .domain(d3.extent(nodes, (d) -> d.depth))
         widthScale = d3.scale.linear()
-          .range([0, width - 60])
+          .range([0, width - 90])
           .domain([0,width])
         # Normalize for constant height
         nodes.forEach (d) ->
