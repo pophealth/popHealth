@@ -1,5 +1,5 @@
 module Api
-  
+
   class ReportsController < ApplicationController
     resource_description do
       short 'Reports'
@@ -14,7 +14,7 @@ module Api
 
     api :GET, '/reports/qrda_cat3.xml', "Retrieve a QRDA Category III document"
     param :measure_ids, Array, :desc => 'The HQMF ID of the measures to include in the document', :required => false
-    param :effective_date, Fixnum, :desc => 'Time in seconds since the epoch for the end date of the reporting period', 
+    param :effective_date, Fixnum, :desc => 'Time in seconds since the epoch for the end date of the reporting period',
                                    :required => false
     param :provider_id, String, :desc => 'The Provider ID for CATIII generation'
     description <<-CDESC
@@ -27,12 +27,17 @@ module Api
       exporter =  HealthDataStandards::Export::Cat3.new
       effective_date = params["effective_date"] || current_user.effective_date || Time.gm(2012, 12, 31)
       end_date = Time.at(effective_date.to_i)
-      provider = Provider.find(params[:provider_id])
-      render xml: exporter.export(HealthDataStandards::CQM::Measure.top_level.where(filter), 
-                                   generate_header(provider), 
-                                   effective_date, 
-                                   end_date.years_ago(1), 
-                                   end_date), content_type: "attachment/xml"
+      provider = provider_filter = nil
+      if params[:provider_id].present?
+        provider = Provider.find(params[:provider_id])
+        provider_filter = {}
+        provider_filter['filters.providers'] = params[:provider_id] if params[:provider_id].present?
+      end
+      render xml: exporter.export(HealthDataStandards::CQM::Measure.top_level.where(filter),
+                                   generate_header(provider),
+                                   1356998340,
+                                   end_date.years_ago(1),
+                                   end_date, provider_filter), content_type: "attachment/xml"
     end
 
     private
@@ -41,7 +46,7 @@ module Api
       header_hash = APP_CONFIG["cda_header"]
       header_hash[:identifier][:root] = UUID.generate
 
-      header = Qrda::Header.new(header_hash) 
+      header = Qrda::Header.new(header_hash)
       header.performers << provider
       header
     end

@@ -9,7 +9,7 @@ class AdminController < ApplicationController
 
   def patients
     @patient_count = Record.count
-    @query_cache_count = QueryCache.count
+    @query_cache_count = HealthDataStandards::CQM::QueryCache.count
     @patient_cache_count = PatientCache.count
     @provider_count = Provider.count
   end
@@ -20,7 +20,7 @@ class AdminController < ApplicationController
   end
 
   def remove_caches
-    QueryCache.delete_all
+    HealthDataStandards::CQM::QueryCache.delete_all
     PatientCache.delete_all
     redirect_to action: 'patients'
   end
@@ -29,7 +29,7 @@ class AdminController < ApplicationController
     Provider.delete_all
     redirect_to action: 'patients'
   end
-  
+
   def upload_patients
 
     file = params[:file]
@@ -106,7 +106,7 @@ class AdminController < ApplicationController
       render :text => "User not found"
     end
   end
-  
+
   def validate_authorization!
     authorize! :admin, :users
   end
