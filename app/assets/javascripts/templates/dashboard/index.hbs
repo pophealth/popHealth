@@ -41,7 +41,7 @@
 <div class="main">
   <div class="main-heading">
     <h1 class="title">Measures</h1>
-    <a href="/api/reports/qrda_cat3.xml" class="export-btn"><i class="glyphicon glyphicon-download-alt"></i> Export</a>
+    <a href="/api/reports/qrda_cat3.xml{{#if effective_date}}?effective_date={{effective_date}}{{/if}}{{#if provider_id}}&provider_id={{provider_id}}{{/if}}" class="export-btn"><i class="glyphicon glyphicon-download-alt"></i> Export</a>
   </div>
   {{#collection selectedCategories}}
     <div class="category" style="">
@@ -54,7 +54,6 @@
   </div>
 
     {{#collection measures}}
-    {{!-- <%npi_param = (@selected_provider ? "?npi=#{@selected_provider.npi}" : '')%> --}}
       {{#collection submeasures item-view="DashboardSubmeasureView"}}
         <div class="measure">
           <div class="measure-title" data-measure-sub="{{sub_id}}">

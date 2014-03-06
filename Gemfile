@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.14'
 gem 'quality-measure-engine', '3.0.0.beta.2'
 
-gem 'health-data-standards', '3.4.2'
+gem 'health-data-standards', '3.4.3'
 gem 'nokogiri'
 gem 'rubyzip'
 
