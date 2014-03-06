@@ -9,8 +9,6 @@ class Thorax.Collections.Providers extends Thorax.Collection
   model: Thorax.Models.Provider
   initialize: (attrs, options) ->
     @page = 1
-  fetch: (options ={perPage: 10}) ->
-    super options
   fetchNextPage: (options = {perPage: 10}) ->
     data = {page: ++@page, per_page: options.PerPage}
     @fetch remove: false, data:data
