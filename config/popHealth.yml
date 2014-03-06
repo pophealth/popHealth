@@ -25,8 +25,8 @@ defaults: &defaults
     api_url: https://vsac.nlm.nih.gov/vsac/ws/RetrieveValueSet
   cda_header:
     :identifier:
-      :root: 
-      :extension: 
+      :root:
+      :extension:
     :authors:
     - :ids:
       - :root: author_root
@@ -36,7 +36,7 @@ defaults: &defaults
         :model: device_model
       :addresses: []
       :telecoms: []
-      :time: 2014-03-05 16:39:15.968408000 -05:00
+      :time:
       :organization:
         :ids:
         - :root: authors_organization_root
@@ -60,10 +60,10 @@ defaults: &defaults
         :extension: legal_authenticator_ext
       :addresses: []
       :telecoms: []
-      :time: 2014-03-05 16:39:15.968436000 -05:00
+      :time: 
       :person:
-        :given: 
-        :family: 
+        :given:
+        :family:
       :organization:
         :ids:
         - :root: legal_authenticator_org_root
@@ -75,13 +75,13 @@ development:
   idle_timeout_enabled: false
   default_user_staff_role: true
   patient_management_enabled: true
-  
+
 test:
   <<: *defaults
   default_user_approved: false
   # we do not want to force unsecure when testing
   force_unsecure_communications: true
-  
+
 production:
   <<: *defaults
   default_user_staff_role: false
