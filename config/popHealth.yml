@@ -23,6 +23,52 @@ defaults: &defaults
   value_sets:
     ticket_url: https://vsac.nlm.nih.gov/vsac/ws/Ticket
     api_url: https://vsac.nlm.nih.gov/vsac/ws/RetrieveValueSet
+  cda_header:
+    :identifier:
+      :root: 
+      :extension: 
+    :authors:
+    - :ids:
+      - :root: author_root
+        :extension: author_extension
+      :device:
+        :name: device_name
+        :model: device_model
+      :addresses: []
+      :telecoms: []
+      :time: 2014-03-05 16:39:15.968408000 -05:00
+      :organization:
+        :ids:
+        - :root: authors_organization_root
+          :extension: authors_organization_ext
+        :name: ''
+    :custodian:
+      :ids:
+      - :root: custodian_root
+        :extension: custodian_ext
+      :person:
+        :given: ''
+        :family: ''
+      :organization:
+        :ids:
+        - :root: custodian_rganization_root
+          :extension: custodian_organization_ext
+        :name: ''
+    :legal_authenticator:
+      :ids:
+      - :root: legal_authenticator_root
+        :extension: legal_authenticator_ext
+      :addresses: []
+      :telecoms: []
+      :time: 2014-03-05 16:39:15.968436000 -05:00
+      :person:
+        :given: 
+        :family: 
+      :organization:
+        :ids:
+        - :root: legal_authenticator_org_root
+          :extension: legal_authenticator_org_ext
+        :name: ''
 
 development:
   <<: *defaults
