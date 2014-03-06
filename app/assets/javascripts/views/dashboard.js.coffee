@@ -53,6 +53,9 @@ class Thorax.Views.Dashboard extends Thorax.View
   initialize: ->
     @selectedCategories = PopHealth.currentUser.selectedCategories(@collection)
 
+  effective_date: ->
+    Config.effectiveDate
+
   categoryFilterContext: (category) ->
     selectedCategory = @selectedCategories.findWhere(category: category.get('category'))
     measureCount = selectedCategory?.get('measures').length || 0

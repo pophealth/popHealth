@@ -14,7 +14,7 @@ module Api
 
     api :GET, '/reports/qrda_cat3.xml', "Retrieve a QRDA Category III document"
     param :measure_ids, Array, :desc => 'The HQMF ID of the measures to include in the document', :required => false
-    param :effective_date, Fixnum, :desc => 'Time in seconds since the epoch for the end date of the reporting period',
+    param :effective_date, String, :desc => 'Time in seconds since the epoch for the end date of the reporting period',
                                    :required => false
     param :provider_id, String, :desc => 'The Provider ID for CATIII generation'
     description <<-CDESC
@@ -35,7 +35,7 @@ module Api
       end
       render xml: exporter.export(HealthDataStandards::CQM::Measure.top_level.where(filter),
                                    generate_header(provider),
-                                   1356998340,
+                                   effective_date.to_i,
                                    end_date.years_ago(1),
                                    end_date, provider_filter), content_type: "attachment/xml"
     end
