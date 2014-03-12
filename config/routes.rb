@@ -12,19 +12,20 @@ PopHealth::Application.routes.draw do
   post "admin/update_npi"
   get "admin/patients"
   put "admin/upload_patients"
+  put "admin/upload_providers"
   delete "admin/remove_patients"
   delete "admin/remove_caches"
   delete "admin/remove_providers"
 
   get "logs/index"
-  
+
   match 'provider/:npi', :to => "measures#index", :as => :provider_dashboard, :via => :get
-  
+
   match 'records', :to => 'records#create', :via => :post
-  
+
 
   root :to => 'home#index'
-    
+
   resources :providers do
     resources :patients do
       collection do
@@ -32,13 +33,13 @@ PopHealth::Application.routes.draw do
         put :update_all
       end
     end
-    
+
     member do
       get :merge_list
       put :merge
     end
   end
-  
+
   resources :teams
 
   namespace :api do
