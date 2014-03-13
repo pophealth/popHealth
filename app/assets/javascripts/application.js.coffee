@@ -15,6 +15,7 @@
 #= require helpers
 #= require population_chart
 #= require provider_chart
+#= require performance_chart
 #= require_tree ./templates
 #= require_tree ./models
 #= require_tree ./views
@@ -28,9 +29,3 @@ if Config.idleTimeout.isEnabled
       url: '/users/sign_out'
       type: 'DELETE'
       success: (result) -> window.location.href = '/logout.html'
-
-
-
-
-
-

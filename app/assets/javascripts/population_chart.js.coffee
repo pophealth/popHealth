@@ -13,7 +13,7 @@ PopHealth.viz.populationChart = ->
         .attr('class', 'numer')
         .attr('width', xScale(data.NUMER))
         .attr('height', barHeight)
-        .attr('y', yScale('NUMER'))
+        .attr('y', height/2 -barHeight - yScale('NUMER'))
         .attr('x', margin.left)
         .attr('data-placement', "top")
         .attr('data-content', "Numerator: #{data.NUMER}")
@@ -61,9 +61,9 @@ PopHealth.viz.populationChart = ->
   xScale = d3.scale.linear()
   yScale = d3.scale.ordinal()
   margin =
-    top: 2
+    top: 5
     right: 2
-    bottom: 2
+    bottom: 4
     left: 2
 
   barHeight = 18
