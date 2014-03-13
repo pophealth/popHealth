@@ -50,8 +50,11 @@ class Thorax.Views.QueryView extends Thorax.View
   events:
     'click .population-btn': 'changeFilter'
     rendered: ->
-      @$('.dial').knob()
-      d3.select(@el).select('.pop-chart').datum(@model.result()).call(@popChart) if @model.isPopulated()
+      if @model.isPopulated()
+        d3.select(@el).select('.percent-listing').datum(@model).call(@perfChart)
+        d3.select(@el).select('.pop-chart').datum(@model.result()).call(@popChart)
+        @$('rect').popover()
+
 
   ipp: -> @model.ipp()
   numerator: -> @model.numerator()
@@ -66,7 +69,9 @@ class Thorax.Views.QueryView extends Thorax.View
   performanceDenominator: -> @model.performanceDenominator()
   initialize: ->
     @currentPopulation = 'IPP'
-    @popChart = PopHealth.viz.populationChart().width(125).height(50).barHeight(20).maximumValue(PopHealth.patientCount)
+    @popChart = PopHealth.viz.populationChart().width(125).height(50).barHeight(14).maximumValue(PopHealth.patientCount)
+    @perfChart = PopHealth.viz.performanceChart()
+
 
   changeFilter: (event) ->
     @currentPopulation = event.currentTarget.id
