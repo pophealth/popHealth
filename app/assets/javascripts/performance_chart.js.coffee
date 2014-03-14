@@ -15,7 +15,6 @@ PopHealth.viz.performanceChart = ->
       gEnter = svg.enter().append('svg')
         .attr('viewBox', "0 0 #{width} #{width}")
         .attr('height', width)
-        # .attr('preserveAspectRatio', 'none')
       arcScale = d3.scale.linear().domain([0,100]).range([0, 2*Math.PI])
       outerRadius = (width - margin.right - margin.left)/2
       innerRadius = outerRadius - lineThickness
