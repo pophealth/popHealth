@@ -28,7 +28,7 @@ class PopHealth.Router extends Backbone.Router
     if measure?
       measureView = @view.getView()
       unless measureView instanceof Thorax.Views.MeasureView and measureView.measure is measure
-        measureView = new Thorax.Views.MeasureView measure: measure, type: 'patient_results'
+        measureView = new Thorax.Views.MeasureView measure: measure, type: 'patient_results', providerId: providerId
         @view.setView measureView
       measureView.activatePatientResultsView(providerId)
     else
@@ -46,4 +46,4 @@ class PopHealth.Router extends Backbone.Router
       @view.setView new Thorax.Views.ProviderView model: providerModel
     else
       providerCollection = new Thorax.Collections.Providers
-      @view.setView new Thorax.Views.ProvidersView collection: providerCollection    
+      @view.setView new Thorax.Views.ProvidersView collection: providerCollection
