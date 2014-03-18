@@ -43,13 +43,13 @@ module Api
     private
 
     def generate_header(provider)
-      header_hash = APP_CONFIG["cda_header"]
-      header_hash[:identifier][:root] = UUID.generate
-      header_hash[:authors].each {|a| a[:time] = Time.now}
-      header_hash[:legal_authenticator][:time] = Time.now
+      header = Qrda::Header.new(APP_CONFIG["cda_header"])
 
-      header = Qrda::Header.new(header_hash)
+      header.identifier.root = UUID.generate
+      header.authors.each {|a| a.time = Time.now}
+      header.legal_authenticator.time = Time.now
       header.performers << provider
+
       header
     end
   end
