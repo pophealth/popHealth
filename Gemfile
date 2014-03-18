@@ -3,12 +3,12 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.14'
 gem 'quality-measure-engine', '3.0.0.beta.2'
 
-gem 'health-data-standards', '3.4.3'
+gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git'
 gem 'nokogiri'
 gem 'rubyzip'
 
 # Should be removed in the future. This is only used for the
-# admin log page. When the admin pages are switched to 
+# admin log page. When the admin pages are switched to
 # client side pagination, this can go away.
 gem 'will_paginate'
 

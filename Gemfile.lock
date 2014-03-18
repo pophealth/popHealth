@@ -1,3 +1,20 @@
+GIT
+  remote: https://github.com/projectcypress/health-data-standards.git
+  revision: bf6c6df271aa0c4996ab67eea4cb80d390bbefc8
+  specs:
+    health-data-standards (3.4.3)
+      activesupport (~> 3.2.14)
+      builder (~> 3.0.0)
+      erubis (~> 2.7.0)
+      log4r (~> 1.1.10)
+      memoist (~> 0.9.1)
+      mongoid (~> 3.1.4)
+      mongoid-tree (~> 1.0.4)
+      nokogiri (= 1.6.0)
+      rest-client (~> 1.6.7)
+      rubyzip (= 0.9.9)
+      uuid (~> 2.3.7)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -88,18 +105,6 @@ GEM
       multi_json
       sprockets (>= 2.0.3)
       tilt
-    health-data-standards (3.4.3)
-      activesupport (~> 3.2.14)
-      builder (~> 3.0.0)
-      erubis (~> 2.7.0)
-      log4r (~> 1.1.10)
-      memoist (~> 0.9.1)
-      mongoid (~> 3.1.4)
-      mongoid-tree (~> 1.0.4)
-      nokogiri (= 1.6.0)
-      rest-client (~> 1.6.7)
-      rubyzip (= 0.9.9)
-      uuid (~> 2.3.7)
     highline (1.6.20)
     hike (1.2.3)
     i18n (0.6.9)
@@ -257,7 +262,7 @@ DEPENDENCIES
   formtastic
   git
   handlebars_assets
-  health-data-standards (= 3.4.3)
+  health-data-standards!
   highline
   jasmine (= 2.0.0)
   jquery-rails
