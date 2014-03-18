@@ -12,8 +12,8 @@ class Thorax.Views.MeasureView extends Thorax.LayoutView
     view.changeFilter @queryView.currentPopulation
     @setView view
 
-  activatePatientResultsView: ->
-    view = new Thorax.Views.PatientResultsLayoutView query: @measure.get('query')
+  activatePatientResultsView: (providerId) ->
+    view = new Thorax.Views.PatientResultsLayoutView query: @measure.get('query'), providerId: providerId
     view.changeFilter @queryView.currentPopulation
     @setView view
 

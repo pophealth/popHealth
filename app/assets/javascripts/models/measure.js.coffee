@@ -50,6 +50,8 @@ class Thorax.Models.Query extends Thorax.Model
   urlRoot: '/api/queries'
   initialize: (attrs, options) ->
     @parent = options.parent
+    @providerId = options.providerId
+    @set 'providers', options.providerId if options.providerId
     @set 'patient_results', new Thorax.Collections.PatientResults [], parent: this
   # TODO what other final states are there other than completed?
   isPopulated: -> @has('status') and @get('status').state in ['completed']

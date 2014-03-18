@@ -18,10 +18,12 @@ class Thorax.Collections.PatientResults extends Thorax.Collection
   initialize: (attrs, options) ->
     @parent = options.parent
     @population = options.population
+    @providerId = options.providerId
     @page = 1
   fetch: (options = {}) ->
     options.data ?= {}
     options.data[@population.toLowerCase()] = true if @population?
+    options.data.provider_id = @providerId if @providerId?
     super options
   fetchNextPage: (options = {perPage: 10}) ->
     data = {page: ++@page, per_page: options.perPage}
