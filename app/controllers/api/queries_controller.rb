@@ -141,6 +141,7 @@ module Api
       patient_filter["value.DENEXCEP"]= {"$gt" => 0} if params[:denexcep] == "true"
       patient_filter["value.MSRPOPL"]= {"$gt" => 0} if params[:msrpopl] == "true"
       patient_filter["value.antinumerator"]= {"$gt" => 0} if params[:antinumerator] == "true"
+      patient_filter["value.provider_performances.provider_id"]= Moped::BSON::ObjectId(params[:provider_id]) if params[:provider_id]
       patient_filter
     end
 

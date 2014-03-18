@@ -7,7 +7,7 @@ class Thorax.Views.PatientResultsLayoutView extends Thorax.LayoutView
   changeFilter: (population) ->
     if currentView = @getView()
       currentView.retain() # don't destroy child views until the layout view is destroyed
-    @views[population] ||= new Thorax.Views.PatientResultsView(population: population, query: @query)
+    @views[population] ||= new Thorax.Views.PatientResultsView(population: population, query: @query, providerId: @providerId)
     @setView @views[population]
 
 
@@ -40,7 +40,7 @@ class Thorax.Views.PatientResultsView extends Thorax.View
         @collection.fetchNextPage()
 
     setCollection = =>
-      @setCollection new Thorax.Collections.PatientResults([], parent: @query, population: @population), render: true
+      @setCollection new Thorax.Collections.PatientResults([], parent: @query, population: @population, providerId: @providerId), render: true
       @collection.fetch()
     @query.on 'change', setCollection
     if @query.isNew() then @query.save() else setCollection()
