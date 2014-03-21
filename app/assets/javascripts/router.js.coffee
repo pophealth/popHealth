@@ -7,7 +7,7 @@ class PopHealth.Router extends Backbone.Router
 
   routes:
     '':                                 'dashboard'
-    'measures/:id(/:sub_id)(/provider/:provider_id)/patient_results':  'patientResultsForMeasure'
+    'measures/:id(/:sub_id)(/providers/:provider_id)/patient_results':  'patientResultsForMeasure'
     'measures/:id(/:sub_id)':           'measure'
     'patients/:id':                     'patient'
     'providers(/:id)':                  'provider'
