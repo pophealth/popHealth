@@ -46,6 +46,23 @@ class AdminController < ApplicationController
     redirect_to action: 'patients'
   end
 
+  def upload_providers
+
+    file = params[:file]
+    FileUtils.mkdir_p(File.join(Dir.pwd, "tmp/import"))
+    file_location = File.join(Dir.pwd, "tmp/import")
+    file_name = "provider_upload" + Time.now.to_i.to_s + rand(1000).to_s
+
+    temp_file = File.new(file_location + "/" + file_name, "w")
+
+    File.open(temp_file.path, "wb") { |f| f.write(file.read) }
+
+    provider_tree = ProviderTreeImporter.new(File.open(temp_file))
+    provider_tree.load_providers(provider_tree.sub_providers)
+    
+    redirect_to action: 'patients'
+  end
+
   def users
     @users = User.all.ordered_by_username
   end
