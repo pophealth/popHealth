@@ -63,7 +63,7 @@ class ProviderTreeImporter
       prov.save
       load_providers(sub.sub_providers, prov)
     end
-  end 
+  end
 
   private
 
@@ -74,5 +74,5 @@ class ProviderTreeImporter
   def initialize_subproviders_from_document_body
     document_body.elements.map { |element| ProviderEntry.new(element) }
   end
-    
+
 end
