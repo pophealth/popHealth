@@ -48,14 +48,14 @@ db.shards.find({})
 # add index on medical_record_number since that's what we're going to shard on
 use pophealth-production
 db.records.ensureIndex({medical_record_number:1})
-db.patient_cache.ensureIndex({'value.medical_record_id':1})
+db.patient_cache.ensureIndex({'_id':1})
 
 # switch back to admin db
 # enable sharding on the database, records collection, and patient_cache collection
 use admin
 db.runCommand( { enablesharding : "pophealth-production" } )
 db.runCommand({shardcollection: "pophealth-production.records", key: {medical_record_number: 1}})
-db.runCommand({shardcollection: "pophealth-production.patient_cache", key: {"value.medical_record_id": 1}})
+db.runCommand({shardcollection: "pophealth-production.patient_cache", key: {"_id": 1}})
 
 ############################
 ### Load measures into every shared
