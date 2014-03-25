@@ -1,7 +1,6 @@
 #= require jquery/jquery
 #= require jquery_ujs
 #= require jquery-idletimer/dist/idle-timer
-#= require jQuery-Knob/js/jquery.knob
 #= require momentjs/moment
 #= require bootstrap/dist/js/bootstrap
 #= require underscore/underscore
@@ -15,6 +14,7 @@
 #= require helpers
 #= require population_chart
 #= require provider_chart
+#= require performance_chart
 #= require_tree ./templates
 #= require_tree ./models
 #= require_tree ./views
@@ -28,9 +28,3 @@ if Config.idleTimeout.isEnabled
       url: '/users/sign_out'
       type: 'DELETE'
       success: (result) -> window.location.href = '/logout.html'
-
-
-
-
-
-
