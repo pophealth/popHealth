@@ -1,40 +1,61 @@
-<div>
-  {{! TODO move this into a partial? }}
-  <input type="text" value="{{performanceRate}}" class="dial" data-readOnly="true" data-width="80" data-height="80" data-thickness=".1" data-fgColor="#4B979D" data-inputColor="#444" data-font="Helvetica Neue, Roboto, Helvetica, Arial, sans-serif">
-</div>
-<div class="fraction-listing pull-left">
-  <div class="numerator">{{numerator}}</div>
-  <div class="denominator">{{performanceDenominator}}</div>
-</div>
-<div class="pop-chart pull-left"></div>
-
+{{#if isContinuous}}
+  <div class="observation-listing">
+    <small>Observation:</small> {{observ}}
+  </div>
+  <div class="fraction-listing pull-left">
+    <div class="numerator">{{msrpopl}}</div>
+    <div class="denominator">{{ipp}}</div>
+  </div>
+  <div class="fraction-listing pull-left">
+    <div class="numerator caption">MSRPOPL</div>
+    <div class="denominator caption">IPP</div>
+  </div>
+{{/if}}
+{{#unless isContinuous}}
+  <div class="percent-listing">
+    <input type="text" value="{{performanceRate}}" class="dial" data-readOnly="true" data-width="80" data-height="80" data-thickness=".1" data-fgColor="#4B979D" data-inputColor="#444" data-font="Helvetica Neue, Roboto, Helvetica, Arial, sans-serif">
+  </div>
+  <div class="fraction-listing pull-left">
+    <div class="numerator">{{numerator}}</div>
+    <div class="denominator">{{performanceDenominator}}</div>
+  </div>
+  <div class="pop-chart pull-left"></div>
+{{/unless}}
 <button class="population-btn active" id="IPP">
   <span class="title">Initial Patient Pop.</span>
   <span class="query-result">{{ipp}}</span>
 </button>
-<button class="population-btn" id="NUMER">
-  <span class="title">Numerator</span>
-  <span class="query-result">{{numerator}}</span>
-</button>
-<button class="population-btn" id="DENOM">
-  <span class="title">Denominator</span>
-  <span class="query-result">{{denominator}}</span>
-</button>
+{{#if isContinuous}}
+  <button class="population-btn active" id="MSRPOPL">
+    <span class="title">Measure Pop.</span>
+    <span class="query-result">{{msrpopl}}</span>
+  </button>
+{{/if}}
+{{#unless isContinuous}}
+  <button class="population-btn" id="NUMER">
+    <span class="title">Numerator</span>
+    <span class="query-result">{{numerator}}</span>
+  </button>
+  <button class="population-btn" id="DENOM">
+    <span class="title">Denominator</span>
+    <span class="query-result">{{denominator}}</span>
+  </button>
+{{/unless}}
 {{#if hasExclusions}}
-<button class="population-btn" id="DENEX">
-  <span class="title">Exclusions</span>
-  <span class="query-result">{{exclusions}}</span>
-</button>
+  <button class="population-btn" id="DENEX">
+    <span class="title">Exclusions</span>
+    <span class="query-result">{{exclusions}}</span>
+  </button>
 {{/if}}
 {{#if hasExceptions}}
-<button class="population-btn" id="DENEXCEP">
-  <span class="title">Exceptions</span>
-  <span class="query-result">{{exceptions}}</span>
-</button>
+  <button class="population-btn" id="DENEXCEP">
+    <span class="title">Exceptions</span>
+    <span class="query-result">{{exceptions}}</span>
+  </button>
 {{/if}}
 {{#if hasOutliers}}
-<button class="population-btn" id="antinumerator">
-  <span class="title">Outliers</span>
-  <span class="query-result">{{outliers}}</span>
-</button>
+  <button class="population-btn" id="antinumerator">
+    <span class="title">Outliers</span>
+    <span class="query-result">{{outliers}}</span>
+  </button>
 {{/if}}

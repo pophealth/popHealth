@@ -16,6 +16,9 @@ class Thorax.Views.ResultsView extends Thorax.View
 
   performanceRate: -> @model.performanceRate()
   numerator: -> @model.numerator()
+  ipp: -> @model.ipp()
+  msrpopl: -> @model.msrpopl()
+  observ: -> parseFloat(@model.observ()).toFixed(1)
   denominator: -> @model.denominator()
   performanceDenominator: -> @model.performanceDenominator()
   initialize: ->

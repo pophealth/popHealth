@@ -1,16 +1,40 @@
-<div class="percent-listing">
-  <input type="text" value="{{performanceRate}}" class="dial" data-readOnly="true" data-width="80" data-height="80" data-thickness=".1" data-fgColor="#4B979D" data-inputColor="#444" data-font="Helvetica Neue, Roboto, Helvetica, Arial, sans-serif">
-</div>
-
-<div class="row-remainder">
-  <div class="fraction-listing pull-left">
-    <div class="numerator">{{numerator}}</div>
-    <div class="denominator">{{performanceDenominator}}</div>
+{{#if isContinuous}}
+  <div class="observation-listing">
+    {{#if isPrimary}}
+      <small>Observation</small>
+      <br/>
+    {{/if}}
+    {{observ}}
   </div>
 
-  <div class="pop-chart pull-left"></div>
+  <div class="row-remainder">
+    <div class="fraction-listing pull-left">
+      <div class="numerator">{{msrpopl}}</div>
+      <div class="denominator">{{ipp}}</div>
+    </div>
+    <div class="fraction-listing pull-left">
+      <div class="numerator caption">MSRPOPL</div>
+      <div class="denominator caption">IPP</div>
+    </div>
+    <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}/patient_results" class="patient-btn pull-right">
+      <i class="glyphicon glyphicon-user"></i> Patients
+    </a>
+  </div>
+{{/if}}
+{{#unless isContinuous}}
+  <div class="percent-listing">
+    <input type="text" value="{{performanceRate}}" class="dial" data-readOnly="true" data-width="80" data-height="80" data-thickness=".1" data-fgColor="#4B979D" data-inputColor="#444" data-font="Helvetica Neue, Roboto, Helvetica, Arial, sans-serif">
+  </div>
 
-  <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}/patient_results" class="patient-btn pull-right">
-    <i class="glyphicon glyphicon-user"></i> Patients
-  </a>
-</div>
+  <div class="row-remainder">
+    <div class="fraction-listing pull-left">
+      <div class="numerator">{{numerator}}</div>
+      <div class="denominator">{{performanceDenominator}}</div>
+    </div>
+
+    <div class="pop-chart pull-left"></div>
+    <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}/patient_results" class="patient-btn pull-right">
+      <i class="glyphicon glyphicon-user"></i> Patients
+    </a>
+  </div>
+{{/unless}}
