@@ -53,7 +53,7 @@ class ProviderTreeImporter
       end
       sub.attributes.each_pair do |root, extension|
         unless ['tin', 'id', 'name', 'address', 'npi'].include? root
-          prov.cda_identifiers << CDAIdentifier.new(root: root, extension: extension)
+          prov.cda_identifiers << CDAIdentifier.new(root: root, extension: extension, sortable_extension: extension.to_s.rjust(14,'0'))
         end
       end
 
@@ -63,7 +63,7 @@ class ProviderTreeImporter
       prov.save
       load_providers(sub.sub_providers, prov)
     end
-  end 
+  end
 
   private
 
@@ -74,5 +74,5 @@ class ProviderTreeImporter
   def initialize_subproviders_from_document_body
     document_body.elements.map { |element| ProviderEntry.new(element) }
   end
-    
+
 end
