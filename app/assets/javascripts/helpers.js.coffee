@@ -29,3 +29,5 @@ Handlebars.registerHelper 'join', (list, options = {}) ->
       item = item.attributes if item instanceof Backbone.Model
       if options.fn then options.fn(item).trim() else item.toString()
   ).join(options.hash.delimiter)
+
+Handlebars.registerHelper 'formatNumeral', (number, format) -> numeral(number).format(format)
