@@ -8,15 +8,15 @@ namespace :provider do
 
   desc 'Generate n (default 10) random provider records and save them in the database'
   task :random, :n do |t, args|
-    
+
     FactoryGirl.find_definitions
-    
+
     n = args.n.to_i>0 ? args.n.to_i : 10
 
     FactoryGirl.create_list(:provider, n)
-    
+
     providers = Provider.all
-    
+
     Record.all.each do |record|
       if (record.provider_performances.empty?)
         provider_performance = Factory.build(:provider_performance, provider_id: Provider.all.sample.id) if record.provider_performances.empty?
@@ -27,14 +27,14 @@ namespace :provider do
 
   desc 'Dump all providers and provider performance information'
   task :destroy_all do |t, args|
-    
+
     Record.all.each do |record|
       record.provider_performances = [] unless record.provider_performances.empty?
       record.save!
     end
-    
+
     Provider.all.each { |pr| pr.destroy }
-    
+
   end
 
   desc 'Load provider tree from OPML'
@@ -42,5 +42,16 @@ namespace :provider do
     provider_tree = ProviderTreeImporter.new(File.new(args.path))
     provider_tree.load_providers(provider_tree.sub_providers)
   end
-    
+
+  desc 'import providers from a file containing a json array of providers'
+  task :load_from_json, [:provider_json] do |t, args|
+    if !args.provider_json || args.provider_json.size==0
+      raise "please specify a value for provider_json"
+    end
+
+    providers = JSON.parse(File.new(args.provider_json).read)
+    providers.each {|provider_hash| Provider.new(provider_hash).save}
+    puts "imported #{providers.count} providers"
+  end
+
 end
