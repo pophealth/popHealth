@@ -23,6 +23,6 @@ describe 'Results View', ->
     expect(@resultsViewWithProvider.$('a')).toHaveAttr 'href', "#measures/#{@measureId}/providers/#{@providerId}/patient_results"
 
   it 'abbreviates large fractions', ->
-    result = $.extend {}, @query.get('result'), {NUMER: 7830}
+    result = $.extend {}, @query.get('result'), {NUMER: 7874}
     @query.set 'result', result
-    expect(@resultsViewWithProvider.$('.numerator')).toContainText '8k'
+    expect(@resultsViewWithProvider.$('.numerator')).toContainText '7.9k'
