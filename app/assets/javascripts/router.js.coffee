@@ -7,7 +7,7 @@ class PopHealth.Router extends Backbone.Router
 
   routes:
     '':                                 'dashboard'
-    'measures/:id(/:sub_id)/patient_results':  'patientResultsForMeasure'
+    'measures/:id(/:sub_id)(/providers/:provider_id)/patient_results':  'patientResultsForMeasure'
     'measures/:id(/:sub_id)':           'measure'
     'patients/:id':                     'patient'
     'providers(/:id)':                  'provider'
@@ -23,14 +23,14 @@ class PopHealth.Router extends Backbone.Router
       @view.setView measureView
     measureView.activateLogicView()
 
-  patientResultsForMeasure: (id, subId) ->
+  patientResultsForMeasure: (id, subId, providerId) ->
     measure = @categories.findMeasure(id, subId)
     if measure?
       measureView = @view.getView()
       unless measureView instanceof Thorax.Views.MeasureView and measureView.measure is measure
-        measureView = new Thorax.Views.MeasureView measure: measure, type: 'patient_results'
+        measureView = new Thorax.Views.MeasureView measure: measure, type: 'patient_results', providerId: providerId
         @view.setView measureView
-      measureView.activatePatientResultsView()
+      measureView.activatePatientResultsView(providerId)
     else
       console?.log 'Measure not found'
 
@@ -46,4 +46,4 @@ class PopHealth.Router extends Backbone.Router
       @view.setView new Thorax.Views.ProviderView model: providerModel
     else
       providerCollection = new Thorax.Collections.Providers
-      @view.setView new Thorax.Views.ProvidersView collection: providerCollection    
+      @view.setView new Thorax.Views.ProvidersView collection: providerCollection
