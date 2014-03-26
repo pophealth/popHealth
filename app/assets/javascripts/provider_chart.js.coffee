@@ -156,7 +156,7 @@ PopHealth.viz.providerChart = ->
       root.size = 8
       root.x0 = width/2
       root.y0 = height/2
-      root.children = root.children.sort((a,b) -> if a.cda_identifiers[0].sortable_extension > b.cda_identifiers[0].sortable_extension then return 1 else return -1)
+      root.children = root.children.sort((a,b) -> a.cda_identifiers[0].sortable_extension - b.cda_identifiers[0].sortable_extension)
 
       collapse = (d) ->
         if d.children?
