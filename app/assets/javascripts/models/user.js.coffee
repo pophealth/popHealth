@@ -3,6 +3,7 @@ class Thorax.Models.User extends Thorax.Model
   idAttribute: '_id'
 
   maskStatus: -> @get('preferences').mask_phi_data
+  percentageVisual: -> @get('preferences').percentage_visuals
 
   selectedCategories: (categories) ->
     selectedCats = new categories.constructor

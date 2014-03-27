@@ -1,5 +1,9 @@
 <div class="percent-listing">
-  <input type="text" value="{{performanceRate}}" class="dial" data-readOnly="true" data-width="80" data-height="80" data-thickness=".1" data-fgColor="#4B979D" data-inputColor="#444" data-font="Helvetica Neue, Roboto, Helvetica, Arial, sans-serif">
+  {{#if shouldDisplayCircle}}
+    <input type="text" value="{{performanceRate}}" class="dial" data-readOnly="true" data-width="80" data-height="80" data-thickness=".1" data-fgColor="#4B979D" data-inputColor="#444" data-font="Helvetica Neue, Roboto, Helvetica, Arial, sans-serif">
+  {{else}}
+    <span class='percentage'>{{performanceRate}}<small>%</small></span>
+  {{/if}}
 </div>
 
 <div class="row-remainder">
