@@ -1,9 +1,9 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.18'
-gem 'quality-measure-engine', '3.0.2'
+gem 'rails', '~> 4.0.4'
+gem 'quality-measure-engine', :git => 'https://github.com/pophealth/quality-measure-engine.git'
 
-gem 'health-data-standards', '3.4.6'
+gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git'
 gem 'nokogiri'
 gem 'rubyzip'
 
@@ -24,6 +24,8 @@ gem 'devise'
 
 gem 'git'
 
+gem 'protected_attributes', '~> 1.0.5'
+
 gem 'foreman'
 gem "thin"
 gem 'formtastic'
@@ -31,22 +33,18 @@ gem 'cancan'
 gem 'factory_girl', "2.6.3"
 gem 'apipie-rails'
 
-# backport fixes from future versions of Sprockets into a Rails 3-compatible gem
-gem 'sprockets', '2.2.2.backport1'
+gem 'sprockets', '~> 2.12.0'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'less-rails'
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-  gem "bootstrap-sass"
-end
+# Gems used for assets
+gem 'less-rails'
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
+gem "bootstrap-sass"
 
 group :test, :develop, :ci do
   gem 'pry'
-  gem 'jasmine', '2.0.0'
+  gem 'jasmine', '2.0.1'
   gem 'turn', :require => false
   gem 'simplecov', :require => false
   gem 'mocha', :require => false
