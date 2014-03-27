@@ -7,9 +7,9 @@ class Record
   
   field :measures, type: Hash
 
-  scope :alphabetical, order_by([:last, :asc], [:first, :asc])
-  scope :with_provider, where(:provider_performances.ne => nil).or(:provider_proformances.ne => [])
-  scope :without_provider, any_of({provider_performances: nil}, {provider_performances: []})
+  scope :alphabetical, ->{order_by([:last, :asc], [:first, :asc])}
+  scope :with_provider, ->{where(:provider_performances.ne => nil).or(:provider_proformances.ne => [])}
+  scope :without_provider, ->{any_of({provider_performances: nil}, {provider_performances: []})}
   scope :provider_performance_between, ->(effective_date) { where("provider_performances.start_date" => {"$lt" => effective_date}).and('$or' => [{'provider_performances.end_date' => nil}, 'provider_performances.end_date' => {'$gt' => effective_date}]) }
     
   def language_names
