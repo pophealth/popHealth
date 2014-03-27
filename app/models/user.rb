@@ -1,7 +1,9 @@
 require 'uniq_validator'
+require 'protected_attributes'
 
 class User
 
+  include ActiveModel::MassAssignmentSecurity
   include Mongoid::Document
 
   after_initialize :build_preferences, unless: Proc.new { |user| user.preferences.present? }
