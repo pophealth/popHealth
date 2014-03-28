@@ -40,11 +40,11 @@ class PatientCache
  {"$unwind"=>"$providers"},
  {"$match"=>
    {"$or"=>
-     [{"providers"=> Moped::BSON::ObjectId("50a64aa68898e5b4b2000001")},
-      {"providers"=> Moped::BSON::ObjectId("50a64aa68898e5b4b2000003")},
-      {"providers"=> Moped::BSON::ObjectId("50a55a8e8898e5d400000005")},
-      {"providers"=> Moped::BSON::ObjectId("50a64aa68898e5b4b2000007")},
-      {"providers"=> Moped::BSON::ObjectId("50a64aa68898e5b4b2000009")}]}})
+     [{"providers"=> BSON::ObjectId("50a64aa68898e5b4b2000001")},
+      {"providers"=> BSON::ObjectId("50a64aa68898e5b4b2000003")},
+      {"providers"=> BSON::ObjectId("50a55a8e8898e5d400000005")},
+      {"providers"=> BSON::ObjectId("50a64aa68898e5b4b2000007")},
+      {"providers"=> BSON::ObjectId("50a64aa68898e5b4b2000009")}]}})
   end
 
   def self.languages
