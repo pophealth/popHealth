@@ -49,7 +49,7 @@ class ActiveSupport::TestCase
       json.each_pair do |k,v|
         if v && v.kind_of?( Hash )
           if v["$oid"]
-            json[k] = Moped::BSON::ObjectId(v["$oid"])
+            json[k] = BSON::ObjectId(v["$oid"])
           else
             set_mongoid_ids(v)
           end  
