@@ -13,7 +13,7 @@ class Thorax.Views.ResultsView extends Thorax.View
         @$('rect').popover()
     destroyed: ->
       clearInterval(@timeout) if @timeout?
-
+  shouldDisplayPercentageVisual: -> PopHealth.currentUser.shouldDisplayPercentageVisual()
   performanceRate: -> @model.performanceRate()
   numerator: -> @model.numerator()
   denominator: -> @model.denominator()
