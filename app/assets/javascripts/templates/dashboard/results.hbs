@@ -1,8 +1,8 @@
 <div class="percent-listing">
-  {{#if shouldDisplayCircle}}
+  {{#if shouldDisplayPercentageVisual}}
     <input type="text" value="{{performanceRate}}" class="dial" data-readOnly="true" data-width="80" data-height="80" data-thickness=".1" data-fgColor="#4B979D" data-inputColor="#444" data-font="Helvetica Neue, Roboto, Helvetica, Arial, sans-serif">
   {{else}}
-    <span class='percentage'>{{performanceRate}}<small>%</small></span>
+    <span class="percentage">{{performanceRate}}<small>%</small></span>
   {{/if}}
 </div>
 

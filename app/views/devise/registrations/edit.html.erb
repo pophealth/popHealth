@@ -116,11 +116,11 @@
 
         <div class="btn-group btn-group-md col-md-3" data-toggle="buttons">
           <%= f.fields_for :preferences do |t| %>
-          <label class="btn btn-default col-md-6<%= ' active' if t.object.percentage_visuals %>">
-            <%= t.radio_button :percentage_visuals, true, checked: t.object.percentage_visuals %> Yes
+          <label class="btn btn-default col-md-6<%= ' active' if t.object.should_display_circle_visual %>">
+            <%= t.radio_button :should_display_circle_visual, true, checked: t.object.should_display_circle_visual %> Yes
           </label>
-          <label class="btn btn-default col-md-6<%= ' active' unless t.object.percentage_visuals %>">
-            <%= t.radio_button :percentage_visuals, false, checked: !t.object.percentage_visuals %> No
+          <label class="btn btn-default col-md-6<%= ' active' unless t.object.should_display_circle_visual %>">
+            <%= t.radio_button :should_display_circle_visual, false, checked: !t.object.should_display_circle_visual %> No
           </label>
           <% end %>
         </div>
