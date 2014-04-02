@@ -42,7 +42,9 @@ module Api
     end
 
     api :POST, '/reports/qrda_cat3_inplace', "Retrieve a QRDA Category III document calculated from passed in QRDA Category I patient files"
-    param :generation_params, String, :desc => 'JSON object specifying start_date (since epoch in seconds), effective_date (since epoch in seconds) and measure_ids (the HQMF ID of the measures to include in the document)', :required => false
+    param :measure_ids, Array, :desc => 'The HQMF ID of the measures to include in the document', :required => false
+    param :effective_date, String, :desc => 'Time in seconds since the epoch for the end date of the reporting period', :required => false
+    param :start_date, String, :desc => 'Time in seconds since the epoch for the start date of the reporting period', :required => false
     param :cat1_zip, nil, :desc => 'Zip archive of patient QRDA Category 1 files for measures requested', :required => true
     description <<-CDESC
       This action will generate a QRDA Category III document calculated over passed in QRDA Category I patient files. If measure_ids and effective_date are not provided,
@@ -87,11 +89,10 @@ module Api
       File.delete(temp_file.path)
 
       # Initialize parameters
-      generation_params = JSON.parse(params[:generation_params])
-      measure_ids = generation_params['measure_ids'] || current_user.preferences["selected_measure_ids"]
-      effective_date = generation_params['end_date'] || current_user.effective_date || Time.gm(2012, 12, 31)
+      measure_ids = params[:measure_ids] || current_user.preferences["selected_measure_ids"]
+      effective_date = params[:effective_date] || current_user.effective_date || Time.gm(2012, 12, 31)
       end_date = Time.at(effective_date.to_i)
-      start_date = Time.at(generation_params['start_date'] || (end_date.years_ago(1) + 1.day))
+      start_date = Time.at(params[:start_date] || (end_date.years_ago(1) + 1.day))
 
       # Initialize filters
       measures_filter = measure_ids=="all" ? {}  : {:hqmf_id.in =>measure_ids.map { |mId| mId.upcase }} #Measure Ids are stored in uppercase
@@ -103,13 +104,13 @@ module Api
         qr.calculate({'oid_dictionary' => oid_dictionary, 'recalculate' => true}, false)
       end
 
+      # TODO: generate proper header for providers mentioned in cat 1 files. For now, prepare fake header
+      fake_header = generate_header([])
+
       # Export report
-      patient_providers = []
       exporter =  HealthDataStandards::Export::Cat3.new
       qrda_cat3 = exporter.export(HealthDataStandards::CQM::Measure.top_level.where(measures_filter),
-                                  generate_header(patient_providers),
-                                  effective_date.to_i, start_date, end_date,
-                                  nil, test_id)
+                                  fake_header, effective_date.to_i, start_date, end_date, nil, test_id)
 
       # Cleanup all records associated with test id
       Record.where(test_id: test_id).delete
