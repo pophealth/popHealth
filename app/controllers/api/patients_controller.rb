@@ -53,12 +53,12 @@
     description "Upload a QRDA Category I document for a patient into popHealth."
     def create
       authorize! :create, Record
-      RecordImporter.import(params[:file])
+      HealthDataStandards::Import::BulkRecordImporter.import(params[:file])
     end
 
     def load
       authorize! :create, Record
-      RecordImporter.load_zip(params[:file])
+      HealthDataStandards::Import::BulkRecordImporter.import_archive(params[:file])
     end
 
     def toggle_excluded

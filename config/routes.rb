@@ -44,6 +44,7 @@ PopHealth::Application.routes.draw do
 
   namespace :api do
     match 'reports/qrda_cat3.xml', :to =>'reports#cat3', :format => :xml
+    match 'reports/qrda_cat3_inplace', :to => 'reports#cat3_inplace', :format => :xml
     resources :providers do
       resources :patients do
         collection do
