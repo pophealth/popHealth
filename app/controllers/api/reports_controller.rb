@@ -73,11 +73,12 @@ module Api
               assert result[:message]
             end
           rescue Exception => e
-            failed_dir = File.join(temp_file.dirname, 'failed_imports')
+            failed_dir = File.join(File.dirname(temp_file.path), 'failed_imports')
             unless(Dir.exists?(failed_dir))
               Dir.mkdir(failed_dir)
             end
             FileUtils.cp(temp_file, failed_dir)
+            raise e
           end
         end
       end
@@ -99,7 +100,7 @@ module Api
       HealthDataStandards::CQM::Measure.where(measures_filter).each do |measure|
         oid_dictionary = OidHelper.generate_oid_dictionary(measure)
         qr = QME::QualityReport.find_or_create(measure.hqmf_id, measure.sub_id, {'effective_date' => effective_date, 'test_id' => test_id})
-        qr.calculate({'oid_dictionary' => oid_dictionary}, false) unless qr.calculated?
+        qr.calculate({'oid_dictionary' => oid_dictionary, 'recalculate' => true}, false)
       end
 
       # Export report
@@ -109,6 +110,11 @@ module Api
                                   generate_header(patient_providers),
                                   effective_date.to_i, start_date, end_date,
                                   nil, test_id)
+
+      # Cleanup all records associated with test id
+      Record.where(test_id: test_id).delete
+      QME::QualityReport.where(test_id: test_id).delete
+      QME::PatientCache.where('value.test_id' => test_id).delete
 
       render xml: qrda_cat3, content_type: "attachment/xml"
     end
@@ -138,14 +144,14 @@ module Api
         doc.root.add_namespace_definition('sdtc', 'urn:hl7-org:sdtc')
 
         if doc.at_xpath("/cda:ClinicalDocument/cda:templateId[@root='2.16.840.1.113883.10.20.24.1.2']")
-          patient_data = Cat1::PatientImporter.instance.parse_cat1(doc)
+          patient_data = HealthDataStandards::Import::Cat1::PatientImporter.instance.parse_cat1(doc)
         else
           STDERR.puts("Unable to determinate document template/type of CDA document")
           return {status: 'error', message: "Document templateId does not identify it as a C32 or CCDA", status_code: 400}
         end
 
         begin
-          providers = CDA::ProviderImporter.instance.extract_providers(doc)
+          providers = HealthDataStandards::Import::CDA::ProviderImporter.instance.extract_providers(doc)
         rescue Exception => e
           STDERR.puts "error extracting providers"
         end
