@@ -26,3 +26,8 @@ describe 'Results View', ->
     result = $.extend {}, @query.get('result'), {NUMER: 7874}
     @query.set 'result', result
     expect(@resultsViewWithProvider.$('.numerator')).toContainText '7.9k'
+
+  it 'does not add decimal places to small integers', ->
+    result = $.extend {}, @query.get('result'), {NUMER: 5}
+    @query.set 'result', result
+    expect(@resultsViewWithProvider.$('.numerator')).toHaveText '5'
