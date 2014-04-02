@@ -72,7 +72,7 @@ module Api
           begin
             result = import_cat_1(xml, test_id)
             if (result[:status] != 'success')
-              assert result[:message]
+              raise result[:message]
             end
           rescue Exception => e
             failed_dir = File.join(File.dirname(temp_file.path), 'failed_imports')
@@ -90,9 +90,9 @@ module Api
 
       # Initialize parameters
       measure_ids = params[:measure_ids] || current_user.preferences["selected_measure_ids"]
-      effective_date = params[:effective_date] || current_user.effective_date || Time.gm(2012, 12, 31)
-      end_date = Time.at(effective_date.to_i)
-      start_date = Time.at(params[:start_date] || (end_date.years_ago(1) + 1.day))
+      effective_date = (params[:effective_date].to_i if params[:effective_date]) || current_user.effective_date || Time.gm(2012, 12, 31).to_i
+      end_date = Time.at(effective_date)
+      start_date = Time.at((params[:start_date].to_i if params[:start_date]) || (end_date.years_ago(1) + 1.day))
 
       # Initialize filters
       measures_filter = measure_ids=="all" ? {}  : {:hqmf_id.in =>measure_ids.map { |mId| mId.upcase }} #Measure Ids are stored in uppercase
@@ -125,7 +125,7 @@ module Api
     def generate_header(provider)
       header = Qrda::Header.new(APP_CONFIG["cda_header"])
 
-      header.identifier.root = UUID.generate
+      header.identifier.extension = UUID.generate
       header.authors.each {|a| a.time = Time.now}
       header.legal_authenticator.time = Time.now
       header.performers << provider
