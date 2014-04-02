@@ -5,7 +5,6 @@ class AdminController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :validate_authorization!
-  add_breadcrumb 'admin', :admin_users_path
 
   def patients
     @patient_count = Record.count
@@ -59,7 +58,7 @@ class AdminController < ApplicationController
 
     provider_tree = ProviderTreeImporter.new(File.open(temp_file))
     provider_tree.load_providers(provider_tree.sub_providers)
-    
+
     redirect_to action: 'patients'
   end
 

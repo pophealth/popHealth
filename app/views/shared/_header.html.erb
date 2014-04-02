@@ -5,7 +5,7 @@
     </div>
     <div class="collapse navbar-collapse in">
       <ul class="nav navbar-nav pull-left" style="margin-top: 10px">
-        <li class="location"><% if @breadcrumbs %><%= @breadcrumbs[0].title %><% end %> <span class="time"> 2012</span></li>
+        <li class="location"><% if Provider.root %><%= Provider.root.given_name %><% else %><%= APP_CONFIG['practice_name'] %><% end %> <span class="time"> 2012</span></li>
       </ul>
        <ul class="nav pull-right">
         <li class="divider-vertical"></li>
@@ -31,7 +31,7 @@
                     <li><%= link_to raw('<i class="glyphicon glyphicon-eye-open"></i> Patients'), admin_patients_path%></li>
                   <% end %>
                   <li><%= link_to raw('<i class="glyphicon glyphicon-user"></i> Users'), admin_users_path%></li>
-                  <li><%= link_to raw('<i class="glyphicon glyphicon-list-alt"></i> Logs'), logs_index_path%></li> 
+                  <li><%= link_to raw('<i class="glyphicon glyphicon-list-alt"></i> Logs'), logs_index_path%></li>
                 <% end %>
               <% end %>
             </ul>
