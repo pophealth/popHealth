@@ -63,7 +63,7 @@ module Api
       test_id = Moped::BSON::ObjectId.new
 
       # Import records
-      Zip::ZipFile.open(file.path) do |zipfile|
+      Zip::ZipFile.open(temp_file.path) do |zipfile|
         zipfile.entries.each do |entry|
           next if entry.directory?
           xml = zipfile.read(entry.name)
@@ -73,14 +73,17 @@ module Api
               assert result[:message]
             end
           rescue Exception => e
-            failed_dir = File.join(file.dirname, 'failed_imports')
+            failed_dir = File.join(temp_file.dirname, 'failed_imports')
             unless(Dir.exists?(failed_dir))
               Dir.mkdir(failed_dir)
             end
-            FileUtils.cp(file, failed_dir)
+            FileUtils.cp(temp_file, failed_dir)
           end
         end
       end
+
+      # Delete temp zip
+      File.delete(temp_file.path)
 
       # Initialize parameters
       generation_params = JSON.parse(params[:generation_params])
