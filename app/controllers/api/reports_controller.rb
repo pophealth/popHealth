@@ -43,7 +43,7 @@ module Api
 
     api :POST, '/reports/qrda_cat3_inplace', "Retrieve a QRDA Category III document calculated from passed in QRDA Category I patient files"
     param :generation_params, String, :desc => 'JSON object specifying start_date (since epoch in seconds), effective_date (since epoch in seconds) and measure_ids (the HQMF ID of the measures to include in the document)', :required => false
-    param :cat1_zip, :desc => 'Zip archive of patient QRDA Category 1 files for measures requested', :required => true
+    param :cat1_zip, nil, :desc => 'Zip archive of patient QRDA Category 1 files for measures requested', :required => true
     description <<-CDESC
       This action will generate a QRDA Category III document calculated over passed in QRDA Category I patient files. If measure_ids and effective_date are not provided,
       the values from the user's dashboard will be used.
@@ -68,13 +68,8 @@ module Api
           next if entry.directory?
           xml = zipfile.read(entry.name)
           begin
-            result = HealthDataStandards::Import::BulkRecordImporter.import(xml)
-            if (result[:status] == 'success')
-              # Mark records with test id
-              record = result[:record]
-              record.test_id = test_id
-              record.save
-            else
+            result = import_cat_1(xml, test_id)
+            if (result[:status] != 'success')
               assert result[:message]
             end
           rescue Exception => e
@@ -105,9 +100,10 @@ module Api
       end
 
       # Export report
+      patient_providers = []
       exporter =  HealthDataStandards::Export::Cat3.new
       qrda_cat3 = exporter.export(HealthDataStandards::CQM::Measure.top_level.where(measures_filter),
-                                  generate_header(provider),
+                                  generate_header(patient_providers),
                                   effective_date.to_i, start_date, end_date,
                                   nil, test_id)
 
@@ -125,6 +121,58 @@ module Api
       header.performers << provider
 
       header
+    end
+
+    # Imports category 1 xml data and saves it for specific test_id
+    def import_cat_1(xml_data, test_id)
+      doc = Nokogiri::XML(xml_data)
+
+      providers = []
+      root_element_name = doc.root.name
+
+      if root_element_name == 'ClinicalDocument'
+        doc.root.add_namespace_definition('cda', 'urn:hl7-org:v3')
+        doc.root.add_namespace_definition('sdtc', 'urn:hl7-org:sdtc')
+
+        if doc.at_xpath("/cda:ClinicalDocument/cda:templateId[@root='2.16.840.1.113883.10.20.24.1.2']")
+          patient_data = Cat1::PatientImporter.instance.parse_cat1(doc)
+        else
+          STDERR.puts("Unable to determinate document template/type of CDA document")
+          return {status: 'error', message: "Document templateId does not identify it as a C32 or CCDA", status_code: 400}
+        end
+
+        begin
+          providers = CDA::ProviderImporter.instance.extract_providers(doc)
+        rescue Exception => e
+          STDERR.puts "error extracting providers"
+        end
+      else
+        return {status: 'error', message: 'Unknown XML Format', status_code: 400}
+      end
+
+      record = update_or_create_record(patient_data, test_id)
+      record.provider_performances = providers
+      providers.each do |prov|
+        prov.provider.ancestors.each do |ancestor|
+          record.provider_performances.push(ProviderPerformance.new(start_date: prov.start_date, end_date: prov.end_date, provider: ancestor))
+        end
+      end
+      record.save
+
+      {status: 'success', message: 'patient imported', status_code: 201, record: record}
+
+    end
+
+    def update_or_create_record(data, test_id)
+      data.test_id = test_id
+      existing = Record.where(medical_record_number: data.medical_record_number).where(test_id: data.test_id).first
+      if existing
+        existing.update_attributes!(data.attributes.except('_id'))
+        existing
+      else
+        data.save!
+        data
+      end
     end
   end
 end
