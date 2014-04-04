@@ -37,7 +37,10 @@ class RegistrationsController < Devise::RegistrationsController
       end
     else
       clean_up_passwords resource
-      respond_with resource
+      respond_to do |format|
+        format.html { render action: "edit" }
+        format.json { render nothing: true, status: :not_acceptable }
+      end
     end
   end
 
