@@ -14,6 +14,7 @@ class Thorax.Views.PatientView extends Thorax.View
       race: if @model.has('race') then @model.get('race').name else 'None Provided'
       ethnicity: if @model.has('ethnicity') then @model.get('ethnicity').name else 'None Provided'
       languages: if _.isEmpty(@model.get('languages')) then 'Not Available' else @model.get('languages')
+      provider: if @model.has('provider_name') then @model.get('provider_name') else 'Not Available'
       measures: @measures()
 
   measures: ->
