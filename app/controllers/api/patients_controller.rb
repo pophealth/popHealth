@@ -41,6 +41,14 @@
     example '{"_id":"52fbbf34b99cc8a728000068","birthdate":1276869600,"first":"John","gender":"M","last":"Peters","encounters":[{...}], ...}'
     def show
       json = @patient.as_json(params[:include_results] ? {methods: :cache_results} : {})
+      provider_list = @patient.provider_performances.map{ |p| p.provider}
+      provider_list.each do |prov|
+        if prov
+          if prov.leaf?
+            json['provider_name'] = prov.given_name
+          end
+        end
+      end
       if results = json.delete('cache_results')
         json['measure_results'] = results_with_measure_metadata(results)
       end
