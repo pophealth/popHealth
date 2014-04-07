@@ -34,32 +34,58 @@ module Api
     SDESC
     example <<-EXAMPLE
       {
-        _id: "530fc46575efe58027000019",
-        address: "130 W. KINGSBRIDGE ROAD Bronx NY 10468-3904",
-        cda_identifiers: [
+        "_id": "5331db9575efe558ad000bc9",
+        "address": "1601 S W Archer Road Gainesville FL 32608",
+        "cda_identifiers": [
           {
-            _id: "530fc46575efe5802700001a",
-            extension: "526",
-            root: "2.16.840.1.113883.4.6"
+            "_id": "5331db9575efe558ad000bca",
+            "extension": "573",
+            "root": "Division",
+            "sortable_extension": "00000000000573"
           }
         ],
-        family_name: null,
-        given_name: "BRONX VA HOSPITAL",
-        level: null,
-        parent_id: "530fc46575efe58027000017",
-        parent_ids: [
-          "530fc46575efe58027000017"
+        "family_name": null,
+        "given_name": "North Florida\/South Georgia HCS-Gainesville",
+        "level": null,
+        "parent_id": "5331db9575efe558ad000bc7",
+        "parent_ids": [
+          "5331db9475efe558ad0008da",
+          "5331db9575efe558ad000b8d",
+          "5331db9575efe558ad000bc7"
         ],
-        phone: null,
-        specialty: null,
-        team_id: null,
-        title: null,
-        parent_name: "VA NY/NJ Veterans Healthcare Network"
+        "phone": null,
+        "specialty": null,
+        "team_id": null,
+        "title": null,
+        "parent": {
+          "_id": "5331db9575efe558ad000bc7",
+          "address": "1601 S W Archer Road Gainesville FL 32608",
+          "cda_identifiers": [
+            {
+              "_id": "5331db9575efe558ad000bc8",
+              "extension": "573",
+              "root": "Facility",
+              "sortable_extension": "00000000000573"
+            }
+          ],
+          "family_name": null,
+          "given_name": "North Florida\/South Georgia HCS-Gainesville",
+          "level": null,
+          "parent_id": "5331db9575efe558ad000b8d",
+          "parent_ids": [
+            "5331db9475efe558ad0008da",
+            "5331db9575efe558ad000b8d"
+          ],
+          "phone": null,
+          "specialty": null,
+          "team_id": null,
+          "title": null
+        }
       }
     EXAMPLE
     def show
       provider_json = @provider.as_json
-      provider_json[:parent_name] = Provider.find(@provider.parent_id).given_name if @provider.parent_id
+      provider_json[:parent] = Provider.find(@provider.parent_id) if @provider.parent_id
       provider_json[:children] = @provider.children if @provider.children.present?
       render json: provider_json
     end

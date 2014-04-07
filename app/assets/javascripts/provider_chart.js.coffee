@@ -150,7 +150,7 @@ PopHealth.viz.providerChart = ->
         .projection((d) -> [d.x, d.y])
       if data.parent_id?
         data.active = true
-        data = {given_name: data.parent_name, _id: data.parent_id, children: [data]}
+        data = {given_name: "#{data.parent.cda_identifiers?[0].root||""} #{data.parent.cda_identifiers?[0].extension||""} #{data.parent.given_name}", _id: data.parent_id, children: [data]}
       root = data
       root.active = true
       root.size = 8
