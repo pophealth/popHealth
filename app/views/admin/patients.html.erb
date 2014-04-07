@@ -1,14 +1,3 @@
-<% content_for :head do -%>
-<script type="text/javascript">
-  var popHealth = popHealth || {};
-
-
-  $(document).ready(function() {
-  });
-
-</script>
-<% end -%>
-
 <div id="pageContent" style="padding:20px;">
 <h3>Patients</h3>
 
@@ -47,17 +36,17 @@
     <tr><td colspan="2">&nbsp;</td></tr>
 
     <tr><td colspan="2">&nbsp;</td></tr>
-    <%= form_tag("/admin/upload_patients", :method => "put", :multipart=>true) do %>
+    <%= form_tag("/admin/upload_patients", :method => "put", :multipart=>true, :class=>"file-upload") do %>
     <tr><td>Upload patient zip file: </td>
       <td>
-          <%= file_field_tag(:file)%>
+        <%= file_field_tag(:file)%>
       </td>
       <td><%= submit_tag("Upload", 'class' => "btn btn-success") %></td>
     </tr>
     <% end %>
 
     <tr><td colspan="2">&nbsp;</td></tr>
-    <%= form_tag("/admin/upload_providers", :method => "put", :multipart=>true) do %>
+    <%= form_tag("/admin/upload_providers", :method => "put", :multipart=>true, :class=>"file-upload") do %>
     <tr><td>Upload provider opml file: </td>
       <td>
         <%= file_field_tag(:file)%>
@@ -69,3 +58,14 @@
   </table>
 
 </div> <!-- pageContent -->
+<script>
+  $(document).ready(function() {
+    $(".file-upload").submit(function(e) {
+      if (this.file.value === "") {
+        alert("Please provide a file.");
+        this.file.focus();
+        e.preventDefault();
+      }
+    });
+  });
+</script>
