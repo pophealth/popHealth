@@ -13,7 +13,9 @@ class PopHealth.Router extends Backbone.Router
     'providers(/:id)':                  'provider'
 
   dashboard: ->
-    @view.setView new Thorax.Views.Dashboard collection: @categories
+    generated = new Thorax.Models.Provider _id:"5331db9475efe558ad0008da"
+    @view.setView new Thorax.Views.ProviderView model: PopHealth.rootProvider
+    debugger
 
   measure: (id, subId) ->
     measure = @categories.findMeasure(id, subId)

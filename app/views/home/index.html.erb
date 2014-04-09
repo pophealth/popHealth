@@ -3,6 +3,8 @@
   PopHealth.categories = <%= @categories.to_json.html_safe %>;
   PopHealth.patientCount = <%= @patient_count %>;
   PopHealth.currentUser = new Thorax.Models.User(<%= current_user.to_json({:include => :preferences }).html_safe %>);
+  PopHealth.rootProvider = new Thorax.Models.Provider(<%= Provider.root.to_json({:include => :children }).html_safe %>);
+  PopHealth.rootProviderJSON = <%= Provider.root.to_json({:include => :children }).html_safe %>;
   new PopHealth.Router();
   Backbone.history.start();
 </script>
