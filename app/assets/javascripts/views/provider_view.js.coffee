@@ -16,7 +16,7 @@ class Thorax.Views.ProviderView extends Thorax.View
     # 'click g': 'changeProvider'
     rendered: ->
       if @model.isPopulated()
-        d3.select("#providerChart").datum(@model.toJSON()).call(@providerChart)
+        d3.select(@el).select("#providerChart").datum(@model.toJSON()).call(@providerChart)
         @$('.node').popover()
 
 class Thorax.Views.ProvidersView extends Thorax.View
