@@ -13,7 +13,7 @@ class PopHealth.Router extends Backbone.Router
     'providers(/:id)':                  'provider'
 
   dashboard: ->
-    @view.setView new Thorax.Views.Dashboard collection: @categories
+    @view.setView new Thorax.Views.ProviderView model: PopHealth.rootProvider
 
   measure: (id, subId) ->
     measure = @categories.findMeasure(id, subId)
