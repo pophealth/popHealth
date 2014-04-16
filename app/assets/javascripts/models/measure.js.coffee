@@ -18,8 +18,10 @@ class Thorax.Models.Submeasure extends Thorax.Model
   url: -> "/api/measures/#{@get('id')}"
   initialize: ->
     # FIXME don't use hardcoded effective date
+    # TODO remove @get('query') when we upgrade to Thorax 3
     query = new Thorax.Models.Query({measure_id: @get('id'), sub_id: @get('sub_id'), effective_date: Config.effectiveDate}, parent: this)
     @set 'query', query
+    @queries = {}
   isPopulated: -> @has 'IPP'
   fetch: (options = {}) ->
     options.data = {sub_id: @get('sub_id')} unless options.data?
@@ -38,6 +40,10 @@ class Thorax.Models.Submeasure extends Thorax.Model
       attrs[population.type] = new Thorax.Models.Population population, parse: true
       attrs[population.type].parent = this
     attrs
+  getQueryForProvider: (providerId) ->
+    query = @queries[providerId] or new Thorax.Models.Query({measure_id: @get('id'), sub_id: @get('sub_id'), effective_date: Config.effectiveDate, providers: [providerId]}, parent: this)
+    @queries[providerId] ?= query
+
 
 class SubCollection extends Thorax.Collection
   model: Thorax.Models.Submeasure

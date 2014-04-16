@@ -3,17 +3,11 @@ class Thorax.Views.ProviderView extends Thorax.View
   initialize: ->
     @dashboardView = new Thorax.Views.Dashboard provider_id: @model.id, collection: new Thorax.Collections.Categories PopHealth.categories, parse: true
     @providerChart = PopHealth.viz.providerChart()
-  # Code for eventual partial replacement of
-  # changeProvider: (event) ->
-  #    providerId = $(event.currentTarget).attr("id") # selected ID
-  #    @setModel(new Thorax.Models.Provider(_id: providerId))
-  #    @dashboardView.remove()
   context: ->
     _(super).extend
       providerType: @model.providerType() || ""
       providerExtension: @model.providerExtension() || ""
   events:
-    # 'click g': 'changeProvider'
     rendered: ->
       if @model.isPopulated()
         d3.select(@el).select("#providerChart").datum(@model.toJSON()).call(@providerChart)
