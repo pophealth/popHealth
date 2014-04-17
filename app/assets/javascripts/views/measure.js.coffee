@@ -2,7 +2,7 @@ class Thorax.Views.MeasureView extends Thorax.LayoutView
   id: 'measureSummary'
   template: JST['measures/show']
   initialize: ->
-    @queryView = new Thorax.Views.QueryView model: @measure.get('query'), providerId: @providerId
+    @queryView = new Thorax.Views.QueryView model: @measure.getQueryForProvider(@providerId), providerId: @providerId
 
   context: ->
     _(super).extend @measure.toJSON(), measurementPeriod: moment(Config.effectiveDate * 1000).format('YYYY')
@@ -13,7 +13,7 @@ class Thorax.Views.MeasureView extends Thorax.LayoutView
     @setView view
 
   activatePatientResultsView: (providerId) ->
-    view = new Thorax.Views.PatientResultsLayoutView query: @measure.get('query'), providerId: providerId
+    view = new Thorax.Views.PatientResultsLayoutView query: @measure.getQueryForProvider(providerId), providerId: providerId
     view.changeFilter @queryView.currentPopulation
     @setView view
 

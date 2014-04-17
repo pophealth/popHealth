@@ -36,6 +36,7 @@ class Thorax.Views.DashboardSubmeasureView extends Thorax.View
   events:
     rendered: ->
       @$("[rel='popover']").popover()
+      # TODO when we upgrade to Thorax 3, use `getQueryForProvider`
       query = @model.get('query')
       unless query.isPopulated()
         @$el.fadeTo 'fast', 0.5
