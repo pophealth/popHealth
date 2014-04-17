@@ -41,7 +41,7 @@ class AdminController < ApplicationController
 
     File.open(temp_file.path, "wb") { |f| f.write(file.read) }
 
-    Delayed::Job.enqueue ImportArchiveJob.new({'file' => temp_file,'user' => current_user})
+    Delayed::Job.enqueue(ImportArchiveJob.new({'file' => temp_file,'user' => current_user}),:queue=>:patient_import)
     redirect_to action: 'patients'
   end
 
