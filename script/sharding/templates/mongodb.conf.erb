@@ -1,0 +1,11 @@
+dbpath=/var/lib/<%= name %>
+logpath=/var/log/<%= name %>/mongodb.log
+logappend=true
+<% if shardsvr %>
+shardsvr=true
+<% elsif config_server %>
+configsvr=true
+<% end %>
+host=<%= host %>
+port = <%= port %>
+
