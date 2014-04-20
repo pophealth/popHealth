@@ -7,6 +7,7 @@ gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-d
 gem 'nokogiri'
 gem 'rubyzip'
 
+gem 'sshkit'
 # Should be removed in the future. This is only used for the
 # admin log page. When the admin pages are switched to
 # client side pagination, this can go away.
