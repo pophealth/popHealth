@@ -26,6 +26,11 @@ task :test_all => ["jasmine:ci", :test_unit] do
   system("open coverage/index.html")
 end
 
+Rake::Task["test"].clear
+task 'test' do
+  puts "Please run rake test_all in order to run the test suite."
+end
+
 begin
   require 'jasmine'
   load 'jasmine/tasks/jasmine.rake'
