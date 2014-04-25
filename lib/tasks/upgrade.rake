@@ -4,9 +4,10 @@ namespace :upgrade do
     # remove all unprocessed jobs - they will not be compatible with the updated 
     # QME. 
     Delayed::Job.all.destroy
+    Mongoid.default_session["rollup_buffer"].drop
     fields = ["population_ids",
               "IPP",
-              "DENOM"
+              "DENOM",
               "NUMER",
               "antinumerator",
               "DENEX",
@@ -14,13 +15,15 @@ namespace :upgrade do
               "MSRPOPL",
               "OBSERV", 
               "supplemental_data"]
+    QME::QualityReport.where({status: {"$ne" => nil}}    ).destroy   
     QME::QualityReport.where({status: nil}).each do |qr|
       qr.status = {state: "completed"}
       report = QME::QualityReportResult.new
-      fields.each do |f|
+      fields.each do |field|
         report[field] = qr[field]
       end
-      qr.report = report
+      qr.filters = {} unless qr.filters
+      qr.result = report
       qr.save
     end
 
@@ -49,11 +52,14 @@ namespace :upgrade do
   end
 
   task :upgrade_users => :environment do 
-    Users.all.each do |u|
+    User.all.each do |u|
       selected = Mongoid.default_session["selected_measures"].where({username: u.username}).collect{|sm| sm["id"]}
       u.preferences["selected_measure_ids"] = selected
       u.save
     end
+  end
+
+  task :all => [:environment,:upgrade_query_cache,:upgrade_patient_cache,:upgrade_records,:upgrade_providers,:upgrade_users] do
   end
 
 end
