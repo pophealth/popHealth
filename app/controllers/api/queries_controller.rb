@@ -10,7 +10,7 @@ module Api
       QCDESC
     end
     include PaginationHelper
-    skip_authorization_check :only=> :create
+    skip_authorization_check 
     before_filter :authenticate_user!
     before_filter :set_pagination_params, :only=>[:patient_results, :patients]
 
@@ -37,7 +37,7 @@ module Api
     param :sub_id, String, :desc => 'The sub id for the CQM to calculate. This is popHealth specific.', :required => false
     param :effective_date, ->(effective_date){ effective_date.present? }, :desc => 'Time in seconds since the epoch for the end date of the reporting period',
                                    :required => true
-    param :providers, Array, :desc => 'An array of provider IDs to filter the query by'
+    param :providers, Array, :desc => 'An array of provider IDs to filter the query by', :allow_nil => true
     example '{"_id":"52fe409bb99cc8f818000001", "status":{"state":"queued", ...}, ...}'
     description <<-CDESC
       This action will create a clinical quality measure calculation. If the measure has already been calculated,
@@ -146,7 +146,7 @@ module Api
     end
 
     def collect_provider_id
-      params[:providers] || Provider.where({:npi.in => params[:npis]}).to_a
+      params[:providers] || Provider.where({:npi.in => params[:npis] || []}).to_a
     end
   end
 end
