@@ -54,10 +54,10 @@ class Thorax.Views.DashboardSubmeasureView extends Thorax.View
 class Thorax.Views.Dashboard extends Thorax.View
   template: JST['dashboard/index']
   events:
-    'change :checkbox.all':                  'toggleCategory'
-    'change :checkbox.individual':           'toggleMeasure'
-    'keyup :input#category-measure-search': 'searchByTitle'
-    'click span.clear-search':              'clearSearch'
+    'change :checkbox.all':           'toggleCategory'
+    'change :checkbox.individual':    'toggleMeasure'
+    'keyup .category-measure-search': 'search'
+    'click .clear-search':            'clearSearch'
   initialize: ->
     @selectedCategories = PopHealth.currentUser.selectedCategories(@collection)
 
@@ -74,17 +74,17 @@ class Thorax.Views.Dashboard extends Thorax.View
       cat.get('measures').any (selectedMeasure) -> measure is selectedMeasure
     _(measure.toJSON()).extend selected: isSelected
 
-  searchByTitle: (e) ->
+  search: (e) ->
     $sb = $(e.target)
-    $q = $.trim($sb.val())
-    if $q.length > 0
+    query = $.trim($sb.val())
+    if query.length > 0
       $('#filters .panel').show() # show all category titles
       $('#filters .panel-body').show() # show all category measure containers
       $('#filters .panel-collapse').collapse('show') # uncollapse all
 
       $('#filters .panel-body .checkbox').hide() # hide all measures
-      $('#filters .panel-body .checkbox:containsi(' + $q + ')').show() # show matching measures
-      $('#filters .panel:containsi(' + $q + ')').next('.panel-collapse').find('.checkbox').show() # show matching categories
+      $("#filters .panel-body .checkbox:containsi(#{query})").show() # show matching measures
+      $("#filters .panel:containsi(#{query})").next('.panel-collapse').find('.checkbox').show() # show matching categories
 
       $('#filters .panel-body').not(':has(.checkbox:visible)').parent().prev('.panel').hide() # hide empty category titles
       $('#filters .panel-body').not(':has(.checkbox:visible)').hide() # hide empty category measure containers
@@ -93,8 +93,9 @@ class Thorax.Views.Dashboard extends Thorax.View
       $('#filters .panel-body').show() # show all category measure containers
       $('#filters .panel-body .checkbox').show() # show all measures
       $('#filters .panel-collapse').collapse('hide') # collapse all
+
   clearSearch: (e) ->
-    $sb = $(e.target).prev('input#category-measure-search')
+    $sb = $(e.target).parent().prev('.category-measure-search')
     $sb.val('').trigger('keyup')
 
   toggleMeasure: (e) ->
