@@ -15,7 +15,7 @@ namespace :upgrade do
               "MSRPOPL",
               "OBSERV", 
               "supplemental_data"]
-    QME::QualityReport.where({status: {"$ne" => nil}}    ).destroy   
+    QME::QualityReport.where({status: {"$ne" => nil}}).where({"status.state" => {"$ne" => "completed"}}).destroy   
     QME::QualityReport.where({status: nil}).each do |qr|
       qr.status = {state: "completed"}
       report = QME::QualityReportResult.new
@@ -43,10 +43,8 @@ namespace :upgrade do
 
   task :upgrade_providers => :environment do
     Provider.all.each do |pro|
-      cda_ids = []
-      cda_ids << {root: "2.16.840.1.113883.4.6", extension: pro["npi_id"] } if pro["npi_id"]
-      cda_ids << {root: "2.16.840.1.113883.4.2", extension: pro["tin_id"] } if pro["tin_id"]   
-      pro.cda_identifiers = cda_ids
+      pro.npi =  pro["npi"] if pro["npi"]
+      pro.tin = pro["tin"] if pro["tin"]   
       pro.save
     end
   end

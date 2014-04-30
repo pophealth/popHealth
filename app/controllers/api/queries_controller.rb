@@ -34,7 +34,7 @@ module Api
 
     api :POST, '/queries', "Start a clinical quality measure calculation"
     param :measure_id, String, :desc => 'The HQMF id for the CQM to calculate', :required => true
-    param :sub_id, String, :desc => 'The sub id for the CQM to calculate. This is popHealth specific.', :required => false
+    param :sub_id, String, :desc => 'The sub id for the CQM to calculate. This is popHealth specific.', :required => false,:allow_nil => true
     param :effective_date, ->(effective_date){ effective_date.present? }, :desc => 'Time in seconds since the epoch for the end date of the reporting period',
                                    :required => true
     param :providers, Array, :desc => 'An array of provider IDs to filter the query by', :allow_nil => true
