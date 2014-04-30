@@ -13,10 +13,22 @@ namespace :db do
   end
   
   task :load_race_and_ethnicity do
-    MONGO_DB['races'].drop
-    fixture_json = JSON.parse(File.read(File.join(Rails.root, 'test', 'fixtures', 'code_sets', 'raceandethnicity.json')))
-    fixture_json.each do |document|
-      MONGO_DB['races'].save(document)
+    # Re-init races and ethnicities
+    MONGO_DB['races'].drop() if MONGO_DB['races']
+    JSON.parse(File.read(File.join(Rails.root, 'test', 'fixtures', 'code_sets', 'races.json'))).each do |document|
+      MONGO_DB['races'].insert(document)
+    end
+
+    MONGO_DB['ethnicities'].drop() if MONGO_DB['ethnicities']
+    JSON.parse(File.read(File.join(Rails.root, 'test', 'fixtures', 'code_sets', 'ethnicities.json'))).each do |document|
+      MONGO_DB['ethnicities'].insert(document)
+    end
+
+    # Additionally add languages if not found
+    if MONGO_DB['languages'].find.count == 0
+      JSON.parse(File.read(File.join(Rails.root, 'test', 'fixtures', 'code_sets', 'languages.json'))).each do |document|
+        MONGO_DB['languages'].insert(document)
+      end
     end
   end
 end
