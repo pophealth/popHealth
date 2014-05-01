@@ -46,11 +46,15 @@ module Api
       GET action with the id.
     CDESC
     def create
-      build_filter
+      options = {}
+      options[:filters] = build_filter
+
       authorize_providers
+
+      options[:effective_date] = params[:effective_date]
+      options['prefilter'] = build_mr_prefilter if APP_CONFIG['use_map_reduce_prefilter']
       qr = QME::QualityReport.find_or_create(params[:measure_id],
-                                           params[:sub_id],
-                                           {:effective_date=>params[:effective_date], :filters=>build_filter})
+                                           params[:sub_id], options)
       if !qr.calculated?
         qr.calculate({"oid_dictionary" =>OidHelper.generate_oid_dictionary(qr.measure)}, true)
       end
@@ -130,6 +134,11 @@ module Api
         #an empty Provider with no NPI number gets around this
         authorize! :read, Provider.new
       end
+    end
+
+    def build_mr_prefilter
+      measure = HealthDataStandards::CQM::Measure.where({"hqmf_id" => params[:measure_id], "sub_id"=>params[:sub_id]}).first
+      measure.prefilter_query!(params[:effective_date].to_i)
     end
 
     def build_patient_filter
