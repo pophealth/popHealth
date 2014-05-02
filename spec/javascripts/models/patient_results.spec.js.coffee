@@ -12,9 +12,10 @@ describe 'PatientResults', ->
 
     it 'can fetch additional pages', ->
       expect(@collection.length).toEqual 2
+      expect(@collection.currentPage(2)).toEqual 1
       @collection.fetchNextPage(perPage: 2)
       jasmine.Ajax.requests.mostRecent().response({responseText: JSON.stringify(@json[2...4]), status: 200})
-      expect(@collection.page).toEqual 2
+      expect(@collection.currentPage(2)).toEqual 2
       expect(@collection.length).toEqual 4
 
   describe 'Model', ->

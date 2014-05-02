@@ -8,7 +8,11 @@ class Thorax.Collections.Providers extends Thorax.Collection
   url: '/api/providers'
   model: Thorax.Models.Provider
   initialize: (attrs, options) ->
-    @page = 1
+    @hasMoreResults = true
+  currentPage: (perPage = 100) -> Math.ceil(@length / perPage)
+  fetch: ->
+    result = super
+    result.done => @hasMoreResults = /rel="next"/.test(result.getResponseHeader('Link'))
   fetchNextPage: (options = {perPage: 10}) ->
-    data = {page: ++@page, per_page: options.PerPage}
-    @fetch remove: false, data:data
+    data = {page: @currentPage(options.perPage) + 1, per_page: options.perPage}
+    @fetch(remove: false, data: data) if @hasMoreResults

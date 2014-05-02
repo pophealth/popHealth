@@ -14,7 +14,7 @@ The Thorax component no longer includes dependencies due to possible versioning 
       "underscore": "1.4.4",
       "zepto": "1.0.0",
       "handlebars": "1.0.0",
-      "backbone": "1.0.0"
+      "backbone": "1.1.0"
     }
 
 Use versions of your choice in your project.
