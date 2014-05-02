@@ -8,6 +8,10 @@ require 'rake'
 # require 'rspec/core/rake_task'
 # require 'resque/tasks'
 
+# This fixes errors in the delayed job where the log file will not be written to 
+# until the delayed job exits.
+STDOUT.sync = true
+
 PopHealth::Application.load_tasks
 
 ENV['DB_NAME'] = "pophealth-#{Rails.env}"
