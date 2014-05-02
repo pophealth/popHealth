@@ -84,8 +84,10 @@ class Provider
                                 :cda_identifiers => [{root: APP_CONFIG['orphan_provider']['root'], extension:APP_CONFIG['orphan_provider']['extension']}]
                               }
     provider ||= provider ||= Provider.in("cda_identifiers.root" => APP_CONFIG['orphan_provider']['root']).and.in("cda_identifiers.extension" => APP_CONFIG['orphan_provider']['extension']).first
-    provider ||= Provider.create(catch_all_provider_hash)
-    Provider.root.children << provider
+    if provider.nil?
+      provider ||= Provider.create(catch_all_provider_hash)
+      Provider.root.children << provider
+    end
     return provider
   end
 
