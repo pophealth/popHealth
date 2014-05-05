@@ -6,20 +6,20 @@ class PopHealth.Router extends Backbone.Router
     @view = new Thorax.LayoutView el: '#container'
 
   routes:
-    '':                                 'dashboard'
+    '':                                                                 'dashboard'
     'measures/:id(/:sub_id)(/providers/:provider_id)/patient_results':  'patientResultsForMeasure'
-    'measures/:id(/:sub_id)':           'measure'
-    'patients/:id':                     'patient'
-    'providers(/:id)':                  'provider'
+    'measures/:id(/:sub_id)(/providers/:provider_id)':                  'measure'
+    'patients/:id':                                                     'patient'
+    'providers(/:id)':                                                  'provider'
 
   dashboard: ->
     @view.setView new Thorax.Views.ProviderView model: PopHealth.rootProvider
 
-  measure: (id, subId) ->
+  measure: (id, subId, providerId) ->
     measure = @categories.findMeasure(id, subId)
     measureView = @view.getView()
     unless measureView instanceof Thorax.Views.MeasureView and measureView.measure is measure
-      measureView = new Thorax.Views.MeasureView measure: measure, type: 'logic'
+      measureView = new Thorax.Views.MeasureView measure: measure, type: 'logic', provider_id: providerId
       @view.setView measureView
     measureView.activateLogicView()
 
@@ -28,7 +28,7 @@ class PopHealth.Router extends Backbone.Router
     if measure?
       measureView = @view.getView()
       unless measureView instanceof Thorax.Views.MeasureView and measureView.measure is measure
-        measureView = new Thorax.Views.MeasureView measure: measure, type: 'patient_results', providerId: providerId
+        measureView = new Thorax.Views.MeasureView measure: measure, type: 'patient_results', provider_id: providerId
         @view.setView measureView
       measureView.activatePatientResultsView(providerId)
     else
