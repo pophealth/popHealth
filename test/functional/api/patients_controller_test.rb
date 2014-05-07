@@ -8,7 +8,7 @@ require 'test_helper'
       dump_database
       collection_fixtures 'measures', 'patient_cache', 'records'
       @record = Factory(:record)
-      @user = Factory(:user)
+      @user = Factory(:admin)
       sign_in @user
     end
 
@@ -26,6 +26,11 @@ require 'test_helper'
       assert_equal 2, json['measure_results'].length
     end
 
+    test "uploading a patient record" do
+      cat1 = fixture_file_upload('test/fixtures/sample_cat1.xml', 'text/xml')
+      post :create, file: cat1
+      assert_response :success
+    end
 
     test "results" do
       @record = Record.find('523c57e1b59a907ea9000064')

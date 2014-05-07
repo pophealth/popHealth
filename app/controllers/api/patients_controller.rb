@@ -57,16 +57,16 @@
 
     api :POST, "/patients", "Load a patient into popHealth"
     formats ['xml']
-    param :file, String, :desc => "The QRDA Cat I file", :required => true
+    param :file, nil, :desc => "The QRDA Cat I file", :required => true
     description "Upload a QRDA Category I document for a patient into popHealth."
     def create
       authorize! :create, Record
-      RecordImporter.import(params[:file])
-    end
-
-    def load
-      authorize! :create, Record
-      RecordImporter.load_zip(params[:file])
+      success = HealthDataStandards::Import::BulkRecordImporter.import(params[:file])
+      if success
+        render status: 201, text: 'Patient Imported'
+      else
+        render status: 500, text: 'Patient record did not save properly'
+      end
     end
 
     def toggle_excluded
