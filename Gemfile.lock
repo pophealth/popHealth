@@ -287,4 +287,3 @@ DEPENDENCIES
   uglifier
   unicorn
   will_paginate
-  win32-eventlog
