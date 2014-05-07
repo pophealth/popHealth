@@ -52,6 +52,9 @@
       if results = json.delete('cache_results')
         json['measure_results'] = results_with_measure_metadata(results)
       end
+      Log.create(:username =>   current_user.username,
+                 :event =>      'patient record viewed',
+                 :medical_record_number => @patient.medical_record_number)
       respond_with json
     end
 
@@ -63,6 +66,7 @@
       authorize! :create, Record
       success = HealthDataStandards::Import::BulkRecordImporter.import(params[:file])
       if success
+        Log.create(:username => @current_user.username, :event => 'record import')
         render status: 201, text: 'Patient Imported'
       else
         render status: 500, text: 'Patient record did not save properly'
