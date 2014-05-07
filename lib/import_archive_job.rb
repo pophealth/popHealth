@@ -7,7 +7,7 @@ class ImportArchiveJob
   end
 
   def before
-    Atna.log(@current_user.username, :phi_import)
+    Log.create(:username => @current_user.username, :event => 'record import')
   end
 
   def perform

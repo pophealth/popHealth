@@ -21,9 +21,6 @@ PopHealth::Application.routes.draw do
 
   match 'provider/:npi', :to => "measures#index", :as => :provider_dashboard, :via => :get
 
-  match 'records', :to => 'records#create', :via => :post
-
-
   root :to => 'home#index'
 
   resources :providers do
