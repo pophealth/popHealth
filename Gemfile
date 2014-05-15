@@ -1,9 +1,9 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.18'
-gem 'quality-measure-engine', :git => 'https://github.com/pophealth/quality-measure-engine.git'
+gem 'quality-measure-engine', '3.0.2'
 
-gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git'
+gem 'health-data-standards', '3.4.6'
 gem 'nokogiri'
 gem 'rubyzip'
 
