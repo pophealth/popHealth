@@ -1,6 +1,9 @@
 # require 'mongo'
 require 'json'
 require 'factory_girl'
+require "#{Rails.root}/app/helpers/reports_helper"
+include ReportsHelper
+
 
 db_name = ENV['DB_NAME'] || 'test'
 
@@ -53,5 +56,20 @@ namespace :provider do
     providers.each {|provider_hash| Provider.new(provider_hash).save}
     puts "imported #{providers.count} providers"
   end
+
+  desc 'Export CAT3 XML for Provider'
+  task :export_cat3, :root, :extension, :effective_date, :measure_ids do |t, args|
+    provider = nil;
+    if !args.root && args.extension
+      # This is the root provider case
+      provider = Provider.root
+    end
+    provider ||= Provider.where("cda_identifiers.root" => args.root, "cda_identifiers.extension" => args.extension).first
+    puts generate_cat3(provider, args.effective_date, (args.measure_ids||"all").split(" "))
+
+  end
+
+
+
 
 end
