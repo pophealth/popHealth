@@ -64,7 +64,7 @@ namespace :provider do
       # This is the root provider case
       provider = Provider.root
     end
-    provider ||= Provider.in("cda_identifiers.root" => args.root).and.in("cda_identifiers.extension" => args.extension).first
+    provider ||= Provider.where("cda_identifiers.root" => args.root, "cda_identifiers.extension" => args.extension).first
     puts generate_cat3(provider, args.effective_date, (args.measure_ids||"all").split(" "))
 
   end

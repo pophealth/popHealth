@@ -4,7 +4,7 @@ module ReportsHelper
     effective_date ||= Time.gm(2012,12,31)
     end_date = DateTime.new(effective_date.to_i, 12, 31)
     provider_filter = {}
-    provider_filter['filters.providers'] = provider.id
+    provider_filter['filters.providers'] = provider.id.to_s
     filter = measure_ids==["all"] ? {} : {:cms_id.in => measure_ids}
     return exporter.export(HealthDataStandards::CQM::Measure.top_level.where(filter),
                             generate_header(provider),
