@@ -40,6 +40,24 @@ module Api
                                    end_date, provider_filter), content_type: "attachment/xml"
     end
 
+    api :GET, "/reports/cat1/:id/:measure_ids"
+    formats ['xml']
+    param :id, String, :desc => "Patient ID", :required => true
+    param :measure_ids, String, :desc => "Measure IDs", :required => true
+    param :effective_date, String, :desc => 'Time in seconds since the epoch for the end date of the reporting period',
+                                   :required => false
+    example 'cat I goes here'
+    def cat1
+      exporter = HealthDataStandards::Export::Cat1.new
+      patient = Record.find(params[:id])
+      measure_ids = params["measure_ids"].split(',')
+      measures = HealthDataStandards::CQM::Measure.where(:hqmf_id.in => measure_ids)
+      end_date = params["effective_date"] || current_user.effective_date || Time.gm(2012, 12, 31)
+      start_date = end_date.years_ago(1)
+      render xml: exporter.export(patient, measures, start_date, end_date)
+    end
+
+
     private
 
     def generate_header(provider)
