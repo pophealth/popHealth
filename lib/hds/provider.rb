@@ -50,32 +50,6 @@ class Provider
     super(options)
   end
 
-  def self.merge_or_build(attributes)
-    if attributes[:npi]
-      provider = Provider.by_npi(attributes[:npi]).first
-    end
-
-    if provider
-      provider.merge_provider(attributes)
-    else
-      provider = Provider.new(attributes)
-    end
-
-    provider
-  end
-
-  def merge_provider(provider)
-    return false if !self.npi.blank? && !provider.npi.blank? #cannot merge providers with different NPIs
-    self.attributes = provider.attributes.merge(attributes.reject { |k,v| v.blank? })
-    provider.records.each { |record| self.records << record  }
-    true
-  end
-
-  def merge_provider!(provider)
-    merge_provider(provider)
-    save!
-  end
-
   def self.resolve_provider(provider_hash)
     catch_all_provider_hash = { :title => "",
                                 :given_name => "",
