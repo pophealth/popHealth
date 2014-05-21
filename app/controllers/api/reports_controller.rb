@@ -46,7 +46,10 @@ module Api
     param :measure_ids, String, :desc => "Measure IDs", :required => true
     param :effective_date, String, :desc => 'Time in seconds since the epoch for the end date of the reporting period',
                                    :required => false
-    example 'cat I goes here'
+    description <<-CDESC
+      This action will generate a QRDA Category I Document. Patient ID and measure IDs (comma separated) must be provided. If effective_date is not provided,
+      the value fromt he user's dashboard will be used.
+    CDESC
     def cat1
       exporter = HealthDataStandards::Export::Cat1.new
       patient = Record.find(params[:id])
