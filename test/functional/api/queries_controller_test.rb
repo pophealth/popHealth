@@ -10,18 +10,17 @@ module Api
       collection_fixtures 'records'
       collection_fixtures 'patient_cache'
       collection_fixtures 'providers'
+      collection_fixtures 'users'
 
-      @staff = Factory(:user)
-      @admin = Factory(:user)
-      @user = Factory(:user)
-      @user.staff_role=false
-      @user.save
+      @staff = User.where({email: 'noadmin@test.com'}).first
+      @admin = User.where({email: 'admin@test.com'}).first
+      @user = User.where({email: 'nostaff@test.com'}).first
 
-      @npi_user = Factory(:user_w_npi)
+      @npi_user = User.where({email: 'npiuser@test.com'}).first
       @npi_user.staff_role=false
       @npi_user.save
 
-      @provider = Factory(:provider)
+      @provider = Provider.where({family_name: "Darling"}).first
       @provider.npi = @npi_user.npi
       @provider.save
 

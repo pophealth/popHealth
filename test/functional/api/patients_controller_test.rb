@@ -6,14 +6,13 @@ require 'test_helper'
 
     setup do
       dump_database
-      collection_fixtures 'measures', 'patient_cache', 'records'
-      @record = Factory(:record)
-      @user = Factory(:admin)
+      collection_fixtures 'measures', 'patient_cache', 'records', 'users'
+      @user = User.where({email: 'admin@test.com'}).first
       sign_in @user
     end
 
     test "view patient" do
-      get :show, id: @record.id
+      get :show, id: '523c57e1b59a907ea9000064'
     end
 
     test "view patient with include_results includes the results" do

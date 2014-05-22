@@ -5,8 +5,9 @@ class LogsControllerTest < ActionController::TestCase
 
   setup do
     dump_database
-    
-    @user = Factory(:user, admin: true)
+    collection_fixtures 'users'
+
+    @user = User.where({email: 'admin@test.com'}).first
     sign_in @user
 
   end

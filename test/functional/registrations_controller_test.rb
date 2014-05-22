@@ -5,7 +5,10 @@ class RegistrationsControllerTest < ActionController::TestCase
 
   setup do
     dump_database
-    @user = Factory(:user)
+    collection_fixtures 'users'
+    @user = User.where({email: 'noadmin@test.com'}).first
+    @user.password = "password"
+    @user.save
   end
 
   test "a signed in user can update their account information via HTML" do

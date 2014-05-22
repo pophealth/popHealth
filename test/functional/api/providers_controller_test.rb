@@ -5,10 +5,9 @@ include Devise::TestHelpers
 
     setup do
       dump_database
-      @user = Factory(:admin)
-      @provider = Factory(:provider)
-      @other_provider = Factory(:provider)
-      collection_fixtures 'measures'
+      collection_fixtures 'users', 'providers', 'measures'
+      @user = User.where({email: 'admin@test.com'}).first
+      @provider = Provider.where({family_name: "Darling"}).first
       sign_in @user
     end
 
@@ -16,7 +15,7 @@ include Devise::TestHelpers
       get :index
       assert_not_nil assigns[:providers]
     end
-    
+
     test "new" do
       get :new, format: :json
       assert_response :success
@@ -41,7 +40,7 @@ include Devise::TestHelpers
     end
 
     test "create via API" do
-      provider = Factory(:provider)
+      provider = Provider.where({family_name: "Darling"}).first
       post :create, :provider => provider.attributes
       json = JSON.parse(response.body)
       assert_response :success

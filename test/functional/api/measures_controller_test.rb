@@ -5,10 +5,10 @@ include Devise::TestHelpers
 
     setup do
       dump_database
-      collection_fixtures 'measures', 'records'
-      @user = Factory(:user)
-      @admin = Factory(:admin)
-      
+      collection_fixtures 'measures', 'records', 'users'
+      @user = User.where({email: "noadmin@test.com"}).first
+      @admin = User.where({email: "admin@test.com"}).first
+
     end
 
     test "GET 'definition'" do
@@ -44,7 +44,7 @@ include Devise::TestHelpers
       assert_response 204
       assert_equal 0, QME::QualityMeasure.where({"hqmf_id" => "0013"}).count, "There should be 0 measures with the HQMF id 0013 in the db"
     end
-    
+
     test "create" do
       skip "need to implement"
     end

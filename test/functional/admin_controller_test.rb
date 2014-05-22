@@ -2,22 +2,24 @@ require 'test_helper'
 include Devise::TestHelpers
 
 class AdminControllerTest < ActionController::TestCase
-  
-  setup  do 
-    
-    dump_database
-    
-    @admin = Factory(:admin)
-    @user = Factory(:user)
-    @user2 = Factory(:user)
-    @unapproved_user = Factory(:unapproved_user)
 
-    @admin2 = Factory(:admin)
+  setup  do
+
+    dump_database
+
+    collection_fixtures 'users'
+
+    @admin = User.where({email: 'admin@test.com'}).first
+    @user = User.where({email: 'noadmin@test.com'}).first
+    @user2 = User.where({email: 'noadmin2@test.com'}).first
+    @unapproved_user = User.where({email: 'unapproved@test.com'}).first
+
+    @admin2 = User.where({email: 'admin2@test.com'}).first
 
     @user_ids = [] << @user.id
-    
+
   end
-  
+
   test "should get user list if admin" do
     sign_in @admin
     get :users
@@ -89,7 +91,7 @@ class AdminControllerTest < ActionController::TestCase
     assert !@user2.disabled
     assert_response :success
   end
-  
+
   test "disable user should not disable the user if not admin" do
     sign_in @user
     post :disable, username: @user2.username, disabled: 1
@@ -145,5 +147,5 @@ class AdminControllerTest < ActionController::TestCase
     post :approve, username: "crapusername"
     assert_response :success
   end
-  
+
 end
