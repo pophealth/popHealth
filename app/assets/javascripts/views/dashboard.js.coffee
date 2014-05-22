@@ -48,7 +48,11 @@ class Thorax.Views.DashboardSubmeasureView extends Thorax.View
           if query.isPopulated()
             @$el.fadeTo 'fast', 1
             @stopListening query, 'change:status'
-
+  context: ->
+    matches = @model.get('cms_id').match(/CMS(\d+)v(\d+)/)
+    _(super).extend
+      cms_number: matches?[1]
+      cms_version: matches?[2]
 
 
 class Thorax.Views.Dashboard extends Thorax.View
