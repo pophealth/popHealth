@@ -13,6 +13,15 @@ namespace :pophealth do
     end
   end
 
+  desc "Remove a bundle from the db"
+  task :drop_bundle, [:version] => :environment do |t,args|
+    if args.version
+      Bundle.where({version: args.version}).each{|b| b.delete}
+    end
+
+  end
+
+
   task :download_value_sets, [:username, :password] => :environment do |t, args|
     valuesets = Measure.all.collect {|m| m['oids']}
     errors = {}

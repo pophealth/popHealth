@@ -20,6 +20,10 @@ defaults: &defaults
   ccr_system_name: popHealth
   # force the system to allow HTTP connections
   force_unsecure_communications: true
+  use_map_reduce_prefilter: true
+  orphan_provider:
+    root: "popHealth"
+    extension: "Orphans"
   value_sets:
     ticket_url: https://vsac.nlm.nih.gov/vsac/ws/Ticket
     api_url: https://vsac.nlm.nih.gov/vsac/ws/RetrieveValueSet
@@ -60,7 +64,7 @@ defaults: &defaults
         :extension: legal_authenticator_ext
       :addresses: []
       :telecoms: []
-      :time: 
+      :time:
       :person:
         :given:
         :family:

@@ -52,21 +52,25 @@
       if results = json.delete('cache_results')
         json['measure_results'] = results_with_measure_metadata(results)
       end
+      Log.create(:username =>   current_user.username,
+                 :event =>      'patient record viewed',
+                 :medical_record_number => @patient.medical_record_number)
       respond_with json
     end
 
     api :POST, "/patients", "Load a patient into popHealth"
     formats ['xml']
-    param :file, String, :desc => "The QRDA Cat I file", :required => true
+    param :file, nil, :desc => "The QRDA Cat I file", :required => true
     description "Upload a QRDA Category I document for a patient into popHealth."
     def create
       authorize! :create, Record
-      RecordImporter.import(params[:file])
-    end
-
-    def load
-      authorize! :create, Record
-      RecordImporter.load_zip(params[:file])
+      success = HealthDataStandards::Import::BulkRecordImporter.import(params[:file])
+      if success
+        Log.create(:username => @current_user.username, :event => 'record import')
+        render status: 201, text: 'Patient Imported'
+      else
+        render status: 500, text: 'Patient record did not save properly'
+      end
     end
 
     def toggle_excluded

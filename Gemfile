@@ -1,9 +1,9 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.14'
-gem 'quality-measure-engine', '3.0.1'
+gem 'rails', '3.2.18'
+gem 'quality-measure-engine', '3.0.2'
 
-gem 'health-data-standards', '3.4.5'
+gem 'health-data-standards', '3.4.6'
 gem 'nokogiri'
 gem 'rubyzip'
 
@@ -31,9 +31,6 @@ gem 'formtastic'
 gem 'cancan'
 gem 'factory_girl', "2.6.3"
 gem 'apipie-rails'
-
-# Windows doesn't have syslog, so need a gem to log to EventLog instead
-gem 'win32-eventlog', :platforms => [:mswin, :mingw]
 
 # backport fixes from future versions of Sprockets into a Rails 3-compatible gem
 gem 'sprockets', '2.2.2.backport1'

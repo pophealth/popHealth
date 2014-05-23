@@ -1,5 +1,11 @@
 <div class="sidebar" id="filters">
   <h3>Filters</h3>
+
+  <p class="input-group">
+    <input type="text" class="form-control category-measure-search" placeholder="measure or group title">
+    <span class="input-group-btn"><a class="btn btn-default clear-search" type="button">&times;</a></span>
+  </p>
+
   <div class="panel-group" id="measureSelectors">
     {{#collection item-context=categoryFilterContext}}
       <div class="panel panel-default">

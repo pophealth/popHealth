@@ -10,7 +10,7 @@ module Api
       QCDESC
     end
     include PaginationHelper
-    skip_authorization_check :only=> :create
+    skip_authorization_check 
     before_filter :authenticate_user!
     before_filter :set_pagination_params, :only=>[:patient_results, :patients]
 
@@ -34,10 +34,10 @@ module Api
 
     api :POST, '/queries', "Start a clinical quality measure calculation"
     param :measure_id, String, :desc => 'The HQMF id for the CQM to calculate', :required => true
-    param :sub_id, String, :desc => 'The sub id for the CQM to calculate. This is popHealth specific.', :required => false
+    param :sub_id, String, :desc => 'The sub id for the CQM to calculate. This is popHealth specific.', :required => false,:allow_nil => true
     param :effective_date, ->(effective_date){ effective_date.present? }, :desc => 'Time in seconds since the epoch for the end date of the reporting period',
                                    :required => true
-    param :providers, Array, :desc => 'An array of provider IDs to filter the query by'
+    param :providers, Array, :desc => 'An array of provider IDs to filter the query by', :allow_nil => true
     example '{"_id":"52fe409bb99cc8f818000001", "status":{"state":"queued", ...}, ...}'
     description <<-CDESC
       This action will create a clinical quality measure calculation. If the measure has already been calculated,
@@ -46,11 +46,15 @@ module Api
       GET action with the id.
     CDESC
     def create
-      build_filter
+      options = {}
+      options[:filters] = build_filter
+
       authorize_providers
+
+      options[:effective_date] = params[:effective_date]
+      options['prefilter'] = build_mr_prefilter if APP_CONFIG['use_map_reduce_prefilter']
       qr = QME::QualityReport.find_or_create(params[:measure_id],
-                                           params[:sub_id],
-                                           {:effective_date=>params[:effective_date], :filters=>build_filter})
+                                           params[:sub_id], options)
       if !qr.calculated?
         qr.calculate({"oid_dictionary" =>OidHelper.generate_oid_dictionary(qr.measure)}, true)
       end
@@ -132,6 +136,11 @@ module Api
       end
     end
 
+    def build_mr_prefilter
+      measure = HealthDataStandards::CQM::Measure.where({"hqmf_id" => params[:measure_id], "sub_id"=>params[:sub_id]}).first
+      measure.prefilter_query!(params[:effective_date].to_i)
+    end
+
     def build_patient_filter
       patient_filter = {}
       patient_filter["value.IPP"]= {"$gt" => 0} if params[:ipp] == "true"
@@ -146,7 +155,7 @@ module Api
     end
 
     def collect_provider_id
-      params[:providers] || Provider.where({:npi.in => params[:npis]}).to_a
+      params[:providers] || Provider.where({:npi.in => params[:npis] || []}).to_a
     end
   end
 end

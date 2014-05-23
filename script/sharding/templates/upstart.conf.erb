@@ -9,8 +9,8 @@ pre-start script
     mkdir -p /var/log/<%= name %>/
     touch /var/log/<%= name %>/mongodb.log
 
-    chown -R <%= user || "mogodb" %> /var/lib/<%= name %>/
-    chown -R mongodb /var/log/<%= name %>/
+    chown -R <%= user || "mongodb" %> /var/lib/<%= name %>/
+    chown -R <%= user || "mongodb" %>  /var/log/<%= name %>/
 end script
 
 start on runlevel [2345]
@@ -18,6 +18,6 @@ stop on runlevel [06]
 
 script
 
-  exec sudo -u mongodb /usr/bin/mongod <%= options %> /etc/<%= name %>.conf
+  exec sudo -u <%= user || "mongodb" %>  /usr/bin/mongod <%= options %> -f /etc/<%= name %>.conf
 
 end script
