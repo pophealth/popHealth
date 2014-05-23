@@ -41,7 +41,7 @@ include Devise::TestHelpers
     end
 
     test "create via API" do
-      provider = Factory(:provider)
+      provider = FactoryGirl.build(:provider)
       post :create, :provider => provider.attributes
       json = JSON.parse(response.body)
       assert_response :success
