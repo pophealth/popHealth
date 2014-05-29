@@ -1,7 +1,9 @@
 require 'uniq_validator'
+require 'protected_attributes'
 
 class User
 
+  include ActiveModel::MassAssignmentSecurity
   include Mongoid::Document
 
   after_initialize :build_preferences, unless: Proc.new { |user| user.preferences.present? }
@@ -61,7 +63,7 @@ class User
 
   has_one :preferences, class_name: 'Preference'
 
-  scope :ordered_by_username, order_by([:username, :asc])
+  scope :ordered_by_username, -> { asc(:username) }
 
   attr_protected :admin, :approved, :disabled, :encrypted_password, :remember_created_at, :reset_password_token, :reset_password_sent_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip, :effective_date
 
@@ -74,7 +76,7 @@ class User
 
   validates_acceptance_of :agree_license, :accept => true
 
-  validates :email, presence: true, length: {minimum: 3, maximum: 254}, format: {with: /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
+  validates :email, presence: true, length: {minimum: 3, maximum: 254}, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}
   validates :username, :presence => true, length: {minimum: 3, maximum: 254}
 
   def set_defaults

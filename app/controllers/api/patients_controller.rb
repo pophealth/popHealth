@@ -55,7 +55,7 @@
       Log.create(:username =>   current_user.username,
                  :event =>      'patient record viewed',
                  :medical_record_number => @patient.medical_record_number)
-      respond_with json
+      render :json => json
     end
 
     api :POST, "/patients", "Load a patient into popHealth"
