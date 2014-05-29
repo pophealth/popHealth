@@ -19,8 +19,6 @@ PopHealth::Application.routes.draw do
 
   get "logs/index"
 
-  match 'provider/:npi', :to => "measures#index", :as => :provider_dashboard, :via => :get
-
   root :to => 'home#index'
 
   resources :providers do

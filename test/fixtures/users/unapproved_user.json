@@ -1,11 +1,11 @@
 {"admin":false,
  "agree_license":true,
- "approved":true,
+ "approved":false,
  "company":null,
  "company_url":null,
  "disabled":null,
  "effective_date":null,
- "email":"noadmin@test.com",
+ "email":"unapproved@test.com",
  "first_name":"first",
  "last_name":"last",
  "npi":null,
@@ -13,4 +13,4 @@
  "registry_name":null,
  "staff_role":true,
  "tin":null,
- "username":"genericuser"}
+ "username":"unapproved"}

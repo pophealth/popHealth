@@ -5,12 +5,12 @@
  "company_url":null,
  "disabled":null,
  "effective_date":null,
- "email":"noadmin@test.com",
+ "email":"nostaff@test.com",
  "first_name":"first",
  "last_name":"last",
  "npi":null,
  "registry_id":null,
  "registry_name":null,
- "staff_role":true,
+ "staff_role":false,
  "tin":null,
- "username":"genericuser"}
+ "username":"nostaffuser"}

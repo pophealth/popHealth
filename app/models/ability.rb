@@ -31,7 +31,6 @@ class Ability
       can :read, Record
       can :manage, Provider
       can :manage, :providers
-      can :manage, Team
       can :manage, User, id: user.id
       cannot :manage, User unless APP_CONFIG['allow_user_update']
       can [:read, :delete, :recalculate,:create] , QME::QualityReport
@@ -47,10 +46,9 @@ class Ability
       can :read, Provider do |pv|
         user.npi && (pv.npi == user.npi)
       end
-      can :manage, Team
       can :manage, User, id: user.id
       cannot :manage, User unless APP_CONFIG['allow_user_update']
     end
-    
+
   end
 end

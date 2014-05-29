@@ -4,8 +4,9 @@ class UserTest < ActiveSupport::TestCase
 
   setup do
     dump_database
+    collection_fixtures 'users'
 
-    @user = Factory(:user)
+    @user = User.where({email: 'noadmin@test.com'}).first
   end
 
   test "user should be found by username" do

@@ -11,12 +11,4 @@ namespace :db do
       MONGO_DB[collection_name].drop
     end
   end
-  
-  task :load_race_and_ethnicity do
-    MONGO_DB['races'].drop
-    fixture_json = JSON.parse(File.read(File.join(Rails.root, 'test', 'fixtures', 'code_sets', 'raceandethnicity.json')))
-    fixture_json.each do |document|
-      MONGO_DB['races'].save(document)
-    end
-  end
 end

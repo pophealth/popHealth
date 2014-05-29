@@ -5,7 +5,7 @@
  "company_url":null,
  "disabled":null,
  "effective_date":null,
- "email":"noadmin@test.com",
+ "email":"noadmin2@test.com",
  "first_name":"first",
  "last_name":"last",
  "npi":null,
@@ -13,4 +13,4 @@
  "registry_name":null,
  "staff_role":true,
  "tin":null,
- "username":"genericuser"}
+ "username":"genericuser2"}

@@ -5,12 +5,12 @@
  "company_url":null,
  "disabled":null,
  "effective_date":null,
- "email":"noadmin@test.com",
+ "email":"npiuser@test.com",
  "first_name":"first",
  "last_name":"last",
- "npi":null,
+ "npi":"9238429385",
  "registry_id":null,
  "registry_name":null,
  "staff_role":true,
  "tin":null,
- "username":"genericuser"}
+ "username":"npiuser"}
