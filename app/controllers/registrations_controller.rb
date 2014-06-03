@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+  before_filter :configure_permitted_parameters, if: :devise_controller?
   wrap_parameters :user, format: [:json]
 
   unless (APP_CONFIG['allow_user_update'])
@@ -36,7 +37,10 @@ class RegistrationsController < Devise::RegistrationsController
       end
     else
       clean_up_passwords resource
-      respond_with resource
+      respond_to do |format|
+        format.html { render action: "edit" }
+        format.json { render nothing: true, status: :not_acceptable }
+      end
     end
   end
 
@@ -61,4 +65,7 @@ class RegistrationsController < Devise::RegistrationsController
     authorize! :manage, resource
   end
 
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :username, :password, :password_confirmation, :company, :company_url, :registry_name, :registry_id, :npi, :tin) }
+  end
 end

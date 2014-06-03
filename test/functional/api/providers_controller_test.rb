@@ -41,7 +41,9 @@ include Devise::TestHelpers
 
     test "create via API" do
       provider = Provider.where({family_name: "Darling"}).first
-      post :create, :provider => provider.attributes
+      provider_attributes = provider.attributes
+      provider_attributes.delete('_id')
+      post :create, :provider => provider_attributes
       json = JSON.parse(response.body)
       assert_response :success
       assert_equal(true, json.respond_to?(:keys))
