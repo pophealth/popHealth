@@ -81,24 +81,44 @@
 
 .measure {
   margin-top: 1em;
+  .measure-identifier {
+    .pull-left;
+    background-color: @gray-lighter;
+    min-width: 44px;
+    padding: 10px 4px;
+    text-align: center;
+    margin-right: 10px;
+    .cms-cms {
+      color: @brand-primary;
+      font-size: 0.8em;
+      letter-spacing: 2px;
+    }
+    .cms-number {
+      font-size: 1.6em;
+      font-weight: 300;
+    }
+    .cms-version {
+      color: @brand-primary;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+  }
   .measure-title {
     padding-top: 10px;
-    font-size: 18px;     // Has to be in pixels otherwise popover inherits font-size
-    font-weight: 500;
+    font-size: 16px;     // Has to be in pixels otherwise popover inherits font-size
   }
   .measure-subtitle {
     padding-top: 15px;
-    font-weight: 500;
   }
   .percent-listing {
     text-align: center;
   }
 
-  .percentage{
+  .percentage {
     line-height: 1.6;
     font-size: 44px;
     font-weight: 100;
-    small{
+    small {
       font-size: 65%
     }
   }
