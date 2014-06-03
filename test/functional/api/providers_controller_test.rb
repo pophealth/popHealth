@@ -40,12 +40,10 @@ include Devise::TestHelpers
     end
 
     test "create via API" do
-<<<<<<< HEAD
       provider = Provider.where({family_name: "Darling"}).first
-=======
-      provider = FactoryGirl.build(:provider)
->>>>>>> By running Factory(:provider), the entry is automatically committed to the database. This means that trying to take that opject and post it to the API causes an error since the row already exists in the database. By running FactoryGirl.build, we instead create an unsaved copy of the object and post that object instead.
-      post :create, :provider => provider.attributes
+      provider_attributes = provider.attributes
+      provider_attributes.delete('_id')
+      post :create, :provider => provider_attributes
       json = JSON.parse(response.body)
       assert_response :success
       assert_equal(true, json.respond_to?(:keys))

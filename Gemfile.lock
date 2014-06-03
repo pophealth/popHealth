@@ -1,14 +1,4 @@
 GIT
-  remote: https://github.com/pophealth/quality-measure-engine.git
-  revision: 50239fc3b44a17ff7a5ec7d79825621641acbf62
-  specs:
-    quality-measure-engine (3.0.2)
-      delayed_job_mongoid (~> 2.1.0)
-      mongoid (~> 4.0.0.beta1)
-      moped (~> 2.0.0.beta6)
-      rubyzip (~> 0.9.9)
-
-GIT
   remote: https://github.com/projectcypress/health-data-standards.git
   revision: 3b84460a43dacf60fb534d026f7ed7c9347b04ea
   specs:
@@ -25,6 +15,15 @@ GIT
       rest-client (~> 1.6.7)
       rubyzip (= 0.9.9)
       uuid (~> 2.3.7)
+
+PATH
+  remote: ../quality-measure-engine
+  specs:
+    quality-measure-engine (3.0.2)
+      delayed_job_mongoid (~> 2.1.0)
+      mongoid (~> 4.0.0.beta1)
+      moped (~> 2.0.0.beta6)
+      rubyzip (~> 0.9.9)
 
 GEM
   remote: http://rubygems.org/
@@ -63,7 +62,7 @@ GEM
     bcrypt (3.1.7)
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
-    bson (2.2.4)
+    bson (2.3.0)
     builder (3.1.4)
     cancan (1.6.10)
     coderay (1.1.0)
@@ -96,14 +95,16 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     docile (1.1.3)
-    dotenv (0.7.0)
+    dotenv (0.11.1)
+      dotenv-deployment (~> 0.0.2)
+    dotenv-deployment (0.0.2)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.1.0)
     factory_girl (2.6.3)
       activesupport (>= 2.3.9)
-    foreman (0.66.0)
-      dotenv (~> 0.7.0)
+    foreman (0.71.0)
+      dotenv (~> 0.11.1)
       thor (~> 0.19.1)
     formtastic (2.2.1)
       actionpack (>= 3.0)
@@ -127,7 +128,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.1)
     kgio (2.9.2)
-    less (2.5.0)
+    less (2.5.1)
       commonjs (~> 0.2.7)
     less-rails (2.5.0)
       actionpack (>= 3.1)
@@ -139,7 +140,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    memoist (0.9.2)
+    memoist (0.9.3)
     metaclass (0.0.4)
     method_source (0.8.2)
     mime-types (1.25.1)
@@ -147,9 +148,9 @@ GEM
     minitest (4.7.5)
     mocha (1.1.0)
       metaclass (~> 0.0.1)
-    mongoid (4.0.0.beta2)
-      activemodel (>= 4.0.0)
-      moped (~> 2.0.beta6)
+    mongoid (4.0.0.rc1)
+      activemodel (~> 4.0.0)
+      moped (~> 2.0.0.rc1)
       origin (~> 2.1)
       tzinfo (>= 0.3.37)
     mongoid-tree (1.0.4)
@@ -165,7 +166,7 @@ GEM
     origin (2.1.1)
     orm_adapter (0.5.0)
     phantomjs (1.9.7.1)
-    polyglot (0.3.4)
+    polyglot (0.3.5)
     protected_attributes (1.0.7)
       activemodel (>= 4.0.1, < 5.0)
     pry (0.9.12.6)
@@ -197,7 +198,7 @@ GEM
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rubyzip (0.9.9)
-    sass (3.3.7)
+    sass (3.3.8)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
