@@ -32,7 +32,7 @@
               <div class="checkbox">
                 <label>
                   <input type="checkbox" class="individual"{{#if selected}} checked{{/if}}>
-                  {{cms_id}}/{{nqf_id}} - {{name}}
+                  {{name}}
                   {{!-- <%= check_box_tag :measure_id, measure["id"], is_selected?(measure['id'], current_user.selected_measures), {id: nil, 'data-measure-id' => measure['id'], 'data-sub-measures' => measure['sub_ids'].join(',')} %><%= measure['name'] %> --}}
                 </label>
               </div>
@@ -64,7 +64,7 @@
         <div class="measure">
           <div class="measure-title" data-measure-sub="{{sub_id}}">
             {{#if isPrimary}}
-              <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}" data-placement="bottom" data-content="{{description}}" data-trigger="hover focus" rel="popover">{{cms_id}}/{{nqf_id}} - {{name}}</a>
+              <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}" data-placement="bottom" data-content="{{cms_id}}{{#if nqf_id}}/{{nqf_id}}{{/if}} - {{description}}" data-trigger="hover focus" rel="popover">{{name}}</a>
             {{/if}}
           </div>
           <div class="measure-subtitle">
