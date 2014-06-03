@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '~> 4.0.4'
-gem 'quality-measure-engine', :path => '../quality-measure-engine'
+gem 'quality-measure-engine', :git => 'https://github.com/pophealth/quality-measure-engine'
 
 gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git'
 gem 'nokogiri'

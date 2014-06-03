@@ -1,4 +1,14 @@
 GIT
+  remote: https://github.com/pophealth/quality-measure-engine
+  revision: 3a1df9a6240e94425d7c867a7b3d674cab39a0f1
+  specs:
+    quality-measure-engine (3.0.2)
+      delayed_job_mongoid (~> 2.1.0)
+      mongoid (~> 4.0.0.beta1)
+      moped (~> 2.0.0.beta6)
+      rubyzip (~> 0.9.9)
+
+GIT
   remote: https://github.com/projectcypress/health-data-standards.git
   revision: 3b84460a43dacf60fb534d026f7ed7c9347b04ea
   specs:
@@ -15,15 +25,6 @@ GIT
       rest-client (~> 1.6.7)
       rubyzip (= 0.9.9)
       uuid (~> 2.3.7)
-
-PATH
-  remote: ../quality-measure-engine
-  specs:
-    quality-measure-engine (3.0.2)
-      delayed_job_mongoid (~> 2.1.0)
-      mongoid (~> 4.0.0.beta1)
-      moped (~> 2.0.0.beta6)
-      rubyzip (~> 0.9.9)
 
 GEM
   remote: http://rubygems.org/
