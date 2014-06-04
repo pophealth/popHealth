@@ -70,10 +70,10 @@ namespace :sharding do
   desc "Add the javascript files to a single host"
   task :add_js_to_host, [:host,:port,:ph_db_name,:bundle_path] => :environment do |t,args|
     js_files = parse_js_file(args.bundle_path)
-    session = Moped::Session.new("#{host}:#{port}")
+    session = Moped::Session.new(["#{args.host}:#{args.port}"])
     session.use args.ph_db_name
     js_files.each do |js|
-        host_session["system.js"].insert(js)
+        session["system.js"].insert(js)
     end
   end
   
