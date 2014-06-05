@@ -13,6 +13,7 @@ require 'test_helper'
 
     test "view patient" do
       get :show, id: '523c57e1b59a907ea9000064'
+      assert_response :success
     end
 
     test "view patient with include_results includes the results" do
