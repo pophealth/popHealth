@@ -38,6 +38,7 @@ PopHealth::Application.routes.draw do
   resources :teams
 
   namespace :api do
+    get 'patients/count', :to => 'patients#count'
     get 'reports/qrda_cat3.xml', :to =>'reports#cat3', :format => :xml
     get 'reports/cat1/:id/:measure_ids', :to =>'reports#cat1', :format => :xml
     resources :providers do

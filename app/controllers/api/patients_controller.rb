@@ -34,6 +34,15 @@
       respond_with  paginate(api_patients_url,records)
     end
 
+    api :GET, "/patients/count", "Get count of patients in the database"
+    formats ['json']
+    example '{"patient_count":56}'
+    def count
+      json = {}
+      json['patient_count'] = Record.count
+      render :json => json
+    end
+
     api :GET, "/patients/:id[?include_results=:include_results]", "Retrieve an individual patient"
     formats ['json']
     param :id, String, :desc => "Patient ID", :required => true
