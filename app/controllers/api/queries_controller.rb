@@ -10,7 +10,7 @@ module Api
       QCDESC
     end
     include PaginationHelper
-    skip_authorization_check 
+    skip_authorization_check
     before_filter :authenticate_user!
     before_filter :set_pagination_params, :only=>[:patient_results, :patients]
 
@@ -150,7 +150,7 @@ module Api
       patient_filter["value.DENEXCEP"]= {"$gt" => 0} if params[:denexcep] == "true"
       patient_filter["value.MSRPOPL"]= {"$gt" => 0} if params[:msrpopl] == "true"
       patient_filter["value.antinumerator"]= {"$gt" => 0} if params[:antinumerator] == "true"
-      patient_filter["value.provider_performances.provider_id"]= BSON::ObjectId(params[:provider_id]) if params[:provider_id]
+      patient_filter["value.provider_performances.provider_id"]= BSON::ObjectId.from_string(params[:provider_id]) if params[:provider_id]
       patient_filter
     end
 
