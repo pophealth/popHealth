@@ -1,22 +1,22 @@
 [{
   "name": "English",
   "order": 1,
-  "codes": ["en"]
+  "codes": ["eng"]
 },
 {
   "name": "Spanish",
   "order": 2,
-  "codes": ["es"]
+  "codes": ["spa"]
 },
 {
   "name": "Chinese",
   "order": 3,
-  "codes": ["zh"]
+  "codes": ["chi", "zho"]
 },
 {
   "name": "French",
   "order": 4,
-  "codes": ["fr"]
+  "codes": ["fre", "fra"]
 },
 {
   "name": "Sign Language",
@@ -26,12 +26,16 @@
 {
   "name": "Other",
   "order": 6,
-  "codes": ["aa","ab","ae","af","ak","am","an","ar","as","av","ay","az","ba","be","bg","bh","bi","bm","bn","bo","br","bs","ca","ce","ch","co","cr","cs","cu","cv","cy","da",
-           "de","dv","dz","ee","el","eo","et","eu","fa","ff","fi","fj","fo","fy","ga","gd","gl","gn","gu","gv","ha","he","hi","ho","hr","ht","hu","hy","hz","ia","id","ie",
-           "ig","ii","ik","io","is","it","iu","ja","jv","ka","kg","ki","kj","kk","kl","km","kn","ko","kr","ks","ku","kv","kw","ky","la","lb","lg","li","ln","lo","lt","lu",
-           "lv","mg","mh","mi","mk","ml","mn","mr","ms","mt","my","na","nb","nd","ne","ng","nl","nn","no","nr","nv","ny","oc","oj","om","or","os","pa","pi","pl","ps","pt",
-           "qu","rm","rn","ro","ru","rw","sa","sc","sd","se","sg","si","sk","sl","sm","sn","so","sq","sr","ss","st","su","sv","sw","ta","te","tg","th","ti","tk","tl","tn",
-           "to","tr","ts","tt","tw","ty","ug","uk","ur","uz","ve","vi","vo","wa","wo","xh","yi","yo","za","zu"]
+  "codes": ["aar", "abk", "ave", "afr", "aka", "amh", "arg", "ara", "asm", "ava", "aym", "aze", "bak", "bul", "bih", "bis", "bam", "ben", "tib",
+    "bre", "bos", "bur", "cat", "che", "cha", "cos", "cre", "cze", "cze", "chu", "chv", "wel", "dan", "ger", "ger", "div", "dzo", "ewe", "gre",
+    "gre", "epo", "est", "baq", "baq", "per", "per", "ful", "fin", "fij", "fao", "fry", "gle", "gla", "glg", "grn", "guj", "glv", "hau", "heb",
+    "hin", "hmo", "hrv", "hat", "hun", "arm", "arm", "her", "ina", "ind", "ile", "ibo", "iii", "ipk", "ido", "ice", "ita", "iku", "jpn", "jav",
+    "geo", "kon", "kik", "kua", "kaz", "kal", "khm", "kan", "kor", "kau", "kas", "kur", "kom", "cor", "kir", "lat", "ltz", "lug", "lim", "lin",
+    "lao", "lit", "lub", "lav", "mlg", "mah", "mao", "mac", "mal", "mon", "mar", "may", "mlt", "bur", "nau", "nob", "nde", "nep", "ndo", "dut",
+    "dut", "nno", "nor", "nbl", "nav", "nya", "oci", "oji", "orm", "ori", "oss", "pan", "pli", "pol", "pus", "por", "que", "roh", "run", "rum",
+    "rus", "kin", "san", "srd", "snd", "sme", "sag", "sin", "slo", "slv", "smo", "sna", "som", "alb", "srp", "ssw", "sot", "sun", "swe", "swa",
+    "tam", "tel", "tgk", "tha", "tib", "tir", "tuk", "tgl", "tsn", "ton", "tur", "tso", "tat", "twi", "tah", "uig", "ukr", "urd", "uzb", "ven",
+    "vie", "vol", "wln", "wel", "wol", "xho", "yid", "yor", "zha", "zul"]
 },
 {
   "name": "Unspecified",
