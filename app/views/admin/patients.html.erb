@@ -69,11 +69,11 @@
     });
     (function poll(){
        setTimeout(function(){
-        $.ajax({ url: "<%= api_patients_count_path %>", success: function(data){
-          document.getElementById('patient_count').innerHTML = data.patient_count;
+        $.getJSON( "<%= api_patients_count_path %>", function(data){
+          $('#patient_count').html(data.patient_count);
           //Setup the next poll recursively
           poll();
-        }, dataType: "json"});
+        });
       }, 5000);
     })();
   });
