@@ -40,7 +40,9 @@
     param :include_results, String, :desc => "Include measure calculation results", :required => false
     example '{"_id":"52fbbf34b99cc8a728000068","birthdate":1276869600,"first":"John","gender":"M","last":"Peters","encounters":[{...}], ...}'
     def show
-      json = @patient.as_json(params[:include_results] ? {methods: :cache_results} : {})
+      json_methods = [:language_names]
+      json_methods << :cache_results if params[:include_results]
+      json = @patient.as_json({methods: json_methods})
       provider_list = @patient.provider_performances.map{ |p| p.provider}
       provider_list.each do |prov|
         if prov
