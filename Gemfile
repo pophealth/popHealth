@@ -2,10 +2,12 @@ source 'http://rubygems.org'
 
 gem 'rails', '~> 4.0.4'
 gem 'quality-measure-engine', :git => 'https://github.com/pophealth/quality-measure-engine'
-
+gem "hqmf2js", :git=> "https://github.com/pophealth/hqmf2js.git"
 gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git'
+#gem 'health-data-standards', :path=> '../health-data-standards'
 gem 'nokogiri'
 gem 'rubyzip'
+gem 'hquery-patient-api', '1.0.4'
 
 gem 'sshkit'
 # Should be removed in the future. This is only used for the
@@ -54,7 +56,7 @@ group :test, :develop, :ci do
 end
 
 group :test, :develop do
-  gem 'pry-debugger'
+  gem 'pry-byebug'
 end
 
 group :production do
