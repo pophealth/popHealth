@@ -16,7 +16,8 @@ PopHealth::Application.routes.draw do
   delete "admin/remove_patients"
   delete "admin/remove_caches"
   delete "admin/remove_providers"
-
+  post 'api/measures/finalize'
+  post 'api/measures/update_metadata'
   get "logs/index"
 
   root :to => 'home#index'
@@ -58,6 +59,7 @@ PopHealth::Application.routes.draw do
     end
 
     resources :measures
+
     resources :queries do
        member do
         get :patients
