@@ -8,7 +8,10 @@ PopHealth.viz.populationChart = ->
       gEnter = svg.enter().append('svg')
         .attr('viewBox', "0 0 #{width} #{height}")
         .attr('preserveAspectRatio', 'xMidYMid meet')
-      numer = gEnter.append('g').append('rect')
+
+      boxGroup = gEnter.append('g')
+
+      numer = boxGroup.append('rect')
         .attr('class', 'numer')
         .attr('width', xScale(data.NUMER))
         .attr('height', height)
@@ -17,19 +20,7 @@ PopHealth.viz.populationChart = ->
         .attr('data-trigger', "hover focus")
         .attr('data-container', 'body')
 
-      denom = gEnter.append('g')
-        .attr('class', 'denom')
-
-      denom.append('rect')
-        .attr('class', 'denom')
-        .attr('width', xScale(data.performanceDenominator - data.NUMER))
-        .attr('height', height)
-        .attr('x', margin.left + xScale(data.NUMER + data.DENEX + data.DENEXCEP))
-        .attr('data-content', "Denominator: #{data.performanceDenominator}")
-        .attr('data-trigger', "hover focus")
-        .attr('data-container', 'body')
-
-      denom.append('rect')
+      boxGroup.append('rect')
         .attr('class', 'denex')
         .attr('width', xScale(data.DENEX))
         .attr('height', height)
@@ -38,7 +29,7 @@ PopHealth.viz.populationChart = ->
         .attr('data-trigger', "hover focus")
         .attr('data-container', 'body') if data.DENEX > 0
 
-      denom.append('rect')
+      boxGroup.append('rect')
         .attr('class', 'denexc')
         .attr('width', xScale(data.DENEXCEP))
         .attr('height', height)
@@ -46,6 +37,15 @@ PopHealth.viz.populationChart = ->
         .attr('data-content', "Exceptions: #{data.DENEXCEP}")
         .attr('data-trigger', "hover focus")
         .attr('data-container', 'body') if data.DENEXCEP > 0
+
+      boxGroup.append('rect')
+        .attr('class', 'denom')
+        .attr('width', xScale(data.performanceDenominator - data.NUMER))
+        .attr('height', height)
+        .attr('x', margin.left + xScale(data.NUMER + data.DENEX + data.DENEXCEP))
+        .attr('data-content', "Denominator: #{data.performanceDenominator}")
+        .attr('data-trigger', "hover focus")
+        .attr('data-container', 'body')
 
 
   width = 150
