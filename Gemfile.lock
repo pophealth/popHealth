@@ -295,7 +295,6 @@ DEPENDENCIES
   sass-rails
   simplecov
   sprockets (~> 2.12.0)
-  sprockets (= 2.2.2.backport1)
   sshkit
   therubyracer (~> 0.12.0)
   thin
