@@ -12,9 +12,11 @@
     <div class="denominator">{{formatNumeral performanceDenominator '0.[0]a'}}</div>
   </div>
 
+  <div class="pull-left">
+    <i class="{{#if episode_of_care}}fa fa-stethoscope{{else}}glyphicon glyphicon-user{{/if}}"></i>
+  </div>
+
   <div class="pop-chart pull-left"></div>
 
-  <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}{{#if provider_id}}/providers/{{provider_id}}{{/if}}/patient_results" class="patient-btn pull-right">
-    <i class="glyphicon glyphicon-user"></i> Patients
-  </a>
+  <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}{{#if provider_id}}/providers/{{provider_id}}{{/if}}/patient_results" class="patient-btn pull-right">Patients</a>
 </div>
