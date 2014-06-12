@@ -19,7 +19,7 @@ class Thorax.Views.QueryView extends Thorax.View
   performanceDenominator: -> @model.performanceDenominator()
   initialize: ->
     @currentPopulation = 'IPP'
-    @popChart = PopHealth.viz.populationChart().width(125).height(50).barHeight(20).maximumValue(PopHealth.patientCount)
+    @popChart = PopHealth.viz.populationChart().width(125).height(25).maximumValue(PopHealth.patientCount)
     @model.set 'providers', [@providerId] if @providerId
 
   changeFilter: (event) ->
