@@ -20,7 +20,7 @@ class Thorax.Views.QueryView extends Thorax.View
   episode_of_care: -> @model.parent.get('episode_of_care')
   initialize: ->
     @currentPopulation = 'IPP'
-    @popChart = PopHealth.viz.populationChart().width(125).height(25).maximumValue(PopHealth.patientCount)
+    @popChart = PopHealth.viz.populationChart().width(125).height(40).maximumValue(PopHealth.patientCount)
     @model.set 'providers', [@providerId] if @providerId
 
   changeFilter: (event) ->
