@@ -27,7 +27,7 @@ describe 'PatientView', ->
       expect(@patientView.$el).toContainText "#{@patient.get('last')[0]}xxxxxx"
 
   it 'renders language correctly', ->
-    expect(@patientView.$el).toContainText "eng"
+    expect(@patientView.$el).toContainText "English"
 
   it 'renders language correctly when it is not there', ->
     clonedPatient = _.clone(@patient.toJSON())
