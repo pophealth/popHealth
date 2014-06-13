@@ -17,9 +17,10 @@ class Thorax.Views.QueryView extends Thorax.View
   outliers: -> @model.outliers()
   performanceRate: -> @model.performanceRate()
   performanceDenominator: -> @model.performanceDenominator()
+  episode_of_care: -> @model.parent.get('episode_of_care')
   initialize: ->
     @currentPopulation = 'IPP'
-    @popChart = PopHealth.viz.populationChart().width(125).height(50).barHeight(20).maximumValue(PopHealth.patientCount)
+    @popChart = PopHealth.viz.populationChart().width(125).height(40).maximumValue(PopHealth.patientCount)
     @model.set 'providers', [@providerId] if @providerId
 
   changeFilter: (event) ->

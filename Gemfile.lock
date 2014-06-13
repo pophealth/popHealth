@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/projectcypress/health-data-standards.git
-  revision: 3b84460a43dacf60fb534d026f7ed7c9347b04ea
+  revision: d9c733c75de2e9677e2b3ef59f76589a31d0d43e
   specs:
     health-data-standards (3.4.6)
       activesupport (~> 4.0.0)

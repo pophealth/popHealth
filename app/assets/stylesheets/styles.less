@@ -18,6 +18,20 @@
   }
 }
 
+.measure-type {
+  line-height: 2.5;
+  i {
+    font-size: 1.14em;
+    // the following is the same as fontawesome's fixedwidth class, but copied as we don't always use fontawesome
+    width: 1.28571429em;
+    text-align: center;
+  }
+}
+
+.measure-type, .patient-btn {
+  margin-top: 18px;
+}
+
 
 // Custom classes for semantic mark-up
 // font-size -> 1em = 14px
@@ -136,14 +150,19 @@
     .size(100%; 100%);
     rect {
       stroke:white;
-      stroke-width:0px;
+      stroke-width: 0px;
       fill: rgb(205,205,205);
     }
     .numer {
       fill: rgb(59,133,140);
     }
+    .denex, .denexc {
+      fill: rgb(193,193,193);
+    }
     .denom {
-      fill: rgb(59,133,140);
+      fill: rgb(239,239,239);
+      stroke: rgb(193,193,193);
+      stroke-width: 1px;
     }
   }
 }
