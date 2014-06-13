@@ -161,6 +161,9 @@ GEM
       connection_pool (~> 2.0)
       optionable (~> 0.2.0)
     multi_json (1.10.1)
+    net-scp (1.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.7.0)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     optionable (0.2.0)
@@ -219,7 +222,13 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    sshkit (1.3.0)
+      net-scp (>= 1.1.2)
+      net-ssh
+      term-ansicolor
     systemu (2.6.4)
+    term-ansicolor (1.2.2)
+      tins (~> 0.8)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
@@ -230,6 +239,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
+    tins (0.13.1)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -285,6 +295,7 @@ DEPENDENCIES
   sass-rails
   simplecov
   sprockets (~> 2.12.0)
+  sshkit
   therubyracer (~> 0.12.0)
   thin
   turn
