@@ -11,7 +11,17 @@ PopHealth.viz.populationChart = ->
 
       boxGroup = gEnter.append('g')
 
-      numer = boxGroup.append('rect')
+      boxGroup.append('rect')
+        .attr('class', 'denom')
+        .attr('width', xScale(data.DENOM))
+        .attr('height', height)
+        .attr('x', margin.left)
+        # popover reports on the performance denominator, which doesn't include exclusions/exceptions
+        .attr('data-content', "Denominator: #{data.performanceDenominator}")
+        .attr('data-trigger', "hover focus")
+        .attr('data-container', 'body')
+
+      boxGroup.append('rect')
         .attr('class', 'numer')
         .attr('width', xScale(data.NUMER))
         .attr('height', height)
@@ -37,16 +47,6 @@ PopHealth.viz.populationChart = ->
         .attr('data-content', "Exceptions: #{data.DENEXCEP}")
         .attr('data-trigger', "hover focus")
         .attr('data-container', 'body') if data.DENEXCEP > 0
-
-      boxGroup.append('rect')
-        .attr('class', 'denom')
-        .attr('width', xScale(data.performanceDenominator - data.NUMER))
-        .attr('height', height)
-        .attr('x', margin.left + xScale(data.NUMER + data.DENEX + data.DENEXCEP))
-        .attr('data-content', "Denominator: #{data.performanceDenominator}")
-        .attr('data-trigger', "hover focus")
-        .attr('data-container', 'body')
-
 
   width = 150
   height = 20
