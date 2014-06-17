@@ -49,6 +49,9 @@ PopHealth::Application.routes.draw do
       end
     end
     resources :patients do
+      collection do
+        get :count
+      end
       member do
         get :results
       end
