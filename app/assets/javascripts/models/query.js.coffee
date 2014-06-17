@@ -8,6 +8,8 @@ class Thorax.Models.Query extends Thorax.Model
   isPopulated: -> @has('status') and @get('status').state in ['completed']
   isLoading: -> !@isPopulated()
   ipp: -> if @isPopulated() and @has('result') then @get('result').IPP else 0
+  msrpopl: -> if @isPopulated() and @has('result') then @get('result').MSRPOPL else 0
+  observ: -> if @isPopulated() and @has('result') then @get('result').OBSERV else 0
   numerator: -> if @isPopulated() and @has('result') then @get('result').NUMER else 0
   denominator: -> if @isPopulated() and @has('result') then @get('result').DENOM else 0
   hasExceptions: -> @has('population_ids') and @get('population_ids').hasOwnProperty('DENEXCEP')

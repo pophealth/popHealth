@@ -1,3 +1,10 @@
+{{#if continuous_variable}}
+<div class="measure">
+<div class="percent-listing">
+      <span class="percentage">{{observ}}</span>
+</div>
+</div>
+{{else}}
 <div>
   {{! TODO move this into a partial? }}
   <input type="text" value="{{performanceRate}}" class="dial" data-readOnly="true" data-width="80" data-height="80" data-thickness=".1" data-fgColor="#4B979D" data-inputColor="#444" data-font="Helvetica Neue, Roboto, Helvetica, Arial, sans-serif">
@@ -6,6 +13,7 @@
   <div class="numerator">{{numerator}}</div>
   <div class="denominator">{{performanceDenominator}}</div>
 </div>
+{{/if}}
 <div class="measure-type pull-left">
   <i class="{{#if episode_of_care}}fa fa-stethoscope{{else}}glyphicon glyphicon-user{{/if}}"></i>
 </div>

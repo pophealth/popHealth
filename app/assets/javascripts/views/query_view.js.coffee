@@ -7,6 +7,8 @@ class Thorax.Views.QueryView extends Thorax.View
       d3.select(@el).select('.pop-chart').datum(@model.result()).call(@popChart) if @model.isPopulated()
 
   ipp: -> @model.ipp()
+  msrpopl: -> @model.msrpopl()
+  observ: -> @model.observ()
   numerator: -> @model.numerator()
   denominator: -> @model.denominator()
   hasExceptions: -> @model.hasExceptions()
@@ -18,6 +20,7 @@ class Thorax.Views.QueryView extends Thorax.View
   performanceRate: -> @model.performanceRate()
   performanceDenominator: -> @model.performanceDenominator()
   episode_of_care: -> @model.parent.get('episode_of_care')
+  continuous_variable: -> @model.parent.get('continuous_variable')
   initialize: ->
     @currentPopulation = 'IPP'
     @popChart = PopHealth.viz.populationChart().width(125).height(40).maximumValue(PopHealth.patientCount)

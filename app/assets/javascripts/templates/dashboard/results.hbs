@@ -1,3 +1,9 @@
+{{#if continuous_variable}}
+<div class="percent-listing">
+      <span class="percentage">{{observ}}</span>
+</div>
+  <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}{{#if provider_id}}/providers/{{provider_id}}{{/if}}/patient_results" class="patient-btn pull-right">Patients</a>
+{{else}}
 <div class="percent-listing">
   {{#if shouldDisplayPercentageVisual}}
     <input type="text" value="{{performanceRate}}" class="dial" data-readOnly="true" data-width="80" data-height="80" data-thickness=".1" data-fgColor="#4B979D" data-inputColor="#444" data-font="Helvetica Neue, Roboto, Helvetica, Arial, sans-serif" data-font-weight="300">
@@ -20,3 +26,4 @@
 
   <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}{{#if provider_id}}/providers/{{provider_id}}{{/if}}/patient_results" class="patient-btn pull-right">Patients</a>
 </div>
+{{/if}}

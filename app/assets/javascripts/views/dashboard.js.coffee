@@ -24,6 +24,9 @@ class Thorax.Views.ResultsView extends Thorax.View
       numerator: @model.numerator()
       denominator: @model.denominator()
       performanceDenominator: @model.performanceDenominator()
+      msrpopl: @model.msrpopl()
+      observ: @model.observ()
+      ipp: @model.ipp()
   initialize: ->
     @popChart = PopHealth.viz.populationChart().width(125).height(40).maximumValue(PopHealth.patientCount)
     @model.set('providers', [@provider_id]) if @provider_id?
