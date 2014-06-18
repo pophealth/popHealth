@@ -42,6 +42,7 @@ gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier'
 gem "bootstrap-sass"
+gem 'non-stupid-digest-assets' # support vendored non-digest assets
 
 group :test, :develop, :ci do
   gem 'pry'
