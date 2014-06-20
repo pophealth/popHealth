@@ -57,7 +57,7 @@ module Api
                                            params[:sub_id], options)
       if !qr.calculated?
         qr.calculate( {"oid_dictionary" =>OidHelper.generate_oid_dictionary(qr.measure),
-          "enable_rationale" => true,
+          "enable_rationale" => APP_CONFIG['enable_map_reduce_rationale'] || false,
           "enable_logging" => APP_CONFIG['enable_map_reduce_logging'] || false}, true)
       end
 
