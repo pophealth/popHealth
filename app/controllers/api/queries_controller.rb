@@ -5,7 +5,7 @@ module Api
       formats ['json']
       description <<-QCDESC
         This resource is responsible for managing clinical quality measure calculations. Creating a new query will kick
-        off a new CQM caluclation (if it hasn't already been calculated). You can determine the status of ongoing
+        off a new CQM calculation (if it hasn't already been calculated). You can determine the status of ongoing
         calculations, force recalculations and see results through this resource.
       QCDESC
     end
