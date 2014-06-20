@@ -56,7 +56,9 @@ module Api
       qr = QME::QualityReport.find_or_create(params[:measure_id],
                                            params[:sub_id], options)
       if !qr.calculated?
-        qr.calculate({"oid_dictionary" =>OidHelper.generate_oid_dictionary(qr.measure)}, true)
+        qr.calculate( {"oid_dictionary" =>OidHelper.generate_oid_dictionary(qr.measure),
+          "enable_rationale" => true,
+          "enable_logging" => APP_CONFIG['enable_map_reduce_logging'] || false}, true)
       end
 
       render json: qr
