@@ -1,0 +1,282 @@
+
+$circle-bkg-color: #fff;
+$title-circle-radius: 21px;
+
+// Custom styles that are part of the theme
+
+.fraction-listing {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: 500;
+  .numerator, .denominator {
+    width: 60px;
+  }
+  .denominator {
+    border-top: 1px solid black;
+  }
+}
+
+.measure-type {
+  line-height: 2.5;
+  i {
+    font-size: 1.14em;
+    // the following is the same as fontawesome's fixedwidth class, but copied as we don't always use fontawesome
+    width: 1.28571429em;
+    text-align: center;
+  }
+}
+
+.measure-type, .patient-btn {
+  margin-top: 18px;
+}
+
+
+// Custom classes for semantic mark-up
+// font-size -> 1em = 14px
+
+// Dashboard
+
+.nav {
+  font-weight: 500;
+
+  .location {
+    margin-top: 4px
+  }
+  .profile {
+    margin-top: 14px;
+  }
+}
+.export-btn {
+  width: 110px;
+  text-align: center;
+  margin-top: 24px;
+  text-transform: uppercase;
+}
+
+.category {
+  background-color: $gray-lighter;
+  margin-top: 1em;
+  .category-title {
+    line-height: 2em;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  .category-percent {
+    .title-circle {
+      border-radius: $title-circle-radius;
+      height: $title-circle-radius * 2;
+      width: $title-circle-radius * 2;
+      background-color: $circle-bkg-color;
+      margin: auto;
+      padding-top: 5px;
+      text-align: center;
+      font-size: 1.7em;
+    }
+  }
+  .category-fraction {
+    font-weight: 800;
+    font-size: 1em;
+    line-height: 1.4em;
+  }
+}
+
+.selection-pull-out {
+  @extend .pull-right;
+  margin: 0 0 3px 3px;
+  .measure-count {
+    @extend .badge;
+  }
+  i {
+    vertical-align: top;
+  }
+}
+
+.measure {
+  margin-top: 1em;
+  .measure-identifier {
+    @extend .pull-left;
+    background-color: $gray-lighter;
+    min-width: 44px;
+    padding: 10px 4px;
+    text-align: center;
+    margin-right: 10px;
+    .cms-cms {
+      color: $brand-primary;
+      font-size: 0.8em;
+      letter-spacing: 2px;
+    }
+    .cms-number {
+      font-size: 1.6em;
+      font-weight: 300;
+    }
+    .cms-version {
+      color: $brand-primary;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+  }
+  .measure-title {
+    padding-top: 10px;
+    font-size: 16px;     // Has to be in pixels otherwise popover inherits font-size
+  }
+  .measure-subtitle {
+    padding-top: 15px;
+  }
+  .percent-listing {
+    text-align: center;
+  }
+
+  .percentage {
+    line-height: 1.6;
+    font-size: 44px;
+    font-weight: 100;
+    small {
+      font-size: 65%
+    }
+  }
+}
+.pop-chart {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 50px;
+  width: 105px;
+  // shrink this down on smaller displays
+  @media (max-width: $screen-md-max) {
+    width: 60px;
+  }
+  svg {
+    @include size(100%, 100%);
+    rect {
+      stroke:white;
+      stroke-width: 0px;
+      fill: rgb(205,205,205);
+    }
+    .numer {
+      fill: rgb(59,133,140);
+    }
+    .denex, .denexc {
+      fill: rgb(193,193,193);
+    }
+    .denom {
+      fill: rgb(239,239,239);
+      stroke: rgb(193,193,193);
+      stroke-width: 1px;
+    }
+  }
+}
+
+
+// New styles for side bar for the measure view/patient list
+// TODO Clean up these styles once pages are integrated and complete.
+
+.population-btn {
+  @extend .col-xs-12;
+  @extend .btn;
+  font-weight: 700;
+  font-size: 1.1em;
+  line-height: 2.5em;
+  border: 1px solid white;
+  padding: 0px 7px;
+  background-color: $gray-lighter;
+  .query-result {
+    @extend .pull-right;
+    font-size: 1.3em;
+  }
+  .title {
+    @extend .pull-left;
+  }
+  &.active {
+    background-color: $brand-primary;
+    color: white;
+  }
+}
+
+$table-border-color: white;
+.table {
+  thead {
+    background-color: $gray-lighter;
+    > tr > th {
+      border: none;
+      font-weight: 700;
+      &.pid {
+        text-transform: uppercase;
+        font-size: 1.2em;
+      }
+    }
+  }
+  > thead > tr > th, > tbody > tr > td {
+    line-height: 2;
+    font-size: 1em;
+    vertical-align: middle;
+    .btn-default {
+      padding: 7px 10px;
+    }
+  }
+}
+
+
+
+
+
+#measureSummary {
+  // FIXME this should build on the media query for large monitors
+  .dl-horizontal dt {
+    width: 175px;
+  }
+
+  @mixin measure-border-level-n($n) {
+    background-color: lighten($brand-primary, percentage(0.5 - $n / 10));
+  }
+
+  .measure-border {
+    background-color: $brand-primary;
+    padding: 2px;
+    border-radius: 10px;
+    .icon-border {
+      border: 2px solid #4b979d;
+      border-radius: $title-circle-radius;
+      color: $brand-primary;
+      display: inline-block;
+      line-height: $title-circle-radius * 2;
+      text-align: center;
+      height: $title-circle-radius * 2;
+      width: $title-circle-radius * 2;
+    }
+    @include measure-border-level-n(1);
+    .measure-border {
+      @include measure-border-level-n(2);
+      .measure-border {
+        @include measure-border-level-n(3);
+        .measure-border {
+          @include measure-border-level-n(4);
+          .measure-border {
+            @include measure-border-level-n(5);
+          }
+        }
+      }
+    }
+    .measure-item {
+      background-color: $body-bg;
+      border-radius: 10px;
+      margin: 2px 2px 2px 20px;
+      .measure-content {
+        padding: 2px;
+      }
+    }
+  }
+
+  .conjunction, .temporal-operator {
+    background-color: $gray-lighter;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: 10px;
+    font-weight: bold;
+    display: inline-block;
+    &.negation {
+      color: white;
+      background-color: $brand-danger;
+    }
+  }
+}

@@ -1,11 +1,10 @@
 #= require jquery/jquery
-#= require jquery_ujs
 #= require jquery-idletimer/dist/idle-timer
 #= require jQuery-Knob/js/jquery.knob
 #= require jquery-placeholder/jquery.placeholder
 #= require numeral/numeral
 #= require momentjs/moment
-#= require bootstrap/dist/js/bootstrap
+#= require bootstrap
 #= require underscore/underscore
 #= require backbone/backbone
 #= require handlebars/handlebars

@@ -1,0 +1,13 @@
+// Import external dependencies
+@import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap";
+@import "font-awesome/scss/font-awesome";
+
+// Helper files
+@import "bootstrap3";
+
+// Styles by page
+@import "login";
+@import "patient";
+@import "register";
+@import "styles";
+@import "vis";
