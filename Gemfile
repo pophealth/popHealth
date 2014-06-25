@@ -34,14 +34,10 @@ gem 'cancan'
 gem 'factory_girl', "2.6.3"
 gem 'apipie-rails'
 
-gem 'sprockets', '~> 2.12.0'
-
 # Gems used for assets
-gem 'less-rails'
-gem 'sass-rails'
+gem 'sass-rails', "~> 4.0.2"
 gem 'coffee-rails'
 gem 'uglifier'
-gem "bootstrap-sass"
 gem 'non-stupid-digest-assets' # support vendored non-digest assets
 
 group :test, :develop, :ci do
@@ -64,5 +60,3 @@ group :production do
 end
 
 gem 'handlebars_assets'
-# FIXME remove this when we don't need old versions of jquery/backbone/underscore anymore
-gem 'jquery-rails'
