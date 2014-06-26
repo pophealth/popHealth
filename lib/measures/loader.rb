@@ -68,7 +68,7 @@ module Measures
             doc = Nokogiri::XML(vs)
             HealthDataStandards::SVS::ValueSet.load_from_xml(doc).save
           rescue => e
-            puts "Valueset #{oid} not downloaded  #{e}"
+            raise "Error loading valuesets: #{e}"
           end
         end 
       end
