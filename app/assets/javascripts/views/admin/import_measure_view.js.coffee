@@ -23,7 +23,7 @@ class Thorax.Views.ImportMeasure extends Thorax.View
     'submit #measure_upload_form': 'saveToModel'
    
   saveToModel: ->
-    formData = new FormData($('form')[0]);
+    formData = new FormData(@$('form')[0]);
     _this = @
     $.ajax( url: @$("form").attr('action'),
     type: 'POST',
