@@ -79,7 +79,7 @@ module Api
         m.update_attributes(params[:measure])
         m.save
       end
-      render text: "success"
+      render json:  measures,  each_serializer: HealthDataStandards::CQM::MeasureSerializer
       rescue => e
         render text: e.to_s, status: 500
     end

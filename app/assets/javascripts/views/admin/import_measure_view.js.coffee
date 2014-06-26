@@ -2,31 +2,20 @@ class Thorax.Views.ImportMeasure extends Thorax.View
   template: JST['import/import_measure']
 
   context: ->
-    hqmfSetId = @model.get('hqmf_set_id') if @model?
-    measureTypeLabel = if @model?
-      if @model.get('type') is 'eh' then 'Eligible Hospital (EH)'
-      else if @model.get('type') is 'ep' then 'Eligible Professional (EP)'
-    calculationTypeLabel = if @model?
-      if @model.get('episode_of_care') is false and @model.get('continuous_variable') is false then 'Patient Based'
-      else if @model.get('episode_of_care') is true then 'Episode of Care'
-      else if @model.get('continuous_variable') is true then 'Continuous Variable'
     currentRoute = Backbone.history.fragment
     _(super).extend
       titleSize: 3
       dataSize: 9
       token: $("meta[name='csrf-token']").attr('content')
-      dialogTitle: if @model? then @model.get('title') else "New Measure"
+      dialogTitle:  "New Measure"
       isUpdate: @model?
-      showLoadInformation: !@model? && @firstMeasure
-      measureTypeLabel: measureTypeLabel
-      calculationTypeLabel: calculationTypeLabel
-      hqmfSetId: hqmfSetId
+      showLoadInformation: true
+      measureTypeLabel: null
+      calculationTypeLabel: null
+      hqmfSetId: null
       redirectRoute: currentRoute
 
   events:
-    rendered: -> 
-      @$("option[value=\"#{eoc}\"]").attr('selected','selected') for eoc in @model.get('episode_ids') if @model? && @model.get('episode_of_care') && @model.get('episode_ids')?
-      @$el.on 'hidden.bs.modal', -> @remove() unless $('#pleaseWaitDialog').is(':visible')
     'ready': 'setup'
     'change input:file':  'enableLoad'
     'keypress input:text': 'enableLoadVsac'
@@ -38,17 +27,7 @@ class Thorax.Views.ImportMeasure extends Thorax.View
     _this = @
     $.ajax( url: @$("form").attr('action'),
     type: 'POST',
-    xhr: ->
-      myXhr = $.ajaxSettings.xhr();
-      if myXhr.upload 
-        myXhr.upload.addEventListener('progress',this.progressHandlingFunction, false)
-      return myXhr
-    ,
-    beforeSend: -> 
-      console.log("before send")
-    ,
     success: (res)-> 
-      console.log("success")
       a = res
       if res["episode_ids"]
         _this.finalizeMeasure(res)
@@ -57,7 +36,6 @@ class Thorax.Views.ImportMeasure extends Thorax.View
       _this.importWait.modal('hide')
     ,
     error: (res)-> 
-      console.log(res)
       _this.importWait.modal('hide')
       _this.displayError(res)
     ,
@@ -80,10 +58,6 @@ class Thorax.Views.ImportMeasure extends Thorax.View
     @errorDialog =new Thorax.Views.ErrorDialog({error: {title: "Error", summary: "Error importing measure", body: res.responseText}})  
     @errorDialog.appendTo(@el.parentNode)
     @errorDialog.display()
-
-  progressHandlingFunction: (e) ->
-    if e.lengthComputable
-      console.log({value:e.loaded,max:e.total})
 
   enableLoadVsac: ->
     username = @$('#vsacUser')

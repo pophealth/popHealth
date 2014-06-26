@@ -11,22 +11,16 @@ class Thorax.Views.FinalizeMeasureView extends Thorax.View
      'click #finalizeMeasureSubmit': 'submit'
      'change select':  'enableDone'
      'submit #finalize_measure_form': 'saveToModel'
-     # 'click #cancelFinializeMeasure' : 'close'
-
+     
   saveToModel: ->
     formData = new FormData($('form')[0]);
     _this = @
     $.ajax( url: @$("form").attr('action'),
     type: 'POST',
-    beforeSend: -> 
-      console.log("before send")
-    ,
     success: (res)-> 
-      console.log("success")
       location.reload(true)
     ,
     error: (res)-> 
-      console.log("error")
       _this.displayError(res)
     ,
     data: formData,

@@ -9,7 +9,6 @@ class Thorax.Views.MeasuresAdminView extends Thorax.View
        _this.parseMeasures(res)
     ,
     error: (res)-> 
-      console.log("error")
       _this.displayError(res)
     ,
     cache: false,
@@ -37,6 +36,7 @@ class Thorax.Views.MeasuresAdminView extends Thorax.View
       measure = mes if mes.hqmf_id == event.target.id
     if measure       
       editMeasureView = new Thorax.Views.EditMeasureView(measure)
+      editMeasureView.parent = @
       editMeasureView.appendTo(@$el)
       editMeasureView.display()
 
@@ -77,6 +77,7 @@ class Thorax.Views.EditMeasureView extends Thorax.View
 
   setup: ->
     @editDialog = @$("#editMeasureDialog")
+    @wait = @$("#pleaseWaitDialog")
 
   update_lower_is_better: (event) ->
     @$("#lower_is_better")[0].value=event.target.checked
@@ -87,14 +88,12 @@ class Thorax.Views.EditMeasureView extends Thorax.View
     $.ajax( url: @$("form").attr('action'),
     type: 'POST',
     success: (res)-> 
-      console.log("success")
       location.reload(true) 
       _this.wait.modal('hide')
     ,
     error: (res)-> 
-      console.log(res)
-      _this.importWait.modal('hide')
-      _this.displayError(res)
+      _this.wait.modal('hide')
+      _this.parent.displayError(res)
     ,
     data: formData,
     cache: false,
@@ -113,5 +112,9 @@ class Thorax.Views.EditMeasureView extends Thorax.View
     @editDialog.modal("hide")
 
   submit: ->
+    @wait.modal(
+      "backdrop" : "static",
+      "keyboard" : true,
+      "show" : true)
     @editDialog.modal('hide')
     @$('form').submit()
