@@ -1,8 +1,4 @@
-$icon-font-path: "../fonts/";
-$fa-font-path: "../fonts";
-
 // Bootstrap Variables
-
 $brand-primary: #4B979D;
 $gray-lighter: #f2f2f2;
 $btn-hover-color: #357177;
@@ -14,10 +10,9 @@ $border-radius-large: 0px;
 $font-family-sans-serif: "Helvetica Neue", Roboto, Helvetica, Arial, sans-serif;
 
 // Import bootstrap
-@import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap";
+@import "bootstrap";
 
 // Fonts
-
 @font-face {
   font-family: 'Roboto';
   src: font-url('Roboto-Thin/Roboto-Thin-webfont.eot');

@@ -1,8 +1,9 @@
-// Import external dependencies
-@import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap";
+@import "variables";
+
+// 3rd party resources
 @import "font-awesome/scss/font-awesome";
 
-// Helper files
+// Bootstrap theme
 @import "bootstrap3";
 
 // Styles by page
