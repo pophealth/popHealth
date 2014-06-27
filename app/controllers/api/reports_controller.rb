@@ -48,7 +48,7 @@ module Api
                                    :required => false
     description <<-CDESC
       This action will generate a QRDA Category I Document. Patient ID and measure IDs (comma separated) must be provided. If effective_date is not provided,
-      the value fromt he user's dashboard will be used.
+      the value from the user's dashboard will be used.
     CDESC
     def cat1
       exporter = HealthDataStandards::Export::Cat1.new
