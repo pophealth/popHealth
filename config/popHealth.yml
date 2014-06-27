@@ -21,6 +21,8 @@ defaults: &defaults
   # force the system to allow HTTP connections
   force_unsecure_communications: true
   use_map_reduce_prefilter: true
+  enable_map_reduce_rationale: true
+  enable_map_reduce_logging: false
   orphan_provider:
     root: "popHealth"
     extension: "Orphans"
