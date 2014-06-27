@@ -23,6 +23,8 @@ PopHealth::Application.configure do
   config.assets.precompile << '*.scss'
   config.assets.precompile << 'jquery.js'
   config.assets.precompile << 'jquery_ujs.js'
+  config.assets.precompile << 'bootstrap/fonts/glyphicons-halflings-regular.*'
+  config.assets.precompile << 'font-awesome/fonts/fontawesome-webfont.*'
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
