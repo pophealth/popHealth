@@ -1,0 +1,14 @@
+@import "variables";
+
+// 3rd party resources
+@import "font-awesome/scss/font-awesome";
+
+// Bootstrap theme
+@import "bootstrap3";
+
+// Styles by page
+@import "login";
+@import "patient";
+@import "register";
+@import "styles";
+@import "vis";

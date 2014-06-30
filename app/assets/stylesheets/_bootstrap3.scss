@@ -1,0 +1,183 @@
+// Bootstrap Variables
+$brand-primary: #4B979D;
+$gray-lighter: #f2f2f2;
+$btn-hover-color: #357177;
+$panel-default-border: white;
+$panel-default-heading-bg: $gray-lighter;
+$panel-primary-border: white;
+$border-radius-base: 0px;
+$border-radius-large: 0px;
+$font-family-sans-serif: "Helvetica Neue", Roboto, Helvetica, Arial, sans-serif;
+
+// Import bootstrap
+@import "bootstrap";
+
+// Fonts
+@font-face {
+  font-family: 'Roboto';
+  src: font-url('Roboto-Thin/Roboto-Thin-webfont.eot');
+  src: font-url('Roboto-Thin/Roboto-Thin-webfont.eot?#iefix') format('embedded-opentype'),
+       font-url('Roboto-Thin/Roboto-Thin-webfont.woff') format('woff'),
+       font-url('Roboto-Thin/Roboto-Thin-webfont.ttf') format('truetype'),
+       font-url('Roboto-Thin/Roboto-Thin-webfont.svg#RobotoRegular') format('svg');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: font-url('Roboto-Light/Roboto-Light-webfont.eot');
+  src: font-url('Roboto-Light/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+       font-url('Roboto-Light/Roboto-Light-webfont.woff') format('woff'),
+       font-url('Roboto-Light/Roboto-Light-webfont.ttf') format('truetype'),
+       font-url('Roboto-Light/Roboto-Light-webfont.svg#RobotoRegular') format('svg');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: font-url('Roboto-Regular/Roboto-Regular-webfont.eot');
+  src: font-url('Roboto-Regular/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+       font-url('Roboto-Regular/Roboto-Regular-webfont.woff') format('woff'),
+       font-url('Roboto-Regular/Roboto-Regular-webfont.ttf') format('truetype'),
+       font-url('Roboto-Regular/Roboto-Regular-webfont.svg#RobotoRegular') format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: font-url('Roboto-Medium/Roboto-Medium-webfont.eot');
+  src: font-url('Roboto-Medium/Roboto-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+       font-url('Roboto-Medium/Roboto-Medium-webfont.woff') format('woff'),
+       font-url('Roboto-Medium/Roboto-Medium-webfont.ttf') format('truetype'),
+       font-url('Roboto-Medium/Roboto-Medium-webfont.svg#RobotoRegular') format('svg');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: font-url('Roboto-Bold/Roboto-Bold-webfont.eot');
+  src: font-url('Roboto-Bold/Roboto-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+       font-url('Roboto-Bold/Roboto-Bold-webfont.woff') format('woff'),
+       font-url('Roboto-Bold/Roboto-Bold-webfont.ttf') format('truetype'),
+       font-url('Roboto-Bold/Roboto-Bold-webfont.svg#RobotoRegular') format('svg');
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+
+// Custom styles on HTML tags that are part of the theme
+
+h1 {
+  font-weight: 200;
+  font-size: 3em;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 1.5em;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-weight: 100;
+  font-size: 1.8em;
+  text-transform: uppercase;
+}
+
+h4 {
+  font-weight: 700;
+}
+
+// Additions to Bootstrap classes
+
+.dl-horizontal {
+  dt {
+    text-transform: uppercase;
+  }
+}
+
+.text-muted {
+  font-style: italic;
+}
+
+.navbar {
+  .navbar-header {
+    @include make-xs-column(3);
+    margin-top: 4px;
+  }
+}
+
+.btn {
+  text-transform: uppercase;
+  &.active {
+    @include box-shadow(none);
+  }
+}
+
+.btn-default {
+  border: 1px #CCCCCC solid;
+}
+
+.popover {
+  box-shadow: none;
+  .popover-content {  // inheriting font-weight from measure-title for some reason...
+    font-size: 14px;
+  }
+}
+// Custom Semantic Classes
+
+.sidebar {
+  @include make-xs-column(3);
+}
+
+.main {
+  @include make-xs-column(9);
+  .main-heading {
+    @extend .row;
+    .title {
+      @include make-xs-column(3);
+    }
+    .export-btn {
+      @extend .btn;
+      @extend .btn-primary;
+      @extend .pull-right;
+    }
+  }
+}
+
+.category {
+  @extend .row;
+  .category-title {
+    @include make-xs-column(6);
+  }
+  .category-percent {
+    @include make-xs-column(2);
+  }
+  .category-fraction {
+    @include make-xs-column(2);
+  }
+}
+
+.measure {
+  @extend .row;
+  .measure-title-id {
+    // .make-xs-column(3);
+    @include make-xs-column(4, 0); // use gutter of 0, to eliminate left gutter
+    margin-right: $grid-gutter-width / 2; // reintroduce right gutter
+  }
+  .measure-subtitle {
+    @include make-xs-column(2);
+  }
+  .percent-listing {
+    @include make-xs-column(2);
+  }
+  .patient-btn {
+    @extend .btn;
+    @extend .btn-default;
+  }
+}
