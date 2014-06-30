@@ -30,7 +30,7 @@ module PaginationHelper
   def set_pagination_params
     @page = (params[:page] || 1).to_i
     @per_page = (params[:per_page] || 100).to_i
-    @per_page = 100 if @per_page > 100
+    @per_page = 200 if @per_page > 200
     @offset = (@page-1)*@per_page
   end
 

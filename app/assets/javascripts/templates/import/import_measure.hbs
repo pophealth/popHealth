@@ -1,0 +1,117 @@
+<div class="modal fade" id="importMeasureDialog" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog"  role="dialog" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <div class="modal-header">
+        {{#button "close" class="close" data-dismiss="modal" aria-hidden="true"}}&times;{{/button}}
+        <h4 class="modal-title" id="modalTitle">{{dialogTitle}}</h4>
+      </div>
+      <div class="modal-body">
+        <form id="measure_upload_form" action="api/measures" method="post" class="form-horizontal" enctype="multipart/form-data" role="form">
+          <div style="margin:0;padding:0;display:inline">
+            <input name="utf8" type="hidden" value="✓">
+            <input name="_method" type="hidden" value="post">
+            <input name="authenticity_token" type="hidden" value="{{token}}">
+          </div>
+            <div class="alert alert-warning">
+              Measure Data file types can include: 
+              <ul>
+               
+                <li><a href="http://www.cms.gov/Regulations-and-Guidance/Legislation/EHRIncentivePrograms/eCQM_Library.html" target="_blank">HQMF XML File (eCQM specifications)</a></li>
+              </ul>
+            </div>
+          <div class="form-group">
+            <label for="measureFileInput" class="col-lg-{{titleSize}} control-label">Measure Data:</label>
+            <div class="col-lg-{{dataSize}}">
+              <input type="file" class="form-control" id="measureFileInput" name="measure_file">
+            </div>
+          </div>
+          <div class="hidden" id="vsacSignIn">
+            <div class="form-group has-error">
+              <label for="vsacUser" class="col-lg-{{titleSize}} control-label">VSAC Username:</label>
+              <div class="col-lg-{{dataSize}}">
+                <input type="text" class="form-control" id="vsacUser" name="vsac_username" placeholder="username">
+              </div>
+            </div>
+            <div class="form-group has-error">
+              <label for="vsacPassword" class="col-lg-{{titleSize}} control-label">VSAC Password:</label>
+              <div class="col-lg-{{dataSize}}">
+                <input type="password" class="form-control" id="vsacPassword" name="vsac_password" placeholder="password">
+              </div>
+              <div class="col-lg-offset-{{titleSize}} vsac-registration"><a href="https://uts.nlm.nih.gov/license.html" target="_blank"><i class="fa fa-plus-circle" aria-hidden="true"></i> Register for VSAC</a></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="measureTypeRadios" class="col-lg-{{titleSize}} control-label">Measure Type:</label>
+              <div class="col-lg-{{dataSize}}">
+                <div class="radio">
+                  <label>
+                    <input id="measureTypeRadios" type="radio" name="measure_type" value="ep" checked="true"> Eligible Professional (EP)
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="measure_type" value="eh"> Eligible Hospital (EH)
+                  </label>
+                </div>
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="measureTypeRadios" class="col-lg-{{titleSize}} control-label">Display Type</label>
+              <div class="col-lg-{{dataSize}}">
+                <div class="radio">
+                  <label>
+                    <input id="displayTypeRadios" type="checkbox" name="lower_is_better" value="ep" checked="false"> Lower is better
+                  </label>
+                </div>
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="calculationTypeRadios" class="col-lg-{{titleSize}} control-label">Calculation Type:</label>
+              <div class="col-lg-{{dataSize}}">
+                <div class="radio">
+                  <label>
+                    <input id="calculationTypeRadios" type="radio" name="calculation_type" value="patient" checked="true"> Patient Based
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="calculation_type" value="episode"> Episode of Care
+                  </label>
+                </div>
+              </div>
+          </div>
+
+          <div class="form-group">
+            <label for="category_{{@cid}}" class="col-lg-3 control-label">Category:</label>
+            <div class="col-lg-9">
+              <input type="text" name="category" value=""> 
+            </div>
+          </div>          
+        </form>
+      </div>
+      <div class="modal-footer">
+        {{#button "close" class="btn btn-default" data-dismiss="modal"}}Close{{/button}}
+        {{#button "submit" class="btn btn-primary" id="loadButton" disabled=true}}Load{{/button}}
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="pleaseWaitDialog" tabindex="-1" role="dialog" aria-labelledby="modalTitle modalInstructions" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 id="modalTitle">Loading Measure...</h1>
+        <span class="sr-only" id="modalInstructions">This dialog will dismiss automatically once processing is complete.</span>
+      </div>
+      <div class="modal-body">
+        <div class="progress progress-striped active">
+          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,59 @@
+
+<div class="modal fade" id="finalizeMeasureDialog" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modalTitle">Finalize Measure</h4>
+      </div>
+      <div class="modal-body">
+        <form action="api/measures/finalize" id="finalize_measure_form" method="post" class="form-horizontal" role="form">
+          <div style="margin:0;padding:0;display:inline">
+            <input name="utf8" type="hidden" value="✓">
+            <input name="_method" type="hidden" value="post">
+            <input name="authenticity_token" type="hidden" value="{{token}}">
+            <input name="vsac_username" type="hidden" value="{{vsac_username}}">
+            <input name="vsac_password" type="hidden" value="{{vsac_password}}">
+            <input name="category" type="hidden" value="{{category}}">
+            <input name="measure_type" type="hidden" value="{{measure_type}}">
+            <input name="lower_is_better" type="hidden" value="{{lower_is_better}}">
+          </div>
+          <div>
+            <h4>{{title}}</h4>
+            <input type="hidden" name="hqmf_id" value="{{hqmf_id}}">
+              <div class="form-group">
+                <label for="episodeSelect_{{@cid}}" class="col-lg-3 control-label">Episode(s) of Care:</label>
+                <div class="col-lg-9">
+                  <select multiple="true" class="form-control" id="episodeSelect_{{@cid}}" name="episode_ids[]">
+                    {{#each episode_ids}}
+                      <option value="{{id}}" >{{description}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cancelFinalizeMeasure" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" id="finalizeMeasureSubmit" class="btn btn-primary" disabled="disabled">Done</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="pleaseWaitDialog" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 id="modalTitle">Finalizing Measure...</h1>
+      </div>
+      <div class="modal-body">
+        <div class="progress progress-striped active">
+          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

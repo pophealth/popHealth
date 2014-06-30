@@ -11,6 +11,7 @@ class PopHealth.Router extends Backbone.Router
     'measures/:id(/:sub_id)(/providers/:provider_id)':                  'measure'
     'patients/:id':                                                     'patient'
     'providers(/:id)':                                                  'provider'
+    'admin/measures':                                                   'admin_measures'
 
   dashboard: ->
     @view.setView new Thorax.Views.ProviderView model: PopHealth.rootProvider
@@ -47,3 +48,7 @@ class PopHealth.Router extends Backbone.Router
     else
       providerCollection = new Thorax.Collections.Providers
       @view.setView new Thorax.Views.ProvidersView collection: providerCollection
+
+  admin_measures: ->
+    @view.setView new Thorax.Views.MeasuresAdminView 
+
