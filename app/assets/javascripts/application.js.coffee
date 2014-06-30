@@ -1,4 +1,5 @@
 #= require jquery/jquery
+#= require jquery_ujs
 #= require jquery-idletimer/dist/idle-timer
 #= require jQuery-Knob/js/jquery.knob
 #= require jquery-placeholder/jquery.placeholder

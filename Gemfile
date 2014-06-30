@@ -40,6 +40,7 @@ gem 'apipie-rails'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'sass-rails', "~> 4.0.2"
 gem 'coffee-rails'
+gem 'jquery-rails' # necessary for jquery_ujs w/data-method="delete" etc
 gem 'uglifier'
 gem 'non-stupid-digest-assets' # support vendored non-digest assets
 
