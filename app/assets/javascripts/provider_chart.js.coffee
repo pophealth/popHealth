@@ -61,7 +61,7 @@ PopHealth.viz.providerChart = ->
           d.y = heightScale(d.depth)
           d.x = widthScale(d.x)
           if not d.size?
-            d.size = if d.active then 15 else 8
+            d.size = 8#if d.active then 15 else 8
 
         node = svg.selectAll("g.node")
           .data(nodes, (d) -> d.id || d.id = ++nodeId)
@@ -82,6 +82,8 @@ PopHealth.viz.providerChart = ->
 
         nodeEnter.append("circle")
           .attr("r", 1e-6)
+          .classed("active", (d) -> d.active)
+
 
         nodeEnter.append("text")
           .transition().duration(duration)
