@@ -52,14 +52,16 @@ class Provider
     super(options)
   end
 
-  def self.resolve_provider(provider_hash)
+  def self.resolve_provider(provider_hash, patient=nil)
     catch_all_provider_hash = { :title => "",
                                 :given_name => "",
                                 :family_name=> "",
                                 :specialty => "",
                                 :cda_identifiers => [{root: APP_CONFIG['orphan_provider']['root'], extension:APP_CONFIG['orphan_provider']['extension']}]
                               }
-    Log.create(:username => 'Background Event', :event => 'No such provider exists in the database for the imported patient, patient has been assigned to the orphan provider.')
+    provider_info = provider_hash[:cda_identifiers].first
+    patient_id = patient.medical_record_number if patient
+    Log.create(:username => 'Background Event', :event => "No such provider with root '#{provider_info.root}' and extension '#{provider_info.extension}' exists in the database, patient has been assigned to the orphan provider.", :medical_record_number => patient_id)
     provider ||= Provider.in("cda_identifiers.root" => APP_CONFIG['orphan_provider']['root']).and.in("cda_identifiers.extension" => APP_CONFIG['orphan_provider']['extension']).first
     if provider.nil?
       provider = Provider.create(catch_all_provider_hash)
