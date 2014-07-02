@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 4.0.4'
+gem 'rails', '~> 4.1.2'
 gem 'quality-measure-engine', :git => 'https://github.com/pophealth/quality-measure-engine'
 gem "hqmf2js", :git=> "https://github.com/pophealth/hqmf2js.git"
 gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git'
@@ -51,7 +51,7 @@ group :test, :develop, :ci do
   gem 'simplecov', :require => false
   gem 'mocha', :require => false
   gem "unicorn", :platforms => [:ruby, :jruby]
-  gem 'minitest', "~> 4.0"
+  gem 'minitest', "~> 5.3"
 end
 
 group :test, :develop do
