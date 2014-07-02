@@ -9,11 +9,11 @@ class Thorax.Views.ResultsView extends Thorax.View
       change: ->
         unless @model.isLoading()
           clearInterval(@timeout) if @timeout?
-          d3.select(@el).select('.pop-chart').datum(@model.result()).call(@popChart)
+          d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
     rendered: ->
       @$('.dial').knob()
       if @model.isPopulated()
-        d3.select(@el).select('.pop-chart').datum(@model.result()).call(@popChart)
+        d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
         @$('rect').popover()
     destroyed: ->
       clearInterval(@timeout) if @timeout?
