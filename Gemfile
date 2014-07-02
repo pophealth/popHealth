@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '~> 4.1.2'
 gem 'quality-measure-engine', :git => 'https://github.com/pophealth/quality-measure-engine'
 gem "hqmf2js", :git=> "https://github.com/pophealth/hqmf2js.git"
-gem 'health-data-standards', :git => 'https://github.com/carpeliam/health-data-standards.git', :branch => 'categories_with_optional_properties'
+gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git'
 #gem 'health-data-standards', :path=> '../health-data-standards'
 gem 'nokogiri'
 gem 'rubyzip'
