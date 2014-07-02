@@ -9,6 +9,8 @@ PopHealth.viz.populationChart = ->
         .attr('viewBox', "0 0 #{width} #{height}")
         .attr('preserveAspectRatio', 'xMidYMid meet')
 
+      return if data.DENOM is 0
+
       boxGroup = gEnter.append('g')
 
       boxGroup.append('rect')
@@ -48,15 +50,23 @@ PopHealth.viz.populationChart = ->
         .attr('data-trigger', "hover focus")
         .attr('data-container', 'body') if data.DENEXCEP > 0
 
+      if data.lower_is_better?
+        arrow = gEnter.append('g')
+        arrowOffset = if data.lower_is_better then margin.left else margin.left + boxGroup.node().getBBox().width
+        arrow.append('path')
+          .attr('class', 'arrow')
+          .attr('d', d3.svg.symbol().size(240).type('triangle-up'))
+          .attr('transform', "translate(#{arrowOffset}, #{height + 12})")
+
   width = 150
   height = 20
   maximumValue = 100
   xScale = d3.scale.linear()
   margin =
     top: 2
-    right: 2
+    right: 4
     bottom: 2
-    left: 2
+    left: 4
 
   minWidth = 0
 
