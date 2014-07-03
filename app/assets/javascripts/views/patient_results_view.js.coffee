@@ -33,6 +33,7 @@ class Thorax.Views.PatientResultsView extends Thorax.View
 
   initialize: ->
     @isFetching = false
+    @isEpisodeOfCare = @query.parent.get('episode_of_care')
     @scrollHandler = =>
       distanceToBottom = $(document).height() - $(window).scrollTop() - $(window).height()
       if !@isFetching and @collection?.length and @fetchTriggerPoint > distanceToBottom

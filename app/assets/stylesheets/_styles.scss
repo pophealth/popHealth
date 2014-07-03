@@ -203,10 +203,6 @@ $table-border-color: white;
     > tr > th {
       border: none;
       font-weight: 700;
-      &.pid {
-        text-transform: uppercase;
-        font-size: 1.2em;
-      }
     }
   }
   > thead > tr > th, > tbody > tr > td {
@@ -219,7 +215,11 @@ $table-border-color: white;
   }
 }
 
-
+.col-patient-medical-record-id {
+  max-width: 115px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 
 
