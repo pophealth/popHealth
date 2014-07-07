@@ -52,7 +52,7 @@
       </div>
       <div class="col-md-6">
         <div class="input-group input-group-lg">
-          <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+          <span class="input-group-addon"><i class="fa fa-link fa-lg fa-fw"></i></span>
           <%= f.text_field :company_url, class: "form-control", placeholder: "www.company.com" %>
         </div>
       </div>
@@ -60,13 +60,13 @@
     <div class="form-group row">
       <div class="col-md-6">
         <div class="input-group input-group-lg">
-          <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+          <span class="input-group-addon"><i class="fa fa-h-square fa-lg fa-fw"></i></span>
           <%= f.text_field :registry_name, class: "form-control", placeholder: "registry name" %>
         </div>
       </div>
       <div class="col-md-6">
         <div class="input-group input-group-lg">
-          <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+          <span class="input-group-addon"><i class="fa fa-archive fa-lg fa-fw"></i></span>
           <%= f.text_field :registry_id, class: "form-control", placeholder: "registry identifier" %>
         </div>
       </div>
@@ -74,13 +74,13 @@
     <div class="form-group row">
       <div class="col-md-6">
         <div class="input-group input-group-lg">
-          <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+          <span class="input-group-addon"><i class="fa fa-hospital-o fa-lg fa-fw"></i></span>
           <%= f.text_field :npi, class: "form-control", placeholder: "national provider id" %>
         </div>
       </div>
       <div class="col-md-6">
         <div class="input-group input-group-lg">
-          <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+          <span class="input-group-addon"><i class="fa fa-folder fa-lg fa-fw"></i></span>
           <%= f.text_field :tin, class: "form-control", placeholder: "tax id number" %>
         </div>
       </div>
@@ -88,16 +88,16 @@
 
     <div class="form-group row">
       <div class="col-md-6">
-        <div class="input-group input-group-lg required">
+        <div class="input-group input-group-lg">
           <span class="input-group-addon"><i class="fa fa-lock fa-lg fa-fw"></i></span>
-          <%= f.password_field :password, class: "form-control", placeholder: "password*" %>
+          <%= f.password_field :password, class: "form-control", placeholder: "password" %>
         </div>
         leave blank if you don't want to change it
       </div>
       <div class="col-md-6">
-        <div class="input-group input-group-lg required">
+        <div class="input-group input-group-lg">
           <span class="input-group-addon"><i class="fa fa-lock fa-lg fa-fw"></i></span>
-          <%= f.password_field :password_confirmation, class: "form-control", placeholder: "confirm password*" %>
+          <%= f.password_field :password_confirmation, class: "form-control", placeholder: "confirm password" %>
         </div>
       </div>
     </div>
