@@ -95,13 +95,13 @@
         <p class="help-block">Leave blank if you don't wish to change.</p>
       </div>
       <div class="col-md-6">
-        <div class="input-group input-group-lg">
+        <div class="input-group input-group-lg hidden-toggle required">
           <span class="input-group-addon"><i class="fa fa-lock fa-lg fa-fw"></i></span>
-          <%= f.password_field :password_confirmation, class: "form-control", placeholder: "confirm password" %>
+          <%= f.password_field :password_confirmation, class: "form-control", placeholder: "confirm password*" %>
         </div>
       </div>
     </div>
-    <div class="form-group row" style="margin-top: 30px">
+    <div class="form-group row hidden-toggle" style="margin-top: 30px">
       <div class="col-md-6">
         <div class="input-group input-group-lg required">
           <span class="input-group-addon"><i class="fa fa-lock fa-lg fa-fw"></i></span>
@@ -161,3 +161,17 @@
     <% end -%>
   </div>
 </div>
+
+<script>
+  $(function() {
+    $('.hidden-toggle').hide();
+    $('#user_password').on('keyup', function(e) {
+      if($(this).val().length > 0) {
+        $('.hidden-toggle').show();
+      }
+      else {
+        $('.hidden-toggle').val('').hide();
+      }
+    });
+  });
+</script>
