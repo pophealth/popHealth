@@ -34,7 +34,7 @@
           <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
           <%= f.text_field :username, class: "form-control", placeholder: "username" %>
         </div>
-        Must be at least 3 characters long.
+        <p class="help-block">Must be at least 3 characters long.</p>
       </div>
       <div class="col-md-6">
         <div class="input-group input-group-lg">
@@ -92,7 +92,7 @@
           <span class="input-group-addon"><i class="fa fa-lock fa-lg fa-fw"></i></span>
           <%= f.password_field :password, class: "form-control", placeholder: "password" %>
         </div>
-        leave blank if you don't want to change it
+        <p class="help-block">Leave blank if you don't wish to change.</p>
       </div>
       <div class="col-md-6">
         <div class="input-group input-group-lg">
@@ -107,7 +107,7 @@
           <span class="input-group-addon"><i class="fa fa-lock fa-lg fa-fw"></i></span>
           <%= f.password_field :current_password, class: "form-control", placeholder: "current password*" %>
         </div>
-        to confirm your changes.
+        <p class="help-block">Please provide your old password.</p>
       </div>
     </div>
 
