@@ -69,16 +69,23 @@ $title-circle-radius: 21px;
       height: $title-circle-radius * 2;
       width: $title-circle-radius * 2;
       background-color: $circle-bkg-color;
-      margin: auto;
+      margin-left: 52px;
       padding-top: 5px;
       text-align: center;
       font-size: 1.7em;
     }
   }
   .category-fraction {
-    font-weight: 800;
-    font-size: 1em;
-    line-height: 1.4em;
+    .fraction-listing {
+      font-weight: 400;
+      font-size: 12px;
+      margin: 4px 0 0 -10px;
+
+      .numerator,
+      .denominator {
+        width: 80px;
+      }
+    }
   }
 }
 
@@ -129,11 +136,12 @@ $title-circle-radius: 21px;
   }
 
   .percentage {
-    line-height: 1.6;
-    font-size: 44px;
-    font-weight: 100;
+    line-height: 2.5;
+    font-size: 26px;
+    font-weight: 400;
+    color: #4A4A4A;
     small {
-      font-size: 65%
+      font-size: 18px;
     }
   }
 }
