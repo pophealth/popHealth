@@ -18,7 +18,10 @@
     <td>{{age}}</td>
     <td>{{formatted_birthdate}}</td>
     <td>{{gender}}</td>
-    {{#if ../isEpisodeOfCare}}<td># Encounters FIXME</td>{{/if}}
+    {{#if ../isEpisodeOfCare}}
+      {{!EoC measures track number of encounters in the numerator}}
+      <td>{{NUMER}}</td>
+    {{/if}}
     <td>
       <button class="btn-default">Exclude</button>
     </td>
