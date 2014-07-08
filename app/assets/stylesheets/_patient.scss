@@ -117,6 +117,11 @@
     @include make-row();
     dl {
       @include make-md-column(6);
+      div.patient-medical-record-id {
+        max-width: 115px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 }
