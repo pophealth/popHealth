@@ -117,6 +117,9 @@
     @include make-row();
     dl {
       @include make-md-column(6);
+      .popover {
+        max-width: none;
+      }
     }
   }
 }
