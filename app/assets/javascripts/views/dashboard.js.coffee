@@ -11,9 +11,7 @@ class Thorax.Views.ResultsView extends Thorax.View
           clearInterval(@timeout) if @timeout?
           d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
     rendered: ->
-      dial = @$('.dial')
-      dial.knob() # .knob() returns the parent element
-      dial.css("font-size", "26px")
+      @$('.dial').knob()
       if @model.isPopulated()
         d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
         @$('rect').popover()
