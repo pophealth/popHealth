@@ -33,7 +33,10 @@ class Thorax.Views.PatientView extends Thorax.View
   # Helper function for date/time conversion
   formatTime = (time, format) -> moment(time).format(format) if time
 
-  truncateString = (str, len) -> str.slice(0, len-1) + "..." if str
+  truncateString = (str, len) -> if str && str.length > len
+      str.slice(0, len-1) + "..."
+    else
+      str
 
 class Thorax.Views.EntryView extends Thorax.View
   context: ->
