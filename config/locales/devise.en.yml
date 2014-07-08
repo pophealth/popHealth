@@ -20,9 +20,9 @@ en:
       invalid: 'Invalid username or password.'
       invalid_token: 'Invalid authentication token.'
       timeout: 'Your session expired, please sign in again to continue.'
-      inactive: 'Your account was not activated yet.'
+      inactive: 'Your account is not active.'
       not_found_in_database: "Invalid username or password."
-      not_approved: 'Your account was not approved yet.'
+      not_approved: 'Your account was not approved.'
     sessions:
       signed_in: 'Signed in successfully.'
       signed_out: 'Signed out successfully.'
