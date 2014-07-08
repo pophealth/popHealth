@@ -24,16 +24,16 @@
     </div>
     <div class="form-group row">
       <div class="col-md-6">
-        <div class="input-group input-group-lg">
+        <div class="input-group input-group-lg required">
           <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
-          <%= f.text_field :username, class: "form-control", placeholder: "username" %>
+          <%= f.text_field :username, class: "form-control", placeholder: "username*" %>
         </div>
         <p class="help-block">Must be at least 3 characters long.</p>
       </div>
       <div class="col-md-6">
-        <div class="input-group input-group-lg">
+        <div class="input-group input-group-lg required">
           <span class="input-group-addon"><i class="fa fa-envelope fa-lg fa-fw"></i></span>
-          <%= f.email_field :email, class: "form-control", placeholder: "email@example.com" %>
+          <%= f.email_field :email, class: "form-control", placeholder: "email@example.com*" %>
         </div>
       </div>
     </div>
