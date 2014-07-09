@@ -10,6 +10,8 @@ class Thorax.Views.ResultsView extends Thorax.View
         unless @model.isLoading()
           clearInterval(@timeout) if @timeout?
           d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
+      rescale: ->
+        console.log @model.result().IPP
     rendered: ->
       @$('.dial').knob()
       if @model.isPopulated()
@@ -62,6 +64,11 @@ class Thorax.Views.Dashboard extends Thorax.View
     'change :checkbox.individual':    'toggleMeasure'
     'keyup .category-measure-search': 'search'
     'click .clear-search':            'clearSearch'
+    'click .rescale': ->
+      for category in this.selectedCategories.models
+          for measure in category.attributes.measures.models
+            for submeasure in measure.attributes.submeasures.models
+              submeasure.attributes.query.trigger("rescale")
   initialize: ->
     @selectedCategories = PopHealth.currentUser.selectedCategories(@collection)
 
