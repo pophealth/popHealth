@@ -45,11 +45,15 @@ body {
 
 .measure-type {
   line-height: 2.5;
-  width: 35px;
-  i {
+  width: 2%;
+  .fa {
+    font-size: 1.53em;
+    width: 100%;
+  }
+  .glyphicon {
     font-size: 1.14em;
     // the following is the same as fontawesome's fixedwidth class, but copied as we don't always use fontawesome
-    width: 1.28571429em;
+    width: 100%;
     text-align: center;
   }
 }
