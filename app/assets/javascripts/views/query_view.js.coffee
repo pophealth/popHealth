@@ -7,6 +7,7 @@ class Thorax.Views.QueryView extends Thorax.View
       d3.select(@el).select('.pop-chart').datum(@model.result()).call(@popChart) if @model.isPopulated()
 
   ipp: -> @model.ipp()
+  isContinuous: -> @model.continuous_variable()
   numerator: -> @model.numerator()
   denominator: -> @model.denominator()
   hasExceptions: -> @model.hasExceptions()

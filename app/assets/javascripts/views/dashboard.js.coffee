@@ -20,10 +20,9 @@ class Thorax.Views.ResultsView extends Thorax.View
   shouldDisplayPercentageVisual: -> PopHealth.currentUser.shouldDisplayPercentageVisual()
   context: (attrs) ->
     _(super).extend
-      performanceRate: @model.performanceRate()
-      numerator: @model.numerator()
-      denominator: @model.denominator()
-      performanceDenominator: @model.performanceDenominator()
+      resultValue: if @model.isContinuous() then parseFloat(@model.observ()).toFixed(1) else @model.performanceRate()
+      fractionTop: if @model.isContinuous() then @model.msrpopl() else @model.numerator()
+      fractionBottom: if @model.isContinuous() then @model.ipp() else @model.performanceDenominator()
   initialize: ->
     @popChart = PopHealth.viz.populationChart().width(125).height(40).maximumValue(PopHealth.patientCount)
     @model.set('providers', [@provider_id]) if @provider_id?
