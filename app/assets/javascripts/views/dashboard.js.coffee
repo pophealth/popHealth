@@ -11,7 +11,9 @@ class Thorax.Views.ResultsView extends Thorax.View
           clearInterval(@timeout) if @timeout?
           d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
       rescale: ->
-        console.log @model.result().IPP
+        @scaledDisplay = !@scaledDisplay
+        if @scaledDisplay then @popChart.maximumValue(@model.result().IPP) else @popChart.maximumValue(PopHealth.patientCount)
+        @popChart.update(_(lower_is_better: @lower_is_better).extend @model.result())
     rendered: ->
       @$('.dial').knob()
       if @model.isPopulated()
@@ -27,6 +29,7 @@ class Thorax.Views.ResultsView extends Thorax.View
       fractionTop: if @model.isContinuous() then @model.measurePopulation() else @model.numerator()
       fractionBottom: if @model.isContinuous() then @model.ipp() else @model.performanceDenominator()
   initialize: ->
+    @scaledDisplay = false
     @popChart = PopHealth.viz.populationChart().width(125).height(40).maximumValue(PopHealth.patientCount)
     @model.set('providers', [@provider_id]) if @provider_id?
     unless @model.isPopulated()
