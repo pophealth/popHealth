@@ -60,8 +60,7 @@ PopHealth.viz.providerChart = ->
         nodes.forEach (d) ->
           d.y = heightScale(d.depth)
           d.x = widthScale(d.x)
-          if not d.size?
-            d.size = 8#if d.active then 15 else 8
+          d.size ?= 8
 
         node = svg.selectAll("g.node")
           .data(nodes, (d) -> d.id || d.id = ++nodeId)
