@@ -9,11 +9,13 @@ class Thorax.Views.ResultsView extends Thorax.View
       change: ->
         unless @model.isLoading()
           clearInterval(@timeout) if @timeout?
+          if @scaledDisplay then @popChart.maximumValue(@model.result().IPP) else @popChart.maximumValue(PopHealth.patientCount)
           d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
       rescale: ->
         @scaledDisplay = !@scaledDisplay
-        if @scaledDisplay then @popChart.maximumValue(@model.result().IPP) else @popChart.maximumValue(PopHealth.patientCount)
-        @popChart.update(_(lower_is_better: @lower_is_better).extend @model.result())
+        if @model.isPopulated()
+          if @scaledDisplay then @popChart.maximumValue(@model.result().IPP) else @popChart.maximumValue(PopHealth.patientCount)
+          @popChart.update(_(lower_is_better: @lower_is_better).extend @model.result())
     rendered: ->
       @$('.dial').knob()
       if @model.isPopulated()
@@ -32,6 +34,7 @@ class Thorax.Views.ResultsView extends Thorax.View
   initialize: ->
     @scaledDisplay = false
     @popChart = PopHealth.viz.populationChart().width(125).height(40).maximumValue(PopHealth.patientCount)
+    if @scaledDisplay then @popChart.maximumValue(@model.result().IPP) else @popChart.maximumValue(PopHealth.patientCount)
     @model.set('providers', [@provider_id]) if @provider_id?
     unless @model.isPopulated()
       @timeout = setInterval =>

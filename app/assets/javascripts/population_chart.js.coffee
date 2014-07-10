@@ -26,7 +26,7 @@ PopHealth.viz.populationChart = ->
 
       if data.lower_is_better?
         arrow = gEnter.append('g')
-        arrowOffset = if data.lower_is_better then margin.left else margin.left + boxGroup.node().getBBox().width
+        arrowOffset = if data.lower_is_better then margin.left else margin.left + xScale(data.DENOM)
         arrow.append('path')
           .attr('class', 'arrow')
           .attr('d', d3.svg.symbol().size(240).type('triangle-up'))
