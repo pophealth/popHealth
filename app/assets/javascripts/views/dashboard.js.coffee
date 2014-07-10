@@ -9,16 +9,15 @@ class Thorax.Views.ResultsView extends Thorax.View
       change: ->
         unless @model.isLoading()
           clearInterval(@timeout) if @timeout?
-          if @scaledDisplay then @popChart.maximumValue(@model.result().IPP) else @popChart.maximumValue(PopHealth.patientCount)
           d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
       rescale: ->
-        @scaledDisplay = !@scaledDisplay
         if @model.isPopulated()
-          if @scaledDisplay then @popChart.maximumValue(@model.result().IPP) else @popChart.maximumValue(PopHealth.patientCount)
+          if PopHealth.currentUser.populationChartScaledToIPP() then @popChart.maximumValue(@model.result().IPP) else @popChart.maximumValue(PopHealth.patientCount)
           @popChart.update(_(lower_is_better: @lower_is_better).extend @model.result())
     rendered: ->
       @$('.dial').knob()
       if @model.isPopulated()
+        if PopHealth.currentUser.populationChartScaledToIPP() then @popChart.maximumValue(@model.result().IPP) else @popChart.maximumValue(PopHealth.patientCount)
         d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
         @$('rect').popover()
     destroyed: ->
@@ -31,9 +30,7 @@ class Thorax.Views.ResultsView extends Thorax.View
       fractionTop: if @model.isContinuous() then @model.measurePopulation() else @model.numerator()
       fractionBottom: if @model.isContinuous() then @model.ipp() else @model.performanceDenominator()
   initialize: ->
-    @scaledDisplay = false
     @popChart = PopHealth.viz.populationChart().width(125).height(40).maximumValue(PopHealth.patientCount)
-    if @scaledDisplay then @popChart.maximumValue(@model.result().IPP) else @popChart.maximumValue(PopHealth.patientCount)
     @model.set('providers', [@provider_id]) if @provider_id?
     unless @model.isPopulated()
       @timeout = setInterval =>
@@ -71,6 +68,7 @@ class Thorax.Views.Dashboard extends Thorax.View
     'keyup .category-measure-search': 'search'
     'click .clear-search':            'clearSearch'
     'click .rescale': ->
+      PopHealth.currentUser.togglePopulationChartScale()
       for category in this.selectedCategories.models
           for measure in category.attributes.measures.models
             for submeasure in measure.attributes.submeasures.models
