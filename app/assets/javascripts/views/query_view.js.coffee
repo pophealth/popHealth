@@ -6,8 +6,11 @@ class Thorax.Views.QueryView extends Thorax.View
       @$('.dial').knob()
       d3.select(@el).select('.pop-chart').datum(@model.result()).call(@popChart) if @model.isPopulated()
 
+  shouldDisplayPercentageVisual: -> !@model.isContinuous() and PopHealth.currentUser.shouldDisplayPercentageVisual()
+  resultValue: -> if @model.isContinuous() then @model.observation() else @model.performanceRate()
+  fractionTop: -> if @model.isContinuous() then @model.measurePopulation() else @model.numerator()
+  fractionBottom: -> if @model.isContinuous() then @model.ipp() else @model.performanceDenominator()
   ipp: -> @model.ipp()
-  isContinuous: -> @model.continuous_variable()
   numerator: -> @model.numerator()
   denominator: -> @model.denominator()
   hasExceptions: -> @model.hasExceptions()
@@ -19,6 +22,7 @@ class Thorax.Views.QueryView extends Thorax.View
   performanceRate: -> @model.performanceRate()
   performanceDenominator: -> @model.performanceDenominator()
   episode_of_care: -> @model.parent.get('episode_of_care')
+  unit: -> if @model.isContinuous() and @model.parent.get('cms_id') isnt 'CMS179v2' then 'min' else '%'
   initialize: ->
     @currentPopulation = 'IPP'
     @popChart = PopHealth.viz.populationChart().width(125).height(40).maximumValue(PopHealth.patientCount)
