@@ -1,10 +1,4 @@
-<div class="navbar navbar-default" role="navigation">
-  <div class="container">
-    <div class="navbar-header col-lg-4">
-      <a class="logo"  href="/" style="max-width: initial"><%= image_tag "pophealth_logo_small-trans.png" %></a>
-    </div>
-  </div>
-</div>
+<%= render partial: "shared/header" %>
 
 <div class="container">
   <div class="register-body">
@@ -30,16 +24,16 @@
     </div>
     <div class="form-group row">
       <div class="col-md-6">
-        <div class="input-group input-group-lg">
+        <div class="input-group input-group-lg required">
           <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
-          <%= f.text_field :username, class: "form-control", placeholder: "username" %>
+          <%= f.text_field :username, class: "form-control", placeholder: "username*" %>
         </div>
-        at least 5 characters long.
+        <p class="help-block">Must be at least 3 characters long.</p>
       </div>
       <div class="col-md-6">
-        <div class="input-group input-group-lg">
+        <div class="input-group input-group-lg required">
           <span class="input-group-addon"><i class="fa fa-envelope fa-lg fa-fw"></i></span>
-          <%= f.email_field :email, class: "form-control", placeholder: "email@example.com" %>
+          <%= f.email_field :email, class: "form-control", placeholder: "email@example.com*" %>
         </div>
       </div>
     </div>
@@ -52,7 +46,7 @@
       </div>
       <div class="col-md-6">
         <div class="input-group input-group-lg">
-          <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+          <span class="input-group-addon"><i class="fa fa-link fa-lg fa-fw"></i></span>
           <%= f.text_field :company_url, class: "form-control", placeholder: "www.company.com" %>
         </div>
       </div>
@@ -60,13 +54,13 @@
     <div class="form-group row">
       <div class="col-md-6">
         <div class="input-group input-group-lg">
-          <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+          <span class="input-group-addon"><i class="fa fa-h-square fa-lg fa-fw"></i></span>
           <%= f.text_field :registry_name, class: "form-control", placeholder: "registry name" %>
         </div>
       </div>
       <div class="col-md-6">
         <div class="input-group input-group-lg">
-          <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+          <span class="input-group-addon"><i class="fa fa-archive fa-lg fa-fw"></i></span>
           <%= f.text_field :registry_id, class: "form-control", placeholder: "registry identifier" %>
         </div>
       </div>
@@ -74,13 +68,13 @@
     <div class="form-group row">
       <div class="col-md-6">
         <div class="input-group input-group-lg">
-          <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+          <span class="input-group-addon"><i class="fa fa-hospital-o fa-lg fa-fw"></i></span>
           <%= f.text_field :npi, class: "form-control", placeholder: "national provider id" %>
         </div>
       </div>
       <div class="col-md-6">
         <div class="input-group input-group-lg">
-          <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+          <span class="input-group-addon"><i class="fa fa-folder fa-lg fa-fw"></i></span>
           <%= f.text_field :tin, class: "form-control", placeholder: "tax id number" %>
         </div>
       </div>
@@ -88,26 +82,26 @@
 
     <div class="form-group row">
       <div class="col-md-6">
-        <div class="input-group input-group-lg required">
+        <div class="input-group input-group-lg">
           <span class="input-group-addon"><i class="fa fa-lock fa-lg fa-fw"></i></span>
-          <%= f.password_field :password, class: "form-control", placeholder: "password*" %>
+          <%= f.password_field :password, class: "form-control", placeholder: "password" %>
         </div>
-        leave blank if you don't want to change it
+        <p class="help-block">Leave blank if you don't wish to change.</p>
       </div>
       <div class="col-md-6">
-        <div class="input-group input-group-lg required">
+        <div class="input-group input-group-lg hidden-toggle required">
           <span class="input-group-addon"><i class="fa fa-lock fa-lg fa-fw"></i></span>
           <%= f.password_field :password_confirmation, class: "form-control", placeholder: "confirm password*" %>
         </div>
       </div>
     </div>
-    <div class="form-group row" style="margin-top: 30px">
+    <div class="form-group row hidden-toggle" style="margin-top: 30px">
       <div class="col-md-6">
         <div class="input-group input-group-lg required">
           <span class="input-group-addon"><i class="fa fa-lock fa-lg fa-fw"></i></span>
           <%= f.password_field :current_password, class: "form-control", placeholder: "current password*" %>
         </div>
-        to confirm your changes.
+        <p class="help-block">Please provide your old password.</p>
       </div>
     </div>
 
@@ -161,3 +155,17 @@
     <% end -%>
   </div>
 </div>
+
+<script>
+  $(function() {
+    $('.hidden-toggle').hide();
+    $('#user_password').on('keyup', function(e) {
+      if($(this).val().length > 0) {
+        $('.hidden-toggle').show();
+      }
+      else {
+        $('.hidden-toggle').val('').hide();
+      }
+    });
+  });
+</script>
