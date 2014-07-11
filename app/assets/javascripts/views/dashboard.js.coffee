@@ -70,9 +70,9 @@ class Thorax.Views.Dashboard extends Thorax.View
     'click .clear-search':            'clearSearch'
     'click .rescale': ->
       PopHealth.currentUser.togglePopulationChartScale()
-      for category in this.selectedCategories.models
-          for measure in category.attributes.measures.models
-            for submeasure in measure.attributes.submeasures.models
+      this.selectedCategories.each (category) ->
+          category.get("measures").each (measure) ->
+            measure.get("submeasures").each (submeasure) ->
               submeasure.attributes.query.trigger("rescale")
   initialize: ->
     @selectedCategories = PopHealth.currentUser.selectedCategories(@collection)
