@@ -42,6 +42,7 @@ gem 'sass-rails', "~> 4.0.2"
 gem 'coffee-rails'
 gem 'jquery-rails' # necessary for jquery_ujs w/data-method="delete" etc
 gem 'uglifier'
+gem 'coffee-rails-source-maps'
 gem 'non-stupid-digest-assets' # support vendored non-digest assets
 
 group :test, :develop, :ci do

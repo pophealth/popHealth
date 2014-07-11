@@ -1,6 +1,7 @@
 *.log
 *.sqlite3
 public/clinical_documents
+public/assets/source_maps
 config/database.yml
 coverage.data
 coverage
