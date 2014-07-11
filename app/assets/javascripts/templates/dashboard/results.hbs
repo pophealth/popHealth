@@ -2,7 +2,7 @@
   {{#if shouldDisplayPercentageVisual}}
     <input type="text" value="{{resultValue}}" class="dial" data-readOnly="true" data-width="80" data-height="80" data-thickness=".1" data-fgColor="#4B979D" data-inputColor="#444" data-font="Helvetica Neue, Roboto, Helvetica, Arial, sans-serif" data-font-weight="400">
   {{else}}
-    <span class="percentage">{{resultValue}}<small>%</small></span>
+    <span class="percentage">{{formatNumeral resultValue '0.[0]a'}}<small>{{unit}}</small></span>
   {{/if}}
 </div>
 

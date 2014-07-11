@@ -17,10 +17,11 @@ class Thorax.Views.ResultsView extends Thorax.View
         @$('rect').popover()
     destroyed: ->
       clearInterval(@timeout) if @timeout?
-  shouldDisplayPercentageVisual: -> PopHealth.currentUser.shouldDisplayPercentageVisual()
+  shouldDisplayPercentageVisual: -> !@model.isContinuous() and PopHealth.currentUser.shouldDisplayPercentageVisual()
   context: (attrs) ->
     _(super).extend
-      resultValue: if @model.isContinuous() then parseFloat(@model.observ()).toFixed(1) else @model.performanceRate()
+      unit: if @model.isContinuous() and @model.parent.get('cms_id') isnt 'CMS179v2' then 'min' else '%'
+      resultValue: if @model.isContinuous() then @model.observ() else @model.performanceRate()
       fractionTop: if @model.isContinuous() then @model.msrpopl() else @model.numerator()
       fractionBottom: if @model.isContinuous() then @model.ipp() else @model.performanceDenominator()
   initialize: ->
