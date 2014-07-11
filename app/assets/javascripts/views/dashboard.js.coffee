@@ -21,8 +21,8 @@ class Thorax.Views.ResultsView extends Thorax.View
   context: (attrs) ->
     _(super).extend
       unit: if @model.isContinuous() and @model.parent.get('cms_id') isnt 'CMS179v2' then 'min' else '%'
-      resultValue: if @model.isContinuous() then @model.observ() else @model.performanceRate()
-      fractionTop: if @model.isContinuous() then @model.msrpopl() else @model.numerator()
+      resultValue: if @model.isContinuous() then @model.observation() else @model.performanceRate()
+      fractionTop: if @model.isContinuous() then @model.measurePopulation() else @model.numerator()
       fractionBottom: if @model.isContinuous() then @model.ipp() else @model.performanceDenominator()
   initialize: ->
     @popChart = PopHealth.viz.populationChart().width(125).height(40).maximumValue(PopHealth.patientCount)
