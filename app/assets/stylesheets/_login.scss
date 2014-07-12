@@ -1,7 +1,8 @@
 
 .login {
-  // center horizontally, give it some breathing room across the top
-  margin-top: 200px;
+  // give it some breathing room across the top
+  margin-top: 20px;
+  margin-bottom: $bottom-margin; // Declared in _variables.css.scss
   @include make-sm-column(4);
   @include make-sm-column-offset(4);
 
@@ -32,6 +33,7 @@
 }
 
 .register-body {
+  margin-bottom: $bottom-margin;
   #termsAndConditions {
     @extend .well;
     max-height: 250px;

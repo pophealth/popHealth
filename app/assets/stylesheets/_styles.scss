@@ -4,6 +4,10 @@ $title-circle-radius: 21px;
 
 // Custom styles that are part of the theme
 
+body {
+  margin-bottom: $bottom-margin; // Declared in _variables.css.scss
+}
+
 .fraction-listing {
   margin-top: 10px;
   margin-bottom: 10px;
