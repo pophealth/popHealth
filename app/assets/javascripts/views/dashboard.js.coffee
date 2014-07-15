@@ -10,9 +10,14 @@ class Thorax.Views.ResultsView extends Thorax.View
         unless @model.isLoading()
           clearInterval(@timeout) if @timeout?
           d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
+      rescale: ->
+        if @model.isPopulated()
+          if PopHealth.currentUser.populationChartScaledToIPP() then @popChart.maximumValue(@model.result().IPP) else @popChart.maximumValue(PopHealth.patientCount)
+          @popChart.update(_(lower_is_better: @lower_is_better).extend @model.result())
     rendered: ->
       @$('.dial').knob()
       if @model.isPopulated()
+        if PopHealth.currentUser.populationChartScaledToIPP() then @popChart.maximumValue(@model.result().IPP) else @popChart.maximumValue(PopHealth.patientCount)
         d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
         @$('rect').popover()
     destroyed: ->
@@ -62,8 +67,16 @@ class Thorax.Views.Dashboard extends Thorax.View
     'change :checkbox.individual':    'toggleMeasure'
     'keyup .category-measure-search': 'search'
     'click .clear-search':            'clearSearch'
+    'change .rescale': (event) ->
+      @$('.rescale').parent().toggleClass("btn-primary")
+      PopHealth.currentUser.setPopulationChartScale(event.target.value=="true")
+      this.selectedCategories.each (category) ->
+          category.get("measures").each (measure) ->
+            measure.get("submeasures").each (submeasure) ->
+              submeasure.attributes.query.trigger("rescale")
   initialize: ->
     @selectedCategories = PopHealth.currentUser.selectedCategories(@collection)
+    @populationChartScaledToIPP = PopHealth.currentUser.populationChartScaledToIPP()
 
   effective_date: ->
     Config.effectiveDate

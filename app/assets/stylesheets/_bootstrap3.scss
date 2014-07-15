@@ -142,11 +142,6 @@ h4 {
     .title {
       @include make-xs-column(3);
     }
-    .export-btn {
-      @extend .btn;
-      @extend .btn-primary;
-      @extend .pull-right;
-    }
   }
 }
 

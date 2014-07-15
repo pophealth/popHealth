@@ -52,11 +52,8 @@ body {
     margin-top: 14px;
   }
 }
-.export-btn {
-  width: 110px;
-  text-align: center;
+.header-actions {
   margin-top: 24px;
-  text-transform: uppercase;
 }
 
 .category {
@@ -212,6 +209,11 @@ body {
     background-color: $brand-primary;
     color: white;
   }
+}
+
+.large-icon {
+  font-size: 20px;
+  padding: 2px 8px;
 }
 
 $table-border-color: white;
