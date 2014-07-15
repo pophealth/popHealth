@@ -49,4 +49,3 @@ class SubCollection extends Thorax.Collection
   model: Thorax.Models.Submeasure
   initialize: (models, options) -> @parent = options.parent
   comparator: 'sub_id'
-
