@@ -69,7 +69,7 @@ class Thorax.Views.Dashboard extends Thorax.View
     'keyup .category-measure-search': 'search'
     'click .clear-search':            'clearSearch'
     'change .rescale': (event) ->
-      this.$('.rescale').parent().toggleClass("btn-primary btn-default")
+      this.$('.rescale').parent().toggleClass("btn-primary")
       PopHealth.currentUser.setPopulationChartScale(event.target.value=="true")
       this.selectedCategories.each (category) ->
           category.get("measures").each (measure) ->
