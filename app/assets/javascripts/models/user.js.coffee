@@ -7,8 +7,8 @@ class Thorax.Models.User extends Thorax.Model
   populationChartScaledToIPP: -> @get('preferences').population_chart_scaled_to_IPP
 
 
-  togglePopulationChartScale: ->
-    @get('preferences').population_chart_scaled_to_IPP = !@get('preferences').population_chart_scaled_to_IPP
+  setPopulationChartScale: (value) ->
+    @get('preferences').population_chart_scaled_to_IPP = value
     @save()
 
   selectedCategories: (categories) ->

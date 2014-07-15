@@ -67,14 +67,16 @@ class Thorax.Views.Dashboard extends Thorax.View
     'change :checkbox.individual':    'toggleMeasure'
     'keyup .category-measure-search': 'search'
     'click .clear-search':            'clearSearch'
-    'click .rescale': ->
-      PopHealth.currentUser.togglePopulationChartScale()
+    'change .rescale': (event) ->
+      this.$('.rescale').parent().toggleClass("btn-primary btn-default")
+      PopHealth.currentUser.setPopulationChartScale(event.target.value=="true")
       this.selectedCategories.each (category) ->
           category.get("measures").each (measure) ->
             measure.get("submeasures").each (submeasure) ->
               submeasure.attributes.query.trigger("rescale")
   initialize: ->
     @selectedCategories = PopHealth.currentUser.selectedCategories(@collection)
+    @populationChartScaledToIPP = PopHealth.currentUser.populationChartScaledToIPP()
 
   effective_date: ->
     Config.effectiveDate
