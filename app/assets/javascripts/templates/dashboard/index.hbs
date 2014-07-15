@@ -51,10 +51,10 @@
 
       <div class="btn-group btn-group-md" data-toggle="buttons">
         <label class="btn col-md-6 fa fa-align-left large-icon btn-default{{#unless populationChartScaledToIPP}} active  btn-primary{{/unless}}">
-          <input class="rescale" type="radio" value="false"/>
+          <input class="rescale" type="radio" value="false" name="population_chart_scale" {{#unless populationChartScaledToIPP}}checked{{/unless}}/>
         </label>
         <label class="btn col-md-6 fa fa-align-justify large-icon btn-default{{#if populationChartScaledToIPP}} active btn-primary{{/if}}">
-          <input class="rescale" type="radio" value="true"/>
+          <input class="rescale" type="radio" value="true" name="population_chart_scale" {{#if populationChartScaledToIPP}}checked{{/if}}/>
         </label>
       </div>
 
