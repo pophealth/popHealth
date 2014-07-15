@@ -47,7 +47,10 @@
 <div class="main">
   <div class="main-heading">
     <h1 class="title">Measures</h1>
-    <a href="/api/reports/qrda_cat3.xml{{#if effective_date}}?effective_date={{effective_date}}{{/if}}{{#if provider_id}}&provider_id={{provider_id}}{{/if}}" class="export-btn"><i class="glyphicon glyphicon-download-alt"></i> Export</a>
+    <div class="header-actions pull-right">
+      <a class="rescale btn btn-primary">Rescale</a>
+      <a href="/api/reports/qrda_cat3.xml{{#if effective_date}}?effective_date={{effective_date}}{{/if}}{{#if provider_id}}&provider_id={{provider_id}}{{/if}}" class="btn btn-primary"><i class="glyphicon glyphicon-download-alt"></i> Export</a>
+    </div>
   </div>
   {{#collection selectedCategories}}
     <div class="category" style="">
