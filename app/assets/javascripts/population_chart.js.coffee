@@ -14,15 +14,32 @@ PopHealth.viz.populationChart = ->
 
       boxGroup.append('rect')
         .attr('class', 'denom')
+        # popover reports on the performance denominator, which doesn't include exclusions/exceptions
+        .attr('data-content', "Denominator: #{data.performanceDenominator}")
+        .attr('data-trigger', "hover focus")
+        .attr('data-placement', "bottom")
+        .attr('data-container', 'body')
 
       boxGroup.append('rect')
         .attr('class', 'numer')
+        .attr('data-content', "Numerator: #{data.NUMER}")
+        .attr('data-trigger', "hover focus")
+        .attr('data-placement', "bottom")
+        .attr('data-container', 'body')
 
       boxGroup.append('rect')
         .attr('class', 'denex')
+        .attr('data-content', "Exclusion: #{data.DENEX}")
+        .attr('data-trigger', "hover focus")
+        .attr('data-placement', "bottom")
+        .attr('data-container', 'body') if data.DENEX > 0
 
       boxGroup.append('rect')
         .attr('class', 'denexc')
+        .attr('data-content', "Exceptions: #{data.DENEXCEP}")
+        .attr('data-trigger', "hover focus")
+        .attr('data-placement', "bottom")
+        .attr('data-container', 'body') if data.DENEXCEP > 0
 
       if data.lower_is_better?
         arrow = gEnter.append('g')
@@ -94,34 +111,26 @@ PopHealth.viz.populationChart = ->
       .attr('width', xScale(data.DENOM))
       .attr('height', height)
       .attr('x', margin.left)
-      # popover reports on the performance denominator, which doesn't include exclusions/exceptions
-      .attr('data-content', "Denominator: #{data.performanceDenominator}")
-      .attr('data-trigger', "hover focus")
-      .attr('data-container', 'body')
+
+
 
     this.svg.selectAll(".numer").transition()
       .attr('width', xScale(data.NUMER))
       .attr('height', height)
       .attr('x', margin.left)
-      .attr('data-content', "Numerator: #{data.NUMER}")
-      .attr('data-trigger', "hover focus")
-      .attr('data-container', 'body')
+
 
     this.svg.selectAll(".denex").transition()
       .attr('width', xScale(data.DENEX))
       .attr('height', height)
       .attr('x', margin.left + xScale(data.NUMER))
-      .attr('data-content', "Exclusion: #{data.DENEX}")
-      .attr('data-trigger', "hover focus")
-      .attr('data-container', 'body') if data.DENEX > 0
+
 
     this.svg.selectAll(".denexc").transition()
       .attr('width', xScale(data.DENEXCEP))
       .attr('height', height)
       .attr('x', margin.left + xScale(data.NUMER + data.DENEX))
-      .attr('data-content', "Exceptions: #{data.DENEXCEP}")
-      .attr('data-trigger', "hover focus")
-      .attr('data-container', 'body') if data.DENEXCEP > 0
+
 
     if data.lower_is_better?
       arrowOffset = if data.lower_is_better then margin.left else margin.left + xScale(data.DENOM)
