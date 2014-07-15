@@ -48,7 +48,16 @@
   <div class="main-heading">
     <h1 class="title">Measures</h1>
     <div class="header-actions pull-right">
-      <a class="rescale btn btn-primary">Rescale</a>
+
+      <div class="btn-group btn-group-md col-md-6" data-toggle="buttons">
+        <label class="btn col-md-6 fa fa-align-left large-icon btn-default{{#unless populationChartScaledToIPP}}active  btn-primary{{/unless}}">
+          <input class="rescale" type="radio" value="false"/>
+        </label>
+        <label class="btn col-md-6 fa fa-align-justify large-icon btn-default{{#if populationChartScaledToIPP}}active btn-primary{{/if}}">
+          <input class="rescale" type="radio" value="true"/>
+        </label>
+      </div>
+
       <a href="/api/reports/qrda_cat3.xml{{#if effective_date}}?effective_date={{effective_date}}{{/if}}{{#if provider_id}}&provider_id={{provider_id}}{{/if}}" class="btn btn-primary"><i class="glyphicon glyphicon-download-alt"></i> Export</a>
     </div>
   </div>
