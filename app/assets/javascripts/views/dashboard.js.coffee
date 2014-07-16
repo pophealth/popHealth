@@ -15,6 +15,7 @@ class Thorax.Views.ResultsView extends Thorax.View
           if PopHealth.currentUser.populationChartScaledToIPP() then @popChart.maximumValue(@model.result().IPP) else @popChart.maximumValue(PopHealth.patientCount)
           @popChart.update(_(lower_is_better: @lower_is_better).extend @model.result())
     rendered: ->
+      @$(".icon-popover").popover()
       @$('.dial').knob()
       if @model.isPopulated()
         if PopHealth.currentUser.populationChartScaledToIPP() then @popChart.maximumValue(@model.result().IPP) else @popChart.maximumValue(PopHealth.patientCount)
