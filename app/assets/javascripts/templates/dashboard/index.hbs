@@ -18,7 +18,7 @@
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#measureSelectors" href="#category{{@cid}}">
               {{category}}
             </a>
-          </div>
+          </h4>
         </div>
         <div id="category{{@cid}}" class="panel-collapse collapse">
           <div class="panel-body measureItemList">
@@ -33,7 +33,6 @@
                 <label>
                   <input type="checkbox" class="individual"{{#if selected}} checked{{/if}}>
                   {{cms_id}}/{{nqf_id}} - {{name}}
-                  {{!-- <%= check_box_tag :measure_id, measure["id"], is_selected?(measure['id'], current_user.selected_measures), {id: nil, 'data-measure-id' => measure['id'], 'data-sub-measures' => measure['sub_ids'].join(',')} %><%= measure['name'] %> --}}
                 </label>
               </div>
             {{/collection}}
@@ -62,7 +61,7 @@
     </div>
   </div>
   {{#collection selectedCategories}}
-    <div class="category" style="">
+    <div class="category">
       <h2 class="category-title">{{category}}</h2>
       <div class="category-percent">
         <div class="title-circle">%</div>
@@ -74,7 +73,6 @@
         </div>
       </div>
     </div>
-  </div>
 
     {{#collection measures}}
       {{#collection submeasures item-view="DashboardSubmeasureView"}}
