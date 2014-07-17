@@ -8,6 +8,26 @@ body {
   margin-bottom: 40px;
 }
 
+.measure {
+  @extend .row;
+  .measure-title-id {
+    // .make-xs-column(3);
+    @include make-xs-column(5, 0); // use gutter of 0, to eliminate left gutter
+    // margin-right: $grid-gutter-width / 2; // reintroduce right gutter
+  }
+  .percent-listing {
+    @include make-xs-column(2);
+  }
+  .patient-btn {
+    @extend .btn;
+    @extend .btn-default;
+  }
+}
+
+.row-remainder {
+  @include make-xs-column(5, 0);
+}
+
 .fraction-listing {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -24,6 +44,7 @@ body {
 
 .measure-type {
   line-height: 2.5;
+  width: 35px;
   i {
     font-size: 1.14em;
     // the following is the same as fontawesome's fixedwidth class, but copied as we don't always use fontawesome
@@ -64,17 +85,19 @@ body {
     margin-bottom: 0;
     margin-top: 0;
   }
-  .category-percent {
-    .title-circle {
-      border-radius: $title-circle-radius;
-      height: $title-circle-radius * 2;
-      width: $title-circle-radius * 2;
-      background-color: $circle-bkg-color;
-      margin-left: 52px;
-      padding-top: 5px;
-      text-align: center;
-      font-size: 1.7em;
-    }
+  .category-percent .title-circle, .category-time .title-circle {
+    @extend .center-block;
+    border-radius: $title-circle-radius;
+    @include square($title-circle-radius * 2);
+    background-color: $circle-bkg-color;
+    text-align: center;
+    font-size: 1.7em;
+  }
+  .category-percent .title-circle {
+    padding-top: 5px;
+  }
+  .category-time .title-circle {
+    padding-top: 1px;
   }
   .category-fraction {
     .fraction-listing {
@@ -131,7 +154,11 @@ body {
     font-size: 16px;     // Has to be in pixels otherwise popover inherits font-size
   }
   .measure-subtitle {
+    margin-left: 75px;
     padding-top: 15px;
+  }
+  &:first-child .measure-subtitle {
+    padding-top: 5px;
   }
   .percent-listing {
     text-align: center;
@@ -158,10 +185,10 @@ body {
   margin-top: 10px;
   margin-bottom: 10px;
   height: 50px;
-  width: 105px;
+  width: 175px;
   // shrink this down on smaller displays
   @media (max-width: $screen-md-max) {
-    width: 60px;
+    width: 100px;
   }
   svg {
     @include size(100%, 100%);
