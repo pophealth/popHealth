@@ -69,7 +69,7 @@ GEM
       rails (>= 3.0.10)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
-    bootstrap-sass (3.1.1.1)
+    bootstrap-sass (3.0.3.0)
       sass (~> 3.2)
     bson (2.3.0)
     builder (3.2.2)
@@ -272,7 +272,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   apipie-rails
-  bootstrap-sass (~> 3.1.1)
+  bootstrap-sass (~> 3.0.3)
   cancan
   coffee-rails
   devise
