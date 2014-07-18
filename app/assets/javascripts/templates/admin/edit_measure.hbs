@@ -30,21 +30,28 @@
               </div>
           </div -->
           <div class="form-group">
-            <label for="measureTypeRadios" class="col-lg-3 control-label">Display Type:</label>
+            <label for="measureResultMeaningSelect" class="control-label">Measure Result Meaning:</label>
               <div class="col-lg-{{dataSize}}">
-                <div class="radio">
-                  <label>
-                    <input id="lower_is_better_cb" type="checkbox" name="lower_is_better" value="true" {{#if lower_is_better}}checked {{/if}}> Lower is better
-                  </label>
-                </div>
+                <select class="form-control" name="measureResultMeaningSelect" id="measureResultMeaningSelect">
+                  {{#if lowerIsSet}}
+                    <option id="neither_is_better_dd" value="nil" selected>Neither is better</option>
+                    <option id="lower_is_better_dd" value="true">Lower is better</option>
+                    <option id="higher_is_better_dd" value="false">Higher is better</option>
+                  {{else}}
+                    <option id="neither_is_better_dd" value="nil">Neither is better</option>
+                    <option id="lower_is_better_dd" value="true" {{#if lower_is_better}}selected {{/if}}>Lower is better</option>
+                    <option id="higher_is_better_dd" value="false" {{#if higher_is_better}}selected {{/if}}>Higher is better</option>
+                  {{/if}}
+                </select>
               </div>
           </div>
 
-
           <div class="form-group">
-            <label for="category_{{@cid}}" class="col-lg-3 control-label">Category:</label>
-            <div class="col-lg-9">
-              <input type="text" name="measure[category]" value="{{category}}">
+            <label for="category_{{@cid}}" class="control-label">Category:</label>
+            <div class="col-lg-{{dataSize}}">
+              {{#collection categories tag="select" class="form-control" name="measure[category]" item-context="categoryContext"}}
+                <option value="{{category}}" {{#if selected}}selected{{/if}}>{{category}}</option>
+              {{/collection}}
             </div>
           </div>
         </form>
@@ -74,4 +81,3 @@
     </div>
   </div>
 </div>
-
