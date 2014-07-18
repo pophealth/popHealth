@@ -37,7 +37,7 @@ gem 'factory_girl', "2.6.3"
 gem 'apipie-rails'
 
 # Gems used for assets
-gem 'bootstrap-sass', '~> 3.1.1'
+gem 'bootstrap-sass', '~> 3.0.3'
 gem 'sass-rails', "~> 4.0.2"
 gem 'coffee-rails'
 gem 'jquery-rails' # necessary for jquery_ujs w/data-method="delete" etc
