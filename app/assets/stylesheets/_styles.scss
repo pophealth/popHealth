@@ -129,6 +129,10 @@ body {
   .measure-title {
     padding-top: 10px;
     font-size: 16px;     // Has to be in pixels otherwise popover inherits font-size
+    .glyphicon-info-sign {
+      font-size: 14px;
+      color: #999999;
+    }
   }
   .measure-subtitle {
     padding-top: 15px;
