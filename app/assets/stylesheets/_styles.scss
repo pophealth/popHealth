@@ -137,15 +137,16 @@ body {
     text-align: center;
   }
 
-  .percentage {
-    line-height: 2.5;
-    font-size: 26px;
-    font-weight: 400;
-    color: #4A4A4A;
-    small {
-      font-size: 16px;
-      padding-left: 2px;
-    }
+}
+
+.percentage {
+  line-height: 2.5;
+  font-size: 26px;
+  font-weight: 400;
+  color: #4A4A4A;
+  small {
+    font-size: 16px;
+    padding-left: 2px;
   }
 }
 
@@ -252,17 +253,6 @@ $table-border-color: white;
 
   @mixin measure-border-level-n($n) {
     background-color: lighten($brand-primary, percentage(0.5 - $n / 10));
-  }
-
-  .percentage {
-    line-height: 2.5;
-    font-size: 26px;
-    font-weight: 400;
-    color: #4A4A4A;
-    small {
-      font-size: 16px;
-      padding-left: 2px;
-    }
   }
 
   .measure-border {
