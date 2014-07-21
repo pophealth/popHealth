@@ -291,6 +291,9 @@ $table-border-color: white;
       .measure-content {
         @include clearfix;
         padding: 2px;
+        .measure-inner {
+          padding: 12px 0;
+        }
       }
     }
   }
