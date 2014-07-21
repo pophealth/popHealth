@@ -13,6 +13,7 @@
             <input name="authenticity_token" type="hidden" value="{{token}}">
             <input name="hqmf_id" type="hidden" value="{{hqmf_id}}">
             <input id="lower_is_better" name="measure[lower_is_better]" type="hidden" value="{{lower_is_better}}">
+            <input id="measure_category" name="measure[category]" type="hidden" value="{{category}}">
           </div>
           <!-- div class="form-group">
             <label for="measureTypeRadios" class="col-lg-{{titleSize}} control-label">Measure Type:</label>
@@ -30,10 +31,10 @@
               </div>
           </div -->
           <div class="form-group">
-            <label for="measureResultMeaningSelect" class="control-label">Measure Result Meaning:</label>
-              <div class="col-lg-{{dataSize}}">
+            <label for="measureResultMeaningSelect" class="control-label">Measure Goal:</label>
+              <div class="col-lg-12">
                 <select class="form-control" name="measureResultMeaningSelect" id="measureResultMeaningSelect">
-                  {{#if lowerIsSet}}
+                  {{#if lowerIsNotSet}}
                     <option id="neither_is_better_dd" value="nil" selected>Neither is better</option>
                     <option id="lower_is_better_dd" value="true">Lower is better</option>
                     <option id="higher_is_better_dd" value="false">Higher is better</option>
@@ -47,11 +48,19 @@
           </div>
 
           <div class="form-group">
-            <label for="category_{{@cid}}" class="control-label">Category:</label>
-            <div class="col-lg-{{dataSize}}">
-              {{#collection categories tag="select" class="form-control" name="measure[category]" item-context="categoryContext"}}
+            <label for="measureCategorySelect" class="control-label">Category:</label>
+            <div class="col-lg-12">
+              {{#collection categories tag="select" class="form-control" name="measureCategorySelect" id="measureCategorySelect" item-context="categoryContext"}}
+                {{#if first}}
+                  <optgroup label="New Category">
+                    <option value="New" id="newCategoryOption">New</option>
+                  </optgroup>
+                {{/if}}
                 <option value="{{category}}" {{#if selected}}selected{{/if}}>{{category}}</option>
               {{/collection}}
+            </div>
+            <div class="col-lg-12">
+              <input type="text" id="newMeasureCategoryInput" class="form-control" placeholder="enter new category" />
             </div>
           </div>
         </form>

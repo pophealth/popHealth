@@ -73,25 +73,43 @@ class Thorax.Views.EditMeasureView extends Thorax.View
   events:
     'ready': 'setup',
     'submit #edit_measure_form': 'saveToModel',
-    'change #measureResultMeaningSelect' : 'update_lower_is_better'
+    'change #measureResultMeaningSelect' : 'update_lower_is_better',
+    'change #measureCategorySelect' : 'show_hide_custom_category',
+    'input #newMeasureCategoryInput' : 'update_measure_category_input'
 
   initialize: ->
     @categories = new Thorax.Collections.Categories PopHealth.categories, parse: true
+    @$("#newMeasureCategoryInput")
 
   setup: ->
     @editDialog = @$("#editMeasureDialog")
     @wait = @$("#pleaseWaitDialog")
+    @newMeasureInput = @$("#newMeasureCategoryInput").hide()
+    @measureCategory = @$("#measure_category")[0]
 
-  lowerIsSet: -> @lower_is_better != null
+  lowerIsNotSet: -> @lower_is_better == null
 
-  higher_is_better: -> @lowerIsSet() and !@lower_is_better
+  higher_is_better: -> !@lowerIsNotSet() and !@lower_is_better
 
-  categoryContext: (cat) ->
+  categoryContext: (cat, index) ->
     selectedCategory = cat.get('category') == @category
-    _(cat.toJSON()).extend selected: selectedCategory
+    isFirst = index == 0
+    _(cat.toJSON()).extend selected: selectedCategory, first: isFirst
 
   update_lower_is_better: (event) ->
     @$("#lower_is_better")[0].value=event.target.value
+
+  show_hide_custom_category: (event) ->
+    if event.target.value == "New"
+      @newMeasureInput.show()
+      @measureCategory.value = ""
+    else
+      @newMeasureInput.hide()
+      console.log(event.target.value)
+      @measureCategory.value = event.target.value
+
+  update_measure_category_input: (event) ->
+    @measureCategory.value = event.target.value
 
   saveToModel: ->
     formData = new FormData($('form')[0]);
