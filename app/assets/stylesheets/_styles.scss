@@ -126,14 +126,16 @@ body {
 }
 
 .measure {
-  margin-top: 1em;
+  position: relative;
   .measure-identifier {
     @extend .pull-left;
     background-color: $gray-lighter;
     min-width: 44px;
-    padding: 10px 4px;
+    padding: 35px 4px;
     text-align: center;
-    margin-right: 10px;
+    position: absolute;
+    top: 0; bottom: 0;
+    min-height: 100px;
     .cms-cms {
       color: $brand-primary;
       font-size: 0.8em;
@@ -149,8 +151,12 @@ body {
       letter-spacing: 1px;
     }
   }
+  .measure-info {
+    margin-top: 25px;
+  }
   .measure-title {
     padding-top: 10px;
+    margin-left: 50px;
     font-size: 16px;     // Has to be in pixels otherwise popover inherits font-size
   }
   .measure-subtitle {
