@@ -75,6 +75,7 @@ body {
 }
 .header-actions {
   margin-top: 24px;
+  margin-right: $grid-gutter-width/2;
 }
 
 .category {
@@ -126,6 +127,7 @@ body {
 }
 
 .measure {
+  @include make-row(0);
   position: relative;
   .measure-identifier {
     @extend .pull-left;
@@ -194,7 +196,7 @@ body {
   margin-top: 10px;
   margin-bottom: 10px;
   height: 50px;
-  width: 175px;
+  width: 165px;
   // shrink this down on smaller displays
   @media (max-width: $screen-md-max) {
     width: 100px;

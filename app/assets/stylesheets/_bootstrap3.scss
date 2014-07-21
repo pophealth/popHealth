@@ -138,7 +138,7 @@ h4 {
 .main {
   @include make-xs-column(9);
   .main-heading {
-    @extend .row;
+    @include make-row;
     .title {
       @include make-xs-column(3);
     }
@@ -146,7 +146,7 @@ h4 {
 }
 
 .category {
-  @extend .row;
+  @include make-row(0);
   .category-percent, .category-time {
     @include make-sm-column-offset(5);
     @include make-xs-column(2);
