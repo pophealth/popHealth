@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         {{#button "close" class="close" data-dismiss="modal" aria-hidden="true"}}&times;{{/button}}
-        <h4 class="modal-title" id="modalTitle">Edit Measure</h4>
+        <h4 class="modal-title" id="modalTitle">Edit Measure {{cms_id}}</h4>
       </div>
       <div class="modal-body">
         <form id="edit_measure_form" action="api/measures/update_metadata" method="put" class="form-horizontal" enctype="multipart/form-data" role="form">
