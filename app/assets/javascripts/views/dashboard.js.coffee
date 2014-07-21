@@ -45,7 +45,7 @@ class Thorax.Views.DashboardSubmeasureView extends Thorax.View
     fetch: false
   events:
     rendered: ->
-      @$("[rel='popover']").popover()
+      @$(".icon-popover").popover()
       # TODO when we upgrade to Thorax 3, use `getQueryForProvider`
       query = @model.get('query')
       unless query.isPopulated()
