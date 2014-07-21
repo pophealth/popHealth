@@ -9,7 +9,7 @@
 {{else}}
   <div class="measure-content">
     {{#if icon}}<span class="icon-border"><i class="fa fa-2x fa-{{icon}}"></i></span>{{/if}}
-    <div>
+    <div class="measure-inner">
       <label>
         {{#if specific_occurrence}}Occurrence {{specific_occurrence}}:{{/if}}
         {{! TODO description isn't fine-grained enough; if the type is 'characteristic', use the type and title, otherwise use definition and status}}
