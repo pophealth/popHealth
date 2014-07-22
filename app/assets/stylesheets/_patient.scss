@@ -73,7 +73,8 @@
   .circle-icon {
     $radius: 18px;
     position: absolute;
-    left: 0px;
+    padding-top: 3px;
+    left: 1px;
     background-color: white;
     border: 2px solid $brand-primary;
     border-radius: $radius;
@@ -81,6 +82,9 @@
     @include square($radius * 2);
     line-height: 2;
     text-align: center;
+    .fa {
+      font-size: 1.8em;
+    }
     &.selected {
       background-color: $brand-primary;
       color: white;
