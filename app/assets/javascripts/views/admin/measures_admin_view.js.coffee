@@ -5,10 +5,10 @@ class Thorax.Views.MeasuresAdminView extends Thorax.View
     _this = this
     $.ajax(url: "/api/measures",
     type: 'get',
-    success: (res)-> 
+    success: (res)->
        _this.parseMeasures(res)
     ,
-    error: (res)-> 
+    error: (res)->
       _this.displayError(res)
     ,
     cache: false,
@@ -18,7 +18,7 @@ class Thorax.Views.MeasuresAdminView extends Thorax.View
 
   parseMeasures: (json) ->
     _measures = []
-    for mes in json 
+    for mes in json
       if !mes.sub_id || mes.sub_id == 'a'
         _measures.push(mes)
     this.measures = _measures
@@ -34,7 +34,7 @@ class Thorax.Views.MeasuresAdminView extends Thorax.View
     measure = null
     for mes in @measures
       measure = mes if mes.hqmf_id == event.target.id
-    if measure       
+    if measure
       editMeasureView = new Thorax.Views.EditMeasureView(measure)
       editMeasureView.parent = @
       editMeasureView.appendTo(@$el)
@@ -45,14 +45,14 @@ class Thorax.Views.MeasuresAdminView extends Thorax.View
     _this = @
     $.ajax(url: "/api/measures/"+e.target.id,
     type: 'delete',
-    beforeSend: -> 
+    beforeSend: ->
       console.log("before send")
     ,
-    success: (res)-> 
+    success: (res)->
       console.log("success")
       location.reload(true)
     ,
-    error: (res)-> 
+    error: (res)->
       console.log("error")
       _this.displayError(res)
     ,
@@ -73,25 +73,54 @@ class Thorax.Views.EditMeasureView extends Thorax.View
   events:
     'ready': 'setup',
     'submit #edit_measure_form': 'saveToModel',
-    'change #lower_is_better_cb' : 'update_lower_is_better'
+    'change #measureResultMeaningSelect' : 'update_lower_is_better',
+    'change #measureCategorySelect' : 'show_hide_custom_category',
+    'input #newMeasureCategoryInput' : 'update_measure_category_input'
+
+  initialize: ->
+    @categories = new Thorax.Collections.Categories PopHealth.categories, parse: true
+    @$("#newMeasureCategoryInput")
 
   setup: ->
     @editDialog = @$("#editMeasureDialog")
     @wait = @$("#pleaseWaitDialog")
+    @newMeasureInput = @$("#newMeasureCategoryInput").hide()
+    @measureCategory = @$("#measure_category")[0]
+
+  lowerIsNotSet: -> @lower_is_better == null
+
+  higher_is_better: -> !@lowerIsNotSet() and !@lower_is_better
+
+  categoryContext: (cat, index) ->
+    selectedCategory = cat.get('category') == @category
+    isFirst = index == 0
+    _(cat.toJSON()).extend selected: selectedCategory, first: isFirst
 
   update_lower_is_better: (event) ->
-    @$("#lower_is_better")[0].value=event.target.checked
+    @$("#lower_is_better")[0].value=event.target.value
+
+  show_hide_custom_category: (event) ->
+    if event.target.value == "New"
+      @newMeasureInput.show()
+      @measureCategory.value = ""
+    else
+      @newMeasureInput.hide()
+      console.log(event.target.value)
+      @measureCategory.value = event.target.value
+
+  update_measure_category_input: (event) ->
+    @measureCategory.value = event.target.value
 
   saveToModel: ->
     formData = new FormData($('form')[0]);
     _this = @
     $.ajax( url: @$("form").attr('action'),
     type: 'POST',
-    success: (res)-> 
-      location.reload(true) 
+    success: (res)->
+      location.reload(true)
       _this.wait.modal('hide')
     ,
-    error: (res)-> 
+    error: (res)->
       _this.wait.modal('hide')
       _this.parent.displayError(res)
     ,

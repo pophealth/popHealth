@@ -305,3 +305,14 @@ $table-border-color: white;
     }
   }
 }
+
+#editMeasureDialog {
+  input, select{
+    margin: 5px 0;
+    border-radius: none;
+  }
+
+  label {
+    margin-left: 10px;
+  }
+}

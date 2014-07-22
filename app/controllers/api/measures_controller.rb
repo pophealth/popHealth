@@ -12,6 +12,7 @@ module Api
     before_filter :validate_authorization!
     before_filter :set_pagination_params, :only=> :index
     before_filter :create_filter , :only => :index
+    before_filter :update_metadata_params, :only => :update_metadata
 
     api :GET, "/measures", "Get a list of measures"
     param_group :pagination, Api::PatientsController
@@ -42,7 +43,7 @@ module Api
       hqmf_document = Measures::Loader.parse_model(params[:measure_file].tempfile.path)
       if measure_details["episode_of_care"]
         Measures::Loader.save_for_finalization(hqmf_document)
-        ret_value= {episode_ids: hqmf_document.specific_occurrence_source_data_criteria().collect{|dc| {id: dc.id, description: dc.description}}, 
+        ret_value= {episode_ids: hqmf_document.specific_occurrence_source_data_criteria().collect{|dc| {id: dc.id, description: dc.description}},
                     hqmf_id: hqmf_document.hqmf_id,
                     vsac_username: params[:vsac_username],
                     vsac_password: params[:vsac_password],
@@ -93,8 +94,8 @@ module Api
           'lower_is_better' => params[:lower_is_better]
 
        }
-      Measures::Loader.finalize_measure(params[:hqmf_id],params[:vsac_username],params[:vsac_password],measure_details) 
-      measure = HealthDataStandards::CQM::Measure.where({hqmf_id: params[:hqmf_id]}).first  
+      Measures::Loader.finalize_measure(params[:hqmf_id],params[:vsac_username],params[:vsac_password],measure_details)
+      measure = HealthDataStandards::CQM::Measure.where({hqmf_id: params[:hqmf_id]}).first
       render json: measure, serializer: HealthDataStandards::CQM::MeasureSerializer
       rescue => e
         render text: e.to_s, status: 500
@@ -109,6 +110,10 @@ module Api
     def create_filter
       measure_ids = params[:measure_ids]
       @filter = measure_ids.nil? || measure_ids.empty? ? {} : {:hqmf_id.in => measure_ids}
+    end
+
+    def update_metadata_params
+      params[:measure][:lower_is_better] = nil if params[:measure][:lower_is_better] == "nil"
     end
 
   end
