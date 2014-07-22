@@ -7,14 +7,15 @@
   .col-patient-info {
     @include make-md-column(9);
     .patient-heading {
-      margin-left: -10px;
+      margin-left: -12px;
     }
     // h2 {
     //   background-color: $gray;
     // }
     .timeline-entry {
       border-left: 8px solid $gray-lighter;
-      padding: 10px 0 0 $grid-gutter-width;
+      padding: 25px 0 0 $grid-gutter-width;
+      margin: -15px 0 15px 0;
       &.during-measurement-period {
         border-left: 8px solid $brand-primary;
       }
