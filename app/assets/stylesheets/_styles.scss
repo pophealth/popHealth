@@ -14,6 +14,7 @@ body {
     // .make-xs-column(3);
     @include make-xs-column(5, 0); // use gutter of 0, to eliminate left gutter
     // margin-right: $grid-gutter-width / 2; // reintroduce right gutter
+    min-height: 100px;
   }
   .percent-listing {
     @include make-xs-column(2);
@@ -169,6 +170,7 @@ body {
     padding-top: 5px;
   }
   .glyphicon-info-sign {
+    font-size: 14px;
     color: #999;
   }
   .percent-listing {
