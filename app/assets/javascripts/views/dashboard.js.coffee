@@ -95,10 +95,24 @@ class Thorax.Views.Dashboard extends Thorax.View
     _(measure.toJSON()).extend selected: isSelected
   selectedCategoryContext: (category) ->
     # split up measures into whether or not they are continuous variable or not
-    {'true': cvMeasures, 'false': proportionBasedMeasures} = category.get('measures').groupBy 'continuous_variable'
+    measures = category.get('measures')
+    {'true': cvMeasureData, 'false': proportionBasedMeasureData} = measures.groupBy 'continuous_variable'
+    cvMeasures = new Thorax.Collections.Measures(cvMeasureData, parent: category)
+    proportionBasedMeasures = new Thorax.Collections.Measures(proportionBasedMeasureData, parent: category)
+    for action in ['add', 'remove']
+      do (action) ->
+        measures.on action, (measure) ->
+          if measure.get('continuous_variable')
+            cvMeasures[action](measure)
+          else
+            proportionBasedMeasures[action](measure)
+    measures.on 'reset', (measures) ->
+      {'true': cvMeasureData, 'false': proportionBasedMeasureData} = measures.groupBy 'continuous_variable'
+      cvMeasures.reset(cvMeasureData)
+      proportionBasedMeasures.reset(proportionBasedMeasureData)
     _(category.toJSON()).extend
-      cvMeasures:               new Thorax.Collections.Measures(cvMeasures, parent: category)
-      proportionBasedMeasures:  new Thorax.Collections.Measures(proportionBasedMeasures, parent: category)
+      cvMeasures:               cvMeasures
+      proportionBasedMeasures:  proportionBasedMeasures
 
   search: (e) ->
     $sb = $(e.target)
