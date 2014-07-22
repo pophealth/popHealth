@@ -31,7 +31,7 @@ class Thorax.Views.ResultsView extends Thorax.View
       fractionTop: if @model.isContinuous() then @model.measurePopulation() else @model.numerator()
       fractionBottom: if @model.isContinuous() then @model.ipp() else @model.performanceDenominator()
   initialize: ->
-    @popChart = PopHealth.viz.populationChart().width(125).height(40).maximumValue(PopHealth.patientCount)
+    @popChart = PopHealth.viz.populationChart().width(125).height(25).maximumValue(PopHealth.patientCount)
     @model.set('providers', [@provider_id]) if @provider_id?
     unless @model.isPopulated()
       @timeout = setInterval =>
@@ -41,11 +41,13 @@ class Thorax.Views.ResultsView extends Thorax.View
 
 
 class Thorax.Views.DashboardSubmeasureView extends Thorax.View
+  template: JST['dashboard/submeasure']
+  className: 'measure'
   options:
     fetch: false
   events:
     rendered: ->
-      @$("[rel='popover']").popover()
+      @$('.icon-popover').popover()
       # TODO when we upgrade to Thorax 3, use `getQueryForProvider`
       query = @model.get('query')
       unless query.isPopulated()
@@ -91,6 +93,12 @@ class Thorax.Views.Dashboard extends Thorax.View
     isSelected = @selectedCategories.any (cat) ->
       cat.get('measures').any (selectedMeasure) -> measure is selectedMeasure
     _(measure.toJSON()).extend selected: isSelected
+  selectedCategoryContext: (category) ->
+    # split up measures into whether or not they are continuous variable or not
+    {'true': cvMeasures, 'false': proportionBasedMeasures} = category.get('measures').groupBy 'continuous_variable'
+    _(category.toJSON()).extend
+      cvMeasures:               new Thorax.Collections.Measures(cvMeasures, parent: category)
+      proportionBasedMeasures:  new Thorax.Collections.Measures(proportionBasedMeasures, parent: category)
 
   search: (e) ->
     $sb = $(e.target)

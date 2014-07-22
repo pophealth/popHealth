@@ -18,7 +18,7 @@
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#measureSelectors" href="#category{{@cid}}">
               {{category}}
             </a>
-          </div>
+          </h4>
         </div>
         <div id="category{{@cid}}" class="panel-collapse collapse">
           <div class="panel-body measureItemList">
@@ -33,7 +33,6 @@
                 <label>
                   <input type="checkbox" class="individual"{{#if selected}} checked{{/if}}>
                   {{cms_id}}/{{nqf_id}} - {{name}}
-                  {{!-- <%= check_box_tag :measure_id, measure["id"], is_selected?(measure['id'], current_user.selected_measures), {id: nil, 'data-measure-id' => measure['id'], 'data-sub-measures' => measure['sub_ids'].join(',')} %><%= measure['name'] %> --}}
                 </label>
               </div>
             {{/collection}}
@@ -61,48 +60,44 @@
       <a href="/api/reports/qrda_cat3.xml{{#if effective_date}}?effective_date={{effective_date}}{{/if}}{{#if provider_id}}&provider_id={{provider_id}}{{/if}}" class="btn btn-primary"><i class="glyphicon glyphicon-download-alt"></i> Export</a>
     </div>
   </div>
-  {{#collection selectedCategories}}
-    <div class="category" style="">
-      <h2 class="category-title">{{category}}</h2>
-      <div class="category-percent">
-        <div class="title-circle">%</div>
-      </div>
-      <div class="category-fraction">
-        <div class="fraction-listing">
-          <div class="numerator">Numerator</div>
-          <div class="denominator">Denominator</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  {{#collection selectedCategories item-context=selectedCategoryContext}}
+    <h2>{{category}}</h2>
 
-    {{#collection measures}}
-      {{#collection submeasures item-view="DashboardSubmeasureView"}}
-        <div class="measure">
-          <div class="measure-title-id">
-            <div class="measure-identifier">
-              {{#if isPrimary}}
-                {{#if cms_id}}
-                  <div class="cms-cms">CMS</div>
-                  <div class="cms-number">{{cms_number}}</div>
-                  <div class="cms-version">v{{cms_version}}</div>
-                {{/if}}
-              {{/if}}
-            </div>
-            <div class="measure-title" data-measure-sub="{{sub_id}}">
-              {{#if isPrimary}}
-                <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}{{#if ../../../../provider_id}}/providers/{{../../../../../provider_id}}{{/if}}" data-placement="bottom" data-content="{{description}}" data-trigger="hover focus" rel="popover">{{name}}</a>
-              {{/if}}
-            </div>
-          </div>
-          <div class="measure-subtitle">
-            {{#if short_subtitle}}
-              <a href="#measures/{{id}}/{{sub_id}}">{{short_subtitle}}</a>
-            {{/if}}
-          </div>
-          {{view "ResultsView" model=query id=id sub_id=sub_id episode_of_care=episode_of_care lower_is_better=lower_is_better provider_id=../../../provider_id}}
+    {{#if proportionBasedMeasures.length}}
+      <div class="category">
+        <div class="category-percent">
+          <div class="title-circle">%</div>
         </div>
+        <div class="category-fraction">
+          <div class="fraction-listing">
+            <div class="numerator">Numerator</div>
+            <div class="denominator">Denominator</div>
+          </div>
+        </div>
+      </div>
+
+      {{#collection proportionBasedMeasures}}
+        {{collection submeasures item-view="DashboardSubmeasureView"}}
       {{/collection}}
-    {{/collection}}
+    {{/if}}
+
+    {{#if cvMeasures.length}}
+      <div class="continuous-variable category">
+        <div class="category-time">
+          <div class="title-circle"><%= image_tag 'icon-clock.png' %></div>
+        </div>
+        <div class="category-fraction">
+          <div class="fraction-listing">
+            <div class="numerator">Episodes</div>
+            <div class="denominator">Total Episodes</div>
+          </div>
+        </div>
+      </div>
+
+      {{#collection cvMeasures}}
+        {{collection submeasures item-view="DashboardSubmeasureView"}}
+      {{/collection}}
+    {{/if}}
+
   {{/collection}}
 </div>

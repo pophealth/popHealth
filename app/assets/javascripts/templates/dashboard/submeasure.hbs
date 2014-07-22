@@ -1,0 +1,26 @@
+<div class="measure-identifier">
+  {{#if isPrimary}}
+    {{#if cms_id}}
+      <div class="cms-cms">CMS</div>
+      <div class="cms-number">{{cms_number}}</div>
+      <div class="cms-version">v{{cms_version}}</div>
+    {{/if}}
+  {{/if}}
+</div>
+<div{{#if isPrimary}} class="measure-info"{{/if}}>
+  <div class="measure-title-id">
+    <div class="measure-title" data-measure-sub="{{sub_id}}">
+      {{#if isPrimary}}
+        <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}{{#if ../../../../provider_id}}/providers/{{../../../../../provider_id}}{{/if}}">{{name}}</a>
+        {{#unless short_subtitle}}<span class="glyphicon glyphicon-info-sign icon-popover" data-placement="bottom" data-content="{{description}}" data-trigger="hover focus"></span>{{/unless}}
+      {{/if}}
+    </div>
+    <div class="measure-subtitle">
+      {{#if short_subtitle}}
+        <a href="#measures/{{id}}/{{sub_id}}">{{short_subtitle}}</a>
+        <span class="glyphicon glyphicon-info-sign icon-popover" data-placement="bottom" data-content="{{description}}" data-trigger="hover focus"></span>
+      {{/if}}
+    </div>
+  </div>
+  {{view "ResultsView" model=query id=id sub_id=sub_id episode_of_care=episode_of_care lower_is_better=lower_is_better provider_id=../../../provider_id}}
+</div>
