@@ -133,7 +133,7 @@ class Thorax.Views.Dashboard extends Thorax.View
       $("#filters .panel-body .checkbox:containsi(#{query})").show() # show matching measures
       $("#filters .panel:containsi(#{query})").next('.panel-collapse').find('.checkbox').show() # show matching categories
 
-      $('#filters .panel-body').not(':has(.checkbox:visible)').parent().prev('.panel').hide() # hide empty category titles
+      $('#filters .panel-body').not(':has(.checkbox:visible)').parent().prev('.panel-heading').hide() # hide empty category titles
       $('#filters .panel-body').not(':has(.checkbox:visible)').hide() # hide empty category measure containers
     else
       $('#filters .panel').show() # show all category titles
@@ -156,13 +156,13 @@ class Thorax.Views.Dashboard extends Thorax.View
       @selectedCategories.selectMeasure measure
     else
       @selectedCategories.removeMeasure measure
-    $cb.closest('.panel-collapse').prev('.panel').find('.measure-count').text $cbs.filter(':checked').length
+    $cb.closest('.panel-collapse').prev('.panel-heading').find('.measure-count').text $cbs.filter(':checked').length
 
   toggleCategory: (e) ->
     # change DOM
     $cb = $(e.target)
     $cb.closest('.panel-body').find(':checkbox.individual').prop 'checked', $cb.is(':checked')
-    $measureCount = $cb.closest('.panel-collapse').prev('.panel').find('.measure-count')
+    $measureCount = $cb.closest('.panel-collapse').prev('.panel-heading').find('.measure-count')
     # change models
     category = $cb.model()
     if $cb.is(':checked')
