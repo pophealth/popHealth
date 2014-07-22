@@ -30,8 +30,7 @@ body {
 }
 
 .fraction-listing {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px 5px;
   text-align: center;
   font-size: 1.3em;
   font-weight: 500;
@@ -45,16 +44,16 @@ body {
 
 .measure-type {
   line-height: 2.5;
-  width: 2%;
+  width: 18px;
+  .fa, .glyphicon {
+    text-align: center;
+    width: 100%;
+  }
   .fa {
     font-size: 1.53em;
-    width: 100%;
   }
   .glyphicon {
     font-size: 1.14em;
-    // the following is the same as fontawesome's fixedwidth class, but copied as we don't always use fontawesome
-    width: 100%;
-    text-align: center;
   }
 }
 
