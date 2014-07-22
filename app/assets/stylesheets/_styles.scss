@@ -260,11 +260,13 @@ $table-border-color: white;
     padding: 2px;
     border-radius: 10px;
     .icon-border {
+      @extend .pull-left;
       border: 2px solid #4b979d;
       border-radius: $title-circle-radius;
       color: $brand-primary;
       display: inline-block;
       line-height: $title-circle-radius * 2;
+      margin: 2px;
       text-align: center;
       height: $title-circle-radius * 2;
       width: $title-circle-radius * 2;
@@ -287,7 +289,11 @@ $table-border-color: white;
       border-radius: 10px;
       margin: 2px 2px 2px 20px;
       .measure-content {
+        @include clearfix;
         padding: 2px;
+        .measure-inner {
+          padding: 12px 0;
+        }
       }
     }
   }
