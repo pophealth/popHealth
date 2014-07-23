@@ -113,6 +113,13 @@ class Thorax.Views.Dashboard extends Thorax.View
     _(category.toJSON()).extend
       cvMeasures:               cvMeasures
       proportionBasedMeasures:  proportionBasedMeasures
+      measureContext: @measureContext
+
+  measureContext: (measure) ->
+    submeasureView = new Thorax.CollectionView
+      collection: measure.get 'submeasures'
+      itemView: (item) => new Thorax.Views.DashboardSubmeasureView model: item.model, provider_id: @provider_id
+    _(measure.toJSON()).extend submeasureView: submeasureView
 
   search: (e) ->
     $sb = $(e.target)

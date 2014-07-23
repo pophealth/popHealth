@@ -76,8 +76,8 @@
         </div>
       </div>
 
-      {{#collection proportionBasedMeasures}}
-        {{collection submeasures item-view="DashboardSubmeasureView"}}
+      {{#collection proportionBasedMeasures item-context=measureContext}}
+        {{view submeasureView}}
       {{/collection}}
     {{/if}}
 
@@ -94,8 +94,8 @@
         </div>
       </div>
 
-      {{#collection cvMeasures}}
-        {{collection submeasures item-view="DashboardSubmeasureView"}}
+      {{#collection cvMeasures item-context=measureContext}}
+        {{view submeasureView}}
       {{/collection}}
     {{/if}}
 
