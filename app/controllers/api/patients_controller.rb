@@ -135,7 +135,7 @@
       results.to_a.map do |result|
         hqmf_id = result['value']['measure_id']
         sub_id = result['value']['sub_id']
-        measure = HealthDataStandards::CQM::Measure.where("hqmf_id" => hqmf_id, "sub_id" => sub_id).first
+        measure = HealthDataStandards::CQM::Measure.where("hqmf_id" => hqmf_id, "sub_id" => sub_id).only(:title, :subtitle, :name).first
         result['value'].merge(measure_title: measure.title, measure_subtitle: measure.subtitle)
       end
     end
