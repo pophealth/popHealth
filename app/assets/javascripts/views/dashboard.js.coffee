@@ -7,9 +7,13 @@ class Thorax.Views.ResultsView extends Thorax.View
   events:
     model:
       change: ->
-        unless @model.isLoading()
+        if @model.isPopulated()
           clearInterval(@timeout) if @timeout?
           d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
+        else
+          @timeout ?= setInterval =>
+            @model.fetch()
+          , 3000
       rescale: ->
         if @model.isPopulated()
           if PopHealth.currentUser.populationChartScaledToIPP() then @popChart.maximumValue(@model.result().IPP) else @popChart.maximumValue(PopHealth.patientCount)
@@ -33,11 +37,6 @@ class Thorax.Views.ResultsView extends Thorax.View
   initialize: ->
     @popChart = PopHealth.viz.populationChart().width(125).height(25).maximumValue(PopHealth.patientCount)
     @model.set('providers', [@provider_id]) if @provider_id?
-    unless @model.isPopulated()
-      @timeout = setInterval =>
-        @model.fetch()
-      , 3000
-
 
 
 class Thorax.Views.DashboardSubmeasureView extends Thorax.View
