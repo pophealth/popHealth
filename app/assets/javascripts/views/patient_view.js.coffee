@@ -36,6 +36,7 @@ class Thorax.Views.EntryView extends Thorax.View
     _(super).extend
       start_time: formatTime @model.get('start_time')
       end_time: formatTime @model.get('end_time') if @model.get('end_time')?
+      display_end_time: @model.get('end_time') and (formatTime @model.get('start_time')) isnt (formatTime @model.get('end_time'))
       entry_type: @model.entryType
       icon: @model.icon
       description: @model.get('description')?.split('(')[0]
