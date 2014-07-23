@@ -24,10 +24,12 @@ class Thorax.Models.User extends Thorax.Model
       return if _(@get('preferences').selected_measure_ids).any (id) -> id is measure.id
       categoryName = measure.collection.parent.get('category')
       selectedCategory = selectedCats.findWhere category: categoryName
-      unless selectedCategory?
+      isFreshlyAdded = not selectedCategory?
+      if isFreshlyAdded
         selectedCategory = new Thorax.Models.Category category: categoryName, measures: [], {parse: true}
-        selectedCats.add selectedCategory
       selectedCategory.get('measures').add measure
+      if isFreshlyAdded
+        selectedCats.add selectedCategory
       @get('preferences').selected_measure_ids.push measure.id
       @save()
 
@@ -44,10 +46,12 @@ class Thorax.Models.User extends Thorax.Model
 
     selectedCats.selectCategory = (category) =>
       selectedCategory = selectedCats.findWhere category: category.get('category')
-      unless selectedCategory?
+      isFreshlyAdded = not selectedCategory?
+      if isFreshlyAdded
         selectedCategory = new Thorax.Models.Category {category: category.get('category'), measures: []}, parse: true
-        selectedCats.add selectedCategory
       selectedCategory.get('measures').reset category.get('measures').models
+      if isFreshlyAdded
+        selectedCats.add selectedCategory
       @get('preferences').selected_measure_ids.push _(category.get('measures').pluck('id')).difference(@get('preferences').selected_measure_ids)...
       @save()
 
