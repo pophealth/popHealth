@@ -8,6 +8,10 @@ body {
   margin-bottom: 40px;
 }
 
+#measureSelectors {
+  word-wrap: break-word;
+}
+
 .measure {
   @extend .row;
   .measure-title-id {
