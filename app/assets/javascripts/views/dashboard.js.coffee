@@ -4,6 +4,8 @@ $.extend $.expr[":"],
 
 class Thorax.Views.ResultsView extends Thorax.View
   template: JST['dashboard/results']
+  options:
+    fetch: false
   events:
     model:
       change: ->
@@ -123,6 +125,32 @@ class Thorax.Views.Dashboard extends Thorax.View
       collection: measure.get 'submeasures'
       itemView: (item) => new Thorax.Views.DashboardSubmeasureView model: item.model, provider_id: @provider_id
     _(measure.toJSON()).extend submeasureView: submeasureView
+
+  filterEHMeasures: (flag) ->
+    if flag
+      @filterEH = true
+      @collection.each (category) ->
+        category.get('measures').each (measure) ->
+          if measure.get('type') != 'eh'
+            measure.get('submeasures').each (submeasure) ->
+              submeasure.get('query').fetch()
+    else
+      @filterEH = false
+      @collection.each (category) ->
+        category.get('measures').each (measure) ->
+          measure.get('submeasures').each (submeasure) ->
+            submeasure.get('query').fetch()
+    @render()
+
+  measureFilter: (measure) ->
+    !(@filterEH and measure.get('type') == 'eh')
+
+  categoryFilter: (category) ->
+    if @filterEH
+      types = category.get('measures').map (measure) => measure.get('type')
+      'ep' in types
+    else
+      true
 
   search: (e) ->
     $sb = $(e.target)
