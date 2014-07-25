@@ -129,14 +129,14 @@ class Thorax.Views.Dashboard extends Thorax.View
   filterEHMeasures: (flag) ->
     if flag
       @filterEH = true
-      @collection.each (category) ->
+      @selectedCategories.each (category) ->
         category.get('measures').each (measure) ->
           if measure.get('type') != 'eh'
             measure.get('submeasures').each (submeasure) ->
               submeasure.get('query').fetch()
     else
       @filterEH = false
-      @collection.each (category) ->
+      @selectedCategories.each (category) ->
         category.get('measures').each (measure) ->
           measure.get('submeasures').each (submeasure) ->
             submeasure.get('query').fetch()
