@@ -5,6 +5,7 @@ $btn-hover-color: #357177;
 $panel-default-border: white;
 $panel-default-heading-bg: $gray-lighter;
 $panel-primary-border: white;
+$panel-inner-border: transparent;
 $border-radius-base: 0px;
 $border-radius-large: 0px;
 $font-family-sans-serif: "Helvetica Neue", Roboto, Helvetica, Arial, sans-serif;
@@ -171,6 +172,7 @@ h4 {
 
 .panel {
   border: none;
+  @include box-shadow(none);
 }
 .panel-body {
   padding: 5px 0;
