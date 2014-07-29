@@ -164,4 +164,7 @@ h4 {
   &.active {
     @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
   }
+  &.all {
+    margin-bottom: 5px;
+  }
 }

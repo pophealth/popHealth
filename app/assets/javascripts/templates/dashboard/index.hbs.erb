@@ -20,21 +20,9 @@
         </div>
         <div id="category{{@cid}}" class="panel-collapse collapse">
           <div class="panel-body">
-            {{!-- <div class="checkbox">
-              <label>
-                  <input type="checkbox" class="all"{{#if selected}} checked{{/if}}>
-                  Select All
-              </label>
-            </div> --}}
-            <a href class="btn btn-checkbox all{{#if selected}} active{{/if}}">Select All</a>
+            <a href class="btn btn-checkbox btn-block all{{#if selected}} active{{/if}}">Select All</a>
             {{#collection measures item-context=../measureFilterContext item-filter=../measureFilter}}
-              {{!-- <div class="checkbox">
-                <label>
-                  <input type="checkbox" class="individual"{{#if selected}} checked{{/if}}>
-                  {{cms_id}}&#8203;/&#8203;{{nqf_id}} - {{name}}
-                </label>
-              </div> --}}
-              <a href class="btn btn-checkbox individual{{#if selected}} active{{/if}}">{{cms_id}}&#8203;/&#8203;{{nqf_id}} - {{name}}</a>
+              <a href class="btn btn-checkbox btn-block individual{{#if selected}} active{{/if}}">{{cms_id}}&#8203;/&#8203;{{nqf_id}} - {{name}}</a>
             {{/collection}}
           </div>
         </div>
