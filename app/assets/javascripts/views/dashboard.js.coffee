@@ -67,8 +67,8 @@ class Thorax.Views.DashboardSubmeasureView extends Thorax.View
 class Thorax.Views.Dashboard extends Thorax.View
   template: JST['dashboard/index']
   events:
-    'change :checkbox.all':           'toggleCategory'
-    'change :checkbox.individual':    'toggleMeasure'
+    'click .btn-checkbox.all':           'toggleCategory'
+    'click .btn-checkbox.individual':    'toggleMeasure'
     'keyup .category-measure-search': 'search'
     'click .clear-search':            'clearSearch'
     'change .rescale': (event) ->
@@ -171,12 +171,14 @@ class Thorax.Views.Dashboard extends Thorax.View
 
   toggleMeasure: (e) ->
     # update 'all' checkbox to be checked if all measures are checked
-    $cb = $(e.target); $cbs = $cb.closest('.panel-body').find(':checkbox.individual')
-    $all = $cb.closest('.panel-body').find(':checkbox.all')
-    $all.prop 'checked', $cbs.not(':checked').length is 0
+    e.preventDefault()
+    $cb = $(e.target); $cbs = $cb.closest('.panel-body').find('.btn-checkbox.individual')
+    $cb.toggleClass 'active'
+    $all = $cb.closest('.panel-body').find('.btn-checkbox.all')
+    $all.toggleClass 'active', $cbs.not('.active').length is 0
     # show/hide measure
-    measure = $(e.target).model()
-    if $(e.target).is(':checked')
+    measure = $cb.model()
+    if $cb.is('.active')
       @selectedCategories.selectMeasure measure
     else
       @selectedCategories.removeMeasure measure
@@ -184,12 +186,14 @@ class Thorax.Views.Dashboard extends Thorax.View
 
   toggleCategory: (e) ->
     # change DOM
+    e.preventDefault()
     $cb = $(e.target)
-    $cb.closest('.panel-body').find(':checkbox.individual').prop 'checked', $cb.is(':checked')
+    $cb.toggleClass 'active'
+    $cb.closest('.panel-body').find('.btn-checkbox.individual').toggleClass 'active', $cb.is('.active')
     $measureCount = $cb.closest('.panel-collapse').prev('.panel-heading').find('.measure-count')
     # change models
     category = $cb.model()
-    if $cb.is(':checked')
+    if $cb.is('.active')
       @selectedCategories.selectCategory category
       $measureCount.text $cb.model().get('measures').length
     else

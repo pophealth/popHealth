@@ -155,3 +155,13 @@ h4 {
     @include make-xs-column(2);
   }
 }
+
+.btn-checkbox {
+  @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
+  text-align: left;
+  text-transform: initial;
+  white-space: initial;
+  &.active {
+    @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+  }
+}
