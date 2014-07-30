@@ -76,6 +76,10 @@ class Thorax.Views.Dashboard extends Thorax.View
           category.get("measures").each (measure) ->
             measure.get("submeasures").each (submeasure) ->
               submeasure.attributes.query.trigger("rescale")
+    rendered: ->
+      toggleChevron = (e) -> $(e.target).parent('.panel').find('.panel-chevron').toggleClass 'glyphicon-chevron-right glyphicon-chevron-down'
+      @$('.collapse').on 'hidden.bs.collapse', toggleChevron
+      @$('.collapse').on 'show.bs.collapse', toggleChevron
   initialize: ->
     @selectedCategories = PopHealth.currentUser.selectedCategories(@collection)
     @populationChartScaledToIPP = PopHealth.currentUser.populationChartScaledToIPP()
