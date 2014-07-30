@@ -130,11 +130,7 @@ class Thorax.Views.Dashboard extends Thorax.View
     @filterEH = flag
     @selectedCategories.each (category) =>
       category.get('measures').each (measure) =>
-        if @filterEH
-          if measure.get('type') != 'eh'
-            measure.get('submeasures').each (submeasure) ->
-              submeasure.get('query').fetch()
-        else
+        unless @filterEH and measure.get('type') is 'eh'
           measure.get('submeasures').each (submeasure) ->
             submeasure.get('query').fetch()
     @render()
