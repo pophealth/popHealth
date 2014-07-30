@@ -162,6 +162,9 @@ h4 {
   text-align: left;
   text-transform: initial;
   white-space: initial;
+  &.btn-block {
+    padding: $padding-base-vertical $padding-base-horizontal;
+  }
   &.active {
     @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
   }
