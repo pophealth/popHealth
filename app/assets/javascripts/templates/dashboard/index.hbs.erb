@@ -7,7 +7,7 @@
   </p>
 
   <div class="panel-group" id="measureSelectors">
-    {{#collection item-context=categoryFilterContext}}
+    {{#collection item-context=categoryFilterContext item-filter=categoryFilter}}
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -28,7 +28,7 @@
                   Select All
               </label>
             </div>
-            {{#collection measures item-context=../measureFilterContext}}
+            {{#collection measures item-context=../measureFilterContext item-filter=../measureFilter}}
               <div class="checkbox">
                 <label>
                   <input type="checkbox" class="individual"{{#if selected}} checked{{/if}}>
@@ -60,7 +60,7 @@
       <a href="/api/reports/qrda_cat3.xml{{#if effective_date}}?effective_date={{effective_date}}{{/if}}{{#if provider_id}}&provider_id={{provider_id}}{{/if}}" class="btn btn-primary"><i class="glyphicon glyphicon-download-alt"></i> Export</a>
     </div>
   </div>
-  {{#collection selectedCategories item-context=selectedCategoryContext}}
+  {{#collection selectedCategories item-context=selectedCategoryContext item-filter=categoryFilter}}
     <h2>{{category}}</h2>
 
     {{#if proportionBasedMeasures.length}}
@@ -76,7 +76,7 @@
         </div>
       </div>
 
-      {{#collection proportionBasedMeasures item-context=measureContext}}
+      {{#collection proportionBasedMeasures item-context=measureContext item-filter=../../measureFilter}}
         {{view submeasureView}}
       {{/collection}}
     {{/if}}
@@ -94,7 +94,7 @@
         </div>
       </div>
 
-      {{#collection cvMeasures item-context=measureContext}}
+      {{#collection cvMeasures item-context=measureContext item-filter=../../measureFilter}}
         {{view submeasureView}}
       {{/collection}}
     {{/if}}

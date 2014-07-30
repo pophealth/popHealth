@@ -23,6 +23,8 @@ defaults: &defaults
   use_map_reduce_prefilter: true
   enable_map_reduce_rationale: true
   enable_map_reduce_logging: false
+  #provider type to exclude EH measures from
+  eh_exclusion_type: "Division"
   orphan_provider:
     root: "popHealth"
     extension: "Orphans"

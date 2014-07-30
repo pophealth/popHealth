@@ -12,6 +12,9 @@ class Thorax.Views.ProviderView extends Thorax.View
       if @model.isPopulated()
         d3.select(@el).select("#providerChart").datum(@model.toJSON()).call(@providerChart)
         @$('.node').popover()
+    model:
+      change: ->
+          @dashboardView.filterEHMeasures(@model.providerType() == Config.ehExclusionType)
 
 class Thorax.Views.ProvidersView extends Thorax.View
   tagName: 'table'
