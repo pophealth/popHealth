@@ -17,7 +17,7 @@
     </div>
     <div class="measure-subtitle">
       {{#if short_subtitle}}
-        <a href="#measures/{{id}}/{{sub_id}}">{{short_subtitle}}</a>
+        <a href="#measures/{{id}}/{{sub_id}}{{#if provider_id}}/providers/{{../provider_id}}{{/if}}">{{short_subtitle}}</a>
         <span class="glyphicon glyphicon-info-sign icon-popover" data-placement="bottom" data-content="{{description}}" data-trigger="hover focus"></span>
       {{/if}}
     </div>
