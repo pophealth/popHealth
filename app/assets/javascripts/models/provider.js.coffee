@@ -3,10 +3,22 @@ class Thorax.Models.Provider extends Thorax.Model
   idAttribute: '_id'
   providerType: -> @get("cda_identifiers")?[0].root
   providerExtension: -> @get("cda_identifiers")?[0].extension
+  parse: (attrs) ->
+    attrs = $.extend true, {}, attrs
+    attrs.children = new Thorax.Collections.Providers attrs.children, parse: true if attrs.children?
+    attrs
+  toJSON: ->
+    json = super
+    json.children = json.children.toJSON() if json.children?
+    json
+
+
 
 class Thorax.Collections.Providers extends Thorax.Collection
   url: '/api/providers'
   model: Thorax.Models.Provider
+  comparator: (p) ->
+    parseInt(p.get('cda_identifiers')?[0].sortable_extension || 0)
   initialize: (attrs, options) ->
     @hasMoreResults = true
   currentPage: (perPage = 100) -> Math.ceil(@length / perPage)
