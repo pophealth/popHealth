@@ -127,17 +127,14 @@ class Thorax.Views.Dashboard extends Thorax.View
     _(measure.toJSON()).extend submeasureView: submeasureView
 
   filterEHMeasures: (flag) ->
-    if flag
-      @filterEH = true
-      @selectedCategories.each (category) ->
-        category.get('measures').each (measure) ->
+    @filterEH = flag
+    @selectedCategories.each (category) =>
+      category.get('measures').each (measure) =>
+        if @filterEH
           if measure.get('type') != 'eh'
             measure.get('submeasures').each (submeasure) ->
               submeasure.get('query').fetch()
-    else
-      @filterEH = false
-      @selectedCategories.each (category) ->
-        category.get('measures').each (measure) ->
+        else
           measure.get('submeasures').each (submeasure) ->
             submeasure.get('query').fetch()
     @render()
