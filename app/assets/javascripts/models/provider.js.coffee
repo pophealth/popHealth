@@ -18,7 +18,7 @@ class Thorax.Collections.Providers extends Thorax.Collection
   url: '/api/providers'
   model: Thorax.Models.Provider
   comparator: (p) ->
-    parseInt(p.get('cda_identifiers')?[0].sortable_extension || 0)
+    parseInt(p.get('cda_identifiers')?[0].sortable_extension) || p.get('cda_identifiers')?[0].extension 
   initialize: (attrs, options) ->
     @hasMoreResults = true
   currentPage: (perPage = 100) -> Math.ceil(@length / perPage)
