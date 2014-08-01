@@ -40,8 +40,7 @@ module Api
           {
             "_id": "5331db9575efe558ad000bca",
             "extension": "573",
-            "root": "Division",
-            "sortable_extension": "00000000000573"
+            "root": "Division"
           }
         ],
         "family_name": null,
@@ -64,8 +63,7 @@ module Api
             {
               "_id": "5331db9575efe558ad000bc8",
               "extension": "573",
-              "root": "Facility",
-              "sortable_extension": "00000000000573"
+              "root": "Facility"
             }
           ],
           "family_name": null,
