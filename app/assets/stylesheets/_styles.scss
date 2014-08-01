@@ -186,6 +186,13 @@ body {
 
 }
 
+// Fix for showing cursor on dashboard filters
+#measureSelectors {
+  .panel-heading {
+    cursor: pointer;
+  }
+}
+
 .percentage {
   line-height: 2.5;
   font-size: 26px;
