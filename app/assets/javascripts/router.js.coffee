@@ -20,7 +20,7 @@ class PopHealth.Router extends Backbone.Router
     measure = @categories.findMeasure(id, subId)
     measureView = @view.getView()
     unless measureView instanceof Thorax.Views.MeasureView and measureView.measure is measure
-      measureView = new Thorax.Views.MeasureView measure: measure, type: 'logic', provider_id: providerId
+      measureView = new Thorax.Views.MeasureView measure: measure, view_type: 'logic', provider_id: providerId
       @view.setView measureView
     measureView.activateLogicView()
 
@@ -29,7 +29,7 @@ class PopHealth.Router extends Backbone.Router
     if measure?
       measureView = @view.getView()
       unless measureView instanceof Thorax.Views.MeasureView and measureView.measure is measure
-        measureView = new Thorax.Views.MeasureView measure: measure, type: 'patient_results', provider_id: providerId
+        measureView = new Thorax.Views.MeasureView measure: measure, view_type: 'patient_results', provider_id: providerId
         @view.setView measureView
       measureView.activatePatientResultsView(providerId)
     else

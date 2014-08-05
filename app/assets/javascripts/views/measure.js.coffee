@@ -17,5 +17,5 @@ class Thorax.Views.MeasureView extends Thorax.LayoutView
     view.changeFilter @queryView.currentPopulation
     @setView view
 
-  logicIsActive: -> if view = @getView() then view instanceof Thorax.Views.LogicView else @type is 'logic'
-  patientResultsIsActive: -> if view = @getView() then view instanceof Thorax.Views.PatientResultsLayoutView else @type is 'patient_results'
+  logicIsActive: -> if view = @getView() then view instanceof Thorax.Views.LogicView else @view_type is 'logic'
+  patientResultsIsActive: -> if view = @getView() then view instanceof Thorax.Views.PatientResultsLayoutView else @view_type is 'patient_results'
