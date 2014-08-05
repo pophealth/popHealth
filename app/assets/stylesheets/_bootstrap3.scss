@@ -5,6 +5,7 @@ $btn-hover-color: #357177;
 $panel-default-border: white;
 $panel-default-heading-bg: $gray-lighter;
 $panel-primary-border: white;
+$panel-inner-border: transparent;
 $border-radius-base: 0px;
 $border-radius-large: 0px;
 $font-family-sans-serif: "Helvetica Neue", Roboto, Helvetica, Arial, sans-serif;
@@ -154,4 +155,33 @@ h4 {
   .category-fraction {
     @include make-xs-column(2);
   }
+}
+
+// Vertically space out multiple block buttons; this is identical to .btn-block's margin
+.btn-block-container + .btn-block-container {
+  margin-top: 5px;
+}
+
+.btn-checkbox {
+  @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
+  text-align: left;
+  text-transform: initial;
+  white-space: initial;
+  &.btn-block {
+    padding: $padding-base-vertical $padding-base-horizontal;
+  }
+  &.active {
+    @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+  }
+  &.all {
+    margin-bottom: 5px;
+  }
+}
+
+.panel {
+  border: none;
+  @include box-shadow(none);
+}
+.panel-body {
+  padding: 5px 0;
 }

@@ -67,8 +67,8 @@ class Thorax.Views.DashboardSubmeasureView extends Thorax.View
 class Thorax.Views.Dashboard extends Thorax.View
   template: JST['dashboard/index']
   events:
-    'change :checkbox.all':           'toggleCategory'
-    'change :checkbox.individual':    'toggleMeasure'
+    'click .btn-checkbox.all':           'toggleCategory'
+    'click .btn-checkbox.individual':    'toggleMeasure'
     'keyup .category-measure-search': 'search'
     'click .clear-search':            'clearSearch'
     'change .rescale': (event) ->
@@ -148,21 +148,14 @@ class Thorax.Views.Dashboard extends Thorax.View
   search: (e) ->
     $sb = $(e.target)
     query = $.trim($sb.val())
+    $('#filters .panel, #filters .btn-checkbox').show() # show everything
     if query.length > 0
-      $('#filters .panel').show() # show all category titles
-      $('#filters .panel-body').show() # show all category measure containers
-      $('#filters .panel-collapse').collapse('show') # uncollapse all
-
-      $('#filters .panel-body .checkbox').hide() # hide all measures
-      $("#filters .panel-body .checkbox:containsi(#{query})").show() # show matching measures
-      $("#filters .panel:containsi(#{query})").next('.panel-collapse').find('.checkbox').show() # show matching categories
-
-      $('#filters .panel-body').not(':has(.checkbox:visible)').parent().prev('.panel-heading').hide() # hide empty category titles
-      $('#filters .panel-body').not(':has(.checkbox:visible)').hide() # hide empty category measure containers
+      # only show categories with a matching header, or buttons with matching text
+      $("#filters .panel:not(:containsi(#{query})), #filters .panel-body:containsi(#{query}) .btn-checkbox:not(:containsi(#{query}))").hide()
+      # collapse panels that don't match, show panels that do
+      $("#filters .panel:containsi(#{query}) .panel-collapse").collapse('show')
+      $("#filters .panel:not(:containsi(#{query})) .panel-collapse").collapse('hide')
     else
-      $('#filters .panel').show() # show all category titles
-      $('#filters .panel-body').show() # show all category measure containers
-      $('#filters .panel-body .checkbox').show() # show all measures
       $('#filters .panel-collapse').collapse('hide') # collapse all
 
   clearSearch: (e) ->
@@ -171,25 +164,29 @@ class Thorax.Views.Dashboard extends Thorax.View
 
   toggleMeasure: (e) ->
     # update 'all' checkbox to be checked if all measures are checked
-    $cb = $(e.target); $cbs = $cb.closest('.panel-body').find(':checkbox.individual')
-    $all = $cb.closest('.panel-body').find(':checkbox.all')
-    $all.prop 'checked', $cbs.not(':checked').length is 0
+    e.preventDefault()
+    $cb = $(e.target); $cbs = $cb.closest('.panel-body').find('.btn-checkbox.individual')
+    $cb.toggleClass 'active'
+    $all = $cb.closest('.panel-body').find('.btn-checkbox.all')
+    $all.toggleClass 'active', $cbs.not('.active').length is 0
     # show/hide measure
-    measure = $(e.target).model()
-    if $(e.target).is(':checked')
+    measure = $cb.model()
+    if $cb.is('.active')
       @selectedCategories.selectMeasure measure
     else
       @selectedCategories.removeMeasure measure
-    $cb.closest('.panel-collapse').prev('.panel-heading').find('.measure-count').text $cbs.filter(':checked').length
+    $cb.closest('.panel-collapse').prev('.panel-heading').find('.measure-count').text $cbs.filter('.active').length
 
   toggleCategory: (e) ->
     # change DOM
+    e.preventDefault()
     $cb = $(e.target)
-    $cb.closest('.panel-body').find(':checkbox.individual').prop 'checked', $cb.is(':checked')
+    $cb.toggleClass 'active'
+    $cb.closest('.panel-body').find('.btn-checkbox.individual').toggleClass 'active', $cb.is('.active')
     $measureCount = $cb.closest('.panel-collapse').prev('.panel-heading').find('.measure-count')
     # change models
     category = $cb.model()
-    if $cb.is(':checked')
+    if $cb.is('.active')
       @selectedCategories.selectCategory category
       $measureCount.text $cb.model().get('measures').length
     else
