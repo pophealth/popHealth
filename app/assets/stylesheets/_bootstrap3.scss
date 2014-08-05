@@ -157,6 +157,11 @@ h4 {
   }
 }
 
+// Vertically space out multiple block buttons; this is identical to .btn-block's margin
+.btn-block-container + .btn-block-container {
+  margin-top: 5px;
+}
+
 .btn-checkbox {
   @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
   text-align: left;
