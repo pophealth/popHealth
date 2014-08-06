@@ -1,0 +1,15 @@
+<div class="percent-listing">
+  {{#if shouldDisplayPercentageVisual}}
+    <input type="text" value="{{resultValue}}" class="dial" data-readOnly="true" data-width="80" data-height="80" data-thickness=".1" data-fgColor="#4B979D" data-inputColor="#444" data-font="Helvetica Neue, Roboto, Helvetica, Arial, sans-serif" data-font-weight="400">
+  {{else}}
+    <span class="percentage">{{resultValue}}<small>{{unit}}</small></span>
+  {{/if}}
+</div>
+<div class="fraction-listing pull-left">
+  <div class="numerator">{{fractionTop}}</div>
+  <div class="denominator">{{fractionBottom}}</div>
+</div>
+<div class="measure-type pull-left">
+  <i class="{{#if episodeOfCare}}fa fa-stethoscope{{else}}glyphicon glyphicon-user{{/if}}"></i>
+</div>
+<div class="pop-chart pull-left"></div>
