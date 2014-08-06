@@ -31,3 +31,4 @@ Handlebars.registerHelper 'join', (list, options = {}) ->
   ).join(options.hash.delimiter)
 
 Handlebars.registerHelper 'formatNumeral', (number, format) -> numeral(number).format(format)
+Handlebars.registerHelper 'log', -> console.log arguments...

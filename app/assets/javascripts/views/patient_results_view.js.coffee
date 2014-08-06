@@ -9,6 +9,10 @@ class Thorax.Views.PatientResultsLayoutView extends Thorax.LayoutView
       currentView.retain() # don't destroy child views until the layout view is destroyed
     @views[population] ||= new Thorax.Views.PatientResultsView(population: population, query: @query, providerId: @providerId)
     @setView @views[population]
+  setQuery: (query) ->
+    @query = query
+    views = _(@children).values()
+    _(views).each (view) -> view.setQuery query
 
 
 class Thorax.Views.PatientResultsView extends Thorax.View
@@ -33,15 +37,21 @@ class Thorax.Views.PatientResultsView extends Thorax.View
 
   initialize: ->
     @isFetching = false
-    @isEpisodeOfCare = @query.parent.get('episode_of_care')
     @scrollHandler = =>
       distanceToBottom = $(document).height() - $(window).scrollTop() - $(window).height()
       if !@isFetching and @collection?.length and @fetchTriggerPoint > distanceToBottom
         @isFetching = true
         @collection.fetchNextPage()
 
+    @setQuery @query
+
+  setQuery: (query) ->
+    @query.off 'change'
+    @query = query
+    @isEpisodeOfCare = @query.parent.get('episode_of_care')
     setCollection = =>
       @setCollection new Thorax.Collections.PatientResults([], parent: @query, population: @population, providerId: @providerId), render: true
       @collection.fetch()
     @query.on 'change', setCollection
     if @query.isNew() then @query.save() else setCollection()
+
