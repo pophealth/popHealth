@@ -186,11 +186,9 @@ body {
 
 }
 
-// Fix for showing cursor on dashboard filters
-#measureSelectors {
-  .panel-heading {
-    cursor: pointer;
-  }
+// click anywhere on a toggleable panel heading to open/close
+.panel-heading.toggleable {
+  cursor: pointer;
 }
 
 .percentage {
