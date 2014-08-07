@@ -1,0 +1,18 @@
+<dl class="dl-horizontal">
+  <dt>Measure ID:</dt>
+  <dd>{{cms_id}}/{{nqf_id}}</dd>
+  <dt>Measure Name:</dt>
+  <dd>{{name}}</dd>
+  <dt>Measurement Period:</dt>
+  <dd>{{measurementPeriod}}</dd>
+  <dt>Description:</dt>
+  <dd>{{description}}</dd>
+</dl>
+<ul class="nav nav-tabs">
+  <li{{#if logicIsActive}} class="active"{{/if}}>
+    <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}{{#if provider_id}}/providers/{{provider_id}}{{/if}}" data-toggle="tab" data-target="#logic" data-call-method="_anchorClick">Measure</a>
+  </li>
+  <li{{#if patientResultsIsActive}} class="active"{{/if}}>
+    <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}{{#if provider_id}}/providers/{{provider_id}}{{/if}}/patient_results" data-toggle="tab" data-target="#patient_results" data-call-method="_anchorClick">Patients</a>
+  </li>
+</ul>
