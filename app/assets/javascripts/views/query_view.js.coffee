@@ -19,6 +19,8 @@ class QueryButtonsView extends Thorax.View
   template: JST['patient_results/query_buttons']
   events:
     'click .population-btn': 'changeFilter'
+  initialize: ->
+    @currentPopulation ?= 'IPP'
   ipp: -> @model.ipp()
   numerator: -> @model.numerator()
   denominator: -> @model.denominator()
@@ -31,12 +33,20 @@ class QueryButtonsView extends Thorax.View
   performanceRate: -> @model.performanceRate()
   performanceDenominator: -> @model.performanceDenominator()
 
+  ippIsActive: -> @isActive and @currentPopulation is 'IPP'
+  numeratorIsActive: -> @isActive and @currentPopulation is 'NUMER'
+  denominatorIsActive: -> @isActive and @currentPopulation is 'DENOM'
+  exclusionsAreActive: -> @isActive and @currentPopulation is 'DENEX'
+  exceptionsAreActive: -> @isActive and @currentPopulation is 'DENEXCEP'
+  antinumeratorIsActive: -> @isActive and @currentPopulation is 'antinumerator'
+
   changeFilter: (event) ->
     @currentPopulation = $(event.currentTarget).data 'population'
     # get measureView
     measureView = @parent
     until measureView.changeFilter
       measureView = measureView.parent
+    measureView.sidebarView.currentPopulation = @currentPopulation
     measureView.changeFilter @model.parent, @currentPopulation
     # FIXME bootstrap can manage this for us /->
     @$('.population-btn.active').removeClass 'active'
@@ -55,22 +65,6 @@ class Thorax.Views.QueryView extends Thorax.View
     @queryButtonsView = new QueryButtonsView model: @model, isActive: true
 
 
-# ItemView might work if there was some way to pass information between parent/children...?
-# class Thorax.Views.QueryPanelView extends Thorax.View
-#   className: 'panel panel-default'
-#   events:
-#     rendered: ->
-#       toggleChevron = (e) -> $(e.target).parent('.panel').find('.panel-chevron').toggleClass 'glyphicon-chevron-right glyphicon-chevron-down'
-#       @$('.collapse').on 'hidden.bs.collapse', toggleChevron
-#       @$('.collapse').on 'show.bs.collapse', toggleChevron
-#   initialize: ->
-#     # @parent doesn't exist, @providerId hasn't been passed down
-#     console.log 'p', @parent
-#     # @queryView = new Thorax.Views.QueryView model: @model.getQueryForProvider(@providerId), providerId: @providerId
-#   context: ->
-#     isActive = @model is @parent?.currentSubmeasure
-#     _(super).extend active: isActive#, queryView: @queryView
-
 class Thorax.Views.MultiQueryView extends Thorax.View
   template: JST['patient_results/query']
   initialize: ->
@@ -78,7 +72,6 @@ class Thorax.Views.MultiQueryView extends Thorax.View
     @queryHeadingView = new QueryHeadingView model: @model.getQueryForProvider(@providerId)
     @queryButtonsView = new Thorax.Views.QueryCollectionView currentSubmeasure: @model, collection: @submeasures, providerId: @providerId
   changeSubmeasure: (submeasure) ->
-    # @setModel submeasure
     @queryHeadingView.setModel submeasure.getQueryForProvider(@providerId)
     @queryButtonsView.setActiveSubmeasure submeasure
 
@@ -86,46 +79,17 @@ class Thorax.Views.QueryCollectionView extends Thorax.CollectionView
   id: 'submeasures'
   className: 'panel-group'
   itemTemplate: JST['patient_results/query_collection']
-  # itemView: Thorax.Views.QueryPanelView
   events:
-    # rendered: ->
-    #   # only rendered collection view, not child views yet
     'rendered:item': (qcv, collection, model, $el) ->
-      # console.log 'rendered:item'
       toggleChevron = (e) -> $(e.target).parent('.panel').find('.panel-chevron').toggleClass 'glyphicon-chevron-right glyphicon-chevron-down'
       $el.find('.collapse').on 'hidden.bs.collapse', toggleChevron
       $el.find('.collapse').on 'show.bs.collapse', toggleChevron
-    # 'rendered:collection': ->
-    #   # this happens after all views have been rendered, but they might be replaced if their models update
-    #   toggleChevron = (e) -> $(e.target).parent('.panel').find('.panel-chevron').toggleClass 'glyphicon-chevron-right glyphicon-chevron-down'
-    #   @$('.collapse').each ->
-    #     console.log 'h', this
-    #     $(this).on 'hidden.bs.collapse', toggleChevron
-    #   @$('.collapse').each ->
-    #     console.log 's', this
-    #     $(this).on 'show.bs.collapse', toggleChevron
-  # initialize: ->
-  #   # it doesn't make sense to initialize views now because they'll be removed if any child views are updated
-  #   @views = {}
-  #   @collection.each (submeasure) =>
-  #     @views[submeasure.get('short_subtitle')] = new QueryButtonsView model: submeasure.getQueryForProvider(@providerId), providerId: @providerId
   itemContext: (submeasure) ->
-    # console.log 'itemContext'
     isActive = submeasure is @currentSubmeasure
-    queryView = new QueryButtonsView model: submeasure.getQueryForProvider(@providerId), isActive: isActive, providerId: @providerId
+    queryView = new QueryButtonsView model: submeasure.getQueryForProvider(@providerId), isActive: isActive, providerId: @providerId, currentPopulation: @parent.currentPopulation
     _(super).extend active: isActive, queryView: queryView # @views[submeasure.get('short_subtitle')]
 
   setActiveSubmeasure: (submeasure) ->
     @currentSubmeasure = submeasure
     buttonViews = _(@children).values()
     _(buttonViews).each (view) -> view.setActive view.model.parent is @currentSubmeasure
-    
-  # appendItem: ->
-  #   console.log 'a', arguments
-  #   super
-  # removeItem: ->
-  #   console.log 'r', arguments
-  #   super
-  # updateItem: ->
-  #   console.log 'u', arguments
-  #   super
