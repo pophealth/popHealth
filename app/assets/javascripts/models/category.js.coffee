@@ -14,7 +14,14 @@ class Thorax.Collections.Categories extends Thorax.Collection
     else
       a.get('category').localeCompare b.get('category')
 
-  findMeasure: (id, subId) ->
+  findMeasure: (id) ->
+    for category in @models
+      return measure if measure = category.get('measures').get(id)
+
+  # finds a submeasure with the given hqmf id and subId. If subId is omitted (as
+  # in the case of a measure without submeasures), it'll return the first
+  # submeasure present
+  findSubmeasure: (id, subId) ->
     desiredMeasure = null
     @each (category) ->
       measure = category.get('measures').get(id)

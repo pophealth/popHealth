@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="toggleable panel-heading" data-toggle="collapse" data-parent="#submeasures" data-target="#submeasure{{@cid}}">
+    <h4 class="panel-title">
+      <div class="selection-pull-out">
+        <i class="panel-chevron glyphicon glyphicon-chevron-{{#if active}}down{{else}}right{{/if}}"></i>
+      </div>
+      {{short_subtitle}}
+    </h4>
+  </div>
+  <div id="submeasure{{@cid}}" class="panel-collapse collapse{{#if active}} in{{/if}}">
+    <div class="panel-body">
+      {{view queryView}}
+    </div>
+  </div>
+</div>

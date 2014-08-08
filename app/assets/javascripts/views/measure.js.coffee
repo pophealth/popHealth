@@ -1,20 +1,49 @@
+class SubmeasureView extends Thorax.View
+  template: JST['measures/submeasure']
+  context: ->
+    _(super).extend measurementPeriod: moment(Config.effectiveDate * 1000).format('YYYY')
+  logicIsActive: -> @parent.logicIsActive()
+  patientResultsIsActive: -> @parent.patientResultsIsActive()
+
+
 class Thorax.Views.MeasureView extends Thorax.LayoutView
   id: 'measureSummary'
   template: JST['measures/show']
   initialize: ->
-    @queryView = new Thorax.Views.QueryView model: @measure.getQueryForProvider(@provider_id), providerId: @provider_id
+    submeasures = @submeasure.collection
+    @sidebarView = if submeasures.length > 1
+      new Thorax.Views.MultiQueryView model: @submeasure, submeasures: submeasures, providerId: @provider_id
+    else
+      new Thorax.Views.QueryView model: @submeasure.getQueryForProvider(@provider_id), providerId: @provider_id
+    @submeasureView = new SubmeasureView model: @submeasure, provider_id: @provider_id
 
   context: ->
-    _(super).extend @measure.toJSON(), measurementPeriod: moment(Config.effectiveDate * 1000).format('YYYY')
+    _(super).extend @submeasure.toJSON(), measurementPeriod: moment(Config.effectiveDate * 1000).format('YYYY')
+
+  changeFilter: (submeasure, population) ->
+    if submeasure isnt @submeasure
+      @submeasure = submeasure
+      @submeasureView.setModel @submeasure
+      @sidebarView.changeSubmeasure submeasure
+      view = @getView()
+      url = "measures/#{submeasure.collection.parent.id}/#{submeasure.id}/providers/#{@provider_id}"
+      if @logicIsActive()
+        view.setModel @submeasure, render: true
+      else
+        url += '/patient_results'
+        view.setQuery @submeasure.getQueryForProvider @provider_id
+      PopHealth.router.navigate url
+    @getView().changeFilter population
 
   activateLogicView: ->
-    view = new Thorax.Views.LogicView model: @measure
-    view.changeFilter @queryView.currentPopulation
+    view = new Thorax.Views.LogicView model: @submeasure
+    view.changeFilter @sidebarView.currentPopulation
     @setView view
 
   activatePatientResultsView: (providerId) ->
-    view = new Thorax.Views.PatientResultsLayoutView query: @measure.getQueryForProvider(providerId), providerId: providerId
-    view.changeFilter @queryView.currentPopulation
+    @provider_id = providerId
+    view = new Thorax.Views.PatientResultsLayoutView query: @submeasure.getQueryForProvider(providerId), providerId: providerId
+    view.changeFilter @sidebarView.currentPopulation
     @setView view
 
   logicIsActive: -> if view = @getView() then view instanceof Thorax.Views.LogicView else @viewType is 'logic'

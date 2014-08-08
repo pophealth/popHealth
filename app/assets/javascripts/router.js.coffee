@@ -17,23 +17,21 @@ class PopHealth.Router extends Backbone.Router
     @view.setView new Thorax.Views.ProviderView model: PopHealth.rootProvider
 
   measure: (id, subId, providerId) ->
-    measure = @categories.findMeasure(id, subId)
-    measureView = @view.getView()
-    unless measureView instanceof Thorax.Views.MeasureView and measureView.measure is measure
-      measureView = new Thorax.Views.MeasureView measure: measure, viewType: 'logic', provider_id: providerId
-      @view.setView measureView
-    measureView.activateLogicView()
+    measure = @categories.findMeasure(id)
+    submeasure = @categories.findSubmeasure(id, subId)
+    currentView = @view.getView()
+    unless currentView instanceof Thorax.Views.MeasureView and currentView.measure is submeasure
+      currentView = new Thorax.Views.MeasureView submeasure: submeasure, viewType: 'logic', provider_id: providerId
+      @view.setView currentView
+    currentView.activateLogicView()
 
   patientResultsForMeasure: (id, subId, providerId) ->
-    measure = @categories.findMeasure(id, subId)
-    if measure?
-      measureView = @view.getView()
-      unless measureView instanceof Thorax.Views.MeasureView and measureView.measure is measure
-        measureView = new Thorax.Views.MeasureView measure: measure, viewType: 'patient_results', provider_id: providerId
-        @view.setView measureView
-      measureView.activatePatientResultsView(providerId)
-    else
-      console?.log 'Measure not found'
+    submeasure = @categories.findSubmeasure(id, subId)
+    currentView = @view.getView()
+    unless currentView instanceof Thorax.Views.MeasureView and currentView.measure is submeasure
+      currentView = new Thorax.Views.MeasureView submeasure: submeasure, viewType: 'patient_results', provider_id: providerId
+      @view.setView currentView
+    currentView.activatePatientResultsView(providerId)
 
   patient: (id) ->
     patientRecord = new Thorax.Models.Patient '_id': id

@@ -186,11 +186,9 @@ body {
 
 }
 
-// Fix for showing cursor on dashboard filters
-#measureSelectors {
-  .panel-heading {
-    cursor: pointer;
-  }
+// click anywhere on a toggleable panel heading to open/close
+.panel-heading.toggleable {
+  cursor: pointer;
 }
 
 .percentage {
@@ -246,24 +244,20 @@ body {
 // TODO Clean up these styles once pages are integrated and complete.
 
 .population-btn {
-  @extend .col-xs-12;
   @extend .btn;
-  font-weight: 700;
-  font-size: 1.1em;
-  line-height: 2.5em;
-  border: 1px solid white;
-  padding: 0px 7px;
-  background-color: $gray-lighter;
+  @extend .btn-default;
+  @extend .btn-block;
+  padding: $padding-base-vertical $padding-base-horizontal;
   .query-result {
     @extend .pull-right;
-    font-size: 1.3em;
+    font-size: 1.15em;
+    font-weight: bold;
   }
   .title {
     @extend .pull-left;
   }
   &.active {
-    background-color: $brand-primary;
-    color: white;
+    @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
   }
 }
 

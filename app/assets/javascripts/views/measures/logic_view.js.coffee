@@ -14,8 +14,10 @@ class Thorax.Views.LogicView extends Thorax.View
       new Thorax.Views.EmptyPopulationView population: @population
     @layout.setView view
   events:
-    model:
-      change: -> @reloadPopulation()
+    populate: -> @reloadPopulation()
+  setModel: (model) ->
+    super
+    @layout.measure = model
 
 class Thorax.Views.LogicLayoutView extends Thorax.LayoutView
 

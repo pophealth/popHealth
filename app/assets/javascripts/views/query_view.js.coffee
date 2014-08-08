@@ -1,15 +1,26 @@
-class Thorax.Views.QueryView extends Thorax.View
-  template: JST['patient_results/query']
+class QueryHeadingView extends Thorax.View
+  template: JST['patient_results/query_heading']
+  className: 'clearfix'
   events:
-    'click .population-btn': 'changeFilter'
     rendered: ->
       @$('.dial').knob()
       d3.select(@el).select('.pop-chart').datum(@model.result()).call(@popChart) if @model.isPopulated()
-
+  initialize: ->
+    @popChart = PopHealth.viz.populationChart().width(125).height(40).maximumValue(PopHealth.patientCount)
   shouldDisplayPercentageVisual: -> !@model.isContinuous() and PopHealth.currentUser.shouldDisplayPercentageVisual()
   resultValue: -> if @model.isContinuous() then @model.observation() else @model.performanceRate()
   fractionTop: -> if @model.isContinuous() then @model.measurePopulation() else @model.numerator()
   fractionBottom: -> if @model.isContinuous() then @model.ipp() else @model.performanceDenominator()
+  episodeOfCare: -> @model.parent.get('episode_of_care')
+  unit: -> if @model.isContinuous() and @model.parent.get('cms_id') isnt 'CMS179v2' then 'min' else '%'
+
+
+class QueryButtonsView extends Thorax.View
+  template: JST['patient_results/query_buttons']
+  events:
+    'click .population-btn': 'changeFilter'
+  initialize: ->
+    @currentPopulation ?= 'IPP'
   ipp: -> @model.ipp()
   numerator: -> @model.numerator()
   denominator: -> @model.denominator()
@@ -21,16 +32,64 @@ class Thorax.Views.QueryView extends Thorax.View
   outliers: -> @model.outliers()
   performanceRate: -> @model.performanceRate()
   performanceDenominator: -> @model.performanceDenominator()
-  episode_of_care: -> @model.parent.get('episode_of_care')
-  unit: -> if @model.isContinuous() and @model.parent.get('cms_id') isnt 'CMS179v2' then 'min' else '%'
-  initialize: ->
-    @currentPopulation = 'IPP'
-    @popChart = PopHealth.viz.populationChart().width(125).height(40).maximumValue(PopHealth.patientCount)
-    @model.set 'providers', [@providerId] if @providerId
+
+  ippIsActive: -> @isActive and @currentPopulation is 'IPP'
+  numeratorIsActive: -> @isActive and @currentPopulation is 'NUMER'
+  denominatorIsActive: -> @isActive and @currentPopulation is 'DENOM'
+  exclusionsAreActive: -> @isActive and @currentPopulation is 'DENEX'
+  exceptionsAreActive: -> @isActive and @currentPopulation is 'DENEXCEP'
+  antinumeratorIsActive: -> @isActive and @currentPopulation is 'antinumerator'
 
   changeFilter: (event) ->
-    @currentPopulation = event.currentTarget.id
-    @parent.getView().changeFilter @currentPopulation
+    @currentPopulation = $(event.currentTarget).data 'population'
+    # get measureView
+    measureView = @parent
+    until measureView.changeFilter
+      measureView = measureView.parent
+    measureView.sidebarView.currentPopulation = @currentPopulation
+    measureView.changeFilter @model.parent, @currentPopulation
     # FIXME bootstrap can manage this for us /->
-    $('.population-btn.active').removeClass 'active'
+    @$('.population-btn.active').removeClass 'active'
     $(event.currentTarget).addClass 'active'
+  setActive: (isActive) ->
+    @isActive = isActive
+    @$('.population-btn.active').removeClass 'active' unless isActive
+
+
+class Thorax.Views.QueryView extends Thorax.View
+  template: JST['patient_results/query']
+  initialize: ->
+    @currentPopulation = 'IPP'
+    @model.set 'providers', [@providerId] if @providerId
+    @queryHeadingView = new QueryHeadingView model: @model
+    @queryButtonsView = new QueryButtonsView model: @model, isActive: true
+
+
+class Thorax.Views.MultiQueryView extends Thorax.View
+  template: JST['patient_results/query']
+  initialize: ->
+    @currentPopulation = 'IPP'
+    @queryHeadingView = new QueryHeadingView model: @model.getQueryForProvider(@providerId)
+    @queryButtonsView = new Thorax.Views.QueryCollectionView currentSubmeasure: @model, collection: @submeasures, providerId: @providerId
+  changeSubmeasure: (submeasure) ->
+    @queryHeadingView.setModel submeasure.getQueryForProvider(@providerId)
+    @queryButtonsView.setActiveSubmeasure submeasure
+
+class Thorax.Views.QueryCollectionView extends Thorax.CollectionView
+  id: 'submeasures'
+  className: 'panel-group'
+  itemTemplate: JST['patient_results/query_collection']
+  events:
+    'rendered:item': (qcv, collection, model, $el) ->
+      toggleChevron = (e) -> $(e.target).parent('.panel').find('.panel-chevron').toggleClass 'glyphicon-chevron-right glyphicon-chevron-down'
+      $el.find('.collapse').on 'hidden.bs.collapse', toggleChevron
+      $el.find('.collapse').on 'show.bs.collapse', toggleChevron
+  itemContext: (submeasure) ->
+    isActive = submeasure is @currentSubmeasure
+    queryView = new QueryButtonsView model: submeasure.getQueryForProvider(@providerId), isActive: isActive, providerId: @providerId, currentPopulation: @parent.currentPopulation
+    _(super).extend active: isActive, queryView: queryView # @views[submeasure.get('short_subtitle')]
+
+  setActiveSubmeasure: (submeasure) ->
+    @currentSubmeasure = submeasure
+    buttonViews = _(@children).values()
+    _(buttonViews).each (view) -> view.setActive view.model.parent is @currentSubmeasure
