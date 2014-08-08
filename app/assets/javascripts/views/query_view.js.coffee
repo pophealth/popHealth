@@ -4,6 +4,7 @@ class Thorax.Views.QueryView extends Thorax.View
     'click .population-btn': 'changeFilter'
     rendered: ->
       @$('.dial').knob()
+      @popChart.maximumValue(@model.result().IPP) if @model.isPopulated()
       d3.select(@el).select('.pop-chart').datum(@model.result()).call(@popChart) if @model.isPopulated()
 
   shouldDisplayPercentageVisual: -> !@model.isContinuous() and PopHealth.currentUser.shouldDisplayPercentageVisual()
@@ -25,7 +26,7 @@ class Thorax.Views.QueryView extends Thorax.View
   unit: -> if @model.isContinuous() and @model.parent.get('cms_id') isnt 'CMS179v2' then 'min' else '%'
   initialize: ->
     @currentPopulation = 'IPP'
-    @popChart = PopHealth.viz.populationChart().width(125).height(40).maximumValue(PopHealth.patientCount)
+    @popChart = PopHealth.viz.populationChart().width(125).height(25).maximumValue(PopHealth.patientCount)
     @model.set 'providers', [@providerId] if @providerId
 
   changeFilter: (event) ->
