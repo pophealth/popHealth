@@ -5,11 +5,11 @@
     <span class="percentage">{{resultValue}}<small>{{unit}}</small></span>
   {{/if}}
 </div>
+<div class="measure-type pull-left">
+  <i class="{{#if episodeOfCare}}fa fa-stethoscope{{else}}glyphicon glyphicon-user{{/if}}"></i>
+</div>
 <div class="fraction-listing pull-left">
   <div class="numerator">{{fractionTop}}</div>
   <div class="denominator">{{fractionBottom}}</div>
-</div>
-<div class="measure-type pull-left">
-  <i class="{{#if episodeOfCare}}fa fa-stethoscope{{else}}glyphicon glyphicon-user{{/if}}"></i>
 </div>
 <div class="pop-chart pull-left"></div>

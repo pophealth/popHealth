@@ -4,6 +4,7 @@ class QueryHeadingView extends Thorax.View
   events:
     rendered: ->
       @$('.dial').knob()
+      @popChart.maximumValue(@model.result().IPP) if @model.isPopulated()
       d3.select(@el).select('.pop-chart').datum(@model.result()).call(@popChart) if @model.isPopulated()
   initialize: ->
     @popChart = PopHealth.viz.populationChart().width(125).height(40).maximumValue(PopHealth.patientCount)
