@@ -124,11 +124,11 @@
         @quality_report = QME::QualityReport.find(params[:quality_report_id])
         authorize! :read, @quality_report
         @query["provider.npi"] = {"$in" => @quality_report.filters["providers"]}
-      elsif current_user.is_admin?
+      elsif current_user.admin?
       else
          @query["provider.npi"] = current_user.npi
       end
-      @order = params[:order] || [:last.acsd, :first.asc]
+      @order = params[:order] || [:last.asc, :first.asc]
     end
 
     def results_with_measure_metadata(results)
