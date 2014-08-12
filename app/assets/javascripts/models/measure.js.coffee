@@ -1,7 +1,8 @@
 class Thorax.Models.Measure extends Thorax.Model
+  idAttribute: 'hqmf_id'
   parse: (attrs) ->
     data = _(attrs).omit 'subs', 'sub_ids'
-    subs = for sub in attrs.subs
+    subs = for sub in attrs.subs or []
       subData = _(sub).extend(data)
       subData.isPrimary = !sub.sub_id? or sub.sub_id is 'a'
       subData
@@ -10,7 +11,8 @@ class Thorax.Models.Measure extends Thorax.Model
 
 class Thorax.Collections.Measures extends Thorax.Collection
   model: Thorax.Models.Measure
-  initialize: (models, options) -> @parent = options.parent
+  url: '/api/measures'
+  initialize: (models, options) -> @parent = options?.parent
   comparator: 'name'
 
 class Thorax.Models.Submeasure extends Thorax.Model

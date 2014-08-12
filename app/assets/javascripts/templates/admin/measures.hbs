@@ -1,15 +1,15 @@
 <table class="table">
 <thead>
   <tr>
-    <th> CMS_ID </th>
-    <th> HQMF_ID </th>
-    <th>  Name  </th>
-    <th>  Description </th>
+    <th>CMS ID</th>
+    <th>HQMF ID</th>
+    <th>Name</th>
+    <th>Description</th>
     <th></th>
     <th>{{#button "importMeasure" class="btn btn-primary"}}<i class="fa fa-upload" aria-hidden="true"></i> Upload <span class="sr-only">new measure</span>{{/button}}</th>
   </tr>
 </thead>
-{{#each measures}}
+{{#collection tag="tbody"}}
  <tr>
    <td>{{cms_id}}</td>
    <td>{{hqmf_id}}</td>
@@ -18,5 +18,5 @@
    <td>{{#button "editMeasure" class="btn btn-primary" id=hqmf_id}}Edit{{/button}}</td>
    <td>{{#button "handleDelete" class="btn btn-primary pull-right" id=hqmf_id}}DELETE{{/button}}</td>
  </tr>
-{{/each}}
+{{/collection}}
 </table>
