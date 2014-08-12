@@ -1,5 +1,21 @@
 class Thorax.Views.MeasuresAdminView extends Thorax.View
   template: JST['admin/measures']
+  fetchTriggerPoint: 500 # fetch data when we're 500 pixels away from the bottom
+  events:
+    rendered: ->
+      $(document).on 'scroll', @scrollHandler
+    destroyed: ->
+      $(document).off 'scroll', @scrollHandler
+    collection:
+      sync: -> @isFetching = false
+
+  initialize: ->
+    @isFetching = false
+    @scrollHandler = =>
+      distanceToBottom = $(document).height() - $(window).scrollTop() - $(window).height()
+      if !@isFetching and @collection?.length and @fetchTriggerPoint > distanceToBottom
+        @isFetching = true
+        @collection.fetchNextPage()
 
   importMeasure: (event) ->
     importMeasureView = new Thorax.Views.ImportMeasure(firstMeasure: true)
