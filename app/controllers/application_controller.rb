@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   before_filter :set_effective_date
   before_filter :check_ssl_used
 
+  include SentientController
+
   # lock it down!
   check_authorization :unless => :devise_controller?
 

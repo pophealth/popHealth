@@ -5,6 +5,7 @@ class User
 
   include ActiveModel::MassAssignmentSecurity
   include Mongoid::Document
+  include SentientUser
 
   after_initialize :build_preferences, unless: Proc.new { |user| user.preferences.present? }
   before_save :denullify_arrays
@@ -60,6 +61,8 @@ class User
   field :approved, type: Boolean
   field :staff_role, type: Boolean
   field :disabled, type: Boolean
+
+  field :provider, type: BSON::ObjectId
 
   has_one :preferences, class_name: 'Preference'
 

@@ -101,7 +101,9 @@ class AdminController < ApplicationController
 
   def update_npi
     user = User.by_username(params[:username]);
-    user.update_attribute(:npi, params[:npi]);
+    provider = Provider.find(params[:npi])
+    user.update_attribute(:npi, provider.npi);
+    user.update_attribute(:provider, params[:npi]);
     render :text => "true"
   end
 

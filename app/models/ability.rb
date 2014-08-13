@@ -29,7 +29,9 @@ class Ability
     elsif user.staff_role?
       can :read, HealthDataStandards::CQM::Measure
       can :read, Record
-      can :manage, Provider
+      can :manage, Provider do |prov|
+        user.provider && ((prov.id == user.provider) || (prov.parent_ids && prov.parent_ids.include?(user.provider)))
+      end
       can :manage, :providers
       can :manage, User, id: user.id
       cannot :manage, User unless APP_CONFIG['allow_user_update']

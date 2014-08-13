@@ -20,7 +20,8 @@ module Api
     api :GET, "/providers", "Get a list of providers. Returns all providers that the user has access to."
     param_group :pagination, Api::PatientsController
     def index
-      @providers = paginate(api_providers_url, Provider.order_by([:"cda_identifiers.sortable_extension", :asc]))
+      providerID = User.current.provider
+      @providers = paginate(api_providers_url, Provider.any_of({:parent_ids => providerID}, {:_id => providerID}).order_by([:"cda_identifiers.sortable_extension", :asc]))
       authorize_providers(@providers)
       render json: @providers
     end

@@ -105,7 +105,7 @@
       <select class="npi_select" data-username="<%= user.username %>" name="user[npi]">
         <option value="-1">&nbsp;</option>
         <% Provider.all.alphabetical.each do |provider| %>
-          <option value="<%= provider.npi %>" <%= (user.npi == provider.npi) ? "selected=\"selected\"" : ""%>><%= provider.full_name%></option>
+          <option value="<%= provider.id %>" <%= (user.provider == provider.id) ? "selected=\"selected\"" : ""%>><%= provider.full_name%></option>
         <% end%>
       </select>
     </td>
