@@ -15,7 +15,37 @@ module Api
       @staff = User.where({email: 'noadmin@test.com'}).first
       @admin = User.where({email: 'admin@test.com'}).first
       @user = User.where({email: 'nostaff@test.com'}).first
+            
+      @practicea = Provider.where({given_name: "Practice A"}).first
+      @practiceb = Provider.where({given_name: "Practice B"}).first	
+      
+      @staffa = User.where({username: "staffa"}).first
+      @staffa.provider = @practicea.id
+      @staffa.save!
+            
+      @staffb = User.where({username: "staffb"}).first
+      @staffb.provider = @practiceb.id
+      @staffb.save!
+      
+      @providera1 = Provider.where({"organization.name" => "Practice A"}).first
+      @providera2 = Provider.where({"organization.name" => "Practice A"}).last	
+      @providerb1 = Provider.where({"organization.name" => "Practice B"}).first
+      @providerb2 = Provider.where({"organization.name" => "Practice B"}).last	
 
+      # setting providers to practices
+      Provider.where({"organization.name" => "Practice A"}).each do |prov|
+      	prov.parent_id = @practicea.id
+      	prov.parent_ids.push @practicea.id
+      	prov.save
+			end
+      
+      Provider.where({"organization.name" => "Practice B"}).each do |prov|
+      	prov.parent_id = @practiceb.id
+      	prov.parent_ids.push @practiceb.id
+      	prov.save
+			end
+      
+      
       @npi_user = User.where({email: 'npiuser@test.com'}).first
       @npi_user.staff_role=false
       @npi_user.save
@@ -174,15 +204,38 @@ module Api
       assert_response :success, "admin should be able to create reports for no npi "
     end
 
-    test "create staff" do
-      sign_in @staff
-      post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@provider.id]
-      assert_response :success, "staff should be able to create all reports for npis"
+		test "create staff" do
+			sign_in @staffa
+			
+			post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@practicea.id]
+			assert_response :success, "staff should be able to create reports for its practice's providers"
 
-      post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212
-      assert_response :success, "staff should be able to create all reports for no npi"
-    end
+			post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@providera1.id]
+			assert_response :success, "staff should be able to create reports for its practice's provider"
+			
+			post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@providera2.id]
+			assert_response :success, "staff should be able to create reports for its practice's provider #2"
 
+			post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@practiceb.id]
+			assert_response 403, "staff should not be able to create reports for providers outside of their practice"
+
+			post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@providerb1.id]
+			assert_response 403, "staff should not be able to create reports for providers outside of their practice #2"
+
+			post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@providerb2.id]
+			assert_response 403, "staff should not be able to create reports for providers outside of their practice #3"
+		
+			post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212
+      assert_response 403, "staff should not be able all reports for no npi"
+		
+		end
+
+		test "test1" do
+			sign_in @staffb
+			post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@providerb2.id]
+			assert_response :success, "staff should be able to create report for their provider"
+		end
+		
     test "create npi user" do
       sign_in @npi_user
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@provider.id]
@@ -220,7 +273,7 @@ module Api
       json = JSON.parse(response.body)
       assert_equal 1, json.length
 
-    end
+    end	
 
     test "index admin" do
       skip "need to implement"
