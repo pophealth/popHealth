@@ -32,10 +32,14 @@ class Thorax.Views.PatientResultsView extends Thorax.View
       $(document).on 'scroll', @scrollHandler
     destroyed: ->
       $(document).off 'scroll', @scrollHandler
+      @query.off 'change', @setCollectionAndFetch
     collection:
       sync: -> @isFetching = false
 
   initialize: ->
+    @setCollectionAndFetch = =>
+      @setCollection new Thorax.Collections.PatientResults([], parent: @query, population: @population, providerId: @providerId), render: true
+      @collection.fetch()
     @isFetching = false
     @scrollHandler = =>
       distanceToBottom = $(document).height() - $(window).scrollTop() - $(window).height()
@@ -46,12 +50,8 @@ class Thorax.Views.PatientResultsView extends Thorax.View
     @setQuery @query
 
   setQuery: (query) ->
-    @query.off 'change'
+    @query.off 'change', @setCollectionAndFetch
     @query = query
     @isEpisodeOfCare = @query.parent.get('episode_of_care')
-    setCollection = =>
-      @setCollection new Thorax.Collections.PatientResults([], parent: @query, population: @population, providerId: @providerId), render: true
-      @collection.fetch()
-    @query.on 'change', setCollection
-    if @query.isNew() then @query.save() else setCollection()
-
+    @query.on 'change', @setCollectionAndFetch
+    if @query.isNew() then @query.save() else @setCollectionAndFetch()
