@@ -38,6 +38,11 @@ class Provider
 
   # alias :full_name :name
 
+	def self.by_practice( provider_id )
+		where( :parent_ids => {'$in' => [provider_id]} )
+	end
+
+  
   def full_name
     [family_name, given_name].compact.join(", ")
   end
@@ -73,7 +78,7 @@ class Provider
   end
 
   def checkForUserRoot
-    if self._id == User.current.provider
+    if User.current && self._id == User.current.provider
       self.parent_id = nil
       self.parent_ids = nil
     end
