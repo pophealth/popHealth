@@ -8,7 +8,7 @@ class QueryHeadingView extends Thorax.View
         @popChart.maximumValue(@model.result().IPP)
         d3.select(@el).select('.pop-chart').datum(@model.result()).call(@popChart)
   initialize: ->
-    @popChart = PopHealth.viz.populationChart().width(125).height(40).maximumValue(PopHealth.patientCount)
+    @popChart = PopHealth.viz.populationChart().width(125).height(25).maximumValue(PopHealth.patientCount)
   shouldDisplayPercentageVisual: -> !@model.isContinuous() and PopHealth.currentUser.shouldDisplayPercentageVisual()
   resultValue: -> if @model.isContinuous() then @model.observation() else @model.performanceRate()
   fractionTop: -> if @model.isContinuous() then @model.measurePopulation() else @model.numerator()
@@ -21,6 +21,14 @@ class QueryButtonsView extends Thorax.View
   template: JST['patient_results/query_buttons']
   events:
     'click .population-btn': 'changeFilter'
+    model:
+      change: ->
+        if @model.isPopulated()
+          clearInterval(@timeout) if @timeout?
+        else
+          @timeout ?= setInterval =>
+            @model.fetch()
+          , 3000
   initialize: ->
     @currentPopulation ?= 'IPP'
   ipp: -> @model.ipp()
