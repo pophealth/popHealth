@@ -17,6 +17,14 @@ class Record
     Language.ordered.by_code(lang_codes).map(&:name)
   end
 
+	def in_practice?(provider_id)
+		in_practice = false
+		provider_performances.map{|p| p.provider_id}.each do |perf|
+			in_practice = Provider.by_practice(provider_id).include?(perf) ? true : false
+		end
+		in_practice
+	end
+
   def cache_results(params = {})
     query = {"value.medical_record_id" => self.medical_record_number }
     query["value.effective_date"]= params["effective_date"] if params["effective_date"]

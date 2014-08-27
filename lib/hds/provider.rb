@@ -39,10 +39,9 @@ class Provider
   # alias :full_name :name
 
 	def self.by_practice( provider_id )
-		where( :parent_ids => {'$in' => [provider_id]} )
+		where( :parent_ids => {'$in' => [provider_id]} ).map{|p| p.id}
 	end
 
-  
   def full_name
     [family_name, given_name].compact.join(", ")
   end

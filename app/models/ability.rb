@@ -28,7 +28,9 @@ class Ability
       # can [:create,:delete], HealthDataStandards::CQM::Measure
     elsif user.staff_role?
       can :read, HealthDataStandards::CQM::Measure
-      can :read, Record
+      can :read, Record do |rec|
+      	rec.in_practice?(user.provider)
+      end
       can :manage, Provider do |prov|
         user.provider && ((prov.id == user.provider) || (prov.parent_ids && prov.parent_ids.include?(user.provider)))
       end
