@@ -11,6 +11,15 @@ module Api
       before_filter :validate_authorization!
       skip_before_action :verify_authenticity_token
 
+      api :GET, "/patients/count", "Get count of patients in the database"
+      formats ['json']
+      example '{"patient_count":56}'
+      def count
+        json = {}
+        json['patient_count'] = Record.count
+        render :json => json
+      end
+
       api :POST, "/admin/patients", "Upload a zip file of patients."
       param :file, nil, :desc => 'The zip file of patients to upload.', :required => true
       def create

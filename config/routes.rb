@@ -47,7 +47,11 @@ PopHealth::Application.routes.draw do
           get :count
         end
       end
-      resource :patients
+      resource :patients do
+        collection do
+          get :count
+        end
+      end
       resource :providers do
         collection do
           get :count
@@ -73,9 +77,6 @@ PopHealth::Application.routes.draw do
       end
     end
     resources :patients do
-      collection do
-        get :count
-      end
       member do
         get :results
       end

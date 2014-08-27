@@ -69,7 +69,7 @@
     });
     (function poll(){
        setTimeout(function(){
-        $.getJSON( "<%= count_api_patients_path %>", function(data){
+        $.getJSON( "<%= count_api_admin_patients_path %>", function(data){
           $('#patient_count').html(data.patient_count);
           //Setup the next poll recursively
           poll();
