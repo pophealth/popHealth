@@ -74,7 +74,7 @@ require 'test_helper'
       assert_response :success
     end
 
-    test "results" do
+    test "get results for admin" do
       sign_in @admin_user
       @record = Record.find('523c57e1b59a907ea9000064')
 
@@ -86,8 +86,20 @@ require 'test_helper'
       get :results, id: @record.id, measure_id: "40280381-3D61-56A7-013E-6649110743CE", sub_id: "a"
       assert_response :success
       json = JSON.parse(response.body)
-      assert_equal 1, json.length
+      assert_equal 1, json.length      
     end
+
+		test "get results for staff" do
+			@record = Record.find('523c57e1b59a907ea9000064')
+			@record_valid = Record.find('523c57e1b59a907ea9000065')
+			sign_in @staff_user
+      get :results, id: @record.id
+      assert_response 403
+      
+			sign_in @staff_user
+      get :results, id: @record_valid.id
+      assert_response :success
+		end
 
   end
 end
