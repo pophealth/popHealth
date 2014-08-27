@@ -85,6 +85,8 @@ class User
   def set_defaults
     self.staff_role ||= APP_CONFIG["default_user_staff_role"]
     self.approved ||= APP_CONFIG["default_user_approved"]
+    provider = (Provider.by_npi(self.npi).empty?) ? nil : Provider.by_npi(self.npi).first.id
+    self.provider = provider 
     true
   end
 

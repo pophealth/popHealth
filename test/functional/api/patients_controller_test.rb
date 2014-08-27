@@ -26,8 +26,7 @@ require 'test_helper'
 			perf = ProviderPerformance.new( :provider_id => @providera.id )
 			@practice_patient.provider_performances = [ perf ]
 			@practice_patient.save!
-      
-#      sign_in @user
+     
     end
 
     test "view patient as admin" do
@@ -92,6 +91,7 @@ require 'test_helper'
 		test "get results for staff" do
 			@record = Record.find('523c57e1b59a907ea9000064')
 			@record_valid = Record.find('523c57e1b59a907ea9000065')
+		
 			sign_in @staff_user
       get :results, id: @record.id
       assert_response 403
