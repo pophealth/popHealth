@@ -10,6 +10,15 @@ module Api
       before_filter :authenticate_user!
       before_filter :validate_authorization!
 
+      api :GET, "/admin/providers/count", "Get count of providers in the database"
+      formats ['json']
+      example '{"provider_count":2}'
+      def count
+        json = {}
+        json['provider_count'] = Provider.count
+        render :json => json
+      end
+
       api :POST, "/admin/providers", "Upload an opml file of providers."
       param :file, nil, :desc => 'The ompl file of providers to upload.', :required => true
       def create
