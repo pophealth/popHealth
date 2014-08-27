@@ -12,6 +12,15 @@ module Api
         @user = User.where({email: 'noadmin@test.com'}).first
       end
 
+      test "should fetch integer cache counts from DB" do
+        sign_in @admin
+        get :count
+        assert_response :success
+        json = JSON.parse(response.body)
+        assert_equal json['query_cache_count'].is_a?(Integer), true
+        assert_equal json['patient_cache_count'].is_a?(Integer), true
+      end
+
       test "should delete caches if admin" do
         sign_in @admin
         delete :destroy

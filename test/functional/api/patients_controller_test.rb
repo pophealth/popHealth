@@ -16,13 +16,6 @@ require 'test_helper'
       assert_response :success
     end
 
-    test "count number of patients" do
-      get :count
-      assert_response :success
-      json = JSON.parse(response.body)
-      assert_equal 8, json['patient_count']
-    end
-
     test "view patient with include_results includes the results" do
       @record = Record.find('523c57e1b59a907ea9000064')
 

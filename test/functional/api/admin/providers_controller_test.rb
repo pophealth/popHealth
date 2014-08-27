@@ -12,6 +12,14 @@ module Api
         @user = User.where({email: 'noadmin@test.com'}).first
       end
 
+      test "count number of providers" do
+        sign_in @admin
+        get :count
+        assert_response :success
+        json = JSON.parse(response.body)
+        assert_equal json['provider_count'].is_a?(Integer), true
+      end
+
       test "upload provider opml to admin api" do
         sign_in @admin
         providers = fixture_file_upload('test/fixtures/providers.opml', 'text/xml')
