@@ -9,3 +9,4 @@ beforeEach ->
     toBeEmpty: ->
       compare: (actual) ->
         pass: actual.isEmpty()
+        message: "Expected #{actual.cid} to be empty, but had a length of #{actual.length}."
