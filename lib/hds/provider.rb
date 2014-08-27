@@ -1,5 +1,6 @@
 class Provider
-
+  include Mongoid::Document
+  resourcify
   field :level, type: String
   
   embeds_many :cda_identifiers, class_name: "CDAIdentifier"

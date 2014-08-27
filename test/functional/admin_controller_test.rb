@@ -6,7 +6,7 @@ class AdminControllerTest < ActionController::TestCase
   setup  do
 
     dump_database
-
+    collection_fixtures 'roles'
     collection_fixtures 'users'
 
     @admin = User.where({email: 'admin@test.com'}).first

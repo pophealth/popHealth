@@ -23,6 +23,7 @@ module Api
       @provider = Provider.where({family_name: "Darling"}).first
       @provider.npi = @npi_user.npi
       @provider.save
+      @npi_user.add_role(:staff, @provider)
 
       QME::QualityReport.where({}).each do |q|
         if q.filters

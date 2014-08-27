@@ -34,6 +34,16 @@ namespace :pophealth do
       RakeUserManager.approve ENV
     end
 
+    task :update_roles => :environment do
+      User.where(:admin=>true).each do |u|
+        u.add_role :admin
+      end
+      User.where(:staff_role=>true).each do |u|
+        u.add_role :staff
+      end
+
+    end
+
     class RakeUserManager
       def self.grant_admin(env)
         user = find_user(env)

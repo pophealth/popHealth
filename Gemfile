@@ -44,6 +44,8 @@ gem 'jquery-rails' # necessary for jquery_ujs w/data-method="delete" etc
 gem 'uglifier'
 gem 'non-stupid-digest-assets' # support vendored non-digest assets
 
+gem 'rolify'
+
 group :test, :develop, :ci do
   gem 'pry'
   gem 'jasmine', '2.0.1'

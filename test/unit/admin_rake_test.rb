@@ -7,7 +7,7 @@ class AdminRakeTest < ActiveSupport::TestCase
   setup do
     
     dump_database
-    
+    collection_fixtures 'roles'
     if (!@@rake)
       @@rake = Rake.application
       Rake.application = @@rake

@@ -22,11 +22,11 @@
               <% if APP_CONFIG['logout_enabled']%>
                 <li><%= link_to raw('<i class="glyphicon glyphicon-log-out"></i> Logout'), destroy_user_session_path, method: 'delete' %></li>
               <% end %>
-              <% if current_user.staff_role? || current_user.admin? %>
+              <% if current_user.has_role? (:staff )|| current_user.has_role?( :admin )%>
                 <li class="divider"></li>
                 <li role="presentation" class="dropdown-header">Admin</li>
                 <li><%= link_to raw('<i class="glyphicon glyphicon-plus"></i> Providers'), '/#providers'%></li>
-                <% if current_user.admin? %>
+                <% if current_user.has_role?( :admin )%>
                   <% if (APP_CONFIG['patient_management_enabled']) %>
                     <li><%= link_to raw('<i class="glyphicon glyphicon-eye-open"></i> Patients'), admin_patients_path%></li>
                   <% end %>

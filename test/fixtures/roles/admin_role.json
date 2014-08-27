@@ -1,0 +1,10 @@
+{
+    "_id" : "admin_role",
+    "name" : "admin",
+    "resource_id" : null,
+    "resource_type" : null,
+    "user_ids" : [ 
+        "admin1",
+        "admin2"
+    ]
+}

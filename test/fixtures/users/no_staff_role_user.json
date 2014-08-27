@@ -1,4 +1,4 @@
-{"admin":false,
+{
  "agree_license":true,
  "approved":true,
  "company":null,
@@ -11,6 +11,5 @@
  "npi":null,
  "registry_id":null,
  "registry_name":null,
- "staff_role":false,
  "tin":null,
  "username":"nostaffuser"}

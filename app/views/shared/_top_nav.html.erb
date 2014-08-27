@@ -2,16 +2,16 @@
   Welcome, <%= current_user.first_name.to_s %>
   <span class="sep">|</span> <a href="http://projectpophealth.org/faq.html">help</a>
   <% if APP_CONFIG['edit_account_enabled']%><span class="sep">|</span> <%= link_to 'account', edit_user_registration_path(current_user) %> <% end %>
-  <% if current_user.staff_role? || current_user.admin? %> <span class="sep">|</span> <a id="manage_link" href="javascript:void(0)">manage</a> <% end %>
+  <% if current_user.has_role?( :staff) || current_user.has_role?(:admin) %> <span class="sep">|</span> <a id="manage_link" href="javascript:void(0)">manage</a> <% end %>
   <% if APP_CONFIG['logout_enabled']%><span class="sep">|</span> <%= link_to 'logout', destroy_user_session_path, 'class' => 'log'%> <% end %>
   
   <ul id="manage-menu" class="ui-menu ui-widget ui-widget-content ui-corner-all dialog-menu" role="listbox" aria-activedescendant="ui-active-menuitem">
-    <% if current_user.staff_role? || current_user.admin? %>
+    <% if current_user.has_role?(:staff) || current_user.has_role?(:admin ) %>
     <li class="ui-menu-item" role="menuitem" data-type="providers">
       <a class="ui-corner-all" tabindex="-1" href="<%=providers_path%>">Providers</a>
     </li>
     <% end %>
-    <% if current_user.admin? %>
+    <% if current_user.has_role?(:admin) %>
       <li class="ui-menu-item" role="menuitem" data-type="users">
         <a class="ui-corner-all" tabindex="-1" href="<%=admin_users_path%>">Users</a>
       </li>
