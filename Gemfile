@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '~> 4.1.2'
-gem 'quality-measure-engine', :git => 'https://github.com/pophealth/quality-measure-engine'
+gem 'quality-measure-engine', '3.0.3'
 gem "hqmf2js", :git=> "https://github.com/pophealth/hqmf2js.git"
 gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git'
 #gem 'health-data-standards', :path=> '../health-data-standards'
@@ -15,7 +15,7 @@ gem 'sshkit'
 # client side pagination, this can go away.
 gem 'will_paginate'
 
-gem "active_model_serializers"
+gem "active_model_serializers", '0.8.1'
 
 gem 'json', :platforms => :jruby
 
