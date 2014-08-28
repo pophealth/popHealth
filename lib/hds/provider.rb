@@ -10,7 +10,7 @@ class Provider
   scope :selected, ->(provider_ids) { any_in(:_id => provider_ids)}
   scope :selected_or_all, ->(provider_ids) { provider_ids.nil? || provider_ids.empty? ? Provider.all : Provider.selected(provider_ids) }
 
-  after_find :checkForUserRoot
+  after_find :check_for_root_user
 
   belongs_to :team
 
@@ -38,9 +38,9 @@ class Provider
 
   # alias :full_name :name
 
-	def self.by_practice( provider_id )
-		where( :parent_ids => {'$in' => [provider_id]} ).map{|p| p.id}
-	end
+  def self.by_practice( provider_id )
+    where( :parent_ids => {'$in' => [provider_id]} ).map{|p| p.id}
+  end
 
   def full_name
     [family_name, given_name].compact.join(", ")
@@ -76,7 +76,7 @@ class Provider
     return provider
   end
 
-  def checkForUserRoot
+  def check_for_root_user
     if User.current && self._id == User.current.provider
       self.parent_id = nil
       self.parent_ids = nil

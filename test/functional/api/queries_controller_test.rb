@@ -18,7 +18,7 @@ module Api
             
       @practicea = Provider.where({given_name: "Practice A"}).first
       @practiceb = Provider.where({given_name: "Practice B"}).first	
-      
+
       @staffa = User.where({username: "staffa"}).first
       @staffa.provider = @practicea.id
       @staffa.save!
@@ -26,7 +26,7 @@ module Api
       @staffb = User.where({username: "staffb"}).first
       @staffb.provider = @practiceb.id
       @staffb.save!
-      
+
       @providera1 = Provider.where({"organization.name" => "Practice A"}).first
       @providera2 = Provider.where({"organization.name" => "Practice A"}).last	
       @providerb1 = Provider.where({"organization.name" => "Practice B"}).first
@@ -34,21 +34,21 @@ module Api
 
       # setting providers to practices
       Provider.where({"organization.name" => "Practice A"}).each do |prov|
-      	prov.parent_id = @practicea.id
-      	prov.parent_ids.push @practicea.id
-      	prov.save
-			end
+        prov.parent_id = @practicea.id
+        prov.parent_ids.push @practicea.id
+        prov.save
+      end
       
       @practice_patient = Record.where(:first=> "Jennifer", :last=>"Snyder").first
       perf = ProviderPerformance.new( :provider_id => @providera1.id )
-			@practice_patient.provider_performances = [ perf ]
-			@practice_patient.save!
+      @practice_patient.provider_performances = [ perf ]
+      @practice_patient.save!
       
       Provider.where({"organization.name" => "Practice B"}).each do |prov|
       	prov.parent_id = @practiceb.id
-      	prov.parent_ids.push @practiceb.id
-      	prov.save
-			end
+        prov.parent_ids.push @practiceb.id
+        prov.save
+      end
             
       @npi_user = User.where({email: 'npiuser@test.com'}).first
       @npi_user.staff_role=false
@@ -59,8 +59,8 @@ module Api
       @provider.save
 
       QME::QualityReport.where({}).each do |q|
-      	if q.filters
-         	q.filters["providers"] = [@provider.id]       
+        if q.filters
+          q.filters["providers"] = [@provider.id]       
           q.save
         end
       end
@@ -70,8 +70,7 @@ module Api
           pc.value["filters"]["providers"] = [@provider.id]
           pc.save
         end
-      end
-   
+      end   
     end
 
     test "show admin" do
@@ -116,7 +115,7 @@ module Api
       assert_response 403
     end
 
-    test "delete staff_role" do   	   	
+    test "delete staff_role" do
       sign_in @staff
       delete :destroy, :id=>"523c57e2949d9dd06956b606"
       assert_response 204
@@ -201,33 +200,32 @@ module Api
 
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212
       assert_response :success, "admin should be able to create reports for no npi "
-    end
+      end
 
-		test "create staff" do
-			sign_in @staffa
-			
-			post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@practicea.id]
-			assert_response :success, "staff should be able to create reports for its practice's providers"
+      test "create staff" do
+      sign_in @staffa
 
-			post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@providera1.id]
-			assert_response :success, "staff should be able to create reports for its practice's provider"
-			
-			post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@providera2.id]
-			assert_response :success, "staff should be able to create reports for its practice's provider #2"
+      post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@practicea.id]
+      assert_response :success, "staff should be able to create reports for its practice's providers"
 
-			post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@practiceb.id]
-			assert_response 403, "staff should not be able to create reports for providers outside of their practice"
+      post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@providera1.id]
+      assert_response :success, "staff should be able to create reports for its practice's provider"
 
-			post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@providerb1.id]
-			assert_response 403, "staff should not be able to create reports for providers outside of their practice #2"
+      post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@providera2.id]
+      assert_response :success, "staff should be able to create reports for its practice's provider #2"
 
-			post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@providerb2.id]
-			assert_response 403, "staff should not be able to create reports for providers outside of their practice #3"
-		
-			post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212
+      post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@practiceb.id]
+      assert_response 403, "staff should not be able to create reports for providers outside of their practice"
+
+      post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@providerb1.id]
+      assert_response 403, "staff should not be able to create reports for providers outside of their practice #2"
+
+      post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@providerb2.id]
+      assert_response 403, "staff should not be able to create reports for providers outside of their practice #3"
+
+      post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212
       assert_response 403, "staff should not be able all reports for no npi"
-		
-		end
+    end
 		
     test "create npi user" do
       sign_in @npi_user
@@ -249,7 +247,7 @@ module Api
     end
 
 
-    test "filter patient results" do 
+    test "filter patient results" do
       sign_in @staff
       get :patients, :id=>"523c57e4949d9dd06956b622"
       assert_response :success
@@ -265,6 +263,7 @@ module Api
       assert_response :success
       json = JSON.parse(response.body)
       assert_equal 1, json.length
+    
     end	
 
     test "index admin" do

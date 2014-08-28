@@ -9,9 +9,9 @@ include Devise::TestHelpers
       @user = User.where({email: 'admin@test.com'}).first
       @provider = Provider.where({family_name: "Darling"}).first
       
-			@user.provider = @provider.id
+      @user.provider = @provider.id
       @user.save!
-			sign_in @user
+      sign_in @user
     end
 
     test "get index" do

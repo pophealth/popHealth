@@ -10,7 +10,6 @@
   <title>popHealth : An Open Source Quality Measure Reference Implementation</title>
   <link rel="shortcut icon" href="/favicon.ico"/>
 
-  <%= javascript_include_tag "application" %>
   <%= stylesheet_link_tag "application", :media => "all" %>
   
   <%= csrf_meta_tag %>
@@ -30,7 +29,7 @@
 </head>
 <body>
   <%= render :partial => 'shared/header' %>
- 
+  <%= javascript_include_tag "application" %> 
   <div id="container" class="container"></div>
   <%= yield %>
 </body>
