@@ -149,4 +149,14 @@ class User
     self.has_role?( :staff )
   end
 
+  def provider_root
+    provider = nil
+    if self.admin? || self.staff_role?
+      provider =  Provider.root 
+    else
+      provider = Provider.with_role(:staff, self).first
+    end
+    provider
+  end
+
 end

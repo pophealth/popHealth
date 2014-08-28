@@ -83,7 +83,14 @@ module Api
     EXAMPLE
     def show
       provider_json = @provider.as_json
-      provider_json[:parent] = Provider.find(@provider.parent_id) if @provider.parent_id
+      if @provider.parent && can?(:read, @provider.parent)
+        provider_json[:parent] = Provider.find(@provider.parent_id) if @provider.parent_id
+      else
+        #clean these out so the ui does npt attempt to render them
+        provider_json[:parent] =nil
+        provider_json[:parent_id]=nil
+        provider_json[:parent_ids]=nil
+      end
       provider_json[:children] = @provider.children if @provider.children.present?
       render json: provider_json
     end
