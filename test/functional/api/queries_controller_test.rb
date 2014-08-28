@@ -170,8 +170,6 @@ module Api
       assert_response :success
     end
 
-
-
     test "patients admin" do
       sign_in @admin
       get :patients, :id=>"523c57e2949d9dd06956b606"
@@ -195,7 +193,6 @@ module Api
       get :patients, :id=>"523c57e2949d9dd06956b606"
       assert_response :success
     end
-
 
     test "create admin" do
       sign_in @admin
