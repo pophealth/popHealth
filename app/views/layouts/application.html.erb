@@ -29,8 +29,9 @@
 </head>
 <body>
   <%= render :partial => 'shared/header' %>
-  <%= javascript_include_tag "application" %> 
+
   <div id="container" class="container"></div>
+  <%= javascript_include_tag "application" %> 
   <%= yield %>
 </body>
 </html>

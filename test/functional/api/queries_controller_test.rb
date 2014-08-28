@@ -70,8 +70,10 @@ module Api
           pc.value["filters"]["providers"] = [@provider.id]
           pc.save
         end
-      end   
+      end
     end
+
+
 
     test "show admin" do
       sign_in @admin
@@ -121,6 +123,7 @@ module Api
       assert_response 204
     end
 
+
     test "recalculate admin" do
       sign_in @admin
       get :recalculate, :id=>"523c57e2949d9dd06956b606"
@@ -169,6 +172,8 @@ module Api
       assert_response :success
     end
 
+
+
     test "patients admin" do
       sign_in @admin
       get :patients, :id=>"523c57e2949d9dd06956b606"
@@ -193,6 +198,7 @@ module Api
       assert_response :success
     end
 
+
     test "create admin" do
       sign_in @admin
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@provider.id]
@@ -200,9 +206,9 @@ module Api
 
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212
       assert_response :success, "admin should be able to create reports for no npi "
-      end
+    end
 
-      test "create staff" do
+    test "create staff" do
       sign_in @staffa
 
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@practicea.id]
@@ -226,14 +232,15 @@ module Api
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212
       assert_response 403, "staff should not be able all reports for no npi"
     end
-		
+    
     test "create npi user" do
       sign_in @npi_user
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@provider.id]
       assert_response :success, "should be able to create a quality report for users own npi"
 
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212
-      assert_response 403, "should be unauthorized without npi"
+      assert_response 403, "should be unauthorized without npi" 
+
     end
 
     test "create unauthorized" do
