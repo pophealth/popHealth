@@ -16,23 +16,23 @@ describe 'User', ->
       expect(selectedCategories).toBeEmpty()
 
     it 'returns a populated collection if there are selected categories', ->
-      @user.get('preferences').selected_measure_ids = [@categories.first().get('measures').first().id]
+      @user.get('preferences').selected_measure_ids = [@categories.first().get('measures').first().get('hqmf_id')]
       selectedCategories = @user.selectedCategories(@categories)
       expect(selectedCategories.length).toEqual 1
       expect(selectedCategories.first().get('category')).toEqual @categories.first().get('category')
       expect(selectedCategories.first().get('measures').first()).toBe @categories.first().get('measures').first()
 
     it 'can add a new selected measure to an existing selected category', ->
-      @user.get('preferences').selected_measure_ids = [(firstMeasure = @categories.first().get('measures').first()).id]
+      @user.get('preferences').selected_measure_ids = [(firstMeasure = @categories.first().get('measures').first()).get('hqmf_id')]
       selectedCategories = @user.selectedCategories(@categories)
       spyOn @user, 'save'
       newSelection = @categories.first().get('measures').at(1)
       selectedCategories.selectMeasure newSelection
       expect(@user.save).toHaveBeenCalled()
-      expect(@user.get('preferences').selected_measure_ids).toEqual [firstMeasure.id, newSelection.id]
+      expect(@user.get('preferences').selected_measure_ids).toEqual [firstMeasure.get('hqmf_id'), newSelection.get('hqmf_id')]
 
     it 'can remove a selected measure from an existing category', ->
-      @user.get('preferences').selected_measure_ids = [(firstMeasure = @categories.first().get('measures').first()).id]
+      @user.get('preferences').selected_measure_ids = [(firstMeasure = @categories.first().get('measures').first()).get('hqmf_id')]
       selectedCategories = @user.selectedCategories(@categories)
       spyOn @user, 'save'
       selectedCategories.removeMeasure selectedCategories.first().get('measures').first()
@@ -48,7 +48,7 @@ describe 'User', ->
       expect(selectedCategories.first().get('measures').first()).toBe newSelection
 
     it 'removes empty categories when removing the last measure in a category', ->
-      @user.get('preferences').selected_measure_ids = [(firstMeasure = @categories.first().get('measures').first()).id]
+      @user.get('preferences').selected_measure_ids = [(firstMeasure = @categories.first().get('measures').first()).get('hqmf_id')]
       selectedCategories = @user.selectedCategories(@categories)
       spyOn @user, 'save'
       selectedCategories.removeMeasure selectedCategories.first().get('measures').first()
@@ -65,10 +65,10 @@ describe 'User', ->
         expect(@user.save).toHaveBeenCalled()
 
       it 'adds all measure ids of the category', ->
-        expect(@user.get('preferences').selected_measure_ids).toEqual @firstCat.get('measures').pluck('id')
+        expect(@user.get('preferences').selected_measure_ids).toEqual @firstCat.get('measures').pluck('hqmf_id')
         @selectedCategories.selectCategory @secondCat
         expect(@user.save).toHaveBeenCalled()
-        expect(@user.get('preferences').selected_measure_ids).toEqual @firstCat.get('measures').pluck('id').concat(@secondCat.get('measures').pluck('id'))
+        expect(@user.get('preferences').selected_measure_ids).toEqual @firstCat.get('measures').pluck('hqmf_id').concat(@secondCat.get('measures').pluck('hqmf_id'))
 
       it 'adds the new category to the selected categories', ->
         expect(@selectedCategories.length).toEqual 1
@@ -80,14 +80,14 @@ describe 'User', ->
       beforeEach ->
         @firstCat = @categories.first()
         @secondCat = @categories.at(1)
-        @user.get('preferences').selected_measure_ids = @firstCat.get('measures').pluck('id').concat(@secondCat.get('measures').pluck('id'))
+        @user.get('preferences').selected_measure_ids = @firstCat.get('measures').pluck('hqmf_id').concat(@secondCat.get('measures').pluck('hqmf_id'))
         @selectedCategories = @user.selectedCategories(@categories)
         spyOn @user, 'save'
         @selectedCategories.removeCategory @firstCat
         expect(@user.save).toHaveBeenCalled()
 
       it 'removes all measures ids of the category', ->
-        expect(@user.get('preferences').selected_measure_ids).toEqual @secondCat.get('measures').pluck('id')
+        expect(@user.get('preferences').selected_measure_ids).toEqual @secondCat.get('measures').pluck('hqmf_id')
         @selectedCategories.removeCategory @secondCat
         expect(@user.save).toHaveBeenCalled()
         expect(@user.get('preferences').selected_measure_ids).toEqual []

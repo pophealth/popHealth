@@ -16,7 +16,7 @@ class Thorax.Collections.Categories extends Thorax.Collection
 
   findMeasure: (id) ->
     for category in @models
-      return measure if measure = category.get('measures').get(id)
+      return measure if measure = category.get('measures').findWhere(hqmf_id: id)
 
   # finds a submeasure with the given hqmf id and subId. If subId is omitted (as
   # in the case of a measure without submeasures), it'll return the first
@@ -24,7 +24,7 @@ class Thorax.Collections.Categories extends Thorax.Collection
   findSubmeasure: (id, subId) ->
     desiredMeasure = null
     @each (category) ->
-      measure = category.get('measures').get(id)
+      measure = category.get('measures').findWhere(hqmf_id: id)
       if measure?
         if subId?
           desiredMeasure = measure.get('submeasures').get(subId)

@@ -1,65 +1,38 @@
 class Thorax.Views.MeasuresAdminView extends Thorax.View
   template: JST['admin/measures']
-  _measures: []
-  initialize: ->
-    _this = this
-    $.ajax(url: "/api/measures",
-    type: 'get',
-    success: (res)->
-       _this.parseMeasures(res)
-    ,
-    error: (res)->
-      _this.displayError(res)
-    ,
-    cache: false,
-    contentType: false,
-    processData: false
-    )
+  fetchTriggerPoint: 500 # fetch data when we're 500 pixels away from the bottom
+  events:
+    rendered: ->
+      $(document).on 'scroll', @scrollHandler
+    destroyed: ->
+      $(document).off 'scroll', @scrollHandler
+    collection:
+      sync: -> @isFetching = false
 
-  parseMeasures: (json) ->
-    _measures = []
-    for mes in json
-      if !mes.sub_id || mes.sub_id == 'a'
-        _measures.push(mes)
-    this.measures = _measures
-    @pleaseWaitDialog.modal("hide") if @pleaseWaitDialog
-    this.render(@template)
+  initialize: ->
+    @isFetching = false
+    @scrollHandler = =>
+      distanceToBottom = $(document).height() - $(window).scrollTop() - $(window).height()
+      if !@isFetching and @collection?.length and @fetchTriggerPoint > distanceToBottom
+        @isFetching = true
+        @collection.fetchNextPage()
 
   importMeasure: (event) ->
     importMeasureView = new Thorax.Views.ImportMeasure(firstMeasure: true)
     importMeasureView.appendTo(@$el)
     importMeasureView.display()
 
-  editMeasure: (event) ->
-    measure = null
-    for mes in @measures
-      measure = mes if mes.hqmf_id == event.target.id
-    if measure
-      editMeasureView = new Thorax.Views.EditMeasureView(measure)
-      editMeasureView.parent = @
-      editMeasureView.appendTo(@$el)
-      editMeasureView.display()
+  editMeasure: (e) ->
+    measure = $(e.target).model()
+    editMeasureView = new Thorax.Views.EditMeasureView model: measure
+    editMeasureView.parent = @
+    editMeasureView.appendTo(@$el)
+    editMeasureView.display()
 
 
-  handleDelete: (e)->
-    _this = @
-    $.ajax(url: "/api/measures/"+e.target.id,
-    type: 'delete',
-    beforeSend: ->
-      console.log("before send")
-    ,
-    success: (res)->
-      console.log("success")
-      location.reload(true)
-    ,
-    error: (res)->
-      console.log("error")
-      _this.displayError(res)
-    ,
-    cache: false,
-    contentType: false,
-    processData: false
-    )
+  handleDelete: (e) ->
+    measure = $(e.target).model()
+    measure.destroy(contentType: false, processData: false).fail (res) => @displayError res
 
   displayError: (res) ->
     @finalizeDialog.modal("hide") if @finalizeDialog
@@ -71,7 +44,6 @@ class Thorax.Views.MeasuresAdminView extends Thorax.View
 class Thorax.Views.EditMeasureView extends Thorax.View
   template: JST['admin/edit_measure']
   events:
-    'ready': 'setup',
     'submit #edit_measure_form': 'saveToModel',
     'change #measureResultMeaningSelect' : 'update_lower_is_better',
     'change #measureCategorySelect' : 'show_hide_custom_category',
@@ -80,6 +52,7 @@ class Thorax.Views.EditMeasureView extends Thorax.View
   initialize: ->
     @categories = new Thorax.Collections.Categories PopHealth.categories, parse: true
     @$("#newMeasureCategoryInput")
+    @setup()
 
   setup: ->
     @editDialog = @$("#editMeasureDialog")

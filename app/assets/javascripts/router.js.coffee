@@ -48,5 +48,5 @@ class PopHealth.Router extends Backbone.Router
       @view.setView new Thorax.Views.ProvidersView collection: providerCollection
 
   admin_measures: ->
-    @view.setView new Thorax.Views.MeasuresAdminView 
+    @view.setView new Thorax.Views.MeasuresAdminView collection: new Thorax.Collections.Measures
 

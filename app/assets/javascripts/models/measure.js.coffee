@@ -1,7 +1,13 @@
 class Thorax.Models.Measure extends Thorax.Model
+  idAttribute: '_id'
+  url: ->
+    url = @collection?.url
+    subId = @get 'sub_id'
+    url += "/#{@get 'hqmf_id'}" unless @isNew()
+    url += "?sub_id=#{subId}" if subId = @get('sub_id')
   parse: (attrs) ->
     data = _(attrs).omit 'subs', 'sub_ids'
-    subs = for sub in attrs.subs
+    subs = for sub in attrs.subs or []
       subData = _(sub).extend(data)
       subData.isPrimary = !sub.sub_id? or sub.sub_id is 'a'
       subData
@@ -10,8 +16,18 @@ class Thorax.Models.Measure extends Thorax.Model
 
 class Thorax.Collections.Measures extends Thorax.Collection
   model: Thorax.Models.Measure
-  initialize: (models, options) -> @parent = options.parent
+  url: '/api/measures'
   comparator: 'name'
+  initialize: (models, options) ->
+    @parent = options?.parent
+    @hasMoreResults = true
+  currentPage: (perPage = 100) -> Math.ceil(@length / perPage)
+  fetch: ->
+    result = super
+    result.done => @hasMoreResults = /rel="next"/.test(result.getResponseHeader('Link'))
+  fetchNextPage: (options = {perPage: 10}) ->
+    data = {page: @currentPage(options.perPage) + 1, per_page: options.perPage}
+    @fetch(remove: false, data: data) if @hasMoreResults
 
 class Thorax.Models.Submeasure extends Thorax.Model
   idAttribute: 'sub_id'
