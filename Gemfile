@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.14'
-gem 'quality-measure-engine', '3.0.0'
+gem 'quality-measure-engine', '3.0.1'
 
 gem 'health-data-standards', '3.4.4'
 gem 'nokogiri'
