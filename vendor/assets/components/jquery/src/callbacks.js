@@ -40,18 +40,18 @@ jQuery.Callbacks = function( options ) {
 		( optionsCache[ options ] || createOptions( options ) ) :
 		jQuery.extend( {}, options );
 
-	var // Last fire value (for non-forgettable lists)
+	var // Flag to know if list is currently firing
+		firing,
+		// Last fire value (for non-forgettable lists)
 		memory,
 		// Flag to know if list was already fired
 		fired,
-		// Flag to know if list is currently firing
-		firing,
-		// First callback to fire (used internally by add and fireWith)
-		firingStart,
 		// End of the loop when firing
 		firingLength,
 		// Index of currently firing callback (modified by remove if needed)
 		firingIndex,
+		// First callback to fire (used internally by add and fireWith)
+		firingStart,
 		// Actual callback list
 		list = [],
 		// Stack of fire calls for repeatable lists
@@ -137,9 +137,10 @@ jQuery.Callbacks = function( options ) {
 				}
 				return this;
 			},
-			// Control if a given callback is in the list
+			// Check if a given callback is in the list.
+			// If no argument is given, return whether or not list has callbacks attached.
 			has: function( fn ) {
-				return jQuery.inArray( fn, list ) > -1;
+				return fn ? jQuery.inArray( fn, list ) > -1 : !!( list && list.length );
 			},
 			// Remove all callbacks from the list
 			empty: function() {

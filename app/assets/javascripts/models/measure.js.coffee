@@ -5,6 +5,7 @@ class Thorax.Models.Measure extends Thorax.Model
     subId = @get 'sub_id'
     url += "/#{@get 'hqmf_id'}" unless @isNew()
     url += "?sub_id=#{subId}" if subId = @get('sub_id')
+    return url
   parse: (attrs) ->
     data = _(attrs).omit 'subs', 'sub_ids'
     subs = for sub in attrs.subs or []

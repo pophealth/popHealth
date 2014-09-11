@@ -3,21 +3,13 @@ if ( jQuery.css ) {
 module("css", { teardown: moduleTeardown });
 
 test("css(String|Hash)", function() {
-	expect( 46 );
+	expect( 41 );
 
 	equal( jQuery("#qunit-fixture").css("display"), "block", "Check for css property \"display\"" );
 
-	ok( jQuery("#nothiddendiv").is(":visible"), "Modifying CSS display: Assert element is visible" );
-	jQuery("#nothiddendiv").css({ display: "none" });
-	ok( !jQuery("#nothiddendiv").is(":visible"), "Modified CSS display: Assert element is hidden" );
 	var $child = jQuery("#nothiddendivchild").css({ "width": "20%", "height": "20%" });
 	notEqual( $child.css("width"), "20px", "Retrieving a width percentage on the child of a hidden div returns percentage" );
 	notEqual( $child.css("height"), "20px", "Retrieving a height percentage on the child of a hidden div returns percentage" );
-
-	jQuery("#nothiddendiv").css({"display": "block"});
-	ok( jQuery("#nothiddendiv").is(":visible"), "Modified CSS display: Assert element is visible");
-	ok( jQuery(window).is(":visible"), "Calling is(':visible') on window does not throw an error in IE.");
-	ok( jQuery(document).is(":visible"), "Calling is(':visible') on document does not throw an error in IE.");
 
 	var div = jQuery( "<div>" );
 
@@ -206,13 +198,7 @@ test("css() explicit and relative values", function() {
 });
 
 test("css(String, Object)", function() {
-	expect(22);
-
-	ok( jQuery("#nothiddendiv").is(":visible"), "Modifying CSS display: Assert element is visible");
-	jQuery("#nothiddendiv").css("display", "none");
-	ok( !jQuery("#nothiddendiv").is(":visible"), "Modified CSS display: Assert element is hidden");
-	jQuery("#nothiddendiv").css("display", "block");
-	ok( jQuery("#nothiddendiv").is(":visible"), "Modified CSS display: Assert element is visible");
+	expect( 19 );
 
 	jQuery("#nothiddendiv").css("top", "-1em");
 	ok( jQuery("#nothiddendiv").css("top"), -16, "Check negative number in EMs." );
@@ -678,19 +664,6 @@ test("jQuery.css(elem, 'height') doesn't clear radio buttons (bug #1095)", funct
 	ok( ! jQuery(":checkbox:last", $checkedtest).attr("checked"), "Check last checkbox still NOT checked." );
 });
 
-test(":visible selector works properly on table elements (bug #4512)", function () {
-	expect(1);
-
-	jQuery("#table").html("<tr><td style='display:none'>cell</td><td>cell</td></tr>");
-	equal(jQuery("#table td:visible").length, 1, "hidden cell is not perceived as visible");
-});
-
-test(":visible selector works properly on children with a hidden parent (bug #4512)", function () {
-	expect(1);
-	jQuery("#table").css("display", "none").html("<tr><td>cell</td><td>cell</td></tr>");
-	equal(jQuery("#table td:visible").length, 0, "hidden cell children not perceived as visible");
-});
-
 test("internal ref to elem.runtimeStyle (bug #7608)", function () {
 	expect(1);
 	var result = true;
@@ -910,17 +883,51 @@ test( "cssHooks - expand", function() {
 test( "css opacity consistency across browsers (#12685)", function() {
 	expect( 4 );
 
-		var fixture = jQuery("#qunit-fixture"),
-				style = jQuery("<style>.opacityWithSpaces_t12685 { opacity: 0.1; filter: alpha(opacity = 10); } .opacityNoSpaces_t12685 { opacity: 0.2; filter: alpha(opacity=20); }</style>").appendTo(fixture),
-				el = jQuery("<div class='opacityWithSpaces_t12685'></div>").appendTo(fixture);
+	var fixture = jQuery("#qunit-fixture"),
+		style = jQuery("<style>.opacityWithSpaces_t12685 { opacity: 0.1; filter: alpha(opacity = 10); } .opacityNoSpaces_t12685 { opacity: 0.2; filter: alpha(opacity=20); }</style>").appendTo(fixture),
+		el = jQuery("<div class='opacityWithSpaces_t12685'></div>").appendTo(fixture);
 
-		equal( Math.round( el.css("opacity") * 100 ), 10, "opacity from style sheet (filter:alpha with spaces)" );
-		el.removeClass("opacityWithSpaces_t12685").addClass("opacityNoSpaces_t12685");
-		equal( Math.round( el.css("opacity") * 100 ), 20, "opacity from style sheet (filter:alpha without spaces)" );
-		el.css( "opacity", 0.3 );
-		equal( Math.round( el.css("opacity") * 100 ), 30, "override opacity" );
-		el.css( "opacity", "" );
-		equal( Math.round( el.css("opacity") * 100 ), 20, "remove opacity override" );
+	equal( Math.round( el.css("opacity") * 100 ), 10, "opacity from style sheet (filter:alpha with spaces)" );
+	el.removeClass("opacityWithSpaces_t12685").addClass("opacityNoSpaces_t12685");
+	equal( Math.round( el.css("opacity") * 100 ), 20, "opacity from style sheet (filter:alpha without spaces)" );
+	el.css( "opacity", 0.3 );
+	equal( Math.round( el.css("opacity") * 100 ), 30, "override opacity" );
+	el.css( "opacity", "" );
+	equal( Math.round( el.css("opacity") * 100 ), 20, "remove opacity override" );
+});
+
+test( ":visible/:hidden selectors", function() {
+	expect( 13 );
+
+	ok( jQuery("#nothiddendiv").is(":visible"), "Modifying CSS display: Assert element is visible" );
+	jQuery("#nothiddendiv").css({ display: "none" });
+	ok( !jQuery("#nothiddendiv").is(":visible"), "Modified CSS display: Assert element is hidden" );
+	jQuery("#nothiddendiv").css({"display": "block"});
+	ok( jQuery("#nothiddendiv").is(":visible"), "Modified CSS display: Assert element is visible");
+	ok( jQuery(window).is(":visible"), "Calling is(':visible') on window does not throw an error in IE.");
+	ok( jQuery(document).is(":visible"), "Calling is(':visible') on document does not throw an error in IE.");
+
+	ok( jQuery("#nothiddendiv").is(":visible"), "Modifying CSS display: Assert element is visible");
+	jQuery("#nothiddendiv").css("display", "none");
+	ok( !jQuery("#nothiddendiv").is(":visible"), "Modified CSS display: Assert element is hidden");
+	jQuery("#nothiddendiv").css("display", "block");
+	ok( jQuery("#nothiddendiv").is(":visible"), "Modified CSS display: Assert element is visible");
+
+	// ok( !jQuery("#siblingspan").is(":visible"), "Span with no content not visible (#13132)" );
+	// var $newDiv = jQuery("<div><span></span></div>").appendTo("#qunit-fixture");
+	// equal( $newDiv.find(":visible").length, 0, "Span with no content not visible (#13132)" );
+	// var $br = jQuery("<br/>").appendTo("#qunit-fixture");
+	// ok( !$br.is(":visible"), "br element not visible (#10406)");
+
+	var $table = jQuery("#table");
+	$table.html("<tr><td style='display:none'>cell</td><td>cell</td></tr>");
+	equal(jQuery("#table td:visible").length, 1, "hidden cell is not perceived as visible (#4512). Works on table elements");
+	$table.css("display", "none").html("<tr><td>cell</td><td>cell</td></tr>");
+	equal(jQuery("#table td:visible").length, 0, "hidden cell children not perceived as visible (#4512)");
+
+	t( "Is Visible", "#qunit-fixture div:visible:lt(2)", ["foo", "nothiddendiv"] );
+	t( "Is Not Hidden", "#qunit-fixture:hidden", [] );
+	t( "Is Hidden", "#form input:hidden", ["hidden1","hidden2"] );
 });
 
 asyncTest( "Clearing a Cloned Element's Style Shouldn't Clear the Original Element's Style (#8908)", 24, function() {
@@ -1001,6 +1008,29 @@ asyncTest( "Clearing a Cloned Element's Style Shouldn't Clear the Original Eleme
 	});
 
 	window.setTimeout( start, 1000 );
+});
+
+asyncTest( "Make sure initialized display value for disconnected nodes is correct (#13310)", 4, function() {
+	var display = jQuery("#display").css("display"),
+		div = jQuery("<div/>");
+
+	equal( div.css( "display", "inline" ).hide().show().appendTo("body").css( "display" ), "inline", "Initialized display value has returned" );
+	div.remove();
+
+	div.css( "display", "none" ).hide();
+	equal( jQuery._data( div[ 0 ], "olddisplay" ), undefined, "olddisplay is undefined after hiding a detached and hidden element" );
+	div.remove();
+
+	div.css( "display", "inline-block" ).hide().appendTo("body").fadeIn(function() {
+		equal( div.css( "display" ), "inline-block", "Initialized display value has returned" );
+		div.remove();
+
+		start();
+	});
+
+	equal( jQuery._data( jQuery("#display").css( "display", "inline" ).hide()[ 0 ], "olddisplay" ), display,
+	"display: * !Important value should used as initialized display" );
+	jQuery._removeData( jQuery("#display")[ 0 ] );
 });
 
 }

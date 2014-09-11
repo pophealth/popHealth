@@ -1,16 +1,24 @@
 {
   "name": "jquery",
-  "version": "1.9.0",
-  "main": "./jquery.js",
-  "dependencies": {},
+  "version": "1.9.1",
+  "description": "jQuery component",
+  "keywords": [
+    "jquery",
+    "component"
+  ],
+  "scripts": [
+    "jquery.js"
+  ],
+  "license": "MIT",
   "homepage": "https://github.com/jquery/jquery",
-  "_release": "1.9.0",
+  "_release": "1.9.1",
   "_resolution": {
     "type": "version",
-    "tag": "1.9.0",
-    "commit": "6361fdf2f30e41f565a953eb120f795774c65c4e"
+    "tag": "1.9.1",
+    "commit": "d71f6a53927ad02d728503385d15539b73d21ac8"
   },
-  "_source": "https://github.com/jquery/jquery.git",
-  "_target": "1.9.0",
-  "_originalSource": "jquery"
+  "_source": "git://github.com/jquery/jquery.git",
+  "_target": "~1.9.0",
+  "_originalSource": "jquery",
+  "_direct": true
 }

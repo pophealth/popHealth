@@ -1,4 +1,4 @@
-var curCSS, getStyles, iframe,
+var iframe, getStyles, curCSS,
 	ralpha = /alpha\([^)]*\)/i,
 	ropacity = /opacity\s*=\s*([^)]*)/,
 	rposition = /^(top|right|bottom|left)$/,
@@ -51,7 +51,7 @@ function isHidden( elem, el ) {
 }
 
 function showHide( elements, show ) {
-	var elem,
+	var display, elem, hidden,
 		values = [],
 		index = 0,
 		length = elements.length;
@@ -61,11 +61,13 @@ function showHide( elements, show ) {
 		if ( !elem.style ) {
 			continue;
 		}
+
 		values[ index ] = jQuery._data( elem, "olddisplay" );
+		display = elem.style.display;
 		if ( show ) {
 			// Reset the inline display of this element to learn if it is
 			// being hidden by cascaded rules or not
-			if ( !values[ index ] && elem.style.display === "none" ) {
+			if ( !values[ index ] && display === "none" ) {
 				elem.style.display = "";
 			}
 
@@ -75,8 +77,15 @@ function showHide( elements, show ) {
 			if ( elem.style.display === "" && isHidden( elem ) ) {
 				values[ index ] = jQuery._data( elem, "olddisplay", css_defaultDisplay(elem.nodeName) );
 			}
-		} else if ( !values[ index ] && !isHidden( elem ) ) {
-			jQuery._data( elem, "olddisplay", jQuery.css( elem, "display" ) );
+		} else {
+
+			if ( !values[ index ] ) {
+				hidden = isHidden( elem );
+
+				if ( display && display !== "none" || !hidden ) {
+					jQuery._data( elem, "olddisplay", hidden ? display : jQuery.css( elem, "display" ) );
+				}
+			}
 		}
 	}
 
@@ -98,7 +107,7 @@ function showHide( elements, show ) {
 jQuery.fn.extend({
 	css: function( name, value ) {
 		return jQuery.access( this, function( elem, name, value ) {
-			var styles, len,
+			var len, styles,
 				map = {},
 				i = 0;
 
@@ -239,7 +248,7 @@ jQuery.extend({
 	},
 
 	css: function( elem, name, extra, styles ) {
-		var val, num, hooks,
+		var num, val, hooks,
 			origName = jQuery.camelCase( name );
 
 		// Make sure that we're working with the right name
@@ -265,7 +274,7 @@ jQuery.extend({
 		}
 
 		// Return, converting to number if forced or a qualifier was provided and val looks numeric
-		if ( extra ) {
+		if ( extra === "" || extra ) {
 			num = parseFloat( val );
 			return extra === true || jQuery.isNumeric( num ) ? num || 0 : val;
 		}
@@ -630,7 +639,10 @@ jQuery(function() {
 
 if ( jQuery.expr && jQuery.expr.filters ) {
 	jQuery.expr.filters.hidden = function( elem ) {
-		return ( elem.offsetWidth === 0 && elem.offsetHeight === 0 ) || (!jQuery.support.reliableHiddenOffsets && ((elem.style && elem.style.display) || jQuery.css( elem, "display" )) === "none");
+		// Support: Opera <= 12.12
+		// Opera reports offsetWidths and offsetHeights less than zero on some elements
+		return elem.offsetWidth <= 0 && elem.offsetHeight <= 0 ||
+			(!jQuery.support.reliableHiddenOffsets && ((elem.style && elem.style.display) || jQuery.css( elem, "display" )) === "none");
 	};
 
 	jQuery.expr.filters.visible = function( elem ) {

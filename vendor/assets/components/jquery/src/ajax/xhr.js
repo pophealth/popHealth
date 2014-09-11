@@ -101,12 +101,7 @@ if ( xhrSupported ) {
 
 					// Listener
 					callback = function( _, isAbort ) {
-
-						var status,
-							statusText,
-							responseHeaders,
-							responses,
-							xml;
+						var status, responseHeaders, statusText, responses;
 
 						// Firefox throws exceptions when accessing properties
 						// of an xhr when a network error occurred
@@ -136,13 +131,7 @@ if ( xhrSupported ) {
 								} else {
 									responses = {};
 									status = xhr.status;
-									xml = xhr.responseXML;
 									responseHeaders = xhr.getAllResponseHeaders();
-
-									// Construct response list
-									if ( xml && xml.documentElement /* #4958 */ ) {
-										responses.xml = xml;
-									}
 
 									// When requesting binary data, IE6-9 will throw an exception
 									// on any attempt to access responseText (#11426)

@@ -269,15 +269,9 @@ jQuery.fn.extend({
 			var next = this.nextSibling,
 				parent = this.parentNode;
 
-			if ( parent && this.nodeType === 1 || this.nodeType === 11 ) {
-
+			if ( parent ) {
 				jQuery( this ).remove();
-
-				if ( next ) {
-					next.parentNode.insertBefore( elem, next );
-				} else {
-					parent.appendChild( elem );
-				}
+				parent.insertBefore( elem, next );
 			}
 		});
 	},
@@ -291,7 +285,8 @@ jQuery.fn.extend({
 		// Flatten any nested arrays
 		args = core_concat.apply( [], args );
 
-		var fragment, first, scripts, hasScripts, node, doc,
+		var first, node, hasScripts,
+			scripts, doc, fragment,
 			i = 0,
 			l = this.length,
 			set = this,
@@ -442,7 +437,7 @@ function cloneCopyEvent( src, dest ) {
 }
 
 function fixCloneNodeIssues( src, dest ) {
-	var nodeName, data, e;
+	var nodeName, e, data;
 
 	// We do not need to do anything for non-Elements
 	if ( dest.nodeType !== 1 ) {
@@ -537,8 +532,8 @@ jQuery.each({
 function getAll( context, tag ) {
 	var elems, elem,
 		i = 0,
-		found = typeof context.getElementsByTagName !== "undefined" ? context.getElementsByTagName( tag || "*" ) :
-			typeof context.querySelectorAll !== "undefined" ? context.querySelectorAll( tag || "*" ) :
+		found = typeof context.getElementsByTagName !== core_strundefined ? context.getElementsByTagName( tag || "*" ) :
+			typeof context.querySelectorAll !== core_strundefined ? context.querySelectorAll( tag || "*" ) :
 			undefined;
 
 	if ( !found ) {
@@ -565,7 +560,7 @@ function fixDefaultChecked( elem ) {
 
 jQuery.extend({
 	clone: function( elem, dataAndEvents, deepDataAndEvents ) {
-		var destElements, srcElements, node, i, clone,
+		var destElements, node, clone, i, srcElements,
 			inPage = jQuery.contains( elem.ownerDocument, elem );
 
 		if ( jQuery.support.html5Clone || jQuery.isXMLDoc(elem) || !rnoshimcache.test( "<" + elem.nodeName + ">" ) ) {
@@ -620,7 +615,8 @@ jQuery.extend({
 	},
 
 	buildFragment: function( elems, context, scripts, selection ) {
-		var contains, elem, tag, tmp, wrap, tbody, j,
+		var j, elem, contains,
+			tmp, tag, tbody, wrap,
 			l = elems.length,
 
 			// Ensure a safe fragment
@@ -746,7 +742,7 @@ jQuery.extend({
 	},
 
 	cleanData: function( elems, /* internal */ acceptData ) {
-		var data, id, elem, type,
+		var elem, type, id, data,
 			i = 0,
 			internalKey = jQuery.expando,
 			cache = jQuery.cache,
@@ -784,7 +780,7 @@ jQuery.extend({
 						if ( deleteExpando ) {
 							delete elem[ internalKey ];
 
-						} else if ( typeof elem.removeAttribute !== "undefined" ) {
+						} else if ( typeof elem.removeAttribute !== core_strundefined ) {
 							elem.removeAttribute( internalKey );
 
 						} else {
