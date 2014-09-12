@@ -5,7 +5,7 @@ include Devise::TestHelpers
 
     setup do
       dump_database
-      collection_fixtures 'users', 'providers', 'measures'
+      collection_fixtures 'users', 'providers', 'measures','roles'
       @user = User.where({email: 'admin@test.com'}).first
       @provider = Provider.where({family_name: "Darling"}).first
       sign_in @user

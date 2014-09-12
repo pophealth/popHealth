@@ -10,7 +10,7 @@ module Api
       collection_fixtures 'records'
       collection_fixtures 'patient_cache'
       collection_fixtures 'providers'
-      collection_fixtures 'users'
+      collection_fixtures 'users','roles'
 
       @staff = User.where({email: 'noadmin@test.com'}).first
       @admin = User.where({email: 'admin@test.com'}).first
