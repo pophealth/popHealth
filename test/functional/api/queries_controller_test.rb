@@ -60,7 +60,7 @@ module Api
 
       QME::QualityReport.where({}).each do |q|
         if q.filters
-          q.filters["providers"] = [@provider.id]       
+          q.filters["providers"] = [@provider.id]
           q.save
         end
       end
@@ -232,7 +232,7 @@ module Api
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212
       assert_response 403, "staff should not be able all reports for no npi"
     end
-    
+
     test "create npi user" do
       sign_in @npi_user
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@provider.id]
@@ -270,8 +270,8 @@ module Api
       assert_response :success
       json = JSON.parse(response.body)
       assert_equal 1, json.length
-    
-    end	
+
+    end
 
     test "index admin" do
       skip "need to implement"

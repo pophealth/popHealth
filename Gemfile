@@ -9,7 +9,6 @@ gem 'nokogiri'
 gem 'rubyzip'
 gem 'hquery-patient-api', '1.0.4'
 
-#gem 'sentient_user', '0.3.3' # added to be able to access current_user inside the Provider model, for filtering
 
 gem 'sshkit'
 # Should be removed in the future. This is only used for the
