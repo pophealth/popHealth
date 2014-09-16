@@ -215,8 +215,6 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
-    sentient_user (0.3.3)
-      railties (>= 3.1)
     simplecov (0.9.0)
       docile (~> 1.1.0)
       multi_json
@@ -302,7 +300,6 @@ DEPENDENCIES
   rails (~> 4.1.2)
   rubyzip
   sass-rails (~> 4.0.2)
-  sentient_user (= 0.3.3)
   simplecov
   sshkit
   therubyracer (~> 0.12.0)

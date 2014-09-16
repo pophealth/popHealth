@@ -5,7 +5,7 @@
     </div>
     <div class="collapse navbar-collapse in">
       <ul class="nav navbar-nav pull-left" style="margin-top: 10px">
-        <li class="location"><% if Provider.root %><%= Provider.root.given_name %><% else %><%= APP_CONFIG['practice_name'] %><% end %> <span class="time"> 2012</span></li>
+        <li class="location"><% if Provider.user_root(current_user) %><%= Provider.user_root(current_user).given_name %><% else %><%= APP_CONFIG['practice_name'] %><% end %> <span class="time"> 2012</span></li>
       </ul>
        <ul class="nav pull-right">
         <li class="divider-vertical"></li>

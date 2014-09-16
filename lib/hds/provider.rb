@@ -10,7 +10,7 @@ class Provider
   scope :selected, ->(provider_ids) { any_in(:_id => provider_ids)}
   scope :selected_or_all, ->(provider_ids) { provider_ids.nil? || provider_ids.empty? ? Provider.all : Provider.selected(provider_ids) }
 
-  after_find :check_for_root_user
+#  after_find :check_for_root_user
 
   belongs_to :team
 
@@ -75,23 +75,15 @@ class Provider
     end
     return provider
   end
-
-  def check_for_root_user
-    if User.current && self._id == User.current.provider
-      self.parent_id = nil
-      self.parent_ids = nil
-    end
-  end
-
 end
 
 # Override with pulling the User's provider
 module Mongoid
   module Tree
     module ClassMethods
-      def root
-        if User.current && User.current.provider
-          result = Provider.find(User.current.provider)
+      def user_root(current_user)
+        if current_user && current_user.provider
+          result = Provider.find(current_user.provider)
           result.parent_id = nil
           result.parent_ids = nil
           result

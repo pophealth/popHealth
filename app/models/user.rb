@@ -5,7 +5,6 @@ class User
 
   include ActiveModel::MassAssignmentSecurity
   include Mongoid::Document
-  include SentientUser
 
   after_initialize :build_preferences, unless: Proc.new { |user| user.preferences.present? }
   before_save :denullify_arrays
