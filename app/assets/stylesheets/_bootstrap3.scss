@@ -165,8 +165,8 @@ h4 {
 .btn-checkbox {
   @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
   text-align: left;
-  text-transform: initial;
-  white-space: initial;
+  text-transform: none;
+  white-space: normal;
   &.btn-block {
     padding: $padding-base-vertical $padding-base-horizontal;
   }
