@@ -7,7 +7,6 @@
     <th>DOB</th>
     <th>Sex</th>
     {{#if isEpisodeOfCare}}<th># Encounters</th>{{/if}}
-    <th>Exclusion</th>
   </tr>
 </thead>
 {{#collection tag='tbody' item-context=patientContext}}
@@ -22,8 +21,5 @@
       {{!EoC measures track number of encounters in the numerator}}
       <td>{{NUMER}}</td>
     {{/if}}
-    <td>
-      <button class="btn-default">Exclude</button>
-    </td>
   </tr>
 {{/collection}}
