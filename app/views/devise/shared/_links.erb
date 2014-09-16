@@ -40,13 +40,13 @@
     <% end -%>
   <% end -%>
 </div>
- 
+
 
 <div class="links info">
 
     popHealth commit: <%= PopHealth::Application.config.commit %><br>
     last tag: <%= PopHealth::Application.config.tag %><br>
     bundle <%= (b = HealthDataStandards::CQM::Bundle.all.sort(:version => :desc).first) ? b.version : 'n/a' %><br>
-    <a href="http://www.hhs.gov/healthit/">Office of the National Coordinator for Health Information Technology</a> |
+    Office of the National Coordinator for Health Information Technology |
     <a href="http://www.mitre.org" target="_blank">MITRE</a>
 </div>
