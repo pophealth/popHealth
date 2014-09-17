@@ -48,11 +48,11 @@ class Thorax.Views.EditMeasureView extends Thorax.View
     'change #measureResultMeaningSelect' : 'update_lower_is_better',
     'change #measureCategorySelect' : 'show_hide_custom_category',
     'input #newMeasureCategoryInput' : 'update_measure_category_input'
+    ready: 'setup'
 
   initialize: ->
     @categories = new Thorax.Collections.Categories PopHealth.categories, parse: true
     @$("#newMeasureCategoryInput")
-    @setup()
 
   setup: ->
     @editDialog = @$("#editMeasureDialog")
@@ -65,7 +65,7 @@ class Thorax.Views.EditMeasureView extends Thorax.View
   higher_is_better: -> !@lowerIsNotSet() and !@lower_is_better
 
   categoryContext: (cat, index) ->
-    selectedCategory = cat.get('category') == @category
+    selectedCategory = cat.get('category') == @model.get('category')
     isFirst = index == 0
     _(cat.toJSON()).extend selected: selectedCategory, first: isFirst
 
@@ -78,31 +78,26 @@ class Thorax.Views.EditMeasureView extends Thorax.View
       @measureCategory.value = ""
     else
       @newMeasureInput.hide()
-      console.log(event.target.value)
       @measureCategory.value = event.target.value
 
   update_measure_category_input: (event) ->
     @measureCategory.value = event.target.value
 
-  saveToModel: ->
-    formData = new FormData($('form')[0]);
-    _this = @
-    $.ajax( url: @$("form").attr('action'),
-    type: 'POST',
-    success: (res)->
-      location.reload(true)
-      _this.wait.modal('hide')
-    ,
-    error: (res)->
-      _this.wait.modal('hide')
-      _this.parent.displayError(res)
-    ,
-    data: formData,
-    cache: false,
-    contentType: false,
-    processData: false
-    )
-    false
+  saveToModel: (e) ->
+    e.preventDefault()
+    formData = _(@serialize()).pick('hqmf_id', 'measure')
+    # FIXME use @model.save()
+    $.ajax
+      url: @$("form").attr('action')
+      type: 'POST'
+      success: (res) =>
+        location.reload(true)
+        @wait.modal('hide')
+      error: (res) =>
+        @wait.modal('hide')
+        @parent.displayError(res)
+      data: formData
+      cache: false
 
   display: ->
     @editDialog.modal(

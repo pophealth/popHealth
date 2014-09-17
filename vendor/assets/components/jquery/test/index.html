@@ -16,16 +16,16 @@
 	<script src="qunit/qunit/qunit.js"></script>
 	<script>
 		(function() {
-			var src = "../dist/jquery.js";
+			var src = "../dist/jquery.min.js";
 
 			// Config parameter to use minified jQuery
 			QUnit.config.urlConfig.push({
-				id: "min",
-				label: "Load minified",
-				tooltip: "Load the minified version of the jQuery build"
+				id: "dev",
+				label: "Load unminified",
+				tooltip: "Load the development (unminified) jQuery file"
 			});
-			if ( QUnit.urlParams.min ) {
-				src = "../dist/jquery.min.js";
+			if ( QUnit.urlParams.dev ) {
+				src = "../dist/jquery.js";
 			}
 
 			// Config parameter to force basic code paths
@@ -87,7 +87,7 @@
 	<!-- Test HTML -->
 	<!-- this iframe is outside the #qunit-fixture so it won't reload constantly wasting time, but it means the tests must be "safe" and clean up after themselves -->
 	<iframe id="loadediframe" name="loadediframe" style="display:none;" src="data/iframe.html"></iframe>
-	<dl id="dl" style="position:absolute;top:-32767px;left:-32767px;width:1px">
+	<dl id="dl" style="position:absolute;top:-32767px;left:-32767px;width:1px;">
 	<div id="qunit-fixture">
 		<p id="firstp">See <a id="simon1" href="http://simon.incutio.com/archive/2003/03/25/#getElementsBySelector" rel="bookmark">this blog entry</a> for more information.</p>
 		<p id="ap">
@@ -318,6 +318,7 @@ Z</textarea>
 			</div>
 
 			<div id="fx-tests"></div>
+			<span id="display"></span>
 		</div>
 	</div>
 	</dl>

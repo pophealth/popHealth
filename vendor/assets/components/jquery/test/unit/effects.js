@@ -283,14 +283,31 @@ test("animate native inline width/height", function() {
 	}
 });
 
-test("animate block width/height", function() {
-	expect(3);
+test( "animate block width/height", function() {
+	expect( 3 );
 	stop();
-	jQuery("#foo").css({ display: "block", width: 20, height: 20 }).animate({ width: 42, height: 42 }, 100, function() {
-		equal( jQuery(this).css("display"), "block", "inline-block was not set on block element when animating width/height" );
-		equal( this.offsetWidth, 42, "width was animated" );
-		equal( this.offsetHeight, 42, "height was animated" );
-		start();
+
+	jQuery("<div>").appendTo("#qunit-fixture").css({
+		display: "block",
+		width: 20,
+		height: 20,
+		paddingLeft: 60
+	}).animate({
+		width: 42,
+		height: 42
+	}, {
+		duration: 100,
+		step: function() {
+			if ( jQuery( this ).width() > 42 ) {
+				ok( false, "width was incorrectly augmented during animation" );
+			}
+		},
+		complete: function() {
+			equal( jQuery( this ).css("display"), "block", "inline-block was not set on block element when animating width/height" );
+			equal( jQuery( this ).width(), 42, "width was animated" );
+			equal( jQuery( this ).height(), 42, "height was animated" );
+			start();
+		}
 	});
 });
 
@@ -1770,16 +1787,22 @@ asyncTest("Animation callbacks (#11797)", 15, function() {
 	});
 });
 
-test( "Animate properly sets overflow hidden when animating width/height (#12117)", 4, function() {
+test( "Animate properly sets overflow hidden when animating width/height (#12117)", 8, function() {
 	jQuery.each( [ "height", "width" ], function( _, prop ) {
 		jQuery.each( [ 100, 0 ], function( _, value ) {
-			var div = jQuery("<div>"),
+			var div = jQuery("<div>").css( "overflow", "auto" ),
 				props = {};
 			props[ prop ] = value;
 			div.animate( props, 1 );
 			equal( div.css( "overflow" ), "hidden",
 				"overflow: hidden set when animating " + prop + " to " + value );
 			div.stop();
+			if ( jQuery.support.shrinkWrapBlocks ) {
+				ok( true, "cannot restore overflow, shrinkWrapBlocks" );
+			} else {
+				equal( div.css( "overflow" ), "auto",
+					"overflow: auto restored after animating " + prop + " to " + value );
+			}
 		});
 	});
 });

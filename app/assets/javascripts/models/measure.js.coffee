@@ -5,6 +5,7 @@ class Thorax.Models.Measure extends Thorax.Model
     subId = @get 'sub_id'
     url += "/#{@get 'hqmf_id'}" unless @isNew()
     url += "?sub_id=#{subId}" if subId = @get('sub_id')
+    return url
   parse: (attrs) ->
     data = _(attrs).omit 'subs', 'sub_ids'
     subs = for sub in attrs.subs or []
@@ -13,6 +14,13 @@ class Thorax.Models.Measure extends Thorax.Model
       subData
     attrs.submeasures = new SubCollection subs, parent: this
     attrs
+  sync: (method, model, options) ->
+    if method isnt 'update'
+      super
+    else
+      options.url = 'api/measures/update_metadata'
+      super('create', model, options) # POST to this URL to update
+
 
 class Thorax.Collections.Measures extends Thorax.Collection
   model: Thorax.Models.Measure

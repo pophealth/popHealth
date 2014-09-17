@@ -33,13 +33,13 @@
           <div class="form-group">
             <label for="measureResultMeaningSelect" class="control-label">Measure Goal:</label>
               <div class="col-lg-12">
-                <select class="form-control" name="measureResultMeaningSelect" id="measureResultMeaningSelect">
+                <select class="form-control" name="lower_is_better" id="measureResultMeaningSelect">
                   {{#if lowerIsNotSet}}
-                    <option id="neither_is_better_dd" value="nil" selected>Neither is better</option>
+                    <option id="neither_is_better_dd" value="" selected>Neither is better</option>
                     <option id="lower_is_better_dd" value="true">Lower is better</option>
                     <option id="higher_is_better_dd" value="false">Higher is better</option>
                   {{else}}
-                    <option id="neither_is_better_dd" value="nil">Neither is better</option>
+                    <option id="neither_is_better_dd" value="">Neither is better</option>
                     <option id="lower_is_better_dd" value="true" {{#if lower_is_better}}selected {{/if}}>Lower is better</option>
                     <option id="higher_is_better_dd" value="false" {{#if higher_is_better}}selected {{/if}}>Higher is better</option>
                   {{/if}}
@@ -50,7 +50,7 @@
           <div class="form-group">
             <label for="measureCategorySelect" class="control-label">Category:</label>
             <div class="col-lg-12">
-              {{#collection categories tag="select" class="form-control" name="measureCategorySelect" id="measureCategorySelect" item-context="categoryContext"}}
+              {{#collection categories tag="select" class="form-control" name="category" id="measureCategorySelect" item-context="categoryContext"}}
                 {{#if first}}
                   <optgroup label="New Category">
                     <option value="New" id="newCategoryOption">New</option>
@@ -60,7 +60,7 @@
               {{/collection}}
             </div>
             <div class="col-lg-12">
-              <input type="text" id="newMeasureCategoryInput" class="form-control" placeholder="enter new category" />
+              <input type="text" id="newMeasureCategoryInput" name="new_category" class="form-control" placeholder="enter new category">
             </div>
           </div>
         </form>
