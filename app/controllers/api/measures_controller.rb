@@ -113,7 +113,7 @@ module Api
     end
 
     def update_metadata_params
-      params[:measure][:lower_is_better] = nil if params[:measure][:lower_is_better] == "nil"
+      params[:measure][:lower_is_better] = nil if params[:measure][:lower_is_better].blank?
     end
 
   end
