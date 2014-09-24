@@ -4,6 +4,7 @@ class UserTest < ActiveSupport::TestCase
 
   setup do
     dump_database
+    collection_fixtures 'roles'
     collection_fixtures 'users'
 
     @user = User.where({email: 'noadmin@test.com'}).first

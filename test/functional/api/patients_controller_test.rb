@@ -6,7 +6,7 @@ require 'test_helper'
 
     setup do
       dump_database
-      collection_fixtures 'measures', 'patient_cache', 'records', 'users'
+      collection_fixtures 'measures', 'patient_cache', 'records', 'users','roles'
       @user = User.where({email: 'admin@test.com'}).first
       sign_in @user
     end

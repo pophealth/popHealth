@@ -198,6 +198,7 @@ GEM
     rest-client (1.6.8)
       mime-types (~> 1.16)
       rdoc (>= 2.4.2)
+    rolify (3.4.0)
     rubyzip (0.9.9)
     sass (3.2.19)
     sass-rails (4.0.3)
@@ -288,6 +289,7 @@ DEPENDENCIES
   pry-byebug
   quality-measure-engine (= 3.1.0)
   rails (~> 4.1.2)
+  rolify
   rubyzip
   sass-rails (~> 4.0.2)
   simplecov

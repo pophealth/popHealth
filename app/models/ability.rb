@@ -20,13 +20,13 @@ class Ability
 
     user ||= User.new
 
-    if user.admin?
+    if user.has_role?(:admin)
       can :manage, :all
       # can [:create,:delete], Record
       # can :manage, Provider
       # can [:read, :recalculate,:create, :deleted], QME::QualityReport
       # can [:create,:delete], HealthDataStandards::CQM::Measure
-    elsif user.staff_role?
+    elsif user.has_role?(:staff)
       can :read, HealthDataStandards::CQM::Measure
       can :read, Record
       can :manage, Provider
@@ -39,12 +39,20 @@ class Ability
         patient.providers.map(&:npi).include?(user.npi)
       end
       can [:read,:delete, :recalculate, :create], QME::QualityReport do |qr|
-         provider = Provider.by_npi(user.npi).first
-         provider ? (qr.filters || {})["providers"].include?(provider.id) : false
+         providers = Provider.with_role(:staff, user)
+         provider_ids = []
+         providers.each do |p|
+           provider_ids.concat  p.descendants_and_self.collect(&:id)
+         end
+         !(provider_ids & (qr.filters || {})["providers"]).empty?
       end
       can :read, HealthDataStandards::CQM::Measure
       can :read, Provider do |pv|
-        user.npi && (pv.npi == user.npi)
+        ret = false
+        pv.ancestors_and_self.each do |p|
+          ret = true if user.has_role?(:staff, p)
+        end
+        ret
       end
       can :manage, User, id: user.id
       cannot :manage, User unless APP_CONFIG['allow_user_update']

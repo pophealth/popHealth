@@ -108,14 +108,14 @@
       </select>
     </td>
     <td>
-      <% if user.admin? -%>
+      <% if user.has_role?(:admin) -%>
       Yes - <a href="#" class="demote" data-role="admin" data-username="<%= user.username %>">revoke</a>
       <% else -%>
       No - <a href="#" class="promote" data-role="admin" data-username="<%= user.username %>">grant</a>
       <% end -%>
     </td>
     <td>
-      <% if user.staff_role? -%>
+      <% if user.has_role?(:staff) -%>
       Yes - <a href="#" class="demote" data-role="staff_role" data-username="<%= user.username %>">revoke</a>
       <% else -%>
       No - <a href="#" class="promote" data-role="staff_role" data-username="<%= user.username %>">grant</a>

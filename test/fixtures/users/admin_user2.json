@@ -1,4 +1,4 @@
-{"admin":true,
+{ "_id" : "admin2",
  "agree_license":true,
  "approved":true,
  "company":null,
@@ -11,6 +11,9 @@
  "npi":null,
  "registry_id":null,
  "registry_name":null,
- "staff_role":true,
+ "role_ids" :[
+    "staff_role",
+    "admin_role"
+ ],
  "tin":null,
  "username":"adminuser2"}

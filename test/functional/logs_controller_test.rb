@@ -5,6 +5,7 @@ class LogsControllerTest < ActionController::TestCase
 
   setup do
     dump_database
+    collection_fixtures 'roles'
     collection_fixtures 'users'
 
     @user = User.where({email: 'admin@test.com'}).first

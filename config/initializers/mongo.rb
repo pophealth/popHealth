@@ -1,3 +1,4 @@
+
 MONGO_DB = Mongoid.default_session
 
 # js_collection = MONGO_DB['system.js']

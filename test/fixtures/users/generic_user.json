@@ -1,4 +1,4 @@
-{"admin":false,
+{"_id" : "gen1",
  "agree_license":true,
  "approved":true,
  "company":null,
@@ -11,6 +11,8 @@
  "npi":null,
  "registry_id":null,
  "registry_name":null,
- "staff_role":true,
+ "role_ids" :[
+    "staff_role"
+ ],
  "tin":null,
  "username":"genericuser"}

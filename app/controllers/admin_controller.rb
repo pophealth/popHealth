@@ -113,10 +113,10 @@ class AdminController < ApplicationController
 
     if user
       if direction == :promote
-        user.update_attribute(role, true)
+        user.add_role(role)
         render :text => "Yes - <a href=\"#\" class=\"demote\" data-role=\"#{role}\" data-username=\"#{username}\">revoke</a>"
       else
-        user.update_attribute(role, false)
+        user.remove_role(role)
         render :text => "No - <a href=\"#\" class=\"promote\" data-role=\"#{role}\" data-username=\"#{username}\">grant</a>"
       end
     else

@@ -5,7 +5,7 @@ class User
 
   include ActiveModel::MassAssignmentSecurity
   include Mongoid::Document
-
+  rolify
   after_initialize :build_preferences, unless: Proc.new { |user| user.preferences.present? }
   before_save :denullify_arrays
   before_create :set_defaults
@@ -80,7 +80,7 @@ class User
   validates :username, :presence => true, length: {minimum: 3, maximum: 254}
 
   def set_defaults
-    self.staff_role ||= APP_CONFIG["default_user_staff_role"]
+    self.add_role :staff if APP_CONFIG["default_user_staff_role"]
     self.approved ||= APP_CONFIG["default_user_approved"]
     true
   end
@@ -128,7 +128,7 @@ class User
   # =============
 
   def grant_admin
-    update_attribute(:admin, true)
+    self.add_role :admin
     update_attribute(:approved, true)
   end
 
@@ -137,7 +137,26 @@ class User
   end
 
   def revoke_admin
-    update_attribute(:admin, false)
+    self.remove_role :admin
+    self[:admin]
+  end
+
+  def admin?
+    self.has_role?( :admin )
+  end
+
+  def staff_role? 
+    self.has_role?( :staff )
+  end
+
+  def provider_root
+    provider = nil
+    if self.admin? || self.staff_role?
+      provider =  Provider.root 
+    else
+      provider = Provider.with_role(:staff, self).first
+    end
+    provider
   end
 
 end

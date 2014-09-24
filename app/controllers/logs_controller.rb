@@ -20,7 +20,7 @@ class LogsController < ApplicationController
     end
 
     where = {}
-    where[:username] = current_user.username unless current_user.admin?
+    where[:username] = current_user.username unless current_user.has_role?( :admin )
 
     start_date = date_param_to_date(params[:log_start_date])
     if start_date

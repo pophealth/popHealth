@@ -115,7 +115,7 @@
         @quality_report = QME::QualityReport.find(params[:quality_report_id])
         authorize! :read, @quality_report
         @query["provider.npi"] = {"$in" => @quality_report.filters["providers"]}
-      elsif current_user.admin?
+      elsif current_user.has_role?( :admin )
       else
          @query["provider.npi"] = current_user.npi
       end

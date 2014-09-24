@@ -7,6 +7,7 @@ class UserRakeTest < ActiveSupport::TestCase
   setup do
 
     dump_database
+    collection_fixtures 'roles'
     collection_fixtures 'users'
 
     @unapproved_user = User.where({email: 'unapproved@test.com'}).first
