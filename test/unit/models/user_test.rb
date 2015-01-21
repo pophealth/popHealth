@@ -26,4 +26,12 @@ class UserTest < ActiveSupport::TestCase
     assert_equal [], @user.preferences['selected_measure_ids']
   end
 
+  test "user preferences: setting display provider tree" do
+    @user.preferences['should_display_provider_tree'] = true
+    assert @user.save
+    @user.reload
+    assert_equal true, @user.preferences['selected_measure_ids']
+  end
+
+
 end
