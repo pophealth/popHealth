@@ -30,8 +30,6 @@ class UserTest < ActiveSupport::TestCase
     @user.preferences['should_display_provider_tree'] = true
     assert @user.save
     @user.reload
-    assert_equal true, @user.preferences['selected_measure_ids']
+    assert_equal true, @user.preferences['should_display_provider_tree']
   end
-
-
 end
