@@ -17,6 +17,7 @@ class Thorax.Views.ProviderView extends Thorax.View
           @dashboardView.filterEHMeasures(@model.providerType() == Config.ehExclusionType)
 
 
+# Layout for provider index; includes search bar and provider table
 class Thorax.Views.ProvidersView extends Thorax.View
   template: JST['providers/index_layout']
   events:
@@ -37,9 +38,10 @@ class Thorax.Views.ProvidersView extends Thorax.View
     $sb = $(e.target).parent().prev('.provider-search')
     $sb.val('').trigger('keyup')
 
+# Provider table
 class Thorax.Views.ProvidersIndex extends Thorax.View
   tagName: 'table'
-  className: "table"
+  className: 'table'
   template: JST['providers/index']
   fetchTriggerPoint: 500 #Fetch data when we're 500 pixels away from the bottom
   itemContext: (model, index) ->
