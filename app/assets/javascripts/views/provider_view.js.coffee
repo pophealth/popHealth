@@ -39,7 +39,7 @@ class Thorax.Views.ProvidersView extends Thorax.View
 
 class Thorax.Views.ProvidersIndex extends Thorax.View
   tagName: 'table'
-  className: "table providerTable"
+  className: "table"
   template: JST['providers/index']
   fetchTriggerPoint: 500 #Fetch data when we're 500 pixels away from the bottom
   itemContext: (model, index) ->
