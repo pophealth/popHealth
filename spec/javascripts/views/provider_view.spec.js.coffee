@@ -13,4 +13,3 @@ describe 'Provider Index', ->
   it 'shows all providers', ->
     expect(@providerView.$el).toContainText @provider1.get 'given_name'
     expect(@providerView.$el).toContainText @provider2.get 'given_name'
-
