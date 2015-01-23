@@ -7,7 +7,6 @@ describe 'Provider Index', ->
     @providerId = json['providers.json'][0]._id
     @providerCollection = new Thorax.Collection [@provider1,@provider2], model: Thorax.Models.Provider
     
-    
     @providerView = new Thorax.Views.ProvidersIndex collection: @providerCollection
     @providerView.render()
 
