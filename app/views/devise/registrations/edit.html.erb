@@ -139,6 +139,21 @@
           <% end %>
         </div>
       </div>
+      <div class="input-group-lg form-group form-horizontal row">
+        <div class="col-md-9">
+          <label class="control-label"><i class="fa fa-square"></i> Display Provider Tree on Dashboard</label>
+        </div>
+        <div class="btn-group btn-group-md col-md-3" data-toggle="buttons">
+          <%= f.fields_for :preferences do |t| %>
+          <label class="btn btn-default col-md-6<%= ' active' if t.object.should_display_provider_tree %>">
+            <%= t.radio_button :should_display_provider_tree, true, checked: t.object.should_display_provider_tree %> Yes
+          </label>
+          <label class="btn btn-default col-md-6<%= ' active' unless t.object.should_display_provider_tree %>">
+            <%= t.radio_button :should_display_provider_tree, false, checked: !t.object.should_display_provider_tree %> No
+          </label>
+          <% end %>
+        </div>
+      </div>    
     </fieldset>
 
 
