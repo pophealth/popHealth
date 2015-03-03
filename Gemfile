@@ -41,6 +41,7 @@ gem 'bootstrap-sass', '~> 3.0.3'
 gem 'sass-rails', "~> 4.0.2"
 gem 'coffee-rails'
 gem 'jquery-rails' # necessary for jquery_ujs w/data-method="delete" etc
+gem 'bootstrap-datepicker-rails', '1.3.0.2'
 gem 'uglifier'
 gem 'non-stupid-digest-assets' # support vendored non-digest assets
 

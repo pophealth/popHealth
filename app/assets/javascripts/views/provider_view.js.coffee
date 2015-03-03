@@ -3,11 +3,13 @@ class Thorax.Views.ProviderView extends Thorax.View
   initialize: ->
     @dashboardView = new Thorax.Views.Dashboard provider_id: @model.id, collection: new Thorax.Collections.Categories PopHealth.categories, parse: true
     if PopHealth.currentUser.shouldDisplayProviderTree() then @providerChart = PopHealth.viz.providerChart()
+    @startDate = PopHealth.currentUser.effectiveDateString(false)
   context: ->
     _(super).extend
       providerType: @model.providerType() || ""
       providerExtension: @model.providerExtension() || ""
   events:
+    'click .effective-date-btn' : 'setEffectiveDate'
     rendered: ->
       if @model.isPopulated()
         d3.select(@el).select("#providerChart").datum(@model.toJSON()).call(@providerChart)
@@ -15,6 +17,15 @@ class Thorax.Views.ProviderView extends Thorax.View
     model:
       change: ->
           @dashboardView.filterEHMeasures(@model.providerType() == Config.ehExclusionType)
+  setEffectiveDate: (e) ->
+    effectiveDate = $(".effective-date-picker").val()
+    user = PopHealth.currentUser.get 'username'
+    $.ajax {
+      type: "POST",
+      url: "home/set_reporting_period",
+      data: {"effective_date": effectiveDate, "username": user}
+      success: (d) -> location.reload()
+    }    
 
 
 # Layout for provider index; includes search bar and provider table

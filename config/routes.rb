@@ -19,6 +19,7 @@ PopHealth::Application.routes.draw do
   post 'api/measures/finalize'
   post 'api/measures/update_metadata'
   get "logs/index"
+  post 'home/set_reporting_period'
 
   root :to => 'home#index'
 
