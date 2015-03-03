@@ -12,7 +12,6 @@ class Thorax.Models.User extends Thorax.Model
     d = new Date(@get('effective_date') *1000)
     date = if end == true then (d.getUTCMonth() + 1 ) + '/' + d.getUTCDate() + '/' + d.getUTCFullYear() else (d.getUTCMonth() + 1) + '/' + d.getUTCDate() + '/' + (d.getUTCFullYear()-1)
 
-
   setPopulationChartScale: (value) ->
     @get('preferences').population_chart_scaled_to_IPP = value
     @save()
