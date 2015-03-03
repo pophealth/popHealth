@@ -20,13 +20,7 @@ class Thorax.Views.ProviderView extends Thorax.View
   setEffectiveDate: (e) ->
     effectiveDate = $(".effective-date-picker").val()
     user = PopHealth.currentUser.get 'username'
-    $.ajax {
-      type: "POST",
-      url: "home/set_reporting_period",
-      data: {"effective_date": effectiveDate, "username": user}
-      success: (d) -> location.reload()
-    }    
-
+    $.post "home/set_reporting_period", {"effective_date": effectiveDate, "username": user}, (d) -> location.reload()
 
 # Layout for provider index; includes search bar and provider table
 class Thorax.Views.ProvidersView extends Thorax.View
