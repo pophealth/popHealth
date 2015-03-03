@@ -41,4 +41,11 @@ class UserTest < ActiveSupport::TestCase
     assert_response :success
     assert_equal @user.effective_date, time  
   end
+  
+  test "default effective date for new user"
+    sign_in User.where({email: "admin@test.com"}).first
+    time = Time.gm(2013,12,31)
+    user = User.new    
+    assert_equal time, user.effective_date  
+  end
 end
