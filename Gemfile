@@ -1,9 +1,9 @@
 source 'http://rubygems.org'
 
 gem 'rails', '~> 4.1.2'
-gem 'quality-measure-engine', '3.1.1'
+gem 'quality-measure-engine', '3.1.2'
 gem "hqmf2js", :git=> "https://github.com/pophealth/hqmf2js.git"
-gem 'health-data-standards', '3.5.0'
+gem 'health-data-standards', '3.5.3'
 #gem 'health-data-standards', :path=> '../health-data-standards'
 gem 'nokogiri'
 gem 'rubyzip'
