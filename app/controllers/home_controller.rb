@@ -15,7 +15,7 @@ class HomeController < ApplicationController
       user.effective_date = effective_date
       user.save! 
     end
-    render :json => :set_reporting_period
+    render :json => :set_reporting_period, status: 200
   end
 
   private
