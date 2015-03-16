@@ -11,9 +11,16 @@ class HomeController < ApplicationController
     user = User.where(username: params[:username]).first
     unless params[:effective_date] == nil || params[:effective_date] == '' 
       month, day, year = params[:effective_date].split('/')
-      effective_date = Time.gm(year.to_i, month.to_i, day.to_i).to_i
+      if year.length == 2
+        year = "20" + year
+      end
+      begin
+        effective_date = Time.gm(year.to_i, month.to_i, day.to_i).to_i
+      rescue
+        render :json => :set_reporting_period, status: 200
+      end
       user.effective_date = effective_date
-      user.save! 
+      user.save!
     end
     render :json => :set_reporting_period, status: 200
   end
