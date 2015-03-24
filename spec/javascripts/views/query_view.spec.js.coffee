@@ -6,7 +6,7 @@ describe 'QueryView', ->
     jasmine.Ajax.install()
     @json = getJSONFixture 
     submeasure = new Thorax.Models.Submeasure json['submeasure.json'], parse: true
-    @query = new Thorax.Models.Query {measure_id: submeasure.get('id'), sub_id: submeasure.get('sub_id'), effective_date: Config.effectiveDate}, parent: submeasure
+    @query = new Thorax.Models.Query {measure_id: submeasure.get('id'), sub_id: submeasure.get('sub_id'), effective_date: json['users.json'][0].effective_date}, parent: submeasure
     @queryView = new Thorax.Views.QueryView model: @query
     # respond to all query requests, as there will be several views with the query as its model
     queryJson = json['query.json']

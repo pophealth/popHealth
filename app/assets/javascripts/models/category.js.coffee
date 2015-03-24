@@ -1,11 +1,14 @@
 class Thorax.Models.Category extends Thorax.Model
   parse: (attrs) ->
     attrs = $.extend {}, attrs
-    attrs.measures = new Thorax.Collections.Measures attrs.measures, parent: this, parse: true
+    @effectiveDate = @collection?.effectiveDate #|| attrs.effectiveDate
+    attrs.measures = new Thorax.Collections.Measures attrs.measures, parent: this, parse: true #, effectiveDate: effectiveDate
     attrs
 
 class Thorax.Collections.Categories extends Thorax.Collection
   model: Thorax.Models.Category
+  initialize: (models, options) ->
+    @effectiveDate = options?.effectiveDate 
   comparator: (a, b) ->
     if a.get('category') is 'Core'
       -1

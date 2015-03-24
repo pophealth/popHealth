@@ -4,6 +4,29 @@ $title-circle-radius: 21px;
 
 // Custom styles that are part of the theme
 
+.dropdown {
+  position: relative;
+  z-index: 1000;
+}
+.effective-date-header{
+  font-size: 16px;
+}
+.effective-date-picker {
+  width: 100px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  height: 28px;
+  position: relative;
+  z-index: 100;
+}
+.effective-date-btn{
+  border: 0;
+  height: 28px;
+  width: 30px;
+  padding-left: 5px;
+}
+
 body {
   margin-bottom: 40px;
 }
