@@ -4,6 +4,7 @@ class SubmeasureView extends Thorax.View
     _(super).extend measurementPeriod: moment(PopHealth.currentUser.get 'effective_date' * 1000).format('YYYY')
   logicIsActive: -> @parent.logicIsActive()
   patientResultsIsActive: -> @parent.patientResultsIsActive()
+  effectiveDate: -> PopHealth.currentUser.get 'effective_date'
 
 
 class Thorax.Views.MeasureView extends Thorax.LayoutView

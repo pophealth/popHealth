@@ -35,6 +35,11 @@ body {
   word-wrap: break-word;
 }
 
+.export-patients-btn {
+  float: right;
+  width: 180px;
+}
+
 .measure {
   @extend .row;
   .measure-title-id {

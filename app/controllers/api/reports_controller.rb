@@ -40,6 +40,54 @@ module Api
                                    end_date, provider_filter), content_type: "attachment/xml"
     end
 
+    api :GET, "/reports/patients" #/:id/:sub_id/:effective_date/:provider_id/:patient_type"
+    param :id, String, :desc => "Measure ID", :required => true
+    param :sub_id, String, :desc => "Measure sub ID", :required => false
+    param :effective_date, String, :desc => 'Time in seconds since the epoch for the end date of the reporting period', :required => true
+    param :provider_id, String, :desc => 'Provider ID for filtering quality report', :required => true
+    param :patient_type, String, :desc => 'Outlier, Numerator, Denominator', :required => true
+    description <<-CDESC
+      This action will generate an Excel spreadsheet of relevant QRDA Category I Document based on the category of patients selected. 
+    CDESC
+    def patients
+      type = params[:patient_type]        
+      
+      qr = QME::QualityReport.where(:effective_date => params[:effective_date].to_i, :measure_id => params[:id], :sub_id => params[:sub_id], "filters.providers" => params[:provider_id])
+      records = (qr.count > 0) ? qr.first.patient_results : []
+   
+      book = Spreadsheet::Workbook.new
+      sheet = book.create_worksheet
+      format = Spreadsheet::Format.new :weight => :bold		  
+
+      # report info
+      
+      
+      # table headers
+      sheet.row(0).push 'MRN', 'First Name', 'Last Name', 'Gender', 'Birthdate'
+      sheet.row(0).default_format = format
+      row = 1;
+      
+      records.each do |record|
+        value = record.value
+        if value["#{type}"] == 1
+          sheet.row(row).push value[:medical_record_id], value[:first], value[:last], value[:gender], Time.at(value[:birthdate]).strftime("%D")
+          row +=1
+        end
+      end
+
+      today = Time.now.strftime("%D")  
+      filename = "patients_" + "#{type}" + "_" + "#{today}" + ".xls"
+      data = StringIO.new '';
+      book.write data;
+      send_data(data.string, {
+        :disposition => 'attachment',
+        :encoding => 'utf8',
+        :stream => false,
+        :type => 'application/excel',
+        :filename => filename
+      })
+    end
+
     api :GET, "/reports/cat1/:id/:measure_ids"
     formats ['xml']
     param :id, String, :desc => "Patient ID", :required => true
