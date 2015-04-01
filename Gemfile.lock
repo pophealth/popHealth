@@ -297,7 +297,7 @@ DEPENDENCIES
   rubyzip
   sass-rails (~> 4.0.2)
   simplecov
-  spreadsheet
+  spreadsheet (= 1.0.3)
   sshkit
   therubyracer (~> 0.12.0)
   thin

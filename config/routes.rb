@@ -43,6 +43,7 @@ PopHealth::Application.routes.draw do
     get 'reports/qrda_cat3.xml', :to =>'reports#cat3', :format => :xml
     get 'reports/cat1/:id/:measure_ids', :to =>'reports#cat1', :format => :xml
     get 'reports/patients', :to => 'reports#patients'
+    get 'reports/measures_spreadsheet', :to =>'reports#measures_spreadsheet'
     namespace :admin do
       resource :caches do
         collection do

@@ -102,6 +102,69 @@ module Api
       })
     end
 
+    api :GET, '/reports/measures_spreadsheet', "Retrieve a spreadsheet of measure calculations"
+    param :username, String, :desc => 'Username of user to generate reports for'
+    param :effective_date, String, :desc => 'Time in seconds since the epoch for the end date of the reporting period'
+    param :provider_id, String, :desc => 'The Provider ID for spreadsheet generation', :required => true
+    description <<-CDESC
+      This action will generate an Excel spreadsheet document containing a list of measure calculations for the current user's selected measures.
+    CDESC
+    def measures_spreadsheet
+      book = Spreadsheet::Workbook.new
+      sheet = book.create_worksheet
+      format = Spreadsheet::Format.new :weight => :bold
+
+      user = User.where(:username => params[:username]).first || current_user
+      effective_date = params[:effective_date] || current_user.effective_date      
+      measure_ids = user.preferences['selected_measure_ids']
+      
+      unless measure_ids.empty?
+        selected_measures = measure_ids.map{ |id| HealthDataStandards::CQM::Measure.where(:id => id)}
+        # report header
+        provider = Provider.find(params[:provider_id])
+        authorize! :read, provider
+
+        eff = Time.at(params[:effective_date].to_i)
+        end_date = eff.strftime("%D")
+        start_date = eff.month.to_s + "/" + eff.day.to_s + "/" + (eff.year-1).to_s
+
+        sheet.row(0).push "Reporting Period: ", start_date + " - " + end_date
+        sheet.row(1).push "Provider: ", provider.full_name
+        sheet.row(2).push "NPI: ", provider.npi
+        # table headers
+        sheet.row(4).push 'NQF ID', 'CMS ID', 'Sub ID', 'Title', 'Subtitle', 'Numerator', 'Denominator', 'Exclusions', 'Percentage'
+        sheet.row(4).default_format = format
+        (0..2).each do |i|
+          sheet.row(i).set_format(0, format)
+        end
+        r = 5
+
+        # populate rows
+        selected_measures.each do |measure|
+          measure.sort_by!{|s| s.sub_id}.each do |sub|            
+            query = {:measure_id => sub.measure_id, :sub_id => sub.sub_id, :effective_date => effective_date, 'filters.providers' => [provider.id.to_s]}
+            cache = QME::QualityReport.where(query).first     
+            percent =  percentage(cache.result['NUMER'].to_f, cache.result['DENOM'].to_f)
+            sheet.row(r).push sub.nqf_id, sub.cms_id, sub.sub_id, sub.name, sub.subtitle, cache.result['NUMER'], cache.result['DENOM'], cache.result['DENEX'], percent 
+            r = r + 1;
+          end
+        end
+      end
+      today = Time.now.strftime("%D")
+      filename = "measure-report_" + "#{today}" + ".xls"
+
+      data = StringIO.new '';
+      book.write data;
+      send_data(data.string, {
+        :disposition => 'attachment',
+        :encoding => 'utf8',
+        :stream => false,
+        :type => 'application/excel',
+        :filename => filename
+      })
+    end
+
+
     api :GET, "/reports/cat1/:id/:measure_ids"
     formats ['xml']
     param :id, String, :desc => "Patient ID", :required => true
@@ -141,6 +204,11 @@ module Api
       else 
         "N/A"
       end
+    end
+
+    def percentage(numer,denom)	
+      percent = (numer/denom * 100).round(1)
+      (denom==0)? 0 : percent
     end
 
     def generate_header(provider)
