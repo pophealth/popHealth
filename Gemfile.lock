@@ -200,7 +200,7 @@ GEM
     rest-client (1.6.8)
       mime-types (~> 1.16)
       rdoc (>= 2.4.2)
-    ruby-ole (1.2.11.7)
+    ruby-ole (1.2.11.8)
     rubyzip (0.9.9)
     sass (3.2.19)
     sass-rails (4.0.3)
@@ -214,7 +214,7 @@ GEM
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
     slop (3.6.0)
-    spreadsheet (0.9.7)
+    spreadsheet (1.0.3)
       ruby-ole (>= 1.0)
     sprockets (2.11.0)
       hike (~> 1.2)
@@ -297,7 +297,7 @@ DEPENDENCIES
   rubyzip
   sass-rails (~> 4.0.2)
   simplecov
-  spreadsheet (= 0.9.7)
+  spreadsheet
   sshkit
   therubyracer (~> 0.12.0)
   thin

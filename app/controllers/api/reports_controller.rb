@@ -51,21 +51,31 @@ module Api
     CDESC
     def patients
       type = params[:patient_type]        
-      
       qr = QME::QualityReport.where(:effective_date => params[:effective_date].to_i, :measure_id => params[:id], :sub_id => params[:sub_id], "filters.providers" => params[:provider_id])
       records = (qr.count > 0) ? qr.first.patient_results : []
    
       book = Spreadsheet::Workbook.new
       sheet = book.create_worksheet
       format = Spreadsheet::Format.new :weight => :bold		  
-
+      
+      measure = HealthDataStandards::CQM::Measure.where(id: params[:id]).first
+      
+      eff = Time.at(params[:effective_date].to_i)
+      end_date = eff.strftime("%D")
+      start_date = eff.month.to_s + "/" + eff.day.to_s + "/" + (eff.year-1).to_s
       # report info
-      
-      
+      sheet.row(0).push "Measure ID: ", "NQF" + measure.nqf_id + ", " + measure.cms_id
+      sheet.row(1).push "Name: ", measure.name
+      sheet.row(2).push "Description: ", measure.description
+      sheet.row(3).push "Reporting Period: ", start_date + " - " + end_date
+      sheet.row(4).push "Group: ", patient_type(type)
       # table headers
-      sheet.row(0).push 'MRN', 'First Name', 'Last Name', 'Gender', 'Birthdate'
-      sheet.row(0).default_format = format
-      row = 1;
+      sheet.row(6).push 'MRN', 'First Name', 'Last Name', 'Gender', 'Birthdate'
+      sheet.row(6).default_format = format
+      row = 7;
+      (0..4).each do |i| 
+        sheet.row(i).set_format(0, format) 
+      end
       
       records.each do |record|
         value = record.value
@@ -76,7 +86,7 @@ module Api
       end
 
       today = Time.now.strftime("%D")  
-      filename = "patients_" + "#{type}" + "_" + "#{today}" + ".xls"
+      filename = "patients_" + measure.cms_id + "_" + patient_type(type) + "_" + "#{today}" + ".xls"
       data = StringIO.new '';
       book.write data;
       send_data(data.string, {
@@ -110,6 +120,24 @@ module Api
 
 
     private
+    
+    def patient_type(type)
+      # IPP, NUMER, DENOM, antinumerator, DENEX
+      case type
+      when "IPP"
+        "Initial Patient Population"
+      when "NUMER" 
+        "Numerator"
+      when "DENOM"
+        "Denominator"
+      when "antinumerator"
+        "Outlier"
+      when "DENEX"
+        "Exclusion"
+      else 
+        "N/A"
+      end
+    end
 
     def generate_header(provider)
       header = Qrda::Header.new(APP_CONFIG["cda_header"])

@@ -8,7 +8,7 @@ gem 'health-data-standards', '3.5.3'
 gem 'nokogiri'
 gem 'rubyzip'
 gem 'hquery-patient-api', '1.0.4'
-gem 'spreadsheet', '0.9.7'
+gem 'spreadsheet'#, '0.9.7'
 gem 'sshkit'
 # Should be removed in the future. This is only used for the
 # admin log page. When the admin pages are switched to
