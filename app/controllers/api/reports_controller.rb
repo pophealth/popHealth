@@ -52,6 +52,9 @@ module Api
     def patients
       type = params[:patient_type]        
       qr = QME::QualityReport.where(:effective_date => params[:effective_date].to_i, :measure_id => params[:id], :sub_id => params[:sub_id], "filters.providers" => params[:provider_id])
+      
+      authorize! :read, Provider.find(params[:provider_id])
+
       records = (qr.count > 0) ? qr.first.patient_results : []
    
       book = Spreadsheet::Workbook.new
@@ -79,6 +82,7 @@ module Api
       
       records.each do |record|
         value = record.value
+        authorize! :read, Record.find_by(medical_record_number: value[:medical_record_id])
         if value["#{type}"] == 1
           sheet.row(row).push value[:medical_record_id], value[:first], value[:last], value[:gender], Time.at(value[:birthdate]).strftime("%D")
           row +=1
