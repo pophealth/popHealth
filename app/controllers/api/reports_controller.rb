@@ -144,8 +144,9 @@ module Api
           measure.sort_by!{|s| s.sub_id}.each do |sub|            
             query = {:measure_id => sub.measure_id, :sub_id => sub.sub_id, :effective_date => effective_date, 'filters.providers' => [provider.id.to_s]}
             cache = QME::QualityReport.where(query).first     
-            percent =  percentage(cache.result['NUMER'].to_f, cache.result['DENOM'].to_f)
-            sheet.row(r).push sub.nqf_id, sub.cms_id, sub.sub_id, sub.name, sub.subtitle, cache.result['NUMER'], cache.result['DENOM'], cache.result['DENEX'], percent 
+            performance_denominator = cache.result['DENOM'] - cache.result['DENEX']
+            percent =  percentage(cache.result['NUMER'].to_f, performance_denominator.to_f)
+            sheet.row(r).push sub.nqf_id, sub.cms_id, sub.sub_id, sub.name, sub.subtitle, cache.result['NUMER'], performance_denominator, cache.result['DENEX'], percent 
             r = r + 1;
           end
         end
@@ -206,7 +207,7 @@ module Api
       end
     end
 
-    def percentage(numer,denom)	
+    def percentage(numer, denom)	
       percent = (numer/denom * 100).round(1)
       (denom==0)? 0 : percent
     end
