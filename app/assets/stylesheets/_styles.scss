@@ -25,6 +25,46 @@ $title-circle-radius: 21px;
   padding-left: 5px;
 }
 
+.team-submeasure {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  .provider-info {
+    float: left;
+    margin-top: 15px;
+    width: 200px;
+    font-size: 16px;
+  }
+}
+
+.team-patient-btn {
+  float: right;
+}
+.team-provider-patients-btn {
+  margin-top: 18px;
+}
+
+.team-name {
+  float: left;
+  font-size: 20pt;
+  margin-left: 10px;  
+}
+.team-measure-header {
+  background-color: $gray-lighter;
+  @include make-row(0);
+}
+.team-measure-view {
+  margin-left: 10px;  
+}
+
+.userTeams { 
+  width: 50%;
+}
+
+#team_list_table tbody {
+  height: 300px;
+  overflow: scroll;
+}
+
 body {
   margin-bottom: 40px;
 }
@@ -58,6 +98,11 @@ body {
 .row-remainder {
   @include make-xs-column(5, 0);
 }
+
+.team-prov-row-remainder {
+  @include make-xs-column(6, 0);
+}
+
 
 .fraction-listing {
   margin: 10px 5px;

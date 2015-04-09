@@ -60,6 +60,7 @@ class User
   field :approved, type: Boolean
   field :staff_role, type: Boolean
   field :disabled, type: Boolean
+  field :teams, type: Array, default: []
 
   has_one :preferences, class_name: 'Preference'
 

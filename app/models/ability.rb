@@ -34,6 +34,9 @@ class Ability
       can :manage, User, id: user.id
       cannot :manage, User unless APP_CONFIG['allow_user_update']
       can [:read, :delete, :recalculate,:create] , QME::QualityReport
+      can :manage, Team do |team|
+        team.user_id == user._id
+      end
     elsif user.id
       can :read, Record do |patient|
         patient.providers.map(&:npi).include?(user.npi)

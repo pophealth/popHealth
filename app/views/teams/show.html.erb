@@ -1,0 +1,22 @@
+<div class='main'>
+  <h1><b>Name:</b> <%= @team.name %> </h1>
+  <%= button_to 'Back to Team List', teams_path, :method => 'get', :class => "btn btn-primary pull-right" %>
+  <%= button_to 'Edit Team', edit_team_path(@team), :method => 'get', :class => "btn btn-success pull-right"%>  
+  <h2> Providers </h2>
+  <table class="teamProviderTable display table-bordered table-hover">
+    <thead> 
+      <th> First Name </th> 
+      <th> Last Name </th>
+      <th> NPI </th> 
+    </thead>
+    <tbody> 
+      <% @providers.each do |prov| %>
+        <tr>
+          <td> <%= prov.given_name %> </td>
+          <td> <%= (prov.family_name) ? prov.family_name : '' %> </td>
+          <td> <%= prov.npi ? prov.npi : 'N/A'%> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

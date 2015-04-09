@@ -1,0 +1,83 @@
+class TeamsController < ApplicationController
+  before_action :set_team, only: [:show, :edit, :update, :destroy]
+  authorize_resource
+  # GET /teams
+  def index
+    @teams = @current_user.teams.map{|id| Team.find(id)}
+    validate_authorization!(@teams)
+  end
+
+  # GET /teams/1
+  def show
+    @providers = @team.providers.map {|id| Provider.find(id) }
+  end
+
+  # GET /teams/new
+  def new
+    @providers = Provider.all   
+  end
+  
+  # POST 
+  def create
+    name = params[:name]
+    provider_ids = params[:provider_ids]
+    
+    if name.strip.length > 0  && !provider_ids.empty?
+      @team = Team.create(:name => params[:name])
+      provider_ids.each do |prov_id|
+        @team.providers << prov_id
+      end
+      @team.user_id = @current_user._id
+      @team.save!
+      current_user.teams << @team.id
+      current_user.save!
+      redirect_to @team
+    else
+      redirect_to :action => :new
+    end
+  end
+
+  # post /teams/1
+  def update
+    name = params[:name]
+    provider_ids = params[:provider_ids]
+
+    if name.strip.length > 0  && !provider_ids.empty?
+      @team.name = name
+      @team.providers.clear
+      provider_ids.each do |prov_id|
+        @team.providers << prov_id
+      end
+      @team.save!
+    end
+    
+    redirect_to @team
+  end
+
+  # GET /teams/1/edit
+  def edit
+    @providers = Provider.all      
+  end
+
+  # DELETE /teams/1
+  def destroy
+    @current_user.teams.delete(@team.id)  
+    @current_user.save!
+    
+    @team.destroy
+    redirect_to teams_url, notice: 'Team was successfully destroyed.'
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_team
+      @team = Team.find(params[:id])
+      validate_authorization!([@team])
+    end
+   
+    def validate_authorization!(teams)
+      teams.each do |team|
+        authorize! :manage, team
+      end
+    end
+end

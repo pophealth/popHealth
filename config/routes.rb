@@ -21,6 +21,9 @@ PopHealth::Application.routes.draw do
   get "logs/index"
   post 'home/set_reporting_period'
 
+  post "teams/:id/update", :to => 'teams#update'
+  post "teams/create"
+   
   root :to => 'home#index'
 
   resources :providers do
@@ -44,6 +47,9 @@ PopHealth::Application.routes.draw do
     get 'reports/cat1/:id/:measure_ids', :to =>'reports#cat1', :format => :xml
     get 'reports/patients', :to => 'reports#patients'
     get 'reports/measures_spreadsheet', :to =>'reports#measures_spreadsheet'
+    get 'teams/team_providers/:id', :to => 'teams#team_providers'
+    
+    resources :teams
     namespace :admin do
       resource :caches do
         collection do

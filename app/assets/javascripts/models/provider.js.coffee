@@ -28,3 +28,9 @@ class Thorax.Collections.Providers extends Thorax.Collection
   fetchNextPage: (options = {perPage: 10}) ->
     data = {page: @currentPage(options.perPage) + 1, per_page: options.perPage}
     @fetch(remove: false, data: data) if @hasMoreResults
+
+# A collection of providers under a given team. Team ID specified in URL when called.    
+class Thorax.Collections.TeamProviders extends Thorax.Collection
+  url: '/api/teams/team_providers'
+  model: Thorax.Models.Provider
+  

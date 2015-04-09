@@ -1,0 +1,14 @@
+<div class="percent-listing">
+  <span class="percentage">{{formatNumeral resultValue '0.[0]a'}}<small>{{unit}}</small></span>
+</div>
+<div class="team-prov-row-remainder">
+  <div class="measure-type pull-left">
+    <i class="{{#if episode_of_care}}fa fa-stethoscope{{else}}glyphicon glyphicon-user{{/if}} icon-popover" data-placement="bottom" data-content="{{#if episode_of_care}}Episodes-of-Care{{else}}Patients{{/if}}" data-trigger="hover focus"></i>
+  </div>
+  <div class="fraction-listing pull-left">
+    <div class="numerator">{{formatNumeral fractionTop '0.[0]a'}}</div>
+    <div class="denominator">{{formatNumeral fractionBottom '0.[0]a'}}</div>
+  </div>
+  <div class="pop-chart pull-left"></div>
+  <a href="#measures/{{measure_id}}{{#if sub_id}}/{{sub_id}}{{/if}}{{#if provider_id}}/providers/{{provider_id}}{{/if}}/patient_results" class="patient-btn pull-left">Patients</a>
+</div>
