@@ -46,11 +46,11 @@ class Thorax.Views.ProvidersView extends Thorax.View
 # Provider table
 class Thorax.Views.ProvidersIndex extends Thorax.View
   tagName: 'table'
-  className: 'table'
+  className: "table table-hover"
   template: JST['providers/index']
   fetchTriggerPoint: 500 #Fetch data when we're 500 pixels away from the bottom
   itemContext: (model, index) ->
-    _.extend {}, model.attributes, providerType: model.providerType() || "", providerExtension: model.providerExtension() || ""
+    _.extend {}, model.attributes, providerType: model.providerType() || "", providerExtension: model.providerExtension() || "", npi: model.npi(), recordCount: model.recordCount()
   events:
     rendered: ->
       $(document).on 'scroll', @scrollHandler

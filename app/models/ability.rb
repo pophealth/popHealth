@@ -28,9 +28,18 @@ class Ability
       # can [:create,:delete], HealthDataStandards::CQM::Measure
     elsif user.staff_role?
       can :read, HealthDataStandards::CQM::Measure
-      can :read, Record
-      can :manage, Provider
-      can :manage, :providers
+      can :read, Record do |patient|
+        user.practice_id == patient.practice_id
+      end
+      can :manage, Provider do |prov|
+        if prov.parent      
+          user.practice_id == prov.parent.practice.id
+        elsif prov.practice
+          user.practice_id == prov.practice.id
+        else
+          false
+        end
+      end
       can :manage, User, id: user.id
       cannot :manage, User unless APP_CONFIG['allow_user_update']
       can [:read, :delete, :recalculate,:create] , QME::QualityReport
@@ -39,7 +48,7 @@ class Ability
       end
     elsif user.id
       can :read, Record do |patient|
-        patient.providers.map(&:npi).include?(user.npi)
+        patient.providers.map(&:npi).include?(user.npi) && user.practice.id == patient.practice_id
       end
       can [:read,:delete, :recalculate, :create], QME::QualityReport do |qr|
          provider = Provider.by_npi(user.npi).first

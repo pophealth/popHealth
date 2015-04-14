@@ -34,9 +34,17 @@
       </td>
     </tr>
     <tr><td colspan="2">&nbsp;</td></tr>
-
+    <tr>
+      <td> Practices </td>
+      <td> <%= @practice_count %> practices </td>
+      <td> <%= link_to "Edit Practices", practices_path, :class => "btn btn-large btn-success"%> </td>
+    </tr>
     <tr><td colspan="2">&nbsp;</td></tr>
     <%= form_tag("/admin/upload_patients", :method => "put", :multipart=>true, :class=>"file-upload") do %>
+    <tr>
+      <td> <%= label_tag "Choose practice" %> </td>
+      <td> <%= select_tag "practice", options_for_select(@practices), include_blank: true, style: 'width:200px' %></td>					
+    </tr>  
     <tr><td>Upload patient zip file: </td>
       <td>
         <%= file_field_tag(:file)%>
@@ -61,10 +69,20 @@
 <script>
   $(document).ready(function() {
     $(".file-upload").submit(function(e) {
-      if (this.file.value === "") {
+      if (this.practice.value === "") {
+        alert("Please choose a practice.");
+        e.preventDefault();
+      }
+      else if (this.file.value === "" ) {
         alert("Please provide a file.");
         this.file.focus();
         e.preventDefault();
+      }
+      else {
+        var confs = "Are you sure you want to upload patients for the chosen practice?";
+        if (confirm(confs) == false){
+          e.preventDefault();
+        }
       }
     });
     (function poll(){

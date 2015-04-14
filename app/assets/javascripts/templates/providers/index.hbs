@@ -12,7 +12,7 @@
 {{#collection tag='tbody'}}
   <tr>
     <td>
-      {{npi}}
+      {{#link "providers/{{_id}}" expand-tokens=true}}{{npi}}{{/link}}
     </td>
     <td>{{providerType}}</td>
     <td>{{#link "providers/{{_id}}" expand-tokens=true}}{{providerExtension}}{{/link}}</td>

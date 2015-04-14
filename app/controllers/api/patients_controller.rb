@@ -31,6 +31,7 @@
     formats ['json']
     def index
       records = Record.where(@query)
+      validate_practice_records(records)
       respond_with  paginate(api_patients_url,records)
     end
 
@@ -107,6 +108,12 @@
 
     def validate_authorization!
       authorize! :read, Record
+    end
+
+    def validate_practice_records(records)
+      records.each do |record|
+        authorize! :read, record
+      end    
     end
 
     def set_filter_params

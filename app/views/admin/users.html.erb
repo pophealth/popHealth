@@ -82,19 +82,25 @@
 </script>
 
 <div id="pageContent">
-<h3>Users</h3>
-<table id="patientTable" class="table">
-  <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Username</th>
-    <th>provider</th>
-    <th>Administrator</th>
-    <th>Staff Role</th>
-    <th>Approved</th>
-    <th>Status</th>
-  </tr>
+<%= link_to "Edit Practices", practices_path, :class => "btn btn-large btn-success pull-right practice-btn"%>
+
+<h1>Users</h1>
+<table id="patientTable" class="table table-hover">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Username</th>
+      <th>provider</th>
+      <th>Administrator</th>
+      <th>Staff Role</th>
+      <th>Approved</th>
+      <th>Status</th>
+      <th colspan="2"/>
+    </tr>
+  </thead>
   <% @users.each do |user| -%>
+  <tbody>
   <tr>
     <td><%= user.first_name %></td>
     <td><%= user.last_name %></td>
@@ -131,7 +137,12 @@
     <td>
       <a href="#" class="<%= (user.disabled?) ? 'disable' : 'enable'%>" data-username="<%= user.username %>"><%= (user.disabled?) ? 'disabled' : 'enabled'%></a>
     </td>
+    <td>
+      <%= link_to "View Info",{:controller => "admin", :action => "user_profile", :id => user._id}, :class => "btn btn-info"%>    
+      <%= link_to "Delete User", {:controller => "admin", :action => "delete_user", :id => user._id}, 'method' => 'delete', 'class' => 'btn btn-danger delete-user-btn', data: {'confirm' => "Are you sure you want to delete this user?"} %>    			  
+    </td>
   </tr>
+  </tbody>
   <% end -%>
 </table>
 </div> <!-- pageContent -->

@@ -6,7 +6,9 @@ class Record
   # ===========================================================
   
   field :measures, type: Hash
-
+  
+  belongs_to :practice
+  
   scope :alphabetical, ->{order_by([:last, :asc], [:first, :asc])}
   scope :with_provider, ->{where(:provider_performances.ne => nil).or(:provider_proformances.ne => [])}
   scope :without_provider, ->{any_of({provider_performances: nil}, {provider_performances: []})}
@@ -25,5 +27,21 @@ class Record
     HealthDataStandards::CQM::PatientCache.where(query)
   end
   
+  def self.update_or_create(data, practice_id=nil)
+    if practice_id
+      practice = Practice.find(practice_id)
+      existing = Record.where(medical_record_number: data.medical_record_number, practice_id: practice._id).first
+    else
+      existing = Record.where(medical_record_number: data.medical_record_number).first
+    end
+    if existing
+      existing.update_attributes!(data.attributes.except('_id'))
+      existing
+    else
+      data.practice = practice
+      data.save!
+      data
+    end
+  end
   
 end
