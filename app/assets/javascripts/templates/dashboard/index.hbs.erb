@@ -48,8 +48,15 @@
           <input class="rescale" type="radio" value="true" name="population_chart_scale" {{#if populationChartScaledToIPP}}checked{{/if}}/>
         </label>
       </div>
-
-      <a href="/api/reports/qrda_cat3.xml{{#if effective_date}}?effective_date={{effective_date}}{{/if}}{{#if provider_id}}&provider_id={{provider_id}}{{/if}}" class="btn btn-primary"><i class="glyphicon glyphicon-download-alt"></i> Export</a>
+      <div class="dropdown pull-right">
+        <div class="dropdown-toggle pull-right btn btn-primary" data-toggle="dropdown" href="#">
+          <i class="glyphicon glyphicon-download-alt"></i> Export</a>
+        </div>
+        <ul class="dropdown-menu pull-right">
+          <li><a href="/api/reports/qrda_cat3.xml{{#if effective_date}}?effective_date={{effective_date}}{{/if}}{{#if provider_id}}&provider_id={{provider_id}}{{/if}}" class="btn"> QRDA Cat 3 </a></li>
+          <li><a href="/api/reports/measures_spreadsheet/{{#if effective_date}}?effective_date={{effective_date}}{{/if}}{{#if provider_id}}&provider_id={{provider_id}}{{/if}}{{#if currentUser}}&username={{currentUser}}{{/if}}" class="btn"> Spreadsheet </a></li>
+        </ul>
+      </div> 
     </div>
   </div>
   {{#collection selectedCategories item-context=selectedCategoryContext item-filter=categoryFilter}}
