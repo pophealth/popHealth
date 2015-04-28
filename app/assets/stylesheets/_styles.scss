@@ -3,11 +3,14 @@ $circle-bkg-color: #fff;
 $title-circle-radius: 21px;
 
 // Custom styles that are part of the theme
-
-
-#practice {
-  width: 300px;
+.user-profile {
+  table-layout: fixed;
+  width: 80%;
 }
+.up-col {
+  width: 200px;
+}
+
 .practices {
   margin-left:40px; 
   margin-right:40px; 
@@ -90,6 +93,19 @@ body {
 .export-patients-btn {
   float: right;
   width: 180px;
+}
+
+#practice {
+  width: 300px;
+}
+.practices {
+  margin-left:40px; 
+  margin-right:40px; 
+  width:60%;
+}
+
+.practice-btn {
+  margin-right: 40px;
 }
 
 .measure {

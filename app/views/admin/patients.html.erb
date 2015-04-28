@@ -33,18 +33,24 @@
         <%= button_to "Delete Providers", "/admin/remove_providers", 'method' => 'delete', 'class' => 'btn btn-danger'%>
       </td>
     </tr>
+    
+    <% if !APP_CONFIG['use_opml_structure'] %>
     <tr><td colspan="2">&nbsp;</td></tr>
     <tr>
       <td> Practices </td>
       <td> <%= @practice_count %> practices </td>
       <td> <%= link_to "Edit Practices", practices_path, :class => "btn btn-large btn-success"%> </td>
     </tr>
+    <% end %>
+
     <tr><td colspan="2">&nbsp;</td></tr>
     <%= form_tag("/admin/upload_patients", :method => "put", :multipart=>true, :class=>"file-upload") do %>
+    <% if !APP_CONFIG['use_opml_structure'] %>
     <tr>
       <td> <%= label_tag "Choose practice" %> </td>
       <td> <%= select_tag "practice", options_for_select(@practices), include_blank: true, style: 'width:200px' %></td>					
-    </tr>  
+    </tr>
+    <% end %>
     <tr><td>Upload patient zip file: </td>
       <td>
         <%= file_field_tag(:file)%>

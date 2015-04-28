@@ -20,7 +20,7 @@ module Api
     api :GET, "/providers", "Get a list of providers. Returns all providers that the user has access to."
     param_group :pagination, Api::PatientsController
     def index
-      if current_user.admin?
+      if current_user.admin? || APP_CONFIG['use_opml_structure']
         @providers = Provider.all
       else
         @providers = Provider.where(parent_id: current_user.practice.provider_id)
