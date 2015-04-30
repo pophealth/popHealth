@@ -103,6 +103,70 @@ module Api
       })
     end
 
+    api :GET, '/reports/team_report', "Retrieve a QRDA Category III document"
+    param :measure_id, String, :desc => 'The HQMF ID of the measure to include in the document', :required => true
+    param :sub_id, String, :desc => 'The sub ID of the measure to include in the document', :required => false
+    param :effective_date, String, :desc => 'Time in seconds since the epoch for the end date of the reporting period', :required => true
+    param :team_id, String, :desc => 'The ID of the team for the measure report'
+    description <<-CDESC
+      This action will generate a Excel spreadsheet report for a team of providers for a given measure.
+    CDESC
+    def team_report
+      measure_id = params[:measure_id]
+      sub_id = params[:sub_id]
+      team = Team.find(params[:team_id])
+      
+      book = Spreadsheet::Workbook.new
+      sheet = book.create_worksheet
+      format = Spreadsheet::Format.new :weight => :bold		  
+      
+      if sub_id
+        measure = HealthDataStandards::CQM::Measure.where(:id => measure_id, :sub_id => sub_id).first
+      else
+        measure = HealthDataStandards::CQM::Measure.where(:id => measure_id).first
+      end
+      
+      eff = Time.at(params[:effective_date].to_i)
+      end_date = eff.strftime("%D")
+      start_date = eff.month.to_s + "/" + eff.day.to_s + "/" + (eff.year-1).to_s
+      # report header
+      r=0
+      sheet.row(r).push("Measure ID: ", measure.cms_id + ", " + "NQF" + measure.nqf_id)
+      sheet.row(r+=1).push("Name: ", measure.name)
+      sheet.row(r+=1).push("Reporting Period: ", start_date + " - " + end_date)
+      sheet.row(r+=1).push("Team: ", team.name)
+      (0..r).each do |i| 
+        sheet.row(i).set_format(0, format) 
+      end
+      # table headers
+      sheet.row(r+=2).push('Provider Name', 'NPI', 'Numerator', 'Denominator', 'Exclusions', 'Percentage')
+      sheet.row(r).default_format = format
+      # populate rows
+      r+=1
+      providers = team.providers.map {|id| Provider.find(id)}
+      providers.each do |provider|
+        authorize! :read, provider
+        query = {:measure_id => measure_id, :sub_id => sub_id, :effective_date => params[:effective_date].to_i, 'filters.providers' => [provider.id.to_s]}
+        cache = QME::QualityReport.where(query).first     
+        performance_denominator = cache.result['DENOM'] - cache.result['DENEX']
+        percent =  percentage(cache.result['NUMER'].to_f, performance_denominator.to_f)
+        sheet.row(r).push(provider.full_name, provider.npi, cache.result['NUMER'], performance_denominator, cache.result['DENEX'], percent)
+        r+=1
+      end
+
+      today = Time.now.strftime("%D")
+      filename = team.name + "_report_" + measure.cms_id + "_" + "#{today}" + ".xls"
+      data = StringIO.new '';
+      book.write data;
+      send_data(data.string, {
+        :disposition => 'attachment',
+        :encoding => 'utf8',
+        :stream => false,
+        :type => 'application/vnd.ms-excel',
+        :filename => filename
+      })
+    end
+
     api :GET, '/reports/measures_spreadsheet', "Retrieve a spreadsheet of measure calculations"
     param :username, String, :desc => 'Username of user to generate reports for'
     param :effective_date, String, :desc => 'Time in seconds since the epoch for the end date of the reporting period'

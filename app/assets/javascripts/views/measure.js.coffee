@@ -7,7 +7,6 @@ class SubmeasureView extends Thorax.View
   teamMeasuresIsActive: -> @parent.teamMeasuresIsActive() or @parent.teamListIsActive()
   effectiveDate: -> PopHealth.currentUser.get 'effective_date'
 
-
 class Thorax.Views.MeasureView extends Thorax.LayoutView
   id: 'measureSummary'
   template: JST['measures/show']

@@ -27,6 +27,9 @@ class Thorax.Views.TeamMeasuresView extends Thorax.View
       itemView: (item) => new Thorax.Views.TeamSubmeasureView model: item.model, submeasure: @submeasure
     _(super).extend 
       submeasure: submeasure
+      measureId: @submeasure.get('id')
+      sub_id: @submeasure.get('sub_id')
+      effectiveDate: @submeasure.effectiveDate
 
 # This view displays the provider's name and NPI, with the measure results
 class Thorax.Views.TeamSubmeasureView extends Thorax.View
@@ -36,7 +39,6 @@ class Thorax.Views.TeamSubmeasureView extends Thorax.View
     fetch: true
   context: ->
     _(super).extend
-      populationChartScaledToIPP: PopHealth.currentUser.populationChartScaledToIPP()
       providerExtension: @model.providerExtension() || ""
       teamResultsView: new Thorax.Views.TeamResultsView model: @submeasure.getQueryForProvider(@model.get '_id'), provider_id: @model.get '_id'
       
