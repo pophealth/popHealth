@@ -1,6 +1,6 @@
 <script type='text/javascript'>
   $(document).ready(function() {
-    $('#practice').change( function(){
+    $('.practice_select').change( function(){
       var userId = $(this).data("user");
       var practice = $(this).val();
       var confs = "Change user's assigned practice?";
@@ -16,10 +16,10 @@
   <h1>User Profile:  <strong><%= @user.full_name%> </strong></h1>
   
   <table class="table table-hover">
-    <% if !APP_CONFIG['use_opml_structure'] %>
+    <% unless APP_CONFIG['use_opml_structure'] %>
 	  <tr>
 		  <td> <h4> Practice: </h4> </td>
-		  <td> <h4> <%= select_tag "practice", options_for_select(@practices, @practice), prompt: 'None', data: {user: @user.id.to_s} %> </h4> </td>
+		  <td> <h4> <%= select_tag "practice", options_for_select(@practices, @practice), prompt: 'None', data: {user: @user.id.to_s}, class: "practice_select" %> </h4> </td>
 	  <tr>
     <% end %>
 	  <tr>

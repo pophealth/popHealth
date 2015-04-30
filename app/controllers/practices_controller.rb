@@ -35,7 +35,7 @@ class PracticesController < ApplicationController
       
       if params[:user] != ''
         user = User.find(params[:user])
-        @practice.user = user
+        @practice.users << user
         user.save
       end
     end

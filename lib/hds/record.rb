@@ -28,20 +28,58 @@ class Record
   end
   
   def self.update_or_create(data, practice_id=nil)
+    mrn = data.medical_record_number
+    mrn_p = (practice_id)? mrn + "-" + Practice.all.map{|i| i.id.to_s}.index(practice_id).to_s : ''
     if practice_id
-      practice = Practice.find(practice_id)
-      existing = Record.where(medical_record_number: data.medical_record_number, practice_id: practice._id).first
+      existing = Record.where(medical_record_number: mrn_p).first
     else
-      existing = Record.where(medical_record_number: data.medical_record_number).first
+      existing = Record.where(medical_record_number: mrn).first
     end
+
     if existing
-      existing.update_attributes!(data.attributes.except('_id'))
+      existing.update_attributes!(data.attributes.except('_id', 'medical_record_number', 'practice_id'))
       existing
     else
-      data.practice = practice
+      if practice_id 
+        data.practice = Practice.find(practice_id)
+        data.medical_record_number = mrn_p
+      end
       data.save!
       data
     end
   end
   
+  def self.create_or_replace(data, practice_id=nil)
+    mrn = data.medical_record_number
+    mrn_p = (practice_id)? mrn + "-" + Practice.all.map{|i| i.id.to_s}.index(practice_id).to_s : ''
+    if practice_id
+      existing = Record.where(medical_record_number: mrn_p).first
+      if existing && data.effective_time > existing.effective_time
+        existing.destroy
+        data.practice = Practice.find(practice_id)
+        data.medical_record_number = mrn_p
+        data.save!
+        data
+      elsif existing
+        existing  
+      else
+        data.practice = Practice.find(practice_id)
+        data.medical_record_number = mrn_p
+        data.save!
+        data        
+      end
+    else
+      existing = Record.where(medical_record_number: mrn).first
+      if existing && data.effective_time > existing.effective_time
+        existing.destroy
+        data.save!
+        data
+      elsif existing
+        existing  
+      else
+        data.save!
+        data        
+      end
+    end
+  end  
 end

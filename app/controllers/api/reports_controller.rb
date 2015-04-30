@@ -66,26 +66,27 @@ module Api
       eff = Time.at(params[:effective_date].to_i)
       end_date = eff.strftime("%D")
       start_date = eff.month.to_s + "/" + eff.day.to_s + "/" + (eff.year-1).to_s
-      # report info
-      sheet.row(0).push "Measure ID: ", "NQF" + measure.nqf_id + ", " + measure.cms_id
-      sheet.row(1).push "Name: ", measure.name
-      sheet.row(2).push "Description: ", measure.description
-      sheet.row(3).push "Reporting Period: ", start_date + " - " + end_date
-      sheet.row(4).push "Group: ", patient_type(type)
-      # table headers
-      sheet.row(6).push 'MRN', 'First Name', 'Last Name', 'Gender', 'Birthdate'
-      sheet.row(6).default_format = format
-      row = 7;
-      (0..4).each do |i| 
+      # report header
+      r=0
+      sheet.row(r).push("Measure ID: ", '', measure.cms_id + ", " + "NQF" + measure.nqf_id)
+      sheet.row(r+=1).push("Name: ", '', measure.name)
+      sheet.row(r+=1).push("Description: ", '', measure.description)
+      sheet.row(r+=1).push("Reporting Period: ", '', start_date + " - " + end_date)
+      sheet.row(r+=1).push("Group: ", '', patient_type(type))
+      (0..r).each do |i| 
         sheet.row(i).set_format(0, format) 
       end
-      
+      # table headers
+      sheet.row(r+=2).push('MRN', 'First Name', 'Last Name', 'Gender', 'Birthdate')
+      sheet.row(r).default_format = format
+      # populate rows
+      r+=1
       records.each do |record|
         value = record.value
         authorize! :read, Record.find_by(medical_record_number: value[:medical_record_id])
         if value["#{type}"] == 1
-          sheet.row(row).push value[:medical_record_id], value[:first], value[:last], value[:gender], Time.at(value[:birthdate]).strftime("%D")
-          row +=1
+          sheet.row(r).push(value[:medical_record_id], value[:first], value[:last], value[:gender], Time.at(value[:birthdate]).strftime("%D"))
+          r +=1
         end
       end
 
@@ -97,7 +98,7 @@ module Api
         :disposition => 'attachment',
         :encoding => 'utf8',
         :stream => false,
-        :type => 'application/excel',
+        :type => 'application/vnd.ms-excel',
         :filename => filename
       })
     end
@@ -127,27 +128,28 @@ module Api
         eff = Time.at(params[:effective_date].to_i)
         end_date = eff.strftime("%D")
         start_date = eff.month.to_s + "/" + eff.day.to_s + "/" + (eff.year-1).to_s
-
-        sheet.row(0).push "Reporting Period: ", start_date + " - " + end_date
-        sheet.row(1).push "Provider: ", provider.full_name
-        sheet.row(2).push "NPI: ", provider.npi
-        # table headers
-        sheet.row(4).push 'NQF ID', 'CMS ID', 'Sub ID', 'Title', 'Subtitle', 'Numerator', 'Denominator', 'Exclusions', 'Percentage'
-        sheet.row(4).default_format = format
-        (0..2).each do |i|
+        
+        r=0
+        sheet.row(r).push("Reporting Period: ", '', start_date + " - " + end_date)
+        sheet.row(r+=1).push("Provider: ", '', provider.full_name)
+        sheet.row(r+=1).push("NPI: ", '', provider.npi)
+        (0..r).each do |i|
           sheet.row(i).set_format(0, format)
         end
-        r = 5
-
+        # table headers
+        sheet.row(r+=2).push('NQF ID', 'CMS ID', 'Sub ID', 'Title', 'Subtitle', 'Numerator', 'Denominator', 'Exclusions', 'Percentage')
+        sheet.row(r).default_format = format
+        
         # populate rows
+        r+=1
         selected_measures.each do |measure|
           measure.sort_by!{|s| s.sub_id}.each do |sub|            
             query = {:measure_id => sub.measure_id, :sub_id => sub.sub_id, :effective_date => effective_date, 'filters.providers' => [provider.id.to_s]}
             cache = QME::QualityReport.where(query).first     
             performance_denominator = cache.result['DENOM'] - cache.result['DENEX']
             percent =  percentage(cache.result['NUMER'].to_f, performance_denominator.to_f)
-            sheet.row(r).push sub.nqf_id, sub.cms_id, sub.sub_id, sub.name, sub.subtitle, cache.result['NUMER'], performance_denominator, cache.result['DENEX'], percent 
-            r = r + 1;
+            sheet.row(r).push(sub.nqf_id, sub.cms_id, sub.sub_id, sub.name, sub.subtitle, cache.result['NUMER'], performance_denominator, cache.result['DENEX'], percent)
+            r+=1
           end
         end
       end
@@ -160,7 +162,7 @@ module Api
         :disposition => 'attachment',
         :encoding => 'utf8',
         :stream => false,
-        :type => 'application/excel',
+        :type => 'application/vnd.ms-excel',
         :filename => filename
       })
     end
@@ -208,8 +210,11 @@ module Api
     end
 
     def percentage(numer, denom)	
-      percent = (numer/denom * 100).round(1)
-      (denom==0)? 0 : percent
+      if denom == 0
+        0
+      else
+        (numer/denom * 100).round(1)
+      end
     end
 
     def generate_header(provider)

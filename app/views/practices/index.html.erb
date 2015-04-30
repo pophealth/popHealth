@@ -10,7 +10,7 @@
         <th>Name</th>
         <th>Organization</th>
         <th>Address</th>
-        <th>User</th>
+        <th>User(s)</th>
         <th></th>
       </tr>
     </thead>
@@ -20,7 +20,7 @@
         <td><%= practice.name %></td>
         <td><%= practice.organization %></td>
         <td><%= practice.address %></td> 
-        <td><%= practice.user ? practice.user.username : 'N/A' %></td>                
+        <td><%= practice.users ? practice.users.map {|u| u.username}.join(", ") : 'N/A' %></td>                
         <td><%= link_to 'Delete', practice, method: :delete, data: { confirm: 'Are you sure? There may be patients tied to this practice' } %></td>
       </tr>
     </tbody>

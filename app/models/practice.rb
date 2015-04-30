@@ -9,6 +9,7 @@ class Practice
   validates_presence_of :name, :organization
   validates :name, uniqueness: true
   belongs_to :provider, dependent: :destroy
-  has_one :user
+  has_many :users
+  has_many :records
   
 end

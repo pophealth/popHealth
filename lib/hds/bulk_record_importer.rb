@@ -97,7 +97,7 @@ module HealthDataStandards
             return {status: 'error', message: "Document templateId does not identify it as a C32 or CCDA", status_code: 400}
           end
 
-          record = Record.update_or_create(patient_data, practice_id)
+          record = Record.create_or_replace(patient_data, practice_id)
 
           begin
             providers = CDA::ProviderImporter.instance.extract_providers(doc, record)
@@ -119,11 +119,11 @@ module HealthDataStandards
           providers.each do |perf|
             prov = perf.provider
             if prov.cda_identifiers.first.extension == 'Orphans'          
-              orphan_provider = Provider.where("cda_identifiers.extension" => name)
-              if orphan_provider.count > 0   
-                new_prov = orphan_provider.first
+              orphan_provider = Provider.where("cda_identifiers.extension" => name).first
+              if orphan_provider   
+                new_prov = orphan_provider
               else             
-                new_prov = Provider.create(cda_identifiers: [cda_identifier])
+                new_prov = Provider.create(cda_identifiers: [cda_identifier], given_name: name)
                 new_prov.parent = practice_provider
                 new_prov.save!
               end
@@ -136,10 +136,10 @@ module HealthDataStandards
               elsif prov.parent.id == practice_provider.id
                 next
               else
-                prov_check = Provider.where({'cda_identifiers.extension' => prov.npi, parent_id: practice_provider.id})
-                if prov_check.count > 0
+                prov_check = Provider.where({'cda_identifiers.extension' => prov.cda_identifiers.first.extension, parent_id: practice_provider.id}).first
+                if prov_check
                   npi_providers.delete(perf)
-                  npi_providers << ProviderPerformance.new(start_date: perf.start_date, end_date: perf.end_date, provider: prov_check.first)
+                  npi_providers << ProviderPerformance.new(start_date: perf.start_date, end_date: perf.end_date, provider: prov_check)
                 else            
                   new_prov = prov.clone
                   new_prov.parent = practice_provider
@@ -151,12 +151,13 @@ module HealthDataStandards
             end
           end
           
+          # if no providers assigned, then assign to orphan
           if npi_providers.empty?
-            orphan_provider = Provider.where("cda_identifiers.extension" => name)
-            if orphan_provider.count > 0   
-              new_prov = orphan_provider.first
+            orphan_provider = Provider.where("cda_identifiers.extension" => name).first
+            if orphan_provider
+              new_prov = orphan_provider
             else             
-              new_prov = Provider.create(cda_identifiers: [cda_identifier])
+              new_prov = Provider.create(cda_identifiers: [cda_identifier], given_name: name)
               new_prov.parent = practice_provider
               new_prov.save!
             end
@@ -164,15 +165,15 @@ module HealthDataStandards
           end
           record.provider_performances = npi_providers
           
-          orphan_prov = Provider.where("cda_identifiers.extension" => "Orphans")
-          if orphan_prov.count > 0
-            prov = orphan_prov.first
+          orphan_prov = Provider.where("cda_identifiers.extension" => "Orphans").first
+          if orphan_prov
+            prov = orphan_prov
             prov.parent = nil
             prov.parent_ids = nil
             prov.save!
           end
           providers = npi_providers
-        else
+        else # if no practice, use regular assignment
           record.provider_performances = providers
         end
         providers.each do |prov|

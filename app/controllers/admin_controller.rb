@@ -81,6 +81,7 @@ class AdminController < ApplicationController
 
   def users
     @users = User.all.ordered_by_username
+    @practices = Practice.asc(:name).map {|org| [org.name, org.id]}
   end
 
   def promote
