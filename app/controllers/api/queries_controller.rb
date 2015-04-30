@@ -31,7 +31,7 @@ module Api
 
       unless @qr.aggregate_result
         cv = HealthDataStandards::CQM::Measure.where(id: @qr.measure_id).first.continuous_variable
-        aqr = QME::QualityReport.where(measure_id: @qr.measure_id, sub_id: @qr.sub_id, 'filters.providers' => [Provider.root.id.to_s], effective_date: @qr.effective_date).first  	           
+        aqr = QME::QualityReport.where(measure_id: @qr.measure_id, sub_id: @qr.sub_id, 'filters.providers' => [], effective_date: @qr.effective_date).first  	           
         if aqr.result
           if cv 
             @qr.aggregate_result = aqr.result.OBSERV
