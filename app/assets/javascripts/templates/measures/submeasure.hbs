@@ -18,7 +18,8 @@
   <li{{#if teamMeasuresIsActive}} class="active"{{/if}}>
     <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}{{#if provider_id}}/providers/{{provider_id}}{{/if}}/teams" data-toggle="tab" data-target="#team_measures" data-call-method="_anchorClick">Provider Teams</a>
   </li>
-    
+  
+  {{#unless teamMeasuresIsActive}}
   <div class="dropdown pull-right">
     <div class="dropdown-toggle pull-right btn btn-primary export-patients-btn" data-toggle="dropdown" href="#">
       <i class="glyphicon glyphicon-download-alt"></i> EXPORT PATIENTS
@@ -30,5 +31,6 @@
       <li> <a href="/api/reports/patients/{{#if effectiveDate}}?effective_date={{effectiveDate}}{{/if}}{{#if provider_id}}&provider_id={{provider_id}}{{/if}}{{#if id}}&id={{id}}{{/if}}&patient_type=antinumerator{{#if sub_id}}&sub_id={{sub_id}}{{/if}}" class="btn"> Outliers </a> </li>
       <li> <a href="/api/reports/patients/{{#if effectiveDate}}?effective_date={{effectiveDate}}{{/if}}{{#if provider_id}}&provider_id={{provider_id}}{{/if}}{{#if id}}&id={{id}}{{/if}}&patient_type=DENEX{{#if sub_id}}&sub_id={{sub_id}}{{/if}}" class="btn"> Exclusions </a> </li>             
     </ul>
-  </div>      
+  </div>
+  {{/unless}}
 </ul>

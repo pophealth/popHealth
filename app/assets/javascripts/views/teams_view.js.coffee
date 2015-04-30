@@ -36,6 +36,7 @@ class Thorax.Views.TeamSubmeasureView extends Thorax.View
     fetch: true
   context: ->
     _(super).extend
+      populationChartScaledToIPP: PopHealth.currentUser.populationChartScaledToIPP()
       providerExtension: @model.providerExtension() || ""
       teamResultsView: new Thorax.Views.TeamResultsView model: @submeasure.getQueryForProvider(@model.get '_id'), provider_id: @model.get '_id'
       

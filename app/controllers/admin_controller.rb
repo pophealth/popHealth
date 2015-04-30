@@ -42,6 +42,12 @@ class AdminController < ApplicationController
 
   def remove_providers
     Provider.where(_id: {'$nin' => Practice.distinct('provider_id')}).delete
+    
+    Team.all.each do |team|
+      team.providers = []
+      team.save!
+    end
+    
     redirect_to action: 'patients'
   end
 
