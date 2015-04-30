@@ -9,12 +9,19 @@ class TeamsController < ApplicationController
 
   # GET /teams/1
   def show
-    @providers = @team.providers.map {|id| Provider.find(id) }
+    @providers = @team.providers.map do |id| 
+      provider = Provider.find(id)
+      provider unless cannot? :read, provider 
+    end
   end
 
   # GET /teams/new
   def new
-    @providers = Provider.all   
+    if current_user.admin? || APP_CONFIG['use_opml_structure']
+      @providers = Provider.all
+    else
+      @providers = Provider.where(parent_id: current_user.practice.provider_id)
+    end
   end
   
   # POST 
@@ -56,7 +63,11 @@ class TeamsController < ApplicationController
 
   # GET /teams/1/edit
   def edit
-    @providers = Provider.all      
+    if current_user.admin? || APP_CONFIG['use_opml_structure']
+      @providers = Provider.all
+    else
+      @providers = Provider.where(parent_id: current_user.practice.provider_id)
+    end      
   end
 
   # DELETE /teams/1
