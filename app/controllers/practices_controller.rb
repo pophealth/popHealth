@@ -39,6 +39,10 @@ class PracticesController < ApplicationController
         user.save
       end
     end
+    
+    admin = User.where(username: pophealth).first
+    @practice.provider.parent = Provider.root
+    
     respond_to do |format|
       if @practice.save
         format.html { redirect_to practices_path, notice: 'Practice was successfully created.' }

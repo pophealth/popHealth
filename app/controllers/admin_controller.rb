@@ -10,7 +10,7 @@ class AdminController < ApplicationController
     @patient_count = Record.count
     @query_cache_count = HealthDataStandards::CQM::QueryCache.count
     @patient_cache_count = PatientCache.count
-    @provider_count = Provider.where(_id: {'$nin' => Practice.distinct('provider_id')}).count
+    @provider_count = Provider.where('cda_identifiers.root' => {'$nin' => ['Organization']}).count
     @practice_count = Practice.count
     @practices = Practice.asc(:name).map {|org| [org.name, org.id]}
   end
@@ -41,7 +41,7 @@ class AdminController < ApplicationController
   end
 
   def remove_providers
-    Provider.where(_id: {'$nin' => Practice.distinct('provider_id')}).delete
+    Provider.where('cda_identifiers.root' => {'$nin' => ['Organization']}).delete
     
     Team.all.each do |team|
       team.providers = []
