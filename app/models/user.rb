@@ -134,6 +134,10 @@ class User
   def grant_admin
     update_attribute(:admin, true)
     update_attribute(:approved, true)
+    
+    if ! APP_CONFIG['use_opml_structure']
+      update_attribute(:provider_id, Provider.root.id)
+    end
   end
 
   def approve
