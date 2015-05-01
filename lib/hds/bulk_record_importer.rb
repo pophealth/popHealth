@@ -150,7 +150,7 @@ module HealthDataStandards
               end
             end
           end
-          
+
           # if no providers assigned, then assign to orphan
           if npi_providers.empty?
             orphan_provider = Provider.where("cda_identifiers.extension" => name).first
@@ -182,6 +182,34 @@ module HealthDataStandards
           end
         end
 
+        # medication status --
+        icd10 = ["J45.30", "J45.31", "J45.32", "J45.40", "J45.41", "J45.42", "J45.50", "J45.51", "J45.52"]
+        icd9 = ["493.00", "493.01", "493.02", "493.10", "493.11", "493.12", "493.20", "493.21", "493.22", "493.81" , "493.82", "493.90", "493.91", "493.92"]
+
+        asthma_patient = false
+        if record.conditions
+          record.conditions.each do |con|
+            if con.codes 
+              if (con.codes['ICD-10-CM'] && icd10.include?(con.codes['ICD-10-CM'].first)) || (con.codes['ICD-9-CM'] && icd9.include?(con.codes['ICD-9-CM'].first))
+                asthma_patient = true
+              end
+              break if asthma_patient
+            end
+          end
+        end 
+
+        if asthma_patient && record.medications
+          record.medications.each do |med|
+            if med.status_code == nil || med.status_code["HL7 ActStatus"] != ["dispensed"]
+              med.status_code = {"HL7 ActStatus" => ["dispensed"]}
+            end
+#            if med.end_time == nil
+#              med.end_time = med.start_time
+#            end
+          end
+        end
+        # -- medication status 
+        
         record.save
       end
     end
