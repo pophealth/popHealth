@@ -148,4 +148,32 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "admin should be able to view user profile" do
+    sign_in @admin
+    get :user_profile, :id => @user.id
+    assert_response :success
+  end
+  
+  test "non admin should not be able to view user profile" do
+    sign_in @user
+    get :user_profile, :id => @user.id
+    assert_response 403
+  end
+  
+  test "admin should be able to delete user" do
+    sign_in @admin
+    assert_difference('User.count', -1) do
+      delete :delete_user, :id => @user.id
+    end
+    assert_redirected_to :action => :users
+  end
+
+  test "non admin should not be able to delete user" do
+    sign_in @user
+    assert_no_difference('User.count') do
+      delete :delete_user, :id => @user2.id
+    end
+    assert_response 403
+  end
+
 end

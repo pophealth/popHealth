@@ -20,6 +20,8 @@ PopHealth::Application.routes.draw do
   post 'api/measures/update_metadata'
   get "logs/index"
   post 'home/set_reporting_period'
+  get "admin/user_profile"
+  delete "admin/delete_user"
 
   root :to => 'home#index'
 

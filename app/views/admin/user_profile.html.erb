@@ -1,0 +1,49 @@
+<div class='main' >
+  <h1>User Profile:  <strong><%= @user.full_name%> </strong></h1>
+
+  <table class="table table-hover user-profile">
+
+	  <tr>
+		  <td class='up-col'> Username: </td>
+		  <td> <%= @user.username %> </td>
+	  <tr>
+
+	  <tr>
+		  <td class='up-col'> Email: </td>
+		  <td> <%= @user.email %> </td>
+	  <tr>
+
+	  <tr>
+		  <td class='up-col'> Organization: </td>
+		  <td> <%= @user.company %> </td>
+	  <tr>
+
+	  <tr>
+		  <td class='up-col'> Organization URL: </td>
+		  <td> <%= @user.company_url %> </td>
+	  <tr>
+
+	  <tr>
+		  <td class='up-col'> Registry Name: </td>
+		  <td> <%= @user.registry_name %> </td>
+	  <tr>
+
+	  <tr>
+		  <td class='up-col'> Registry ID: </td>
+		  <td> <%= @user.registry_id %> </td>
+	  <tr>
+
+	  <tr>
+		  <td class='up-col'> National Provider Id: </td>
+		  <td> <%= @user.npi %> </td>
+	  <tr>
+
+	  <tr>
+		  <td class='up-col'> Tax Identifier: </td>
+		  <td> <%= @user.tin %> </td>
+	  <tr>
+  </table>		
+
+  <%= link_to "Back to Users", "/admin/users", :class=>"btn btn-success" %>
+</div>
+

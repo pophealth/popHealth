@@ -3,6 +3,13 @@ $circle-bkg-color: #fff;
 $title-circle-radius: 21px;
 
 // Custom styles that are part of the theme
+.user-profile {
+  table-layout: fixed;
+  width: 80%;
+}
+.up-col {
+  width: 200px;
+}
 
 .dropdown {
   position: relative;
