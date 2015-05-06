@@ -1,7 +1,27 @@
+<script type='text/javascript'>
+  $(document).ready(function() {
+    $('.practice_select').change( function(){
+      var userId = $(this).data("user");
+      var practice = $(this).val();
+      var confs = "Change user's assigned practice?";
+      
+      if ( confirm(confs) == true ){
+        $.post('set_user_practice', {'user': userId, 'practice': practice}, function(d){
+        });
+      };     
+    });
+  });
+</script>
 <div class='main' >
   <h1>User Profile:  <strong><%= @user.full_name%> </strong></h1>
 
   <table class="table table-hover user-profile">
+	<% unless APP_CONFIG['use_opml_structure'] %>
+	  <tr>
+		  <td> <h4> Practice: </h4> </td>
+		  <td> <h4> <%= select_tag "practice", options_for_select(@practices, @practice), prompt: 'None', data: {user: @user.id.to_s}, class: "practice_select" %> </h4> </td>
+	  <tr>
+    <% end %>
 
 	  <tr>
 		  <td class='up-col'> Username: </td>

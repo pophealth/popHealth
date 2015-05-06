@@ -10,11 +10,22 @@ class AdminController < ApplicationController
     @patient_count = Record.count
     @query_cache_count = HealthDataStandards::CQM::QueryCache.count
     @patient_cache_count = PatientCache.count
-    @provider_count = Provider.count
+    @provider_count = Provider.ne('cda_identifiers.root' => "Organization").count
+    @practice_count = Practice.count
+    @practices = Practice.asc(:name).map {|org| [org.name, org.id]}
   end
 
   def user_profile
     @user = User.find(params[:id])
+    @practice = @user.practice ? @user.practice.id : 'n/a'
+    @practices = Practice.asc(:name).map {|org| [org.name, org.id]}
+  end
+
+  def set_user_practice
+    @user = User.find(params[:user])
+    @user.practice = (params[:practice] != '')? Practice.find(params[:practice]) : nil
+    @user.save
+    redirect_to action: 'user_profile', :id => params[:user]
   end
 
   def remove_patients
@@ -30,14 +41,15 @@ class AdminController < ApplicationController
   end
 
   def remove_providers
-    Provider.delete_all
+    Provider.ne('cda_identifiers.root' => "Organization").delete
     redirect_to action: 'patients'
   end
 
   def upload_patients
 
     file = params[:file]
-
+    practice = params[:practice]
+    
     FileUtils.mkdir_p(File.join(Dir.pwd, "tmp/import"))
     file_location = File.join(Dir.pwd, "tmp/import")
     file_name = "patient_upload" + Time.now.to_i.to_s + rand(1000).to_s
@@ -46,7 +58,7 @@ class AdminController < ApplicationController
 
     File.open(temp_file.path, "wb") { |f| f.write(file.read) }
 
-    Delayed::Job.enqueue(ImportArchiveJob.new({'file' => temp_file,'user' => current_user}),:queue=>:patient_import)
+    Delayed::Job.enqueue(ImportArchiveJob.new({'practice' => practice, 'file' => temp_file,'user' => current_user}),:queue=>:patient_import)
     redirect_to action: 'patients'
   end
 
@@ -69,6 +81,7 @@ class AdminController < ApplicationController
 
   def users
     @users = User.all.ordered_by_username
+    @practices = Practice.asc(:name).map {|org| [org.name, org.id]}
   end
 
   def promote

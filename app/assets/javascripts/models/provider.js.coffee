@@ -11,14 +11,17 @@ class Thorax.Models.Provider extends Thorax.Model
     json = super
     json.children = json.children.toJSON() if json.children?
     json
-
-
-
+  npi: ->
+    if @providerType() == '2.16.840.1.113883.4.6' then @providerExtension() 
+  recordCount: -> @get("record_count")
+  
 class Thorax.Collections.Providers extends Thorax.Collection
   url: '/api/providers'
   model: Thorax.Models.Provider
   comparator: (p) ->
-    parseInt(p.get('cda_identifiers')?[0].extension) || p.get('cda_identifiers')?[0].extension 
+    root = p.get('cda_identifiers')?[0].root
+    extension = parseInt(p.get('cda_identifiers')?[0].extension) || p.get('cda_identifiers')?[0].extension
+    [root,extension]
   initialize: (attrs, options) ->
     @hasMoreResults = true
   currentPage: (perPage = 100) -> Math.ceil(@length / perPage)

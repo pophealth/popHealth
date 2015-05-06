@@ -11,5 +11,16 @@ namespace :admin do
                      :agree_license =>  true)
     admin_account.save!
     admin_account.grant_admin
+    
+    if ! APP_CONFIG['use_opml_structure']
+      # create root provider
+      identifier = CDAIdentifier.new({root: "Organization", extension: "Administrator"})
+      provider = Provider.new(:given_name => "Administrator")
+      provider.cda_identifiers << identifier
+      provider.save!
+      
+      admin_account.provider_id = provider.id
+      admin_account.save!
+    end
   end
 end
