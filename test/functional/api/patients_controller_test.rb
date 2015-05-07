@@ -47,8 +47,6 @@ require 'test_helper'
       @record2.practice = @practice2
       @record2.provider_performances = [ProviderPerformance.new(provider: @provider2)]
       @record2.save!     
-      
-#      sign_in @user
     end
 
     test "view patient" do

@@ -50,13 +50,25 @@ module Api
 
     test "generate cat1" do
       sign_in @user
+      
+      APP_CONFIG['use_opml_structure'] = true
+      
       get :cat1, :id=>"523c57e1b59a907ea900000e", :measure_ids=>"40280381-3D61-56A7-013E-6649110743CE"
       assert_response :success
-
+    
       cdastring = @response.body
       assert cdastring.include? "ClinicalDocument"
       assert cdastring.include? "Ella"
       assert cdastring.include? "40280381-3D61-56A7-013E-6649110743CE"
+      
+      APP_CONFIG['use_opml_structure'] = false
+    end
+
+    test "don't allow generate cat1 for non practice user" do
+      sign_in @user
+           
+      get :cat1, :id=>"523c57e1b59a907ea900000e", :measure_ids=>"40280381-3D61-56A7-013E-6649110743CE"
+      assert_response 403
     end
 
     test "generate patient outliers spreadsheet" do

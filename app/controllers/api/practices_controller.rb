@@ -17,6 +17,13 @@ module Api
       render :json => practice.as_json
     end
     
+    api :GET, "/practices", "Get the practice information"
+    formats ['json']
+    def index
+      practices = Practice.all
+      render :json => practices.as_json
+    end  
+    
     private 
 
     def validate_authorization!
