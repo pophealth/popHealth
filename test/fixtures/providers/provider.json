@@ -1,3 +1,4 @@
+[
 {"cda_identifiers":
   [{"extension":"123456791",
     "root":"2.16.840.1.113883.4.2"},
@@ -12,4 +13,44 @@
  "parent_ids":[],
  "phone":"15555555557",
  "specialty":"200000000X",
- "title":"Dr."}
+ "title":"Dr."
+ },
+ {
+ "family_name":"Tell",
+ "given_name":"William",
+ "level":null,
+ "organization":
+  {"name":"General Hospital"},
+ "parent_id":null,
+ "parent_ids":[],
+ "phone":"15555555558",
+ "specialty":"200000000X",
+ "title":"Dr."
+ },
+ {
+ "family_name":"Johnson",
+ "given_name":"Anthony",
+ "level":null,
+ "organization":
+  {"name":"General Hospital 2"},
+ "parent_id":null,
+ "parent_ids":[],
+ "phone":"15555555558",
+ "specialty":"200000000X",
+ "title":"Dr."
+ },
+ {
+ "cda_identifiers":
+  [{"extension":"Test Org",
+    "root":"Organization"}],
+ "family_name":"Smith",
+ "given_name":"John"
+ }, 
+ {
+ "cda_identifiers":
+  [{"extension":"Test Org 2",
+    "root":"Organization"}],
+ "family_name":"Smith",
+ "given_name":"Jane"
+ }
+]
