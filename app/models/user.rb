@@ -94,6 +94,7 @@ class User
     # if self.preferences[:selected_measure_ids] == nil
     #   binding.pry
     # end
+    self.teams = []
     self.preferences["selected_measure_ids"] ||= []
     # puts self.preferences[:selected_measure_ids]
   end
@@ -135,7 +136,7 @@ class User
     update_attribute(:admin, true)
     update_attribute(:approved, true)
     
-    if ! APP_CONFIG['use_opml_structure']
+    if ! APP_CONFIG['use_opml_structure'] && Provider.root
       update_attribute(:provider_id, Provider.root.id)
     end
   end

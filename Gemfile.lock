@@ -1,6 +1,6 @@
 GIT
-  remote: https://github.com/pophealth/hqmf2js.git
-  revision: 3b1a7cb957f48cc8766f515e640af60848a834e9
+  remote: https://github.com/projecttacoma/hqmf2js.git
+  revision: 2f9e136a337aa77e26a25a87bb00950be9f42219
   specs:
     hqmf2js (1.3.0)
 

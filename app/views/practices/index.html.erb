@@ -11,6 +11,7 @@
         <th>Organization</th>
         <th>Address</th>
         <th>User(s)</th>
+        <th>Patients</th>
         <th></th>
       </tr>
     </thead>
@@ -21,6 +22,7 @@
         <td><%= practice.organization %></td>
         <td><%= practice.address %></td> 
         <td><%= practice.users ? practice.users.map {|u| u.username}.join(", ") : 'N/A' %></td>                
+        <td><%= practice.records ? practice.records.count : 0 %></td>
         <td><%= link_to 'Delete', practice, method: :delete, data: { confirm: 'Are you sure? There may be patients tied to this practice' } %></td>
       </tr>
     </tbody>

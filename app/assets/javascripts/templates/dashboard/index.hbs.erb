@@ -1,9 +1,10 @@
 <div class="sidebar" id="filters">
   <h3>Filters</h3>
-
+  {{#unless opml}}
   <span class="panel-title btn btn-checkbox btn-block aggregate-btn {{#if showAggregateResult}}active{{/if}}"> 
     <i class="fa fa-group"/> &nbsp; SHOW AGGREGATE RESULT 
   </span>
+  {{/unless}}
 
   <p class="input-group">
     <input type="text" class="form-control category-measure-search" placeholder="measure or group title">
