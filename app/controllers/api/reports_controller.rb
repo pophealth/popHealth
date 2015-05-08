@@ -30,6 +30,7 @@ module Api
       provider = provider_filter = nil
       if params[:provider_id].present?
         provider = Provider.find(params[:provider_id])
+        authorize! :read, provider 
         provider_filter = {}
         provider_filter['filters.providers'] = params[:provider_id] if params[:provider_id].present?
       end
@@ -245,6 +246,7 @@ module Api
     def cat1
       exporter = HealthDataStandards::Export::Cat1.new
       patient = Record.find(params[:id])
+      authorize! :read, patient
       measure_ids = params["measure_ids"].split(',')
       measures = HealthDataStandards::CQM::Measure.where(:hqmf_id.in => measure_ids)
       end_date = params["effective_date"] || current_user.effective_date || Time.gm(2012, 12, 31)

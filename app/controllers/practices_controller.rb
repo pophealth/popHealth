@@ -40,7 +40,6 @@ class PracticesController < ApplicationController
       end
     end
     
-    admin = User.where(username: pophealth).first
     @practice.provider.parent = Provider.root
     
     respond_to do |format|

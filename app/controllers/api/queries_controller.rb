@@ -29,7 +29,7 @@ module Api
     def show
       @qr = QME::QualityReport.find(params[:id])
 
-      unless @qr.aggregate_result
+      if !@qr.aggregate_result && !APP_CONFIG['use_opml_structure']
         cv = HealthDataStandards::CQM::Measure.where(id: @qr.measure_id).first.continuous_variable
         aqr = QME::QualityReport.where(measure_id: @qr.measure_id, sub_id: @qr.sub_id, 'filters.providers' => [], effective_date: @qr.effective_date).first  	           
         if aqr.result
@@ -75,14 +75,16 @@ module Api
           "enable_logging" => APP_CONFIG['enable_map_reduce_logging'] || false}, true)
       end
 
-      agg_options = options.clone
-      agg_options[:filters][:providers] = []
-      aqr = QME::QualityReport.find_or_create(params[:measure_id],
+      unless APP_CONFIG['use_opml_structure']	
+        agg_options = options.clone
+        agg_options[:filters][:providers] = []
+        aqr = QME::QualityReport.find_or_create(params[:measure_id],
                                            params[:sub_id], agg_options)
-      if !aqr.calculated?
-        aqr.calculate( {"oid_dictionary" =>OidHelper.generate_oid_dictionary(aqr.measure),
+        if !aqr.calculated?
+          aqr.calculate( {"oid_dictionary" =>OidHelper.generate_oid_dictionary(aqr.measure),
           "enable_rationale" => APP_CONFIG['enable_map_reduce_rationale'] || false,
           "enable_logging" => APP_CONFIG['enable_map_reduce_logging'] || false}, true)
+        end
       end
 
       render json: qr
