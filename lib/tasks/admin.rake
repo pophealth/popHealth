@@ -10,7 +10,6 @@ namespace :admin do
                      :email =>          "provideadmin@providemycompanyname.com",
                      :agree_license =>  true)
     admin_account.save!
-    admin_account.grant_admin
     
     if ! APP_CONFIG['use_opml_structure']
       # create root provider
@@ -22,5 +21,7 @@ namespace :admin do
       admin_account.provider_id = provider.id
       admin_account.save!
     end
+    
+    admin_account.grant_admin
   end
 end
