@@ -86,6 +86,7 @@ class User
   def set_defaults
     self.staff_role ||= APP_CONFIG["default_user_staff_role"]
     self.approved ||= APP_CONFIG["default_user_approved"]
+    self.teams = []
     true
   end
 
@@ -94,7 +95,6 @@ class User
     # if self.preferences[:selected_measure_ids] == nil
     #   binding.pry
     # end
-    self.teams = []
     self.preferences["selected_measure_ids"] ||= []
     # puts self.preferences[:selected_measure_ids]
   end

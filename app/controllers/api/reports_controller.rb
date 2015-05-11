@@ -149,10 +149,12 @@ module Api
         authorize! :read, provider
         query = {:measure_id => measure_id, :sub_id => sub_id, :effective_date => params[:effective_date].to_i, 'filters.providers' => [provider.id.to_s]}
         cache = QME::QualityReport.where(query).first     
-        performance_denominator = cache.result['DENOM'] - cache.result['DENEX']
-        percent =  percentage(cache.result['NUMER'].to_f, performance_denominator.to_f)
-        sheet.row(r).push(provider.full_name, provider.npi, cache.result['NUMER'], performance_denominator, cache.result['DENEX'], percent)
-        r+=1
+        if cache && cache.result
+          performance_denominator = cache.result['DENOM'] - cache.result['DENEX']
+          percent =  percentage(cache.result['NUMER'].to_f, performance_denominator.to_f)
+          sheet.row(r).push(provider.full_name, provider.npi, cache.result['NUMER'], performance_denominator, cache.result['DENEX'], percent)
+          r+=1
+        end
       end
 
       today = Time.now.strftime("%D")
@@ -164,7 +166,7 @@ module Api
         :encoding => 'utf8',
         :stream => false,
         :type => 'application/vnd.ms-excel',
-        :filename => filename
+          :filename => filename
       })
     end
 
