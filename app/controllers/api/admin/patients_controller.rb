@@ -22,10 +22,20 @@ module Api
 
       api :POST, "/admin/patients", "Upload a zip file of patients."
       param :file, nil, :desc => 'The zip file of patients to upload.', :required => true
-      param :practice, nil, :desc => "Practice ID for the patient's Practice", :required => false
+      param :practice_id, nil, :desc => "ID for the patient's Practice", :required => false
+      param :practice_name, nil, :desc => "Name for the patient's Practice", :required => false
+      
       def create
         file = params[:file]
-        practice = params[:practice]
+        
+        if params[:practice_id]
+          practice = params[:practice_id]
+        elsif params[:practice_name]
+          ext = Practice.where(name: params[:practice_name]).first
+          practice =  ext ? ext._id.to_s : nil
+        else
+          practice = nil
+        end
         
         FileUtils.mkdir_p(File.join(Dir.pwd, "tmp/import"))
         file_location = File.join(Dir.pwd, "tmp/import")

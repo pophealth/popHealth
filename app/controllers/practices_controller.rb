@@ -30,6 +30,7 @@ class PracticesController < ApplicationController
       identifier = CDAIdentifier.new(:root => "Organization", :extension => @practice.organization)
       provider = Provider.new(:given_name => @practice.name)
       provider.cda_identifiers << identifier
+      provider.parent = Provider.root
       provider.save
       @practice.provider = provider
       
@@ -39,9 +40,7 @@ class PracticesController < ApplicationController
         user.save
       end
     end
-    
-    @practice.provider.parent = Provider.root
-    
+   
     respond_to do |format|
       if @practice.save
         format.html { redirect_to practices_path, notice: 'Practice was successfully created.' }

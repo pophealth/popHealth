@@ -37,10 +37,10 @@ class Ability
           user.practice_id == patient.practice_id
         end
         can :manage, Provider do |prov|
-          if prov.parent      
-            user.practice_id == prov.parent.practice.id
-          elsif prov.practice
+          if prov.practice
             user.practice_id == prov.practice.id
+          elsif prov.parent      
+            user.practice_id == prov.parent.practice.id
           else
             false
           end

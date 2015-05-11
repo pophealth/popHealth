@@ -24,6 +24,32 @@ module Api
       render :json => practices.as_json
     end  
     
+    api :POST, "/practices", "Get the practice information"
+    param :name, String, :desc => "Practice Name", :required => true
+    param :organization, String, :desc => "Practice organization", :required => true
+    formats ['json']
+    def create
+      @practice = Practice.new(:name => params[:name], :organization => params[:organization])
+
+      if @practice.save!
+        identifier = CDAIdentifier.new(:root => "Organization", :extension => @practice.organization)
+        provider = Provider.new(:given_name => @practice.name)
+        provider.cda_identifiers << identifier
+        provider.parent = Provider.root
+        provider.save
+        @practice.provider = provider
+        
+        if params[:user] != ''
+          user = User.find(params[:user])
+          @practice.users << user
+          user.save
+        end
+      else
+        @practice = nil
+      end
+      render :json => @practice
+    end
+    
     private 
 
     def validate_authorization!
