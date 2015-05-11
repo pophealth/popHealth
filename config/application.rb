@@ -52,6 +52,8 @@ module PopHealth
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
     # add devise views
 #    config.paths["app/views/devise"]
     config.paths["app/views"] << "app/views/devise"

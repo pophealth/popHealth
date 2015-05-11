@@ -44,6 +44,8 @@ gem 'jquery-rails' # necessary for jquery_ujs w/data-method="delete" etc
 gem 'bootstrap-datepicker-rails', '1.3.0.2'
 gem 'uglifier'
 gem 'non-stupid-digest-assets' # support vendored non-digest assets
+gem 'jquery-datatables-rails', '3.1.1'
+gem 'jquery-ui-rails'
 
 group :test, :develop, :ci do
   gem 'pry'

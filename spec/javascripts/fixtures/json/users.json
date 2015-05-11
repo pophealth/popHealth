@@ -19,5 +19,6 @@
   "registry_name": "",
   "staff_role": true,
   "tin": "",
-  "username": "admin"
+  "username": "admin",
+  "teams": ["54cbe565706f702d48060000"]
 }]

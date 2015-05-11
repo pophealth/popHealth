@@ -21,6 +21,7 @@ class Thorax.Views.ResultsView extends Thorax.View
           if PopHealth.currentUser.populationChartScaledToIPP() then @popChart.maximumValue(@model.result().IPP) else @popChart.maximumValue(PopHealth.patientCount)
           @popChart.update(_(lower_is_better: @lower_is_better).extend @model.result())
     rendered: ->
+      unless PopHealth.currentUser.showAggregateResult() then @$('.aggregate-result').hide()
       @$(".icon-popover").popover()
       @$('.dial').knob()
       if @model.isPopulated()
@@ -36,6 +37,7 @@ class Thorax.Views.ResultsView extends Thorax.View
       resultValue: if @model.isContinuous() then @model.observation() else @model.performanceRate()
       fractionTop: if @model.isContinuous() then @model.measurePopulation() else @model.numerator()
       fractionBottom: if @model.isContinuous() then @model.ipp() else @model.performanceDenominator()
+      aggregateResult: @model.aggregateResult()
   initialize: ->
     @popChart = PopHealth.viz.populationChart().width(125).height(25).maximumValue(PopHealth.patientCount)
     @model.set('providers', [@provider_id]) if @provider_id?
@@ -67,6 +69,7 @@ class Thorax.Views.DashboardSubmeasureView extends Thorax.View
 class Thorax.Views.Dashboard extends Thorax.View
   template: JST['dashboard/index']
   events:
+    'click .aggregate-btn': 'toggleAggregateShow'
     'click .btn-checkbox.all':           'toggleCategory'
     'click .btn-checkbox.individual':    'toggleMeasure'
     'keyup .category-measure-search': 'search'
@@ -86,6 +89,15 @@ class Thorax.Views.Dashboard extends Thorax.View
     @selectedCategories = PopHealth.currentUser.selectedCategories(@collection)
     @populationChartScaledToIPP = PopHealth.currentUser.populationChartScaledToIPP()
     @currentUser = PopHealth.currentUser.get 'username'
+    @showAggregateResult = PopHealth.currentUser.showAggregateResult()
+    @opml = PopHealth.OPML
+
+  toggleAggregateShow: (e) ->    
+    shown = PopHealth.currentUser.showAggregateResult()
+    PopHealth.currentUser.setShowAggregateResult(!shown)
+    @$('.aggregate-result').toggle(400)   
+    @$('.aggregate-btn').toggleClass('active')    
+
   effective_date: ->
     PopHealth.currentUser.get 'effective_date'
 

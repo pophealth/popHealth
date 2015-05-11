@@ -31,6 +31,7 @@
     formats ['json']
     def index
       records = Record.where(@query)
+      validate_record_authorizations(records)
       respond_with  paginate(api_patients_url,records)
     end
 
@@ -63,10 +64,12 @@
     api :POST, "/patients", "Load a patient into popHealth"
     formats ['xml']
     param :file, nil, :desc => "The QRDA Cat I file", :required => true
+    param :practice, nil, :desc => "Practice ID for the patient's Practice", :required => false
     description "Upload a QRDA Category I document for a patient into popHealth."
     def create
       authorize! :create, Record
-      success = HealthDataStandards::Import::BulkRecordImporter.import(params[:file])
+      practice = params[:practice]
+      success = HealthDataStandards::Import::BulkRecordImporter.import(params[:file], {}, practice)
       if success
         Log.create(:username => @current_user.username, :event => 'record import')
         render status: 201, text: 'Patient Imported'
@@ -107,6 +110,12 @@
 
     def validate_authorization!
       authorize! :read, Record
+    end
+
+    def validate_record_authorizations(records)
+      records.each do |record|
+        authorize! :read, record
+      end    
     end
 
     def set_filter_params

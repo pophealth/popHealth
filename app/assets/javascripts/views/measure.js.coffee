@@ -4,8 +4,8 @@ class SubmeasureView extends Thorax.View
     _(super).extend measurementPeriod: moment(PopHealth.currentUser.get 'effective_date' * 1000).format('YYYY')
   logicIsActive: -> @parent.logicIsActive()
   patientResultsIsActive: -> @parent.patientResultsIsActive()
+  teamMeasuresIsActive: -> @parent.teamMeasuresIsActive() or @parent.teamListIsActive()
   effectiveDate: -> PopHealth.currentUser.get 'effective_date'
-
 
 class Thorax.Views.MeasureView extends Thorax.LayoutView
   id: 'measureSummary'
@@ -36,9 +36,17 @@ class Thorax.Views.MeasureView extends Thorax.LayoutView
       PopHealth.router.navigate url
     @getView().changeFilter population
 
+  activateTeamListView: ->
+    view = new Thorax.Views.TeamListView submeasure: @submeasure, provider_id: @provider_id, collection: new Thorax.Collections.Teams 
+    @setView view
+    
   activateLogicView: ->
     view = new Thorax.Views.LogicView model: @submeasure
     view.changeFilter @sidebarView.currentPopulation
+    @setView view
+
+  activateTeamMeasuresView: (team) ->
+    view = new Thorax.Views.TeamMeasuresView model: team, submeasure: @submeasure
     @setView view
 
   activatePatientResultsView: (providerId) ->
@@ -46,6 +54,10 @@ class Thorax.Views.MeasureView extends Thorax.LayoutView
     view = new Thorax.Views.PatientResultsLayoutView query: @submeasure.getQueryForProvider(providerId), providerId: providerId
     view.changeFilter @sidebarView.currentPopulation
     @setView view
+
+  teamListIsActive: -> if view = @getView() then view instanceof Thorax.Views.TeamListView else @viewType is 'team_list'
+  
+  teamMeasuresIsActive: -> if view = @getView() then view instanceof Thorax.Views.TeamMeasuresView else @viewType is 'team_measures'
 
   logicIsActive: -> if view = @getView() then view instanceof Thorax.Views.LogicView else @viewType is 'logic'
   patientResultsIsActive: -> if view = @getView() then view instanceof Thorax.Views.PatientResultsLayoutView else @viewType is 'patient_results'

@@ -17,7 +17,7 @@ class Ability
     #   can :update, Article, :published => true
     #
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
-
+    opml = APP_CONFIG['use_opml_structure']
     user ||= User.new
 
     if user.admin?
@@ -28,15 +28,37 @@ class Ability
       # can [:create,:delete], HealthDataStandards::CQM::Measure
     elsif user.staff_role?
       can :read, HealthDataStandards::CQM::Measure
-      can :read, Record
-      can :manage, Provider
-      can :manage, :providers
+      if opml
+        can :read, Record
+        can :manage, Provider
+        can :manage, :providers
+      else
+        can :read, Record do |patient|
+          user.practice_id == patient.practice_id
+        end
+        can :manage, Provider do |prov|
+          if prov.parent      
+            user.practice_id == prov.parent.practice.id
+          elsif prov.practice
+            user.practice_id == prov.practice.id
+          else
+            false
+          end
+        end
+      end
       can :manage, User, id: user.id
       cannot :manage, User unless APP_CONFIG['allow_user_update']
       can [:read, :delete, :recalculate,:create] , QME::QualityReport
+      can :manage, Team do |team|
+        team.user_id == user._id
+      end
     elsif user.id
       can :read, Record do |patient|
-        patient.providers.map(&:npi).include?(user.npi)
+        if opml
+          patient.providers.map(&:npi).include?(user.npi)
+        else
+          patient.providers.map(&:npi).include?(user.npi) && user.practice.id == patient.practice_id
+        end
       end
       can [:read,:delete, :recalculate, :create], QME::QualityReport do |qr|
          provider = Provider.by_npi(user.npi).first

@@ -5,7 +5,19 @@
     </div>
     <div class="collapse navbar-collapse in">
       <ul class="nav navbar-nav pull-left" style="margin-top: 10px">
-        <li class="location"><% if Provider.root %><%= Provider.root.given_name %><% else %><%= APP_CONFIG['practice_name'] %><% end %></li>
+        <li class="location"><%# if Provider.root %><%#= Provider.root.given_name %><%# else %><%#= APP_CONFIG['practice_name'] %><%# end %>
+          <%=
+            if APP_CONFIG['use_opml_structure']
+              if Provider.root
+                Provider.root.given_name
+              else
+                APP_CONFIG['practice_name']
+              end
+            else
+              current_user.practice ? current_user.practice.name : ''
+            end
+          %>
+        </li>
       </ul>
        <ul class="nav pull-right">
         <li class="divider-vertical"></li>
@@ -25,7 +37,11 @@
               <% if current_user.staff_role? || current_user.admin? %>
                 <li class="divider"></li>
                 <li role="presentation" class="dropdown-header">Admin</li>
+                <% if current_user.admin? %>
+                  <li><%= link_to raw('<i class="glyphicon glyphicon-th-large"></i> Practices'), practices_path %></li> 
+                <% end %>
                 <li><%= link_to raw('<i class="glyphicon glyphicon-plus"></i> Providers'), '/#providers'%></li>
+                <li><%= link_to raw('<i class="glyphicon glyphicon-list"></i> Manage Teams'), '/teams'%></li>
                 <% if current_user.admin? %>
                   <% if (APP_CONFIG['patient_management_enabled']) %>
                     <li><%= link_to raw('<i class="glyphicon glyphicon-eye-open"></i> Patients'), admin_patients_path%></li>

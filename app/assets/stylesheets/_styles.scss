@@ -3,6 +3,45 @@ $circle-bkg-color: #fff;
 $title-circle-radius: 21px;
 
 // Custom styles that are part of the theme
+.aggregate-btn {
+  margin-bottom: 15px;
+  width: 100%;
+  background-color: $gray-lighter;
+  text-align: center;
+}
+.aggregate-result {
+  margin-top: -10px; 
+  
+  #aggregate-header {
+    font-weight: 400;
+    font-size: 18px;
+  }
+  
+  #aggregate-value {
+    font-size: 22px;
+    font-weight: 500;
+    color: #4A4A4A;
+  }
+
+}
+
+.user-profile {
+  table-layout: fixed;
+  width: 80%;
+}
+.up-col {
+  width: 200px;
+}
+
+.practices {
+  margin-left:40px; 
+  margin-right:40px; 
+  width:60%;
+}
+
+.practice-btn {
+  margin-right: 40px;
+}
 
 .dropdown {
   position: relative;
@@ -25,6 +64,46 @@ $title-circle-radius: 21px;
   padding-left: 5px;
 }
 
+.team-submeasure {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  .provider-info {
+    float: left;
+    margin-top: 15px;
+    width: 200px;
+    font-size: 16px;
+  }
+}
+
+.team-patient-btn {
+  float: right;
+}
+.team-provider-patients-btn {
+  margin-top: 18px;
+}
+
+.team-name {
+  float: left;
+  font-size: 20pt;
+  margin-left: 10px;  
+}
+.team-measure-header {
+  background-color: $gray-lighter;
+  @include make-row(0);
+}
+.team-measure-view {
+  margin-left: 10px;  
+}
+
+.userTeams { 
+  width: 50%;
+}
+
+#team_list_table tbody {
+  height: 300px;
+  overflow: scroll;
+}
+
 body {
   margin-bottom: 40px;
 }
@@ -36,6 +115,23 @@ body {
 .export-patients-btn {
   float: right;
   width: 180px;
+}
+
+.export-team-report-btn {
+  margin-top: 2px;
+}
+
+.practice_select {
+  max-width: 300px;
+}
+.practices {
+  margin-left:40px; 
+  margin-right:40px; 
+  width:60%;
+}
+
+.practice-btn {
+  margin-right: 40px;
 }
 
 .measure {
@@ -58,6 +154,11 @@ body {
 .row-remainder {
   @include make-xs-column(5, 0);
 }
+
+.team-prov-row-remainder {
+  @include make-xs-column(6, 0);
+}
+
 
 .fraction-listing {
   margin: 10px 5px;
