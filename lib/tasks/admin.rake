@@ -8,19 +8,20 @@ namespace :admin do
                      :username =>       "pophealth",
                      :password =>       "pophealth",
                      :email =>          "provideadmin@providemycompanyname.com",
+                     :approved =>       true,
+                     :admin =>          true,
                      :agree_license =>  true)
     admin_account.save!
     
     if ! APP_CONFIG['use_opml_structure']
       # create root provider
       identifier = CDAIdentifier.new({root: "Organization", extension: "Administrator"})
-      provider = Provider.new(:given_name => "Administrator")
+      provider = Provider.create(:given_name => "Administrator")
       provider.cda_identifiers << identifier
       provider.save!
       
       admin_account.provider_id = provider.id
       admin_account.save!
     end
-    admin_account.grant_admin
   end
 end

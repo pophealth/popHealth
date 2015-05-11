@@ -3,7 +3,7 @@ class TeamsController < ApplicationController
   authorize_resource
   # GET /teams
   def index
-    @teams = @current_user.teams.map{|id| Team.find(id)}
+    @teams = @current_user.teams ? @current_user.teams.map{|id| Team.find(id)} : []
     validate_authorization!(@teams)
   end
 

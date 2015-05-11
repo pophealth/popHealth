@@ -166,7 +166,7 @@ module Api
         :encoding => 'utf8',
         :stream => false,
         :type => 'application/vnd.ms-excel',
-          :filename => filename
+        :filename => filename
       })
     end
 
