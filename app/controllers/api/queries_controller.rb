@@ -77,7 +77,7 @@ module Api
 
       unless APP_CONFIG['use_opml_structure']	
         agg_options = options.clone
-        agg_options[:filters][:providers] = []
+        agg_options[:filters][:providers] = [Provider.root.id.to_s]
         aqr = QME::QualityReport.find_or_create(params[:measure_id],
                                            params[:sub_id], agg_options)
         if !aqr.calculated?
