@@ -27,6 +27,8 @@ PopHealth::Application.routes.draw do
   post "teams/:id/update", :to => 'teams#update'
   post "teams/create"
    
+  get 'home/check_authorization'
+   
   root :to => 'home#index'
 
   resources :practices 

@@ -13,9 +13,14 @@ class Thorax.Views.ResultsView extends Thorax.View
           clearInterval(@timeout) if @timeout?
           d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
         else
-          @timeout ?= setInterval =>
-            @model.fetch()
-          , 3000
+          @authorize()
+          if @response == 'false'
+            clearInterval(@timeout)
+            @view.setView ''
+          else
+            @timeout ?= setInterval =>
+              @model.fetch()
+            , 3000
       rescale: ->
         if @model.isPopulated()
           if PopHealth.currentUser.populationChartScaledToIPP() then @popChart.maximumValue(@model.result().IPP) else @popChart.maximumValue(PopHealth.patientCount)
@@ -30,6 +35,14 @@ class Thorax.Views.ResultsView extends Thorax.View
         @$('rect').popover()
     destroyed: ->
       clearInterval(@timeout) if @timeout?
+
+  authorize: ->
+    @response = $.ajax({ 
+      async: false,
+      url: "home/check_authorization/", 
+      data: {"id": @provider_id}
+    }).responseText    
+    
   shouldDisplayPercentageVisual: -> !@model.isContinuous() and PopHealth.currentUser.shouldDisplayPercentageVisual()
   context: (attrs) ->
     _(super).extend
