@@ -116,7 +116,8 @@
     <td><%= user.first_name %></td>
     <td><%= user.last_name %></td>
     <td><%= user.username %></td>
-<!--    <td>
+    <% if APP_CONFIG['use_opml_structure'] %>
+    <td>
       <select class="npi_select" data-username="<%= user.username %>" name="user[npi]">
         <option value="-1">&nbsp;</option>
         <% Provider.all.alphabetical.each do |provider| %>
@@ -124,9 +125,8 @@
         <% end%>
       </select>
     </td>
--->
-    <% unless APP_CONFIG['use_opml_structure'] %>
-  	  <td> <%= select_tag "practice", options_for_select(@practices, (user.practice)? user.practice.id : 'n/a'), prompt: 'None', data: {user: user.id.to_s}, class: 'practice_select'%> </td>
+    <% else %>
+    <td> <%= select_tag "practice", options_for_select(@practices, (user.practice)? user.practice.id : 'n/a'), prompt: 'None', data: {user: user.id.to_s}, class: 'practice_select'%> </td>
     <% end %>    
     <td>
       <% if user.admin? -%>
