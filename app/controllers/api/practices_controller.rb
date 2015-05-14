@@ -17,14 +17,14 @@ module Api
       render :json => practice.as_json
     end
     
-    api :GET, "/practices", "Get the practice information"
+    api :GET, "/practices", "Get all practice information"
     formats ['json']
     def index
       practices = Practice.all
       render :json => practices.as_json
     end  
     
-    api :POST, "/practices", "Get the practice information"
+    api :POST, "/practices", "Create a practice"
     param :name, String, :desc => "Practice Name", :required => true
     param :organization, String, :desc => "Practice organization", :required => true
     param :user, String, :desc => "User to assign to practice", :required => false
