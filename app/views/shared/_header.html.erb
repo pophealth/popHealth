@@ -37,7 +37,7 @@
               <% if current_user.staff_role? || current_user.admin? %>
                 <li class="divider"></li>
                 <li role="presentation" class="dropdown-header">Admin</li>
-                <% if current_user.admin? %>
+                <% if current_user.admin? && !APP_CONFIG['use_opml_structure']%> 
                   <li><%= link_to raw('<i class="glyphicon glyphicon-th-large"></i> Practices'), practices_path %></li> 
                 <% end %>
                 <li><%= link_to raw('<i class="glyphicon glyphicon-plus"></i> Providers'), '/#providers'%></li>
