@@ -1,9 +1,10 @@
 class SubmeasureView extends Thorax.View
   template: JST['measures/submeasure']
   context: ->
-    _(super).extend measurementPeriod: moment(Config.effectiveDate * 1000).format('YYYY')
+    _(super).extend measurementPeriod: moment(PopHealth.currentUser.get 'effective_date' * 1000).format('YYYY')
   logicIsActive: -> @parent.logicIsActive()
   patientResultsIsActive: -> @parent.patientResultsIsActive()
+  effectiveDate: -> PopHealth.currentUser.get 'effective_date'
 
 
 class Thorax.Views.MeasureView extends Thorax.LayoutView
@@ -18,7 +19,7 @@ class Thorax.Views.MeasureView extends Thorax.LayoutView
     @submeasureView = new SubmeasureView model: @submeasure, provider_id: @provider_id
 
   context: ->
-    _(super).extend @submeasure.toJSON(), measurementPeriod: moment(Config.effectiveDate * 1000).format('YYYY')
+    _(super).extend @submeasure.toJSON(), measurementPeriod: moment(PopHealth.currentUser.get 'effective_date' * 1000).format('YYYY')
 
   changeFilter: (submeasure, population) ->
     if submeasure isnt @submeasure

@@ -13,6 +13,10 @@ class AdminController < ApplicationController
     @provider_count = Provider.count
   end
 
+  def user_profile
+    @user = User.find(params[:id])
+  end
+
   def remove_patients
     Record.delete_all
     redirect_to action: 'patients'
@@ -104,6 +108,18 @@ class AdminController < ApplicationController
     user = User.by_username(params[:username]);
     user.update_attribute(:npi, params[:npi]);
     render :text => "true"
+  end
+
+  def delete_user
+    @user = User.find(params[:id])
+    if User.count == 1
+      redirect_to :action => :users, notice: "Cannot remove sole user"
+    elsif @user.admin? 
+      redirect_to :action => :users, notice: "Cannot remove administrator"
+    else
+      @user.destroy
+      redirect_to :action => :users
+    end
   end
 
   private

@@ -85,9 +85,9 @@ class Thorax.Views.Dashboard extends Thorax.View
   initialize: ->
     @selectedCategories = PopHealth.currentUser.selectedCategories(@collection)
     @populationChartScaledToIPP = PopHealth.currentUser.populationChartScaledToIPP()
-
+    @currentUser = PopHealth.currentUser.get 'username'
   effective_date: ->
-    Config.effectiveDate
+    PopHealth.currentUser.get 'effective_date'
 
   categoryFilterContext: (category) ->
     selectedCategory = @selectedCategories.findWhere(category: category.get('category'))

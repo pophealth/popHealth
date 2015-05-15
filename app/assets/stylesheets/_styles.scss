@@ -3,6 +3,34 @@ $circle-bkg-color: #fff;
 $title-circle-radius: 21px;
 
 // Custom styles that are part of the theme
+.user-profile {
+  table-layout: fixed;
+  width: 80%;
+}
+.up-col {
+  width: 200px;
+}
+
+.dropdown {
+  position: relative;
+}
+.effective-date-header{
+  font-size: 16px;
+}
+.effective-date-picker {
+  width: 100px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  height: 28px;
+  position: relative;
+}
+.effective-date-btn{
+  border: 0;
+  height: 28px;
+  width: 30px;
+  padding-left: 5px;
+}
 
 body {
   margin-bottom: 40px;
@@ -10,6 +38,11 @@ body {
 
 #measureSelectors {
   word-wrap: break-word;
+}
+
+.export-patients-btn {
+  float: right;
+  width: 180px;
 }
 
 .measure {

@@ -10,6 +10,17 @@ describe 'User', ->
       maskStatus = @user.maskStatus()
       expect(maskStatus).toEqual false
 
+  describe 'preferences', ->
+    it 'updates user preferences - provider tree', ->
+      @user.get('preferences').should_display_provider_tree = true
+      @user.save
+      expect( @user.get('preferences').should_display_provider_tree).toEqual true
+
+    it 'updates user preferences - should display circle visual', ->
+      @user.get('preferences').should_display_circle_visual = false
+      @user.save
+      expect( @user.get('preferences').should_display_circle_visual).toEqual false
+
   describe 'selectedCategories', ->
     it 'returns an empty collection if there are no selected categories', ->
       selectedCategories = @user.selectedCategories(@categories)

@@ -1,14 +1,14 @@
 source 'http://rubygems.org'
 
 gem 'rails', '~> 4.1.2'
-gem 'quality-measure-engine', '3.1.0'
-gem "hqmf2js", :git=> "https://github.com/pophealth/hqmf2js.git"
-gem 'health-data-standards', '3.5.0'
+gem 'quality-measure-engine', '3.1.2'
+gem "hqmf2js", :git=> "https://github.com/projecttacoma/hqmf2js.git"
+gem 'health-data-standards', '3.5.3'
 #gem 'health-data-standards', :path=> '../health-data-standards'
 gem 'nokogiri'
 gem 'rubyzip'
 gem 'hquery-patient-api', '1.0.4'
-
+gem 'spreadsheet', '1.0.3'
 gem 'sshkit'
 # Should be removed in the future. This is only used for the
 # admin log page. When the admin pages are switched to
@@ -41,6 +41,7 @@ gem 'bootstrap-sass', '~> 3.0.3'
 gem 'sass-rails', "~> 4.0.2"
 gem 'coffee-rails'
 gem 'jquery-rails' # necessary for jquery_ujs w/data-method="delete" etc
+gem 'bootstrap-datepicker-rails', '1.3.0.2'
 gem 'uglifier'
 gem 'non-stupid-digest-assets' # support vendored non-digest assets
 

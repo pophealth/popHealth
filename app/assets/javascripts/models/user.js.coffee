@@ -5,7 +5,12 @@ class Thorax.Models.User extends Thorax.Model
   maskStatus: -> @get('preferences').mask_phi_data
   shouldDisplayPercentageVisual: -> @get('preferences').should_display_circle_visual
   populationChartScaledToIPP: -> @get('preferences').population_chart_scaled_to_IPP
+  shouldDisplayProviderTree: -> @get('preferences').should_display_provider_tree
 
+  effectiveDateString: (end) ->
+    # if end is true, returns date string. else it returns date string from 1 year ago
+    d = new Date(@get('effective_date') *1000)
+    date = if end == true then (d.getUTCMonth() + 1 ) + '/' + d.getUTCDate() + '/' + d.getUTCFullYear() else (d.getUTCMonth() + 1) + '/' + d.getUTCDate() + '/' + (d.getUTCFullYear()-1)
 
   setPopulationChartScale: (value) ->
     @get('preferences').population_chart_scaled_to_IPP = value

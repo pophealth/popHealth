@@ -19,6 +19,9 @@ PopHealth::Application.routes.draw do
   post 'api/measures/finalize'
   post 'api/measures/update_metadata'
   get "logs/index"
+  post 'home/set_reporting_period'
+  get "admin/user_profile"
+  delete "admin/delete_user"
 
   root :to => 'home#index'
 
@@ -41,6 +44,8 @@ PopHealth::Application.routes.draw do
   namespace :api do
     get 'reports/qrda_cat3.xml', :to =>'reports#cat3', :format => :xml
     get 'reports/cat1/:id/:measure_ids', :to =>'reports#cat1', :format => :xml
+    get 'reports/patients', :to => 'reports#patients'
+    get 'reports/measures_spreadsheet', :to =>'reports#measures_spreadsheet'
     namespace :admin do
       resource :caches do
         collection do
