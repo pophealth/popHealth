@@ -56,6 +56,8 @@ class User
   field :tin, :type => String
   field :agree_license, type: Boolean
   field :effective_date, type: Integer, default: DEFAULT_EFFECTIVE_DATE.to_i
+  field :effective_from_date, type: Integer, default: DEFAULT_EFFECTIVE_DATE.to_i
+  field :effective_to_date, type: Integer, default: DEFAULT_EFFECTIVE_DATE.to_i
   field :admin, type: Boolean
   field :approved, type: Boolean
   field :staff_role, type: Boolean

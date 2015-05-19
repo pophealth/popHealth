@@ -18,9 +18,10 @@ class Thorax.Views.ProviderView extends Thorax.View
       change: ->
           @dashboardView.filterEHMeasures(@model.providerType() == Config.ehExclusionType)
   setEffectiveDate: (e) ->
-    effectiveDate = $(".effective-date-picker").val()
+    effectiveFromDate = $(".effective-date-picker.from").val()
+    effectiveToDate = $(".effective-date-picker.to").val()
     user = PopHealth.currentUser.get 'username'
-    $.post "home/set_reporting_period", {"effective_date": effectiveDate, "username": user}, (d) -> location.reload()
+    $.post "home/set_reporting_period", {"effective_from_date": effectiveFromDate, "effective_to_date": effectiveToDate, "username": user}, (d) -> location.reload()
 
 # Layout for provider index; includes search bar and provider table
 class Thorax.Views.ProvidersView extends Thorax.View

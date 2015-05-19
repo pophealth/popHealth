@@ -2,7 +2,7 @@ window.PopHealth ||= {}
 class PopHealth.Router extends Backbone.Router
   initialize: ->
     # categories is defined globally in view
-    @categories = new Thorax.Collections.Categories PopHealth.categories, parse: true, effectiveDate: PopHealth.currentUser.get 'effective_date'
+    @categories = new Thorax.Collections.Categories PopHealth.categories, parse: true, effectiveDate: PopHealth.currentUser.get 'effective_date', effectiveFromDate: PopHealth.currentUser.get 'effective_from_date', effectiveToDate: PopHealth.currentUser.get 'effective_to_date'
     @view = new Thorax.LayoutView el: '#container'
 
   routes:

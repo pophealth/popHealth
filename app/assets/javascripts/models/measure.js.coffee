@@ -11,11 +11,13 @@ class Thorax.Models.Measure extends Thorax.Model
     subs = for sub in attrs.subs or []
       subData = _(sub).extend(data)
       subData.isPrimary = !sub.sub_id? or sub.sub_id is 'a'
-      subData
+      subData 
     @effectiveDate = @collection?.effectiveDate
+    @effectiveFromDate = @collection?.effectiveFromDate
+    @effectiveToDate = @collection?.effectiveToDate
     attrs.submeasures = new SubCollection subs, parent: this
     attrs
-  sync: (method, model, options) ->
+   sync: (method, model, options) ->
     if method isnt 'update'
       super
     else
@@ -31,6 +33,8 @@ class Thorax.Collections.Measures extends Thorax.Collection
     @parent = options?.parent
     @hasMoreResults = true
     @effectiveDate = @parent?.effectiveDate
+    @effectiveFromDate = @parent?.effectiveFromDate
+    @effectiveToDate = @parent?.effectiveToDate
   currentPage: (perPage = 100) -> Math.ceil(@length / perPage)
   fetch: ->
     result = super
@@ -45,7 +49,9 @@ class Thorax.Models.Submeasure extends Thorax.Model
   initialize: ->
     # TODO remove @get('query') when we upgrade to Thorax 3
     @effectiveDate = @collection?.effectiveDate
-    query = new Thorax.Models.Query({measure_id: @get('id'), sub_id: @get('sub_id'), effective_date: @effectiveDate }, parent: this)
+    @effectiveFromDate = @parent?.effectiveFromDate
+    @effectiveToDate = @parent?.effectiveToDate
+    query = new Thorax.Models.Query({measure_id: @get('id'), sub_id: @get('sub_id'), effective_date: @effectiveDate, effective_from_date: @effectiveDate, effective_to_date: @effectiveDate }, parent: this) 
     @set 'query', query
     @queries = {}
   isPopulated: -> @has 'IPP'
@@ -67,7 +73,7 @@ class Thorax.Models.Submeasure extends Thorax.Model
       attrs[population.type].parent = this
     attrs
   getQueryForProvider: (providerId) ->
-    query = @queries[providerId] or new Thorax.Models.Query({measure_id: @get('id'), sub_id: @get('sub_id'), effective_date: @effectiveDate, providers: [providerId]}, parent: this)
+    query = @queries[providerId] or new Thorax.Models.Query({measure_id: @get('id'), sub_id: @get('sub_id'), effective_date: @effectiveDate, effective_from_date: @effectiveDate, effective_to_date: @effectiveDate, providers: [providerId]}, parent: this)
     @queries[providerId] ?= query
 
 

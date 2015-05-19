@@ -48,10 +48,11 @@ module Api
     def create
       options = {}
       options[:filters] = build_filter
-
+      
       authorize_providers
-
       options[:effective_date] = params[:effective_date]
+      options[:effective_from_date] = params[:effective_from_date]
+      options[:effective_to_date] = params[:effective_to_date]
       options['prefilter'] = build_mr_prefilter if APP_CONFIG['use_map_reduce_prefilter']
       qr = QME::QualityReport.find_or_create(params[:measure_id],
                                            params[:sub_id], options)
