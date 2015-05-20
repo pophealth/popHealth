@@ -1,15 +1,16 @@
 <script type="text/javascript">		
   $(document).ready(function(){
     $('.effective-date-picker').datepicker({orientation: "top right", format: "m/d/yyyy"});
-    $(".effective-date-picker").val(PopHealth.currentUser.effectiveDateString(true));
+    $('.effective-date-picker').first().val(PopHealth.currentUser.effectiveStartDateString());
+    $('.effective-date-picker').last().val(PopHealth.currentUser.effectiveEndDateString());
   });
 </script>
 
 <div class="effective-date pull-right row-inline">
-   <h5 class='effective-date-header'><b> Reporting Period:</b> <input type="text"  class="effective-date-picker from" value="{{startDate}}" /> &mdash; <input type="text" class="effective-date-picker to"/> <button class="effective-date-btn btn-primary"> <i class="glyphicon glyphicon-refresh"/></button>
+  <h5 class='effective-date-header'><b> Reporting Period:</b> <input type="text" class="effective-date-picker start-date" placeholder='mm/dd/yyyy' /> &mdash; <input type="text" class="effective-date-picker end-date" placeholder='mm/dd/yyyy' /> <button class="effective-date-btn btn-primary"> <i class="glyphicon glyphicon-refresh"/></button>
   </h5>
 </div> 
-<h2>{{providerType}}: {{providerExtension}}, {{title}} {{given_name}} {{family_name}}</h2>
+<h2>{{providerType}} {{providerExtension}} {{title}} {{given_name}} {{family_name}}</h2>
 
 <h4>{{specialty}}</h4>
 <h4>{{organization.name}}</h4>
@@ -48,3 +49,4 @@
 </div>
 
 <div class="row">{{view dashboardView}}</div>
+

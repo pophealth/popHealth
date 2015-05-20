@@ -3,7 +3,7 @@ class Thorax.Views.ProviderView extends Thorax.View
   initialize: ->
     @dashboardView = new Thorax.Views.Dashboard provider_id: @model.id, collection: new Thorax.Collections.Categories PopHealth.categories, parse: true, effectiveDate: PopHealth.currentUser.get 'effective_date'
     if PopHealth.currentUser.shouldDisplayProviderTree() then @providerChart = PopHealth.viz.providerChart()
-    @startDate = PopHealth.currentUser.effectiveDateString(false)
+    @startDate = PopHealth.currentUser.effectiveStartDateString()
   context: ->
     _(super).extend
       providerType: @model.providerType() || ""
@@ -18,10 +18,12 @@ class Thorax.Views.ProviderView extends Thorax.View
       change: ->
           @dashboardView.filterEHMeasures(@model.providerType() == Config.ehExclusionType)
   setEffectiveDate: (e) ->
-    effectiveFromDate = $(".effective-date-picker.from").val()
-    effectiveToDate = $(".effective-date-picker.to").val()
+    startDate = $(".start-date").val()
+    endDate = $(".end-date").val()
     user = PopHealth.currentUser.get 'username'
-    $.post "home/set_reporting_period", {"effective_from_date": effectiveFromDate, "effective_to_date": effectiveToDate, "username": user}, (d) -> location.reload()
+    $.post "home/set_reporting_period", {"effective_start_date": startDate, 
+                                         "effective_end_date": endDate, 
+                                         "username": user}, (d) -> location.reload()
 
 # Layout for provider index; includes search bar and provider table
 class Thorax.Views.ProvidersView extends Thorax.View
@@ -66,3 +68,4 @@ class Thorax.Views.ProvidersIndex extends Thorax.View
       if !@isFetching and @collection?.length and @fetchTriggerPoint > distanceToBottom
         @isFetching = true
         @collection.fetchNextPage()
+
