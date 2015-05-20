@@ -63,8 +63,10 @@ require 'test_helper'
     
     test "cannot view patient outside of practice" do
       sign_in @staff2
+      APP_CONFIG['use_opml_structure'] = false
       get :show, id: @record1.id
-      assert_response 403    
+      assert_response 403
+      APP_CONFIG['use_opml_structure'] = true
     end
 
     test "view patient with include_results includes the results" do

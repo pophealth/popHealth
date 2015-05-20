@@ -86,9 +86,13 @@ module Api
       }
     EXAMPLE
     def show
-      provider_json = @provider.as_json
-      provider_json[:parent] = Provider.find(@provider.parent_id) if @provider.parent_id
-      provider_json[:children] = @provider.children if @provider.children.present?
+      if can? :read, @provider
+        provider_json = @provider.as_json
+        provider_json[:parent] = Provider.find(@provider.parent_id) if @provider.parent_id
+        provider_json[:children] = @provider.children if @provider.children.present?
+      else
+        provider_json = {}
+      end
       render json: provider_json
     end
 

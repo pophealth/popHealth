@@ -66,8 +66,10 @@ include Devise::TestHelpers
     
     test "don't allow access to non practice provider " do
       sign_in @staff1
+      APP_CONFIG['use_opml_structure'] = false
       get :show, id: @provider2.id, format: :json
       assert_response 403
+      APP_CONFIG['use_opml_structure'] = true
     end
 
     test "update provider" do
