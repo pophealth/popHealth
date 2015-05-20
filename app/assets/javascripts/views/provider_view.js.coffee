@@ -21,9 +21,7 @@ class Thorax.Views.ProviderView extends Thorax.View
     startDate = $(".start-date").val()
     endDate = $(".end-date").val()
     user = PopHealth.currentUser.get 'username'
-    $.post "home/set_reporting_period", {"effective_start_date": startDate, 
-                                         "effective_end_date": endDate, 
-                                         "username": user}, (d) -> location.reload()
+    $.post "home/set_reporting_period", {"effective_start_date": startDate, "effective_end_date": endDate, "username": user}, (d) -> location.reload()
 
 # Layout for provider index; includes search bar and provider table
 class Thorax.Views.ProvidersView extends Thorax.View
