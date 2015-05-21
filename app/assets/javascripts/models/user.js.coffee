@@ -7,13 +7,13 @@ class Thorax.Models.User extends Thorax.Model
   populationChartScaledToIPP: -> @get('preferences').population_chart_scaled_to_IPP
   shouldDisplayProviderTree: -> @get('preferences').should_display_provider_tree
 
-  effectiveStartDateString: () ->
-    d = new Date(@get('effective_start_date') *1000)  
-    return (d.getUTCMonth() + 1) + '/' + d.getUTCDate() + '/' + (d.getUTCFullYear())
-
-  effectiveEndDateString: () ->
-    d = new Date(@get('effective_end_date') *1000)  
-    return (d.getUTCMonth() + 1 ) + '/' + d.getUTCDate() + '/' + d.getUTCFullYear()
+  effectiveDateString: (end) ->
+    # if end is true, returns to date string. else it returns from date string
+    if end
+      d = new Date(@get('effective_to_date') *1000)
+    else
+      d = new Date(@get('effective_from_date') *1000)
+    date = (d.getUTCMonth() + 1 ) + '/' + d.getUTCDate() + '/' + d.getUTCFullYear()
 
   setPopulationChartScale: (value) ->
     @get('preferences').population_chart_scaled_to_IPP = value
