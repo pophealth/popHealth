@@ -1,15 +1,15 @@
 <script type="text/javascript">   
   $(document).ready(function(){
     $('.effective-date-picker').datepicker({orientation: "top right", format: "m/d/yyyy"});
-    $('.effective-date-picker.from').val(PopHealth.currentUser.effectiveDateString(false));
-    $('.effective-date-picker.to').val(PopHealth.currentUser.effectiveDateString(true));
+    $('.effective-date-picker.start').val(PopHealth.currentUser.effectiveDateString(false));
+    $('.effective-date-picker.end').val(PopHealth.currentUser.effectiveDateString(true));
   });
 </script>
 
 <div class="effective-date pull-right row-inline">
   <h5 class='effective-date-header'><b> Reporting Period:</b> 
-    <input type="text" class="effective-date-picker from"/> &mdash; 
-    <input type="text" class="effective-date-picker to"/> 
+    <input type="text" class="effective-date-picker start"/> &mdash; 
+    <input type="text" class="effective-date-picker end"/> 
     <button class="effective-date-btn btn-primary"> <i class="glyphicon glyphicon-refresh"/></button>
   </h5>
 </div> 

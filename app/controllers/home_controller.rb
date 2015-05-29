@@ -15,11 +15,11 @@ class HomeController < ApplicationController
 
   def set_reporting_period
     user = User.where(username: params[:username]).first
-    unless params[:effective_from_date].blank? || params[:effective_to_date].blank?
-      month, day, year = params[:effective_from_date].split('/')
-      user.effective_from_date = Time.gm(year.to_i, month.to_i, day.to_i).to_i
-      month, day, year = params[:effective_to_date].split('/')
-      user.effective_to_date = Time.gm(year.to_i, month.to_i, day.to_i).to_i
+    unless params[:effective_start_date].blank? || params[:effective_end_date].blank?
+      month, day, year = params[:effective_start_date].split('/')
+      user.effective_start_date = Time.gm(year.to_i, month.to_i, day.to_i).to_i
+      month, day, year = params[:effective_end_date].split('/')
+      user.effective_end_date = Time.gm(year.to_i, month.to_i, day.to_i).to_i
       user.save! 
     end
     render :json => :set_reporting_period, status: 200

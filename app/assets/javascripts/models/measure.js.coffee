@@ -11,13 +11,17 @@ class Thorax.Models.Measure extends Thorax.Model
     subs = for sub in attrs.subs or []
       subData = _(sub).extend(data)
       subData.isPrimary = !sub.sub_id? or sub.sub_id is 'a'
-      subData 
+      subData
     @effectiveDate = @collection?.effectiveDate
-    @effectiveFromDate = @collection?.effectiveFromDate
-    @effectiveToDate = @collection?.effectiveToDate
+    #TODO: FIX THIS. THIS IS TERRIBLE. cjohnsonal 5/29/15
+    @collection?.effectiveEndDate = PopHealth.currentUser.attributes.effective_end_date
+    @collection?.effectiveStartDate = PopHealth.currentUser.attributes.effective_start_date
+    @effectiveStartDate = @collection?.effectiveStartDate
+    @effectiveEndDate = @collection?.effectiveEndDate
+
     attrs.submeasures = new SubCollection subs, parent: this
     attrs
-   sync: (method, model, options) ->
+  sync: (method, model, options) ->
     if method isnt 'update'
       super
     else
@@ -33,8 +37,8 @@ class Thorax.Collections.Measures extends Thorax.Collection
     @parent = options?.parent
     @hasMoreResults = true
     @effectiveDate = @parent?.effectiveDate
-    @effectiveFromDate = @parent?.effectiveFromDate
-    @effectiveToDate = @parent?.effectiveToDate
+    @effectiveStartDate = @parent?.effectiveStartDate
+    @effectiveEndDate = @parent?.effectiveEndDate
   currentPage: (perPage = 100) -> Math.ceil(@length / perPage)
   fetch: ->
     result = super
@@ -49,9 +53,9 @@ class Thorax.Models.Submeasure extends Thorax.Model
   initialize: ->
     # TODO remove @get('query') when we upgrade to Thorax 3
     @effectiveDate = @collection?.effectiveDate
-    @effectiveFromDate = @parent?.effectiveFromDate
-    @effectiveToDate = @parent?.effectiveToDate
-    query = new Thorax.Models.Query({measure_id: @get('id'), sub_id: @get('sub_id'), effective_date: @effectiveDate, effective_from_date: @effectiveDate, effective_to_date: @effectiveDate }, parent: this) 
+    @effectiveStartDate = @collection?.effectiveStartDate
+    @effectiveEndDate = @collection?.effectiveEndDate
+    query = new Thorax.Models.Query({measure_id: @get('id'), sub_id: @get('sub_id'), effective_date: @effectiveDate, effective_start_date: @effectiveStartDate, effective_end_date: @effectiveEndDate }, parent: this)
     @set 'query', query
     @queries = {}
   isPopulated: -> @has 'IPP'
@@ -73,7 +77,7 @@ class Thorax.Models.Submeasure extends Thorax.Model
       attrs[population.type].parent = this
     attrs
   getQueryForProvider: (providerId) ->
-    query = @queries[providerId] or new Thorax.Models.Query({measure_id: @get('id'), sub_id: @get('sub_id'), effective_date: @effectiveDate, effective_from_date: @effectiveDate, effective_to_date: @effectiveDate, providers: [providerId]}, parent: this)
+    query = @queries[providerId] or new Thorax.Models.Query({measure_id: @get('id'), sub_id: @get('sub_id'), effective_date: @effectiveDate, effective_start_date: @effectiveStartDate, effective_end_date: @effectiveEndDate, providers: [providerId]}, parent: this)
     @queries[providerId] ?= query
 
 
@@ -82,4 +86,6 @@ class SubCollection extends Thorax.Collection
   initialize: (models, options) -> 
     @parent = options.parent
     @effectiveDate = @parent?.effectiveDate
+    @effectiveStartDate = @parent?.effectiveStartDate
+    @effectiveEndDate = @parent?.effectiveEndDate
   comparator: 'sub_id'

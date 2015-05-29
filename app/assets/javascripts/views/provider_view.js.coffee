@@ -1,7 +1,7 @@
 class Thorax.Views.ProviderView extends Thorax.View
   template: JST['providers/show']
   initialize: ->
-    @dashboardView = new Thorax.Views.Dashboard provider_id: @model.id, collection: new Thorax.Collections.Categories PopHealth.categories, parse: true, effectiveDate: PopHealth.currentUser.get 'effective_date'
+    @dashboardView = new Thorax.Views.Dashboard provider_id: @model.id, collection: new Thorax.Collections.Categories PopHealth.categories, parse: true, effectiveDate: PopHealth.currentUser.get 'effective_date', effectiveEndDate: PopHealth.currentUser.get 'effective_end_date', effectiveStartDate: PopHealth.currentUser.get 'effective_start_date'
     if PopHealth.currentUser.shouldDisplayProviderTree() then @providerChart = PopHealth.viz.providerChart()
     @startDate = PopHealth.currentUser.effectiveDateString(false)
   context: ->
@@ -18,13 +18,13 @@ class Thorax.Views.ProviderView extends Thorax.View
       change: ->
           @dashboardView.filterEHMeasures(@model.providerType() == Config.ehExclusionType)
   setEffectiveDate: (e) ->
-    effectiveFromDate = $(".effective-date-picker.from").val()
-    effectiveToDate = $(".effective-date-picker.to").val()
-    if Date.parse(effectiveToDate) < Date.parse(effectiveFromDate)
+    effectiveStartDate = $(".effective-date-picker.start").val()
+    effectiveEndDate = $(".effective-date-picker.end").val()
+    if Date.parse(effectiveEndDate) < Date.parse(effectiveStartDate)
       return alert("That date range is invalid. Please check and try again.")   
     if confirm("Caution! Changing the reporting period may initially cause a significant delay. Do you wish to continue?")
       user = PopHealth.currentUser.get 'username'
-      $.post "home/set_reporting_period", {"effective_from_date": effectiveFromDate, "effective_to_date": effectiveToDate, "username": user}, (d) -> location.reload()
+      $.post "home/set_reporting_period", {"effective_start_date": effectiveStartDate, "effective_end_date": effectiveEndDate, "username": user}, (d) -> location.reload()
 
 # Layout for provider index; includes search bar and provider table
 class Thorax.Views.ProvidersView extends Thorax.View

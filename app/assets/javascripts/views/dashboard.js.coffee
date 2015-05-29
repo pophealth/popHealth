@@ -102,6 +102,10 @@ class Thorax.Views.Dashboard extends Thorax.View
     @currentUser = PopHealth.currentUser.get 'username'
   effective_date: ->
     PopHealth.currentUser.get 'effective_date'
+  effective_start_date: ->
+    PopHealth.currentUser.get 'effective_start_date'
+  effective_end_date: ->
+    PopHealth.currentUser.get 'effective_end_date'
 
   categoryFilterContext: (category) ->
     selectedCategory = @selectedCategories.findWhere(category: category.get('category'))

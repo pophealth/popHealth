@@ -22,6 +22,8 @@ class Record
   def cache_results(params = {})
     query = {"value.medical_record_id" => self.medical_record_number }
     query["value.effective_date"]= params["effective_date"] if params["effective_date"]
+    query["value.effective_start_date"]= params["effective_start_date"] if params["effective_start_date"]
+    query["value.effective_end_date"]= params["effective_end_date"] if params["effective_end_date"]
     query["value.measure_id"]= params["measure_id"] if params["measure_id"]
     query["value.sub_id"]= params["sub_id"] if params["sub_id"]
     HealthDataStandards::CQM::PatientCache.where(query)

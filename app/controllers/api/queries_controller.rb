@@ -35,7 +35,9 @@ module Api
     api :POST, '/queries', "Start a clinical quality measure calculation"
     param :measure_id, String, :desc => 'The HQMF id for the CQM to calculate', :required => true
     param :sub_id, String, :desc => 'The sub id for the CQM to calculate. This is popHealth specific.', :required => false,:allow_nil => true
-    param :effective_date, ->(effective_date){ effective_date.present? }, :desc => 'Time in seconds since the epoch for the end date of the reporting period',
+    param :effective_end_date, ->(effective_end_date){ effective_end_date.present? }, :desc => 'Time in seconds since the epoch for the end date of the reporting period',
+                                   :required => true
+    param :effective_start_date, ->(effective_start_date){ effective_start_date.present? }, :desc => 'Time in seconds since the epoch for the start date of the reporting period',
                                    :required => true
     param :providers, Array, :desc => 'An array of provider IDs to filter the query by', :allow_nil => true
     example '{"_id":"52fe409bb99cc8f818000001", "status":{"state":"queued", ...}, ...}'
@@ -50,10 +52,17 @@ module Api
       options[:filters] = build_filter
       
       authorize_providers
-      options[:effective_date] = params[:effective_date]
-      options[:effective_from_date] = params[:effective_from_date]
-      options[:effective_to_date] = params[:effective_to_date]
+      start_date = params[:effective_start_date]
+      end_date = params[:effective_end_date]
+
+      rp = ReportingPeriod.where(start_date: start_date, end_date: end_date).first_or_create
+      rp.save!
+
+      options[:effective_start_date] = start_date
+      options[:effective_end_date] = end_date
+      options[:test_id] = rp._id
       options['prefilter'] = build_mr_prefilter if APP_CONFIG['use_map_reduce_prefilter']
+
       qr = QME::QualityReport.find_or_create(params[:measure_id],
                                            params[:sub_id], options)
       if !qr.calculated?
@@ -142,6 +151,8 @@ module Api
     def build_mr_prefilter
       measure = HealthDataStandards::CQM::Measure.where({"hqmf_id" => params[:measure_id], "sub_id"=>params[:sub_id]}).first
       measure.prefilter_query!(params[:effective_date].to_i)
+      measure.prefilter_query!(params[:effective_start_date].to_i)
+      measure.prefilter_query!(params[:effective_end_date].to_i)
     end
 
     def build_patient_filter
