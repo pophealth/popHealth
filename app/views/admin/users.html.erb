@@ -143,7 +143,13 @@
       </select>
     </td>
     <% else %>
-      <td> <%= select_tag "practice", options_for_select(@practices, (user.practice)? user.practice.id : 'n/a'), prompt: 'None', data: {user: user.id.to_s}, class: 'practice_select'%> </td>
+      <td> 
+        <% if Provider.valid_npi?(user.npi) %>
+          N/A
+        <% else %>
+        <%= select_tag "practice", options_for_select(@practices, (user.practice)? user.practice.id : 'n/a'), prompt: 'None', data: {user: user.id.to_s}, class: 'practice_select'%> 
+        <% end %>
+      </td>
       <%
         if user.practice && Provider.valid_npi?(user.npi)
           Provider.by_npi(user.npi).each do |pv|
