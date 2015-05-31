@@ -77,7 +77,17 @@
     var confs = "Change user's assigned practice?";   
     if ( confirm(confs) == true ){
       $.post('set_user_practice', {'user': userId, 'practice': practice}, function(d){
-      });
+      }); 
+    };
+  };
+  
+  popHealth.changePracticeProvider = function() {
+    var userId = $(this).data("user");
+    var provider = $(this).val();
+    var confs = "Change user's assigned provider?";   
+    if ( confirm(confs) == true ){
+      $.post('set_user_practice_provider', {'user': userId, 'provider': provider}, function(d){
+      }); 
     };
   };
 
@@ -89,6 +99,7 @@
     $('.disable').click(popHealth.enableUser);
     $('.npi_select').change(popHealth.changeNpi);
     $('.practice_select').change(popHealth.changePractice);
+    $('.practice_provider_select').change(popHealth.changePracticeProvider);
   });
 </script>
 
@@ -102,7 +113,12 @@
       <th>First Name</th>
       <th>Last Name</th>
       <th>Username</th>
-      <% unless APP_CONFIG['use_opml_structure'] %><th>Practice</th><% end %>
+      <% if APP_CONFIG['use_opml_structure'] %>
+      <th>Provider</th>
+      <% else %>
+      <th>Practice</th>
+      <th>Provider</th>
+      <% end %>
       <th>Administrator</th>
       <th>Staff Role</th>
       <th>Approved</th>
@@ -116,18 +132,38 @@
     <td><%= user.first_name %></td>
     <td><%= user.last_name %></td>
     <td><%= user.username %></td>
+
     <% if APP_CONFIG['use_opml_structure'] %>
     <td>
       <select class="npi_select" data-username="<%= user.username %>" name="user[npi]">
         <option value="-1">&nbsp;</option>
         <% Provider.all.alphabetical.each do |provider| %>
-          <option value="<%= provider.npi %>" <%= (user.npi == provider.npi) ? "selected=\"selected\"" : ""%>><%= provider.full_name%></option>
+          <option value="<%= provider.npi %>" <%= (user.npi == provider.npi) ? "selected=\"selected\"" : ""%>><%= provider.full_name %> </option>
         <% end%>
       </select>
     </td>
     <% else %>
-    <td> <%= select_tag "practice", options_for_select(@practices, (user.practice)? user.practice.id : 'n/a'), prompt: 'None', data: {user: user.id.to_s}, class: 'practice_select'%> </td>
-    <% end %>    
+      <td> <%= select_tag "practice", options_for_select(@practices, (user.practice)? user.practice.id : 'n/a'), prompt: 'None', data: {user: user.id.to_s}, class: 'practice_select'%> </td>
+      <%
+        if user.practice && Provider.valid_npi?(user.npi)
+          Provider.by_npi(user.npi).each do |pv|
+            if pv.parent && pv.parent.practice && pv.parent.practice.id == user.practice.id
+              @practice_provider = pv
+            end
+          end
+        end   
+      %>
+
+      <td> 
+        <% if Provider.valid_npi?(user.npi) %>
+        <% @practice_pvs = Provider.by_npi(user.npi).map {|pv| [pv.parent.practice.name + " - " + pv.full_name, pv.id]}%>
+        <%= select_tag "practice_provider_select", options_for_select(@practice_pvs, @practice_provider ? @practice_provider.id : 'N/A'), prompt: 'None', data: {user: user.id.to_s}, class: 'practice_provider_select'%> 
+        <% else %>
+          N/A
+        <% end %>
+      </td>
+
+    <% end %>
     <td>
       <% if user.admin? -%>
       Yes - <a href="#" class="demote" data-role="admin" data-username="<%= user.username %>">revoke</a>

@@ -23,6 +23,7 @@ PopHealth::Application.routes.draw do
   get "admin/user_profile"
   delete "admin/delete_user"
   post 'admin/set_user_practice'
+  post 'admin/set_user_practice_provider'
   
   get 'home/check_authorization'
 

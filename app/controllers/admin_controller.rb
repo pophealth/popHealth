@@ -28,6 +28,13 @@ class AdminController < ApplicationController
     redirect_to action: 'user_profile', :id => params[:user]
   end
 
+  def set_user_practice_provider
+    @user = User.find(params[:user])
+    @user.provider_id = (params[:provider] != '')? Provider.find(params[:provider]).id : nil
+    @user.save
+    redirect_to action: 'user_profile', :id => params[:user]
+  end
+
   def remove_patients
     Record.delete_all
     redirect_to action: 'patients'
@@ -82,6 +89,9 @@ class AdminController < ApplicationController
   def users
     @users = User.all.ordered_by_username
     @practices = Practice.asc(:name).map {|org| [org.name, org.id]}
+    unless APP_CONFIG['use_opml_structure']
+      @practice_providers = Provider.ne('cda_identifiers.root' => "Organization").asc(:given_name).map {|pv| [pv.full_name, pv.id]}
+    end
   end
 
   def promote

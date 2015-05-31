@@ -63,7 +63,15 @@ class Ability
       end
       can :read, HealthDataStandards::CQM::Measure
       can :read, Provider do |pv|
-        user.npi && (pv.npi == user.npi)
+        if opml
+          user.npi && (pv.npi == user.npi)
+        else
+          if pv.parent && pv.parent.practice 
+            user.npi && (pv.npi == user.npi) && user.practice_id == pv.parent.practice.id
+          else
+            false
+          end
+        end       
       end
       can :manage, User, id: user.id
       cannot :manage, User unless APP_CONFIG['allow_user_update']
