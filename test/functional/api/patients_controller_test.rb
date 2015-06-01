@@ -47,6 +47,25 @@ require 'test_helper'
       @record2.practice = @practice2
       @record2.provider_performances = [ProviderPerformance.new(provider: @provider2)]
       @record2.save!     
+          
+      @npi_user = User.where(username: 'npiuser2').first
+      
+      @npi_provider = Provider.by_npi(@npi_user.npi).first
+      @npi_provider.parent = @practice2.provider
+      
+      @npi_user.provider_id = @npi_provider.id
+      @npi_provider.save!
+      @npi_user.save!
+
+      @record3 = Record.where(first: "David").first
+      @record3.practice = @practice2
+      @record3.provider_performances = [ProviderPerformance.new(provider: @npi_provider)]
+      @record3.save!     
+      @practice2.save!
+
+      
+      @npi_user2 = User.where(username: 'npiuser').first
+
     end
 
     test "view patient" do
@@ -65,6 +84,22 @@ require 'test_helper'
       sign_in @staff2
       APP_CONFIG['use_opml_structure'] = false
       get :show, id: @record1.id
+      assert_response 403
+      APP_CONFIG['use_opml_structure'] = true
+    end
+
+    test "npi user can view their patient" do
+      APP_CONFIG['use_opml_structure'] = false
+      sign_in @npi_user
+      get :show, id: @record3.id
+      assert_response :success
+      APP_CONFIG['use_opml_structure'] = true
+    end
+    
+    test "different npi user cannot view another practice provider's patient" do
+      APP_CONFIG['use_opml_structure'] = false
+      sign_in @npi_user2
+      get :show, id: @record3.id
       assert_response 403
       APP_CONFIG['use_opml_structure'] = true
     end

@@ -55,7 +55,7 @@ class Ability
           patient.providers.map(&:npi).include?(user.npi)
         else
           prov = user.provider_id ? Provider.find(user.provider_id) : nil
-          prov && prov.parent && prov.parent.practice && prov.parent.practice.id == patient.practice_id
+          prov.try(:parent).try(:practice) && prov.parent.practice.id == patient.practice_id
         end
       end
       can [:read,:delete, :recalculate, :create], QME::QualityReport do |qr|

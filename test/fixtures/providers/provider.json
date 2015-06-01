@@ -52,5 +52,18 @@
     "root":"Organization"}],
  "family_name":"Smith",
  "given_name":"Jane"
+ },
+ {
+ "family_name":"NPI",
+ "given_name":"Doctor",
+ "cda_identifiers" : [{"extension" : "1205931318", "root": "2.16.840.1.113883.4.6"}],
+ "level":null,
+ "organization":
+  {"name":"General Hospital 2"},
+ "parent_id":null,
+ "parent_ids":[],
+ "phone":"15555555558",
+ "specialty":"200000000X",
+ "title":"Dr."
  }
 ]

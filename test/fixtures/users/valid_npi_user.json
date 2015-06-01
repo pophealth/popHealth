@@ -1,0 +1,17 @@
+{"admin":false,
+ "agree_license":true,
+ "approved":true,
+ "company":null,
+ "company_url":null,
+ "disabled":null,
+ "effective_date":null,
+ "email":"npiuser2@test.com",
+ "first_name":"first",
+ "last_name":"last",
+ "npi":"1205931318",
+ "registry_id":null,
+ "registry_name":null,
+ "staff_role": false,
+ "tin":null,
+ "username":"npiuser2"
+ }
