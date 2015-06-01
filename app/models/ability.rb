@@ -54,7 +54,8 @@ class Ability
         if opml
           patient.providers.map(&:npi).include?(user.npi)
         else
-          patient.providers.map(&:npi).include?(user.npi) && user.practice.id == patient.practice_id
+          prov = user.provider_id ? Provider.find(user.provider_id) : nil
+          prov && prov.parent && prov.parent.practice && prov.parent.practice.id == patient.practice_id
         end
       end
       can [:read,:delete, :recalculate, :create], QME::QualityReport do |qr|
@@ -66,11 +67,7 @@ class Ability
         if opml
           user.npi && (pv.npi == user.npi)
         else
-          if pv.parent && pv.parent.practice 
-            user.npi && (pv.npi == user.npi) && user.practice_id == pv.parent.practice.id
-          else
-            false
-          end
+          user.provider_id == pv.id
         end       
       end
       can :manage, User, id: user.id
