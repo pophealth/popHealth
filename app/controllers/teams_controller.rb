@@ -36,6 +36,10 @@ class TeamsController < ApplicationController
       end
       @team.user_id = @current_user._id
       @team.save!
+      
+      if !current_user.teams
+        current_user.teams = []
+      end
       current_user.teams << @team.id
       current_user.save!
       redirect_to @team
