@@ -37,7 +37,7 @@ module ApplicationHelper
       practice = practice_id
     elsif practice_name
       ext = Practice.where(name: practice_name).first
-      practice =  ext ? ext._id.to_s : nil
+      practice =  ext.try(:_id).to_s
     else
       practice = nil
     end
