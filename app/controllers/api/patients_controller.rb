@@ -14,6 +14,7 @@
       PCDESC
     end
     include PaginationHelper
+    include ApplicationHelper
     respond_to :json
     before_filter :authenticate_user!
     before_filter :validate_authorization!
@@ -64,20 +65,13 @@
     api :POST, "/patients", "Load a patient into popHealth"
     formats ['xml']
     param :file, nil, :desc => "The QRDA Cat I file", :required => true
-    param :practice_id, nil, :desc => "ID for the patient's Practice", :required => false
-    param :practice_name, nil, :desc => "Name for the patient's Practice", :required => false
+    param :practice_id, String, :desc => "ID for the patient's Practice", :required => false
+    param :practice_name, String, :desc => "Name for the patient's Practice", :required => false
     description "Upload a QRDA Category I document for a patient into popHealth."
     def create
       authorize! :create, Record
       
-      if params[:practice_id]
-        practice = params[:practice_id]
-      elsif params[:practice_name]
-        ext = Practice.where(name: params[:practice_name]).first
-        practice =  ext ? ext._id.to_s : nil
-      else
-        practice = nil
-      end
+      practice = get_practice_parameter(params[:practice_id], params[:practice_name])
       
       success = HealthDataStandards::Import::BulkRecordImporter.import(params[:file], {}, practice)
       if success

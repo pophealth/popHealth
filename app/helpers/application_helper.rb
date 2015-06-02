@@ -31,4 +31,16 @@ module ApplicationHelper
   def display_time(seconds_since_epoch)
     Time.at(seconds_since_epoch).strftime('%m/%d/%Y')
   end
+   
+  def get_practice_parameter(practice_id, practice_name)
+    if practice_id
+      practice = practice_id
+    elsif practice_name
+      ext = Practice.where(name: practice_name).first
+      practice =  ext.try(:_id).to_s
+    else
+      practice = nil
+    end
+    return practice
+  end
 end
