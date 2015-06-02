@@ -23,14 +23,14 @@ class AdminController < ApplicationController
 
   def set_user_practice
     @user = User.find(params[:user])
-    @user.practice = (params[:practice] != '')? Practice.find(params[:practice]) : nil
+    @user.practice = (params[:practice].present?) ? Practice.find(params[:practice]) : nil
     @user.save
     redirect_to action: 'user_profile', :id => params[:user]
   end
 
   def set_user_practice_provider
     @user = User.find(params[:user])
-    @user.provider_id = (params[:provider] != '')? Provider.find(params[:provider]).id : nil
+    @user.provider_id = (params[:provider].present?)? Provider.find(params[:provider]).id : nil
     @user.save
     redirect_to action: 'user_profile', :id => params[:user]
   end
