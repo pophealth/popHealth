@@ -31,7 +31,7 @@
 	  <tr>
 		  <% if @user.staff_role %>
 		    <td> <h4> Practice: </h4> </td>
-		    <td> <h4> <%= select_tag "practice", options_for_select(@practices, @practice), prompt: 'None', data: {user: @user.id.to_s}, class: "practice_select" %> </h4> </td>
+		    <td> <h4> <%= select_tag "practice", options_for_select(@practices, @user.practice_id), prompt: 'None', data: {user: @user.id.to_s}, class: "practice_select" %> </h4> </td>
 		  <% elsif @user.provider_id && Provider.valid_npi?(@user.npi)%>
 		    <td> <h4> Provider: </h4> </td>
 		    <td> <h4>         
