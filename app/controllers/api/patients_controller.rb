@@ -15,6 +15,7 @@ module Api
     end
     include PaginationHelper
     include ApplicationHelper
+    
     respond_to :json
     before_filter :authenticate_user!
     before_filter :validate_authorization!
@@ -73,7 +74,7 @@ module Api
       
       practice = get_practice_parameter(params[:practice_id], params[:practice_name])
       
-      success = HealthDataStandards::Import::BulkRecordImporter.import(params[:file], {}, practice)
+      success = BulkRecordImporter.import(params[:file], {}, practice)
       if success
         Log.create(:username => @current_user.username, :event => 'record import')
         render status: 201, text: 'Patient Imported'
