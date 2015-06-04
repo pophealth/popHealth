@@ -80,7 +80,7 @@
       else
         render status: 500, text: 'Patient record did not save properly'
       end
-    end
+    end    
 
     def toggle_excluded
       # TODO - figure out security constraints around manual exclusions -- this should probably be built around

@@ -9,6 +9,7 @@ class Thorax.Views.ProviderView extends Thorax.View
     _(super).extend
       providerType: providerType
       providerExtension: @model.providerExtension() || ""
+      npi: @model.npi() || ""
   events:
     'click .effective-date-btn' : 'setEffectiveDate'
     rendered: ->

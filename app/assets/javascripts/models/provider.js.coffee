@@ -1,7 +1,11 @@
 class Thorax.Models.Provider extends Thorax.Model
   urlRoot: '/api/providers'
   idAttribute: '_id'
-  providerType: -> @get("cda_identifiers")?[0].root
+  providerType: -> 
+    if @get("cda_identifiers")?[0].root == "2.16.840.1.113883.4.6"
+      'NPI'
+    else
+      @get("cda_identifiers")?[0].root
   providerExtension: -> @get("cda_identifiers")?[0].extension
   parse: (attrs) ->
     attrs = $.extend true, {}, attrs
