@@ -1,6 +1,6 @@
 <div class="main userTeams">
   <h1>User Teams</h1>
-  <%= button_to 'New Team', new_team_path, :method=> 'get', :class => "btn btn-primary pull-right" %>  
+  <%= button_to 'New Team', new_team_path, :method=> 'get', :class => "btn btn-primary pull-right btn-margin" %> <%= button_to 'Create Default Team', "teams/create_default", :method=> 'post', :class => "btn btn-primary pull-right" %> 
   <table class="table">
     <thead>
       <tr>

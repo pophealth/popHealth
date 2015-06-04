@@ -26,7 +26,7 @@ PopHealth::Application.routes.draw do
   post 'admin/set_user_practice_provider'
   post "teams/:id/update", :to => 'teams#update'
   post "teams/create"
-   
+  post "teams/create_default" 
   get 'home/check_authorization'
    
   root :to => 'home#index'
