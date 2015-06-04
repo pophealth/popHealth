@@ -7,7 +7,7 @@ class Record
   
   field :measures, type: Hash
   
-  belongs_to :practice
+  belongs_to :practice, dependent: :destroy
   
   scope :alphabetical, ->{order_by([:last, :asc], [:first, :asc])}
   scope :with_provider, ->{where(:provider_performances.ne => nil).or(:provider_proformances.ne => [])}

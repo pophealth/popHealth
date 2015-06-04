@@ -28,6 +28,7 @@ PopHealth::Application.routes.draw do
   post "teams/create"
   post "teams/create_default" 
   get 'home/check_authorization'
+  delete "practices/remove_patients"
    
   root :to => 'home#index'
 
