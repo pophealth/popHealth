@@ -12,6 +12,8 @@
         <th>Address</th>
         <th>User(s)</th>
         <th>Patients</th>
+        <th>Providers</th>
+        <th></th>
         <th></th>
       </tr>
     </thead>
@@ -23,7 +25,9 @@
         <td><%= practice.address %></td> 
         <td><%= practice.users ? practice.users.map {|u| u.username}.join(", ") : 'N/A' %></td>                
         <td><%= practice.records ? practice.records.count : 0 %></td>
+        <td><%= practice.provider.descendants.count %></td>
         <td><%= link_to 'Delete', practice, method: :delete, data: { confirm: 'Are you sure? There may be patients tied to this practice' } %></td>
+        <td><%= link_to "Delete Patients", practices_remove_patients_path(id: practice.id), method: :delete, data: { confirm: 'Are you sure you want to delete all patients for ' + "#{practice.name}?"} %></td>
       </tr>
     </tbody>
   <% end %>

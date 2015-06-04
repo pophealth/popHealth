@@ -26,7 +26,8 @@ PopHealth::Application.routes.draw do
   post 'admin/set_user_practice_provider'
   
   get 'home/check_authorization'
-
+  delete "practices/remove_patients"
+   
   root :to => 'home#index'
 
   resources :practices 
