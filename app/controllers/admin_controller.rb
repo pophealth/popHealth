@@ -17,8 +17,8 @@ class AdminController < ApplicationController
 
   def user_profile
     @user = User.find(params[:id])
-    @practice = @user.practice ? @user.practice.id : 'n/a'
     @practices = Practice.asc(:name).map {|org| [org.name, org.id]}
+    @practice_pvs = Provider.by_npi(@user.npi).map {|pv| [pv.parent.practice.name + " - " + pv.full_name, pv.id]}
   end
 
   def set_user_practice

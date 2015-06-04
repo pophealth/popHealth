@@ -147,23 +147,15 @@
         <% if Provider.valid_npi?(user.npi) %>
           N/A
         <% else %>
-        <%= select_tag "practice", options_for_select(@practices, (user.practice)? user.practice.id : 'n/a'), prompt: 'None', data: {user: user.id.to_s}, class: 'practice_select'%> 
+        <%= select_tag "practice", options_for_select(@practices, user.practice_id), prompt: 'None', data: {user: user.id.to_s}, class: 'practice_select'%> 
         <% end %>
       </td>
-      <%
-        if user.practice && Provider.valid_npi?(user.npi)
-          Provider.by_npi(user.npi).each do |pv|
-            if pv.parent && pv.parent.practice && pv.parent.practice.id == user.practice.id
-              @practice_provider = pv
-            end
-          end
-        end   
-      %>
+      
 
       <td> 
         <% if Provider.valid_npi?(user.npi) %>
         <% @practice_pvs = Provider.by_npi(user.npi).map {|pv| [pv.parent.practice.name + " - " + pv.full_name, pv.id]}%>
-        <%= select_tag "practice_provider_select", options_for_select(@practice_pvs, @practice_provider ? @practice_provider.id : 'N/A'), prompt: 'None', data: {user: user.id.to_s}, class: 'practice_provider_select'%> 
+        <%= select_tag "practice_provider_select", options_for_select(@practice_pvs, user.provider_id), prompt: 'None', data: {user: user.id.to_s}, class: 'practice_provider_select'%> 
         <% else %>
           N/A
         <% end %>

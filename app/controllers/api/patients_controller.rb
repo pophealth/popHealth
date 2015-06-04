@@ -73,7 +73,7 @@
       
       practice = get_practice_parameter(params[:practice_id], params[:practice_name])
       
-      success = HealthDataStandards::Import::BulkRecordImporter.import(params[:file], {}, practice)
+      success = BulkRecordImporter.import(params[:file], {}, practice)
       if success
         Log.create(:username => @current_user.username, :event => 'record import')
         render status: 201, text: 'Patient Imported'

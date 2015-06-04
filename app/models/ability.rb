@@ -47,6 +47,9 @@ class Ability
         end
       end
       can :manage, User, id: user.id
+      can :manage, Team do |team|
+        team.user_id == user._id
+      end
       cannot :manage, User unless APP_CONFIG['allow_user_update']
       can [:read, :delete, :recalculate,:create] , QME::QualityReport do |qr|
         if !opml
@@ -59,9 +62,6 @@ class Ability
         else
           true
         end
-
-      can :manage, Team do |team|
-        team.user_id == user._id
       end
     elsif user.id
       can :read, Record do |patient|

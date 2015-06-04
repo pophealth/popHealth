@@ -66,4 +66,4 @@ group :production do
   gem 'therubyracer', '~> 0.12.0', :platforms => [:ruby, :jruby] # 10.8 mountain lion compatibility
 end
 
-gem 'handlebars_assets'
+gem 'handlebars_assets', '0.17.1'
