@@ -90,6 +90,7 @@ module Api
         provider_json = @provider.as_json
         provider_json[:parent] = Provider.find(@provider.parent_id) if @provider.parent_id
         provider_json[:children] = @provider.children if @provider.children.present?
+        provider_json[:patient_count] = @provider.records.count
       else
         provider_json = {}
       end
