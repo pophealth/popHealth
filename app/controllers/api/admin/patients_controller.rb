@@ -65,7 +65,7 @@ module Api
         init_count = Record.count
 
         begin
-          response_hash = HealthDataStandards::Import::BulkRecordImporter.import_file(temp_file,File.new(temp_file).read,nil,{},practice)
+          response_hash = BulkRecordImporter.import_file(temp_file,File.new(temp_file).read,nil,{},practice)
           status_code = 200
         rescue
           status_code = 500
