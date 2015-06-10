@@ -9,7 +9,7 @@ class Thorax.Views.ResultsView extends Thorax.View
   events:
     model:
       change: ->
-        if @model.isPopulated()
+        if @model.isPopulated() and @model.aggregateResult() != null
           clearInterval(@timeout) if @timeout?
           d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
         else
@@ -109,7 +109,8 @@ class Thorax.Views.Dashboard extends Thorax.View
     shown = PopHealth.currentUser.showAggregateResult()
     PopHealth.currentUser.setShowAggregateResult(!shown)
     @$('.aggregate-result').toggle(400)   
-    @$('.aggregate-btn').toggleClass('active')    
+    @$('.aggregate-btn').toggleClass('active')
+    @$.trigger('change')
 
   effective_date: ->
     PopHealth.currentUser.get 'effective_date'
