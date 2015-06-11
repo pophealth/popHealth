@@ -110,7 +110,6 @@ class Thorax.Views.Dashboard extends Thorax.View
     PopHealth.currentUser.setShowAggregateResult(!shown)
     @$('.aggregate-result').toggle(400)   
     @$('.aggregate-btn').toggleClass('active')
-    @$.trigger('change')
 
   effective_date: ->
     PopHealth.currentUser.get 'effective_date'

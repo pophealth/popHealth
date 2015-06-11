@@ -52,7 +52,7 @@ class Thorax.Views.ProvidersIndex extends Thorax.View
   template: JST['providers/index']
   fetchTriggerPoint: 500 #Fetch data when we're 500 pixels away from the bottom
   itemContext: (model, index) ->
-    _.extend {}, model.attributes, providerType: model.providerType() || "", providerExtension: model.providerExtension() || "", npi: model.npi()
+    _.extend {}, model.attributes, providerType: model.providerType() || "", providerExtension: model.providerExtension() || "", npi: model.npi(), admin: PopHealth.currentUser.get("admin")
   events:
     rendered: ->
       $(document).on 'scroll', @scrollHandler
@@ -61,6 +61,7 @@ class Thorax.Views.ProvidersIndex extends Thorax.View
     collection:
         sync: -> @isFetching = false
   initialize: ->
+    @admin = PopHealth.currentUser.get("admin")
     @isFetching = false
     @scrollHandler = =>
       distanceToBottom = $(document).height() - $(window).scrollTop() - $(window).height()

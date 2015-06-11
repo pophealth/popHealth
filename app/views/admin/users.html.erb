@@ -154,7 +154,7 @@
 
       <td> 
         <% if Provider.valid_npi?(user.npi) %>
-        <% @practice_pvs = Provider.by_npi(user.npi).map {|pv| [pv.parent.practice.name + " - " + pv.full_name, pv.id]}%>
+        <% @practice_pvs = Provider.by_npi(user.npi).map {|pv| if pv.try(:parent).try(:practice) then [pv.parent.practice.name + " - " + pv.full_name, pv.id] end}%>
         <%= select_tag "practice_provider_select", options_for_select(@practice_pvs, user.provider_id), prompt: 'None', data: {user: user.id.to_s}, class: 'practice_provider_select'%> 
         <% else %>
           N/A

@@ -17,7 +17,6 @@ class Thorax.Models.Provider extends Thorax.Model
     json
   npi: ->
     if @providerType() == '2.16.840.1.113883.4.6' then @providerExtension() 
-  recordCount: -> @get("record_count")
   
 class Thorax.Collections.Providers extends Thorax.Collection
   url: '/api/providers'
