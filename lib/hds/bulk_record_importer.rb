@@ -91,7 +91,7 @@ class BulkRecordImporter < HealthDataStandards::Import::BulkRecordImporter
         return {status: 'error', message: "Document templateId does not identify it as a C32 or CCDA", status_code: 400}
       end
 
-      record = Record.update_or_create(patient_data, practice_id)
+      record = Record.create_or_replace(patient_data, practice_id)
 
       begin
         providers = HealthDataStandards::Import::CDA::ProviderImporter.instance.extract_providers(doc, record)

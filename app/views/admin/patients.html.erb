@@ -1,5 +1,31 @@
 <div id="pageContent" style="padding:20px;">
 <h3>Patients</h3>
+  <div class='errorBox'>
+		<u> LAST UPLOAD DETAILS </u>
+		<br/>
+		<b> Date: </b> <%= @last_upload_date %> <br/>
+		<b> Practice: </b> <%= @last_practice_upload %> <br/>
+		<b> Filename: </b> <%= @last_filename %> <br/>
+		
+	<!--	
+		<b> Files Causing Parse Error: </b> 
+			<% if $upload_errors %>
+				<br/>
+				<% $upload_errors.each do |er| %>
+					<%= er %> &nbsp; <br/>
+				<% end %>
+			<% else %>
+				None <br/>	
+			<% end %>			
+		
+		<b> Providers with missing/invalid NPI: </b> <br/>
+			<% if $missing_info_text %>
+				<% $missing_info_text.each do |pv| %>
+					<%= pv %> &nbsp; <br/>
+				<% end %>
+			<% end %>	
+	-->
+	</div>
 
   <table>
 

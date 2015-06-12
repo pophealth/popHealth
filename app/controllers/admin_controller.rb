@@ -13,6 +13,14 @@ class AdminController < ApplicationController
     @provider_count = Provider.ne('cda_identifiers.root' => "Organization").count
     @practice_count = Practice.count
     @practices = Practice.asc(:name).map {|org| [org.name, org.id]}
+    
+  	import_log = Log.where(:event => 'record import')
+  	med_id = import_log.last.medical_record_number unless import_log.count == 0
+
+    @last_upload_date = import_log.count > 0 ? import_log.last.created_at.in_time_zone('Eastern Time (US & Canada)').ctime : nil
+	  rec = (@patient_count == 0) ? 0 : Record.where(:medical_record_number => med_id).last
+    @last_practice_upload = import_log.count > 0 ? import_log.last.practice : ''
+    @last_filename = import_log.count > 0 ? import_log.last.filename : ''
   end
 
   def user_profile
@@ -62,6 +70,7 @@ class AdminController < ApplicationController
 
     file = params[:file]
     practice = params[:practice]
+    filename = file.original_filename
     
     FileUtils.mkdir_p(File.join(Dir.pwd, "tmp/import"))
     file_location = File.join(Dir.pwd, "tmp/import")
@@ -71,7 +80,7 @@ class AdminController < ApplicationController
 
     File.open(temp_file.path, "wb") { |f| f.write(file.read) }
 
-    Delayed::Job.enqueue(ImportArchiveJob.new({'practice' => practice, 'file' => temp_file,'user' => current_user}),:queue=>:patient_import)
+    Delayed::Job.enqueue(ImportArchiveJob.new({'practice' => practice, 'file' => temp_file,'user' => current_user, 'filename' => filename}),:queue=>:patient_import)
     redirect_to action: 'patients'
   end
 

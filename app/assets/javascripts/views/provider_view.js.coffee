@@ -5,9 +5,8 @@ class Thorax.Views.ProviderView extends Thorax.View
     if PopHealth.currentUser.shouldDisplayProviderTree() then @providerChart = PopHealth.viz.providerChart()
     @startDate = PopHealth.currentUser.effectiveDateString(false)
   context: ->
-    providerType = if @model.npi() then 'NPI' else @model.providerType() || ""
     _(super).extend
-      providerType: providerType
+      providerType: @model.providerType() || ""
       providerExtension: @model.providerExtension() || ""
       npi: @model.npi() || ""
   events:

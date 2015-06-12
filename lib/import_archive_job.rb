@@ -1,14 +1,17 @@
 class ImportArchiveJob
-  attr_accessor :file, :current_user, :practice
+  attr_accessor :file, :current_user, :practice, :filename
   
   def initialize(options)
     @file = options['file'].path
     @current_user = options['user']
     @practice = options['practice']
+    @filename = options['filename']
   end
 
   def before
-    Log.create(:username => @current_user.username, :event => 'record import')
+    practice = @practice ? Practice.find(@practice).name : nil
+      
+    Log.create(:username => @current_user.username, :event => 'record import', :practice => practice, :filename => @filename)
   end
 
   def perform
