@@ -52,6 +52,7 @@ class AdminController < ApplicationController
     HealthDataStandards::CQM::QueryCache.delete_all
     PatientCache.delete_all
     Mongoid.default_session["rollup_buffer"].drop()
+    Mongoid.default_session["delayed_backend_mongoid_jobs"].drop()
     redirect_to action: 'patients'
   end
 

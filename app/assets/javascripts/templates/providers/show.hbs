@@ -17,35 +17,7 @@
 <br>
 
 <div class="row">
-<div class="col-md-3">
-	<dl class="dl-horizontal">
-	  <dt>Tax ID:</dt>
-  	{{#if tin}}
-      <dd>{{tin}}</dd>
-    {{else}}
-      <dd>N/A</dd>
-    {{/if}}
-	  <dt>Phone:</dt>
-	  {{#if phone}}
-      <dd>{{phone}}</dd>
-    {{else}}
-      <dd>N/A</dd>
-    {{/if}}
-	  <dt class="text-muted">Team:</dt>
-    {{#if teamn.name}}
-  	  <dd class="text-muted">{{team.name}}</dd>
-    {{else}}
-      <dd class="text-muted">N/A</dd>
-    {{/if}}
-    <dt class="text-muted">NPI:</dt>
-    {{#if npi}}
-      <dd class="text-muted">{{npi}}</dd>
-    {{else}}
-      <dd class="text-muted">N/A</dd>
-    {{/if}}
-	</dl>
-</div>
-<div class="col-md-9" id="providerChart"></div>
+  <div class="col-md-9" id="providerChart"></div>
 </div>
 
 <div class="row">{{view dashboardView}}</div>

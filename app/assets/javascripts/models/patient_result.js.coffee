@@ -15,6 +15,8 @@ class Thorax.Collections.PatientMeasureResults extends Thorax.Collection
 class Thorax.Collections.PatientResults extends Thorax.Collection
   model: Thorax.Models.PatientResult
   url: -> "#{@parent.url()}/patient_results"
+  comparator: (p) ->
+    [p.get("last"), p.get("first")]
   initialize: (attrs, options) ->
     @parent = options.parent
     @population = options.population
@@ -30,3 +32,4 @@ class Thorax.Collections.PatientResults extends Thorax.Collection
   fetchNextPage: (options = {perPage: 10}) ->
     data = {page: @currentPage(options.perPage) + 1, per_page: options.perPage}
     @fetch(remove: false, data: data) if @hasMoreResults
+
