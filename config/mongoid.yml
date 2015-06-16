@@ -1,7 +1,7 @@
 development:
   sessions:
     default:
-      database: cipci_v3 #bundle-240 # pophealth-development
+      database: pophealth-development
       hosts:
         - localhost:27017
 test:
