@@ -11,6 +11,7 @@ module Api
       collection_fixtures 'patient_cache'
       collection_fixtures 'providers'
       collection_fixtures 'users'
+      collection_fixtures 'practices'
 
       @staff = User.where({email: 'noadmin@test.com'}).first
       @admin = User.where({email: 'admin@test.com'}).first
@@ -19,9 +20,23 @@ module Api
       @npi_user = User.where({email: 'npiuser@test.com'}).first
       @npi_user.staff_role=false
       @npi_user.save
+      
+      @practice = Practice.all.first
+      
+      identifier = CDAIdentifier.new(:root => "Organization", :extension => @practice.organization)
+      practice_provider = Provider.where('cda_identifiers.root' => "Organization").first
+      practice_provider.cda_identifiers << identifier
+      practice_provider.practice = @practice
+      practice_provider.save
+      @practice.provider = practice_provider
+      @practice.save
+
+      @staff.practice = @practice
+      @staff.save
 
       @provider = Provider.where({family_name: "Darling"}).first
       @provider.npi = @npi_user.npi
+      @provider.parent = practice_provider
       @provider.save
 
       QME::QualityReport.where({}).each do |q|
@@ -180,11 +195,14 @@ module Api
       assert_response :success, "staff should be able to create all reports for npis"
 
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212
-      assert_response :success, "staff should be able to create all reports for no npi"
+      assert_response 200, "staff should be able to create all reports for no npi"
     end
 
     test "create npi user" do
+      APP_CONFIG['use_opml_structure'] = true
+      
       sign_in @npi_user
+      
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@provider.id]
       assert_response :success, "should be able to create a quality report for users own npi"
 

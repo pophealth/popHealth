@@ -60,9 +60,11 @@ class User
   field :approved, type: Boolean
   field :staff_role, type: Boolean
   field :disabled, type: Boolean
+  field :provider_id, type: BSON::ObjectId
 
   has_one :preferences, class_name: 'Preference'
-
+  belongs_to :practice, class_name: 'Practice'
+  
   scope :ordered_by_username, -> { asc(:username) }
 
   attr_protected :admin, :approved, :disabled, :encrypted_password, :remember_created_at, :reset_password_token, :reset_password_sent_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip, :effective_date
@@ -130,6 +132,10 @@ class User
   def grant_admin
     update_attribute(:admin, true)
     update_attribute(:approved, true)
+    
+    if ! APP_CONFIG['use_opml_structure'] && Provider.root
+      update_attribute(:provider_id, Provider.root.id)
+    end
   end
 
   def approve

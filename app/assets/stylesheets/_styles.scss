@@ -44,6 +44,18 @@ body {
   float: right;
   width: 180px;
 }
+.practice_select {
+  max-width: 300px;
+}
+.practices {
+  margin-left:40px; 
+  margin-right:40px; 
+  width:60%;
+}
+
+.practice-btn {
+  margin-right: 40px;
+}
 
 .measure {
   @extend .row;

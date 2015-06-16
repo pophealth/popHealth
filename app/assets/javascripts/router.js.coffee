@@ -14,7 +14,17 @@ class PopHealth.Router extends Backbone.Router
     'admin/measures':                                                   'admin_measures'
 
   dashboard: ->
-    @view.setView new Thorax.Views.ProviderView model: PopHealth.rootProvider
+    if Config.OPML
+      @view.setView new Thorax.Views.ProviderView model: PopHealth.rootProvider
+    else
+      if PopHealth.currentUser.get("admin") or PopHealth.currentUser.get("provider_id") != null
+        providerModel = new Thorax.Models.Provider '_id': PopHealth.currentUser.get("provider_id")
+        @view.setView new Thorax.Views.ProviderView model: providerModel
+      else
+        practice = PopHealth.currentUser.get('practice')
+        if practice != null
+          providerModel = new Thorax.Models.Provider '_id': practice.provider_id
+          @view.setView new Thorax.Views.ProviderView model: providerModel
 
   measure: (id, subId, providerId) ->
     measure = @categories.findMeasure(id)

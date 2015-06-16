@@ -22,9 +22,16 @@ PopHealth::Application.routes.draw do
   post 'home/set_reporting_period'
   get "admin/user_profile"
   delete "admin/delete_user"
-
+  post 'admin/set_user_practice'
+  post 'admin/set_user_practice_provider'
+  
+  get 'home/check_authorization'
+  delete "practices/remove_patients"
+   
   root :to => 'home#index'
 
+  resources :practices 
+  
   resources :providers do
     resources :patients do
       collection do
@@ -46,6 +53,8 @@ PopHealth::Application.routes.draw do
     get 'reports/cat1/:id/:measure_ids', :to =>'reports#cat1', :format => :xml
     get 'reports/patients', :to => 'reports#patients'
     get 'reports/measures_spreadsheet', :to =>'reports#measures_spreadsheet'
+    
+    resources :practices
     namespace :admin do
       resource :caches do
         collection do

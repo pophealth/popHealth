@@ -1,7 +1,45 @@
+<script type='text/javascript'>
+  $(document).ready(function() {
+    $('.practice_select').change( function(){
+      var userId = $(this).data("user");
+      var practice = $(this).val();
+      var confs = "Change user's assigned practice?";
+      
+      if ( confirm(confs) == true ){
+        $.post('set_user_practice', {'user': userId, 'practice': practice}, function(d){
+        });
+      };     
+    });
+    
+    $('.practice_provider_select').change( function() {
+      var userId = $(this).data("user");
+      var provider = $(this).val();
+      var confs = "Change user's assigned provider?";   
+      if ( confirm(confs) == true ){
+        $.post('set_user_practice_provider', {'user': userId, 'provider': provider}, function(d){
+        }); 
+      };
+    });
+    
+  });
+</script>
 <div class='main' >
   <h1>User Profile:  <strong><%= @user.full_name%> </strong></h1>
 
   <table class="table table-hover user-profile">
+	<% unless APP_CONFIG['use_opml_structure'] %>
+	  <tr>
+		  <% if @user.staff_role %>
+		    <td> <h4> Practice: </h4> </td>
+		    <td> <h4> <%= select_tag "practice", options_for_select(@practices, @user.practice_id), prompt: 'None', data: {user: @user.id.to_s}, class: "practice_select" %> </h4> </td>
+		  <% elsif @user.provider_id && Provider.valid_npi?(@user.npi)%>
+		    <td> <h4> Provider: </h4> </td>
+		    <td> <h4>         
+          <%= select_tag "practice_provider_select", options_for_select(@practice_pvs, @user.provider_id), prompt: 'None', data: {user: @user.id.to_s}, class: 'practice_provider_select'%> 
+		    </h4> </td>
+		  <% end %>
+	  <tr>
+    <% end %>
 
 	  <tr>
 		  <td class='up-col'> Username: </td>
