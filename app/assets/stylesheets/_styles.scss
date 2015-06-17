@@ -7,6 +7,19 @@ $title-circle-radius: 21px;
 }
 
 // Custom styles that are part of the theme
+.errorBox{
+	float:right; 
+	margin-top:20px;
+	width: 400px;
+	height: 300px; 
+	overflow-y: scroll;
+	resize: none;
+ 	border: 1px solid gray ;
+ 	border-radius:5px;
+ 	padding: 10px 20px;
+}
+
+
 .aggregate-btn {
   margin-bottom: 15px;
   width: 100%;
