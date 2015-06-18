@@ -9,6 +9,7 @@ class Thorax.Views.ProviderView extends Thorax.View
       providerType: @model.providerType() || ""
       providerExtension: @model.providerExtension() || ""
       npi: @model.npi() || ""
+      patient_count_format: PopHealth.Helpers.formatNumber(@model.get('patient_count'))
   events:
     'click .effective-date-btn' : 'setEffectiveDate'
     rendered: ->
