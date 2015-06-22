@@ -60,9 +60,10 @@ module Api
 
       options[:effective_start_date] = start_date
       options[:effective_end_date] = end_date
+      options[:effective_date] = end_date
       options[:test_id] = rp._id
       options['prefilter'] = build_mr_prefilter if APP_CONFIG['use_map_reduce_prefilter']
-
+      
       qr = QME::QualityReport.find_or_create(params[:measure_id],
                                            params[:sub_id], options)
       if !qr.calculated?
