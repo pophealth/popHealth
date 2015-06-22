@@ -12,12 +12,10 @@ class Thorax.Models.Measure extends Thorax.Model
       subData = _(sub).extend(data)
       subData.isPrimary = !sub.sub_id? or sub.sub_id is 'a'
       subData
-    @effectiveDate = @collection?.effectiveDate
-    #TODO: FIX THIS. THIS IS TERRIBLE. cjohnsonal 5/29/15
-    @collection?.effectiveEndDate = PopHealth.currentUser.attributes.effective_end_date
-    @collection?.effectiveStartDate = PopHealth.currentUser.attributes.effective_start_date
-    @effectiveStartDate = @collection?.effectiveStartDate
-    @effectiveEndDate = @collection?.effectiveEndDate
+    dates = @collection?.dates
+    @effectiveDate = @dates?.effectiveDate
+    @effectiveStartDate = @dates?.effectiveStartDate
+    @effectiveEndDate = @dates?.effectiveEndDate
 
     attrs.submeasures = new SubCollection subs, parent: this
     attrs

@@ -3,8 +3,8 @@ module HealthDataStandards
     class QueryCache
 
       # FIXME:
-      def self.aggregate_measure(measure_id, effective_date, filters=nil, test_id=nil)
-        query_hash = {'effective_date' => effective_date, 'measure_id' => measure_id,
+      def self.aggregate_measure(measure_id, effective_date, effective_start_date, effective_end_date, filters=nil, test_id=nil)
+        query_hash = {'effective_date' => effective_date, 'effective_start_date' => effective_start_date, 'effective_end_date' => effective_end_date, 'measure_id' => measure_id,
                       'test_id' => test_id}
         if filters
           query_hash.merge!(filters)

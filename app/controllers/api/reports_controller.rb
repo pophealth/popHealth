@@ -42,7 +42,7 @@ module Api
       render xml: exporter.export(HealthDataStandards::CQM::Measure.top_level.where(filter),
                                    generate_header(provider),
                                    effective_date.to_i,
-                                   effective_start_date.to_i
+                                   effective_start_date.to_i,
                                    effective_end_date.to_i, provider_filter), content_type: "attachment/xml"
     end
 

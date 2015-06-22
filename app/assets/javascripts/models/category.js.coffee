@@ -10,9 +10,10 @@ class Thorax.Models.Category extends Thorax.Model
 class Thorax.Collections.Categories extends Thorax.Collection
   model: Thorax.Models.Category
   initialize: (models, options) ->
-    @effectiveDate = options?.effectiveDate 
-    @effectiveStartDate = options?.effectiveStartDate 
-    @effectiveEndDate = options?.effectiveEndDate 
+    dates = options?.datesobj
+    @effectiveDate = dates?.effectiveDate 
+    @effectiveStartDate = dates?.effectiveStartDate 
+    @effectiveEndDate = dates?.effectiveEndDate 
 
   comparator: (a, b) ->
     if a.get('category') is 'Core'

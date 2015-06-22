@@ -1,7 +1,10 @@
 class Thorax.Views.ProviderView extends Thorax.View
   template: JST['providers/show']
   initialize: ->
-    @dashboardView = new Thorax.Views.Dashboard provider_id: @model.id, collection: new Thorax.Collections.Categories PopHealth.categories, parse: true, effectiveDate: PopHealth.currentUser.get 'effective_date', effectiveEndDate: PopHealth.currentUser.get 'effective_end_date', effectiveStartDate: PopHealth.currentUser.get 'effective_start_date'
+    @dashboardView = new Thorax.Views.Dashboard provider_id: @model.id, collection: new Thorax.Collections.Categories PopHealth.categories, parse: true, datesobj: 
+      effectiveEndDate: PopHealth.currentUser.get 'effective_end_date'
+      effectiveDate: PopHealth.currentUser.get 'effective_date'
+      effectiveStartDate: PopHealth.currentUser.get 'effective_start_date'
     if PopHealth.currentUser.shouldDisplayProviderTree() then @providerChart = PopHealth.viz.providerChart()
     @startDate = PopHealth.currentUser.effectiveDateString(false)
   context: ->
