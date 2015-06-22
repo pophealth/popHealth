@@ -11,8 +11,8 @@ class QueryHeadingView extends Thorax.View
     @popChart = PopHealth.viz.populationChart().width(125).height(25).maximumValue(PopHealth.patientCount)
   shouldDisplayPercentageVisual: -> !@model.isContinuous() and PopHealth.currentUser.shouldDisplayPercentageVisual()
   resultValue: -> if @model.isContinuous() then @model.observation() else @model.performanceRate()
-  fractionTop: -> if @model.isContinuous() then @model.measurePopulation() else @model.numerator()
-  fractionBottom: -> if @model.isContinuous() then @model.ipp() else @model.performanceDenominator()
+  fractionTop: -> if @model.isContinuous() then @model.measurePopulation() else PopHealth.Helpers.formatNumber(@model.numerator())
+  fractionBottom: -> if @model.isContinuous() then @model.ipp() else PopHealth.Helpers.formatNumber(@model.performanceDenominator())
   episodeOfCare: -> @model.parent.get('episode_of_care')
   unit: -> if @model.isContinuous() and @model.parent.get('cms_id') isnt 'CMS179v2' then 'min' else '%'
 
@@ -32,16 +32,16 @@ class QueryButtonsView extends Thorax.View
   initialize: ->
     @currentPopulation ?= 'IPP'
   ipp: -> @model.ipp()
-  numerator: -> @model.numerator()
-  denominator: -> @model.denominator()
+  numerator: -> PopHealth.Helpers.formatNumber(@model.numerator())
+  denominator: -> PopHealth.Helpers.formatNumber(@model.denominator())
   hasExceptions: -> @model.hasExceptions()
-  exceptions: -> @model.exceptions()
+  exceptions: -> PopHealth.Helpers.formatNumber(@model.exceptions())
   hasExclusions: -> @model.hasExclusions()
-  exclusions: -> @model.exclusions()
+  exclusions: -> PopHealth.Helpers.formatNumber(@model.exclusions())
   hasOutliers: -> @model.hasOutliers()
-  outliers: -> @model.outliers()
+  outliers: -> PopHealth.Helpers.formatNumber(@model.outliers())
   performanceRate: -> @model.performanceRate()
-  performanceDenominator: -> @model.performanceDenominator()
+  performanceDenominator: -> PopHealth.Helpers.formatNumber(@model.performanceDenominator())
 
   ippIsActive: -> @isActive and @currentPopulation is 'IPP'
   numeratorIsActive: -> @isActive and @currentPopulation is 'NUMER'
