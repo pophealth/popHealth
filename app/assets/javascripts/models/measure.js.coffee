@@ -12,10 +12,9 @@ class Thorax.Models.Measure extends Thorax.Model
       subData = _(sub).extend(data)
       subData.isPrimary = !sub.sub_id? or sub.sub_id is 'a'
       subData
-    dates = @collection?.dates
-    @effectiveDate = @dates?.effectiveDate
-    @effectiveStartDate = @dates?.effectiveStartDate
-    @effectiveEndDate = @dates?.effectiveEndDate
+    @effectiveDate = @collection?.effectiveDate
+    @effectiveStartDate = @collection?.effectiveStartDate
+    @effectiveEndDate = @collection?.effectiveEndDate
 
     attrs.submeasures = new SubCollection subs, parent: this
     attrs
