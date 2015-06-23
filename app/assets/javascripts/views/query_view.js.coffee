@@ -33,7 +33,7 @@ class QueryButtonsView extends Thorax.View
     @currentPopulation ?= 'IPP'
   ipp: -> @model.ipp()
   numerator: -> PopHealth.Helpers.formatNumber(@model.numerator())
-  denominator: -> PopHealth.Helpers.formatNumber(@model.denominator())
+  denominator: -> PopHealth.Helpers.formatNumber(@model.denominator()-@model.exclusions())
   hasExceptions: -> @model.hasExceptions()
   exceptions: -> PopHealth.Helpers.formatNumber(@model.exceptions())
   hasExclusions: -> @model.hasExclusions()

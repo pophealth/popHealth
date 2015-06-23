@@ -26,6 +26,7 @@ class Thorax.Views.PatientResultsView extends Thorax.View
       last: PopHealth.Helpers.maskName(patient.get('last')) if patient.get('last')
       formatted_birthdate: moment(patient.get('birthdate')).format(PopHealth.Helpers.maskDateFormat('MM/DD/YYYY')) if patient.get('birthdate')
       age: moment(patient.get('birthdate')).fromNow().split(' ')[0] if patient.get('birthdate')
+      mrn: PopHealth.Helpers.formatMRN(patient.get('medical_record_id'))
   events:
     rendered: ->
       $(document).on 'scroll', @scrollHandler
