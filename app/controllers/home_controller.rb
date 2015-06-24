@@ -31,7 +31,7 @@ class HomeController < ApplicationController
     query = {
       'encounters' => {
         '$elemMatch' => { 
-          '$or' => [
+          '$in' => [
           {
             'start_time' => {'$lte' => end_date},
             'end_time' => {'$gte' => start_date}

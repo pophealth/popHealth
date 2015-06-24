@@ -26,7 +26,7 @@ module QME
           measure_model = QME::QualityMeasure.new(value['measure_id'], value['sub_id'], value['test_id'])
           oid_dictionary = OidHelper.generate_oid_dictionary(measure_model)
           map = QME::MapReduce::Executor.new(value['measure_id'], value['sub_id'],
-            'effective_date' => value['effective_date'], 'effective_start_date' => value['effective_start_date'],
+            'effective_start_date' => value['effective_start_date'],
             'effective_end_date' => value['effective_end_date'], 'test_id' => value['test_id'],
             'oid_dictionary' => oid_dictionary)
           map.map_record_into_measure_groups(id)
