@@ -53,9 +53,9 @@
           end
         end
       end
-      if results = json.delete('cache_results')
-        json['measure_results'] = results_with_measure_metadata(results)
-      end
+#      if results = json.delete('cache_results')
+#        json['[measure_results'] = results_with_measure_metadata(results)
+#      end
       Log.create(:username =>   current_user.username,
                  :event =>      'patient record viewed',
                  :medical_record_number => @patient.medical_record_number)
