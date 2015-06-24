@@ -25,9 +25,11 @@
         </div>
         <div id="category{{@cid}}" class="panel-collapse collapse">
           <div class="panel-body">
+            <!--
             <div class="btn-block-container">
               <a href class="btn btn-checkbox btn-block all{{#if selected}} active{{/if}}">Select All</a>
             </div>
+            -->
             {{#collection measures item-context=../measureFilterContext item-filter=../measureFilter}}
               <div class="btn-block-container">
                 <a href class="btn btn-checkbox btn-block individual{{#if selected}} active{{/if}}">{{cms_id}}&#8203;/&#8203;{{nqf_id}} - {{name}}</a>
