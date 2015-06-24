@@ -37,8 +37,8 @@ class Thorax.Views.EntryView extends Thorax.View
   context: ->
     _(super).extend
       start_time: formatTime @model.get('start_time')
-      end_time: formatTime @model.get('end_time') if @model.get('end_time')?
-      time_format: formatTime @model.get('time') if @model.get('time')?
+      end_time: @model.get('end_time') if @model.get('end_time')?
+      time_format: getTimeFromEpoch @model.get('time')  #if @model.get('time')?
       display_end_time: @model.get('end_time') and (formatTime @model.get('start_time')) isnt (formatTime @model.get('end_time'))
       entry_type: @model.entryType
       icon: @model.icon
@@ -46,6 +46,11 @@ class Thorax.Views.EntryView extends Thorax.View
 
   # Helper function for date/time conversion
   formatTime = (time) -> moment(time).format('M/DD/YYYY') if time
+  getTimeFromEpoch = (time) ->
+    if time
+      d = new Date(time *1000)
+      date = (d.getUTCMonth() + 1 ) + '/' + d.getUTCDate() + '/' + d.getUTCFullYear()
+    
 
 ### Note ###
 #
