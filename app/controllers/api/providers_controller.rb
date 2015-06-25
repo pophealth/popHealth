@@ -96,9 +96,14 @@ module Api
     EXAMPLE
     def show
       if can? :read, @provider
-        provider_json = @provider.as_json
-        provider_json[:parent] = Provider.find(@provider.parent_id) if @provider.parent_id
-        provider_json[:children] = @provider.children if @provider.children.present?
+        if APP_CONFIG['use_opml_structure'] || current_user.preferences.should_display_provider_tree
+          provider_json = @provider.as_json
+          provider_json[:parent] = Provider.find(@provider.parent_id) if @provider.parent_id
+          provider_json[:children] = @provider.children if @provider.children.present?
+        else
+          provider_json = @provider.as_json(only: [:_id, :title, :organization, :given_name, :family_name, :specialty])
+          provider_json[:cda_identifiers] = @provider.cda_identifiers
+        end
         provider_json[:patient_count] = @provider.records.count
       else
         provider_json = {}
