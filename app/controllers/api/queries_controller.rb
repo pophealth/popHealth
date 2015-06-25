@@ -138,7 +138,9 @@ module Api
       qr = QME::QualityReport.find(params[:id])
       authorize! :read, qr
       # this returns a criteria object so we can filter it additionally as needed
-      results = qr.patient_results
+#      results = qr.patient_results
+      query = {}
+      results = QME::PatientCache.where(query)
       ids = paginate(patients_api_query_url(qr),results.where(build_patient_filter).order_by([:last.asc, :first.asc])).collect{|r| r["value.medical_record_id"]}
       render :json=> Record.where({:medical_record_number.in => ids})
     end

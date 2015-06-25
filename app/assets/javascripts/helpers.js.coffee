@@ -21,7 +21,7 @@ _.extend PopHealth.Helpers,
       return value
 
   formatNumber: (value) ->
-    return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ",") unless isNaN(value)
     
   formatMRN: (mrn) ->
     length = if mrn.indexOf("-") is -1 then mrn.length-1 else mrn.indexOf("-")
