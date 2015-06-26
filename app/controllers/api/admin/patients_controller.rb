@@ -62,8 +62,6 @@ module Api
 
         File.open(temp_file.path, "wb") { |f| f.write(file.read) }
 
-        init_count = Record.count
-
         begin
           response_hash = BulkRecordImporter.import_file(temp_file,File.new(temp_file).read,nil,{},practice)
           status_code = 200
@@ -88,8 +86,6 @@ module Api
 
         render text: status_text, status: status_code
       end
-
-
 
 
       api :DELETE, "/admin/patients", "Delete all patients in the database."
