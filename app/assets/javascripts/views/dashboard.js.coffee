@@ -9,7 +9,7 @@ class Thorax.Views.ResultsView extends Thorax.View
   events:
     model:
       change: ->
-        if @model.isPopulated()
+        if (PopHealth.currentUser.showAggregateResult() and @model.aggregateResult()) or (!PopHealth.currentUser.showAggregateResult() and @model.isPopulated())
           clearInterval(@timeout) if @timeout?
           d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
         else

@@ -24,7 +24,7 @@ defaults: &defaults
   enable_map_reduce_rationale: true
   enable_map_reduce_logging: true
   #use provider opml heirarchy instead of practice based system
-  use_opml_structure: true
+  use_opml_structure: false
   #provider type to exclude EH measures from
   eh_exclusion_type: "Division"
   orphan_provider:

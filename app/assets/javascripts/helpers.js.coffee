@@ -20,7 +20,14 @@ _.extend PopHealth.Helpers,
     else
       return value
 
-
+  formatNumber: (value) ->
+    return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ",") unless isNaN(value)
+    
+  formatMRN: (mrn) ->
+    if mrn
+      length = if mrn.indexOf("-") is -1 then mrn.length-1 else mrn.indexOf("-")
+      return mrn.substring(0, length)
+    
 ##### Handlebars Helpers
 Handlebars.registerHelper 'join', (list, options = {}) ->
   mappable = if list instanceof Backbone.Collection then list else _(list)
