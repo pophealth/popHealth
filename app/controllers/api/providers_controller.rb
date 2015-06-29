@@ -104,7 +104,7 @@ module Api
           provider_json = @provider.as_json(only: [:_id, :title, :organization, :given_name, :family_name, :specialty])
           provider_json[:cda_identifiers] = @provider.cda_identifiers
         end
-        provider_json[:patient_count] = @provider.records.count
+        provider_json[:patient_count] = Record.where('provider_performances.provider_id' => @provider.id).count
       else
         provider_json = {}
       end

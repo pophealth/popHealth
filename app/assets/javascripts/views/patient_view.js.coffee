@@ -5,7 +5,7 @@ class Thorax.Views.PatientView extends Thorax.View
 #      @$('#measures').on 'show.bs.collapse hide.bs.collapse', (e) ->
 #        $(e.target).prev().toggleClass('active').find('.submeasure-expander .fa').toggleClass('fa-plus-square-o fa-minus-square-o')
   context: ->
-    mrn = PopHealth.Helpers.formatMRN(String(@model.get("medical_record_number")))
+    mrn = if @model.get("medical_record_number") then PopHealth.Helpers.formatMRN(String(@model.get("medical_record_number"))) else 'N/A'
     _(super).extend
       first: PopHealth.Helpers.maskName @model.get('first')
       last: PopHealth.Helpers.maskName @model.get('last')
