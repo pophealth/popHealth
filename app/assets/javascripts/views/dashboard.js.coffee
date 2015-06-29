@@ -9,10 +9,13 @@ class Thorax.Views.ResultsView extends Thorax.View
   events:
     model:
       change: ->
+        loadingDiv = "." + String(@model.get('measure_id')) + "-loading-measure"
         if @model.isPopulated() and @model.aggregateResult() != null
+          $(loadingDiv).html("")
           clearInterval(@timeout) if @timeout?
           d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
         else
+          $(loadingDiv).html("<h2>LOADING...</h2>")
           @authorize()
           if @response == 'false'
             clearInterval(@timeout)
@@ -63,7 +66,6 @@ class Thorax.Views.DashboardSubmeasureView extends Thorax.View
     fetch: false
   events:
     rendered: ->
-      @$('.loading-measure').html("<h2>LOADING...</h2>")
       @$('.icon-popover').popover()
       # TODO when we upgrade to Thorax 3, use `getQueryForProvider`
       query = @model.get('query')
@@ -71,16 +73,13 @@ class Thorax.Views.DashboardSubmeasureView extends Thorax.View
         @$el.fadeTo 'fast', 0.5
         @listenTo query, 'change:status', =>
           if query.isPopulated()
-            @$('.loading-measure').html("")
             @$el.fadeTo 'fast', 1
-            @stopListening query, 'change:status'        
+            @stopListening query, 'change:status'
   context: ->
     matches = @model.get('cms_id').match(/CMS(\d+)v(\d+)/)
     _(super).extend
       cms_number: matches?[1]
       cms_version: matches?[2]
-  initialize: ->
-    $('div.loading-measure').html("<h2>LOADING...</h2>")
 
 
 class Thorax.Views.Dashboard extends Thorax.View
