@@ -10,7 +10,7 @@ class Thorax.Views.ResultsView extends Thorax.View
     model:
       change: ->
         loadingDiv = "." + String(@model.get('measure_id')) + "-loading-measure"
-        if @model.isPopulated() and @model.aggregateResult() != null
+        if (PopHealth.currentUser.showAggregateResult() and @model.aggregateResult()) or (!PopHealth.currentUser.showAggregateResult() and @model.isPopulated())
           $(loadingDiv).html("")
           clearInterval(@timeout) if @timeout?
           d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
@@ -111,8 +111,14 @@ class Thorax.Views.Dashboard extends Thorax.View
   toggleAggregateShow: (e) ->    
     shown = PopHealth.currentUser.showAggregateResult()
     PopHealth.currentUser.setShowAggregateResult(!shown)
-    @$('.aggregate-result').toggle(400)   
-    @$('.aggregate-btn').toggleClass('active')
+    if !shown 
+      if confirm "Please wait for the aggregate measure to calculate. The result will appear when the calculation is completed."
+        location.reload()
+        @$('.aggregate-result').toggle(400)   
+        @$('.aggregate-btn').toggleClass('active')
+    else
+      @$('.aggregate-result').toggle(400)   
+      @$('.aggregate-btn').toggleClass('active')
 
   effective_date: ->
     PopHealth.currentUser.get 'effective_date'
