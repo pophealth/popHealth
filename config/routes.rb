@@ -27,6 +27,7 @@ PopHealth::Application.routes.draw do
   
   get 'home/check_authorization'
   delete "practices/remove_patients"
+  delete "practices/remove_providers"
    
   root :to => 'home#index'
 

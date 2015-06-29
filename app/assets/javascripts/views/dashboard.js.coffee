@@ -9,10 +9,13 @@ class Thorax.Views.ResultsView extends Thorax.View
   events:
     model:
       change: ->
+        loadingDiv = "." + String(@model.get('measure_id')) + "-loading-measure"
         if (PopHealth.currentUser.showAggregateResult() and @model.aggregateResult()) or (!PopHealth.currentUser.showAggregateResult() and @model.isPopulated())
+          $(loadingDiv).html("")
           clearInterval(@timeout) if @timeout?
           d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
         else
+          $(loadingDiv).html("<h2>LOADING...</h2>")
           @authorize()
           if @response == 'false'
             clearInterval(@timeout)
