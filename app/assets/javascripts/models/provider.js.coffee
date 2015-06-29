@@ -22,9 +22,9 @@ class Thorax.Collections.Providers extends Thorax.Collection
   url: '/api/providers'
   model: Thorax.Models.Provider
   comparator: (p) ->
-    root = p.get('cda_identifiers')?[0].root
-    extension = parseInt(p.get('cda_identifiers')?[0].extension) || p.get('cda_identifiers')?[0].extension
-    [root,extension, p.get('family_name'), p.get('given_name')]
+#    root = p.get('cda_identifiers')?[0].root
+#    extension = parseInt(p.get('cda_identifiers')?[0].extension) || p.get('cda_identifiers')?[0].extension
+    [p.get('family_name'), p.get('given_name')]
   initialize: (attrs, options) ->
     @hasMoreResults = true
   currentPage: (perPage = 100) -> Math.ceil(@length / perPage)

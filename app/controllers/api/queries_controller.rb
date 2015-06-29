@@ -131,7 +131,7 @@ module Api
       authorize! :read, qr
       # this returns a criteria object so we can filter it additionally as needed
 #      results = qr.patient_results
-      query = {'value.measure_id' => qr.measure_id, 'value.effective_date' => qr.effective_date, 'value.provider_performances.provider_id' => qr.filters[:providers].first}
+      query = {'value.measure_id' => qr.measure_id, 'value.sub_id' => qr.sub_id, 'value.effective_date' => qr.effective_date, 'value.provider_performances.provider_id' => qr.filters[:providers].first}
       results = QME::PatientCache.where(query)
       render json: paginate(patient_results_api_query_url(qr),results.where(build_patient_filter).only('_id', 'value.medical_record_id', 'value.first', 'value.last', 'value.birthdate', 'value.gender', 'value.patient_id'))
     end
