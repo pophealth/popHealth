@@ -108,10 +108,14 @@ class Thorax.Views.Dashboard extends Thorax.View
   toggleAggregateShow: (e) ->    
     shown = PopHealth.currentUser.showAggregateResult()
     PopHealth.currentUser.setShowAggregateResult(!shown)
-    @$('.aggregate-result').toggle(400)   
-    @$('.aggregate-btn').toggleClass('active')
-    location.reload() if PopHealth.currentUser.showAggregateResult()
-    
+    if !shown 
+      if confirm "Please wait for the aggregate measure to calculate. The result will appear when the calculation is completed."
+        location.reload()
+        @$('.aggregate-result').toggle(400)   
+        @$('.aggregate-btn').toggleClass('active')
+    else
+      @$('.aggregate-result').toggle(400)   
+      @$('.aggregate-btn').toggleClass('active')
 
   effective_date: ->
     PopHealth.currentUser.get 'effective_date'

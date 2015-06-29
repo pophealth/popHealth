@@ -29,7 +29,7 @@ class Record
   
   def self.update_or_create(data, practice_id=nil)
     mrn = data.medical_record_number
-    mrn_p = (practice_id)? mrn + "-" + Practice.all.map{|i| i.id.to_s}.index(practice_id).to_s : ''
+    mrn_p = (practice_id)? mrn + "-" + practice_id : ''
     if practice_id
       existing = Record.where(medical_record_number: mrn_p).first
     else
