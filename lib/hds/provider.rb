@@ -61,7 +61,10 @@ class Provider
                               }
     provider_info = provider_hash[:cda_identifiers].first
     patient_id = patient.medical_record_number if patient
-    Log.create(:username => 'Background Event', :event => "No such provider with root '#{provider_info.root}' and extension '#{provider_info.extension}' exists in the database, patient has been assigned to the orphan provider.", :medical_record_number => patient_id)
+    root = provider_info.try(:root)
+    extension = provider_info.try(:extension)
+    
+    Log.create(:username => 'Background Event', :event => "No such provider with root '#{root}' and extension '#{extension}' exists in the database, patient has been assigned to the orphan provider.", :medical_record_number => patient_id)
     provider ||= Provider.in("cda_identifiers.root" => APP_CONFIG['orphan_provider']['root']).and.in("cda_identifiers.extension" => APP_CONFIG['orphan_provider']['extension']).first
     if provider.nil?
       provider = Provider.create(catch_all_provider_hash)
