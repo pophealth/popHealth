@@ -23,7 +23,7 @@ class Thorax.Views.ProviderView extends Thorax.View
   setEffectiveDate: (e) ->
     effectiveStartDate = $(".effective-date-picker.start").val()
     effectiveEndDate = $(".effective-date-picker.end").val()
-    if Date.parse(effectiveEndDate) < Date.parse(effectiveStartDate)
+    if Date.parse(effectiveEndDate) <= Date.parse(effectiveStartDate)
       return alert("That date range is invalid. Please check and try again.")   
     if confirm("Caution! Changing the reporting period may initially cause a significant delay. Do you wish to continue?")
       user = PopHealth.currentUser.get 'username'
