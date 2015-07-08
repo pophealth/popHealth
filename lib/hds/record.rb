@@ -83,5 +83,5 @@ class Record
       data
     end
   end
-    
+  
 end
