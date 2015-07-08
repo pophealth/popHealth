@@ -14,6 +14,8 @@ class Record
   scope :without_provider, ->{any_of({provider_performances: nil}, {provider_performances: []})}
   scope :provider_performance_between, ->(effective_date) { where("provider_performances.start_date" => {"$lt" => effective_date}).and('$or' => [{'provider_performances.end_date' => nil}, 'provider_performances.end_date' => {'$gt' => effective_date}]) }
     
+  Valid_Sections = [:allergies, :conditions, :encounters, :immunizations, :medications, :procedures, :results, :vital_signs, :socialhistories]
+    
   def language_names
     lang_codes = (languages.nil?) ? [] : languages.map { |l| l.gsub(/\-[A-Z]*$/, "") }
     Language.ordered.by_code(lang_codes).map(&:name)
@@ -38,6 +40,39 @@ class Record
 
     if existing
       existing.update_attributes!(data.attributes.except('_id', 'medical_record_number', 'practice_id'))
+      
+      # updates
+      Record::Valid_Sections.each do |section|        
+        if ! data.send(section).blank?
+          query = {}
+          query = {medical_record_number: existing.medical_record_number, section => {'$elemMatch' => {}}}
+
+          data.send(section).each do |entry|       
+            if entry.codes.present?
+              query[section]['$elemMatch']['codes'] = entry.codes
+            end     
+                   
+            if entry.status_code
+              query[section]['$elemMatch']['status_code'] = entry.status_code
+            end
+            
+            if entry.time
+              query[section]['$elemMatch']['time'] = entry.time
+            elsif entry.start_time
+              query[section]['$elemMatch']['start_time'] = entry.start_time
+            end
+                       
+            if entry.end_time
+              query[section]['$elemMatch']['end_time'] = entry.end_time
+            end
+            
+            exists = Record.where(query).first
+            if ! exists 
+              existing.send(section).push(entry)
+            end
+          end
+        end
+      end
       existing
     else
       if practice_id 
@@ -48,5 +83,5 @@ class Record
       data
     end
   end
-  
+    
 end
