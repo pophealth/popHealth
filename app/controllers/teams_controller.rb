@@ -20,7 +20,7 @@ class TeamsController < ApplicationController
     if current_user.admin? || APP_CONFIG['use_opml_structure']
       @providers = Provider.all
     else
-      @providers = Provider.where(parent_id: current_user.practice.provider_id)
+      @providers = Provider.where(parent_id: current_user.try(:practice).try(:provider_id))
     end
   end
   
