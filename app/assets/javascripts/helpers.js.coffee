@@ -25,7 +25,7 @@ _.extend PopHealth.Helpers,
     
   formatMRN: (mrn) ->
     if mrn
-      length = if mrn.indexOf("-") is -1 then mrn.length-1 else mrn.indexOf("-")
+      length = if mrn.indexOf("_pid_") is -1 then mrn.length-1 else mrn.indexOf("-")
       return mrn.substring(0, length)
     
 ##### Handlebars Helpers
