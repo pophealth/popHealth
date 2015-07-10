@@ -9,7 +9,11 @@ class Thorax.Views.ResultsView extends Thorax.View
   events:
     model:
       change: ->
-        loadingDiv = "." + String(@model.get('measure_id')) + "-loading-measure"
+        if @model.get('sub_id')
+          measureid = String(@model.get('measure_id')) + String(@model.get('sub_id'))
+        else
+          measureid = String(@model.get('measure_id')) 
+        loadingDiv = "." + measureid + "-loading-measure"
         if (PopHealth.currentUser.showAggregateResult() and @model.aggregateResult()) or (!PopHealth.currentUser.showAggregateResult() and @model.isPopulated())
           $(loadingDiv).html("")
           clearInterval(@timeout) if @timeout?
