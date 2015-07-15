@@ -45,6 +45,7 @@ class Thorax.Views.ResultsView extends Thorax.View
 
   authorize: ->
     @response = $.ajax({ 
+      async: false,
       url: "home/check_authorization/", 
       data: {"id": @provider_id}
     }).responseText    
@@ -58,7 +59,6 @@ class Thorax.Views.ResultsView extends Thorax.View
       fractionBottom: if @model.isContinuous() then @model.ipp() else @model.performanceDenominator()
       aggregateResult: @model.aggregateResult()
   initialize: ->
-    
     @popChart = PopHealth.viz.populationChart().width(125).height(25).maximumValue(PopHealth.patientCount)
     @model.set('providers', [@provider_id]) if @provider_id?
 
