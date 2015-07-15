@@ -9,13 +9,17 @@ class Thorax.Views.ResultsView extends Thorax.View
   events:
     model:
       change: ->
-        loadingDiv = "." + String(@model.get('measure_id')) + "-loading-measure"
+        if @model.get('sub_id')
+          measureid = String(@model.get('measure_id')) + String(@model.get('sub_id'))
+        else
+          measureid = String(@model.get('measure_id')) 
+        loadingDiv = "." + measureid + "-loading-measure"
         if (PopHealth.currentUser.showAggregateResult() and @model.aggregateResult()) or (!PopHealth.currentUser.showAggregateResult() and @model.isPopulated())
-          $(loadingDiv).html("")
+          $(loadingDiv).hide()
           clearInterval(@timeout) if @timeout?
           d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
         else
-          $(loadingDiv).html("<h2>LOADING...</h2>")
+          $(loadingDiv).show()
           @authorize()
           if @response == 'false'
             clearInterval(@timeout)
@@ -41,7 +45,6 @@ class Thorax.Views.ResultsView extends Thorax.View
 
   authorize: ->
     @response = $.ajax({ 
-      async: false,
       url: "home/check_authorization/", 
       data: {"id": @provider_id}
     }).responseText    
@@ -55,6 +58,7 @@ class Thorax.Views.ResultsView extends Thorax.View
       fractionBottom: if @model.isContinuous() then @model.ipp() else @model.performanceDenominator()
       aggregateResult: @model.aggregateResult()
   initialize: ->
+    
     @popChart = PopHealth.viz.populationChart().width(125).height(25).maximumValue(PopHealth.patientCount)
     @model.set('providers', [@provider_id]) if @provider_id?
 

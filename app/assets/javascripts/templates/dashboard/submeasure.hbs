@@ -24,4 +24,4 @@
   </div>
   {{view "ResultsView" model=query id=id sub_id=sub_id episode_of_care=episode_of_care lower_is_better=lower_is_better provider_id=provider_id}}
 </div>
-<div class="pull-left {{id}}-loading-measure"></div>
+<div class="pull-left {{id}}{{#if sub_id}}{{sub_id}}{{/if}}-loading-measure" hidden="true"><h2>LOADING...</h2></div>
