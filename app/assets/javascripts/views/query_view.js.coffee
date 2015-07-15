@@ -7,15 +7,16 @@ class QueryHeadingView extends Thorax.View
       if @model.isPopulated()
         @popChart.maximumValue(@model.result().IPP)
         d3.select(@el).select('.pop-chart').datum(@model.result()).call(@popChart)
+  context: ->
+    _(super).extend
+      shouldDisplayPercentageVisual: !@model.isContinuous() and PopHealth.currentUser.shouldDisplayPercentageVisual()
+      resultValue: if @model.isContinuous() then @model.observation() else @model.performanceRate()
+      fractionTop: if @model.isContinuous() then @model.measurePopulation() else @model.numerator()
+      fractionBottom: if @model.isContinuous() then @model.ipp() else @model.performanceDenominator()
+      episodeOfCare: @model.parent.get('episode_of_care')
+      unit: if @model.isContinuous() and @model.parent.get('cms_id') isnt 'CMS179v2' then 'min' else '%'
   initialize: ->
     @popChart = PopHealth.viz.populationChart().width(125).height(25).maximumValue(PopHealth.patientCount)
-  shouldDisplayPercentageVisual: -> !@model.isContinuous() and PopHealth.currentUser.shouldDisplayPercentageVisual()
-  resultValue: -> if @model.isContinuous() then @model.observation() else @model.performanceRate()
-  fractionTop: -> if @model.isContinuous() then @model.measurePopulation() else PopHealth.Helpers.formatNumber(@model.numerator())
-  fractionBottom: -> if @model.isContinuous() then @model.ipp() else PopHealth.Helpers.formatNumber(@model.performanceDenominator())
-  episodeOfCare: -> @model.parent.get('episode_of_care')
-  unit: -> if @model.isContinuous() and @model.parent.get('cms_id') isnt 'CMS179v2' then 'min' else '%'
-
 
 class QueryButtonsView extends Thorax.View
   template: JST['patient_results/query_buttons']
@@ -31,24 +32,26 @@ class QueryButtonsView extends Thorax.View
           , 3000
   initialize: ->
     @currentPopulation ?= 'IPP'
-  ipp: -> PopHealth.Helpers.formatNumber(@model.ipp())
-  numerator: -> PopHealth.Helpers.formatNumber(@model.numerator())
-  denominator: -> PopHealth.Helpers.formatNumber(@model.denominator()-@model.exclusions())
-  hasExceptions: -> @model.hasExceptions()
-  exceptions: -> PopHealth.Helpers.formatNumber(@model.exceptions())
-  hasExclusions: -> @model.hasExclusions()
-  exclusions: -> PopHealth.Helpers.formatNumber(@model.exclusions())
-  hasOutliers: -> @model.hasOutliers()
-  outliers: -> PopHealth.Helpers.formatNumber(@model.outliers())
-  performanceRate: -> @model.performanceRate()
-  performanceDenominator: -> PopHealth.Helpers.formatNumber(@model.performanceDenominator())
+  context: ->
+    _(super).extend 
+      ipp: @model.ipp()
+      numerator: @model.numerator()
+      denominator: @model.denominator()
+      hasExceptions: @model.hasExceptions()
+      exceptions: @model.exceptions()
+      hasExclusions: @model.hasExclusions()
+      exclusions: @model.exclusions()
+      hasOutliers: @model.hasOutliers()
+      outliers: @model.outliers()
+      performanceRate: @model.performanceRate()
+      performanceDenominator: @model.performanceDenominator()
 
-  ippIsActive: -> @isActive and @currentPopulation is 'IPP'
-  numeratorIsActive: -> @isActive and @currentPopulation is 'NUMER'
-  denominatorIsActive: -> @isActive and @currentPopulation is 'DENOM'
-  exclusionsAreActive: -> @isActive and @currentPopulation is 'DENEX'
-  exceptionsAreActive: -> @isActive and @currentPopulation is 'DENEXCEP'
-  antinumeratorIsActive: -> @isActive and @currentPopulation is 'antinumerator'
+      ippIsActive: @isActive and @currentPopulation is 'IPP'
+      numeratorIsActive: @isActive and @currentPopulation is 'NUMER'
+      denominatorIsActive: @isActive and @currentPopulation is 'DENOM'
+      exclusionsAreActive: @isActive and @currentPopulation is 'DENEX'
+      exceptionsAreActive: @isActive and @currentPopulation is 'DENEXCEP'
+      antinumeratorIsActive: @isActive and @currentPopulation is 'antinumerator'
 
   changeFilter: (event) ->
     @currentPopulation = $(event.currentTarget).data 'population'

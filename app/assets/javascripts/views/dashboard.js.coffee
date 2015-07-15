@@ -15,11 +15,11 @@ class Thorax.Views.ResultsView extends Thorax.View
           measureid = String(@model.get('measure_id')) 
         loadingDiv = "." + measureid + "-loading-measure"
         if (PopHealth.currentUser.showAggregateResult() and @model.aggregateResult()) or (!PopHealth.currentUser.showAggregateResult() and @model.isPopulated())
-          $(loadingDiv).html("")
+          $(loadingDiv).hide()
           clearInterval(@timeout) if @timeout?
           d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
         else
-          $(loadingDiv).html("<h2>LOADING...</h2>")
+          $(loadingDiv).show()
           @authorize()
           if @response == 'false'
             clearInterval(@timeout)

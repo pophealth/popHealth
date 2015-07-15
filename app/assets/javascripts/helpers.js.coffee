@@ -19,13 +19,10 @@ _.extend PopHealth.Helpers,
       return value.replace(/[MD]/g, 'x')
     else
       return value
-
-  formatNumber: (value) ->
-    return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ",") unless isNaN(value)
     
   formatMRN: (mrn) ->
     if mrn
-      length = if mrn.indexOf("_pid_") is -1 then mrn.length-1 else mrn.indexOf("-")
+      length = if mrn.indexOf("_pid_") is -1 then mrn.length-1 else mrn.indexOf("_pid_")
       return mrn.substring(0, length)
     
 ##### Handlebars Helpers
