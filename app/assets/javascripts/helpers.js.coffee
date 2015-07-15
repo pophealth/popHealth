@@ -19,9 +19,6 @@ _.extend PopHealth.Helpers,
       return value.replace(/[MD]/g, 'x')
     else
       return value
-
-  formatNumber: (value) ->
-    return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ",") unless isNaN(value)
     
   formatMRN: (mrn) ->
     if mrn

@@ -5,12 +5,11 @@ class Thorax.Views.ProviderView extends Thorax.View
     if PopHealth.currentUser.shouldDisplayProviderTree() then @providerChart = PopHealth.viz.providerChart()
     @startDate = PopHealth.currentUser.effectiveDateString(false)
   context: ->
-    patient_count = if @model.get('patient_count') then PopHealth.Helpers.formatNumber(@model.get('patient_count')) else "N/A" 
     _(super).extend
       providerType: @model.providerType() || ""
       providerExtension: @model.providerExtension() || ""
       npi: @model.npi() || ""
-      patient_count_format: patient_count
+      patient_count: @model.get('patient_count')
   events:
     'click .effective-date-btn' : 'setEffectiveDate'
     rendered: ->
