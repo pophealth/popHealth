@@ -22,9 +22,9 @@ defaults: &defaults
   force_unsecure_communications: true
   use_map_reduce_prefilter: true
   enable_map_reduce_rationale: true
-  enable_map_reduce_logging: false
+  enable_map_reduce_logging: true
   #use provider opml heirarchy instead of practice based system
-  use_opml_structure: false #true
+  use_opml_structure: true
   #provider type to exclude EH measures from
   eh_exclusion_type: "Division"
   orphan_provider:
