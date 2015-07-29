@@ -1,0 +1,41 @@
+<div class="main">
+  <%= button_to "Back to Team List", teams_path, :method => 'get', :class => "btn btn-primary pull-right" %>
+  <h1><b>New team</b></h1>
+  <div class='body'>
+    <%= form_tag "create" do %> 
+      <h2> Choose Providers: </h2>              
+      <table class="teamProviderTable display table-bordered table-hover">
+        <thead> 
+          <tr>
+            <th> Name </th>
+            <th> NPI </th>
+            <th> Select </th>
+          </tr>
+        </thead> 
+
+        <tbody>
+        <% @providers.each do |provider| %>
+          <tr>
+            <td> <%= provider.given_name %> <%= (provider.family_name)? provider.family_name : ''%>
+            <%= (provider.children.length > 0)? "(Group)" : '' %>
+            </td>    
+            <td> <%= (provider.npi)? provider.npi : 'N/A' %> </td>
+            <td class='teamProviderCheck' id="<%=provider._id%>"> 
+              <%= check_box_tag 'provider_ids[]', provider._id %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table> 
+      <br/>
+      <hr/>
+      <div class="fluid row-inline">
+        <%= label_tag "team", "TEAM NAME" %> : <%= text_field_tag :name, nil, :class => "teamNameField" %>
+        <div class="pull-right">
+          <%= submit_tag "Create Team", :class => "btn btn-success teamSaveBtn", :data => {:confirm => "Confirm providers and team name?"} %>
+        </div>
+      </div>
+    <% end %>  
+  </div>
+  <br/>
+</div>

@@ -49,6 +49,12 @@ class AdminController < ApplicationController
 
   def remove_providers
     Provider.ne('cda_identifiers.root' => "Organization").delete
+    
+    Team.all.each do |team|
+      team.providers = []
+      team.save!
+    end
+    
     redirect_to action: 'patients'
   end
 
