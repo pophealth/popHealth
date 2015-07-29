@@ -282,7 +282,7 @@ DEPENDENCIES
   foreman
   formtastic
   git
-  handlebars_assets
+  handlebars_assets (= 0.17.1)
   health-data-standards (= 3.5.3)
   highline
   hqmf2js!
