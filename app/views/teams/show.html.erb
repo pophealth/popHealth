@@ -10,6 +10,7 @@
       <th> First Name </th> 
       <th> Last Name </th>
       <th> NPI </th> 
+      <% if @current_user.admin %> <th> Affiliation </th> <% end %>
     </thead>
     <tbody> 
       <% @providers.each do |prov| %>
@@ -17,6 +18,9 @@
           <td> <%= prov.given_name %> </td>
           <td> <%= (prov.family_name) ? prov.family_name : '' %> </td>
           <td> <%= prov.npi ? prov.npi : 'N/A'%> </td>
+          <% if @current_user.admin %> 
+            <td> <%= prov.try(:parent).try(:given_name) %> </td> 
+          <% end %>
         </tr>
       <% end %>
     </tbody>
