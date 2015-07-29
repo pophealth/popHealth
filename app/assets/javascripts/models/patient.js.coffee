@@ -45,6 +45,7 @@ class Thorax.Models.Entry extends Thorax.Model
     attrs = $.extend {}, attrs
     attrs.start_time *= 1000
     attrs.end_time *= 1000
+    attrs.time *= 1000
     if attrs.values
       attrs.values = new Thorax.Collection attrs.values
     attrs

@@ -1,30 +1,30 @@
 <button class="population-btn{{#if ippIsActive}} active{{/if}}" data-population="IPP">
   <span class="title">Initial Patient Pop.</span>
-  <span class="query-result">{{ipp}}</span>
+  <span class="query-result">{{formatNumeral ipp "0,0"}}</span>
 </button>
 <button class="population-btn{{#if numeratorIsActive}} active{{/if}}" data-population="NUMER">
   <span class="title">Numerator</span>
-  <span class="query-result">{{numerator}}</span>
+  <span class="query-result">{{formatNumeral numerator "0,0"}}</span>
 </button>
 <button class="population-btn{{#if denominatorIsActive}} active{{/if}}" data-population="DENOM">
   <span class="title">Denominator</span>
-  <span class="query-result">{{denominator}}</span>
+  <span class="query-result">{{formatNumeral denominator "0,0"}}</span>
 </button>
 {{#if hasExclusions}}
 <button class="population-btn{{#if exclusionsAreActive}} active{{/if}}" data-population="DENEX">
   <span class="title">Exclusions</span>
-  <span class="query-result">{{exclusions}}</span>
+  <span class="query-result">{{formatNumeral exclusions "0,0"}}</span>
 </button>
 {{/if}}
 {{#if hasExceptions}}
 <button class="population-btn{{#if exceptionsAreActive}} active{{/if}}" data-population="DENEXCEP">
   <span class="title">Exceptions</span>
-  <span class="query-result">{{exceptions}}</span>
+  <span class="query-result">{{formatNumeral exceptions "0,0"}}</span>
 </button>
 {{/if}}
 {{#if hasOutliers}}
 <button class="population-btn{{#if antinumeratorIsActive}} active{{/if}}" data-population="antinumerator">
   <span class="title">Outliers</span>
-  <span class="query-result">{{outliers}}</span>
+  <span class="query-result">{{formatNumeral outliers "0,0"}}</span>
 </button>
 {{/if}}

@@ -3,6 +3,29 @@ $circle-bkg-color: #fff;
 $title-circle-radius: 21px;
 
 // Custom styles that are part of the theme
+
+.aggregate-btn {
+  margin-bottom: 15px;
+  width: 100%;
+  background-color: $gray-lighter;
+  text-align: center;
+}
+.aggregate-result {
+  margin-top: -10px; 
+  
+  #aggregate-header {
+    font-weight: 400;
+    font-size: 18px;
+  }
+  
+  #aggregate-value {
+    font-size: 22px;
+    font-weight: 500;
+    color: #4A4A4A;
+  }
+
+}
+
 .user-profile {
   table-layout: fixed;
   width: 80%;
