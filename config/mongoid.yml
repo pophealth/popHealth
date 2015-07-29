@@ -1,7 +1,7 @@
 development:
   sessions:
     default:
-      database: bundle-240 #pophealth-development
+      database: pophealth-development
       hosts:
         - localhost:27017
 test:
