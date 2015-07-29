@@ -58,6 +58,7 @@ PopHealth::Application.routes.draw do
     get 'reports/patients', :to => 'reports#patients'
     get 'reports/measures_spreadsheet', :to =>'reports#measures_spreadsheet'
     get 'teams/team_providers/:id', :to => 'teams#team_providers'
+    get 'reports/team_report', :to => 'reports#team_report'
     
     resources :practices
     resources :teams
