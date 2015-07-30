@@ -20,5 +20,7 @@ class ImportArchiveJob
 
   def after
     File.delete(@file)
+    HealthDataStandards::CQM::QueryCache.delete_all
+    PatientCache.delete_all    
   end
 end
