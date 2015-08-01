@@ -1,4 +1,4 @@
-  module Api
+module Api
   class PatientsController < ApplicationController
     resource_description do
       short 'Patients'
@@ -15,6 +15,7 @@
     end
     include PaginationHelper
     include ApplicationHelper
+    
     respond_to :json
     before_filter :authenticate_user!
     before_filter :validate_authorization!
@@ -80,7 +81,7 @@
       else
         render status: 500, text: 'Patient record did not save properly'
       end
-    end    
+    end
 
     def toggle_excluded
       # TODO - figure out security constraints around manual exclusions -- this should probably be built around

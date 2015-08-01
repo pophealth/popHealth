@@ -83,10 +83,10 @@ class Record
       data
     end
   end
-  
+ 
   def self.create_or_replace(data, practice_id=nil)
     mrn = data.medical_record_number
-    mrn_p = (practice_id)? mrn + "-" + Practice.all.map{|i| i.id.to_s}.index(practice_id).to_s : ''
+    mrn_p = (practice_id)? mrn + "_pid_" + practice_id : ''
     if practice_id
       existing = Record.where(medical_record_number: mrn_p).first
       if existing && data.effective_time > existing.effective_time

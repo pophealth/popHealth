@@ -63,7 +63,6 @@ class User
   field :teams, type: Array, default: []
   field :provider_id, type: BSON::ObjectId
 
-
   has_one :preferences, class_name: 'Preference'
   belongs_to :practice, class_name: 'Practice'
   

@@ -25,7 +25,8 @@ module Api
       api :POST, "/admin/patients", "Upload a zip file of patients."
       param :file, nil, :desc => 'The zip file of patients to upload.', :required => true
       param :practice_id, String, :desc => "ID for the patient's Practice", :required => false
-      param :practice_name, String, :desc => "Name for the patient's Practice", :required => false     
+      param :practice_name, String, :desc => "Name for the patient's Practice", :required => false
+      
       def create
         file = params[:file]
         

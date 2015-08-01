@@ -2,13 +2,14 @@
   <%= button_to "Back to Team List", teams_path, :method => 'get', :class => "btn btn-primary pull-right" %>
   <h1><b>New team</b></h1>
   <div class='body'>
-    <%= form_tag "create" do %> 
+    <%= form_tag("create", :class => "newTeamForm") do %> 
       <h2> Choose Providers: </h2>              
       <table class="teamProviderTable display table-bordered table-hover">
         <thead> 
           <tr>
             <th> Name </th>
             <th> NPI </th>
+            <% if @current_user.admin %> <th> Affiliation </th> <% end %>
             <th> Select </th>
           </tr>
         </thead> 
@@ -20,6 +21,9 @@
             <%= (provider.children.length > 0)? "(Group)" : '' %>
             </td>    
             <td> <%= (provider.npi)? provider.npi : 'N/A' %> </td>
+            <% if @current_user.admin %> 
+              <td> <%= provider.try(:parent).try(:given_name) %> </td> 
+            <% end %>
             <td class='teamProviderCheck' id="<%=provider._id%>"> 
               <%= check_box_tag 'provider_ids[]', provider._id %>
             </td>
@@ -32,10 +36,27 @@
       <div class="fluid row-inline">
         <%= label_tag "team", "TEAM NAME" %> : <%= text_field_tag :name, nil, :class => "teamNameField" %>
         <div class="pull-right">
-          <%= submit_tag "Create Team", :class => "btn btn-success teamSaveBtn", :data => {:confirm => "Confirm providers and team name?"} %>
+          <%= submit_tag "Create Team", :class => "btn btn-success teamSaveBtn" %>
         </div>
       </div>
     <% end %>  
   </div>
   <br/>
 </div>
+
+<script>
+  $(document).ready(function() {
+    
+    $(".newTeamForm").submit(function(e) {
+      if(this.name.value == "") {
+        alert("Please enter a name for the team and choose at least one provider.");
+        e.preventDefault();
+      } else {
+        if(! confirm("Create new team with chosen name and providers?") ){
+          e.preventDefault();
+        }
+      }
+    });
+    
+  });
+</script>

@@ -13,6 +13,7 @@
       <tr>
         <th> Name </th>
         <th> NPI </th>
+        <% if @current_user.admin %> <th> Affiliation </th> <% end %>
         <th> Selected </th>
         <th> Select </th>
       </tr>
@@ -24,6 +25,9 @@
         <%= (provider.children.length > 0)? "(Group)" : '' %>
         </td>    
         <td> <%= (provider.npi)? provider.npi : 'N/A' %> </td>
+        <% if @current_user.admin %> 
+          <td> <%= provider.try(:parent).try(:given_name) %> </td> 
+        <% end %>
         <% inc = @team.providers.include? provider._id.to_s %>
         <td> <%= inc ? "Yes" : "No" %></td>
         <td> <%= check_box_tag 'provider_ids[]', provider._id, inc %></td>

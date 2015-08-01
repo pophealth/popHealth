@@ -50,10 +50,13 @@ class Thorax.Views.TeamResultsView extends Thorax.View
   events:
     model:
       change: ->
+        loadingDiv = "." + "p-" + String(@model.get('filters').providers) + "-loading-measure"
         if @model.isPopulated()
+          $(loadingDiv).hide()
           clearInterval(@timeout) if @timeout?
           d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
         else
+          $(loadingDiv).show()
           @timeout ?= setInterval =>
             @model.fetch()
           , 3000

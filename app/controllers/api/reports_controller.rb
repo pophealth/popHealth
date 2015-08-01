@@ -116,7 +116,7 @@ module Api
       measure_id = params[:measure_id]
       sub_id = params[:sub_id]
       team = Team.find(params[:team_id])
-      
+
       book = Spreadsheet::Workbook.new
       sheet = book.create_worksheet
       format = Spreadsheet::Format.new :weight => :bold		  

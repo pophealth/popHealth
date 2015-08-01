@@ -29,7 +29,7 @@ class TeamsController < ApplicationController
     name = params[:name]
     provider_ids = params[:provider_ids]
     
-    if name.strip.length > 0  && !provider_ids.empty?
+    if name.strip.length > 0  && !provider_ids.blank?
       @team = Team.create(:name => params[:name])
       provider_ids.each do |prov_id|
         @team.providers << prov_id
@@ -73,7 +73,7 @@ class TeamsController < ApplicationController
     name = params[:name]
     provider_ids = params[:provider_ids]
 
-    if name.strip.length > 0  && !provider_ids.empty?
+    if name.strip.length > 0  && !provider_ids.blank?
       @team.name = name
       @team.providers.clear
       provider_ids.each do |prov_id|
@@ -96,7 +96,9 @@ class TeamsController < ApplicationController
 
   # DELETE /teams/1
   def destroy
-    @current_user.teams.delete(@team.id)  
+    tmp = @current_user.teams
+    tmp.delete(@team.id)
+    @current_user.teams = tmp
     @current_user.save!
     
     @team.destroy
