@@ -40,7 +40,7 @@ class TeamsController < ApplicationController
       if !current_user.teams
         current_user.teams = []
       end
-      current_user.teams << @team.id
+      current_user.teams << @team.id.to_s
       current_user.save!
       redirect_to @team
     else
@@ -50,7 +50,7 @@ class TeamsController < ApplicationController
   
   def create_default
     if current_user.practice
-      @team = Team.find_or_create_by(:name => "All Providers")
+      @team = Team.find_or_create_by(:name => "All Providers", user_id: current_user.id)
       @team.providers = []
       Provider.where(parent_id: current_user.practice.provider_id).each do |prov|
         @team.providers << prov.id.to_s
@@ -60,8 +60,8 @@ class TeamsController < ApplicationController
       if !current_user.teams
         current_user.teams = []
       end
-      unless current_user.teams.include?(@team.id)
-        current_user.teams << @team.id
+      unless current_user.teams.include?(@team.id.to_s)
+        current_user.teams << @team.id.to_s
       end
       current_user.save!
     end
@@ -97,7 +97,7 @@ class TeamsController < ApplicationController
   # DELETE /teams/1
   def destroy
     tmp = @current_user.teams
-    tmp.delete(@team.id)
+    tmp.delete(@team.id.to_s)
     @current_user.teams = tmp
     @current_user.save!
     
