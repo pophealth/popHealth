@@ -25,6 +25,10 @@ defaults: &defaults
   enable_map_reduce_logging: true
   #use provider opml heirarchy instead of practice based system
   use_opml_structure: true
+  
+  # use workaround for new measure bundle 2.6.0 to get measure results
+  use_new_bundle_workaround: true
+  
   #provider type to exclude EH measures from
   eh_exclusion_type: "Division"
   orphan_provider:
