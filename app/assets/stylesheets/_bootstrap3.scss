@@ -70,6 +70,39 @@ $font-family-sans-serif: "Helvetica Neue", Roboto, Helvetica, Arial, sans-serif;
 }
 
 
+// Datepicker custom <!--
+.datepicker{
+  margin-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  
+  border-radius: 0px;
+  
+  th.datepicker-switch {
+    border-radius: 0px;    
+  }
+  th.prev {
+    border-radius: 0px;    
+  }
+  th.next {
+    border-radius: 0px;    
+  }
+  table tr td.day:hover,
+  table tr td.day.focused {
+    border-radius: 0px;
+  }
+  
+  .datepicker-days table tr td.active,
+  .datepicker-days table tr td.active:hover,
+  .datepicker-days table tr td.active.disabled,
+  .datepicker-days table tr td.active.disabled:hover {
+    border-radius: 0px;
+    background-color: $brand-primary;
+    background-image: -moz-linear-gradient(top, $brand-primary, $brand-primary);
+    background-image: -webkit-linear-gradient(top, $brand-primary, $brand-primary);
+  }
+}  
+// Datepicker Custom -->
 
 // Custom styles on HTML tags that are part of the theme
 

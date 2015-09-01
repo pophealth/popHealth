@@ -10,7 +10,37 @@ class AdminController < ApplicationController
     @patient_count = Record.count
     @query_cache_count = HealthDataStandards::CQM::QueryCache.count
     @patient_cache_count = PatientCache.count
-    @provider_count = Provider.count
+    @provider_count = Provider.ne('cda_identifiers.root' => "Organization").count
+    @practice_count = Practice.count
+    @practices = Practice.asc(:name).map {|org| [org.name, org.id]}
+    
+  	import_log = Log.where(:event => 'record import')
+  	med_id = import_log.last.medical_record_number unless import_log.count == 0
+
+    @last_upload_date = import_log.count > 0 ? import_log.last.created_at.in_time_zone('Eastern Time (US & Canada)').ctime : nil
+	  rec = (@patient_count == 0) ? 0 : Record.where(:medical_record_number => med_id).last
+    @last_practice_upload = import_log.count > 0 ? import_log.last.practice : ''
+    @last_filename = import_log.count > 0 ? import_log.last.filename : ''
+  end
+
+  def user_profile
+    @user = User.find(params[:id])
+    @practices = Practice.asc(:name).map {|org| [org.name, org.id]}
+    @practice_pvs = Provider.by_npi(@user.npi).map {|pv| [pv.parent.practice.name + " - " + pv.full_name, pv.id]}
+  end
+
+  def set_user_practice
+    @user = User.find(params[:user])
+    @user.practice = (params[:practice].present?) ? Practice.find(params[:practice]) : nil
+    @user.save
+    redirect_to action: 'user_profile', :id => params[:user]
+  end
+
+  def set_user_practice_provider
+    @user = User.find(params[:user])
+    @user.provider_id = (params[:provider].present?)? Provider.find(params[:provider]).id : nil
+    @user.save
+    redirect_to action: 'user_profile', :id => params[:user]
   end
 
   def remove_patients
@@ -22,18 +52,27 @@ class AdminController < ApplicationController
     HealthDataStandards::CQM::QueryCache.delete_all
     PatientCache.delete_all
     Mongoid.default_session["rollup_buffer"].drop()
+    Mongoid.default_session["delayed_backend_mongoid_jobs"].drop()
     redirect_to action: 'patients'
   end
 
   def remove_providers
-    Provider.delete_all
+    Provider.ne('cda_identifiers.root' => "Organization").delete
+    
+    Team.all.each do |team|
+      team.providers = []
+      team.save!
+    end
+    
     redirect_to action: 'patients'
   end
 
   def upload_patients
 
     file = params[:file]
-
+    practice = params[:practice]
+    filename = file.original_filename
+    
     FileUtils.mkdir_p(File.join(Dir.pwd, "tmp/import"))
     file_location = File.join(Dir.pwd, "tmp/import")
     file_name = "patient_upload" + Time.now.to_i.to_s + rand(1000).to_s
@@ -42,7 +81,7 @@ class AdminController < ApplicationController
 
     File.open(temp_file.path, "wb") { |f| f.write(file.read) }
 
-    Delayed::Job.enqueue(ImportArchiveJob.new({'file' => temp_file,'user' => current_user}),:queue=>:patient_import)
+    Delayed::Job.enqueue(ImportArchiveJob.new({'practice' => practice, 'file' => temp_file,'user' => current_user, 'filename' => filename}),:queue=>:patient_import)
     redirect_to action: 'patients'
   end
 
@@ -65,6 +104,10 @@ class AdminController < ApplicationController
 
   def users
     @users = User.all.ordered_by_username
+    @practices = Practice.asc(:name).map {|org| [org.name, org.id]}
+    unless APP_CONFIG['use_opml_structure']
+      @practice_providers = Provider.ne('cda_identifiers.root' => "Organization").asc(:given_name).map {|pv| [pv.full_name, pv.id]}
+    end
   end
 
   def promote
@@ -104,6 +147,18 @@ class AdminController < ApplicationController
     user = User.by_username(params[:username]);
     user.update_attribute(:npi, params[:npi]);
     render :text => "true"
+  end
+
+  def delete_user
+    @user = User.find(params[:id])
+    if User.count == 1
+      redirect_to :action => :users, notice: "Cannot remove sole user"
+    elsif @user.admin? 
+      redirect_to :action => :users, notice: "Cannot remove administrator"
+    else
+      @user.destroy
+      redirect_to :action => :users
+    end
   end
 
   private

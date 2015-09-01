@@ -16,7 +16,11 @@ PopHealth.viz.providerChart = ->
         if d.parent? and value then highlight(d.parent, value)
 
       click = (d) =>
-        window.location.hash = "providers/#{d._id}"
+        if Config.OPML
+          window.location.hash = "providers/#{d._id}"
+        else
+          if !(d._id == PopHealth.rootProvider.get("_id") and PopHealth.currentUser.get("staff_role"))
+            window.location.hash = "providers/#{d._id}"
         return
         # This code is not currently used, it is to handle collapsing and opening
         if not d.loaded

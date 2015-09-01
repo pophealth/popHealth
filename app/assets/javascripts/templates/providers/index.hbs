@@ -7,18 +7,24 @@
     <th>Tax ID</th>
     <th>Phone</th>
     <th>Team</th>
+    {{#if admin }}
+    <th>Practice Name</th>
+    {{/if}}
   </tr>
 </thead>
 {{#collection tag='tbody'}}
   <tr>
     <td>
-      {{npi}}
+      {{#link "providers/{{_id}}" expand-tokens=true}}{{npi}}{{/link}}
     </td>
     <td>{{providerType}}</td>
     <td>{{#link "providers/{{_id}}" expand-tokens=true}}{{providerExtension}}{{/link}}</td>
-    <td>{{#link "providers/{{_id}}" expand-tokens=true}}{{given_name}}{{/link}}</td>
+    <td>{{#link "providers/{{_id}}" expand-tokens=true}}{{given_name}} {{family_name}}{{/link}}</td>
     <td>{{tin}}</td>
     <td>{{phone}}</td>
     <td>{{team.name}}</td>
+    {{#if admin }}
+    <td>{{practice}}</td>
+    {{/if}}
   </tr>
 {{/collection}}

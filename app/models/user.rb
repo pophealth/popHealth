@@ -10,7 +10,7 @@ class User
   before_save :denullify_arrays
   before_create :set_defaults
 
-  DEFAULT_EFFECTIVE_DATE = Time.gm(2011, 1, 1)
+  DEFAULT_EFFECTIVE_DATE = Time.gm(2013, 12, 31)
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:username]
@@ -55,14 +55,17 @@ class User
   field :npi, :type => String
   field :tin, :type => String
   field :agree_license, type: Boolean
-  field :effective_date, type: Integer
+  field :effective_date, type: Integer, default: DEFAULT_EFFECTIVE_DATE.to_i
   field :admin, type: Boolean
   field :approved, type: Boolean
   field :staff_role, type: Boolean
   field :disabled, type: Boolean
+  field :teams, type: Array, default: []
+  field :provider_id, type: BSON::ObjectId
 
   has_one :preferences, class_name: 'Preference'
-
+  belongs_to :practice, class_name: 'Practice'
+  
   scope :ordered_by_username, -> { asc(:username) }
 
   attr_protected :admin, :approved, :disabled, :encrypted_password, :remember_created_at, :reset_password_token, :reset_password_sent_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip, :effective_date
@@ -82,6 +85,7 @@ class User
   def set_defaults
     self.staff_role ||= APP_CONFIG["default_user_staff_role"]
     self.approved ||= APP_CONFIG["default_user_approved"]
+    self.teams = []
     true
   end
 
@@ -130,6 +134,10 @@ class User
   def grant_admin
     update_attribute(:admin, true)
     update_attribute(:approved, true)
+    
+    if ! APP_CONFIG['use_opml_structure'] && Provider.root
+      update_attribute(:provider_id, Provider.root.id)
+    end
   end
 
   def approve

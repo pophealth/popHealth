@@ -15,4 +15,22 @@
   <li{{#if patientResultsIsActive}} class="active"{{/if}}>
     <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}{{#if provider_id}}/providers/{{provider_id}}{{/if}}/patient_results" data-toggle="tab" data-target="#patient_results" data-call-method="_anchorClick">Patients</a>
   </li>
+  <li{{#if teamMeasuresIsActive}} class="active"{{/if}}>
+    <a href="#measures/{{id}}{{#if sub_id}}/{{sub_id}}{{/if}}{{#if provider_id}}/providers/{{provider_id}}{{/if}}/teams" data-toggle="tab" data-target="#team_measures" data-call-method="_anchorClick">Provider Teams</a>
+  </li>
+  
+  {{#unless teamMeasuresIsActive}}
+  <div class="dropdown pull-right">
+    <div class="dropdown-toggle pull-right btn btn-primary export-patients-btn" data-toggle="dropdown" href="#">
+      <i class="glyphicon glyphicon-download-alt"></i> EXPORT PATIENTS
+    </div>
+    <ul class="dropdown-menu pull-right">
+      <li> <a href="/api/reports/patients/{{#if effectiveDate}}?effective_date={{effectiveDate}}{{/if}}{{#if provider_id}}&provider_id={{provider_id}}{{/if}}{{#if id}}&id={{id}}{{/if}}&patient_type=IPP{{#if sub_id}}&sub_id={{sub_id}}{{/if}}" class="btn"> Initial Population </a> </li>    
+      <li> <a href="/api/reports/patients/{{#if effectiveDate}}?effective_date={{effectiveDate}}{{/if}}{{#if provider_id}}&provider_id={{provider_id}}{{/if}}{{#if id}}&id={{id}}{{/if}}&patient_type=NUMER{{#if sub_id}}&sub_id={{sub_id}}{{/if}}" class="btn"> Numerator </a> </li>
+      <li> <a href="/api/reports/patients/{{#if effectiveDate}}?effective_date={{effectiveDate}}{{/if}}{{#if provider_id}}&provider_id={{provider_id}}{{/if}}{{#if id}}&id={{id}}{{/if}}&patient_type=DENOM{{#if sub_id}}&sub_id={{sub_id}}{{/if}}" class="btn"> Denominator </a> </li> 
+      <li> <a href="/api/reports/patients/{{#if effectiveDate}}?effective_date={{effectiveDate}}{{/if}}{{#if provider_id}}&provider_id={{provider_id}}{{/if}}{{#if id}}&id={{id}}{{/if}}&patient_type=antinumerator{{#if sub_id}}&sub_id={{sub_id}}{{/if}}" class="btn"> Outliers </a> </li>
+      <li> <a href="/api/reports/patients/{{#if effectiveDate}}?effective_date={{effectiveDate}}{{/if}}{{#if provider_id}}&provider_id={{provider_id}}{{/if}}{{#if id}}&id={{id}}{{/if}}&patient_type=DENEX{{#if sub_id}}&sub_id={{sub_id}}{{/if}}" class="btn"> Exclusions </a> </li>             
+    </ul>
+  </div>
+  {{/unless}}
 </ul>

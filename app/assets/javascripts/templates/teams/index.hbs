@@ -1,0 +1,12 @@
+<thead> 
+  <th> Team Name </th>
+  <th> </th>
+</thead>
+{{#collection tag='tbody' item-context=teamContext}}
+  <tr>
+    <td>{{name}}</td>   
+    <td> 
+      <a href="#measures/{{measure_id}}{{#if sub_id}}/{{sub_id}}{{/if}}{{#if provider_id}}/providers/{{provider_id}}{{/if}}/teams/{{_id}}">Measure Results</a>
+    </td>
+  </tr>
+{{/collection}}

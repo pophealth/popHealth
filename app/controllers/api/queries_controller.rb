@@ -28,6 +28,20 @@ module Api
     description "Gets a clinical quality measure calculation. If calculation is completed, the response will include the results."
     def show
       @qr = QME::QualityReport.find(params[:id])
+
+      if current_user.preferences.show_aggregate_result && !@qr.aggregate_result && !APP_CONFIG['use_opml_structure'] 
+        cv = @qr.measure.continuous_variable
+        aqr = QME::QualityReport.where(measure_id: @qr.measure_id, sub_id: @qr.sub_id, 'filters.providers' => [Provider.root._id.to_s], effective_date: @qr.effective_date).first  	           
+        if aqr.result
+          if cv 
+            @qr.aggregate_result = aqr.result.OBSERV
+          else
+            @qr.aggregate_result = (aqr.result.DENOM > 0)? (100*((aqr.result.NUMER).to_f / (aqr.result.DENOM - aqr.result.DENEXCEP - aqr.result.DENEX).to_f)).round : 0
+          end
+	        @qr.save!
+        end
+      end
+
       authorize! :read, @qr
       render json: @qr
     end
@@ -59,6 +73,18 @@ module Api
         qr.calculate( {"oid_dictionary" =>OidHelper.generate_oid_dictionary(qr.measure),
           "enable_rationale" => APP_CONFIG['enable_map_reduce_rationale'] || false,
           "enable_logging" => APP_CONFIG['enable_map_reduce_logging'] || false}, true)
+      end
+
+      if current_user.preferences.show_aggregate_result && !APP_CONFIG['use_opml_structure']
+        agg_options = options.clone
+        agg_options[:filters][:providers] = [Provider.root._id.to_s]
+        aqr = QME::QualityReport.find_or_create(params[:measure_id],
+                                           params[:sub_id], agg_options)
+        if !aqr.calculated?
+          aqr.calculate( {"oid_dictionary" =>OidHelper.generate_oid_dictionary(aqr.measure),
+          "enable_rationale" => APP_CONFIG['enable_map_reduce_rationale'] || false,
+          "enable_logging" => APP_CONFIG['enable_map_reduce_logging'] || false}, true)
+        end
       end
 
       render json: qr
@@ -104,8 +130,10 @@ module Api
       qr = QME::QualityReport.find(params[:id])
       authorize! :read, qr
       # this returns a criteria object so we can filter it additionally as needed
-      results = qr.patient_results
-      render json: paginate(patient_results_api_query_url(qr),results.where(build_patient_filter).order_by([:last.asc, :first.asc]))
+#      results = qr.patient_results
+      query = {'value.measure_id' => qr.measure_id, 'value.sub_id' => qr.sub_id, 'value.effective_date' => qr.effective_date, 'value.provider_performances.provider_id' => qr.filters[:providers].first}
+      results = QME::PatientCache.where(query)
+      render json: paginate(patient_results_api_query_url(qr),results.where(build_patient_filter).only('_id', 'value.medical_record_id', 'value.first', 'value.last', 'value.birthdate', 'value.gender', 'value.patient_id')).order_by([:last.asc, :first.asc])
     end
 
     def patients
@@ -146,7 +174,11 @@ module Api
     def build_patient_filter
       patient_filter = {}
       patient_filter["value.IPP"]= {"$gt" => 0} if params[:ipp] == "true"
-      patient_filter["value.DENOM"]= {"$gt" => 0} if params[:denom] == "true"
+      
+      if params[:denom] == "true"
+        patient_filter["value.DENOM"]= {"$gt" => 0} 
+        patient_filter["value.DENEX"] = 0
+      end
       patient_filter["value.NUMER"]= {"$gt" => 0} if params[:numer] == "true"
       patient_filter["value.DENEX"]= {"$gt" => 0} if params[:denex] == "true"
       patient_filter["value.DENEXCEP"]= {"$gt" => 0} if params[:denexcep] == "true"

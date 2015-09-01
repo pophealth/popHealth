@@ -1,0 +1,34 @@
+[
+  {
+   "_id": "1111",
+   "cda_identifiers":
+     [{"extension":"123456791", "root":"2.16.840.1.113883.4.2"},
+     {"extension":"9238429386","root":"2.16.840.1.113883.4.6"}],
+  "family_name":"Darling",
+  "given_name":"Jake",
+  "level":null,
+  "organization":
+   {"name":"General Hospital"},
+  "parent_id":null,
+  "parent_ids":[],
+  "phone":"15555555557",
+  "specialty":"200000000X",
+  "title":"Dr."
+ },
+ {
+  "_id": "1112",
+  "cda_identifiers":
+     [{"extension":"9874563211", "root":"2.16.840.1.113883.4.2"},
+     {"extension":"1234567894","root":"2.16.840.1.113883.4.6"}],
+  "family_name":"Smith",
+  "given_name":"John",
+  "level":null,
+  "organization":
+   {"name":"General Hospital"},
+  "parent_id":null,
+  "parent_ids":[],
+  "phone":"15555555557",
+  "specialty":"300000000X",
+  "title":"Dr."
+ } 
+]

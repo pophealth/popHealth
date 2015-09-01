@@ -11,8 +11,14 @@ module Api
       collection_fixtures 'patient_cache'
       collection_fixtures 'providers'
       collection_fixtures 'users'
-
+      @provider = Provider.first
       @user = User.where({email: "noadmin@test.com"}).first
+      @user.preferences["selected_measure_ids"] = ["40280381-4600-425F-0146-1F6F722B0F17"]    
+      @user.save!
+
+      query = QME::QualityReport.where(effective_date: 1356998341).first
+      query.filters["providers"] = [@provider.id.to_s]
+      query.save!
     end
 
     test "generate cat3" do
@@ -34,6 +40,22 @@ module Api
       assert cdastring.include? "ClinicalDocument"
       assert cdastring.include? "Ella"
       assert cdastring.include? "40280381-3D61-56A7-013E-6649110743CE"
+    end
+
+    test "generate patient outliers spreadsheet" do
+      sign_in @user
+      get :patients, :id=>"40280381-3D61-56A7-013E-6649110743CE", :effective_date=>123, :patient_type=>"antinumerator", :provider_id => @provider.id
+      assert_response :success
+      
+      spreadsheet = @response.body
+      assert spreadsheet.include? "Outlier"
+      assert spreadsheet.include? "Use of Appropriate Medications for Asthma"
+    end
+
+    test "generate measure dashboard spreadsheet" do
+      sign_in @user
+      get :measures_spreadsheet, :username => @user.username, :provider_id => @provider.id, :effective_date => "1356998341"
+      assert_response :success
     end
 
   end

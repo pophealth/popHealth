@@ -9,7 +9,7 @@
   <i class="{{#if episodeOfCare}}fa fa-stethoscope{{else}}glyphicon glyphicon-user{{/if}}"></i>
 </div>
 <div class="fraction-listing pull-left">
-  <div class="numerator">{{fractionTop}}</div>
-  <div class="denominator">{{fractionBottom}}</div>
+  <div class="numerator">{{formatNumeral fractionTop "0,0"}}</div>
+  <div class="denominator">{{formatNumeral fractionBottom "0,0"}}</div>
 </div>
 <div class="pop-chart pull-left"></div>

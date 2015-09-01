@@ -3,7 +3,7 @@ defaults: &defaults
   idle_timeout_enabled: true
   idle_timeout: 300000
   # user should have the staff role by default when created (this allows users to see data accross all providers)
-  default_user_staff_role: true
+  default_user_staff_role: false
   # user should be approved by default when created
   default_user_approved: true
   # display logout link
@@ -22,7 +22,9 @@ defaults: &defaults
   force_unsecure_communications: true
   use_map_reduce_prefilter: true
   enable_map_reduce_rationale: true
-  enable_map_reduce_logging: false
+  enable_map_reduce_logging: true
+  #use provider opml heirarchy instead of practice based system
+  use_opml_structure: false
   #provider type to exclude EH measures from
   eh_exclusion_type: "Division"
   orphan_provider:

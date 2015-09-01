@@ -1,4 +1,4 @@
-  module Api
+module Api
   class PatientsController < ApplicationController
     resource_description do
       short 'Patients'
@@ -14,6 +14,8 @@
       PCDESC
     end
     include PaginationHelper
+    include ApplicationHelper
+    
     respond_to :json
     before_filter :authenticate_user!
     before_filter :validate_authorization!
@@ -31,6 +33,7 @@
     formats ['json']
     def index
       records = Record.where(@query)
+      validate_record_authorizations(records)
       respond_with  paginate(api_patients_url,records)
     end
 
@@ -41,7 +44,7 @@
     example '{"_id":"52fbbf34b99cc8a728000068","birthdate":1276869600,"first":"John","gender":"M","last":"Peters","encounters":[{...}], ...}'
     def show
       json_methods = [:language_names]
-      json_methods << :cache_results if params[:include_results]
+#      json_methods << :cache_results if params[:include_results]
       json = @patient.as_json({methods: json_methods})
       provider_list = @patient.provider_performances.map{ |p| p.provider}
       provider_list.each do |prov|
@@ -51,9 +54,9 @@
           end
         end
       end
-      if results = json.delete('cache_results')
-        json['measure_results'] = results_with_measure_metadata(results)
-      end
+#      if results = json.delete('cache_results')
+#        json['[measure_results'] = results_with_measure_metadata(results)
+#      end
       Log.create(:username =>   current_user.username,
                  :event =>      'patient record viewed',
                  :medical_record_number => @patient.medical_record_number)
@@ -63,10 +66,15 @@
     api :POST, "/patients", "Load a patient into popHealth"
     formats ['xml']
     param :file, nil, :desc => "The QRDA Cat I file", :required => true
+    param :practice_id, String, :desc => "ID for the patient's Practice", :required => false
+    param :practice_name, String, :desc => "Name for the patient's Practice", :required => false
     description "Upload a QRDA Category I document for a patient into popHealth."
     def create
       authorize! :create, Record
-      success = HealthDataStandards::Import::BulkRecordImporter.import(params[:file])
+      
+      practice = get_practice_parameter(params[:practice_id], params[:practice_name])
+      
+      success = BulkRecordImporter.import(params[:file], {}, practice)
       if success
         Log.create(:username => @current_user.username, :event => 'record import')
         render status: 201, text: 'Patient Imported'
@@ -107,6 +115,12 @@
 
     def validate_authorization!
       authorize! :read, Record
+    end
+
+    def validate_record_authorizations(records)
+      records.each do |record|
+        authorize! :read, record
+      end    
     end
 
     def set_filter_params
