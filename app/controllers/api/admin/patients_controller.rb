@@ -1,3 +1,4 @@
+require 'fileutils'
 module Api
   module Admin
     class PatientsController < ApplicationController
@@ -84,7 +85,7 @@ module Api
           status_code = response_hash[:status_code]
         end
 
-
+        FileUtils.rm_rf Dir.glob("tmp/import/*")
         render text: status_text, status: status_code
       end
 
