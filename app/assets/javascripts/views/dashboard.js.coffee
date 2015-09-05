@@ -110,7 +110,7 @@ class Thorax.Views.Dashboard extends Thorax.View
     @populationChartScaledToIPP = PopHealth.currentUser.populationChartScaledToIPP()
     @currentUser = PopHealth.currentUser.get 'username'
     @showAggregateResult = PopHealth.currentUser.showAggregateResult()
-    @opml = PopHealth.OPML
+    @opml = Config.OPML
 
   toggleAggregateShow: (e) ->    
     shown = PopHealth.currentUser.showAggregateResult()
