@@ -22,7 +22,7 @@ module Api
       This will return the list of the current user's teams.
     SDESC
     def index
-      @teams = @current_user.teams ? @current_user.teams.map{|id| Team.find(id)} : []
+      @teams = @current_user.teams
       validate_authorization!(@teams)
       render json: @teams
     end

@@ -76,7 +76,6 @@ class PracticesController < ApplicationController
     if @practice.provider
       id = @practice.provider.id
       @current_user.teams.each do |tm|
-        team = Team.find(tm)
         team.providers.delete(id.to_s)
         team.save!
       end
