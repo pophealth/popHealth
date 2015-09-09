@@ -6,6 +6,8 @@ class Thorax.Views.ResultsView extends Thorax.View
   template: JST['dashboard/results']
   options:
     fetch: false
+  initialize: ->
+    @opml = Config.OPML
   events:
     model:
       change: ->

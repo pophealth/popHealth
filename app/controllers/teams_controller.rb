@@ -3,7 +3,7 @@ class TeamsController < ApplicationController
   authorize_resource
   # GET /teams
   def index
-    @teams = @current_user.teams ? @current_user.teams.map{|id| Team.find(id)} : []
+    @teams = @current_user.teams #? @current_user.teams.map{|id| Team.find(id)} : []
     validate_authorization!(@teams)
   end
 
@@ -36,11 +36,8 @@ class TeamsController < ApplicationController
       end
       @team.user_id = @current_user._id
       @team.save!
-      
-      if !current_user.teams
-        current_user.teams = []
-      end
-      current_user.teams << @team.id.to_s
+
+      current_user.teams << @team
       current_user.save!
       redirect_to @team
     else
@@ -55,15 +52,10 @@ class TeamsController < ApplicationController
       Provider.where(parent_id: current_user.practice.provider_id).each do |prov|
         @team.providers << prov.id.to_s
       end
-      @team.user_id = current_user._id
-      @team.save!
-      if !current_user.teams
-        current_user.teams = []
+      unless current_user.teams.include?(@team)
+        current_user.teams << @team
+        current_user.save!
       end
-      unless current_user.teams.include?(@team.id.to_s)
-        current_user.teams << @team.id.to_s
-      end
-      current_user.save!
     end
     redirect_to :action => :index
   end
@@ -96,9 +88,7 @@ class TeamsController < ApplicationController
 
   # DELETE /teams/1
   def destroy
-    tmp = @current_user.teams
-    tmp.delete(@team.id.to_s)
-    @current_user.teams = tmp
+    @current_user.teams.delete(@team)
     @current_user.save!
     
     @team.destroy

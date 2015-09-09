@@ -12,12 +12,11 @@ module Api
       @team = Team.where("name" => "Team Test 1").first
       @provider = Provider.where({family_name: "Darling"}).first
       @team.providers << @provider._id
-    
-      @user = User.where({email: 'noadmin@test.com'}).first    
-      @user.teams << @team.id
-      @team.user_id = @user._id
-      
       @team.save!    
+    
+      @user = User.where({email: 'admin@test.com'}).first    
+      @user.teams << @team
+      
       @user.save!
       @no_staff_user.save!
     end
