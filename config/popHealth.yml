@@ -21,8 +21,8 @@ defaults: &defaults
   # force the system to allow HTTP connections
   force_unsecure_communications: true
   use_map_reduce_prefilter: true
-  enable_map_reduce_rationale: true
-  enable_map_reduce_logging: true
+  enable_map_reduce_rationale: false
+  enable_map_reduce_logging: false
   #use provider opml heirarchy instead of practice based system
   use_opml_structure: true
   
