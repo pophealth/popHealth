@@ -62,6 +62,7 @@ class User
   field :disabled, type: Boolean
   field :provider_id, type: BSON::ObjectId
 
+  has_and_belongs_to_many :teams, class_name: 'Team'
   has_one :preferences, class_name: 'Preference'
   belongs_to :practice, class_name: 'Practice'
   

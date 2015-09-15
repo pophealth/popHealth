@@ -12,6 +12,8 @@ module Api
       collection_fixtures 'providers'
       collection_fixtures 'users'
       collection_fixtures 'practices'
+      collection_fixtures 'teams'
+
       
       @user = User.where({email: "noadmin@test.com"}).first
       @user.preferences["selected_measure_ids"] = ["40280381-4600-425F-0146-1F6F722B0F17"]    
@@ -32,6 +34,11 @@ module Api
       @provider = Provider.where({family_name: "Darling"}).first
       @provider.parent = practice_provider
       @provider.save!
+
+      @team = Team.first
+      @team.providers = [@provider.id]
+      @team.user_id = @user.id
+      @team.save!
 
       query = QME::QualityReport.where(effective_date: 1356998341).first
       query.filters["providers"] = [@provider.id.to_s]
@@ -80,6 +87,12 @@ module Api
       spreadsheet = @response.body
       assert spreadsheet.include? "Outlier"
       assert spreadsheet.include? "Use of Appropriate Medications for Asthma"
+    end
+  
+    test "generate team report spreadsheet" do
+      sign_in @user
+      get :team_report, :measure_id=>"0013", :effective_date=>"1356998341", :team_id => @team.id
+      assert_response :success
     end
 
     test "generate measure dashboard spreadsheet" do

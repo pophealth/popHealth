@@ -12,7 +12,8 @@ class PopHealth.Router extends Backbone.Router
     'patients/:id':                                                     'patient'
     'providers(/:id)':                                                  'provider'
     'admin/measures':                                                   'admin_measures'
-
+    'measures/:id(/:sub_id)(/providers/:provider_id)/teams(/:team_id)': 'teams'
+  
   dashboard: ->
     if Config.OPML
       @view.setView new Thorax.Views.ProviderView model: PopHealth.rootProvider
@@ -26,6 +27,16 @@ class PopHealth.Router extends Backbone.Router
           providerModel = new Thorax.Models.Provider '_id': practice.provider_id
           @view.setView new Thorax.Views.ProviderView model: providerModel
 
+  teams: (id, subId, providerId, teamId) ->
+    submeasure = @categories.findSubmeasure(id, subId)
+    view = new Thorax.Views.MeasureView submeasure: submeasure, provider_id: providerId, viewType: 'team_measures' 
+    @view.setView view
+    if teamId? 
+      team = new Thorax.Models.Team '_id': teamId 
+      view.activateTeamMeasuresView(team)
+    else
+      view.activateTeamListView()
+   
   measure: (id, subId, providerId) ->
     measure = @categories.findMeasure(id)
     submeasure = @categories.findSubmeasure(id, subId)

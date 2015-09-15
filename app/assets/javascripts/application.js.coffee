@@ -23,6 +23,8 @@
 #= require_tree ./views
 #= require router
 #= require_self
+#= require dataTables/jquery.dataTables
+#= require teams
 
 if Config.idleTimeout.isEnabled
   $(document).idleTimer Config.idleTimeout.timer
