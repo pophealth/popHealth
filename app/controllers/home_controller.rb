@@ -31,23 +31,22 @@ class HomeController < ApplicationController
     query = {
       'encounters' => {
         '$elemMatch' => { 
-          '$in' => [
-          {
-            'start_time' => {'$lte' => end_date},
-            'end_time' => {'$gte' => start_date}
-          },
-          {
-            'time' => {'$lte' => end_date,'$gte' => start_date}
-          }
+          '$or' => [
+		    {
+			  'start_time' => {'$lte' => end_date},
+			  'end_time' => {'$gte' => start_date}
+		    },
+		    {
+		  	'time' => {'$lte' => end_date,'$gte' => start_date}
+		    }
           ]
         }
       }
-    } 
+    }
     
     Record.where(query).each do |record|
       record.test_id = rp.id
       record.save!
-
     end
     
     render :json => :set_reporting_period, status: 200
