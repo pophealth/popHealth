@@ -4,9 +4,9 @@ $title-circle-radius: 21px;
 
 // Custom styles that are part of the theme
 
-.dropdown {
+.dropdown, div.datepicker {
   position: relative;
-  z-index: 1000;
+  z-index: 1000 !important;
 }
 .effective-date-header{
   font-size: 16px;

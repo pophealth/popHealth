@@ -1,8 +1,9 @@
 <script type="text/javascript">   
   $(document).ready(function(){
-    $('.effective-date-picker').datepicker({orientation: "top right", format: "m/d/yyyy"});
-    $('.effective-date-picker.start').val(PopHealth.currentUser.effectiveDateString(false));
-    $('.effective-date-picker.end').val(PopHealth.currentUser.effectiveDateString(true));
+	var dates = new Array(PopHealth.currentUser.effectiveDateString(false), PopHealth.currentUser.effectiveDateString(true));
+    $('.effective-date-picker').datepicker({orientation: "top right", format: "m/d/yyyy",});
+    $('.effective-date-picker.start').val(dates[0]).datepicker("setDate", new Date(dates[0]));
+    $('.effective-date-picker.end').val(dates[1]).datepicker("setDate", new Date(dates[1]));
   });
 </script>
 
