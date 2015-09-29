@@ -103,7 +103,7 @@ class BulkRecordImporter < HealthDataStandards::Import::BulkRecordImporter
     end
 
 
-    use_new_bundle_workaround = APP_CONFIG['use_new_bundle_workaround']
+    ignore_provider_performance_dates = APP_CONFIG['ignore_provider_performance_dates']
     
     if practice_id
       practice = Practice.find(practice_id)
@@ -115,7 +115,7 @@ class BulkRecordImporter < HealthDataStandards::Import::BulkRecordImporter
       providers.each do |perf|
         prov = perf.provider
         
-        if use_new_bundle_workaround
+        if ignore_provider_performance_dates
           p_start = nil 
           p_end = nil
         else
@@ -185,7 +185,7 @@ class BulkRecordImporter < HealthDataStandards::Import::BulkRecordImporter
     end
     providers.each do |prov|
       prov.provider.ancestors.each do |ancestor|
-        if use_new_bundle_workaround
+        if ignore_provider_performance_dates
           p_start = nil 
           p_end = nil
         else

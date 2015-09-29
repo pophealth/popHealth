@@ -27,7 +27,7 @@ defaults: &defaults
   use_opml_structure: true
   
   # use workaround for new measure bundle 2.6.0 to get measure results
-  use_new_bundle_workaround: true
+  ignore_provider_performance_dates: true
   
   #provider type to exclude EH measures from
   eh_exclusion_type: "Division"
