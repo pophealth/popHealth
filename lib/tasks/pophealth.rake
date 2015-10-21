@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'highline/import'
+require_relative '../../contrib/measure_dates.rb'
 
 namespace :pophealth do
   task :setup => :environment
@@ -148,6 +149,13 @@ namespace :pophealth do
     um = ENV['update_measures'] || false
     puts "Importing bundle #{@bundle_name} delete_existing: #{de}  update_measures: #{um} type: #{ENV['type'] || 'ALL'}"
     task("bundle:import").invoke("bundles/#{@bundle_name}",de, um , ENV['type'])
+  end
+
+  desc 'Modify an existing bundle to support variable dates and then import it'
+  task :update_import, [:bundle_path,  :delete_existing,  :update_measures, :type, :create_indexes, :exclude_results] => :environment do |task, args|
+    puts "Modifying bundle #{args.bundle_path} to support variable date ranges"
+    modify_bundle_dates(args.bundle_path)
+    task("bundle:import").invoke(args.bundle_path, args.delete_existing, args.update_measures, args.type, args.create_indexes, args.exclude_results)
   end
 end
 
