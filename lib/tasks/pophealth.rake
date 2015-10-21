@@ -157,5 +157,14 @@ namespace :pophealth do
     modify_bundle_dates(args.bundle_path)
     task("bundle:import").invoke(args.bundle_path, args.delete_existing, args.update_measures, args.type, args.create_indexes, args.exclude_results)
   end
+
+  desc 'Automatically downloads bundle and modifies for variable dates. See download_bundle for params'
+  task :download_update_install => [:download_bundle] do
+    de = ENV['delete_existing'] || false
+    um = ENV['update_measures'] || false
+    puts "Modifying bundle #{@bundle_name} to support variable date ranges"
+    modify_bundle_dates("bundles/#{@bundle_name}")
+    task("bundle:import").invoke("bundles/#{@bundle_name}",de, um , ENV['type'])
+  end
 end
 
