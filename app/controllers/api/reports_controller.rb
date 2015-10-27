@@ -41,25 +41,25 @@ module Api
       end
       render xml: exporter.export(HealthDataStandards::CQM::Measure.top_level.where(filter),
                                    generate_header(provider),
-                                   effective_date.to_i,
-                                   effective_start_date.to_i,
-                                   effective_end_date.to_i, provider_filter), content_type: "attachment/xml"
+                                   Time.at(effective_date.to_i),
+                                   Time.at(effective_start_date.to_i),
+                                   Time.at(effective_end_date.to_i), provider_filter), content_type: "attachment/xml"
     end
 
     api :GET, "/reports/patients" #/:id/:sub_id/:effective_date/:provider_id/:patient_type"
     param :id, String, :desc => "Measure ID", :required => true
     param :sub_id, String, :desc => "Measure sub ID", :required => false
-    param :effective_date, String, :desc => 'Time in seconds since the epoch for the end date of the reporting period', :required => true
-    param :effective_start_date, String, :desc => 'Time in seconds since the epoch for the start date of the reporting period', :required => true
-    param :effective_end_date, String, :desc => 'Time in seconds since the epoch for the end date of the reporting period', :required => true
+    param :effective_date, String, :desc => 'Time in seconds since the epoch for the end date of the reporting period'
+    param :effective_start_date, String, :desc => 'Time in seconds since the epoch for the start date of the reporting period'
+    param :effective_end_date, String, :desc => 'Time in seconds since the epoch for the end date of the reporting period'
     param :provider_id, String, :desc => 'Provider ID for filtering quality report', :required => true
     param :patient_type, String, :desc => 'Outlier, Numerator, Denominator', :required => true
     description <<-CDESC
       This action will generate an Excel spreadsheet of relevant QRDA Category I Document based on the category of patients selected. 
     CDESC
     def patients
-      type = params[:patient_type]        
-      qr = QME::QualityReport.where(:effective_date => params[:effective_date].to_i, :effective_start_date => params[:effective_start_date].to_i, :effective_end_date => params[:effective_end_date].to_i, :measure_id => params[:id], :sub_id => params[:sub_id], "filters.providers" => params[:provider_id])
+      type = params[:patient_type]   
+      qr = QME::QualityReport.where(:effective_date => params[:effective_date].to_i, :measure_id => params[:id], :sub_id => params[:sub_id], "filters.providers" => params[:provider_id])
       
       authorize! :read, Provider.find(params[:provider_id])
 
@@ -71,11 +71,12 @@ module Api
       
       measure = HealthDataStandards::CQM::Measure.where(id: params[:id]).first
       
-      eff = Time.at(params[:effective_date].to_i)
-      end_date = Time.at(params[:effective_end_date].to_i)
-      start_date = Time.at(params[:effective_start_date].to_i)
-      #end_date = eff.strftime("%D")
-      #start_date = eff.month.to_s + "/" + eff.day.to_s + "/" + (eff.year-1).to_s
+      end_date = params[:effective_end_date] || current_user.effective_end_date || Time.gm(2013, 12, 31)
+      start_date = params[:effective_start_date] || current_user.effective_start_date || Time.gm(2012, 12, 31)
+
+      end_date = Time.at(end_date.to_i).strftime("%D")
+      start_date = Time.at(start_date.to_i).strftime("%D")
+
       # report header
       r=0
       sheet.row(r).push("Measure ID: ", '', measure.cms_id + ", " + "NQF" + measure.nqf_id)
@@ -139,9 +140,11 @@ module Api
         provider = Provider.find(params[:provider_id])
         authorize! :read, provider
 
-        eff = Time.at(params[:effective_date].to_i)
-        end_date = Time.at(params[:effective_end_date].to_i)
-        start_date = Time.at(params[:effective_start_date].to_i)
+        end_date = params[:effective_end_date] || current_user.effective_end_date || Time.gm(2013, 12, 31)
+        start_date = params[:effective_start_date] || current_user.effective_start_date || Time.gm(2012, 12, 31)
+
+        end_date = Time.at(end_date.to_i).strftime("%D")
+        start_date = Time.at(start_date.to_i).strftime("%D")
         
         r=0
         sheet.row(r).push("Reporting Period: ", '', start_date + " - " + end_date)
@@ -158,7 +161,7 @@ module Api
         r+=1
         selected_measures.each do |measure|
           measure.sort_by!{|s| s.sub_id}.each do |sub|            
-            query = {:measure_id => sub.measure_id, :sub_id => sub.sub_id, :effective_date => effective_date, :effective_start_date => effective_start_date, :effective_end_date => effective_end_date, 'filters.providers' => [provider.id.to_s]}
+            query = {:measure_id => sub.measure_id, :sub_id => sub.sub_id, :effective_date => effective_date, 'filters.providers' => [provider.id.to_s]}
             cache = QME::QualityReport.where(query).first     
             performance_denominator = cache.result['DENOM'] - cache.result['DENEX']
             percent =  percentage(cache.result['NUMER'].to_f, performance_denominator.to_f)

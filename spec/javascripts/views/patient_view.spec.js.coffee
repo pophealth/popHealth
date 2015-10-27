@@ -11,7 +11,7 @@ describe 'PatientView', ->
     expect(@patientView.$el).toContainText @patient.get('last')
 
   it 'formats the birthday correctly', ->
-    expect(@patientView.$el).toContainText '01 Feb 1942'
+    expect(@patientView).toContainText '01 Feb 1942'
 
   describe 'when PHI is masked', ->
     beforeEach ->
