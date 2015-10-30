@@ -1,5 +1,4 @@
 language: ruby
-#sudo: required
 rvm:
   - 1.9.3
   - 2.0.0
@@ -13,8 +12,7 @@ services:
 notifications:
   email:
     recipients:
-      - christopher.johnson@medicaid.alabama.gov
-      #- healthcare-ci@googlegroups.com
+      - healthcare-ci@googlegroups.com
     on_failure: change
 bundler_args: --without test develop
 
@@ -22,4 +20,3 @@ branches:
   only:
     - master
     - develop
-    - editable_date_range
