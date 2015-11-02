@@ -1,0 +1,12 @@
+<div class="fluid row-inline team-submeasure">
+  <div class='provider-info'> 
+    <a href="#providers/{{_id}}"> {{given_name}} {{family_name}} </a>
+    <br/>
+    NPI: {{#if providerExtension}} {{providerExtension}} {{else}} N/A {{/if}}
+  </div>
+  {{view teamResultsView}}
+</div>
+<div class="pull-right team-provider-loading-text p-{{_id}}-loading-measure" hidden="true">
+  LOADING... 
+</div>
+

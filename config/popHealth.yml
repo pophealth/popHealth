@@ -3,7 +3,7 @@ defaults: &defaults
   idle_timeout_enabled: true
   idle_timeout: 300000
   # user should have the staff role by default when created (this allows users to see data accross all providers)
-  default_user_staff_role: true
+  default_user_staff_role: false
   # user should be approved by default when created
   default_user_approved: true
   # display logout link
@@ -21,10 +21,14 @@ defaults: &defaults
   # force the system to allow HTTP connections
   force_unsecure_communications: true
   use_map_reduce_prefilter: true
-  enable_map_reduce_rationale: true
-  enable_map_reduce_logging: true
+  enable_map_reduce_rationale: false
+  enable_map_reduce_logging: false
   #use provider opml heirarchy instead of practice based system
   use_opml_structure: true
+  
+  # use workaround for new measure bundle 2.6.0 to get measure results
+  ignore_provider_performance_dates: true
+  
   #provider type to exclude EH measures from
   eh_exclusion_type: "Division"
   orphan_provider:

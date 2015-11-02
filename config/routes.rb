@@ -23,9 +23,14 @@ PopHealth::Application.routes.draw do
   get "admin/user_profile"
   delete "admin/delete_user"
   post 'admin/set_user_practice'
-  
+  post 'admin/set_user_practice_provider'
+  post "teams/:id/update", :to => 'teams#update'
+  post "teams/create"
+  post "teams/create_default" 
   get 'home/check_authorization'
-
+  delete "practices/remove_patients"
+  delete "practices/remove_providers"
+   
   root :to => 'home#index'
 
   resources :practices 
@@ -49,10 +54,14 @@ PopHealth::Application.routes.draw do
   namespace :api do
     get 'reports/qrda_cat3.xml', :to =>'reports#cat3', :format => :xml
     get 'reports/cat1/:id/:measure_ids', :to =>'reports#cat1', :format => :xml
+    get 'teams/team_providers/:id', :to => 'teams#team_providers'
     get 'reports/patients', :to => 'reports#patients'
     get 'reports/measures_spreadsheet', :to =>'reports#measures_spreadsheet'
+    get 'teams/team_providers/:id', :to => 'teams#team_providers'
+    get 'reports/team_report', :to => 'reports#team_report'
     
     resources :practices
+    resources :teams
     namespace :admin do
       resource :caches do
         collection do

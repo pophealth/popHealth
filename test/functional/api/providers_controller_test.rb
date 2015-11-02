@@ -37,6 +37,14 @@ include Devise::TestHelpers
       
       @provider2.parent = @pp2
       @provider2.save!
+      
+      @npi_user = User.where(username: 'npiuser2').first
+      @npi_provider = Provider.by_npi(@npi_user.npi).first
+      @npi_user.provider_id = @npi_provider.id
+      @npi_provider.save!
+      @npi_user.save!
+      
+      @npi_user2 = User.where(username: 'npiuser').first
     end
 
     test "get index" do
@@ -57,7 +65,7 @@ include Devise::TestHelpers
       assert_not_nil assigns[:provider]
       assert_response :success
     end
-
+    
     test "allow access to practice provider " do
       sign_in @staff1
       get :show, id: @provider1.id, format: :json
@@ -71,6 +79,23 @@ include Devise::TestHelpers
       assert_response 403
       APP_CONFIG['use_opml_structure'] = true
     end
+    
+    test "allow access to practice npi provider assigned to user" do 
+      APP_CONFIG['use_opml_structure'] = false
+      sign_in @npi_user
+      get :show, id: @npi_provider.id
+      assert_response :success
+      APP_CONFIG['use_opml_structure'] = true
+    end
+
+    test "do not allow access to practice provider not assigned to user" do 
+      sign_in @npi_user2
+      APP_CONFIG['use_opml_structure'] = false
+      get :show, id: @npi_provider.id
+      assert_response 403
+      APP_CONFIG['use_opml_structure'] = true
+    end
+
 
     test "update provider" do
       sign_in @user

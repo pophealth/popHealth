@@ -41,6 +41,7 @@
                   <li><%= link_to raw('<i class="glyphicon glyphicon-th-large"></i> Practices'), practices_path %></li> 
                 <% end %>
                 <li><%= link_to raw('<i class="glyphicon glyphicon-plus"></i> Providers'), '/#providers'%></li>
+                <li><%= link_to raw('<i class="glyphicon glyphicon-list"></i> Manage Teams'), '/teams'%></li>
                 <% if current_user.admin? %>
                   <% if (APP_CONFIG['patient_management_enabled']) %>
                     <li><%= link_to raw('<i class="glyphicon glyphicon-eye-open"></i> Patients'), admin_patients_path%></li>

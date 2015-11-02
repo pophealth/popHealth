@@ -6,13 +6,22 @@ class Thorax.Views.ResultsView extends Thorax.View
   template: JST['dashboard/results']
   options:
     fetch: false
+  initialize: ->
+    @opml = Config.OPML
   events:
     model:
       change: ->
-        if @model.isPopulated()
+        if @model.get('sub_id')
+          measureid = String(@model.get('measure_id')) + String(@model.get('sub_id'))
+        else
+          measureid = String(@model.get('measure_id')) 
+        loadingDiv = "." + measureid + "-loading-measure"
+        if (PopHealth.currentUser.showAggregateResult() and @model.aggregateResult()) or (!PopHealth.currentUser.showAggregateResult() and @model.isPopulated())
+          $(loadingDiv).hide()
           clearInterval(@timeout) if @timeout?
           d3.select(@el).select('.pop-chart').datum(_(lower_is_better: @lower_is_better).extend @model.result()).call(@popChart)
         else
+          $(loadingDiv).show()
           @authorize()
           if @response == 'false'
             clearInterval(@timeout)
@@ -26,6 +35,7 @@ class Thorax.Views.ResultsView extends Thorax.View
           if PopHealth.currentUser.populationChartScaledToIPP() then @popChart.maximumValue(@model.result().IPP) else @popChart.maximumValue(PopHealth.patientCount)
           @popChart.update(_(lower_is_better: @lower_is_better).extend @model.result())
     rendered: ->
+      unless PopHealth.currentUser.showAggregateResult() then @$('.aggregate-result').hide()
       @$(".icon-popover").popover()
       @$('.dial').knob()
       if @model.isPopulated()
@@ -49,7 +59,7 @@ class Thorax.Views.ResultsView extends Thorax.View
       resultValue: if @model.isContinuous() then @model.observation() else @model.performanceRate()
       fractionTop: if @model.isContinuous() then @model.measurePopulation() else @model.numerator()
       fractionBottom: if @model.isContinuous() then @model.ipp() else @model.performanceDenominator()
-
+      aggregateResult: @model.aggregateResult()
   initialize: ->
     @popChart = PopHealth.viz.populationChart().width(125).height(25).maximumValue(PopHealth.patientCount)
     @model.set('providers', [@provider_id]) if @provider_id?
@@ -81,6 +91,7 @@ class Thorax.Views.DashboardSubmeasureView extends Thorax.View
 class Thorax.Views.Dashboard extends Thorax.View
   template: JST['dashboard/index']
   events:
+    'click .aggregate-btn': 'toggleAggregateShow'
     'click .btn-checkbox.all':           'toggleCategory'
     'click .btn-checkbox.individual':    'toggleMeasure'
     'keyup .category-measure-search': 'search'
@@ -100,6 +111,21 @@ class Thorax.Views.Dashboard extends Thorax.View
     @selectedCategories = PopHealth.currentUser.selectedCategories(@collection)
     @populationChartScaledToIPP = PopHealth.currentUser.populationChartScaledToIPP()
     @currentUser = PopHealth.currentUser.get 'username'
+    @showAggregateResult = PopHealth.currentUser.showAggregateResult()
+    @opml = Config.OPML
+
+  toggleAggregateShow: (e) ->    
+    shown = PopHealth.currentUser.showAggregateResult()
+    PopHealth.currentUser.setShowAggregateResult(!shown)
+    if !shown 
+      if confirm "Please wait for the aggregate measure to calculate. The result will appear when the calculation is completed."
+        location.reload()
+        @$('.aggregate-result').toggle(400)   
+        @$('.aggregate-btn').toggleClass('active')
+    else
+      @$('.aggregate-result').toggle(400)   
+      @$('.aggregate-btn').toggleClass('active')
+
   effective_date: ->
     PopHealth.currentUser.get 'effective_date'
   effective_start_date: ->
