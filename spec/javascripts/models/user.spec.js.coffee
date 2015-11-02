@@ -21,6 +21,11 @@ describe 'User', ->
       @user.save
       expect( @user.get('preferences').should_display_circle_visual).toEqual false
 
+    it 'updates user preferences - show aggregate measure', ->
+      @user.get('preferences').show_aggregate_result = true
+      @user.save
+      expect( @user.get('preferences').show_aggregate_result).toEqual true
+
   describe 'selectedCategories', ->
     it 'returns an empty collection if there are no selected categories', ->
       selectedCategories = @user.selectedCategories(@categories)

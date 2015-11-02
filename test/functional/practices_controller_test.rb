@@ -3,11 +3,18 @@ include Devise::TestHelpers
 class PracticesControllerTest < ActionController::TestCase
   setup do
     dump_database
-    collection_fixtures 'users', 'practices' 
+    collection_fixtures 'users', 'practices', 'providers'
     
     @user = User.where({email: 'admin@test.com'}).first    
     @non_user = User.where({email: 'noadmin@test.com'}).first    
     @practice = Practice.all.first
+    @provider = Provider.first
+    @provider.id = @provider._id
+    Practice.all.each do |prac|
+      prac.provider = @provider
+      prac.save!
+    end
+    @provider.save!
   end
 
   test "should get index" do

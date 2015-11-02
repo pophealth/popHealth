@@ -13,4 +13,5 @@
  "registry_name":null,
  "staff_role":true,
  "tin":null,
- "username":"genericuser"}
+ "username":"genericuser",
+ "teams" : []}

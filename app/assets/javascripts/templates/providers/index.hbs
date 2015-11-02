@@ -7,6 +7,9 @@
     <th>Tax ID</th>
     <th>Phone</th>
     <th>Team</th>
+    {{#if admin }}
+    <th>Practice Name</th>
+    {{/if}}
   </tr>
 </thead>
 {{#collection tag='tbody'}}
@@ -20,5 +23,8 @@
     <td>{{tin}}</td>
     <td>{{phone}}</td>
     <td>{{team.name}}</td>
+    {{#if admin }}
+    <td>{{practice}}</td>
+    {{/if}}
   </tr>
 {{/collection}}

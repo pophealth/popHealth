@@ -3,7 +3,7 @@
 module QME
   class QualityReport
 
-
+    field :aggregate_result, type: Integer
 
     # Removes the cached results for the patient with the supplied id and
     # recalculates as necessary

@@ -1,7 +1,11 @@
 class Thorax.Models.Provider extends Thorax.Model
   urlRoot: '/api/providers'
   idAttribute: '_id'
-  providerType: -> @get("cda_identifiers")?[0].root
+  providerType: -> 
+    if @get("cda_identifiers")?[0].root == "2.16.840.1.113883.4.6"
+      'NPI'
+    else
+      @get("cda_identifiers")?[0].root
   providerExtension: -> @get("cda_identifiers")?[0].extension
   parse: (attrs) ->
     attrs = $.extend true, {}, attrs
@@ -13,7 +17,6 @@ class Thorax.Models.Provider extends Thorax.Model
     json
   npi: ->
     if @providerType() == '2.16.840.1.113883.4.6' then @providerExtension() 
-  recordCount: -> @get("record_count")
   
 class Thorax.Collections.Providers extends Thorax.Collection
   url: '/api/providers'
@@ -31,3 +34,8 @@ class Thorax.Collections.Providers extends Thorax.Collection
   fetchNextPage: (options = {perPage: 10}) ->
     data = {page: @currentPage(options.perPage) + 1, per_page: options.perPage}
     @fetch(remove: false, data: data) if @hasMoreResults
+
+# A collection of providers under a given team. Setting the team ID from a parameter does not load the collection properly, so the Team ID is specified in the URL when called.  See Thorax.Views.TeamMeasuresView
+class Thorax.Collections.TeamProviders extends Thorax.Collection
+  url: "/api/teams/team_providers"
+  model: Thorax.Models.Provider

@@ -6,6 +6,11 @@ class Thorax.Models.User extends Thorax.Model
   shouldDisplayPercentageVisual: -> @get('preferences').should_display_circle_visual
   populationChartScaledToIPP: -> @get('preferences').population_chart_scaled_to_IPP
   shouldDisplayProviderTree: -> @get('preferences').should_display_provider_tree
+  showAggregateResult: -> @get('preferences').show_aggregate_result
+ 
+  setShowAggregateResult: (value) -> 
+    @get('preferences').show_aggregate_result = value
+    @save()
 
   effectiveDateString: (end) ->
     # if end is true, returns to date string. else it returns from date string

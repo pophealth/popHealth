@@ -21,7 +21,7 @@ class Thorax.Models.Patient extends Thorax.Model
 class Thorax.Collections.Entries extends Thorax.Collection
   types: ['allergies', 'conditions', 'encounters', 'immunizations',
       'medical_equipment', 'results', 'medications', 'procedures',
-      'vital_signs']
+      'vital_signs', 'socialhistories']
   model: (attrs, options) ->
     klass =
       allergies:          Thorax.Models.Allergy
@@ -33,6 +33,7 @@ class Thorax.Collections.Entries extends Thorax.Collection
       medications:        Thorax.Models.Medication
       procedures:         Thorax.Models.Procedure
       vital_signs:        Thorax.Models.VitalSign
+      socialhistories:    Thorax.Models.SocialHistory
     new klass[options.type] attrs, parse: true
 
   comparator: (e) ->  -e.get('start_time')
@@ -45,6 +46,7 @@ class Thorax.Models.Entry extends Thorax.Model
     attrs = $.extend {}, attrs
     attrs.start_time *= 1000
     attrs.end_time *= 1000
+    attrs.time *= 1000
     if attrs.values
       attrs.values = new Thorax.Collection attrs.values
     attrs
@@ -52,6 +54,10 @@ class Thorax.Models.Entry extends Thorax.Model
 class Thorax.Models.Allergy extends Thorax.Models.Entry
   entryType: 'allergy'
   icon: 'stethoscope'
+
+class Thorax.Models.SocialHistory extends Thorax.Models.Entry
+  entryType: 'social history'
+  icon: 'user'
 
 class Thorax.Models.Condition extends Thorax.Models.Entry
   entryType: 'condition'

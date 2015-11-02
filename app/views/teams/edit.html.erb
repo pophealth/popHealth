@@ -1,0 +1,48 @@
+<div class='main'>
+
+  <h1><b>Edit Team: </b> <%=@team.name%> </h1>
+  <div class="fluid row-inline">
+    <%= button_to "Back to Team List", teams_path, :method => 'get', :class => "btn btn-primary pull-right" %>
+    <%= button_to 'View Providers', @team, :method => 'get', :class => "btn btn-success pull-right" %> 
+  </div>
+
+  <%= form_tag "update" do %> 
+  <h2> Choose Providers: </h2>
+  <table class="teamProviderTable display table-bordered table-hover">
+    <thead> 
+      <tr>
+        <th> Name </th>
+        <th> NPI </th>
+        <% if @current_user.admin %> <th> Affiliation </th> <% end %>
+        <th> Selected </th>
+        <th> Select </th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @providers.each do |provider| %>
+      <tr>
+        <td> <%= provider.given_name %> <%= (provider.family_name)? provider.family_name : ''%>
+        <%= (provider.children.length > 0)? "(Group)" : '' %>
+        </td>    
+        <td> <%= (provider.npi)? provider.npi : 'N/A' %> </td>
+        <% if @current_user.admin %> 
+          <td> <%= provider.try(:parent).try(:given_name) %> </td> 
+        <% end %>
+        <% inc = @team.providers.include? provider._id.to_s %>
+        <td> <%= inc ? "Yes" : "No" %></td>
+        <td> <%= check_box_tag 'provider_ids[]', provider._id, inc %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table> 
+  <br/>
+  <hr/>
+  <div class="fluid row-inline">
+    <%= label_tag "Team Name" %> :  <%= text_field_tag :name, @team.name %>      
+    <div class="pull-right">
+      <%= submit_tag "Save Team", :class => "btn btn-success teamSaveBtn", :data => {:confirm => "Confirm providers and team name?"} %>
+    </div>
+  </div>
+  <% end %>
+
+</div>

@@ -17,13 +17,20 @@ class AdminController < ApplicationController
 
   def user_profile
     @user = User.find(params[:id])
-    @practice = @user.practice ? @user.practice.id : 'n/a'
     @practices = Practice.asc(:name).map {|org| [org.name, org.id]}
+    @practice_pvs = Provider.by_npi(@user.npi).map {|pv| [pv.parent.practice.name + " - " + pv.full_name, pv.id]}
   end
 
   def set_user_practice
     @user = User.find(params[:user])
-    @user.practice = (params[:practice] != '')? Practice.find(params[:practice]) : nil
+    @user.practice = (params[:practice].present?) ? Practice.find(params[:practice]) : nil
+    @user.save
+    redirect_to action: 'user_profile', :id => params[:user]
+  end
+
+  def set_user_practice_provider
+    @user = User.find(params[:user])
+    @user.provider_id = (params[:provider].present?)? Provider.find(params[:provider]).id : nil
     @user.save
     redirect_to action: 'user_profile', :id => params[:user]
   end
@@ -42,6 +49,9 @@ class AdminController < ApplicationController
 
   def remove_providers
     Provider.ne('cda_identifiers.root' => "Organization").delete
+    
+    Team.update_all(providers: [])
+    
     redirect_to action: 'patients'
   end
 
@@ -82,6 +92,9 @@ class AdminController < ApplicationController
   def users
     @users = User.all.ordered_by_username
     @practices = Practice.asc(:name).map {|org| [org.name, org.id]}
+    unless APP_CONFIG['use_opml_structure']
+      @practice_providers = Provider.ne('cda_identifiers.root' => "Organization").asc(:given_name).map {|pv| [pv.full_name, pv.id]}
+    end
   end
 
   def promote

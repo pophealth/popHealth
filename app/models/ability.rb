@@ -47,14 +47,29 @@ class Ability
         end
       end
       can :manage, User, id: user.id
+      can :manage, Team do |team|
+        team.user_id == user._id
+      end
       cannot :manage, User unless APP_CONFIG['allow_user_update']
-      can [:read, :delete, :recalculate,:create] , QME::QualityReport
+      can [:read, :delete, :recalculate,:create] , QME::QualityReport do |qr|
+        if !opml
+          filters = qr.try('filters')
+          if filters.present? && filters['providers'].present?
+            provider = Provider.find(filters['providers'].first)
+            (provider.try(:practice) && provider.practice.id == user.practice.id) || 
+              (provider.try(:parent).try(:practice) && provider.parent.practice.id == user.practice.id)
+          end
+        else
+          true
+        end
+      end
     elsif user.id
       can :read, Record do |patient|
         if opml
           patient.providers.map(&:npi).include?(user.npi)
         else
-          patient.providers.map(&:npi).include?(user.npi) && user.practice.id == patient.practice_id
+          prov = user.provider_id ? Provider.find(user.provider_id) : nil
+          prov.try(:parent).try(:practice) && prov.parent.practice.id == patient.practice_id
         end
       end
       can [:read,:delete, :recalculate, :create], QME::QualityReport do |qr|
@@ -63,7 +78,11 @@ class Ability
       end
       can :read, HealthDataStandards::CQM::Measure
       can :read, Provider do |pv|
-        user.npi && (pv.npi == user.npi)
+        if opml
+          user.npi && (pv.npi == user.npi)
+        else
+          user.provider_id == pv.id
+        end       
       end
       can :manage, User, id: user.id
       cannot :manage, User unless APP_CONFIG['allow_user_update']

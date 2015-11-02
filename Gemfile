@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '~> 4.1.2'
 gem 'quality-measure-engine', '3.1.2'
 gem "hqmf2js", :git=> "https://github.com/projecttacoma/hqmf2js.git"
-gem 'health-data-standards', '3.5.3'
+gem 'health-data-standards', '3.5.3' #:git => "https://github.com/projectcypress/health-data-standards.git"#, '3.5.3'
 #gem 'health-data-standards', :path=> '../health-data-standards'
 gem 'nokogiri'
 gem 'rubyzip'
@@ -44,6 +44,8 @@ gem 'jquery-rails' # necessary for jquery_ujs w/data-method="delete" etc
 gem 'bootstrap-datepicker-rails', '1.3.0.2'
 gem 'uglifier'
 gem 'non-stupid-digest-assets' # support vendored non-digest assets
+gem 'jquery-datatables-rails', '3.1.1'
+gem 'jquery-ui-rails'
 
 group :test, :develop, :ci do
   gem 'pry'
@@ -64,4 +66,4 @@ group :production do
   gem 'therubyracer', '~> 0.12.0', :platforms => [:ruby, :jruby] # 10.8 mountain lion compatibility
 end
 
-gem 'handlebars_assets'
+gem 'handlebars_assets', '0.17.1'

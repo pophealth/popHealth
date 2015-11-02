@@ -51,11 +51,37 @@ class PracticesController < ApplicationController
       end
     end
   end
-
+  
+  def remove_patients
+    Record.where(practice_id: params[:id]).delete
+    respond_to do |format|
+      format.html { redirect_to :action => :index }
+    end
+  end
+  
+  def remove_providers
+    practice = Practice.find(params[:id])
+    Provider.where(parent_id: practice.provider.id).delete
+    
+    respond_to do |format|
+      format.html { redirect_to :action => :index }
+    end
+  end
+  
   # DELETE /practices/1
   # DELETE /practices/1.json
   def destroy
     @practice = Practice.find(params[:id])
+    Record.where(practice_id: @practice.id).delete
+    if @practice.provider
+      id = @practice.provider.id
+      @current_user.teams.each do |tm|
+        team.providers.delete(id.to_s)
+        team.save!
+      end
+      @current_user.save!
+      @practice.provider.delete
+    end
     @practice.destroy
 
     respond_to do |format|

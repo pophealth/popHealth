@@ -199,7 +199,10 @@ module Api
     end
 
     test "create npi user" do
+      APP_CONFIG['use_opml_structure'] = true
+      
       sign_in @npi_user
+      
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@provider.id]
       assert_response :success, "should be able to create a quality report for users own npi"
 

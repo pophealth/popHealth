@@ -31,11 +31,11 @@ task 'test' do
   puts "Please run rake test_all in order to run the test suite."
 end
 
-# begin
-#   require 'jasmine'
-#   load 'jasmine/tasks/jasmine.rake'
-# rescue LoadError
-#   task :jasmine do
-#     abort "Jasmine is not available. In order to run jasmine, you must: (sudo) gem install jasmine"
-#   end
-# end
+begin
+  require 'jasmine'
+  load 'jasmine/tasks/jasmine.rake'
+rescue LoadError
+  task :jasmine do
+    abort "Jasmine is not available. In order to run jasmine, you must: (sudo) gem install jasmine"
+  end
+end
