@@ -14,7 +14,6 @@ class Thorax.Models.Measure extends Thorax.Model
       subData
     @effectiveDate = @collection?.effectiveDate
     @effectiveStartDate = @collection?.effectiveStartDate
-    @effectiveEndDate = @collection?.effectiveEndDate
 
     attrs.submeasures = new SubCollection subs, parent: this
     attrs
@@ -35,7 +34,6 @@ class Thorax.Collections.Measures extends Thorax.Collection
     @hasMoreResults = true
     @effectiveDate = @parent?.effectiveDate
     @effectiveStartDate = @parent?.effectiveStartDate
-    @effectiveEndDate = @parent?.effectiveEndDate
   currentPage: (perPage = 100) -> Math.ceil(@length / perPage)
   fetch: ->
     result = super
@@ -51,8 +49,7 @@ class Thorax.Models.Submeasure extends Thorax.Model
     # TODO remove @get('query') when we upgrade to Thorax 3
     @effectiveDate = @collection?.effectiveDate
     @effectiveStartDate = @collection?.effectiveStartDate
-    @effectiveEndDate = @collection?.effectiveEndDate
-    query = new Thorax.Models.Query({measure_id: @get('id'), sub_id: @get('sub_id'), effective_date: @effectiveDate, effective_start_date: @effectiveStartDate, effective_end_date: @effectiveEndDate }, parent: this)
+    query = new Thorax.Models.Query({measure_id: @get('id'), sub_id: @get('sub_id'), effective_date: @effectiveDate, effective_start_date: @effectiveStartDate }, parent: this)
     @set 'query', query
     @queries = {}
   isPopulated: -> @has 'IPP'
@@ -74,7 +71,7 @@ class Thorax.Models.Submeasure extends Thorax.Model
       attrs[population.type].parent = this
     attrs
   getQueryForProvider: (providerId) ->
-    query = @queries[providerId] or new Thorax.Models.Query({measure_id: @get('id'), sub_id: @get('sub_id'), effective_date: @effectiveDate, effective_start_date: @effectiveStartDate, effective_end_date: @effectiveEndDate, providers: [providerId]}, parent: this)
+    query = @queries[providerId] or new Thorax.Models.Query({measure_id: @get('id'), sub_id: @get('sub_id'), effective_date: @effectiveDate, effective_start_date: @effectiveStartDate, providers: [providerId]}, parent: this)
     @queries[providerId] ?= query
 
 
@@ -84,5 +81,4 @@ class SubCollection extends Thorax.Collection
     @parent = options.parent
     @effectiveDate = @parent?.effectiveDate
     @effectiveStartDate = @parent?.effectiveStartDate
-    @effectiveEndDate = @parent?.effectiveEndDate
   comparator: 'sub_id'

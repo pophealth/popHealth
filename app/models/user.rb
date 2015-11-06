@@ -44,7 +44,6 @@ class User
   :last_sign_in_ip
   :effective_date
   :effective_start_date
-  :effective_end_date
 
   field :first_name, type: String
   field :last_name, type: String
@@ -59,7 +58,6 @@ class User
   field :agree_license, type: Boolean
   field :effective_date, type: Integer, default: DEFAULT_EFFECTIVE_DATE.to_i
   field :effective_start_date, type: Integer, default: (DEFAULT_EFFECTIVE_DATE.years_ago(1)).to_i
-  field :effective_end_date, type: Integer, default: DEFAULT_EFFECTIVE_DATE.to_i
   field :admin, type: Boolean
   field :approved, type: Boolean
   field :staff_role, type: Boolean
@@ -72,7 +70,7 @@ class User
   
   scope :ordered_by_username, -> { asc(:username) }
 
-  attr_protected :admin, :approved, :disabled, :encrypted_password, :remember_created_at, :reset_password_token, :reset_password_sent_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip, :effective_date, :effective_start_date, :effective_end_date
+  attr_protected :admin, :approved, :disabled, :encrypted_password, :remember_created_at, :reset_password_token, :reset_password_sent_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip, :effective_date, :effective_start_date
 
   accepts_nested_attributes_for :preferences
 
