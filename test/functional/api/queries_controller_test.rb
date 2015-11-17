@@ -195,7 +195,7 @@ module Api
       assert_response :success, "staff should be able to create all reports for npis"
 
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212
-      assert_response 200, "staff should be able to create all reports for no npi"
+      assert_response (:success || 200), "staff should be able to create all reports for no npi"
     end
 
     test "create npi user" do

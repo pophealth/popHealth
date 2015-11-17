@@ -9,7 +9,7 @@ class PatientCache
   field :birthdate, type: Integer
   field :gender, type: String
   
-  scope :by_provider, ->(provider, effective_date) { where({'value.provider_performances.provider_id' => provider.id, 'value.effective_date'=>effective_date}) }
+  scope :by_provider, ->(provider, effective_start_date, effective_date) { where({'value.provider_performances.provider_id' => provider.id, 'value.effective_date'=>effective_date, 'value.effective_start_date'=>effective_start_date}) }
   scope :outliers, ->(patient) {where({'value.patient_id'=>patient.id})}
 
   MATCH = {'$match' => {'value.measure_id' => "8A4D92B2-397A-48D2-0139-9BB3331F4C02", "value.sub_id" => "a"}} 

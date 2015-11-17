@@ -13,9 +13,12 @@ class Thorax.Models.User extends Thorax.Model
     @save()
 
   effectiveDateString: (end) ->
-    # if end is true, returns date string. else it returns date string from 1 year ago
-    d = new Date(@get('effective_date') *1000)
-    date = if end == true then (d.getUTCMonth() + 1 ) + '/' + d.getUTCDate() + '/' + d.getUTCFullYear() else (d.getUTCMonth() + 1) + '/' + d.getUTCDate() + '/' + (d.getUTCFullYear()-1)
+    # if end is true, returns to date string. else it returns from date string
+    if end
+      d = new Date(@get('effective_date') *1000)
+    else
+      d = new Date(@get('effective_start_date') *1000)
+    date = (d.getUTCMonth() + 1 ) + '/' + d.getUTCDate() + '/' + d.getUTCFullYear()
 
   setPopulationChartScale: (value) ->
     @get('preferences').population_chart_scaled_to_IPP = value
@@ -90,3 +93,4 @@ class Thorax.Models.User extends Thorax.Model
 
 # # category.on 'reset',
 # category.on 'add', (measure) -> user.select(measure)
+

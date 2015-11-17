@@ -16,6 +16,8 @@ module Api
     param :measure_ids, Array, :desc => 'The HQMF ID of the measures to include in the document', :required => false
     param :effective_date, String, :desc => 'Time in seconds since the epoch for the end date of the reporting period',
                                    :required => false
+    param :effective_start_date, String, :desc => 'Time in seconds since the epoch for the end date of the reporting period',
+                                   :required => false
     param :provider_id, String, :desc => 'The Provider ID for CATIII generation'
     description <<-CDESC
       This action will generate a QRDA Category III document. If measure_ids and effective_date are not provided,
@@ -25,7 +27,8 @@ module Api
       measure_ids = params[:measure_ids] ||current_user.preferences["selected_measure_ids"]
       filter = measure_ids=="all" ? {}  : {:hqmf_id.in =>measure_ids}
       exporter =  HealthDataStandards::Export::Cat3.new
-      effective_date = params["effective_date"] || current_user.effective_date || Time.gm(2012, 12, 31)
+      effective_date = params["effective_date"] || current_user.effective_date || Time.gm(2013, 12, 31)
+      effective_start_date = params["effective_start_date"] || current_user.effective_start_date || Time.gm(2012, 12, 31)
       end_date = Time.at(effective_date.to_i)
       provider = provider_filter = nil
       if params[:provider_id].present?
@@ -37,21 +40,23 @@ module Api
       render xml: exporter.export(HealthDataStandards::CQM::Measure.top_level.where(filter),
                                    generate_header(provider),
                                    effective_date.to_i,
-                                   end_date.years_ago(1),
-                                   end_date, provider_filter), content_type: "attachment/xml"
+                                   Time.at(effective_start_date.to_i),
+                                   end_date,
+                                   provider_filter), content_type: "attachment/xml"
     end
 
     api :GET, "/reports/patients" #/:id/:sub_id/:effective_date/:provider_id/:patient_type"
     param :id, String, :desc => "Measure ID", :required => true
     param :sub_id, String, :desc => "Measure sub ID", :required => false
-    param :effective_date, String, :desc => 'Time in seconds since the epoch for the end date of the reporting period', :required => true
+    param :effective_date, String, :desc => 'Time in seconds since the epoch for the end date of the reporting period'
+    param :effective_start_date, String, :desc => 'Time in seconds since the epoch for the start date of the reporting period'
     param :provider_id, String, :desc => 'Provider ID for filtering quality report', :required => true
     param :patient_type, String, :desc => 'Outlier, Numerator, Denominator', :required => true
     description <<-CDESC
       This action will generate an Excel spreadsheet of relevant QRDA Category I Document based on the category of patients selected. 
     CDESC
     def patients
-      type = params[:patient_type]        
+      type = params[:patient_type]   
       qr = QME::QualityReport.where(:effective_date => params[:effective_date].to_i, :measure_id => params[:id], :sub_id => params[:sub_id], "filters.providers" => params[:provider_id])
       
       authorize! :read, Provider.find(params[:provider_id])
@@ -64,9 +69,12 @@ module Api
       
       measure = HealthDataStandards::CQM::Measure.where(id: params[:id]).first
       
-      eff = Time.at(params[:effective_date].to_i)
-      end_date = eff.strftime("%D")
-      start_date = eff.month.to_s + "/" + eff.day.to_s + "/" + (eff.year-1).to_s
+      end_date = params[:effective_date] || current_user.effective_date || Time.gm(2013, 12, 31)
+      start_date = params[:effective_start_date] || current_user.effective_start_date || Time.gm(2012, 12, 31)
+
+      end_date = Time.at(end_date.to_i).strftime("%D")
+      start_date = Time.at(start_date.to_i).strftime("%D")
+
       # report header
       r=0
       sheet.row(r).push("Measure ID: ", '', measure.cms_id + ", " + "NQF" + measure.nqf_id)
@@ -173,6 +181,7 @@ module Api
     api :GET, '/reports/measures_spreadsheet', "Retrieve a spreadsheet of measure calculations"
     param :username, String, :desc => 'Username of user to generate reports for'
     param :effective_date, String, :desc => 'Time in seconds since the epoch for the end date of the reporting period'
+    param :effective_start_date, String, :desc => 'Time in seconds since the epoch for the start date of the reporting period'
     param :provider_id, String, :desc => 'The Provider ID for spreadsheet generation', :required => true
     description <<-CDESC
       This action will generate an Excel spreadsheet document containing a list of measure calculations for the current user's selected measures.
@@ -184,6 +193,7 @@ module Api
 
       user = User.where(:username => params[:username]).first || current_user
       effective_date = params[:effective_date] || current_user.effective_date      
+      effective_start_date = params[:effective_start_date] || current_user.effective_start_date      
       measure_ids = user.preferences['selected_measure_ids']
       
       unless measure_ids.empty?
@@ -192,9 +202,11 @@ module Api
         provider = Provider.find(params[:provider_id])
         authorize! :read, provider
 
-        eff = Time.at(params[:effective_date].to_i)
-        end_date = eff.strftime("%D")
-        start_date = eff.month.to_s + "/" + eff.day.to_s + "/" + (eff.year-1).to_s
+        end_date = params[:effective_date] || current_user.effective_date || Time.gm(2013, 12, 31)
+        start_date = params[:effective_start_date] || current_user.effective_start_date || Time.gm(2012, 12, 31)
+
+        end_date = Time.at(end_date.to_i).strftime("%D")
+        start_date = Time.at(start_date.to_i).strftime("%D")
         
         r=0
         sheet.row(r).push("Reporting Period: ", '', start_date + " - " + end_date)
@@ -241,6 +253,8 @@ module Api
     param :measure_ids, String, :desc => "Measure IDs", :required => true
     param :effective_date, String, :desc => 'Time in seconds since the epoch for the end date of the reporting period',
                                    :required => false
+    param :effective_start_date, String, :desc => 'Time in seconds since the epoch for the start date of the reporting period',
+                                   :required => false
     description <<-CDESC
       This action will generate a QRDA Category I Document. Patient ID and measure IDs (comma separated) must be provided. If effective_date is not provided,
       the value from the user's dashboard will be used.
@@ -252,7 +266,7 @@ module Api
       measure_ids = params["measure_ids"].split(',')
       measures = HealthDataStandards::CQM::Measure.where(:hqmf_id.in => measure_ids)
       end_date = params["effective_date"] || current_user.effective_date || Time.gm(2012, 12, 31)
-      start_date = end_date.years_ago(1)
+      start_date = params["effective_start_date"] || current_user.effective_start_date || end_date.years_ago(1)
       render xml: exporter.export(patient, measures, start_date, end_date)
     end
 

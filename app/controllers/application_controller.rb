@@ -40,7 +40,17 @@ class ApplicationController < ActionController::Base
     else
       @effective_date = User::DEFAULT_EFFECTIVE_DATE.to_i
     end
-    @period_start = calc_start(@effective_date)
+
+    if (effective_start_date)
+      @effective_start_date = effective_start_date
+      current_user.update_attribute(:effective_start_date, effective_start_date) if persist
+    elsif current_user && current_user.effective_start_date
+      @effective_start_date = current_user.effective_start_date
+    else
+      @effective_start_date = User::DEFAULT_EFFECTIVE_DATE.to_i
+    end
+    
+    @period_start = @effective_start_date || calc_start(@effective_date)
   end
 
   def calc_start(date)
