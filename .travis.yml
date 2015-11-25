@@ -6,7 +6,7 @@ rvm:
   - 2.1.2
 env:
   - rvmsudo_secure_path=1
-script: rvmsudo bundle exec rake test_all
+script: bundle exec rake test_all
 services:
   - mongodb
 notifications:
