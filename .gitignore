@@ -15,6 +15,7 @@ config/glassfish.yml
 doc
 .yardoc
 Thumbs.db
+bundles/*
 .bundle
 .bundle/config
 dump.rdb

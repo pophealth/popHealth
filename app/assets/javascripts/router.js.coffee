@@ -5,7 +5,6 @@ class PopHealth.Router extends Backbone.Router
     @categories = new Thorax.Collections.Categories PopHealth.categories, parse: true, datesobj: 
       effectiveDate: PopHealth.currentUser.get 'effective_date'
       effectiveStartDate: PopHealth.currentUser.get 'effective_start_date'
-      effectiveEndDate: PopHealth.currentUser.get 'effective_end_date'
     @view = new Thorax.LayoutView el: '#container'
 
   routes:

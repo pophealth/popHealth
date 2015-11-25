@@ -3,7 +3,6 @@ class Thorax.Models.Category extends Thorax.Model
     attrs = $.extend {}, attrs
     @effectiveDate = @collection?.effectiveDate #|| attrs.effectiveDate
     @effectiveStartDate = @collection?.effectiveStartDate
-    @effectiveEndDate = @collection?.effectiveEndDate
     attrs.measures = new Thorax.Collections.Measures attrs.measures, parent: this, parse: true #, effectiveDate: effectiveDate
     attrs
 
@@ -13,7 +12,6 @@ class Thorax.Collections.Categories extends Thorax.Collection
     dates = options?.datesobj
     @effectiveDate = dates?.effectiveDate 
     @effectiveStartDate = dates?.effectiveStartDate 
-    @effectiveEndDate = dates?.effectiveEndDate 
 
   comparator: (a, b) ->
     if a.get('category') is 'Core'

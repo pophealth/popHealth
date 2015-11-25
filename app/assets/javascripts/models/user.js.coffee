@@ -15,7 +15,7 @@ class Thorax.Models.User extends Thorax.Model
   effectiveDateString: (end) ->
     # if end is true, returns to date string. else it returns from date string
     if end
-      d = new Date(@get('effective_end_date') *1000)
+      d = new Date(@get('effective_date') *1000)
     else
       d = new Date(@get('effective_start_date') *1000)
     date = (d.getUTCMonth() + 1 ) + '/' + d.getUTCDate() + '/' + d.getUTCFullYear()
