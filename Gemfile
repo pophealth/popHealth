@@ -7,6 +7,7 @@ gem 'health-data-standards', '3.6.1' #:git => "https://github.com/projectcypress
 #gem 'health-data-standards', :path=> '../health-data-standards'
 gem 'nokogiri'
 gem 'rubyzip'
+gem 'net-ssh', '2.9.1'
 gem 'hquery-patient-api', '1.0.4'
 gem 'spreadsheet', '1.0.3'
 gem 'sshkit'
