@@ -15,6 +15,7 @@ module Api
     end
     include PaginationHelper
     include ApplicationHelper
+    include PatientsHelper
     
     respond_to :json
     before_filter :authenticate_user!
@@ -46,6 +47,8 @@ module Api
       json_methods = [:language_names]
       json_methods << :cache_results if params[:include_results]
       json = @patient.as_json({methods: json_methods})
+      json["race"]["name"] = race(@patient) if json["race"]
+      json["ethnicity"]["name"] = ethnicity(@patient) if json["ethnicity"]
       provider_list = @patient.provider_performances.map{ |p| p.provider}
       provider_list.each do |prov|
         if prov
