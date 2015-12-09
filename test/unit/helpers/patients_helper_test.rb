@@ -5,7 +5,7 @@ class PatientsHelperTest < ActionView::TestCase
 		load_code_sets
 		collection_fixtures('records', "_id")
 
-		@patient = Record.find('4f5bb2ef1d41c841b3000502')
+		@patient = Record.find('523c57e1b59a907ea9000064')
 
 	end
 
