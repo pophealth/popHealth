@@ -9,6 +9,8 @@ env:
 script: bundle exec rake test_all
 services:
   - mongodb
+before_install:
+  - gem update bundler
 notifications:
   email:
     recipients:
