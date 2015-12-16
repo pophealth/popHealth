@@ -21,6 +21,24 @@ class PracticesController < ApplicationController
     end
   end
 
+  # GET /practices/1
+  # GET /practices/1.json
+  def show
+    @practice = Practice.find(params[:id])
+    @users = User.all.map {|user| [user.username, user.id]}
+    if @practice.nil?
+      respond_to do |format|
+        format.html { redirect_to practices_path, notice: 'A practice with that identifier could not be found.' }
+        format.json { render json: @practice, status: :not_found }
+      end
+    else
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @practice }
+      end
+    end
+  end
+  
   # POST /practices
   # POST /practices.json
   def create
@@ -44,6 +62,23 @@ class PracticesController < ApplicationController
     respond_to do |format|
       if @practice.save
         format.html { redirect_to practices_path, notice: 'Practice was successfully created.' }
+        format.json { render json: @practice, status: :created, location: @practice }
+      else
+        format.html { redirect_to practices_path }
+        format.json { render json: @practice.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /practices
+  # PUT /practices.json
+  def update
+    @practice = Practice.find(params[:id])
+    @practice.update_attributes(params[:practice]) unless @practice.nil?
+
+    respond_to do |format|
+      if @practice.save
+        format.html { redirect_to practices_path, notice: 'Practice was successfully updated.' }
         format.json { render json: @practice, status: :created, location: @practice }
       else
         format.html { redirect_to practices_path }
