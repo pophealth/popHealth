@@ -20,4 +20,3 @@ branches:
   only:
     - master
     - develop
-    - editable_date_range
