@@ -4,6 +4,8 @@ rvm:
   - 2.0.0
   - 2.1.1
   - 2.1.2
+before_install:
+  - gem update bundler
 env:
   - rvmsudo_secure_path=1
 script: bundle exec rake test_all
