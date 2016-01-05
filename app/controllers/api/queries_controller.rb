@@ -144,7 +144,7 @@ module Api
       authorize! :read, qr
       # this returns a criteria object so we can filter it additionally as needed
       results = qr.patient_results
-      render json: paginate(patient_results_api_query_url(qr),results.where(build_patient_filter).order_by([:last.asc, :first.asc]))
+      render json: paginate(patient_results_api_query_url(qr),results.where(build_patient_filter).only('_id', 'value.medical_record_id', 'value.first', 'value.last', 'value.birthdate', 'value.gender', 'value.patient_id'))
     end
 
     def patients

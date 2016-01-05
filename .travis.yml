@@ -22,3 +22,4 @@ branches:
   only:
     - master
     - develop
+    - improve_patient_load
