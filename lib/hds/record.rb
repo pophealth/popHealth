@@ -48,10 +48,7 @@ class Record
           query = {}
           query = {medical_record_number: existing.medical_record_number, section => {'$elemMatch' => {}}}
 
-          data.send(section).each do |entry|       
-            if entry.codes.present?
-              query[section]['$elemMatch']['codes'] = entry.codes
-            end     
+          data.send(section).each do |entry|          
                    
             if entry.status_code
               query[section]['$elemMatch']['status_code'] = entry.status_code
@@ -65,6 +62,14 @@ class Record
                        
             if entry.end_time
               query[section]['$elemMatch']['end_time'] = entry.end_time
+            end
+
+            if entry.cda_identifier.root
+              query[section]['$elemMatch']['cda_identifier.root'] = entry.cda_identifier.root
+            end
+
+            if entry.cda_identifier.extension
+              query[section]['$elemMatch']['cda_identifier.extension'] = entry.cda_identifier.extension
             end
             
             exists = Record.where(query).first
