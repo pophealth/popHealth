@@ -21,6 +21,7 @@ class ActiveSupport::TestCase
     db['records'].drop
     db['patient_cache'].drop
     db['query_cache'].drop
+    db['bundles'].drop
   end
 
   def load_code_sets

@@ -11,8 +11,11 @@ class Bundle
   field :extensions, type: Array
 
   def license
-    read_attribute(:license)
-      .gsub(/\\("|')/,'\1') # Remove \ characters from in front of ' or " in the bundle.
-      .gsub(/\\n|",$/,' ') # Remove \n from printing out and get rid of ", at end of bundle, replace with space.
+    license = read_attribute(:license)
+    unless license.nil?
+      license
+        .gsub(/\\("|')/,'\1') # Remove \ characters from in front of ' or " in the bundle.
+        .gsub(/\\n|",$/,' ') # Remove \n from printing out and get rid of ", at end of bundle, replace with space.
+    end
   end
 end
