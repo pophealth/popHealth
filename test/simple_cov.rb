@@ -1,4 +1,5 @@
 require 'simplecov'
+require 'simplecov-cobertura'
 SimpleCov.start 'rails'
 
 class SimpleCov::Formatter::QualityFormatter
@@ -10,4 +11,6 @@ class SimpleCov::Formatter::QualityFormatter
   end
 end
 
-SimpleCov.formatter = SimpleCov::Formatter::QualityFormatter
+SimpleCov.formatters = [
+  SimpleCov::Formatter::QualityFormatter,
+  SimpleCov::Formatter::CoberturaFormatter]

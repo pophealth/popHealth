@@ -128,6 +128,7 @@ GEM
     json (1.8.3)
     kgio (2.10.0)
     libv8 (3.16.14.13)
+    libxml-ruby (2.8.0)
     log4r (1.1.10)
     macaddr (1.7.1)
       systemu (~> 2.6.2)
@@ -217,6 +218,9 @@ GEM
       docile (~> 1.1.0)
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
+    simplecov-cobertura (1.0.2)
+      libxml-ruby (~> 2.7)
+      simplecov (~> 0.8)
     simplecov-html (0.10.0)
     slop (3.6.0)
     spreadsheet (1.0.3)
@@ -305,6 +309,7 @@ DEPENDENCIES
   rubyzip
   sass-rails (~> 4.0.2)
   simplecov
+  simplecov-cobertura
   spreadsheet (= 1.0.3)
   sshkit
   therubyracer (~> 0.12.0)
@@ -313,6 +318,3 @@ DEPENDENCIES
   uglifier
   unicorn
   will_paginate
-
-BUNDLED WITH
-   1.10.6

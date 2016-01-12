@@ -53,6 +53,7 @@ group :test, :develop, :ci do
   gem 'jasmine', '2.0.1'
   gem 'turn', :require => false
   gem 'simplecov', :require => false
+  gem 'simplecov-cobertura', :require => false
   gem 'mocha', :require => false
   gem "unicorn", :platforms => [:ruby, :jruby]
   gem 'minitest', "~> 5.3"
