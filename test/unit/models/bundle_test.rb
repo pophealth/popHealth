@@ -8,10 +8,10 @@ class BundleTest < ActiveSupport::TestCase
   end
 
   test "should format license text if set" do
-    bundle = Bundle.first
+    bundle = Bundle.find_by(title: "No License")
     assert_nil bundle.license
 
-    bundle = Bundle.last
+    bundle = Bundle.find_by(title: "With License")
     assert_equal "Test license with \"text\" and \ndifferent newlines", bundle.license
   end
   
