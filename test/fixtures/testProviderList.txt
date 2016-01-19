@@ -1,0 +1,70 @@
+[
+  {
+    "type": "organization",
+    "name": "Test",
+    "organization": "Root",
+    "address": "123 Main Street"
+  },
+  {
+    "type": "organization",
+    "name": "Example Health Center",
+    "organization": "Test",
+    "address": "2345 Main Street"
+  },
+  {
+    "type": "organization",
+    "name": "Test Family Medicine Clinic",
+    "organization": "Test",
+    "address": "1234 Main Street"
+  },
+  {
+    "family_name": "Doctor",
+    "given_name": "A",
+    "cda_identifiers": [
+      {
+        "extension": "1234567897",
+        "root": "2.16.840.1.113883.4.6"
+      }
+    ],
+    "level": null,
+    "organization": {
+      "name": "Test Family Medicine Clinic"
+    },
+    "phone": "15555555558",
+    "specialty": "200000000X",
+    "title": "Dr."
+  },
+  {
+    "family_name": "Doctor",
+    "given_name": "B",
+    "cda_identifiers": [
+      {
+        "extension": "1234567905",
+        "root": "2.16.840.1.113883.4.6"
+      }
+    ],
+    "level": null,
+    "organization": {
+      "name": "Test Family Medicine Clinic"
+    },
+    "phone": "15555555559",
+    "title": "Dr."
+  },
+  {
+    "family_name": "Doctor",
+    "given_name": "C",
+    "cda_identifiers": [
+      {
+        "extension": "1234567913",
+        "root": "2.16.840.1.113883.4.6"
+      }
+    ],
+    "level": null,
+    "organization": {
+      "name": "Example Health Center"
+    },
+    "phone": "15555555559",
+    "specialty": "200000000X",
+    "title": "Dr."
+  }
+]
