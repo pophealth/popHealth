@@ -1,0 +1,20 @@
+{
+    "title" : "With License",
+    "measure_period_start" : null,
+    "effective_date" : 1451174400,
+    "active" : true,
+    "bundle_format" : "3.0.0",
+    "smoking_gun_capable" : true,
+    "version" : "1.0",
+    "hqmfjs_libraries_version" : "2.0.0",
+    "license" : "Test license with \"text\"\\nand \ndifferent newlines",
+    "measures" : [],
+    "patients" : [],
+    "exported" : "2015-11-09",
+    "extensions" : [ 
+        "map_reduce_utils", 
+        "hqmf_utils"
+    ],
+    "updated_at" : "2015-11-10T19:04:30.472Z",
+    "created_at" : "2015-11-10T19:04:30.472Z"
+}
