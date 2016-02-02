@@ -1,7 +1,7 @@
 <div class="practices">
   <h1>Practices</h1>
   <br/>  
-	<%= render 'new_practice' %>
+  <%= render 'edit_practice' %>
 	<br />
 	<h4> Current Practices </h4>
 	<table class="table">
@@ -16,6 +16,7 @@
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
   <% @practices.each do |practice| %>
@@ -27,6 +28,7 @@
         <td><%= practice.users ? practice.users.map {|u| u.username}.join(", ") : 'N/A' %></td>                
         <td><%= practice.records ? practice.records.count : 0 %></td>
         <td><%= practice.provider ? practice.provider.descendants.count : 'N/A'%></td>
+        <td><%= link_to "Edit Practice", practice_path(practice.id), :class => "btn btn-primary" %></td>
         <td><%= link_to "Delete Providers", practices_remove_providers_path(id: practice.id), method: :delete, data: { confirm: 'Are you sure you want to delete all providers for ' + "#{practice.name}?"} %></td>
         <td><%= link_to "Delete Patients", practices_remove_patients_path(id: practice.id), method: :delete, data: { confirm: 'Are you sure you want to delete all patients for ' + "#{practice.name}?"} %></td>
         <td><%= link_to 'Delete Practice', practice, method: :delete, data: { confirm: 'Are you sure? There may be patients tied to this practice' } %></td>
