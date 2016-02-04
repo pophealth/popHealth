@@ -111,9 +111,9 @@ class AdminController < ApplicationController
     if user
       user.update_attribute(:disabled, disabled)
       if (disabled)
-        render :text => "<a href=\"#\" class=\"disable\" data-username=\"#{user.username}\">disabled</span>"
+        render :text => "<a href=\"#\" class=\"disable\" data-username=\"#{CGI::escapeHTML(user.username)}\">disabled</span>"
       else
-        render :text => "<a href=\"#\" class=\"enable\" data-username=\"#{user.username}\">enabled</span>"
+        render :text => "<a href=\"#\" class=\"enable\" data-username=\"#{CGI::escapeHTML(user.username)}\">enabled</span>"
       end
     else
       render :text => "User not found"
@@ -156,10 +156,10 @@ class AdminController < ApplicationController
     if user
       if direction == :promote
         user.update_attribute(role, true)
-        render :text => "Yes - <a href=\"#\" class=\"demote\" data-role=\"#{role}\" data-username=\"#{username}\">revoke</a>"
+        render :text => "Yes - <a href=\"#\" class=\"demote\" data-role=\"#{role}\" data-username=\"#{CGI::escapeHTML(username)}\">revoke</a>"
       else
         user.update_attribute(role, false)
-        render :text => "No - <a href=\"#\" class=\"promote\" data-role=\"#{role}\" data-username=\"#{username}\">grant</a>"
+        render :text => "No - <a href=\"#\" class=\"promote\" data-role=\"#{role}\" data-username=\"#{CGI::escapeHTML(username)}\">grant</a>"
       end
     else
       render :text => "User not found"

@@ -23,7 +23,7 @@ module Api
         get :index
         assert_response :success
         json = JSON.parse(response.body)
-        assert_equal 10, json.count
+        assert_equal 11, json.count
       end
 
       test "promote user to admin" do
