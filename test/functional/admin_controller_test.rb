@@ -15,6 +15,7 @@ class AdminControllerTest < ActionController::TestCase
     @unapproved_user = User.where({email: 'unapproved@test.com'}).first
 
     @admin2 = User.where({email: 'admin2@test.com'}).first
+    @html_user = User.where({email: 'htmluser@test.com'}).first
 
     @user_ids = [] << @user.id
 
@@ -54,6 +55,17 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "promote/demote user escape HTML username in response" do
+    sign_in @admin
+    post :promote, username: @html_user.username, role: 'admin'
+    assert_response :success
+    assert_escaped_html_username @response.body, @html_user.username
+
+    post :demote, username: @html_user.username, role: 'admin'
+    assert_response :success
+    assert_escaped_html_username @response.body, @html_user.username
+  end
+
   test "should not be able to promote if not admin" do
     sign_in @user
     assert !@user.admin?
@@ -78,6 +90,13 @@ class AdminControllerTest < ActionController::TestCase
     @user2.reload
     assert @user2.disabled
     assert_response :success
+  end
+
+  test "disable user escapes HTML username in response" do
+    sign_in @admin
+    post :disable, username: @html_user.username, disabled: 1
+    assert_response :success
+    assert_escaped_html_username @response.body, @html_user.username
   end
 
   test "enable user should mark the user enabled" do
@@ -176,4 +195,8 @@ class AdminControllerTest < ActionController::TestCase
     assert_response 403
   end
 
+  def assert_escaped_html_username body, value
+    assert_not_includes body, value
+    assert_includes body, CGI::escapeHTML(value)
+  end
 end
