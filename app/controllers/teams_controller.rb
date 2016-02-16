@@ -1,4 +1,8 @@
 class TeamsController < ApplicationController
+
+  before_filter :authenticate_user!
+  before_filter :validate_authorization!
+
   before_action :set_team, only: [:show, :edit, :update, :destroy]
   authorize_resource
   # GET /teams
