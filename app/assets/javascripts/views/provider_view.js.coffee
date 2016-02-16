@@ -4,7 +4,10 @@ class Thorax.Views.ProviderView extends Thorax.View
     @dashboardView = new Thorax.Views.Dashboard provider_id: @model.id, collection: new Thorax.Collections.Categories PopHealth.categories, parse: true, datesobj: 
       effectiveDate: PopHealth.currentUser.get 'effective_date'
       effectiveStartDate: PopHealth.currentUser.get 'effective_start_date'
-    if PopHealth.currentUser.shouldDisplayProviderTree() then @providerChart = PopHealth.viz.providerChart()
+    if PopHealth.currentUser.shouldDisplayProviderTree() 
+      @providerChart = PopHealth.viz.providerChart()
+    else
+      @providerChart = null    
     @startDate = PopHealth.currentUser.effectiveDateString(false)
   context: ->
     _(super).extend
@@ -15,7 +18,7 @@ class Thorax.Views.ProviderView extends Thorax.View
   events:
     'click .effective-date-btn' : 'setEffectiveDate'
     rendered: ->
-      if @model.isPopulated()
+      if @model.isPopulated() and @providerChart != null
         d3.select(@el).select("#providerChart").datum(@model.toJSON()).call(@providerChart)
         @$('.node').popover()
     model:
