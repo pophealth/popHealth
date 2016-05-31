@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    render "public/403", :format=>"html", :status=> 403, :alert => exception.message
+    render :file => "public/403", :format=>"html", :status=> 403, :alert => exception.message
   end
 
   def set_effective_date(effective_date=nil, persist=false)
