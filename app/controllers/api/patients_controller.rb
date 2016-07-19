@@ -35,7 +35,7 @@ module Api
     def index
       records = Record.where(@query)
       validate_record_authorizations(records)
-      respond_with  paginate(api_patients_url,records)
+      render json: paginate(api_patients_url,records)
     end
 
     api :GET, "/patients/:id[?include_results=:include_results]", "Retrieve an individual patient"
