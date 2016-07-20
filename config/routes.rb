@@ -26,15 +26,17 @@ PopHealth::Application.routes.draw do
   post 'admin/set_user_practice_provider'
   post "teams/:id/update", :to => 'teams#update'
   post "teams/create"
-  post "teams/create_default" 
+  post "teams/create_default"
   get 'home/check_authorization'
   delete "practices/remove_patients"
   delete "practices/remove_providers"
-   
+
+  put 'admin/patient', :to => 'admin/patients#upload_single_patient'
+
   root :to => 'home#index'
 
-  resources :practices 
-  
+  resources :practices
+
   resources :providers do
     resources :patients do
       collection do
@@ -59,7 +61,7 @@ PopHealth::Application.routes.draw do
     get 'reports/measures_spreadsheet', :to =>'reports#measures_spreadsheet'
     get 'teams/team_providers/:id', :to => 'teams#team_providers'
     get 'reports/team_report', :to => 'reports#team_report'
-    
+
     resources :practices
     resources :teams
     namespace :admin do
