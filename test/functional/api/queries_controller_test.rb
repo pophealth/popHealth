@@ -54,6 +54,30 @@ module Api
       end
     end
 
+    def set_aggregate_options user_show_agg, use_opml
+      APP_CONFIG['use_opml_structure'] = use_opml
+      @admin.preferences.show_aggregate_result = user_show_agg
+      @admin.save!
+    end
+
+    test "show aggregate" do
+      original_show_agg_result = @admin.preferences.show_aggregate_result
+      original_use_opml = APP_CONFIG['use_opml_structure']
+      begin
+        sign_in @admin
+        set_aggregate_options true, false
+        qr = QME::QualityReport.where({_id: "523c57e4949d9dd06956b624"}).first
+        qr.filters["providers"] = [Provider.root._id.to_s]
+        qr.save!
+
+        get :show, :id =>"523c57e4949d9dd06956b624"
+
+        qr = QME::QualityReport.where({_id: "523c57e4949d9dd06956b624"}).first
+        assert_equal 50, qr.aggregate_result
+      ensure
+        set_aggregate_options original_show_agg_result, original_use_opml
+      end
+    end
 
 
     test "show admin" do
