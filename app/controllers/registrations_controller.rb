@@ -7,7 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
     skip_before_filter :require_no_authentication
   end
 
-  skip_before_filter :verify_authenticity_token, :only => :create, :update
+  skip_before_filter :verify_authenticity_token, :only => :create
 
   # Need bundle info to display the license information
   def new
