@@ -12,7 +12,22 @@ class RegistrationsController < Devise::RegistrationsController
   # Need bundle info to display the license information
   def new
     @bundles = Bundle.all() || []
-    super
+    respond_to do |format|  
+      format.html { 
+        puts "User format is HTML"
+        super 
+      }
+      format.json {
+        puts "User format is JSON"
+        build_resource
+        if resource.save
+           render :status => 200, :json => resource
+        else
+          render :json => resource.errors, :status => :unprocessable_entity
+        end
+      }
+    end
+    #super
   end
 
   def create
