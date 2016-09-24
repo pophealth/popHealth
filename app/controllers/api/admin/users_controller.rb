@@ -66,6 +66,12 @@ module Api
         update_user(params[:id], :npi, params[:npi], "updated")
       end
 
+      api :POST, "/api/admin/users"
+      def create
+        @user = User.create(user_params)
+        render :status => 200, :json => @user
+      end
+
       private
 
       def toggle_enable_disable(user_id, enable)
