@@ -7,6 +7,8 @@ class RegistrationsController < Devise::RegistrationsController
     skip_before_filter :require_no_authentication
   end
 
+  skip_before_filter :verify_authenticity_token, :only => :create, :update
+
   # Need bundle info to display the license information
   def new
     @bundles = Bundle.all() || []
@@ -15,7 +17,21 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     @bundles = Bundle.all() || []
-    super
+    respond_to do |format|  
+    
+    format.html { 
+      super 
+    }
+    format.json {
+      build_resource
+      if resource.save
+         render :status => 200, :json => resource
+      else
+        render :json => resource.errors, :status => :unprocessable_entity
+      end
+    }
+
+    #super
   end
 
   # modified to avoid redirecting if responding via JSON
