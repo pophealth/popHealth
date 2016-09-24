@@ -11,6 +11,7 @@ module Api
       respond_to :json
       before_filter :authenticate_user!
       before_filter :validate_authorization!
+      skip_before_filter :verify_authenticity_token, :only => :create
 
       def_param_group :pagination do
         param :page, /\d+/
