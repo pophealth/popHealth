@@ -84,8 +84,7 @@ module Api
         #  puts request
         #  render :status => 406, :json => {:message => "The request must be json.  Your format was: " + request.format}
         #else
-          registry = new Registration
-          registry.create(request)
+          Registration.create(request)
         #end
         #@user = User.create(params[:user])
         #if user.save
