@@ -1,7 +1,7 @@
 
 <div class="login">
   <header>
-      <%= image_tag "measures_welcome.png", :id => 'imgLogo', :title => 'CGM welcomes you!', :alt => 'CGM Measures logo' %>
+      <%= image_tag "cgm_measures.svg", :id => 'imgLogo', :title => 'CGM welcomes you!', :alt => 'CGM Measures logo', :class => 'cgm-measures' %>
     <%= content_tag(:div, flash[:error], id: "flash_error", class: "alert alert-error") if flash[:error] %>
     <%= content_tag(:div, flash[:notice], id: "flash_notice", class: "alert alert-info") if flash[:notice] %>
     <%= content_tag(:div, flash[:alert], id: "flash_alert", class: "alert alert-warning") if flash[:alert] %>
