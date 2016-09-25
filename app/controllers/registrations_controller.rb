@@ -17,7 +17,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     if (request.content_type =~ /json/)
-      build_resource
+      build_resource sign_up_params
       if resource.save
          render :status => 200, :json => resource
       else
