@@ -1,6 +1,17 @@
 module Api
   module Admin
     class UsersController < ApplicationController
+
+      class Registration < Devise::RegistrationsController
+        def create
+          build_resource
+          #if resource.save
+            render :status => 200, :json => resource
+          #else
+          #  render :json => resource.errors, :status => :unprocessable_entity
+          #end
+        end
+      end
       resource_description do
         resource_id 'Admin::Users'
         short 'Users Admin'
@@ -67,10 +78,21 @@ module Api
         update_user(params[:id], :npi, params[:npi], "updated")
       end
 
-      api :POST, "/api/admin/users"
+      api :POST, "/admin/users"
       def create
-        @user = User.create(user_params)
-        render :status => 200, :json => @user
+        if request.format != :json
+          render :status => 406, :json => {:message => "The request must be json"}
+        else
+          registry = new Registration
+          registry.create(request)
+        end
+        #@user = User.create(params[:user])
+        #if user.save
+        #  render :json => @user, :status=>201
+        #  return
+        #else
+        #  render :json => @user.errors, :status=>422
+        #end
       end
 
       private
