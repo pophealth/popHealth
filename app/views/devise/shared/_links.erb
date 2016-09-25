@@ -8,17 +8,6 @@
     </p>
   <% end -%>
 
-  <!--
-  <%- #if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <p>
-      <%= #link_to new_registration_path(resource_name) do %>
-        <i class="fa fa-plus-circle"></i>
-        register
-      <% #end %>
-    </p>
-  <% #end -%>
-  -->
-
   <%- if controller_name != 'sessions' %>
     <p>
       <%= link_to new_session_path(resource_name) do %>
