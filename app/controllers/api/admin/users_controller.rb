@@ -80,13 +80,13 @@ module Api
 
       api :POST, "/admin/users"
       def create
-        if request.format != :json
-          puts request
-          render :status => 406, :json => {:message => "The request must be json.  Your format was: " + request.format}
-        else
+        #if request.format != :json
+        #  puts request
+        #  render :status => 406, :json => {:message => "The request must be json.  Your format was: " + request.format}
+        #else
           registry = new Registration
           registry.create(request)
-        end
+        #end
         #@user = User.create(params[:user])
         #if user.save
         #  render :json => @user, :status=>201
