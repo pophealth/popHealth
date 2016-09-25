@@ -14,14 +14,14 @@ class RegistrationsController < Devise::RegistrationsController
     @bundles = Bundle.all() || []
     respond_to do |format|  
       format.html { 
-        puts "User format is HTML"
-        super 
+        puts "User format is HTML - NEW"
+        #super 
       }
       format.json {
-        puts "User format is JSON"
-        build_resource
+        puts "User format is JSON - NEW"
+        #build_resource
         if resource.save
-           render :status => 200, :json => resource
+          render :status => 200, :json => resource
         else
           render :json => resource.errors, :status => :unprocessable_entity
         end
@@ -34,12 +34,12 @@ class RegistrationsController < Devise::RegistrationsController
     @bundles = Bundle.all() || []
     respond_to do |format|  
       format.html { 
-        puts "User format is HTML"
-        super 
+        puts "User format is HTML - Create"
+        #super 
       }
       format.json {
-        puts "User format is JSON"
-        build_resource
+        puts "User format is JSON - Create"
+        #build_resource
         if resource.save
            render :status => 200, :json => resource
         else
