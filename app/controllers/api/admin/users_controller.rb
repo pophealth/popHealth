@@ -6,7 +6,7 @@ module Api
         def create(request)
           #build_resource
           #if resource.save
-          render :status => 200, :json => rrequest.content_type
+          render :status => 200, :json => request.content_type
           #else
           #  render :json => resource.errors, :status => :unprocessable_entity
           #end
