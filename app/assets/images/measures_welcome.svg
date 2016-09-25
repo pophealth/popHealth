@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="157" viewBox="0 0 440 157">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 54px;
+        fill: #616161;
+        font-family: "Handel Gothic D";
+      }
+
+      .cls-2 {
+        fill: #036;
+      }
+    </style>
+  </defs>
+  <text id="CGM_MEASURES" data-name="CGM MEASURES" class="cls-1" x="-0.492" y="98.73">CGM<tspan class="cls-2"> MEASURES</tspan></text>
+</svg>

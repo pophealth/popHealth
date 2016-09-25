@@ -16,6 +16,7 @@ module Api
     authorize_resource
     respond_to :json
     before_filter :authenticate_user!
+    skip_before_filter :verify_authenticity_token, :only => :create
 
     api :GET, "/providers", "Get a list of providers. Returns all providers that the user has access to."
     param_group :pagination, Api::PatientsController
