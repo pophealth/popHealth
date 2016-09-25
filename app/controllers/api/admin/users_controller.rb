@@ -2,16 +2,6 @@ module Api
   module Admin
     class UsersController < ApplicationController
 
-      class Registration < Devise::RegistrationsController
-        def create(request)
-          #build_resource
-          #if resource.save
-          render :status => 200, :json => request.content_type
-          #else
-          #  render :json => resource.errors, :status => :unprocessable_entity
-          #end
-        end
-      end
       resource_description do
         resource_id 'Admin::Users'
         short 'Users Admin'
@@ -76,23 +66,6 @@ module Api
       param :npi, String, :desc => 'The new NPI to assign the user to.', :required => true
       def update_npi
         update_user(params[:id], :npi, params[:npi], "updated")
-      end
-
-      api :POST, "/admin/users"
-      def create
-        #if request.format != :json
-        #  puts request
-        #  render :status => 406, :json => {:message => "The request must be json.  Your format was: " + request.format}
-        #else
-          Registration.new.create(request)
-        #end
-        #@user = User.create(params[:user])
-        #if user.save
-        #  render :json => @user, :status=>201
-        #  return
-        #else
-        #  render :json => @user.errors, :status=>422
-        #end
       end
 
       private

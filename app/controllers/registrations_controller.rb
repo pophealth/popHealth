@@ -16,25 +16,17 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    #@bundles = Bundle.all() || []
-    puts "Request Format = "
-    puts request.format
-    respond_to do |format|  
-      format.html { 
-        puts "User format is HTML - Create"
-        #super 
-      }
-      format.json {
-        puts "User format is JSON - Create"
-        #build_resource
-        if resource.save
-           render :status => 200, :json => resource
-        else
-          render :json => resource.errors, :status => :unprocessable_entity
-        end
-      }
+    if (request.content_type =~ /json/)
+      build_resource
+      if resource.save
+         render :status => 200, :json => resource
+      else
+        render :json => resource.errors, :status => :unprocessable_entity
+      end
+    else 
+      @bundles = Bundle.all() || []
+      super
     end
-    #super
   end
 
   # modified to avoid redirecting if responding via JSON
