@@ -3,7 +3,7 @@ module Api
     class UsersController < ApplicationController
 
       class Registration < Devise::RegistrationsController
-        def create
+        def create(request)
           build_resource
           #if resource.save
             render :status => 200, :json => resource
