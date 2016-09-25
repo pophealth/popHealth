@@ -25,7 +25,7 @@ class RegistrationsController < Devise::RegistrationsController
       end
     else 
       @bundles = Bundle.all() || []
-      #super
+      super
     end
   end
 
