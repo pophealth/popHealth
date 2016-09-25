@@ -31,7 +31,7 @@ PopHealth::Application.routes.draw do
   delete "practices/remove_patients"
   delete "practices/remove_providers"
 
-  post "admin/providers" :to => 'admin/providers#create'
+  post "admin/providers", :to => 'admin/providers#create'
   put 'admin/patient', :to => 'admin/patients#upload_single_patient'
 
   root :to => 'home#index'
