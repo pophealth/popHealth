@@ -4,9 +4,9 @@ module Api
 
       class Registration < Devise::RegistrationsController
         def create(request)
-          build_resource
+          #build_resource
           #if resource.save
-            render :status => 200, :json => resource
+          render :status => 200, :json => rrequest.content_type
           #else
           #  render :json => resource.errors, :status => :unprocessable_entity
           #end
