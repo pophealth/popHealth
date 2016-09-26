@@ -34,11 +34,8 @@ PopHealth::Application.routes.draw do
   post "admin/providers", :to => 'admin/providers#create'
   put 'admin/patient', :to => 'admin/patients#upload_single_patient'
 
-  devise_scope :user do
-    post "user/sso", :to => "cgmsessions#create"
-  end
-
-  resources :cgmsessions
+  post "user/sso", :to => "sessions#check_auth"
+  resources :sessions
 
   root :to => 'home#index'
 
