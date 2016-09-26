@@ -35,8 +35,7 @@ PopHealth::Application.routes.draw do
   put 'admin/patient', :to => 'admin/patients#upload_single_patient'
 
   devise_scope :user do
-    post "cgmsession/create", :to => "cgmsessions#create"
-    get "cgmsession/destroy", :to => "cgmsessions#destroy"
+    post "user/sso", :to => "cgmsessions#create"
   end
 
   root :to => 'home#index'
