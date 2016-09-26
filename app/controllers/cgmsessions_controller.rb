@@ -1,5 +1,6 @@
-class CgmsessionsController < Devise::SessionsController
-  
+class CgmsessionsController
+  include Devise::Controllers::Helpers
+
   before_filter :ensure_params_exist
   skip_before_filter :verify_authenticity_token
 
@@ -14,9 +15,8 @@ class CgmsessionsController < Devise::SessionsController
     logger.debug "Provider ID: " + providerId
 
     if (providerId) 
-      store_location_for(resource, "/#providers/" + providerId) 
-
       resource = User.find_for_database_authentication(:login=>params[:username])
+      store_location_for(resource, "/#providers/" + providerId) 
       return invalid_login_attempt unless resource
 
       if resource.valid_password?(params[:password])
