@@ -3,6 +3,7 @@ module Api
   class SessionsController < ApplicationController
 
     #before_filter :check_auth
+    before_filter :authenticate_user!
     skip_before_filter :verify_authenticity_token
 
     respond_to :json
@@ -16,7 +17,7 @@ module Api
         if resource.valid_password?(password)
           sign_in :user, resource
           if (providerId) 
-            authorize! redirect_to "/#providers/" + providerId
+            redirect_to "/#providers/" + providerId
           else
             render :json=>{:success=>false, :message=>"User is missing provider id"}, :status=>422
           end
