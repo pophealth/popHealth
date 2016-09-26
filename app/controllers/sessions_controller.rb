@@ -1,5 +1,4 @@
-class SessionsController
-  include Devise::Controllers::InternalHelpers
+class SessionsController < DeviseController
   
   before_filter :ensure_params_exist
 
