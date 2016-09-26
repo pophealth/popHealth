@@ -1,4 +1,5 @@
-module api
+module Api
+  
   class SessionsController < ApplicationController
 
     #before_filter :check_auth
