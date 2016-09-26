@@ -1,4 +1,4 @@
-class CgmsessionsController
+class CgmsessionsController < DeviseController
   include Devise::Controllers::Helpers
 
   before_filter :ensure_params_exist
