@@ -37,7 +37,6 @@ PopHealth::Application.routes.draw do
     post "session/create", :to => "devise/sessions#new"
     get "session/destroy", :to => "devise/sessions#destroy"
   end
-end
 
   root :to => 'home#index'
 
