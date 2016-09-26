@@ -62,13 +62,10 @@ PopHealth::Application.routes.draw do
     get 'reports/measures_spreadsheet', :to =>'reports#measures_spreadsheet'
     get 'teams/team_providers/:id', :to => 'teams#team_providers'
     get 'reports/team_report', :to => 'reports#team_report'
+    post 'session/sso', :to => 'sessions#check_auth'
 
-    resources :sessions do
-      member do
-        post :check_auth
-      end
-    end
-    
+    resources :sessions
+
     resources :practices
     resources :teams
     namespace :admin do
