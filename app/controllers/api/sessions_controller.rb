@@ -17,7 +17,7 @@ module Api
           sign_in :user, resource
 
           if (providerId) 
-            store_location_for(resource, "/#providers/" + providerId) 
+            redirect_to "/#providers/" + providerId
           else
             render :json=>{:success=>false, :message=>"User is missing provider id"}, :status=>422
           end
