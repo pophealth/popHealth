@@ -11,6 +11,8 @@ class SessionsController < DeviseController
     userDetails= User.find_by_login(:login=>params[:user_login][:login])
     providerId = userDetails.provider_id
 
+    logger.debug "Provider ID: " + providerId
+
     if (providerId) 
       store_location_for(resource, "/#providers/" + providerId) 
 
