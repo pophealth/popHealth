@@ -3,7 +3,7 @@ module Api
   class SessionsController < ApplicationController
 
     #before_filter :check_auth
-    before_filter  :authorize_resource
+    skip_authorization_check
     skip_before_filter :verify_authenticity_token
 
     respond_to :json
