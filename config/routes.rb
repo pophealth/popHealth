@@ -38,6 +38,8 @@ PopHealth::Application.routes.draw do
     post "user/sso", :to => "cgmsessions#create"
   end
 
+  resources :cgmsessions
+
   root :to => 'home#index'
 
   resources :practices
