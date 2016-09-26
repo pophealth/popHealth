@@ -10,6 +10,7 @@ module Api
     def check_auth
       authenticate_or_request_with_http_basic do |username,password|
         resource = User.by_username(username)
+        providerId = resource.provider_id
         return invalid_login_attempt unless resource
 
         if resource.valid_password?(password)
