@@ -1,4 +1,4 @@
-class CgmsessionsController < DeviseController
+class CgmsessionsController < Devise::SessionsController
   
   before_filter :ensure_params_exist
   skip_before_filter :verify_authenticity_token
