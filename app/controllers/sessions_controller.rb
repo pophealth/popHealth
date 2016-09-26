@@ -6,7 +6,6 @@ class SessionsController < DeviseController
   respond_to :json
   
   def create
-    @request.env["devise.mapping"] = Devise.mappings[:session]
     build_resource
 
     userDetails= User.find_by_login(:login=>params[:user_login][:login])
@@ -15,10 +14,10 @@ class SessionsController < DeviseController
     if (providerId) 
       store_location_for(resource, "/#providers/" + providerId) 
 
-      resource = User.find_for_database_authentication(:login=>params[:user_login][:login])
+      resource = User.find_for_database_authentication(:login=>params[:username])
       return invalid_login_attempt unless resource
 
-      if resource.valid_password?(params[:user_login][:password])
+      if resource.valid_password?(params[:password])
         sign_in("user", resource)  
       end
       invalid_login_attempt
@@ -34,7 +33,7 @@ class SessionsController < DeviseController
 
   protected
   def ensure_params_exist
-    return unless params[:user_login].blank?
+    return unless params[:username].blank?
     render :json=>{:success=>false, :message=>"missing user_login parameter"}, :status=>422
   end
 
