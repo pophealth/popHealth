@@ -34,9 +34,6 @@ PopHealth::Application.routes.draw do
   post "admin/providers", :to => 'admin/providers#create'
   put 'admin/patient', :to => 'admin/patients#upload_single_patient'
 
-  post "user/sso", :to => "sessions#check_auth"
-  resources :sessions
-
   root :to => 'home#index'
 
   resources :practices
@@ -66,6 +63,12 @@ PopHealth::Application.routes.draw do
     get 'teams/team_providers/:id', :to => 'teams#team_providers'
     get 'reports/team_report', :to => 'reports#team_report'
 
+    resources :sessions do
+      member do
+        post :check_auth
+      end
+    end
+    
     resources :practices
     resources :teams
     namespace :admin do
