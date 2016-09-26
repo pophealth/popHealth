@@ -33,9 +33,10 @@ PopHealth::Application.routes.draw do
 
   post "admin/providers", :to => 'admin/providers#create'
   put 'admin/patient', :to => 'admin/patients#upload_single_patient'
+  
   devise_scope :user do
-    post "session/create", :to => "devise/sessions#new"
-    get "session/destroy", :to => "devise/sessions#destroy"
+    post "session/create", :to => "sessions#new"
+    get "session/destroy", :to => "sessions#destroy"
   end
 
   root :to => 'home#index'
