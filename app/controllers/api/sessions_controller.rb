@@ -15,9 +15,9 @@ module Api
 
         if resource.valid_password?(password)
           sign_in :user, resource
-
+          authorize_resource
           if (providerId) 
-            redirect_to "/#providers/" + providerId
+            authorize! redirect_to "/#providers/" + providerId
           else
             render :json=>{:success=>false, :message=>"User is missing provider id"}, :status=>422
           end
