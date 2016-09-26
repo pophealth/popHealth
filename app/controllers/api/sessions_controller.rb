@@ -15,7 +15,6 @@ module Api
 
         if resource.valid_password?(password)
           sign_in :user, resource
-          authorize_resource
           if (providerId) 
             authorize! redirect_to "/#providers/" + providerId
           else
