@@ -5,6 +5,7 @@ class SessionsController < DeviseController
   respond_to :json
   
   def create
+    @request.env["devise.mapping"] = Devise.mappings[:session]
     build_resource
 
     userDetails= User.find_by_login(:login=>params[:user_login][:login])
