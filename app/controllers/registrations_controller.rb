@@ -76,7 +76,11 @@ class RegistrationsController < Devise::RegistrationsController
     authorize! :manage, resource
   end
 
+  def sign_up_params
+    params.require(:user).permit(:first_name, :last_name, :email, :username, :password, :password_confirmation, :company, :company_url, :provider_id, :practice_id, :registry_name, :registry_id, :npi, :tin, :agree_license, :approved, :staff_role)
+  end
+
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :username, :password, :password_confirmation, :company, :company_url, :provider_id, :practice_id,:registry_name, :registry_id, :npi, :tin, :agree_license, :approved) }
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :username, :password, :password_confirmation, :company, :company_url, :provider_id, :practice_id, :registry_name, :registry_id, :npi, :tin, :agree_license, :approved, :staff_role) }
   end
 end
