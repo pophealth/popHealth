@@ -23,7 +23,7 @@ class PatientCache
           "exclusions" => {"$sum" => "$value.exclusions"},
           "denexcep" => {"$sum" => "$value.denexcep"},
           "considered" => {"$sum" => 1}
-        }}
+        },allowDiskUse:true}
 
   REWIND = {'$group' => {"_id" => "$_id", "value" => {"$first" => "$value"}}}
 
