@@ -44,7 +44,11 @@ class PatientCache
       {"providers"=> BSON::ObjectId.from_string("50a64aa68898e5b4b2000003")},
       {"providers"=> BSON::ObjectId.from_string("50a55a8e8898e5d400000005")},
       {"providers"=> BSON::ObjectId.from_string("50a64aa68898e5b4b2000007")},
-      {"providers"=> BSON::ObjectId.from_string("50a64aa68898e5b4b2000009")}]}})
+      {"providers"=> BSON::ObjectId.from_string("50a64aa68898e5b4b2000009")}]
+    }
+  },allowDiskUse:true
+
+  )
   end
 
   def self.languages
