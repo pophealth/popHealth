@@ -62,6 +62,6 @@ class PatientCache
   end
 
   def self.aggregate(*pipeline)
-    Mongoid.default_session.command(aggregate: 'patient_cache', pipeline: pipeline)['result']
+    Mongoid.default_session.command(aggregate: 'patient_cache', pipeline: pipeline, allowDiskUse: true)['result']
   end
 end
