@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '~> 4.1.2'
-gem 'quality-measure-engine', '3.1.2'
+gem 'quality-measure-engine', :git=> "https://github.com/compugroup/quality-measure-engine.git"
 gem "hqmf2js", :git=> "https://github.com/projecttacoma/hqmf2js.git"
 gem 'health-data-standards', '3.6.1' #:git => "https://github.com/projectcypress/health-data-standards.git"#, '3.5.3'
 #gem 'health-data-standards', :path=> '../health-data-standards'
