@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  protect_from_forgery :with => :exception
   layout :layout_by_resource
-  before_filter :set_effective_date
   before_filter :check_ssl_used
 
   # lock it down!
@@ -29,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    render "public/403", :format=>"html", :status=> 403, :alert => exception.message
+    render :file => "public/403", :format=>"html", :status=> 403, :alert => exception.message
   end
 
   def set_effective_date(effective_date=nil, persist=false)
@@ -41,7 +40,17 @@ class ApplicationController < ActionController::Base
     else
       @effective_date = User::DEFAULT_EFFECTIVE_DATE.to_i
     end
-    @period_start = calc_start(@effective_date)
+
+    if (effective_start_date)
+      @effective_start_date = effective_start_date
+      current_user.update_attribute(:effective_start_date, effective_start_date) if persist
+    elsif current_user && current_user.effective_start_date
+      @effective_start_date = current_user.effective_start_date
+    else
+      @effective_start_date = User::DEFAULT_EFFECTIVE_DATE.to_i
+    end
+    
+    @period_start = @effective_start_date || calc_start(@effective_date)
   end
 
   def calc_start(date)

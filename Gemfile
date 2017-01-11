@@ -1,14 +1,15 @@
 source 'http://rubygems.org'
 
 gem 'rails', '~> 4.1.2'
-gem 'quality-measure-engine', '3.1.0'
-gem "hqmf2js", :git=> "https://github.com/pophealth/hqmf2js.git"
-gem 'health-data-standards', '3.5.0'
+gem 'quality-measure-engine', :git=> "https://github.com/compugroup/quality-measure-engine.git"
+gem "hqmf2js", :git=> "https://github.com/projecttacoma/hqmf2js.git"
+gem 'health-data-standards', '3.6.1' #:git => "https://github.com/projectcypress/health-data-standards.git"#, '3.5.3'
 #gem 'health-data-standards', :path=> '../health-data-standards'
 gem 'nokogiri'
 gem 'rubyzip'
+gem 'net-ssh', '2.9.1'
 gem 'hquery-patient-api', '1.0.4'
-
+gem 'spreadsheet', '1.0.3'
 gem 'sshkit'
 # Should be removed in the future. This is only used for the
 # admin log page. When the admin pages are switched to
@@ -41,14 +42,18 @@ gem 'bootstrap-sass', '~> 3.0.3'
 gem 'sass-rails', "~> 4.0.2"
 gem 'coffee-rails'
 gem 'jquery-rails' # necessary for jquery_ujs w/data-method="delete" etc
+gem 'bootstrap-datepicker-rails', '1.3.0.2'
 gem 'uglifier'
 gem 'non-stupid-digest-assets' # support vendored non-digest assets
+gem 'jquery-datatables-rails', '3.1.1'
+gem 'jquery-ui-rails'
 
 group :test, :develop, :ci do
   gem 'pry'
   gem 'jasmine', '2.0.1'
   gem 'turn', :require => false
   gem 'simplecov', :require => false
+  gem 'simplecov-cobertura', :require => false
   gem 'mocha', :require => false
   gem "unicorn", :platforms => [:ruby, :jruby]
   gem 'minitest', "~> 5.3"
@@ -63,4 +68,4 @@ group :production do
   gem 'therubyracer', '~> 0.12.0', :platforms => [:ruby, :jruby] # 10.8 mountain lion compatibility
 end
 
-gem 'handlebars_assets'
+gem 'handlebars_assets', '0.17.1'

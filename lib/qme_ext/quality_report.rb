@@ -2,8 +2,9 @@
 # OID dictionaries
 module QME
   class QualityReport
+    include Mongoid::Document
 
-
+    field :aggregate_result, type: Integer
 
     # Removes the cached results for the patient with the supplied id and
     # recalculates as necessary
@@ -23,9 +24,10 @@ module QME
         cached_results.each do |measure|
           # recalculate patient_cache value for modified patient
           value = measure['value']
-          measure_model = QME::QualityMeasure.new(value['measure_id'], value['sub_id'])
+          measure_model = QME::QualityMeasure.new(value['measure_id'], value['sub_id'], value['test_id'])
           oid_dictionary = OidHelper.generate_oid_dictionary(measure_model)
           map = QME::MapReduce::Executor.new(value['measure_id'], value['sub_id'],
+            'effective_start_date' => value['effective_start_date'],
             'effective_date' => value['effective_date'], 'test_id' => value['test_id'],
             'oid_dictionary' => oid_dictionary)
           map.map_record_into_measure_groups(id)
@@ -36,7 +38,7 @@ module QME
       # the modified patient
 
       QME::QualityReport.where({}).each do |qr|
-        measure_model = QME::QualityMeasure.new(qr['measure_id'], qr['sub_id'])
+        measure_model = QME::QualityMeasure.new(qr['measure_id'], qr['sub_id'], qr['test_id'])
         oid_dictionary = OidHelper.generate_oid_dictionary(measure_model)
         qr.calculate({"recalculate"=>true, "oid_dictionary" =>oid_dc},true)
       end

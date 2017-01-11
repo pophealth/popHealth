@@ -57,6 +57,35 @@ namespace :provider do
     puts "imported #{providers.count} providers"
   end
 
+  desc 'import practices and providers from a file containing a json array'
+  task :load_practices_and_providers, [:import_json] do |t, args|
+    if !args.import_json || args.import_json.size==0
+      raise "please specify a value for import_json"
+    end
+
+    records = JSON.parse(File.new(args.import_json).read)
+    records.each do |record_hash|
+      if record_hash.has_key?('type') && record_hash['type'] == 'organization'
+        save_practice_from_hash record_hash
+      else
+        provider = Provider.new(record_hash)
+        provider.save!
+
+        # If the parent wasn't set, but the organization is, we will associate the provider
+        # with the organization record.  This is going to assume the organization was already
+        # created/exists.
+        if (record_hash['parent_id'].nil? && !record_hash['organization'].nil?)
+          practice = Practice.where("name" => record_hash['organization']['name']).first
+          unless (practice.nil?)
+            provider.parent = practice.provider
+            provider.save!
+          end
+        end
+      end
+    end
+    puts "imported #{records.count} providers"
+  end
+
   desc 'Export CAT3 XML for Provider'
   task :export_cat3, :root, :extension, :effective_date, :measure_ids do |t, args|
     provider = nil;
@@ -68,8 +97,16 @@ namespace :provider do
     puts generate_cat3(provider, args.effective_date, (args.measure_ids||"all").split(" "))
 
   end
+end
 
 
-
-
+def save_practice_from_hash(record_hash)
+  practice = Practice.new({"name" => record_hash['name'], "organization" => record_hash['organization']})
+  identifier = CDAIdentifier.new(:root => "Organization", :extension => record_hash['organization'])
+  provider = Provider.new(:given_name => record_hash['name'])
+  provider.cda_identifiers << identifier
+  provider.parent = Provider.root
+  provider.save!
+  practice.provider = provider
+  practice.save!
 end

@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'highline/import'
+require_relative '../../contrib/measure_dates.rb'
 
 namespace :pophealth do
   task :setup => :environment
@@ -98,7 +99,7 @@ namespace :pophealth do
 
     puts "Downloading and saving #{@bundle_name} to #{measures_dir}"
     # Pull down the list of bundles and download the version we're looking for
-    bundle_uri = "http://demo.projectcypress.org/bundles/#{@bundle_name}"
+    bundle_uri = "https://cypressdemo.healthit.gov/measure_bundles/#{@bundle_name}"
     bundle = nil
 
     tries = 0
@@ -149,5 +150,29 @@ namespace :pophealth do
     puts "Importing bundle #{@bundle_name} delete_existing: #{de}  update_measures: #{um} type: #{ENV['type'] || 'ALL'}"
     task("bundle:import").invoke("bundles/#{@bundle_name}",de, um , ENV['type'])
   end
-end
 
+  desc 'Modify an existing bundle to support variable dates and then import it'
+  task :update_import, [:bundle_path,  :delete_existing,  :update_measures, :type, :create_indexes, :exclude_results] => :environment do |task, args|
+    puts "Modifying bundle #{args.bundle_path} to support variable date ranges"
+    modify_bundle_dates(args.bundle_path)
+    task("bundle:import").invoke(args.bundle_path, args.delete_existing, args.update_measures, args.type, args.create_indexes, args.exclude_results)
+  end
+
+  desc 'Automatically downloads bundle and modifies for variable dates. See download_bundle for params'
+  task :download_update_install => [:download_bundle] do
+    de = ENV['delete_existing'] || false
+    um = ENV['update_measures'] || false
+    puts "Modifying bundle #{@bundle_name} to support variable date ranges"
+    modify_bundle_dates("bundles/#{@bundle_name}")
+    task("bundle:import").invoke("bundles/#{@bundle_name}",de, um , ENV['type'])
+    task("pophealth:remove_artifacts").invoke
+  end
+
+  desc 'Removes Cypress artifacts of patient_cache, query_cache, and records'
+  task :remove_artifacts => :environment do 
+    puts "Cleaning out records and caches"
+    Record.delete_all
+    HealthDataStandards::CQM::QueryCache.delete_all
+    PatientCache.delete_all
+  end
+end

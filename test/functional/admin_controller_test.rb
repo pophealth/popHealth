@@ -15,6 +15,7 @@ class AdminControllerTest < ActionController::TestCase
     @unapproved_user = User.where({email: 'unapproved@test.com'}).first
 
     @admin2 = User.where({email: 'admin2@test.com'}).first
+    @html_user = User.where({email: 'htmluser@test.com'}).first
 
     @user_ids = [] << @user.id
 
@@ -54,6 +55,17 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "promote/demote user escape HTML username in response" do
+    sign_in @admin
+    post :promote, username: @html_user.username, role: 'admin'
+    assert_response :success
+    assert_escaped_html_username @response.body, @html_user.username
+
+    post :demote, username: @html_user.username, role: 'admin'
+    assert_response :success
+    assert_escaped_html_username @response.body, @html_user.username
+  end
+
   test "should not be able to promote if not admin" do
     sign_in @user
     assert !@user.admin?
@@ -78,6 +90,13 @@ class AdminControllerTest < ActionController::TestCase
     @user2.reload
     assert @user2.disabled
     assert_response :success
+  end
+
+  test "disable user escapes HTML username in response" do
+    sign_in @admin
+    post :disable, username: @html_user.username, disabled: 1
+    assert_response :success
+    assert_escaped_html_username @response.body, @html_user.username
   end
 
   test "enable user should mark the user enabled" do
@@ -148,4 +167,36 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "admin should be able to view user profile" do
+    sign_in @admin
+    get :user_profile, :id => @user.id
+    assert_response :success
+  end
+  
+  test "non admin should not be able to view user profile" do
+    sign_in @user
+    get :user_profile, :id => @user.id
+    assert_response 403
+  end
+  
+  test "admin should be able to delete user" do
+    sign_in @admin
+    assert_difference('User.count', -1) do
+      delete :delete_user, :id => @user.id
+    end
+    assert_redirected_to :action => :users
+  end
+
+  test "non admin should not be able to delete user" do
+    sign_in @user
+    assert_no_difference('User.count') do
+      delete :delete_user, :id => @user2.id
+    end
+    assert_response 403
+  end
+
+  def assert_escaped_html_username body, value
+    assert_not_includes body, value
+    assert_includes body, CGI::escapeHTML(value)
+  end
 end

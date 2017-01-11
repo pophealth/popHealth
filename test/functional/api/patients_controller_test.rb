@@ -6,17 +6,106 @@ require 'test_helper'
 
     setup do
       dump_database
-      collection_fixtures 'measures', 'patient_cache', 'records', 'users'
+      collection_fixtures 'measures', 'patient_cache', 'records', 'users', 'practices', 'providers'
       @user = User.where({email: 'admin@test.com'}).first
-      sign_in @user
+      
+      @practice1 = Practice.first
+      @practice2 = Practice.last
+      
+      @staff1 = User.where({email: 'noadmin@test.com'}).first   
+      @staff2 = User.where({email: 'noadmin2@test.com'}).first
+      
+      @staff1.practice = @practice1
+      @staff2.practice = @practice2
+      @staff1.save!
+      @staff2.save!
+      
+      #setup practice 1
+      @provider1 = Provider.where({given_name: "William"}).first
+      @pp1 = Provider.where('cda_identifiers.extension' => "Test Org").first
+      @practice1.provider = @pp1
+      @practice1.save!
+      
+      @provider1.parent = @pp1
+      @provider1.save!
+      
+      #setup practice 2
+      @provider2 = Provider.where({given_name: "Anthony"}).first
+      @pp2 = Provider.where('cda_identifiers.extension' => "Test Org 2").first 
+      @practice2.provider = @pp2
+      @practice2.save!
+      
+      @provider2.parent = @pp2
+      @provider2.save!
+      
+      @record1 = Record.first
+      @record1.practice = @practice1
+      @record1.provider_performances = [ProviderPerformance.new(provider: @provider1)]
+      @record1.save!
+      
+      @record2 = Record.last
+      @record2.practice = @practice2
+      @record2.provider_performances = [ProviderPerformance.new(provider: @provider2)]
+      @record2.save!     
+          
+      @npi_user = User.where(username: 'npiuser2').first
+      
+      @npi_provider = Provider.by_npi(@npi_user.npi).first
+      @npi_provider.parent = @practice2.provider
+      
+      @npi_user.provider_id = @npi_provider.id
+      @npi_provider.save!
+      @npi_user.save!
+
+      @record3 = Record.where(first: "David").first
+      @record3.practice = @practice2
+      @record3.provider_performances = [ProviderPerformance.new(provider: @npi_provider)]
+      @record3.save!     
+      @practice2.save!
+
+      
+      @npi_user2 = User.where(username: 'npiuser').first
+
     end
 
     test "view patient" do
+      sign_in @user
       get :show, id: '523c57e1b59a907ea9000064'
       assert_response :success
     end
 
+    test "can view patient in practice" do
+      sign_in @staff1
+      get :show, id: @record1.id
+      assert_response :success
+    end
+    
+    test "cannot view patient outside of practice" do
+      sign_in @staff2
+      APP_CONFIG['use_opml_structure'] = false
+      get :show, id: @record1.id
+      assert_response 403
+      APP_CONFIG['use_opml_structure'] = true
+    end
+
+    test "npi user can view their patient" do
+      APP_CONFIG['use_opml_structure'] = false
+      sign_in @npi_user
+      get :show, id: @record3.id
+      assert_response :success
+      APP_CONFIG['use_opml_structure'] = true
+    end
+    
+    test "different npi user cannot view another practice provider's patient" do
+      APP_CONFIG['use_opml_structure'] = false
+      sign_in @npi_user2
+      get :show, id: @record3.id
+      assert_response 403
+      APP_CONFIG['use_opml_structure'] = true
+    end
+
     test "view patient with include_results includes the results" do
+      sign_in @user
       @record = Record.find('523c57e1b59a907ea9000064')
 
       get :show, id: @record.id, include_results: 'true', format: :json
@@ -27,12 +116,14 @@ require 'test_helper'
     end
 
     test "uploading a patient record" do
+      sign_in @user
       cat1 = fixture_file_upload('test/fixtures/sample_cat1.xml', 'text/xml')
       post :create, file: cat1
       assert_response :success
     end
 
     test "results" do
+      sign_in @user
       @record = Record.find('523c57e1b59a907ea9000064')
 
       get :results, id: @record.id

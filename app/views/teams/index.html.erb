@@ -1,0 +1,23 @@
+<div class="main userTeams">
+  <h1>User Teams</h1>
+  <%= button_to 'New Team', new_team_path, :method=> 'get', :class => "btn btn-primary pull-right btn-margin" %> <% if @current_user.staff_role && !APP_CONFIG['use_opml_structure'] %> <%= button_to 'Create Default Team', "teams/create_default", :method=> 'post', :class => "btn btn-primary pull-right" %> <% end %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @teams.each do |team| %>
+        <tr>
+          <td><%= team.name %></td>
+          <td><%= link_to 'View Providers', team %></td>
+          <td><%= link_to 'Edit', edit_team_path(team) %></td>
+          <td><%= link_to 'Delete', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+</div>

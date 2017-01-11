@@ -3,11 +3,13 @@ module HealthDataStandards
     class QueryCache
 
       # FIXME:
-      def self.aggregate_measure(measure_id, effective_date, filters=nil, test_id=nil)
-        query_hash = {'effective_date' => effective_date, 'measure_id' => measure_id,
-                      'test_id' => test_id}
+      def self.aggregate_measure(measure_id, effective_date, filters=nil, sub_id=nil)
+        query_hash = {'effective_date' => effective_date, 'measure_id' => measure_id}
         if filters
           query_hash.merge!(filters)
+        end
+        if sub_id
+          query_hash.merge!(sub_id)
         end
         cache_entries = self.where(query_hash)
         aggregate_count = AggregateCount.new(measure_id)

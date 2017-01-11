@@ -1,0 +1,40 @@
+<div class='form-inline'>
+<%= form_for @practice do |f| %>
+  <% if @practice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@practice.errors.count, "error") %> prohibited this practice from being saved:</h2>
+      <ul>
+      <% @practice.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h4> <%= @practice.new_record? ? "Create" : "Edit" %> Practice </h4>
+  <table class="table-condensed table-hover">
+    <tbody>
+      <tr>
+        <td><%= f.label :name, "*Name" %></td>
+        <td><%= f.text_field :name %></td>        
+      </tr>
+      <tr>
+        <td><%= f.label :organization, "*Organization" %></td>
+        <td><%= f.text_field :organization %></td>        
+      </tr>
+      <tr>
+        <td><%= f.label :address %></td>
+        <td><%= f.text_area :address %></td>        
+      </tr>
+      <% if @practice.new_record? %>
+      <tr>
+        <td><%= f.label :user, "User" %></td>
+        <td><%= select_tag :user, options_for_select(@users), include_blank: true %></td>        
+      </tr>
+      <% end %>
+      <tr class='pull-right'> <td><%= f.submit class: "btn new-practice-btn"%></td> </tr>
+    </tbody>
+  </table>
+
+<% end %>
+</div>

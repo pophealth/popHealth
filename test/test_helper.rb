@@ -21,6 +21,18 @@ class ActiveSupport::TestCase
     db['records'].drop
     db['patient_cache'].drop
     db['query_cache'].drop
+    db['bundles'].drop
+  end
+
+  def load_code_sets
+    MONGO_DB['races'].drop() if MONGO_DB['races']
+    MONGO_DB['ethnicities'].drop() if MONGO_DB['ethnicities']
+   JSON.parse(File.read(File.join(Rails.root, 'test', 'fixtures', 'code_sets', 'races.json'))).each do |document|
+      MONGO_DB['races'].insert(document)
+    end
+    JSON.parse(File.read(File.join(Rails.root, 'test', 'fixtures', 'code_sets', 'ethnicities.json'))).each do |document|
+      MONGO_DB['ethnicities'].insert(document)
+    end
   end
 
   def raw_post(action, body, parameters = nil, session = nil, flash = nil)

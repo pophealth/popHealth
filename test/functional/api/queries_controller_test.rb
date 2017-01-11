@@ -11,6 +11,7 @@ module Api
       collection_fixtures 'patient_cache'
       collection_fixtures 'providers'
       collection_fixtures 'users'
+      collection_fixtures 'practices'
 
       @staff = User.where({email: 'noadmin@test.com'}).first
       @admin = User.where({email: 'admin@test.com'}).first
@@ -19,9 +20,23 @@ module Api
       @npi_user = User.where({email: 'npiuser@test.com'}).first
       @npi_user.staff_role=false
       @npi_user.save
+      
+      @practice = Practice.all.first
+      
+      identifier = CDAIdentifier.new(:root => "Organization", :extension => @practice.organization)
+      practice_provider = Provider.where('cda_identifiers.root' => "Organization").first
+      practice_provider.cda_identifiers << identifier
+      practice_provider.practice = @practice
+      practice_provider.save
+      @practice.provider = practice_provider
+      @practice.save
+
+      @staff.practice = @practice
+      @staff.save
 
       @provider = Provider.where({family_name: "Darling"}).first
       @provider.npi = @npi_user.npi
+      @provider.parent = practice_provider
       @provider.save
 
       QME::QualityReport.where({}).each do |q|
@@ -39,6 +54,30 @@ module Api
       end
     end
 
+    def set_aggregate_options user_show_agg, use_opml
+      APP_CONFIG['use_opml_structure'] = use_opml
+      @admin.preferences.show_aggregate_result = user_show_agg
+      @admin.save!
+    end
+
+    test "show aggregate" do
+      original_show_agg_result = @admin.preferences.show_aggregate_result
+      original_use_opml = APP_CONFIG['use_opml_structure']
+      begin
+        sign_in @admin
+        set_aggregate_options true, false
+        qr = QME::QualityReport.where({_id: "523c57e4949d9dd06956b624"}).first
+        qr.filters["providers"] = [Provider.root._id.to_s]
+        qr.save!
+
+        get :show, :id =>"523c57e4949d9dd06956b624"
+
+        qr = QME::QualityReport.where({_id: "523c57e4949d9dd06956b624"}).first
+        assert_equal 50, qr.aggregate_result
+      ensure
+        set_aggregate_options original_show_agg_result, original_use_opml
+      end
+    end
 
 
     test "show admin" do
@@ -180,11 +219,14 @@ module Api
       assert_response :success, "staff should be able to create all reports for npis"
 
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212
-      assert_response :success, "staff should be able to create all reports for no npi"
+      assert_response (:success || 200), "staff should be able to create all reports for no npi"
     end
 
     test "create npi user" do
+      APP_CONFIG['use_opml_structure'] = true
+      
       sign_in @npi_user
+      
       post :create, :measure_id=>'40280381-3D61-56A7-013E-6649110743CE', :sub_id=>"a", :effective_date=>1212121212, :providers=>[@provider.id]
       assert_response :success, "should be able to create a quality report for users own npi"
 

@@ -9,7 +9,7 @@ class PatientCache
   field :birthdate, type: Integer
   field :gender, type: String
   
-  scope :by_provider, ->(provider, effective_date) { where({'value.provider_performances.provider_id' => provider.id, 'value.effective_date'=>effective_date}) }
+  scope :by_provider, ->(provider, effective_start_date, effective_date) { where({'value.provider_performances.provider_id' => provider.id, 'value.effective_date'=>effective_date, 'value.effective_start_date'=>effective_start_date}) }
   scope :outliers, ->(patient) {where({'value.patient_id'=>patient.id})}
 
   MATCH = {'$match' => {'value.measure_id' => "8A4D92B2-397A-48D2-0139-9BB3331F4C02", "value.sub_id" => "a"}} 
@@ -22,8 +22,9 @@ class PatientCache
           "antinumerator" => {"$sum" => "$value.antinumerator"},
           "exclusions" => {"$sum" => "$value.exclusions"},
           "denexcep" => {"$sum" => "$value.denexcep"},
-          "considered" => {"$sum" => 1}
-        }}
+          "considered" => {"$sum" => 1},
+          allowDiskUse:true
+        },allowDiskUse:true}
 
   REWIND = {'$group' => {"_id" => "$_id", "value" => {"$first" => "$value"}}}
 
@@ -44,7 +45,11 @@ class PatientCache
       {"providers"=> BSON::ObjectId.from_string("50a64aa68898e5b4b2000003")},
       {"providers"=> BSON::ObjectId.from_string("50a55a8e8898e5d400000005")},
       {"providers"=> BSON::ObjectId.from_string("50a64aa68898e5b4b2000007")},
-      {"providers"=> BSON::ObjectId.from_string("50a64aa68898e5b4b2000009")}]}})
+      {"providers"=> BSON::ObjectId.from_string("50a64aa68898e5b4b2000009")}]
+    },allowDiskUse:true
+  },allowDiskUse:true
+
+  )
   end
 
   def self.languages
@@ -57,6 +62,6 @@ class PatientCache
   end
 
   def self.aggregate(*pipeline)
-    Mongoid.default_session.command(aggregate: 'patient_cache', pipeline: pipeline)['result']
+    Mongoid.default_session.command(aggregate: 'patient_cache', pipeline: pipeline, allowDiskUse: true)['result']
   end
 end

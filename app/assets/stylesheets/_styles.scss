@@ -1,8 +1,56 @@
-
 $circle-bkg-color: #fff;
 $title-circle-radius: 21px;
 
+.cgm-measures {
+  padding: 50px 0;
+}
+
+.cgm-measures-small {
+  padding-top: 9px;
+}
+
 // Custom styles that are part of the theme
+
+.dropdown, div.datepicker {
+  position: relative;
+  z-index: 1000 !important;
+}
+.effective-date-header{
+  font-size: 16px;
+}
+.effective-date-picker {
+  width: 100px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  height: 28px;
+  position: relative;
+  z-index: 100;
+}
+.effective-date-picker .to {
+  width: 100px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  height: 28px;
+  position: relative;
+  z-index: 100;
+}
+.effective-date-picker .from{
+  width: 100px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  height: 28px;
+  position: relative;
+  z-index: 100;
+}
+.effective-date-btn{
+  border: 0;
+  height: 28px;
+  width: 30px;
+  padding-left: 5px;
+}
 
 body {
   margin-bottom: 40px;
@@ -10,6 +58,23 @@ body {
 
 #measureSelectors {
   word-wrap: break-word;
+}
+
+.export-patients-btn {
+  float: right;
+  width: 180px;
+}
+.practice_select {
+  max-width: 300px;
+}
+.practices {
+  margin-left:40px; 
+  margin-right:40px; 
+  width:60%;
+}
+
+.practice-btn {
+  margin-right: 40px;
 }
 
 .measure {

@@ -10,3 +10,7 @@ Corporation http://www.mitre.org, the Certification Commission
 for Healthcare Information Technology http://www.cchit.org, 
 Citius Tech http://www.citiustech.com/, and Open Sourcery 
 http://www.opensourcery.com/.
+
+This software contains code and modifications contributed by
+eHealthConnecticut, Alabama Medicaid, Northwestern University,
+and OSEHRA.

@@ -1,0 +1,1 @@
+require 'qme_ext/quality_report'

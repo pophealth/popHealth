@@ -8,15 +8,6 @@
     </p>
   <% end -%>
 
-  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <p>
-      <%= link_to new_registration_path(resource_name) do %>
-        <i class="fa fa-plus-circle"></i>
-        register
-      <% end %>
-    </p>
-  <% end -%>
-
   <%- if controller_name != 'sessions' %>
     <p>
       <%= link_to new_session_path(resource_name) do %>
@@ -39,14 +30,4 @@
       <%= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) %><br />
     <% end -%>
   <% end -%>
-</div>
-
-
-<div class="links info">
-
-    popHealth commit: <%= PopHealth::Application.config.commit %><br>
-    last tag: <%= PopHealth::Application.config.tag %><br>
-    bundle <%= (b = HealthDataStandards::CQM::Bundle.all.sort(:version => :desc).first) ? b.version : 'n/a' %><br>
-    Office of the National Coordinator for Health Information Technology |
-    <a href="http://www.mitre.org" target="_blank">MITRE</a>
 </div>

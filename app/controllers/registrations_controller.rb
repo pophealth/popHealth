@@ -7,6 +7,8 @@ class RegistrationsController < Devise::RegistrationsController
     skip_before_filter :require_no_authentication
   end
 
+  skip_before_filter :verify_authenticity_token, :only => :create
+
   # Need bundle info to display the license information
   def new
     @bundles = Bundle.all() || []
@@ -14,8 +16,17 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    @bundles = Bundle.all() || []
-    super
+    if (request.content_type =~ /json/)
+      build_resource sign_up_params
+      if resource.save
+         render :status => 200, :json => resource
+      else
+        render :json => resource.errors, :status => :unprocessable_entity
+      end
+    else 
+      @bundles = Bundle.all() || []
+      super
+    end
   end
 
   # modified to avoid redirecting if responding via JSON
@@ -65,7 +76,11 @@ class RegistrationsController < Devise::RegistrationsController
     authorize! :manage, resource
   end
 
+  def sign_up_params
+    params.require(:user).permit(:first_name, :last_name, :email, :username, :password, :password_confirmation, :company, :company_url, :provider_id, :practice_id, :registry_name, :registry_id, :npi, :tin, :agree_license, :approved, :staff_role)
+  end
+
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :username, :password, :password_confirmation, :company, :company_url, :registry_name, :registry_id, :npi, :tin) }
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :username, :password, :password_confirmation, :company, :company_url, :provider_id, :practice_id, :registry_name, :registry_id, :npi, :tin, :agree_license, :approved, :staff_role) }
   end
 end

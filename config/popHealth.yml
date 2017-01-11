@@ -21,8 +21,14 @@ defaults: &defaults
   # force the system to allow HTTP connections
   force_unsecure_communications: true
   use_map_reduce_prefilter: true
-  enable_map_reduce_rationale: true
+  enable_map_reduce_rationale: false
   enable_map_reduce_logging: false
+  #use provider opml heirarchy instead of practice based system
+  use_opml_structure: false
+  
+  # use workaround for new measure bundle 2.6.0 to get measure results
+  ignore_provider_performance_dates: true
+  
   #provider type to exclude EH measures from
   eh_exclusion_type: "Division"
   orphan_provider:
@@ -59,7 +65,7 @@ defaults: &defaults
         :family: ''
       :organization:
         :ids:
-        - :root: custodian_rganization_root
+        - :root: custodian_organization_root
           :extension: custodian_organization_ext
         :name: ''
     :legal_authenticator:

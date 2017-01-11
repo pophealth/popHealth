@@ -70,6 +70,26 @@
     });
     
   };
+  
+  popHealth.changePractice = function() {
+    var userId = $(this).data("user");
+    var practice = $(this).val();
+    var confs = "Change user's assigned practice?";   
+    if ( confirm(confs) == true ){
+      $.post('set_user_practice', {'user': userId, 'practice': practice}, function(d){
+      }); 
+    };
+  };
+  
+  popHealth.changePracticeProvider = function() {
+    var userId = $(this).data("user");
+    var provider = $(this).val();
+    var confs = "Change user's assigned provider?";   
+    if ( confirm(confs) == true ){
+      $.post('set_user_practice_provider', {'user': userId, 'provider': provider}, function(d){
+      }); 
+    };
+  };
 
   $(document).ready(function() {
     $('.promote').click(popHealth.promoteUser);
@@ -78,48 +98,91 @@
     $('.enable').click(popHealth.disableUser);
     $('.disable').click(popHealth.enableUser);
     $('.npi_select').change(popHealth.changeNpi);
+    $('.practice_select').change(popHealth.changePractice);
+    $('.practice_provider_select').change(popHealth.changePracticeProvider);
   });
 </script>
 
 <div id="pageContent">
-<h3>Users</h3>
-<table id="patientTable" class="table">
-  <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Username</th>
-    <th>provider</th>
-    <th>Administrator</th>
-    <th>Staff Role</th>
-    <th>Approved</th>
-    <th>Status</th>
-  </tr>
+<%= if !APP_CONFIG['use_opml_structure'] then link_to "Edit Practices", practices_path, :class => "btn btn-large btn-success pull-right practice-btn" end %>
+
+<h1>Users</h1>
+<table id="patientTable" class="table table-hover">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Username</th>
+      <% if APP_CONFIG['use_opml_structure'] %>
+      <th>Provider</th>
+      <% else %>
+      <th>Practice</th>
+      <th>Provider</th>
+      <% end %>
+      <th>Administrator</th>
+      <th>Staff Role</th>
+      <th>Approved</th>
+      <th>Status</th>
+      <th colspan="2"/>
+    </tr>
+  </thead>
   <% @users.each do |user| -%>
+  <tbody>
   <tr>
     <td><%= user.first_name %></td>
     <td><%= user.last_name %></td>
     <td><%= user.username %></td>
+
+    <% if APP_CONFIG['use_opml_structure'] %>
     <td>
       <select class="npi_select" data-username="<%= user.username %>" name="user[npi]">
         <option value="-1">&nbsp;</option>
         <% Provider.all.alphabetical.each do |provider| %>
-          <option value="<%= provider.npi %>" <%= (user.npi == provider.npi) ? "selected=\"selected\"" : ""%>><%= provider.full_name%></option>
+          <option value="<%= provider.npi %>" <%= (user.npi == provider.npi) ? "selected=\"selected\"" : ""%>><%= provider.full_name %> </option>
         <% end%>
       </select>
     </td>
+    <% else %>
+      <td> 
+        <% if Provider.valid_npi?(user.npi) %>
+          N/A
+        <% else %>
+        <%= select_tag "practice", options_for_select(@practices, user.practice_id), prompt: 'None', data: {user: user.id.to_s}, class: 'practice_select'%> 
+        <% end %>
+      </td>
+      
+
+      <td> 
+        <% if Provider.valid_npi?(user.npi) %>
+        <% @practice_pvs = Provider.by_npi(user.npi).map {|pv| if pv.try(:parent).try(:practice) then [pv.parent.practice.name + " - " + pv.full_name, pv.id] end}%>
+        <%= select_tag "practice_provider_select", options_for_select(@practice_pvs, user.provider_id), prompt: 'None', data: {user: user.id.to_s}, class: 'practice_provider_select'%> 
+        <% else %>
+          N/A
+        <% end %>
+      </td>
+
+    <% end %>
     <td>
-      <% if user.admin? -%>
-      Yes - <a href="#" class="demote" data-role="admin" data-username="<%= user.username %>">revoke</a>
-      <% else -%>
-      No - <a href="#" class="promote" data-role="admin" data-username="<%= user.username %>">grant</a>
-      <% end -%>
+      <% if Provider.valid_npi?(user.npi) || user.staff_role %>
+        N/A
+      <% else %>
+        <% if user.admin? -%>
+        Yes - <a href="#" class="demote" data-role="admin" data-username="<%= user.username %>">revoke</a>
+        <% else -%>
+        No - <a href="#" class="promote" data-role="admin" data-username="<%= user.username %>">grant</a>
+        <% end -%>
+      <% end %>
     </td>
     <td>
-      <% if user.staff_role? -%>
-      Yes - <a href="#" class="demote" data-role="staff_role" data-username="<%= user.username %>">revoke</a>
-      <% else -%>
-      No - <a href="#" class="promote" data-role="staff_role" data-username="<%= user.username %>">grant</a>
-      <% end -%>
+      <% if Provider.valid_npi?(user.npi) %>
+        N/A
+      <% else %>
+        <% if user.staff_role? -%>
+        Yes - <a href="#" class="demote" data-role="staff_role" data-username="<%= user.username %>">revoke</a>
+        <% else -%>
+        No - <a href="#" class="promote" data-role="staff_role" data-username="<%= user.username %>">grant</a>
+        <% end -%>
+      <% end %>
     </td>
     <td>
       <% if user.approved? -%>
@@ -131,7 +194,12 @@
     <td>
       <a href="#" class="<%= (user.disabled?) ? 'disable' : 'enable'%>" data-username="<%= user.username %>"><%= (user.disabled?) ? 'disabled' : 'enabled'%></a>
     </td>
+    <td>
+      <%= link_to "View Info",{:controller => "admin", :action => "user_profile", :id => user._id}, :class => "btn btn-info"%>    
+      <%= link_to "Delete User", {:controller => "admin", :action => "delete_user", :id => user._id}, 'method' => 'delete', 'class' => 'btn btn-danger delete-user-btn', data: {'confirm' => "Are you sure you want to delete this user?"} %>    			  
+    </td>
   </tr>
+  </tbody>
   <% end -%>
 </table>
 </div> <!-- pageContent -->

@@ -1,9 +1,10 @@
 class ImportArchiveJob
-  attr_accessor :file, :current_user
-
+  attr_accessor :file, :current_user, :practice
+  
   def initialize(options)
     @file = options['file'].path
     @current_user = options['user']
+    @practice = options['practice']
   end
 
   def before
@@ -11,7 +12,7 @@ class ImportArchiveJob
   end
 
   def perform
-    missing_patients = HealthDataStandards::Import::BulkRecordImporter.import_archive(File.new(@file))
+    missing_patients = BulkRecordImporter.import_archive(File.new(@file), nil, @practice)
     missing_patients.each do |id|
       Log.create(:username => @current_user.username, :event => "patient was present in patient manifest but not found after import", :medical_record_number => id)
     end
@@ -19,5 +20,7 @@ class ImportArchiveJob
 
   def after
     File.delete(@file)
+    HealthDataStandards::CQM::QueryCache.delete_all
+    PatientCache.delete_all    
   end
 end
