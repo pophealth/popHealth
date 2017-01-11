@@ -65,7 +65,7 @@ defaults: &defaults
         :family: ''
       :organization:
         :ids:
-        - :root: custodian_rganization_root
+        - :root: custodian_organization_root
           :extension: custodian_organization_ext
         :name: ''
     :legal_authenticator:
